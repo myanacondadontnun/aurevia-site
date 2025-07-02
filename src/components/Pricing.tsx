@@ -10,20 +10,22 @@ import { useStaggeredScrollFade } from "./ScrollAnimations";
 
 const pricingPlans = [
   {
-    name: "Starter Kit",
-    monthlyPrice: 39,
-    annualPrice: 27,
-    description: "You're ready to do this right from day one.",
+    name: "Pilot Plan",
+    monthlyPrice: 59,
+    annualPrice: 39,
+    description: "Start intelligent, grow fast",
     features: [
       "Free 14-day Trial",
-      "Seats = 1",
-      "Max Seats = 5",
-      "AI messages/seat/mo = 3000",
-      "Extra AI message = $5 / 1000",
+      "Seats Included = 1",
+      "Max Seats Allowed = 3",
+      "AI messages/mo = 2000",
+      "Need more? One-click upgrade",
+      "Extra AI message = $15/1000",
+      "Every feature unlocked",
       "Analytics history = 3 months",
-      "Ask Aurevia AI co-pilot ✅",
-      "Onboarding = Self Serve Docs",
-      "Support = Email + Discord 10×5",
+      '"Ask Aurevia" AI co-pilot = ✓',
+      "Onboarding = Self Serve Documents",
+      "Support = Email and Discord 10x5",
       "Uptime SLA = 99%",
     ],
     ctaText: "Start Free Trial",
@@ -31,18 +33,21 @@ const pricingPlans = [
   },
   {
     name: "Revenue Suite",
-    monthlyPrice: 79,
-    annualPrice: 55,
-    description: "You're growing fast and it's time your store kept up.",
+    monthlyPrice: 99,
+    annualPrice: 79,
+    description: "Premium AI for accelerated revenue generation",
     features: [
       "Free 14-day Trial",
-      "Seats = 3",
-      "Max = 25",
-      "AI messages/seat/mo = 10000",
-      "Extra AI message = $4 / 1000",
-      "Analytics = 12 months",
+      "Seats Included = 3",
+      "Max Seats Allowed = 25",
+      "AI messages/mo = 5000",
+      "Need more? One-click upgrade",
+      "Extra AI message = $10/1000",
+      "Every feature unlocked",
+      "Analytics history = 12 months",
+      '"Ask Aurevia" AI co-pilot = ✓',
       "Onboarding = 1-to-1 success calls",
-      "Support = Discord + Priority Email 24×7",
+      "Discord + Priority Email 24x7",
       "Uptime SLA = 99.5%",
     ],
     ctaText: "Start Free Trial",
@@ -94,11 +99,9 @@ export default function Pricing() {
             <span className={`font-medium ${isAnnual ? "text-white" : "text-muted-foreground"}`}>
               Annually
             </span>
-            {isAnnual && (
-              <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30">
-                Save ~30%
-              </Badge>
-            )}
+            <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30">
+              Save ~30%
+            </Badge>
           </div>
         </div>
 
@@ -109,9 +112,9 @@ export default function Pricing() {
           {pricingPlans.map((plan, index) => (
             <Card
               key={plan.name}
-              className={`scroll-fade relative bg-card border-border hover:border-primary/30 transition-all duration-300 ${
+              className={`scroll-fade relative border-border hover:border-primary/30 transition-all duration-300 ${
                 plan.popular ? "border-primary/50 scale-105" : ""
-              }`}
+              } ${plan.name === 'Revenue Suite' ? 'bg-black bg-[linear-gradient(135deg,_rgba(0,64,64,0.18)_0%,_rgba(0,128,128,0.12)_100%)]' : 'bg-card'}`}
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -122,7 +125,9 @@ export default function Pricing() {
               )}
 
               <CardHeader className="text-center pb-4">
-                <h3 className="text-2xl font-inter font-normal text-white mb-2">
+                <h3
+                  className="text-2xl font-inter font-normal text-white mb-2"
+                >
                   {plan.name}
                 </h3>
                 <div className="mb-4">

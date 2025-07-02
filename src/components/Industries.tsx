@@ -7,7 +7,6 @@ import { useScrollFade } from "./ScrollAnimations";
 
 interface Industry {
   title: string;
-  icon: string;
   description: string;
   impactPoints: string[];
 }
@@ -15,7 +14,6 @@ interface Industry {
 const industries: Industry[] = [
   {
     title: "Home & Decor",
-    icon: "🏩",
     description:
       "The AI Sales Agent guides shoppers through dimensions, styles, and material questions — while suggesting bundles that fit room aesthetics.",
     impactPoints: [
@@ -27,7 +25,6 @@ const industries: Industry[] = [
   },
   {
     title: "Fashion & Apparel",
-    icon: "👗",
     description:
       "Chat about fit, fabric and outfit ideas. Aurevia upsells \"complete the look\" bundles and cuts costly returns.",
     impactPoints: [
@@ -39,7 +36,6 @@ const industries: Industry[] = [
   },
   {
     title: "Beauty & Cosmetics",
-    icon: "💄",
     description:
       "From undertone questions to ingredient lists, the bot recommends perfect shades and triggers subscription refills before bottles run dry.",
     impactPoints: [
@@ -51,7 +47,6 @@ const industries: Industry[] = [
   },
   {
     title: "Food & Beverage",
-    icon: "🍷",
     description:
       "Cross-sell wine with cheese, upsell gift hampers, and remind customers when their favourites run low.",
     impactPoints: [
@@ -63,7 +58,6 @@ const industries: Industry[] = [
   },
   {
     title: "Electronics & Gadgets",
-    icon: "🔌",
     description:
       "Shoppers pit models side-by-side, get warranty add-ons, and see real-time stock alert, no human agent required.",
     impactPoints: [
@@ -107,15 +101,50 @@ export default function Industries() {
     const baseTransition = "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
     switch (position) {
       case 'center':
-        return { transform: 'translateX(0px) scale(1) rotateY(0deg)', zIndex: 50, filter: 'blur(0px)', opacity: 1, width: '320px', transition: baseTransition };
+        return {
+          transform: 'translateX(0px) scale(1)',
+          zIndex: 50,
+          filter: 'blur(0px)',
+          opacity: 1,
+          width: '320px',
+          transition: baseTransition
+        };
       case 'right':
-        return { transform: 'translateX(160px) scale(0.88) rotateY(-12deg)', zIndex: 30, filter: 'blur(1px)', opacity: 0.8, width: '280px', transition: baseTransition };
+        return {
+          transform: 'translateX(240px) scale(0.88)',
+          zIndex: 30,
+          filter: 'blur(1px)',
+          opacity: 0.8,
+          width: '280px',
+          transition: baseTransition
+        };
       case 'left':
-        return { transform: 'translateX(-160px) scale(0.88) rotateY(12deg)', zIndex: 30, filter: 'blur(1px)', opacity: 0.8, width: '280px', transition: baseTransition };
+        return {
+          transform: 'translateX(-240px) scale(0.88)',
+          zIndex: 30,
+          filter: 'blur(1px)',
+          opacity: 0.8,
+          width: '280px',
+          transition: baseTransition
+        };
       case 'far-right':
-        return { transform: 'translateX(320px) scale(0.75) rotateY(-25deg)', zIndex: 10, filter: 'blur(2px)', opacity: 0.6, width: '260px', transition: baseTransition };
+        return {
+          transform: 'translateX(480px) scale(0.75)',
+          zIndex: 10,
+          filter: 'blur(2px)',
+          opacity: 0.6,
+          width: '260px',
+          transition: baseTransition
+        };
       case 'far-left':
-        return { transform: 'translateX(-320px) scale(0.75) rotateY(25deg)', zIndex: 10, filter: 'blur(2px)', opacity: 0.6, width: '260px', transition: baseTransition };
+        return {
+          transform: 'translateX(-480px) scale(0.75)',
+          zIndex: 10,
+          filter: 'blur(2px)',
+          opacity: 0.6,
+          width: '260px',
+          transition: baseTransition
+        };
       default:
         return {};
     }
@@ -140,6 +169,17 @@ export default function Industries() {
                 {industries.map((industry, index) => {
                   const position = getCardPosition(index);
                   const isCenter = position === 'center';
+                  // Dynamically set font size based on number of impact points
+                  const minFont = 14; // px
+                  const maxFont = 20; // px
+                  const minHeader = 15; // px
+                  const maxHeader = 22; // px
+                  const minPoints = 2;
+                  const maxPoints = Math.max(...industries.map(i => i.impactPoints.length));
+                  const points = industry.impactPoints.length;
+                  // Linear interpolation for font size
+                  const bulletFontSize = maxFont - ((points - minPoints) / (maxPoints - minPoints)) * (maxFont - minFont);
+                  const headerFontSize = maxHeader - ((points - minPoints) / (maxPoints - minPoints)) * (maxHeader - minHeader);
                   return (
                     <div
                       key={industry.title}
@@ -150,31 +190,22 @@ export default function Industries() {
                       <div className={`relative h-full w-full bg-gradient-to-br ${gradientClasses[index]} rounded-2xl border border-white/10 shadow-2xl`}>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-white/5 rounded-2xl" />
                         <div className="relative h-full p-6 flex flex-col">
-                          <div className="absolute top-4 right-4 text-3xl opacity-90">{industry.icon}</div>
-                          <div className={`${isCenter ? 'bg-white/20 border-white/30 text-white' : 'bg-white/10 border-white/20 text-white/70'} self-start mb-4 px-3 py-1 rounded-full backdrop-blur-sm transition-colors duration-300 border`}>{industry.title}</div>
-                          <p className={`${isCenter ? 'text-white' : 'text-white/60'} text-base leading-relaxed mb-3 transition-colors duration-300`}>{industry.description}</p>
+                          <div className="self-start mb-4 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/80 shadow-sm">
+                            {industry.title}
+                          </div>
+                          <p className="text-base leading-relaxed mb-3 text-white/60">{industry.description}</p>
 
-                          <div className="flex-1 flex flex-col justify-start rounded-lg p-4 border border-white/10 backdrop-blur-md bg-white/10">
-                            <h4 className="text-sm font-semibold mb-2 text-white/90">Impact:</h4>
+                          <div className="flex-1 flex flex-col justify-start rounded-lg p-4 border border-white/10 backdrop-blur-md bg-white/10" style={{ height: 220 }}>
+                            <h4 className="font-semibold mb-2 text-white/90" style={{ fontSize: headerFontSize }}>{'Impact:'}</h4>
                             <ul className="flex-1 flex flex-col justify-start space-y-1.5">
                               {industry.impactPoints.map((point, idx) => (
-                                <li key={idx} className="flex items-start gap-2 text-sm">
+                                <li key={idx} className="flex items-start gap-2 font-light text-sm" style={{ fontSize: bulletFontSize }}>
                                   <span className="w-1.5 h-1.5 bg-white rounded-full mt-2 flex-shrink-0" />
-                                  <span className="text-white/90 font-light">{point}</span>
+                                  <span className="text-white/90">{point}</span>
                                 </li>
                               ))}
                             </ul>
                           </div>
-
-                          {!isCenter && (
-                            <div className="w-full aspect-[3/2] bg-gradient-to-br from-black/20 to-transparent rounded-lg flex items-center justify-center border border-white/10 backdrop-blur-sm transition-opacity duration-300 opacity-60">
-                              <div className="text-center text-white/60">
-                                <div className="w-16 h-16 mx-auto mb-3 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm"><div className="w-8 h-8 bg-white/40 rounded"/></div>
-                                <p className="text-sm text-white/80">{industry.title} Demo</p>
-                                <p className="text-xs mt-1 text-white/50">Click to explore</p>
-                              </div>
-                            </div>
-                          )}
                         </div>
                       </div>
                     </div>

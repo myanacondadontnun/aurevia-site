@@ -24,9 +24,19 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-4 left-0 right-0 z-50 px-6">
-      <div className={`glass-nav shadow-lg ${isScrolled ? "shrunk" : ""}`}>
-        <div className="flex items-center justify-between px-6 py-4">
-          {/* Logo - Clickable */}
+      <div
+        className={`glass-nav shadow-lg transition-all duration-500 ease-in-out`}
+        style={{
+          width: isScrolled ? "60%" : "100%",
+          margin: "0 auto",
+          transition: "width 0.5s cubic-bezier(0.4,0,0.2,1)",
+          borderRadius: "1.5rem",
+          minWidth: 320,
+          maxWidth: "100vw",
+        }}
+      >
+        <div className="flex items-center justify-between w-full px-6 py-4">
+          {/* Logo */}
           <div
             className="text-2xl font-inter font-semibold text-white cursor-pointer"
             onClick={() => scrollToSection("hero")}
@@ -34,7 +44,7 @@ export default function Navbar() {
             Aurevia.io
           </div>
 
-          {/* Navigation Links - Hidden on mobile */}
+          {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
             {[
               { label: "Features", id: "features" },
@@ -54,13 +64,15 @@ export default function Navbar() {
           </div>
 
           {/* CTA Button */}
-          <Button
-            className="cta-button text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 border-0"
-            onClick={() => scrollToSection("beta")}
-          >
-            Join Free Beta!
-            <ArrowRight className="w-4 h-4 cta-arrow" />
-          </Button>
+          <div>
+            <Button
+              className="cta-button text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 border-0"
+              onClick={() => scrollToSection("beta")}
+            >
+              Join Free Beta!
+              <ArrowRight className="w-4 h-4 cta-arrow" />
+            </Button>
+          </div>
         </div>
       </div>
     </nav>

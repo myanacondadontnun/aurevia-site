@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Check, ArrowRight } from "lucide-react";
@@ -14,6 +15,16 @@ const benefits = [
 
 export default function BetaTester() {
   const cardRef = useScrollFade();
+  const [showForm, setShowForm] = useState(false);
+
+  useEffect(() => {
+    if (showForm) {
+      const script = document.createElement("script");
+      script.src = "https://app.youform.com/embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, [showForm]);
 
   return (
     <section id="beta" className="py-24 px-6">
@@ -34,30 +45,46 @@ export default function BetaTester() {
                 first — it's about who fits.
               </p>
 
-              <div className="mb-8">
-                <h3 className="text-xl font-inter font-normal mb-6 text-white">
-                  What You Get:
-                </h3>
-                <div className="space-y-4">
-                  {benefits.map((benefit, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center justify-center gap-3 text-foreground"
-                    >
-                      <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-lg font-light">{benefit}</span>
+              {!showForm && (
+                <>
+                  <div className="mb-8">
+                    <h3 className="text-xl font-inter font-normal mb-6 text-white">
+                      What You Get:
+                    </h3>
+                    <div className="space-y-4">
+                      {benefits.map((benefit, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center justify-center gap-3 text-foreground"
+                        >
+                          <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                          <span className="text-lg font-light">{benefit}</span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </div>
 
-              <Button
-                size="lg"
-                className="cta-button text-white font-medium px-8 py-4 text-lg rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center gap-2 mx-auto border-0"
-              >
-                Let's Get To Know You
-                <ArrowRight className="w-5 h-5 cta-arrow" />
-              </Button>
+                  <Button
+                    size="lg"
+                    className="cta-button text-white font-medium px-8 py-4 text-lg rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center gap-2 mx-auto border-0"
+                    onClick={() => setShowForm(true)}
+                  >
+                    Let's Get To Know You
+                    <ArrowRight className="w-5 h-5 cta-arrow" />
+                  </Button>
+                </>
+              )}
+
+              {showForm && (
+                <div className="mt-10">
+                  <div
+                    data-youform-embed
+                    data-form="t59rhmzg"
+                    data-width="100%"
+                    data-height="700"
+                  ></div>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>
