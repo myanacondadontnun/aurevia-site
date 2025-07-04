@@ -30,7 +30,7 @@ const steps = [
     title: "Start Converting, 24/7",
     description:
       "Aurevia launches on your storefront, answering, upselling, and recovering carts. See real-time revenue in the dashboard.",
-    image: "/images/live_activity.png",
+    image: "/images/Live_activity.png",
   },
 ];
 
