@@ -1,11 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
+  const [pillClass, setPillClass] = useState("pill-wrapper hidden");
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -14,26 +15,25 @@ export default function Hero() {
   };
 
   useEffect(() => {
-    // Trigger pill badge animation after mount
-    const badge = document.querySelector(".pill-badge");
-    if (badge) {
-      setTimeout(() => {
-        badge.classList.add("visible");
-      }, 300);
-    }
+    requestAnimationFrame(() => {
+      setPillClass("pill-wrapper reveal");
+    });
   }, []);
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center pt-32 pb-16 gradient-bg">
+    <section
+      id="hero"
+      className="min-h-screen flex items-center justify-center pt-32 pb-16 gradient-bg"
+    >
       <div className="container mx-auto px-6 text-center">
         <div className="max-w-4xl mx-auto animate-fade-in">
-          {/* Badge */}
-          <Badge
-            variant="secondary"
-            className="pill-badge mb-8 text-sm px-4 py-2 bg-secondary/50 border border-border/50 text-foreground"
-          >
-            New — Personal AI Agent for your support
-          </Badge>
+          {/* Connected Pill */}
+          <div className="flex justify-center mb-8">
+            <div className={pillClass}>
+              <div className="pill-left">New</div>
+              <div className="pill-right">Personal AI Agent for your support</div>
+            </div>
+          </div>
 
           {/* Headline */}
           <h1 className="gradient-text text-5xl md:text-6xl lg:text-7xl font-inter font-normal mb-6 leading-tight">
@@ -58,6 +58,82 @@ export default function Hero() {
           </Button>
         </div>
       </div>
+
+      {/* Premium pill styles */}
+      <style jsx>{`
+        .pill-wrapper {
+          display: inline-flex;
+          align-items: center;
+          overflow: hidden;
+          border-radius: 9999px;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(8px);
+          background: radial-gradient(ellipse at bottom, #0e2f21 0%, #000000 100%);
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+          height: 44px;
+          max-width: 60px;
+          opacity: 1;
+          transform: scale(0.96);
+          transition:
+            max-width 1.2s cubic-bezier(0.77,0,0.175,1),
+            opacity 0.6s cubic-bezier(0.77,0,0.175,1),
+            transform 0.7s cubic-bezier(0.77,0,0.175,1);
+        }
+
+        .pill-wrapper.hidden {
+          opacity: 0;
+          transform: scale(0.92);
+        }
+
+        .pill-wrapper.reveal {
+          max-width: 460px;
+          opacity: 1;
+          transform: scale(1);
+          transition-delay:
+            max-width 0.05s,
+            opacity 0.1s,
+            transform 0.1s;
+        }
+
+        .pill-left {
+          background: linear-gradient(135deg, #000000 0%, #7f5af0 100%);
+          padding: 0.5rem 1rem;
+          font-size: 0.875rem;
+          font-weight: 600;
+          color: white;
+          border-radius: 9999px;
+          position: relative;
+          z-index: 10;
+          white-space: nowrap;
+          transform: translateY(10%);
+          opacity: 0;
+          transition:
+            opacity 0.7s cubic-bezier(0.77,0,0.175,1) 0.25s,
+            transform 0.7s cubic-bezier(0.77,0,0.175,1) 0.25s;
+        }
+
+        .pill-wrapper.reveal .pill-left {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .pill-right {
+          font-size: 0.875rem;
+          color: white;
+          padding: 0 1rem 0 0.75rem;
+          white-space: nowrap;
+          transform: translateX(-24%) scale(0.98);
+          opacity: 0;
+          transition:
+            opacity 0.8s cubic-bezier(0.77,0,0.175,1) 0.45s,
+            transform 0.8s cubic-bezier(0.77,0,0.175,1) 0.45s;
+        }
+
+        .pill-wrapper.reveal .pill-right {
+          transform: translateX(0) scale(1);
+          opacity: 1;
+        }
+      `}</style>
     </section>
   );
 }

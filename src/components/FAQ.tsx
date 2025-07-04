@@ -78,7 +78,7 @@ export default function FAQ() {
                 value={`item-${index}`}
                 className="bg-card border border-border rounded-lg px-6 data-[state=open]:border-primary/30"
               >
-                <AccordionTrigger className="text-left font-inter font-normal text-white hover:text-primary transition-colors duration-200 py-6">
+                <AccordionTrigger className="text-left font-inter font-normal text-white hover:text-[#095C46] transition-colors duration-200 py-6">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground font-light leading-relaxed pb-6">
@@ -92,7 +92,7 @@ export default function FAQ() {
         <div className="text-center mt-12 scroll-fade">
           <Button
             size="lg"
-            className="cta-button text-white font-medium px-8 py-4 text-lg rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center gap-2 mx-auto border-0"
+            className="cta-button text-white font-medium px-8 py-4 text-lg rounded-lg transition-all duration-200 transform hover:scale-105 hover:bg-[#095C46] flex items-center gap-2 mx-auto border-0"
             onClick={() => scrollToSection("beta")}
           >
             Get the Beta Access!

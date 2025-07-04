@@ -9,24 +9,28 @@ const steps = [
     title: "Install Aurevia from the Shopify App Store",
     description:
       "One-click install. No scripts, no theme edits. Aurevia auto-syncs your products, discounts, and branding.",
+    image: "/images/shopify_install_page.png",
   },
   {
     number: "2",
     title: "Set tone, colours and business rules",
     description:
       "Make chatbot of your own brand — upload name/logo, choose tone-of-voice and set rules. Live preview updates instantly.",
+    image: "/images/chat_settings.png",
   },
   {
     number: "3",
     title: "Feed Knowledge, Get Smarter",
     description:
       "Drop FAQs, product docs, and brand guidelines. Answers stay on-brand, technical questions vanish.",
+    image: "/images/ai_training.png",
   },
   {
     number: "4",
     title: "Start Converting, 24/7",
     description:
       "Aurevia launches on your storefront, answering, upselling, and recovering carts. See real-time revenue in the dashboard.",
+    image: "/images/live_activity.png",
   },
 ];
 
@@ -60,15 +64,24 @@ export default function FourSteps() {
               <CardContent className="p-8">
                 {/* Step Number & Graphic Placeholder */}
                 <div className="mb-6">
-                  <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-lg flex items-center justify-center mb-4">
-                    <div className="text-center">
-                      <div className="w-16 h-16 mx-auto mb-4 bg-primary/30 rounded-full flex items-center justify-center">
-                        <span className="text-2xl font-inter font-medium text-primary">
-                          {step.number}
-                        </span>
+                  <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
+                    {step.image ? (
+                      <img
+                        src={step.image}
+                        alt={step.title}
+                        className="object-cover w-full h-full"
+                        style={{ maxHeight: '100%', maxWidth: '100%' }}
+                      />
+                    ) : (
+                      <div className="text-center">
+                        <div className="w-16 h-16 mx-auto mb-4 bg-primary/30 rounded-full flex items-center justify-center">
+                          <span className="text-2xl font-inter font-medium text-primary">
+                            {step.number}
+                          </span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">Step {step.number} Visual</p>
                       </div>
-                      <p className="text-sm text-muted-foreground">Step {step.number} Visual</p>
-                    </div>
+                    )}
                   </div>
                 </div>
 
