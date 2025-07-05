@@ -18,6 +18,7 @@ const features = [
       "Our LLM reads live shopper context and your catalogue to suggest perfect products, lifting average order value on beta stores.",
     tags: ["Personalized Selling", "Smart Upsell", "Bundles", "Auto-Scraping"],
     imagePlaceholder: "/api/placeholder/600/400",
+    video: "/videos/product_recomm.mp4",
   },
   {
     title: "Sell While You Sleep, Worldwide",
@@ -32,6 +33,7 @@ const features = [
       "From colours, avatars, to tone of voice — everything is customisable. Ask Co-pilot to \"create Ferrari F1 style chatbot\" or \"speak like James Bond.\" Agent auto-adapts. No code. No design work.",
     tags: ["On-Brand Control", "Fully Customizable", "Custom AI", "Full Brand Control"],
     imagePlaceholder: "/api/placeholder/600/400",
+    video: "/videos/customising-chat-1751679156624.mp4",
   },
   {
     title: "See What Sells, and Why",
@@ -39,6 +41,7 @@ const features = [
       "Visual dashboards reveal conversation sentiment, drop-offs, and top-selling SKUs. Export collected leads or correct past mistakes in seconds to keep conversions climbing.",
     tags: ["Actionable Analytics", "Lead Generation", "Data Visualization", "Sales Analytics"],
     imagePlaceholder: "/api/placeholder/600/400",
+    video: "/videos/dashboard-video-1751715147712.mp4",
   },
 ];
 
@@ -94,12 +97,33 @@ export default function FiveWays() {
                 <Card className="bg-card border-border overflow-hidden">
                   <CardContent className="p-0">
                     <div className="aspect-[3/2] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center">
-                      <div className="text-center text-muted-foreground">
-                        <div className="w-16 h-16 mx-auto mb-4 bg-primary/20 rounded-lg flex items-center justify-center">
-                          <div className="w-8 h-8 bg-primary/40 rounded" />
+                      {feature.video ? (
+                        <video
+                          src={feature.video}
+                          controls
+                          preload="metadata"
+                          muted
+                          className="w-full h-full object-cover rounded"
+                          onCanPlay={(e) => {
+                            const video = e.target as HTMLVideoElement;
+                            video.currentTime = 0.5;
+                          }}
+                          onTimeUpdate={(e) => {
+                            const video = e.target as HTMLVideoElement;
+                            if (video.currentTime >= 0.5 && !video.hasAttribute('data-seeked')) {
+                              video.pause();
+                              video.setAttribute('data-seeked', 'true');
+                            }
+                          }}
+                        />
+                      ) : (
+                        <div className="text-center text-muted-foreground">
+                          <div className="w-16 h-16 mx-auto mb-4 bg-primary/20 rounded-lg flex items-center justify-center">
+                            <div className="w-8 h-8 bg-primary/40 rounded" />
+                          </div>
+                          <p className="text-sm">Feature Demo Placeholder</p>
                         </div>
-                        <p className="text-sm">Feature Demo Placeholder</p>
-                      </div>
+                      )}
                     </div>
                   </CardContent>
                 </Card>

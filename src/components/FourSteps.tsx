@@ -38,7 +38,7 @@ export default function FourSteps() {
   const containerRef = useStaggeredScrollFade(150);
 
   return (
-    <section className="py-24 px-6">
+    <section id="foursteps" className="py-24 px-6">
       <div className="container mx-auto">
         <div className="text-center mb-16 scroll-fade">
           <h2 className="gradient-text text-4xl md:text-5xl font-inter font-normal mb-4">

@@ -6,13 +6,75 @@ import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 100);
     };
+
+    const observeSection = () => {
+      const sections = [
+        "features",
+        "foursteps",
+        "industries",
+        "benefits",
+        "pricing",
+        "faq",
+      ];
+
+      // Update active section during scroll
+      const handleScroll = () => {
+        // Find which section is most in view
+        const mostVisible = sections.reduce((acc, sectionId) => {
+          const section = document.getElementById(sectionId);
+          if (!section) {
+            return acc;
+          }
+
+          const rect = section.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+          
+          // Calculate how much of the section is visible
+          const visibleTop = Math.max(0, rect.top);
+          const visibleBottom = Math.min(viewportHeight, rect.bottom);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+          
+          // Give preference to sections that are closer to the center of the viewport
+          const sectionCenter = rect.top + rect.height / 2;
+          const viewportCenter = viewportHeight / 2;
+          const distanceFromCenter = Math.abs(sectionCenter - viewportCenter);
+          
+          // Score based on visible height and distance from center
+          const score = visibleHeight - (distanceFromCenter * 0.1);
+          
+          if (score > (acc.score || 0)) {
+            return { id: sectionId, score, visibleHeight };
+          }
+          return acc;
+        }, { id: "", score: 0, visibleHeight: 0 });
+        
+        if (mostVisible.id && mostVisible.id !== activeSection) {
+          setActiveSection(mostVisible.id);
+        }
+      };
+
+      window.addEventListener("scroll", handleScroll);
+      // Initial check
+      handleScroll();
+      
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const cleanup = observeSection();
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      cleanup();
+    };
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -48,6 +110,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             {[
               { label: "Features", id: "features" },
+              { label: "How It Works", id: "foursteps" },
               { label: "Industries", id: "industries" },
               { label: "Benefits", id: "benefits" },
               { label: "Pricing", id: "pricing" },
@@ -56,9 +119,28 @@ export default function Navbar() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-foreground hover:text-[#095F48] transition-colors duration-200"
+                className={`
+                  text-foreground 
+                  hover:text-[#095F48] 
+                  transition-all
+                  duration-300
+                  relative
+                  group
+                  ${activeSection === item.id ? '!text-[#095F48]' : ''}
+                `}
               >
                 {item.label}
+                <span className={`
+                  absolute 
+                  -bottom-1 
+                  left-0 
+                  h-[2px] 
+                  bg-[#095F48] 
+                  transition-all 
+                  duration-300
+                  group-hover:w-full
+                  ${activeSection === item.id ? '!w-full' : 'w-0'}
+                `} />
               </button>
             ))}
           </div>
