@@ -104,7 +104,7 @@ export default function Navbar() {
             onClick={() => scrollToSection("hero")}
           >
             <img 
-              src="/images/logo wo bg.png" 
+              src="/images/Logo_wo_bg.png" 
               alt="Aurevia Logo" 
               className="h-8 w-8 object-contain"
             />
