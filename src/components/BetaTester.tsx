@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Check, ArrowRight } from "lucide-react";
 import { useScrollFade } from "./ScrollAnimations";
+import { trackButtonClick, trackEvent } from "@/lib/analytics";
 
 const benefits = [
   "Full access to all features, no card, for 60 days",
@@ -75,7 +76,15 @@ export default function BetaTester() {
                   <Button
                     size="lg"
                     className="cta-button text-white font-medium px-8 py-4 text-lg rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center gap-2 mx-auto border-0"
-                    onClick={() => setShowForm(true)}
+                    onClick={() => {
+                      // Track beta signup button click
+                      trackButtonClick('Let\'s Get To Know You', 'beta_section');
+                      trackEvent('beta_signup_initiated', {
+                        form_id: 't59rhmzg',
+                        step: 'form_reveal'
+                      });
+                      setShowForm(true);
+                    }}
                   >
                     Let's Get To Know You
                     <ArrowRight className="w-5 h-5 cta-arrow" />

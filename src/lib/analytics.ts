@@ -6,7 +6,7 @@ declare global {
     gtag: (
       command: 'config' | 'event' | 'js' | 'set',
       targetId: string | Date,
-      config?: Record<string, any>
+      config?: Record<string, string | number | boolean | undefined>
     ) => void;
   }
 }
@@ -27,7 +27,7 @@ export const trackPageView = (url: string, title?: string) => {
 // Track custom events
 export const trackEvent = (
   eventName: string,
-  parameters?: Record<string, any>
+  parameters?: Record<string, string | number | boolean | undefined>
 ) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, {

@@ -2,13 +2,22 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const router = useRouter();
+
+  const scrollToSection = useCallback((sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      // Update URL with hash
+      router.push(`#${sectionId}`, { scroll: false });
+    }
+  }, [router]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -93,16 +102,7 @@ export default function Navbar() {
         scrollToSection(hash);
       }, 100);
     }
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      // Update URL with hash
-      router.push(`#${sectionId}`, { scroll: false });
-    }
-  };
+  }, [scrollToSection]);
 
   return (
     <nav className="fixed top-4 left-0 right-0 z-50 px-6">
