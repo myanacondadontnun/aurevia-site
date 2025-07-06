@@ -99,7 +99,7 @@ export default function Industries() {
                             <img
                               src={industry.image}
                               alt={industry.title}
-                              className="object-cover w-full h-full"
+                              className="object-contain w-full h-full"
                             />
                           </div>
                         </div>
