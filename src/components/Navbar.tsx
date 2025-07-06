@@ -178,9 +178,9 @@ export default function Navbar() {
             {/* CTA Button */}
             <Button
               className="cta-button text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 border-0"
-              onClick={() => scrollToSection("contact")}
+              onClick={() => scrollToSection("beta")}
             >
-              Contact Us
+              Get Free Access!
               <ArrowRight className="w-4 h-4 cta-arrow" />
             </Button>
           </div>
