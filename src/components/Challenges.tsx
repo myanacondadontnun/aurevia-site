@@ -42,26 +42,26 @@ export default function Challenges() {
   const containerRef = useStaggeredScrollFade(100);
 
   return (
-    <section id="benefits" className="py-24 px-6">
+    <section id="benefits" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
       <div className="container mx-auto">
-        <div className="text-center mb-8 scroll-fade">
+        <div className="text-center mb-6 sm:mb-8 scroll-fade">
           <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
             Pain Points Solved
           </Badge>
         </div>
         
-        <div className="text-center mb-16 scroll-fade">
-          <h2 className="text-4xl md:text-5xl font-inter font-normal mb-6 text-white">
+        <div className="text-center mb-12 sm:mb-16 scroll-fade">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal mb-4 sm:mb-6 text-white">
             Fixing the <span className="green-highlight">Real Challenges</span> Shopify Merchants Face
           </h2>
-          <p className="text-xl font-light text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl font-light text-muted-foreground max-w-3xl mx-auto">
             Lost carts. Support overload. Shopify pain points, handled by Aurevia.
           </p>
         </div>
 
         <div
           ref={containerRef as React.RefObject<HTMLDivElement>}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto"
         >
           {challenges.map((challenge, index) => {
             const Icon = challenge.icon;
@@ -70,16 +70,16 @@ export default function Challenges() {
                 key={index}
                 className="challenge-card scroll-fade bg-transparent border border-border/50 hover:border-primary/30 transition-all duration-300 group"
               >
-                <CardContent className="p-8 h-full flex flex-col relative">
-                  <div className="mb-6">
-                    <Icon className="challenge-icon w-6 h-6 text-muted-foreground group-hover:text-[#02DFA6] transition-colors duration-300" />
+                <CardContent className="p-6 sm:p-8 h-full flex flex-col relative">
+                  <div className="mb-4 sm:mb-6">
+                    <Icon className="challenge-icon w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground group-hover:text-[#02DFA6] transition-colors duration-300" />
                   </div>
-                  <h3 className="text-xl font-inter font-normal text-white mb-4 group-hover:text-[#02DFA6] transition-colors duration-300">
+                  <h3 className="text-lg sm:text-xl font-inter font-normal text-white mb-3 sm:mb-4 group-hover:text-[#02DFA6] transition-colors duration-300">
                     {challenge.problem}
                   </h3>
 
                   <div className="flex-1">
-                    <p className="text-base font-light text-muted-foreground leading-relaxed">
+                    <p className="text-sm sm:text-base font-light text-muted-foreground leading-relaxed">
                       {challenge.solution}
                     </p>
                   </div>

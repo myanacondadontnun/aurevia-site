@@ -58,40 +58,40 @@ export default function FiveWays() {
   const containerRef = useStaggeredScrollFade(100);
 
   return (
-    <section id="features" className="py-24 px-6">
+    <section id="features" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
       <div className="container mx-auto">
-        <div className="text-center mb-8 scroll-fade">
+        <div className="text-center mb-6 sm:mb-8 scroll-fade">
           <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
             How Aurevia Helps
           </Badge>
         </div>
         
-        <div className="text-center mb-16 scroll-fade">
-          <h2 className="text-4xl md:text-5xl font-inter font-normal mb-6 text-white">
+        <div className="text-center mb-12 sm:mb-16 scroll-fade">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal mb-4 sm:mb-6 text-white">
             5 Ways <span className="green-highlight">Aurevia Grows</span> Your Shopify Store
           </h2>
-          <p className="text-xl font-light text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl font-light text-muted-foreground max-w-3xl mx-auto">
             Automate chats, lift AOV and recover carts, live in minutes, no code.
           </p>
         </div>
 
         <div
           ref={containerRef as React.RefObject<HTMLDivElement>}
-          className="space-y-24"
+          className="space-y-16 sm:space-y-20 md:space-y-24"
         >
           {features.map((feature, index) => (
             <div
               key={feature.title}
               className={`scroll-fade flex flex-col ${
                 index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-              } items-center gap-12`}
+              } items-center gap-8 sm:gap-10 md:gap-12`}
             >
               {/* Content */}
-              <div className="flex-1 space-y-6">
-                <h3 className="text-2xl md:text-3xl font-inter font-normal text-white">
+              <div className="flex-1 space-y-4 sm:space-y-6">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-inter font-normal text-white">
                   {feature.title}
                 </h3>
-                <p className="text-lg font-light text-muted-foreground leading-relaxed">
+                <p className="text-base sm:text-lg font-light text-muted-foreground leading-relaxed">
                   {feature.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -99,7 +99,7 @@ export default function FiveWays() {
                     <Badge
                       key={tag}
                       variant="secondary"
-                      className="bg-secondary/30 border border-border/30 text-foreground/80 text-sm"
+                      className="bg-secondary/30 border border-border/30 text-foreground/80 text-xs sm:text-sm"
                     >
                       {tag}
                     </Badge>
@@ -107,27 +107,40 @@ export default function FiveWays() {
                 </div>
               </div>
 
-              {/* Image Placeholder */}
-              <div className="flex-1">
+              {/* Media Content */}
+              <div className="flex-1 w-full">
                 <Card className="bg-card border-border overflow-hidden">
                   <CardContent className="p-0">
-                    <div className="aspect-[3/2] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center relative">
+                    <div className="aspect-[16/10] sm:aspect-[3/2] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center relative">
                       {feature.iframe ? (
-                        <div className="video-wrapper">
+                        <div className="absolute inset-0 w-full h-full">
                           <iframe
                             src={feature.iframe.src}
                             title={feature.iframe.title}
-                            allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                            className="w-full h-full border-0 rounded-lg"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowFullScreen
                             loading="lazy"
+                            style={{
+                              position: 'absolute',
+                              top: 0,
+                              left: 0,
+                              width: '100%',
+                              height: '100%'
+                            }}
                           />
                         </div>
                       ) : (
-                        <div className="text-center text-muted-foreground">
-                          <div className="w-16 h-16 mx-auto mb-4 bg-primary/20 rounded-lg flex items-center justify-center">
-                            <div className="w-8 h-8 bg-primary/40 rounded" />
+                        <div className="text-center text-muted-foreground p-4">
+                          <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 bg-primary/20 rounded-lg flex items-center justify-center">
+                            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-primary/40 rounded" />
                           </div>
-                          <p className="text-sm">Feature Demo Placeholder</p>
+                          <p className="text-sm sm:text-base font-medium text-white mb-2">
+                            {feature.title} Demo
+                          </p>
+                          <p className="text-xs sm:text-sm opacity-70">
+                            Interactive feature demo will be available here
+                          </p>
                         </div>
                       )}
                     </div>

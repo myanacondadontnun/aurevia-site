@@ -1,13 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
 
   const scrollToSection = useCallback((sectionId: string) => {
@@ -16,6 +17,8 @@ export default function Navbar() {
       element.scrollIntoView({ behavior: "smooth" });
       // Update URL with hash
       router.push(`#${sectionId}`, { scroll: false });
+      // Close mobile menu after navigation
+      setIsMobileMenuOpen(false);
     }
   }, [router]);
 
@@ -104,20 +107,45 @@ export default function Navbar() {
     }
   }, [scrollToSection]);
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isMobileMenuOpen) {
+        const navbar = document.getElementById('navbar');
+        if (navbar && !navbar.contains(event.target as Node)) {
+          setIsMobileMenuOpen(false);
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
+  const navigationItems = [
+    { label: "Features", id: "features" },
+    { label: "How It Works", id: "how-it-works" },
+    { label: "Industries", id: "industries" },
+    { label: "Benefits", id: "benefits" },
+    { label: "Pricing", id: "pricing" },
+    { label: "FAQs", id: "faq" },
+    { label: "Contact Us", id: "contact" },
+  ];
+
   return (
-    <nav className="fixed top-4 left-0 right-0 z-50 px-6">
+    <nav className="fixed top-4 left-0 right-0 z-50 px-2 sm:px-4 md:px-6" id="navbar">
       <div
-        className={`glass-nav shadow-lg transition-all duration-500 ease-in-out`}
+        className={`glass-nav shadow-lg transition-all duration-500 ease-in-out mx-auto`}
         style={{
-          width: isScrolled ? "75%" : "100%",
-          margin: "0 auto",
+          width: isScrolled ? "95%" : "100%",
+          maxWidth: isScrolled ? "1200px" : "100%",
           transition: "width 0.5s cubic-bezier(0.4,0,0.2,1)",
           borderRadius: "1.5rem",
-          minWidth: 900,
-          maxWidth: "100vw",
         }}
       >
-        <div className={`flex items-center justify-between w-full transition-all duration-500 ${isScrolled ? 'px-4 py-3' : 'px-6 py-4'}`}>
+        <div className={`flex items-center justify-between w-full transition-all duration-500 ${isScrolled ? 'px-3 py-2.5 sm:px-4 sm:py-3' : 'px-4 py-3 sm:px-6 sm:py-4'}`}>
           {/* Logo */}
           <div
             className="flex items-center gap-2.5 cursor-pointer flex-shrink-0"
@@ -126,26 +154,18 @@ export default function Navbar() {
             <img 
               src="/images/Logo_wo_bg.png" 
               alt="Aurevia Logo" 
-              className="h-8 w-8 object-contain"
+              className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
             />
-            <span className={`logo-text text-white transition-all duration-500 ${isScrolled ? 'text-lg' : 'text-xl'}`}>
+            <span className={`logo-text text-white transition-all duration-500 ${isScrolled ? 'text-base sm:text-lg' : 'text-lg sm:text-xl'}`}>
               Aurevia.io
             </span>
           </div>
 
-          {/* Navigation Links + CTA Button */}
-          <div className={`flex items-center transition-all duration-500 ${isScrolled ? 'gap-4' : 'gap-6'}`}>
+          {/* Desktop Navigation */}
+          <div className={`hidden lg:flex items-center transition-all duration-500 ${isScrolled ? 'gap-3' : 'gap-4 xl:gap-6'}`}>
             {/* Navigation Links */}
-            <div className={`hidden md:flex items-center transition-all duration-500 ${isScrolled ? 'space-x-4' : 'space-x-6'}`}>
-              {[
-                { label: "Features", id: "features" },
-                { label: "How It Works", id: "how-it-works" },
-                { label: "Industries", id: "industries" },
-                { label: "Benefits", id: "benefits" },
-                { label: "Pricing", id: "pricing" },
-                { label: "FAQs", id: "faq" },
-                { label: "Contact Us", id: "contact" },
-              ].map((item) => (
+            <div className={`flex items-center transition-all duration-500 ${isScrolled ? 'space-x-3' : 'space-x-4 xl:space-x-6'}`}>
+              {navigationItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
@@ -157,7 +177,7 @@ export default function Navbar() {
                     relative
                     group
                     whitespace-nowrap
-                    ${isScrolled ? 'text-sm' : 'text-base'}
+                    ${isScrolled ? 'text-xs xl:text-sm' : 'text-sm xl:text-base'}
                     ${activeSection === item.id ? '!text-[#02DFA6]' : ''}
                   `}
                 >
@@ -179,14 +199,53 @@ export default function Navbar() {
 
             {/* CTA Button */}
             <Button
-              className={`cta-button text-white font-medium rounded-lg transition-all duration-200 flex items-center gap-2 border-0 flex-shrink-0 ${isScrolled ? 'px-4 py-2 text-sm' : 'px-6 py-2'}`}
+              className={`cta-button text-white font-medium rounded-lg transition-all duration-200 flex items-center gap-2 border-0 flex-shrink-0 ${isScrolled ? 'px-3 py-1.5 text-xs xl:text-sm' : 'px-4 py-2 text-sm xl:text-base'}`}
               onClick={() => scrollToSection("beta")}
             >
               Get Free Access!
-              <ArrowRight className="w-4 h-4 cta-arrow" />
+              <ArrowRight className="w-3 h-3 xl:w-4 xl:h-4 cta-arrow" />
             </Button>
           </div>
+
+          {/* Mobile Menu Button & CTA */}
+          <div className="flex items-center gap-2 lg:hidden">
+            <Button
+              className={`cta-button text-white font-medium rounded-lg transition-all duration-200 flex items-center gap-1 border-0 flex-shrink-0 ${isScrolled ? 'px-2 py-1.5 text-xs' : 'px-3 py-2 text-sm'}`}
+              onClick={() => scrollToSection("beta")}
+            >
+              Get Access
+              <ArrowRight className="w-3 h-3 cta-arrow" />
+            </Button>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-white hover:text-[#02DFA6] transition-colors duration-200 p-2"
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden border-t border-border/30 bg-background/95 backdrop-blur-md rounded-b-2xl">
+            <div className="px-4 py-4 space-y-3">
+              {navigationItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`
+                    block w-full text-left px-3 py-2 text-foreground 
+                    hover:text-[#02DFA6] hover:bg-primary/10 
+                    transition-all duration-200 rounded-lg
+                    ${activeSection === item.id ? 'text-[#02DFA6] bg-primary/10' : ''}
+                  `}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

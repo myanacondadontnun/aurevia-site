@@ -96,19 +96,19 @@ export default function ContactUs() {
   };
 
   return (
-    <section id="contact" className="py-24 px-4 relative overflow-hidden">
+    <section id="contact" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-background/50"></div>
       
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-primary/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-l from-primary/5 to-transparent rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-10 sm:top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-r from-primary/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 sm:bottom-20 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-l from-primary/5 to-transparent rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
       </div>
 
       <div className="container mx-auto max-w-7xl relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
             Get in Touch
           </Badge>
@@ -118,62 +118,62 @@ export default function ContactUs() {
           </h2>
           
           {/* Mobile Header */}
-          <h2 className="md:hidden text-4xl font-bold mb-6 text-white">
+          <h2 className="md:hidden text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 text-white">
             <span className="green-highlight">Automate sales</span> the smart way?
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
             Let's discuss how Aurevia can revolutionize your business with AI-powered customer engagement.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-start">
           {/* Contact Information */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             <div>
-              <h3 className="text-2xl font-bold mb-6">Let's Start a Conversation</h3>
-              <p className="text-muted-foreground mb-8">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Let's Start a Conversation</h3>
+              <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
                 We're here to help you take your customer engagement to the next level. 
                 Reach out to us through any of the channels below or fill out the form.
               </p>
             </div>
 
             {/* Contact Methods */}
-            <div className="space-y-6">
-              <div className="flex items-center gap-4 p-4 rounded-lg border border-border/50 bg-card/30 backdrop-blur-sm hover:bg-card/50 transition-all duration-300 group">
-                <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
-                  <Mail className="w-5 h-5" />
+            <div className="space-y-4 sm:space-y-6">
+              <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg border border-border/50 bg-card/30 backdrop-blur-sm hover:bg-card/50 transition-all duration-300 group">
+                <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
+                  <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
-                  <h4 className="font-semibold">Email Us</h4>
-                  <p className="text-muted-foreground">general@aurevia.io</p>
+                  <h4 className="font-semibold text-sm sm:text-base">Email Us</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">general@aurevia.io</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 p-4 rounded-lg border border-border/50 bg-card/30 backdrop-blur-sm hover:bg-card/50 transition-all duration-300 group">
-                <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
-                  <Phone className="w-5 h-5" />
+              <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg border border-border/50 bg-card/30 backdrop-blur-sm hover:bg-card/50 transition-all duration-300 group">
+                <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
-                  <h4 className="font-semibold">Call Us</h4>
-                  <p className="text-muted-foreground">(+44)7733207396</p>
+                  <h4 className="font-semibold text-sm sm:text-base">Call Us</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">(+44)7733207396</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 p-4 rounded-lg border border-border/50 bg-card/30 backdrop-blur-sm hover:bg-card/50 transition-all duration-300 group">
-                <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
-                  <MapPin className="w-5 h-5" />
+              <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg border border-border/50 bg-card/30 backdrop-blur-sm hover:bg-card/50 transition-all duration-300 group">
+                <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
+                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
-                  <h4 className="font-semibold">Visit Us</h4>
-                  <p className="text-muted-foreground">CF24 1PE,Cardiff, UK</p>
+                  <h4 className="font-semibold text-sm sm:text-base">Visit Us</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">CF24 1PE,Cardiff, UK</p>
                 </div>
               </div>
             </div>
 
             {/* Response Time */}
-            <div className="p-6 rounded-lg border border-primary/20 bg-primary/5 backdrop-blur-sm">
-              <h4 className="font-semibold text-primary mb-2">Quick Response Guarantee</h4>
-              <p className="text-sm text-muted-foreground">
+            <div className="p-4 sm:p-6 rounded-lg border border-primary/20 bg-primary/5 backdrop-blur-sm">
+              <h4 className="font-semibold text-primary mb-2 text-sm sm:text-base">Quick Response Guarantee</h4>
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 We typically respond to all inquiries within 24 hours during business days.
               </p>
             </div>
@@ -189,11 +189,11 @@ export default function ContactUs() {
             
             {/* Content */}
             <div className="relative z-10">
-              <CardHeader className="text-center pb-8">
-                <CardTitle className="text-2xl text-white mb-2">
+              <CardHeader className="text-center pb-6 sm:pb-8 px-4 sm:px-6">
+                <CardTitle className="text-xl sm:text-2xl text-white mb-2">
                   Send Us a Message
                 </CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardDescription className="text-gray-300 text-sm sm:text-base">
                   Fill out the form below and we'll get back to you shortly.
                 </CardDescription>
               </CardHeader>

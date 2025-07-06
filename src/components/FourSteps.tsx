@@ -39,36 +39,36 @@ export default function FourSteps() {
   const containerRef = useStaggeredScrollFade(150);
 
   return (
-    <section id="how-it-works" className="py-24 px-6">
+    <section id="how-it-works" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
       <div className="container mx-auto">
-        <div className="text-center mb-8 scroll-fade">
+        <div className="text-center mb-6 sm:mb-8 scroll-fade">
           <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
             Launch in minutes
           </Badge>
         </div>
         
-        <div className="text-center mb-16 scroll-fade">
-          <h2 className="text-4xl md:text-5xl font-inter font-normal mb-4 text-white">
+        <div className="text-center mb-12 sm:mb-16 scroll-fade">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal mb-3 sm:mb-4 text-white">
             <span className="green-highlight">From Install → Revenue</span> in 4 Simple Steps
           </h2>
-          <p className="text-xl font-light text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl font-light text-muted-foreground max-w-3xl mx-auto">
             No code, no dev hours. Just one click and Aurevia starts selling for you.
           </p>
         </div>
 
         <div
           ref={containerRef as React.RefObject<HTMLDivElement>}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto"
         >
           {steps.map((step, index) => (
             <Card
               key={step.number}
               className="scroll-fade bg-card border-border overflow-hidden group hover:border-primary/30 transition-all duration-300"
             >
-              <CardContent className="p-8">
+              <CardContent className="p-6 sm:p-8">
                 {/* Step Number & Graphic Placeholder */}
                 <div className="mb-6">
-                  <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
+                  <div className="aspect-[4/3] sm:aspect-[4/3] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-lg flex items-center justify-center overflow-hidden">
                     {step.image ? (
                       <img
                         src={step.image}
@@ -78,23 +78,23 @@ export default function FourSteps() {
                       />
                     ) : (
                       <div className="text-center">
-                        <div className="w-16 h-16 mx-auto mb-4 bg-primary/30 rounded-full flex items-center justify-center">
-                          <span className="text-2xl font-inter font-medium text-primary">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 bg-primary/30 rounded-full flex items-center justify-center">
+                          <span className="text-xl sm:text-2xl font-inter font-medium text-primary">
                             {step.number}
                           </span>
                         </div>
-                        <p className="text-sm text-muted-foreground">Step {step.number} Visual</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground">Step {step.number} Visual</p>
                       </div>
                     )}
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="space-y-4">
-                  <h3 className="text-xl font-inter font-normal text-white leading-tight">
+                <div className="space-y-3 sm:space-y-4">
+                  <h3 className="text-lg sm:text-xl font-inter font-normal text-white leading-tight">
                     Step {step.number}: {step.title}
                   </h3>
-                  <p className="text-base font-light text-muted-foreground leading-relaxed">
+                  <p className="text-sm sm:text-base font-light text-muted-foreground leading-relaxed">
                     {step.description}
                   </p>
                 </div>
