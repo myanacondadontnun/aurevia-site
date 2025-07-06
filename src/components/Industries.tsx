@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface Industry {
   title: string;
@@ -13,17 +14,17 @@ const industries: Industry[] = [
   {
     title: "Fashion & Apparel",
     image: "/images/fashion.png",
-    impactPoints: []
+    impactPoints: ["Personalized style recommendations", "Size and fit guidance", "Trend-based upselling"]
   },
   {
     title: "Beauty & Cosmetics",
     image: "/images/beauty.png",
-    impactPoints: []
+    impactPoints: ["Shade matching assistance", "Skincare routine building", "Product ingredient advice"]
   },
   {
     title: "Fitness & Yoga",
     image: "/images/fitness.png",
-    impactPoints: []
+    impactPoints: ["Equipment recommendations", "Workout plan suggestions", "Nutrition guidance"]
   }
 ];
 
@@ -52,13 +53,9 @@ export default function Industries() {
       case 'center':
         return { transform: 'translateX(0px) scale(1)', zIndex: 50, filter: 'blur(0)', opacity: 1, width: '480px', transition };
       case 'right':
-        return { transform: 'translateX(300px) scale(0.88)', zIndex: 30, filter: 'blur(3px)', opacity: 0.7, width: '480px', transition };
+        return { transform: 'translateX(336px) scale(0.88)', zIndex: 30, filter: 'blur(3px)', opacity: 0.7, width: '480px', transition };
       case 'left':
-        return { transform: 'translateX(-300px) scale(0.88)', zIndex: 30, filter: 'blur(3px)', opacity: 0.7, width: '480px', transition };
-      case 'far-right':
-        return { transform: 'translateX(600px) scale(0.75)', zIndex: 10, filter: 'blur(10px)', opacity: 0.4, width: '480px', transition };
-      case 'far-left':
-        return { transform: 'translateX(-600px) scale(0.75)', zIndex: 10, filter: 'blur(10px)', opacity: 0.4, width: '480px', transition };
+        return { transform: 'translateX(-336px) scale(0.88)', zIndex: 30, filter: 'blur(3px)', opacity: 0.7, width: '480px', transition };
       default:
         return {};
     }
@@ -84,27 +81,44 @@ export default function Industries() {
           </div>
 
           <div className="relative max-w-7xl mx-auto overflow-visible">
-            <div className="relative h-[500px] flex items-center justify-center" style={{ perspective: '1000px' }}>
+            <div className="relative h-[720px] flex items-center justify-center" style={{ perspective: '1000px' }}>
               <div className="relative w-full max-w-5xl h-full flex items-center justify-center">
                 {industries.map((industry, index) => {
                   const position = getCardPosition(index);
                   return (
-                    <div
+                    <Card
                       key={industry.title}
                       onClick={() => setActiveIndex(index)}
-                      className="absolute cursor-pointer rounded-2xl overflow-hidden transition-all duration-700 ease-out shadow-2xl border border-white/10 bg-card"
+                      className="absolute cursor-pointer bg-card border-border overflow-hidden group hover:border-primary/30 transition-all duration-300"
                       style={getCardStyles(position)}
                     >
-                      {/* Main content area with 4:3 aspect ratio */}
-                      <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-2xl relative overflow-hidden">
-                        {/* Full-size Image */}
-                        <img
-                          src={industry.image}
-                          alt={industry.title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    </div>
+                      <CardContent className="p-8">
+                        {/* Image Container */}
+                        <div className="mb-6">
+                          <div className="aspect-[1/1] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
+                            <img
+                              src={industry.image}
+                              alt={industry.title}
+                              className="object-cover w-full h-full"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Content */}
+                        <div className="space-y-4">
+                          <h3 className="text-xl font-inter font-normal text-white leading-tight">
+                            {industry.title}
+                          </h3>
+                          <div className="space-y-2">
+                            {industry.impactPoints.map((point, pointIndex) => (
+                              <p key={pointIndex} className="text-sm font-light text-muted-foreground leading-relaxed">
+                                • {point}
+                              </p>
+                            ))}
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
                   );
                 })}
               </div>
