@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -16,6 +16,7 @@ export default function ContactUs() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -25,22 +26,60 @@ export default function ContactUs() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError(null);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: "", email: "", company: "", subject: "", message: "" });
-    }, 3000);
+    try {
+      // Create URL-encoded form data
+      const formDataToSend = new URLSearchParams();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('company', formData.company);
+      formDataToSend.append('subject', formData.subject);
+      formDataToSend.append('message', formData.message);
+
+      console.log('Submitting form data:', Object.fromEntries(formDataToSend));
+
+      const response = await fetch('https://script.google.com/macros/s/AKfycby2Um5z2N6m9X1WzbNACYogzZf60qtXeoMYaZEg0zIKwCyZQ6CL_53HUcAibwzx92fKlw/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formDataToSend.toString()
+      });
+
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
+
+      if (response.ok) {
+        const result = await response.text();
+        console.log('Response text:', result);
+        
+        if (result === "Success" || response.status === 200) {
+          setIsSubmitted(true);
+          
+          // Reset form after 3 seconds
+          setTimeout(() => {
+            setIsSubmitted(false);
+            setFormData({ name: "", email: "", company: "", subject: "", message: "" });
+          }, 3000);
+        } else {
+          throw new Error(`Unexpected response: ${result}`);
+        }
+      } else {
+        const errorText = await response.text();
+        console.error('Error response:', errorText);
+        throw new Error(`Server error: ${response.status} - ${errorText}`);
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitError(`Failed to send message: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again or contact us directly.`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <section className="py-24 px-4 relative overflow-hidden">
+    <section id="contact" className="py-24 px-4 relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-background/50"></div>
       
@@ -151,6 +190,13 @@ export default function ContactUs() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {submitError && (
+                      <div className="flex items-center gap-3 p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
+                        <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
+                        <p className="text-red-300 text-sm">{submitError}</p>
+                      </div>
+                    )}
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">

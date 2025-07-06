@@ -75,6 +75,13 @@ export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
   const containerRef = useStaggeredScrollFade(150);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="pricing" className="py-24 px-6">
       <div className="container mx-auto">
@@ -168,6 +175,11 @@ export default function Pricing() {
                 <Button
                   className="cta-button w-full py-3 flex items-center justify-center gap-2 text-white border-0"
                   data-variant={plan.ctaVariant}
+                  onClick={() => {
+                    if (plan.ctaText === "Schedule a Call") {
+                      scrollToSection("contact");
+                    }
+                  }}
                 >
                   {plan.ctaText}
                   <ArrowRight className="w-4 h-4 cta-arrow" />
