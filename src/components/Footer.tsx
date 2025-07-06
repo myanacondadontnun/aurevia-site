@@ -5,34 +5,43 @@ import { Separator } from "@/components/ui/separator";
 
 const footerLinks = {
   main: [
-    { label: "Features & Benefits", href: "#features" },
-    { label: "Join Beta!", href: "#beta" },
-    { label: "Set-Up in 4 Steps", href: "#steps" },
-    { label: "Industries", href: "#industries" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "FAQs", href: "#faq" },
+    { label: "Features & Benefits", href: "features" },
+    { label: "Join Beta!", href: "beta" },
+    { label: "Set-Up in 4 Steps", href: "how-it-works" },
+    { label: "Industries", href: "industries" },
+    { label: "Pricing", href: "pricing" },
+    { label: "FAQs", href: "faq" },
   ],
   secondary: [
-    { label: "Home", href: "#hero" },
+    { label: "Home", href: "hero" },
     { label: "Blogs", href: "#" },
     { label: "Docs & API", href: "#" },
-    { label: "Privacy Policy", href: "#" },
+    { label: "Privacy Policy", href: "https://www.notion.so/AUREVIA-PRIVACY-POLICY-202fc3fea0bc81cf84f5e1aeb691a9cd?source=copy_link" },
     { label: "Terms and Conditions", href: "#" },
   ],
 };
 
 const socialLinks = [
   { label: "Instagram", href: "#" },
-  { label: "Facebook", href: "#" },
-  { label: "LinkedIn", href: "#" },
-  { label: "X", href: "#" },
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61571429595824#" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/aurevia-ai/" },
+  { label: "X", href: "https://x.com/crazystupidceo" },
+  { label: "Reddit", href: "https://www.reddit.com/user/crackandcoke/" },
 ];
 
 export default function Footer() {
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId.replace('#', ''));
+    const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleLinkClick = (href: string) => {
+    if (href.startsWith('http')) {
+      window.open(href, '_blank', 'noopener,noreferrer');
+    } else if (href !== '#') {
+      scrollToSection(href);
     }
   };
 
@@ -44,9 +53,17 @@ export default function Footer() {
           {/* Company Info & CTA */}
           <div className="lg:col-span-1 space-y-6">
             <div>
-              <h3 className="text-2xl font-inter font-semibold text-white mb-4">
-                Aurevia.io
-              </h3>
+              {/* Logo and Company Name */}
+              <div className="flex items-center gap-2.5 mb-4">
+                <img 
+                  src="/images/Logo_wo_bg.png" 
+                  alt="Aurevia Logo" 
+                  className="h-8 w-8 object-contain"
+                />
+                <h3 className="text-2xl font-inter font-semibold text-white logo-text">
+                  Aurevia.io
+                </h3>
+              </div>
               <p className="text-base font-light text-muted-foreground leading-relaxed mb-6">
                 Shopify AI Sales Chatbot that recovers carts, upsells bundles, and sells 24/7.
                 GDPR-compliant & Shopify-Partner verified.
@@ -78,7 +95,7 @@ export default function Footer() {
               {footerLinks.main.map((link) => (
                 <button
                   key={link.label}
-                  onClick={() => scrollToSection(link.href)}
+                  onClick={() => handleLinkClick(link.href)}
                   className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light text-left"
                 >
                   {link.label}
@@ -96,7 +113,7 @@ export default function Footer() {
               {footerLinks.secondary.map((link) => (
                 <button
                   key={link.label}
-                  onClick={() => link.href.startsWith('#') ? scrollToSection(link.href) : null}
+                  onClick={() => handleLinkClick(link.href)}
                   className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light text-left"
                 >
                   {link.label}
@@ -112,15 +129,32 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Social Links */}
           <div className="flex items-center gap-6">
-            {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
-              >
-                {social.label}
-              </a>
-            ))}
+            {socialLinks.map((social) => {
+              // Use anchor tags for external links, buttons for internal navigation
+              if (social.href.startsWith('http') || social.href.startsWith('https')) {
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
+                  >
+                    {social.label}
+                  </a>
+                );
+              } else {
+                return (
+                  <button
+                    key={social.label}
+                    onClick={() => handleLinkClick(social.href)}
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
+                  >
+                    {social.label}
+                  </button>
+                );
+              }
+            })}
           </div>
 
           {/* Copyright */}

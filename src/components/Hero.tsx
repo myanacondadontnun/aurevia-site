@@ -4,11 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { trackButtonClick } from "@/lib/analytics";
 
 export default function Hero() {
   const [pillClass, setPillClass] = useState("pill-wrapper hidden");
 
   const scrollToSection = (sectionId: string) => {
+    // Track button click
+    trackButtonClick('Apply for Beta Access', 'hero_section');
+    
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });

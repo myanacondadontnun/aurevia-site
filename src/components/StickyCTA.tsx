@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import { trackButtonClick } from "@/lib/analytics";
 
 export default function StickyCTA() {
   const [isScrollingUp, setIsScrollingUp] = useState(false);
@@ -20,6 +21,9 @@ export default function StickyCTA() {
   }, [lastScrollY]);
 
   const scrollToSection = (sectionId: string) => {
+    // Track sticky CTA click
+    trackButtonClick('Join Our Beta Program', 'sticky_cta');
+    
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });

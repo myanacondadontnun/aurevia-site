@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
+import { trackContactFormSubmit, trackEvent } from "@/lib/analytics";
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -55,6 +56,14 @@ export default function ContactUs() {
         console.log('Response text:', result);
         
         if (result === "Success" || response.status === 200) {
+          // Track successful form submission
+          trackContactFormSubmit(true);
+          trackEvent('contact_form_success', {
+            form_name: 'contact_us',
+            company: formData.company || 'not_provided',
+            subject: formData.subject || 'general_inquiry'
+          });
+          
           setIsSubmitted(true);
           
           // Reset form after 3 seconds
@@ -72,6 +81,14 @@ export default function ContactUs() {
       }
     } catch (error) {
       console.error('Form submission error:', error);
+      
+      // Track failed form submission
+      trackContactFormSubmit(false);
+      trackEvent('contact_form_error', {
+        form_name: 'contact_us',
+        error_message: error instanceof Error ? error.message : 'Unknown error'
+      });
+      
       setSubmitError(`Failed to send message: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again or contact us directly.`);
     } finally {
       setIsSubmitting(false);
