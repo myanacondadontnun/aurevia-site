@@ -20,7 +20,7 @@ const pricingPlans = [
       "Max Seats Allowed = 3",
       "AI messages/mo = 2000",
       "Need more? One-click upgrade",
-      "Extra AI message = $15/1000",
+      "Extra AI message = £15/1000",
       "Every feature unlocked",
       "Analytics history = 3 months",
       '"Ask Aurevia" AI co-pilot = ✓',
@@ -42,7 +42,7 @@ const pricingPlans = [
       "Max Seats Allowed = 25",
       "AI messages/mo = 5000",
       "Need more? One-click upgrade",
-      "Extra AI message = $10/1000",
+      "Extra AI message = £10/1000",
       "Every feature unlocked",
       "Analytics history = 12 months",
       '"Ask Aurevia" AI co-pilot = ✓',
@@ -78,9 +78,15 @@ export default function Pricing() {
   return (
     <section id="pricing" className="py-24 px-6">
       <div className="container mx-auto">
+        <div className="text-center mb-8 scroll-fade">
+          <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
+            Pricing
+          </Badge>
+        </div>
+        
         <div className="text-center mb-16 scroll-fade">
-          <h2 className="gradient-text text-4xl md:text-5xl font-inter font-normal mb-6">
-            We don't gatekeep features
+          <h2 className="text-4xl md:text-5xl font-inter font-normal mb-6 text-white">
+            We <span className="green-highlight">don't gatekeep</span> features
           </h2>
           <p className="text-xl font-light text-muted-foreground max-w-3xl mx-auto mb-8">
             Choose the plan based on your usage, seats and growth plan.
@@ -134,7 +140,7 @@ export default function Pricing() {
                   {typeof plan.monthlyPrice === "number" ? (
                     <>
                       <span className="text-4xl font-inter font-normal text-white">
-                        ${isAnnual ? plan.annualPrice : plan.monthlyPrice}
+                        £{isAnnual ? plan.annualPrice : plan.monthlyPrice}
                       </span>
                       <span className="text-muted-foreground">/seat/month</span>
                     </>

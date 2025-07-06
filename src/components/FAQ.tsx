@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
   AccordionContent,
@@ -58,9 +59,15 @@ export default function FAQ() {
   return (
     <section id="faq" className="py-24 px-6">
       <div className="container mx-auto max-w-4xl">
+        <div className="text-center mb-8 scroll-fade">
+          <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
+            FAQs
+          </Badge>
+        </div>
+        
         <div className="text-center mb-16 scroll-fade">
-          <h2 className="gradient-text text-4xl md:text-5xl font-inter font-normal mb-6">
-            We've Got the Answers You're Looking For
+          <h2 className="text-4xl md:text-5xl font-inter font-normal mb-6 text-white">
+            We've <span className="green-highlight">Got the Answers</span> You're Looking For
           </h2>
           <p className="text-xl font-light text-muted-foreground">
             Quick answers to your "Shopify AI Sales Chatbot" questions.

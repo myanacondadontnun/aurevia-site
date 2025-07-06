@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { useStaggeredScrollFade } from "./ScrollAnimations";
 
@@ -40,13 +41,16 @@ export default function FourSteps() {
   return (
     <section id="foursteps" className="py-24 px-6">
       <div className="container mx-auto">
+        <div className="text-center mb-8 scroll-fade">
+          <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
+            Launch in minutes
+          </Badge>
+        </div>
+        
         <div className="text-center mb-16 scroll-fade">
-          <h2 className="gradient-text text-4xl md:text-5xl font-inter font-normal mb-4">
-            From Install → Revenue
+          <h2 className="text-4xl md:text-5xl font-inter font-normal mb-4 text-white">
+            <span className="green-highlight">From Install → Revenue</span> in 4 Simple Steps
           </h2>
-          <h3 className="text-2xl md:text-3xl font-inter font-normal mb-6 text-primary">
-            4 Simple Steps
-          </h3>
           <p className="text-xl font-light text-muted-foreground max-w-3xl mx-auto">
             No code, no dev hours. Just one click and Aurevia starts selling for you.
           </p>

@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -36,9 +37,9 @@ export default function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="gradient-text text-5xl md:text-6xl lg:text-7xl font-inter font-normal mb-6 leading-tight">
-            Shopify AI Sales Chatbot 24/7 —{" "}
-            <span className="gradient-text">Revenue on Autopilot</span>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-inter font-normal mb-6 leading-tight text-white">
+            Shopify AI Sales Chatbot 24/7{" "}
+            <span className="green-highlight">Revenue on Autopilot</span>
           </h1>
 
           {/* Subheadline */}
@@ -68,7 +69,7 @@ export default function Hero() {
           border-radius: 9999px;
           border: 1px solid rgba(255, 255, 255, 0.15);
           backdrop-filter: blur(8px);
-          background: radial-gradient(ellipse at bottom, #0e2f21 0%, #000000 100%);
+          background: radial-gradient(ellipse at bottom, #024d3f 0%, #000000 100%);
           box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
           height: 44px;
           max-width: 60px;

@@ -100,53 +100,61 @@ export default function Navbar() {
         <div className="flex items-center justify-between w-full px-6 py-4">
           {/* Logo */}
           <div
-            className="text-2xl font-inter font-semibold text-white cursor-pointer"
+            className="flex items-center gap-2.5 cursor-pointer"
             onClick={() => scrollToSection("hero")}
           >
-            Aurevia.io
+            <img 
+              src="/images/logo wo bg.png" 
+              alt="Aurevia Logo" 
+              className="h-8 w-8 object-contain"
+            />
+            <span className="text-xl logo-text text-white">
+              Aurevia.io
+            </span>
           </div>
 
-          {/* Navigation Links */}
-          <div className="hidden md:flex items-center space-x-8">
-            {[
-              { label: "Features", id: "features" },
-              { label: "How It Works", id: "foursteps" },
-              { label: "Industries", id: "industries" },
-              { label: "Benefits", id: "benefits" },
-              { label: "Pricing", id: "pricing" },
-              { label: "FAQs", id: "faq" },
-            ].map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`
-                  text-foreground 
-                  hover:text-[#095F48] 
-                  transition-all
-                  duration-300
-                  relative
-                  group
-                  ${activeSection === item.id ? '!text-[#095F48]' : ''}
-                `}
-              >
-                {item.label}
-                <span className={`
-                  absolute 
-                  -bottom-1 
-                  left-0 
-                  h-[2px] 
-                  bg-[#095F48] 
-                  transition-all 
-                  duration-300
-                  group-hover:w-full
-                  ${activeSection === item.id ? '!w-full' : 'w-0'}
-                `} />
-              </button>
-            ))}
-          </div>
+          {/* Navigation Links + CTA Button */}
+          <div className="flex items-center gap-6">
+            {/* Navigation Links */}
+            <div className="hidden md:flex items-center space-x-6">
+              {[
+                { label: "Features", id: "features" },
+                { label: "How It Works", id: "foursteps" },
+                { label: "Industries", id: "industries" },
+                { label: "Benefits", id: "benefits" },
+                { label: "Pricing", id: "pricing" },
+                { label: "FAQs", id: "faq" },
+              ].map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`
+                    text-foreground 
+                    hover:text-[#02DFA6] 
+                    transition-all
+                    duration-300
+                    relative
+                    group
+                    ${activeSection === item.id ? '!text-[#02DFA6]' : ''}
+                  `}
+                >
+                  {item.label}
+                  <span className={`
+                    absolute 
+                    -bottom-1 
+                    left-0 
+                    h-[2px] 
+                    bg-[#02DFA6] 
+                    transition-all 
+                    duration-300
+                    group-hover:w-full
+                    ${activeSection === item.id ? '!w-full' : 'w-0'}
+                  `} />
+                </button>
+              ))}
+            </div>
 
-          {/* CTA Button */}
-          <div>
+            {/* CTA Button */}
             <Button
               className="cta-button text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 border-0"
               onClick={() => scrollToSection("beta")}

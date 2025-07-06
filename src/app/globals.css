@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Montserrat+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -12,7 +13,7 @@
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 6%;
     --popover-foreground: 0 0% 98%;
-    --primary: 142 76% 36%;
+    --primary: 163 98% 44%;
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 14%;
     --secondary-foreground: 0 0% 98%;
@@ -24,9 +25,9 @@
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 14%;
     --input: 0 0% 14%;
-    --ring: 142 76% 36%;
+    --ring: 163 98% 44%;
     --radius: 0.75rem;
-    --chart-1: 142 76% 36%;
+    --chart-1: 163 98% 44%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
@@ -53,7 +54,18 @@
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #0b3c2f 0%, #00e6a8 100%);
+    background: linear-gradient(135deg, #0b3c2f 0%, #02DFA6 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    line-height: 1.2;
+    padding: 0.1em 0;
+    display: inline-block;
+  }
+
+  .group:hover .group-hover\:gradient-text {
+    background: linear-gradient(135deg, #0b3c2f 0%, #02DFA6 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -65,6 +77,31 @@
 
   p, span, div {
     @apply font-inter font-light;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #0b3c2f 0%, #02DFA6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .green-highlight {
+    color: #02DFA6;
+    background: linear-gradient(135deg, #02DFA6 0%, #01C594 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    line-height: 1.2;
+  }
+
+  .logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
   }
 }
 
@@ -83,19 +120,19 @@
   }
 
   .gradient-bg {
-    background: radial-gradient(ellipse at top, rgba(34, 197, 94, 0.1) 0%, transparent 50%);
+    background: radial-gradient(ellipse at top, rgba(2, 223, 166, 0.1) 0%, transparent 50%);
   }
 
   .phlato-gradient {
-    background: linear-gradient(135deg, rgba(11, 60, 47, 0.3) 0%, rgba(0, 230, 168, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(11, 60, 47, 0.3) 0%, rgba(2, 223, 166, 0.1) 100%);
   }
 
   .phlato-card-gradient {
-    background: linear-gradient(135deg, rgba(11, 60, 47, 0.2) 0%, rgba(0, 230, 168, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(11, 60, 47, 0.2) 0%, rgba(2, 223, 166, 0.05) 100%);
   }
 
   .faq-gradient {
-    background: linear-gradient(0deg, rgba(0, 230, 168, 0.1) 0%, transparent 60%);
+    background: linear-gradient(0deg, rgba(2, 223, 166, 0.1) 0%, transparent 60%);
   }
 
   .pill-badge {
@@ -108,7 +145,7 @@
   }
 
   .cta-button {
-    background: linear-gradient(to right, hsl(var(--background)) 0%, #0b3c2f 50%, #095F48 100%);
+    background: linear-gradient(to right, hsl(var(--background)) 0%, #024d3f 50%, #02DFA6 100%);
     position: relative;
     overflow: hidden;
     border: none !important;
@@ -116,7 +153,7 @@
   }
 
   .cta-button:hover {
-    background: linear-gradient(to right, hsl(var(--background)) 0%, #095F48 50%, #0b3c2f 100%);
+    background: linear-gradient(to right, hsl(var(--background)) 0%, #02DFA6 50%, #024d3f 100%);
   }
 
   .cta-button::before {
@@ -126,7 +163,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, hsl(var(--background)) 0%, #095F48 50%, #0b3c2f 100%);
+    background: linear-gradient(to right, hsl(var(--background)) 0%, #02DFA6 50%, #024d3f 100%);
     transition: left 0.3s ease;
     z-index: -1;
     opacity: 0;
@@ -149,7 +186,7 @@
     position: absolute;
     inset: 0;
     padding: 2px;
-    background: linear-gradient(to right, hsl(var(--background)) 0%, #0b3c2f 50%, #095F48 100%);
+    background: linear-gradient(to right, hsl(var(--background)) 0%, #024d3f 50%, #02DFA6 100%);
     border-radius: inherit;
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: subtract;
@@ -157,12 +194,12 @@
   }
 
   .cta-button[data-variant="outline"]:hover {
-    background: linear-gradient(to right, hsl(var(--background)) 0%, #095F48 50%, #0b3c2f 100%);
+    background: linear-gradient(to right, hsl(var(--background)) 0%, #02DFA6 50%, #024d3f 100%);
   }
 
   .cta-button:hover .cta-arrow {
     transform: translateX(4px);
-    filter: drop-shadow(0 0 2px rgba(11, 60, 47, 0.2));
+    filter: drop-shadow(0 0 2px rgba(2, 223, 166, 0.2));
   }
 
   .sticky-cta {
@@ -305,6 +342,32 @@
     transform: translateY(0);
   }
 
+  .challenge-icon {
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.3s ease-out;
+  }
+
+  .challenge-card:hover .challenge-icon {
+    color: #02DFA6;
+  }
+
+  .card-hover-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(to top, hsla(142, 76%, 36%, 0.15), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    border-radius: 0 0 var(--radius) var(--radius);
+    pointer-events: none;
+  }
+
+  .challenge-card:hover .card-hover-gradient {
+    opacity: 1;
+  }
+
   /* Enhanced Industry Card Mosaic Backgrounds */
   .mosaic-fashion {
     background:
@@ -331,19 +394,36 @@
   }
 
   .mosaic-tech {
-    background:
-      radial-gradient(circle at 80% 80%, rgba(11, 60, 47, 0.6) 0%, transparent 50%),
-      radial-gradient(circle at 20% 20%, rgba(0, 230, 168, 0.25) 0%, transparent 60%),
-      radial-gradient(ellipse at 50% 10%, rgba(0, 0, 0, 0.95) 0%, transparent 70%),
-      conic-gradient(from 45deg at 50% 50%, rgba(0, 0, 0, 0.9) 0deg, rgba(11, 60, 47, 0.4) 120deg, rgba(0, 0, 0, 0.8) 240deg);
-    background-size: 180% 180%, 220% 220%, 160% 160%, 100% 100%;
-    background-position: 0% 100%, 100% 0%, 50% 0%, 0% 0%;
-    animation: mosaicFlow 12s ease-in-out infinite;
-    border: 1px solid rgba(11, 60, 47, 0.2);
+    background: linear-gradient(45deg, rgba(2, 223, 166, 0.1) 0%, rgba(11, 60, 47, 0.3) 100%);
+    border: 1px solid rgba(2, 223, 166, 0.2);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    background-size: 200% 200%;
+    animation: mosaicFlow 8s ease-in-out infinite;
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 720px;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    background-color: #000;
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
   }
 
   .animate-fade-in {
-    animation: fadeIn 0.6s ease-out;
+    animation: fadeIn 0.8s ease-out forwards;
   }
 
   .animate-slide-up {

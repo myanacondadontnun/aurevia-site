@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { useDashboardReveal } from "./ScrollAnimations";
 
 export default function DashboardReveal() {

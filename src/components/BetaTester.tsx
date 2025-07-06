@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Check, ArrowRight } from "lucide-react";
 import { useScrollFade } from "./ScrollAnimations";
@@ -29,14 +30,21 @@ export default function BetaTester() {
   return (
     <section id="beta" className="py-24 px-6">
       <div className="container mx-auto">
+        {/* Strategic Badge */}
+        <div className="text-center mb-8">
+          <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
+            Become a Beta Tester
+          </Badge>
+        </div>
+        
         <Card
           ref={cardRef as React.RefObject<HTMLDivElement>}
           className="scroll-fade bg-gradient-to-br from-primary/10 via-card to-secondary/10 border-primary/20 max-w-4xl mx-auto"
         >
           <CardContent className="p-12 text-center">
             <div>
-              <h2 className="gradient-text text-3xl md:text-4xl font-inter font-normal mb-6">
-                Become a Beta Tester. Get Aurevia Free
+              <h2 className="text-3xl md:text-4xl font-inter font-normal mb-6 text-white">
+                Become a Beta Tester. <span className="green-highlight">Get Aurevia Free</span>
               </h2>
 
               <p className="text-lg font-light text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">

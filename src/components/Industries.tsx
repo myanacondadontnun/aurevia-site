@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Badge } from "@/components/ui/badge";
 
 interface Industry {
   title: string;
@@ -87,25 +88,31 @@ export default function Industries() {
       case 'center':
         return { transform: 'translateX(0px) scale(1)', zIndex: 50, filter: 'blur(0)', opacity: 1, width: '400px', height: '400px', transition };
       case 'right':
-        return { transform: 'translateX(260px) scale(0.88)', zIndex: 30, filter: 'blur(3px)', opacity: 0.7, width: '360px', height: '360px', transition };
+        return { transform: 'translateX(260px) scale(0.88)', zIndex: 30, filter: 'blur(3px)', opacity: 0.7, width: '400px', height: '400px', transition };
       case 'left':
-        return { transform: 'translateX(-260px) scale(0.88)', zIndex: 30, filter: 'blur(3px)', opacity: 0.7, width: '360px', height: '360px', transition };
+        return { transform: 'translateX(-260px) scale(0.88)', zIndex: 30, filter: 'blur(3px)', opacity: 0.7, width: '400px', height: '400px', transition };
       case 'far-right':
-        return { transform: 'translateX(520px) scale(0.75)', zIndex: 10, filter: 'blur(10px)', opacity: 0.4, width: '320px', height: '320px', transition };
+        return { transform: 'translateX(520px) scale(0.75)', zIndex: 10, filter: 'blur(10px)', opacity: 0.4, width: '400px', height: '400px', transition };
       case 'far-left':
-        return { transform: 'translateX(-520px) scale(0.75)', zIndex: 10, filter: 'blur(10px)', opacity: 0.4, width: '320px', height: '320px', transition };
+        return { transform: 'translateX(-520px) scale(0.75)', zIndex: 10, filter: 'blur(10px)', opacity: 0.4, width: '400px', height: '400px', transition };
       default:
         return {};
     }
   };
 
   return (
-    <div className="min-h-screen bg-black text-white font-inter">
-      <section id="industries" className="py-24 px-6 bg-black">
+    <div className="min-h-screen text-white font-inter" style={{backgroundColor: '#080808'}}>
+      <section id="industries" className="py-24 px-6" style={{backgroundColor: '#080808'}}>
         <div className="container mx-auto">
+          <div className="text-center mb-8">
+            <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
+              Build for DTC, Across every Aisle
+            </Badge>
+          </div>
+          
           <div className="text-center mb-16">
-            <h2 className="gradient-text text-4xl md:text-5xl font-normal mb-6">
-              See how Aurevia boosts revenue across industries
+            <h2 className="text-4xl md:text-5xl font-normal mb-6 text-white">
+              See how Aurevia <span className="green-highlight">boosts revenue</span> across industries
             </h2>
             <p className="text-xl font-light text-muted-foreground max-w-3xl mx-auto">
               Real-time AI sales agent that adapts to your niche.
@@ -130,11 +137,11 @@ export default function Industries() {
                       }}
                     >
                       {/* Floating pill header */}
-                      <div className="absolute top-4 left-4 px-4 py-1 rounded-full bg-[radial-gradient(ellipse_at_bottom,_#0E2F21_0%,_#000000_100%)] bg-opacity-90 backdrop-blur-sm text-white text-sm border border-white/20 shadow-md">
+                      <div className="absolute top-4 left-4 px-4 py-1 rounded-full bg-[radial-gradient(ellipse_at_bottom,_#024d3f_0%,_#000000_100%)] bg-opacity-90 backdrop-blur-sm text-white text-sm border border-white/20 shadow-md">
                         {industry.title}
                       </div>
                       {/* Impact section with new look */}
-                      <div className="absolute bottom-0 w-full p-4 border-t border-white/10 rounded-b-2xl bg-[radial-gradient(ellipse_at_bottom,_#0E2F21_0%,_#000000_100%)] bg-opacity-90 backdrop-blur-sm">
+                      <div className="absolute bottom-0 w-full p-4 border-t border-white/10 rounded-b-2xl bg-[radial-gradient(ellipse_at_bottom,_#024d3f_0%,_#000000_100%)] bg-opacity-90 backdrop-blur-sm">
                         <ul className="space-y-1 text-white text-sm">
                           {industry.impactPoints.map((point, idx) => (
                             <li key={idx} className="flex gap-2 items-start">
