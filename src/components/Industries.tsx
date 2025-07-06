@@ -11,71 +11,35 @@ interface Industry {
 
 const industries: Industry[] = [
   {
-    title: "Home & Decor",
-    image: "/images/home-decor.jpg",
-    impactPoints: [
-      "36% more checkouts on high-consideration items",
-      "22% lift in add-to-cart rates for bundles",
-      "40% fewer returns via guided shopping"
-    ]
-  },
-  {
     title: "Fashion & Apparel",
-    image: "/images/fashion.jpg.jpg",
-    impactPoints: [
-      "18% higher average order value",
-      "22% fewer size-related returns",
-      "\"Complete-the-look\" bundles convert in chat"
-    ]
+    image: "/images/fashion.png",
+    impactPoints: []
   },
   {
     title: "Beauty & Cosmetics",
-    image: "/images/beauty.jpg.jpg",
-    impactPoints: [
-      "31% boost in repeat-order revenue",
-      "24/7 shade-match and ingredient help",
-      "Fewer returns via accurate colour picks"
-    ]
+    image: "/images/beauty.png",
+    impactPoints: []
   },
   {
-    title: "Food & Beverage",
-    image: "/images/food.jpg.jpg",
-    impactPoints: [
-      "23% jump in bundled hamper sales",
-      "2× higher repeat-purchase frequency",
-      "AI pairings raise AOV at checkout"
-    ]
-  },
-  {
-    title: "Electronics & Gadgets",
-    image: "/images/electronics.jpg",
-    impactPoints: [
-      "29% more accessories sold per device",
-      "12% drop in spec-question emails",
-      "Warranty-upsell prompts increase uptake"
-    ]
+    title: "Fitness & Yoga",
+    image: "/images/fitness.png",
+    impactPoints: []
   }
 ];
 
 export default function Industries() {
-
-  // Only consider visible cards (not hidden ones)
-  const visibleIndustries = industries.filter(
-    (industry) => industry.title !== "Home & Decor" && industry.title !== "Electronics & Gadgets"
-  );
-
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % visibleIndustries.length);
+      setActiveIndex((prev) => (prev + 1) % industries.length);
     }, 6000);
     return () => clearInterval(interval);
-  }, [visibleIndustries.length]);
+  }, []);
 
   const getCardPosition = (cardIndex: number) => {
     // For 3 cards: 0=center, 1=right, 2=left (rotating)
-    const diff = (cardIndex - activeIndex + visibleIndustries.length) % visibleIndustries.length;
+    const diff = (cardIndex - activeIndex + industries.length) % industries.length;
     if (diff === 0) return 'center';
     if (diff === 1) return 'right';
     if (diff === 2) return 'left';
@@ -86,15 +50,15 @@ export default function Industries() {
     const transition = "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
     switch (position) {
       case 'center':
-        return { transform: 'translateX(0px) scale(1)', zIndex: 50, filter: 'blur(0)', opacity: 1, width: '400px', height: '400px', transition };
+        return { transform: 'translateX(0px) scale(1)', zIndex: 50, filter: 'blur(0)', opacity: 1, width: '480px', transition };
       case 'right':
-        return { transform: 'translateX(260px) scale(0.88)', zIndex: 30, filter: 'blur(3px)', opacity: 0.7, width: '400px', height: '400px', transition };
+        return { transform: 'translateX(300px) scale(0.88)', zIndex: 30, filter: 'blur(3px)', opacity: 0.7, width: '480px', transition };
       case 'left':
-        return { transform: 'translateX(-260px) scale(0.88)', zIndex: 30, filter: 'blur(3px)', opacity: 0.7, width: '400px', height: '400px', transition };
+        return { transform: 'translateX(-300px) scale(0.88)', zIndex: 30, filter: 'blur(3px)', opacity: 0.7, width: '480px', transition };
       case 'far-right':
-        return { transform: 'translateX(520px) scale(0.75)', zIndex: 10, filter: 'blur(10px)', opacity: 0.4, width: '400px', height: '400px', transition };
+        return { transform: 'translateX(600px) scale(0.75)', zIndex: 10, filter: 'blur(10px)', opacity: 0.4, width: '480px', transition };
       case 'far-left':
-        return { transform: 'translateX(-520px) scale(0.75)', zIndex: 10, filter: 'blur(10px)', opacity: 0.4, width: '400px', height: '400px', transition };
+        return { transform: 'translateX(-600px) scale(0.75)', zIndex: 10, filter: 'blur(10px)', opacity: 0.4, width: '480px', transition };
       default:
         return {};
     }
@@ -122,34 +86,23 @@ export default function Industries() {
           <div className="relative max-w-7xl mx-auto overflow-visible">
             <div className="relative h-[500px] flex items-center justify-center" style={{ perspective: '1000px' }}>
               <div className="relative w-full max-w-5xl h-full flex items-center justify-center">
-                {visibleIndustries.map((industry, index) => {
+                {industries.map((industry, index) => {
                   const position = getCardPosition(index);
                   return (
                     <div
                       key={industry.title}
                       onClick={() => setActiveIndex(index)}
-                      className="absolute cursor-pointer rounded-2xl overflow-hidden transition-all duration-700 ease-out shadow-2xl border border-white/10"
-                      style={{
-                        ...getCardStyles(position),
-                        backgroundImage: `url(${industry.image})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                      }}
+                      className="absolute cursor-pointer rounded-2xl overflow-hidden transition-all duration-700 ease-out shadow-2xl border border-white/10 bg-card"
+                      style={getCardStyles(position)}
                     >
-                      {/* Floating pill header */}
-                      <div className="absolute top-4 left-4 px-4 py-1 rounded-full bg-[radial-gradient(ellipse_at_bottom,_#024d3f_0%,_#000000_100%)] bg-opacity-90 backdrop-blur-sm text-white text-sm border border-white/20 shadow-md">
-                        {industry.title}
-                      </div>
-                      {/* Impact section with new look */}
-                      <div className="absolute bottom-0 w-full p-4 border-t border-white/10 rounded-b-2xl bg-[radial-gradient(ellipse_at_bottom,_#024d3f_0%,_#000000_100%)] bg-opacity-90 backdrop-blur-sm">
-                        <ul className="space-y-1 text-white text-sm">
-                          {industry.impactPoints.map((point, idx) => (
-                            <li key={idx} className="flex gap-2 items-start">
-                              <span className="w-1.5 h-1.5 bg-white rounded-full mt-2" />
-                              <span>{point}</span>
-                            </li>
-                          ))}
-                        </ul>
+                      {/* Main content area with 4:3 aspect ratio */}
+                      <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-2xl relative overflow-hidden">
+                        {/* Full-size Image */}
+                        <img
+                          src={industry.image}
+                          alt={industry.title}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                     </div>
                   );
@@ -157,9 +110,29 @@ export default function Industries() {
               </div>
             </div>
 
+            {/* Find out more section */}
+            <div className="flex justify-center mt-12 mb-4">
+              <div className="text-center">
+                <p className="text-muted-foreground mb-4 text-sm">
+                  Want to see how Aurevia can boost your industry?
+                </p>
+                <button
+                  onClick={() => {
+                    const element = document.getElementById("contact");
+                    if (element) {
+                      element.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                  className="px-6 py-3 bg-primary hover:bg-primary/80 text-white rounded-lg transition-all duration-200 text-sm font-medium"
+                >
+                  Find Out More
+                </button>
+              </div>
+            </div>
+
             {/* Pagination dots */}
             <div className="flex justify-center mt-8 gap-3">
-              {visibleIndustries.map((_, index) => (
+              {industries.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveIndex(index)}

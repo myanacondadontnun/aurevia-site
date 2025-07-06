@@ -109,18 +109,18 @@ export default function Navbar() {
       <div
         className={`glass-nav shadow-lg transition-all duration-500 ease-in-out`}
         style={{
-          width: isScrolled ? "60%" : "100%",
+          width: isScrolled ? "75%" : "100%",
           margin: "0 auto",
           transition: "width 0.5s cubic-bezier(0.4,0,0.2,1)",
           borderRadius: "1.5rem",
-          minWidth: 320,
+          minWidth: 900,
           maxWidth: "100vw",
         }}
       >
-        <div className="flex items-center justify-between w-full px-6 py-4">
+        <div className={`flex items-center justify-between w-full transition-all duration-500 ${isScrolled ? 'px-4 py-3' : 'px-6 py-4'}`}>
           {/* Logo */}
           <div
-            className="flex items-center gap-2.5 cursor-pointer"
+            className="flex items-center gap-2.5 cursor-pointer flex-shrink-0"
             onClick={() => scrollToSection("hero")}
           >
             <img 
@@ -128,15 +128,15 @@ export default function Navbar() {
               alt="Aurevia Logo" 
               className="h-8 w-8 object-contain"
             />
-            <span className="text-xl logo-text text-white">
+            <span className={`logo-text text-white transition-all duration-500 ${isScrolled ? 'text-lg' : 'text-xl'}`}>
               Aurevia.io
             </span>
           </div>
 
           {/* Navigation Links + CTA Button */}
-          <div className="flex items-center gap-6">
+          <div className={`flex items-center transition-all duration-500 ${isScrolled ? 'gap-4' : 'gap-6'}`}>
             {/* Navigation Links */}
-            <div className="hidden md:flex items-center space-x-6">
+            <div className={`hidden md:flex items-center transition-all duration-500 ${isScrolled ? 'space-x-4' : 'space-x-6'}`}>
               {[
                 { label: "Features", id: "features" },
                 { label: "How It Works", id: "how-it-works" },
@@ -156,6 +156,8 @@ export default function Navbar() {
                     duration-300
                     relative
                     group
+                    whitespace-nowrap
+                    ${isScrolled ? 'text-sm' : 'text-base'}
                     ${activeSection === item.id ? '!text-[#02DFA6]' : ''}
                   `}
                 >
@@ -177,7 +179,7 @@ export default function Navbar() {
 
             {/* CTA Button */}
             <Button
-              className="cta-button text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 border-0"
+              className={`cta-button text-white font-medium rounded-lg transition-all duration-200 flex items-center gap-2 border-0 flex-shrink-0 ${isScrolled ? 'px-4 py-2 text-sm' : 'px-6 py-2'}`}
               onClick={() => scrollToSection("beta")}
             >
               Get Free Access!
