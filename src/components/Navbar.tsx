@@ -3,10 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,11 +18,12 @@ export default function Navbar() {
     const observeSection = () => {
       const sections = [
         "features",
-        "foursteps",
+        "how-it-works",
         "industries",
         "benefits",
         "pricing",
         "faq",
+        "contact"
       ];
 
       // Update active section during scroll
@@ -56,6 +59,10 @@ export default function Navbar() {
         
         if (mostVisible.id && mostVisible.id !== activeSection) {
           setActiveSection(mostVisible.id);
+          // Update URL without triggering navigation
+          if (mostVisible.id) {
+            window.history.replaceState(null, '', `#${mostVisible.id}`);
+          }
         }
       };
 
@@ -75,12 +82,25 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
       cleanup();
     };
+  }, [activeSection]);
+
+  // Handle initial hash on page load
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+      // Small delay to ensure DOM is ready
+      setTimeout(() => {
+        scrollToSection(hash);
+      }, 100);
+    }
   }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+      // Update URL with hash
+      router.push(`#${sectionId}`, { scroll: false });
     }
   };
 
@@ -119,11 +139,12 @@ export default function Navbar() {
             <div className="hidden md:flex items-center space-x-6">
               {[
                 { label: "Features", id: "features" },
-                { label: "How It Works", id: "foursteps" },
+                { label: "How It Works", id: "how-it-works" },
                 { label: "Industries", id: "industries" },
                 { label: "Benefits", id: "benefits" },
                 { label: "Pricing", id: "pricing" },
                 { label: "FAQs", id: "faq" },
+                { label: "Contact Us", id: "contact" },
               ].map((item) => (
                 <button
                   key={item.id}
@@ -157,9 +178,9 @@ export default function Navbar() {
             {/* CTA Button */}
             <Button
               className="cta-button text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 border-0"
-              onClick={() => scrollToSection("beta")}
+              onClick={() => scrollToSection("contact")}
             >
-              Join Free Beta!
+              Contact Us
               <ArrowRight className="w-4 h-4 cta-arrow" />
             </Button>
           </div>

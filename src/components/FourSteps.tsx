@@ -39,7 +39,7 @@ export default function FourSteps() {
   const containerRef = useStaggeredScrollFade(150);
 
   return (
-    <section id="foursteps" className="py-24 px-6">
+    <section id="how-it-works" className="py-24 px-6">
       <div className="container mx-auto">
         <div className="text-center mb-8 scroll-fade">
           <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
