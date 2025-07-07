@@ -28,7 +28,18 @@ export default function DashboardReveal() {
 
                     {/* Main Content Area */}
                     <div className="flex-1 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg sm:rounded-xl flex items-center justify-center border border-primary/30">
-                      <div className="text-lg sm:text-xl md:text-2xl text-primary font-medium px-2">Dashboard Content Area</div>
+                      <div className="w-full h-full flex items-center justify-center">
+                        <iframe
+                          width="100%"
+                          height="100%"
+                          src="https://imagekit.io/player/embed/i3gsjfgp9/videos/dashboard-video-1751715147712.mp4?updatedAt=1751928662895&thumbnail=https%3A%2F%2Fik.imagekit.io%2Fi3gsjfgp9%2Fvideos%2Fdashboard-video-1751715147712.mp4%2Fik-thumbnail.jpg%3FupdatedAt%3D1751928662895&updatedAt=1751928662895"
+                          title="ImageKit video player"
+                          frameBorder="0"
+                          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                          allowFullScreen
+                          style={{ aspectRatio: '16/9', maxWidth: '100%', borderRadius: '0.75rem', minHeight: '200px', background: 'black' }}
+                        ></iframe>
+                      </div>
                     </div>
 
                     {/* Bottom Section */}
