@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useStaggeredScrollFade } from "./ScrollAnimations";
+import { useStaggeredScrollFade, useVideoIntersection } from "./ScrollAnimations";
 
 const features = [
   {
@@ -18,9 +18,10 @@ const features = [
       "Our LLM reads live shopper context and your catalogue to suggest perfect products, lifting average order value on beta stores.",
     tags: ["Personalized Selling", "Smart Upsell", "Bundles", "Auto-Scraping"],
     imagePlaceholder: "/api/placeholder/600/400",
-    iframe: {
-      src: "https://imagekit.io/player/embed/i3gsjfgp9/videos/product-recomm-1751720775340.mp4?updatedAt=1751762459507&thumbnail=https%3A%2F%2Fik.imagekit.io%2Fi3gsjfgp9%2Fvideos%2Fproduct-recomm-1751720775340.mp4%2Fik-thumbnail.jpg",
-      title: "Aurevia AI Product Recommender Demo"
+    video: {
+      webm: "/videos/product-recomm-1751720775340.webm",
+      mp4: "/videos/product-recomm-1751720775340_compressed.mp4",
+      title: "Product Recommendations Demo Video"
     },
   },
   {
@@ -36,9 +37,10 @@ const features = [
       "From colours, avatars, to tone of voice — everything is customisable. Ask Co-pilot to \"create Ferrari F1 style chatbot\" or \"speak like James Bond.\" Agent auto-adapts. No code. No design work.",
     tags: ["On-Brand Control", "Fully Customizable", "Custom AI", "Full Brand Control"],
     imagePlaceholder: "/api/placeholder/600/400",
-    iframe: {
-      src: "https://imagekit.io/player/embed/i3gsjfgp9/videos/customising-chat-1751679156624.mp4?updatedAt=1751762457940&thumbnail=https%3A%2F%2Fik.imagekit.io%2Fi3gsjfgp9%2Fvideos%2Fcustomising-chat-1751679156624.mp4%2Fik-thumbnail.jpg",
-      title: "Aurevia Chatbot Customization Demo"
+    video: {
+      webm: "/videos/customising-chat-1751679156624.webm",
+      mp4: "/videos/customising-chat-1751679156624_compressed.mp4",
+      title: "Chat Customization Features Video"
     },
   },
   {
@@ -47,15 +49,31 @@ const features = [
       "Visual dashboards reveal conversation sentiment, drop-offs, and top-selling SKUs. Export collected leads or correct past mistakes in seconds to keep conversions climbing.",
     tags: ["Actionable Analytics", "Lead Generation", "Data Visualization", "Sales Analytics"],
     imagePlaceholder: "/api/placeholder/600/400",
-    iframe: {
-      src: "https://imagekit.io/player/embed/i3gsjfgp9/videos/dashboard-video-1751715147712.mp4?updatedAt=1751762457660&thumbnail=https%3A%2F%2Fik.imagekit.io%2Fi3gsjfgp9%2Fvideos%2Fdashboard-video-1751715147712.mp4%2Fik-thumbnail.jpg",
-      title: "Aurevia Dashboard & Analytics Demo"
+    video: {
+      webm: "/videos/dashboard-video-1751715147712.webm",
+      mp4: "/videos/dashboard-video-1751715147712_compressed.mp4",
+      title: "Main Dashboard Interface Video"
     },
   },
 ];
 
 export default function FiveWays() {
   const containerRef = useStaggeredScrollFade(100);
+  
+  // Create video refs for each video
+  const videoRef1 = useVideoIntersection(); // For product recommendations
+  const videoRef2 = useVideoIntersection(); // For chat customization
+  const videoRef3 = useVideoIntersection(); // For dashboard video
+
+  // Map video refs to their respective feature indices
+  const getVideoRef = (index: number) => {
+    switch (index) {
+      case 1: return videoRef1; // Product recommendations
+      case 3: return videoRef2; // Chat customization
+      case 4: return videoRef3; // Dashboard video
+      default: return null;
+    }
+  };
 
   return (
     <section id="features" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
@@ -112,24 +130,26 @@ export default function FiveWays() {
                 <Card className="bg-card border-border overflow-hidden">
                   <CardContent className="p-0">
                     <div className="aspect-[16/10] sm:aspect-[3/2] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center relative">
-                      {feature.iframe ? (
-                        <div className="absolute inset-0 w-full h-full">
-                          <iframe
-                            src={feature.iframe.src}
-                            title={feature.iframe.title}
-                            className="w-full h-full border-0 rounded-lg"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen
-                            loading="lazy"
-                            style={{
-                              position: 'absolute',
-                              top: 0,
-                              left: 0,
-                              width: '100%',
-                              height: '100%'
-                            }}
-                          />
-                        </div>
+                      {feature.video ? (
+                        <video
+                          ref={getVideoRef(index)}
+                          width="100%"
+                          height="100%"
+                          muted
+                          playsInline
+                          loop
+                          preload="auto"
+                          style={{
+                            borderRadius: '8px',
+                            objectFit: 'cover',
+                            width: '100%',
+                            height: '100%'
+                          }}
+                        >
+                          <source src={feature.video.webm} type="video/webm" />
+                          <source src={feature.video.mp4} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
                       ) : (
                         <div className="text-center text-muted-foreground p-4">
                           <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 bg-primary/20 rounded-lg flex items-center justify-center">
