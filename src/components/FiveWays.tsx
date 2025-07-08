@@ -138,7 +138,10 @@ export default function FiveWays() {
                           muted
                           playsInline
                           loop
-                          preload="auto"
+                          preload="metadata"
+                          controls={false}
+                          webkit-playsinline="true"
+                          x-webkit-airplay="allow"
                           style={{
                             borderRadius: '8px',
                             objectFit: 'cover',

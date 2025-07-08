@@ -86,7 +86,7 @@ export default function Industries() {
                     const isPrev = index === (activeIndex - 1 + industries.length) % industries.length;
                     const isNext = index === (activeIndex + 1) % industries.length;
                     
-                    let cardClasses = "absolute cursor-pointer bg-card border-border overflow-hidden group transition-all duration-700 ease-in-out";
+                    let cardClasses = "absolute cursor-pointer bg-card border-border overflow-hidden group transition-all duration-700 ease-in-out [transition-property:transform,opacity,filter]";
                     let cardStyles = {};
                     
                     if (isActive) {
@@ -94,6 +94,7 @@ export default function Industries() {
                       cardStyles = {
                         transform: 'translateX(0) scale(1)',
                         opacity: 1,
+                        filter: 'blur(0px)',
                         width: '420px',
                         height: '560px'
                       };
@@ -102,6 +103,7 @@ export default function Industries() {
                       cardStyles = {
                         transform: 'translateX(-280px) scale(0.85)',
                         opacity: 0.6,
+                        filter: 'blur(2px)',
                         width: '420px',
                         height: '560px'
                       };
@@ -110,6 +112,7 @@ export default function Industries() {
                       cardStyles = {
                         transform: 'translateX(280px) scale(0.85)',
                         opacity: 0.6,
+                        filter: 'blur(2px)',
                         width: '420px',
                         height: '560px'
                       };
@@ -118,6 +121,7 @@ export default function Industries() {
                       cardStyles = {
                         transform: 'translateX(0) scale(0.7)',
                         opacity: 0.3,
+                        filter: 'blur(4px)',
                         width: '420px',
                         height: '560px'
                       };

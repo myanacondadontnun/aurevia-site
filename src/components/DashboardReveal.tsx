@@ -26,7 +26,10 @@ export default function DashboardReveal() {
                   muted
                   playsInline
                   loop
-                  preload="auto"
+                  preload="metadata"
+                  controls={false}
+                  webkit-playsinline="true"
+                  x-webkit-airplay="allow"
                   style={{ 
                     borderRadius: '12px',
                     objectFit: 'cover',
