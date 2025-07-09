@@ -1,46 +1,144 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useVideoIntersection } from "./ScrollAnimations";
 
 interface Industry {
   title: string;
-  image: string;
+  video: {
+    mp4: string;
+    title: string;
+  };
   impactPoints: string[];
 }
 
 const industries: Industry[] = [
   {
-    title: "Fashion & Apparel",
-    image: "/images/fashion.png",
-    impactPoints: ["Personalized style recommendations", "Size and fit guidance", "Trend-based upselling"]
+    title: "Apparel",
+    video: {
+      mp4: "https://aurevia-content.s3.eu-north-1.amazonaws.com/Apparel_Collab.mp4",
+      title: "Fashion & Apparel Demo Video"
+    },
+    impactPoints: ["🎯 28% conversion boost by acting as a 24/7 personal stylist — recommending occasion-ready outfits and guiding shoppers through size, fit, and vibe."]
   },
   {
-    title: "Beauty & Cosmetics",
-    image: "/images/beauty.png",
-    impactPoints: ["Shade matching assistance", "Skincare routine building", "Product ingredient advice"]
+    title: "Beauty & Skincare",
+    video: {
+      mp4: "https://aurevia-content.s3.eu-north-1.amazonaws.com/beauty_video.mp4",
+      title: "Beauty & Cosmetics Demo Video"
+    },
+    impactPoints: ["✨ 31% increase in repeat-order revenue — helping beauty shoppers find the right products for their skin type, concerns, and ingredient needs, instantly."]
   },
   {
-    title: "Fitness & Yoga",
-    image: "/images/fitness.png",
-    impactPoints: ["Equipment recommendations", "Workout plan suggestions", "Nutrition guidance"]
+    title: "Male Fitness & Fashion",
+    video: {
+      mp4: "https://aurevia-content.s3.eu-north-1.amazonaws.com/fitness_apparel_video.mp4",
+      title: "Fitness & Yoga Demo Video"
+    },
+    impactPoints: ["💪 23% reduction in returns — from activewear to date night, suggesting high-fit, low-regret pieces based on style, body type, and daily lifestyle."]
+  },
+  {
+    title: "Fitness & Supplements",
+    video: {
+      mp4: "https://aurevia-content.s3.eu-north-1.amazonaws.com/FItness_video.mp4",
+      title: "Fitness & Equipment Demo Video"
+    },
+    impactPoints: ["🔥 18% AOV boost in fitness stores by guiding buyers to the right stack — from whey to creatine — based on habits, history, and goals."]
   }
 ];
 
 export default function Industries() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoplay, setIsAutoplay] = useState(true);
+  const [videoCompleted, setVideoCompleted] = useState<{[key: number]: boolean}>({});
+  
+  // Create video refs for each video (desktop)
+  const desktopVideoRef0 = useVideoIntersection();
+  const desktopVideoRef1 = useVideoIntersection();
+  const desktopVideoRef2 = useVideoIntersection();
+  const desktopVideoRef3 = useVideoIntersection();
+  
+  // Create video refs for each video (mobile)
+  const mobileVideoRef0 = useVideoIntersection();
+  const mobileVideoRef1 = useVideoIntersection();
+  const mobileVideoRef2 = useVideoIntersection();
+  const mobileVideoRef3 = useVideoIntersection();
+  
+  // Map video refs to their respective indices
+  const getDesktopVideoRef = (index: number) => {
+    switch (index) {
+      case 0: return desktopVideoRef0;
+      case 1: return desktopVideoRef1;
+      case 2: return desktopVideoRef2;
+      case 3: return desktopVideoRef3;
+      default: return null;
+    }
+  };
+  
+  const getMobileVideoRef = (index: number) => {
+    switch (index) {
+      case 0: return mobileVideoRef0;
+      case 1: return mobileVideoRef1;
+      case 2: return mobileVideoRef2;
+      case 3: return mobileVideoRef3;
+      default: return null;
+    }
+  };
 
   useEffect(() => {
     if (!isAutoplay) return;
     
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % industries.length);
-    }, 6000);
+      // Only advance if current video has completed at least once
+      if (videoCompleted[activeIndex]) {
+        setActiveIndex((prev) => (prev + 1) % industries.length);
+      }
+    }, 1000); // Check more frequently
     return () => clearInterval(interval);
-  }, [isAutoplay]);
+  }, [isAutoplay, activeIndex, videoCompleted]);
+  
+  // Handle video completion
+  const handleVideoEnd = (index: number) => {
+    setVideoCompleted(prev => ({ ...prev, [index]: true }));
+  };
+
+  // Control video playback based on active index
+  useEffect(() => {
+    // Reset all videos to beginning and control playback
+    industries.forEach((_, index) => {
+      const desktopVideo = getDesktopVideoRef(index)?.current;
+      const mobileVideo = getMobileVideoRef(index)?.current;
+      
+      // Reset all videos to beginning
+      if (desktopVideo) {
+        desktopVideo.currentTime = 0;
+      }
+      if (mobileVideo) {
+        mobileVideo.currentTime = 0;
+      }
+      
+      if (index === activeIndex) {
+        // Play active video from beginning
+        if (desktopVideo) {
+          desktopVideo.play().catch(() => {
+            // Autoplay blocked, this is normal
+          });
+        }
+        if (mobileVideo) {
+          mobileVideo.play().catch(() => {
+            // Autoplay blocked, this is normal
+          });
+        }
+      } else {
+        // Pause inactive videos (they're already reset to beginning)
+        if (desktopVideo) desktopVideo.pause();
+        if (mobileVideo) mobileVideo.pause();
+      }
+    });
+  }, [activeIndex]);
 
   const nextSlide = () => {
     setActiveIndex((prev) => (prev + 1) % industries.length);
@@ -79,7 +177,7 @@ export default function Industries() {
           {/* Desktop Layout: Enhanced Carousel */}
           <div className="hidden md:block">
             <div className="relative max-w-7xl mx-auto">
-              <div className="relative h-[600px] lg:h-[720px] flex items-center justify-center overflow-hidden">
+              <div className="relative h-[800px] lg:h-[900px] flex items-center justify-center overflow-hidden">
                 <div className="relative w-full max-w-6xl h-full flex items-center justify-center">
                   {industries.map((industry, index) => {
                     const isActive = index === activeIndex;
@@ -95,26 +193,26 @@ export default function Industries() {
                         transform: 'translateX(0) scale(1)',
                         opacity: 1,
                         filter: 'blur(0px)',
-                        width: '420px',
-                        height: '560px'
+                        width: '480px',
+                        height: '720px'
                       };
                     } else if (isPrev) {
                       cardClasses += " z-20";
                       cardStyles = {
-                        transform: 'translateX(-280px) scale(0.85)',
+                        transform: 'translateX(-320px) scale(0.85)',
                         opacity: 0.6,
                         filter: 'blur(2px)',
-                        width: '420px',
-                        height: '560px'
+                        width: '480px',
+                        height: '720px'
                       };
                     } else if (isNext) {
                       cardClasses += " z-20";
                       cardStyles = {
-                        transform: 'translateX(280px) scale(0.85)',
+                        transform: 'translateX(320px) scale(0.85)',
                         opacity: 0.6,
                         filter: 'blur(2px)',
-                        width: '420px',
-                        height: '560px'
+                        width: '480px',
+                        height: '720px'
                       };
                     } else {
                       cardClasses += " z-10";
@@ -122,8 +220,8 @@ export default function Industries() {
                         transform: 'translateX(0) scale(0.7)',
                         opacity: 0.3,
                         filter: 'blur(4px)',
-                        width: '420px',
-                        height: '560px'
+                        width: '480px',
+                        height: '720px'
                       };
                     }
                     
@@ -134,30 +232,52 @@ export default function Industries() {
                         className={cardClasses}
                         style={cardStyles}
                       >
-                        <CardContent className="p-6 lg:p-8 h-full flex flex-col">
-                          {/* Image Container */}
-                          <div className="mb-6 flex-shrink-0">
-                            <div className="aspect-[1/1] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-lg flex items-center justify-center overflow-hidden">
+                        <CardContent className="p-4 h-full flex flex-col">
+                          {/* Video Container - Takes most of the space */}
+                          <div className="flex-1 mb-4 relative">
+                            <div className="h-full bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-lg flex items-center justify-center overflow-hidden">
+                              <video
+                                ref={getDesktopVideoRef(index)}
+                                width="100%"
+                                height="100%"
+                                muted
+                                playsInline
+                                loop
+                                preload="metadata"
+                                controls={false}
+                                webkit-playsinline="true"
+                                x-webkit-airplay="allow"
+                                onEnded={() => handleVideoEnd(index)}
+                                style={{
+                                  borderRadius: '8px',
+                                  objectFit: 'contain',
+                                  width: '100%',
+                                  height: '100%'
+                                }}
+                              >
+                                <source src={industry.video.mp4} type="video/mp4" />
+                                Your browser does not support the video tag.
+                              </video>
+                            </div>
+                            {/* Logo Watermark */}
+                            <div className="absolute top-3 left-3 z-10 opacity-80 hover:opacity-100 transition-opacity duration-200">
                               <img
-                                src={industry.image}
-                                alt={industry.title}
-                                className="object-contain w-full h-full"
+                                src="/images/Logo_wo_bg.png"
+                                alt="Aurevia Logo"
+                                className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-lg"
                               />
                             </div>
                           </div>
 
-                          {/* Content */}
-                          <div className="flex-1 flex flex-col justify-center space-y-4">
-                            <h3 className="text-xl lg:text-2xl font-inter font-normal text-white leading-tight">
-                              {industry.title}
-                            </h3>
-                            <div className="space-y-2">
-                              {industry.impactPoints.map((point, pointIndex) => (
-                                <p key={pointIndex} className="text-sm lg:text-base font-light text-muted-foreground leading-relaxed">
-                                  • {point}
+                          {/* Impact Content */}
+                          <div className="flex-shrink-0 space-y-3 min-h-[120px] px-2">
+                            {industry.impactPoints.map((point, pointIndex) => (
+                              <div key={pointIndex} className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg p-3 border border-primary/20">
+                                <p className="text-sm font-medium text-white leading-relaxed">
+                                  {point}
                                 </p>
-                              ))}
-                            </div>
+                              </div>
+                            ))}
                           </div>
                         </CardContent>
                       </Card>
@@ -192,31 +312,53 @@ export default function Industries() {
                 >
                   {industries.map((industry, index) => (
                     <div key={industry.title} className="w-full flex-shrink-0 px-2">
-                      <Card className="bg-card border-border overflow-hidden">
-                        <CardContent className="p-6">
-                          {/* Image Container */}
-                          <div className="mb-6">
-                            <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-lg flex items-center justify-center overflow-hidden">
+                      <Card className="bg-card border-border overflow-hidden min-h-[500px]">
+                        <CardContent className="p-4 h-full flex flex-col">
+                          {/* Video Container - Takes most of the space */}
+                          <div className="flex-1 mb-4 relative">
+                            <div className="h-full bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-lg flex items-center justify-center overflow-hidden">
+                              <video
+                                ref={getMobileVideoRef(index)}
+                                width="100%"
+                                height="100%"
+                                muted
+                                playsInline
+                                loop
+                                preload="metadata"
+                                controls={false}
+                                webkit-playsinline="true"
+                                x-webkit-airplay="allow"
+                                onEnded={() => handleVideoEnd(index)}
+                                style={{
+                                  borderRadius: '8px',
+                                  objectFit: 'contain',
+                                  width: '100%',
+                                  height: '100%'
+                                }}
+                              >
+                                <source src={industry.video.mp4} type="video/mp4" />
+                                Your browser does not support the video tag.
+                              </video>
+                            </div>
+                            {/* Logo Watermark */}
+                            <div className="absolute top-3 left-3 z-10 opacity-80 hover:opacity-100 transition-opacity duration-200">
                               <img
-                                src={industry.image}
-                                alt={industry.title}
-                                className="object-contain w-full h-full"
+                                src="/images/Logo_wo_bg.png"
+                                alt="Aurevia Logo"
+                                className="w-6 h-6 sm:w-8 sm:h-8 object-contain drop-shadow-lg"
                               />
                             </div>
                           </div>
 
-                          {/* Content */}
-                          <div className="space-y-4">
-                            <h3 className="text-xl font-inter font-normal text-white leading-tight">
-                              {industry.title}
-                            </h3>
-                            <div className="space-y-2">
-                              {industry.impactPoints.map((point, pointIndex) => (
-                                <p key={pointIndex} className="text-sm font-light text-muted-foreground leading-relaxed">
-                                  • {point}
+                          {/* Impact Content */}
+                          <div className="flex-shrink-0 space-y-3 min-h-[120px] px-2">
+                            {industry.impactPoints.map((point, pointIndex) => (
+                              <div key={pointIndex} className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg p-3 border border-primary/20">
+                                <p className="text-sm font-medium text-white leading-relaxed">
+                                  {point}
                                 </p>
-                              ))}
-                            </div>
+                              </div>
+                            ))}
                           </div>
                         </CardContent>
                       </Card>
