@@ -242,14 +242,20 @@
   }
 
   .sticky-cta {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 40;
     transform: translateY(100px);
     opacity: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
   }
 
-  .sticky-cta.scroll-up {
+  .sticky-cta.visible {
     transform: translateY(0);
     opacity: 1;
+    pointer-events: auto;
   }
 
   .dashboard-reveal {

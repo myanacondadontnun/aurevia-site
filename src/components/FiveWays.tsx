@@ -1,8 +1,9 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useStaggeredScrollFade, useVideoIntersection } from "./ScrollAnimations";
+import { useStaggeredScrollFade } from "./ScrollAnimations";
 
 const features = [
   {
@@ -11,6 +12,10 @@ const features = [
       "Aurevia's Shopify-native AI spots exit intent, answers last-minute questions, and drops a one-click checkout link — rescuing lost revenue.",
     tags: ["Revenue Automation", "Cart Recovery", "1-Click Checkout", "AI Nudge System"],
     imagePlaceholder: "/api/placeholder/600/400",
+    video: {
+      mp4: "https://aurevia-content.s3.eu-north-1.amazonaws.com/recover-cart-demo-1752196058488.mp4",
+      title: "Cart Recovery Demo Video",
+    },
   },
   {
     title: "Recommend the Perfect Product, Every Time",
@@ -19,18 +24,17 @@ const features = [
     tags: ["Personalized Selling", "Smart Upsell", "Bundles", "Auto-Scraping"],
     imagePlaceholder: "/api/placeholder/600/400",
     video: {
-      webm: "/videos/product-recomm-1751720775340.webm",
-      mp4: "/videos/product-recomm-1751720775340_compressed.mp4",
-      title: "Product Recommendations Demo Video"
+      mp4: "https://aurevia-content.s3.eu-north-1.amazonaws.com/product-recommendation-demo-1752191499852.mp4",
+      title: "Product Recommendations Demo Video",
     },
   },
-  {
-    title: "Sell While You Sleep, Worldwide",
-    description:
-      "Aurevia handles product & shipping queries in under 2s — freeing you for high-touch tickets and capturing global traffic you're normally missing.",
-    tags: ["24/7 Live AI Sales Rep", "Always-On", "Live Chat Takeover", "Notifies Urgency"],
-    imagePlaceholder: "/api/placeholder/600/400",
-  },
+  // {
+  //   title: "Sell While You Sleep, Worldwide",
+  //   description:
+  //     "Aurevia handles product & shipping queries in under 2s — freeing you for high-touch tickets and capturing global traffic you're normally missing.",
+  //   tags: ["24/7 Live AI Sales Rep", "Always-On", "Live Chat Takeover", "Notifies Urgency"],
+  //   imagePlaceholder: "/api/placeholder/600/400",
+  // },
   {
     title: "Match Your Brand, Voice & Style",
     description:
@@ -38,9 +42,8 @@ const features = [
     tags: ["On-Brand Control", "Fully Customizable", "Custom AI", "Full Brand Control"],
     imagePlaceholder: "/api/placeholder/600/400",
     video: {
-      webm: "/videos/customising-chat-1751679156624.webm",
-      mp4: "/videos/customising-chat-1751679156624_compressed.mp4",
-      title: "Chat Customization Features Video"
+      mp4: "https://aurevia-content.s3.eu-north-1.amazonaws.com/chat-customisation-demo-1752192924961.mp4",
+      title: "Chat Customization Features Video",
     },
   },
   {
@@ -50,30 +53,42 @@ const features = [
     tags: ["Actionable Analytics", "Lead Generation", "Data Visualization", "Sales Analytics"],
     imagePlaceholder: "/api/placeholder/600/400",
     video: {
-      webm: "/videos/dashboard-video-1751715147712.webm",
-      mp4: "/videos/dashboard-video-1751715147712_compressed.mp4",
-      title: "Main Dashboard Interface Video"
+      mp4: "https://aurevia-content.s3.eu-north-1.amazonaws.com/dashboard-lead-demo-1752193911380.mp4",
+      title: "Main Dashboard Interface Video",
     },
   },
 ];
 
 export default function FiveWays() {
   const containerRef = useStaggeredScrollFade(100);
-  
-  // Create video refs for each video
-  const videoRef1 = useVideoIntersection(); // For product recommendations
-  const videoRef2 = useVideoIntersection(); // For chat customization
-  const videoRef3 = useVideoIntersection(); // For dashboard video
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
-  // Map video refs to their respective feature indices
-  const getVideoRef = (index: number) => {
-    switch (index) {
-      case 1: return videoRef1; // Product recommendations
-      case 3: return videoRef2; // Chat customization
-      case 4: return videoRef3; // Dashboard video
-      default: return null;
-    }
-  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target as HTMLVideoElement;
+          if (entry.isIntersecting && entry.intersectionRatio === 1) {
+            videoRefs.current.forEach((v) => {
+              if (v && v !== video) v.pause();
+            });
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      },
+      {
+        threshold: 1.0,
+      }
+    );
+
+    videoRefs.current.forEach((video) => {
+      if (video) observer.observe(video);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="features" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
@@ -83,10 +98,10 @@ export default function FiveWays() {
             How Aurevia Helps
           </Badge>
         </div>
-        
+
         <div className="text-center mb-12 sm:mb-16 scroll-fade">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal mb-4 sm:mb-6 text-white">
-            5 Ways <span className="green-highlight">Aurevia Grows</span> Your Shopify Store
+            4 Ways <span className="green-highlight">Aurevia Grows</span> Your Shopify Store
           </h2>
           <p className="text-lg sm:text-xl font-light text-muted-foreground max-w-3xl mx-auto">
             Automate chats, lift AOV and recover carts, live in minutes, no code.
@@ -104,7 +119,6 @@ export default function FiveWays() {
                 index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
               } items-center gap-8 sm:gap-10 md:gap-12`}
             >
-              {/* Content */}
               <div className="flex-1 space-y-4 sm:space-y-6">
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-inter font-normal text-white">
                   {feature.title}
@@ -125,14 +139,15 @@ export default function FiveWays() {
                 </div>
               </div>
 
-              {/* Media Content */}
               <div className="flex-1 w-full">
                 <Card className="bg-card border-border overflow-hidden">
                   <CardContent className="p-0">
                     <div className="aspect-[16/10] sm:aspect-[3/2] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center relative">
                       {feature.video ? (
                         <video
-                          ref={getVideoRef(index)}
+                          ref={(el) => {
+                            if (el) videoRefs.current[index] = el;
+                          }}
                           width="100%"
                           height="100%"
                           muted
@@ -143,13 +158,12 @@ export default function FiveWays() {
                           webkit-playsinline="true"
                           x-webkit-airplay="allow"
                           style={{
-                            borderRadius: '8px',
-                            objectFit: 'cover',
-                            width: '100%',
-                            height: '100%'
+                            borderRadius: "8px",
+                            objectFit: "cover",
+                            width: "100%",
+                            height: "100%",
                           }}
                         >
-                          <source src={feature.video.webm} type="video/webm" />
                           <source src={feature.video.mp4} type="video/mp4" />
                           Your browser does not support the video tag.
                         </video>

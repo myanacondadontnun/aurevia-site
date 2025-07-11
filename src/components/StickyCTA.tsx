@@ -6,19 +6,18 @@ import { useState, useEffect } from "react";
 import { trackButtonClick } from "@/lib/analytics";
 
 export default function StickyCTA() {
-  const [isScrollingUp, setIsScrollingUp] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      setIsScrollingUp(currentScrollY < lastScrollY && currentScrollY > 100);
-      setLastScrollY(currentScrollY);
+      // Show CTA after scrolling down 300px
+      setIsVisible(currentScrollY > 300);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     // Track sticky CTA click
@@ -31,7 +30,7 @@ export default function StickyCTA() {
   };
 
   return (
-    <div className={`sticky-cta ${isScrollingUp ? "scroll-up" : ""}`}>
+    <div className={`sticky-cta ${isVisible ? "visible" : ""}`}>
       <Button
         className="cta-button bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-6 py-3 rounded-full transition-all duration-300 flex items-center gap-2 shadow-lg shadow-primary/25"
         onClick={() => scrollToSection("beta")}

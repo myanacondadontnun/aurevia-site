@@ -155,7 +155,7 @@ export default function Navbar() {
               alt="Aurevia Logo" 
               className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
             />
-            <span className={`logo-text text-white text-lg sm:text-xl whitespace-nowrap overflow-hidden transition-all duration-500 ${isScrolled ? 'lg:max-w-0 lg:ml-0 lg:opacity-0' : 'lg:max-w-sm ml-2.5 lg:opacity-100'}`}>
+            <span className={`logo-text text-white text-lg sm:text-xl whitespace-nowrap overflow-hidden transition-all duration-500 ${isScrolled ? 'lg:max-w-0 lg:ml-0 lg:opacity-0' : 'lg:max-w-sm ml-2.5 lg:opacity-100'} hidden lg:block`}>
               Aurevia.io
             </span>
           </div>

@@ -6,6 +6,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useVideoIntersection } from "./ScrollAnimations";
 
+// Custom hook for manual video control (no auto-play on intersection)
+function useManualVideoRef() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  return videoRef;
+}
+
 interface Industry {
   title: string;
   video: {
@@ -56,16 +62,16 @@ export default function Industries() {
   const [videoCompleted, setVideoCompleted] = useState<{[key: number]: boolean}>({});
   
   // Create video refs for each video (desktop)
-  const desktopVideoRef0 = useVideoIntersection();
-  const desktopVideoRef1 = useVideoIntersection();
-  const desktopVideoRef2 = useVideoIntersection();
-  const desktopVideoRef3 = useVideoIntersection();
+  const desktopVideoRef0 = useManualVideoRef();
+  const desktopVideoRef1 = useManualVideoRef();
+  const desktopVideoRef2 = useManualVideoRef();
+  const desktopVideoRef3 = useManualVideoRef();
   
   // Create video refs for each video (mobile)
-  const mobileVideoRef0 = useVideoIntersection();
-  const mobileVideoRef1 = useVideoIntersection();
-  const mobileVideoRef2 = useVideoIntersection();
-  const mobileVideoRef3 = useVideoIntersection();
+  const mobileVideoRef0 = useManualVideoRef();
+  const mobileVideoRef1 = useManualVideoRef();
+  const mobileVideoRef2 = useManualVideoRef();
+  const mobileVideoRef3 = useManualVideoRef();
   
   // Map video refs to their respective indices
   const getDesktopVideoRef = (index: number) => {
@@ -107,21 +113,22 @@ export default function Industries() {
 
   // Control video playback based on active index
   useEffect(() => {
-    // Reset all videos to beginning and control playback
     industries.forEach((_, index) => {
       const desktopVideo = getDesktopVideoRef(index)?.current;
       const mobileVideo = getMobileVideoRef(index)?.current;
       
-      // Reset all videos to beginning
+      // Reset all videos to beginning and pause them
       if (desktopVideo) {
         desktopVideo.currentTime = 0;
+        desktopVideo.pause();
       }
       if (mobileVideo) {
         mobileVideo.currentTime = 0;
+        mobileVideo.pause();
       }
       
+      // Only play the active video
       if (index === activeIndex) {
-        // Play active video from beginning
         if (desktopVideo) {
           desktopVideo.play().catch(() => {
             // Autoplay blocked, this is normal
@@ -132,10 +139,6 @@ export default function Industries() {
             // Autoplay blocked, this is normal
           });
         }
-      } else {
-        // Pause inactive videos (they're already reset to beginning)
-        if (desktopVideo) desktopVideo.pause();
-        if (mobileVideo) mobileVideo.pause();
       }
     });
   }, [activeIndex]);
