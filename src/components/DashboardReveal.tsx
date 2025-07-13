@@ -37,8 +37,7 @@ export default function DashboardReveal() {
                     height: '100%'
                   }}
                 >
-                  <source src="/videos/dashboard-reveal(1)-1751928464634.webm" type="video/webm" />
-                  <source src="/videos/dashboard-reveal(1)-1751928464634_compressed.mp4" type="video/mp4" />
+                  <source src="https://aurevia-content.s3.eu-north-1.amazonaws.com/dashboard-reveal(1)-1751928464634.webm" type="video/webm" />
                   Your browser does not support the video tag.
                 </video>
               </div>

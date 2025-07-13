@@ -147,7 +147,7 @@ export default function Navbar() {
         <div className={`flex items-center justify-between w-full transition-all duration-500 ${isScrolled ? 'px-3 py-2.5 sm:px-4 sm:py-3' : 'px-4 py-3 sm:px-6 sm:py-4'}`}>
           {/* Logo */}
           <div
-            className="flex items-center cursor-pointer flex-shrink-0"
+            className="flex items-center cursor-pointer flex-shrink-0 lg:w-48"
             onClick={() => scrollToSection("hero")}
           >
             <img 
@@ -160,10 +160,9 @@ export default function Navbar() {
             </span>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className={`hidden lg:flex items-center transition-all duration-500 ${isScrolled ? 'gap-3' : 'gap-4 xl:gap-6'}`}>
-            {/* Navigation Links */}
-            <div className={`flex items-center transition-all duration-500 ${isScrolled ? 'space-x-3' : 'space-x-4 xl:space-x-6'}`}>
+          {/* Desktop Navigation - Centered */}
+          <div className={`hidden lg:flex items-center justify-center flex-1 transition-all duration-500`}>
+            <div className={`flex items-center space-x-4 xl:space-x-6`}>
               {navigationItems.map((item) => (
                 <button
                   key={item.id}
@@ -195,8 +194,10 @@ export default function Navbar() {
                 </button>
               ))}
             </div>
+          </div>
 
-            {/* CTA Button */}
+          {/* Desktop CTA Button - Right */}
+          <div className="hidden lg:flex items-center flex-shrink-0 w-48 justify-end">
             <Button
               className={`cta-button text-white font-medium rounded-lg transition-all duration-200 flex items-center gap-2 border-0 flex-shrink-0 ${isScrolled ? 'px-3 py-1.5' : 'px-4 py-2'} text-sm xl:text-base`}
               onClick={() => scrollToSection("beta")}
