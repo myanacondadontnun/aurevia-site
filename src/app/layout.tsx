@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Aurevia.io - Shopify AI Sales Chatbot 24/7',
     description: 'Answer questions, recommend products and recover carts in real time. No scripts, no coding, fully trained on your brand.',
-    creator: '@aurevia_io', // Replace with your actual Twitter handle
+    creator: '@crazystupidceo', // Your personal Twitter handle
     images: ['/api/og'],
   },
   robots: {

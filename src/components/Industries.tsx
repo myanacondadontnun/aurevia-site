@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -74,7 +74,7 @@ export default function Industries() {
   const mobileVideoRef3 = useManualVideoRef();
   
   // Map video refs to their respective indices
-  const getDesktopVideoRef = (index: number) => {
+  const getDesktopVideoRef = useCallback((index: number) => {
     switch (index) {
       case 0: return desktopVideoRef0;
       case 1: return desktopVideoRef1;
@@ -82,9 +82,9 @@ export default function Industries() {
       case 3: return desktopVideoRef3;
       default: return null;
     }
-  };
+  }, [desktopVideoRef0, desktopVideoRef1, desktopVideoRef2, desktopVideoRef3]);
   
-  const getMobileVideoRef = (index: number) => {
+  const getMobileVideoRef = useCallback((index: number) => {
     switch (index) {
       case 0: return mobileVideoRef0;
       case 1: return mobileVideoRef1;
@@ -92,7 +92,7 @@ export default function Industries() {
       case 3: return mobileVideoRef3;
       default: return null;
     }
-  };
+  }, [mobileVideoRef0, mobileVideoRef1, mobileVideoRef2, mobileVideoRef3]);
 
   useEffect(() => {
     if (!isAutoplay) return;
@@ -141,7 +141,7 @@ export default function Industries() {
         }
       }
     });
-  }, [activeIndex]);
+  }, [activeIndex, getDesktopVideoRef, getMobileVideoRef]);
 
   const nextSlide = () => {
     setActiveIndex((prev) => (prev + 1) % industries.length);
