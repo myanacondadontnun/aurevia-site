@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: 'Aurevia.io',
     images: [
       {
-        url: '/api/og',
+        url: '/og-hero.svg',
         width: 1200,
         height: 630,
         alt: 'Aurevia.io - Shopify AI Sales Chatbot Hero Section',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: 'Aurevia.io - Shopify AI Sales Chatbot 24/7',
     description: 'Answer questions, recommend products and recover carts in real time. No scripts, no coding, fully trained on your brand.',
     creator: '@crazystupidceo', // Your personal Twitter handle
-    images: ['/api/og'],
+    images: ['/og-hero.svg'],
   },
   robots: {
     index: true,
