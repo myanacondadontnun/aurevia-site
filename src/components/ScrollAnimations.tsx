@@ -164,8 +164,8 @@ export function useVideoIntersection() {
             const playVideo = async () => {
               try {
                 await video.play();
-              } catch (error) {
-                console.log("Video autoplay prevented, showing play button:", error);
+              } catch {
+                // Video autoplay prevented, showing play button
                 
                 // Show play button overlay for mobile
                 createPlayButton();

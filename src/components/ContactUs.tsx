@@ -38,8 +38,6 @@ export default function ContactUs() {
       formDataToSend.append('subject', formData.subject);
       formDataToSend.append('message', formData.message);
 
-      console.log('Submitting form data:', Object.fromEntries(formDataToSend));
-
       const response = await fetch('https://script.google.com/macros/s/AKfycby2Um5z2N6m9X1WzbNACYogzZf60qtXeoMYaZEg0zIKwCyZQ6CL_53HUcAibwzx92fKlw/exec', {
         method: 'POST',
         headers: {
@@ -48,12 +46,8 @@ export default function ContactUs() {
         body: formDataToSend.toString()
       });
 
-      console.log('Response status:', response.status);
-      console.log('Response ok:', response.ok);
-
       if (response.ok) {
         const result = await response.text();
-        console.log('Response text:', result);
         
         if (result === "Success" || response.status === 200) {
           // Track successful form submission
@@ -76,11 +70,10 @@ export default function ContactUs() {
         }
       } else {
         const errorText = await response.text();
-        console.error('Error response:', errorText);
         throw new Error(`Server error: ${response.status} - ${errorText}`);
       }
     } catch (error) {
-      console.error('Form submission error:', error);
+      // Form submission error handled silently in production
       
       // Track failed form submission
       trackContactFormSubmit(false);
