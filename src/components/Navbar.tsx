@@ -129,7 +129,6 @@ export default function Navbar() {
     { label: "How It Works", id: "how-it-works" },
     { label: "Industries", id: "industries" },
     { label: "Benefits", id: "benefits" },
-    { label: "Pricing", id: "pricing" },
     { label: "FAQs", id: "faq" },
     { label: "Contact Us", id: "contact" },
   ];

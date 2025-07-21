@@ -19,16 +19,20 @@ const pricingPlans = [
       "Seats Included = 1",
       "Max Seats Allowed = 3",
       "AI messages/mo = 2000",
-      "Need more? One-click upgrade",
       "Extra AI message = £15/1000",
-      "Every feature unlocked",
+      "Add Unlimited Product and Knowledge",
+      "No Visitor Cap",
+      "Downloadable leads for marketing",
+      "Product config for smarter upsells",
       "Analytics history = 3 months",
       '"Ask Aurevia" AI co-pilot = ✓',
-      "Onboarding = Self Serve Documents",
+      "Onboarding = 1-to-1 with founders (professional, hands-on help)",
       "Support = Email and Discord 10x5",
       "Uptime SLA = 99%",
+      "Social, Email and CRM Integration - Coming Soon!",
+      "White-labeling = X",
     ],
-    ctaText: "Start Free Trial",
+    ctaText: "Get Beta Access",
     ctaVariant: "default" as const,
   },
   {
@@ -41,16 +45,20 @@ const pricingPlans = [
       "Seats Included = 3",
       "Max Seats Allowed = 25",
       "AI messages/mo = 5000",
-      "Need more? One-click upgrade",
       "Extra AI message = £10/1000",
-      "Every feature unlocked",
+      "Add Unlimited Product and Knowledge",
+      "No Visitor Cap",
+      "Downloadable leads for marketing",
+      "Product config for smarter upsells",
       "Analytics history = 12 months",
       '"Ask Aurevia" AI co-pilot = ✓',
-      "Onboarding = 1-to-1 success calls",
+      "Onboarding = 1-to-1 with founders (professional, hands-on help)",
       "Discord + Priority Email 24x7",
       "Uptime SLA = 99.5%",
+      "Social, Email and CRM Integration - Coming Soon!",
+      "White-labeling = ✓",
     ],
-    ctaText: "Start Free Trial",
+    ctaText: "Get Beta Access",
     ctaVariant: "default" as const,
     popular: true,
   },
@@ -65,13 +73,18 @@ const pricingPlans = [
       "Dedicated success squad",
       "Custom integrations",
       "Quarterly ROI reviews",
+      "Onboarding = 1-to-1 with founders (professional, hands-on help)",
+      "Product config for smarter upsells",
+      "Social, Email and CRM Integration - Coming Soon!",
     ],
-    ctaText: "Schedule a Call",
+    ctaText: "Contact Us",
     ctaVariant: "outline" as const,
   },
 ];
 
 export default function Pricing() {
+  // Pricing section is temporarily hidden. To restore, remove the next line.
+  return null;
   const [isAnnual, setIsAnnual] = useState(false);
   const containerRef = useStaggeredScrollFade(150);
 
@@ -147,7 +160,7 @@ export default function Pricing() {
                       <span className="text-3xl sm:text-4xl font-inter font-normal text-white">
                         £{isAnnual ? plan.annualPrice : plan.monthlyPrice}
                       </span>
-                      <span className="text-sm sm:text-base text-muted-foreground">/seat/month</span>
+                      <span className="text-sm sm:text-base text-muted-foreground">/month</span>
                     </>
                   ) : (
                     <span className="text-3xl sm:text-4xl font-inter font-normal text-white">
@@ -174,8 +187,10 @@ export default function Pricing() {
                   className="cta-button w-full py-2.5 sm:py-3 flex items-center justify-center gap-2 text-white border-0 text-sm sm:text-base"
                   data-variant={plan.ctaVariant}
                   onClick={() => {
-                    if (plan.ctaText === "Schedule a Call") {
-                      scrollToSection("contact");
+                    if (plan.name === 'Commerce OS') {
+                      window.location.href = '/#contact';
+                    } else {
+                      window.location.href = '/#beta-tester';
                     }
                   }}
                 >
