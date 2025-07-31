@@ -386,8 +386,23 @@ export default function Industries() {
             </div>
           </div>
 
+          {/* Pagination dots - positioned right after cards */}
+          <div className="flex justify-center mt-4 sm:mt-6 mb-8 sm:mb-12 gap-3">
+            {industries.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`${
+                  index === activeIndex 
+                    ? 'w-6 h-3 bg-white shadow-lg' 
+                    : 'w-3 h-3 bg-white/30 hover:bg-white/50'
+                } rounded-full transition-all duration-300 backdrop-blur-sm`}
+              />
+            ))}
+          </div>
+
           {/* Find out more section */}
-          <div className="flex justify-center mt-8 sm:mt-12 mb-4">
+          <div className="flex justify-center mt-4 mb-4">
             <div className="text-center">
               <p className="text-muted-foreground mb-4 text-sm">
                 Want to see how Aurevia can boost your industry?
@@ -404,21 +419,6 @@ export default function Industries() {
                 Find Out More
               </button>
             </div>
-          </div>
-
-          {/* Pagination dots */}
-          <div className="flex justify-center mt-6 sm:mt-8 gap-3">
-            {industries.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`${
-                  index === activeIndex 
-                    ? 'w-6 h-3 bg-white shadow-lg' 
-                    : 'w-3 h-3 bg-white/30 hover:bg-white/50'
-                } rounded-full transition-all duration-300 backdrop-blur-sm`}
-              />
-            ))}
           </div>
         </div>
       </section>

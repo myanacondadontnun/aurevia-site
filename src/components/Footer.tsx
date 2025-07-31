@@ -160,7 +160,7 @@ export default function Footer() {
           {/* Copyright */}
           <div className="text-center sm:text-right">
             <p className="text-xs sm:text-sm font-light text-muted-foreground">
-              © 2025 Aurevia Technologies Ltd – All rights reserved.
+              © 2025 Aurevia Artificial Intelligence Ltd – All rights reserved.
             </p>
           </div>
         </div>
