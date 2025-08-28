@@ -83,8 +83,6 @@ const pricingPlans = [
 ];
 
 export default function Pricing() {
-  // Pricing section is temporarily hidden. To restore, remove the next line.
-  return null;
   const [isAnnual, setIsAnnual] = useState(false);
   const containerRef = useStaggeredScrollFade(150);
 

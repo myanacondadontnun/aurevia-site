@@ -107,6 +107,12 @@ export default function RootLayout({
             `,
           }}
         />
+        
+        {/* Aurevia Chatbot */}
+        <Script
+          src="https://birth-theaters-par-ip.trycloudflare.com/widgets/QSQqjQUMPE/widget.js"
+          strategy="afterInteractive"
+        />
       </head>
       <body suppressHydrationWarning className="antialiased">
         <ClientBody>{children}</ClientBody>
