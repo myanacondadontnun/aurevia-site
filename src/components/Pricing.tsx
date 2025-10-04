@@ -7,91 +7,88 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Check, ArrowRight } from "lucide-react";
 import { useStaggeredScrollFade } from "./ScrollAnimations";
+import { openShopifyInstall } from "@/lib/utils";
+
+// Exchange rate: 1 USD = 0.746992 GBP
+const USD_TO_GBP_RATE = 0.746992;
 
 const pricingPlans = [
   {
+    name: "Starter Kit",
+    monthlyPrice: 20,
+    annualPrice: 200,
+    yearlyDescription: "and save 17%",
+    description: "Perfect for small businesses getting started",
+    features: [
+      "AI replies/mo = 500",
+      "Max Seats Allowed = 1",
+      "Analytics History = 3 months",
+      "Knowledge Base = 25 documents",
+      "Products = 200 max",
+      '"Ask Aurevia" AI co-pilot = ✓',
+      "No Visitor Cap",
+      "Onboarding = Self Guided",
+    ],
+    ctaText: "Install from Shopify",
+    ctaVariant: "default" as const,
+  },
+  {
     name: "Pilot Plan",
     monthlyPrice: 59,
-    annualPrice: 39,
+    annualPrice: 590,
+    yearlyDescription: "and save 17%",
     description: "Start intelligent, grow fast",
     features: [
-      "Free 14-day Trial",
-      "Seats Included = 1",
-      "Max Seats Allowed = 3",
-      "AI messages/mo = 2000",
-      "Extra AI message = £15/1000",
-      "Add Unlimited Product and Knowledge",
-      "No Visitor Cap",
+      "AI replies/mo = 2000",
       "Downloadable leads for marketing",
-      "Product config for smarter upsells",
       "Analytics history = 3 months",
       '"Ask Aurevia" AI co-pilot = ✓',
-      "Onboarding = 1-to-1 with founders (professional, hands-on help)",
-      "Support = Email and Discord 10x5",
-      "Uptime SLA = 99%",
-      "Social, Email and CRM Integration - Coming Soon!",
-      "White-labeling = X",
+      "Onboarding = 1-to-1 with founders",
+      "No Visitor Cap",
+      "Add Unlimited Product and Knowledge",
+      "Max Seats Allowed = 3",
+      "14-day free trial",
     ],
-    ctaText: "Get Beta Access",
+    ctaText: "Install from Shopify",
     ctaVariant: "default" as const,
   },
   {
     name: "Revenue Suite",
     monthlyPrice: 99,
-    annualPrice: 79,
+    annualPrice: 990,
+    yearlyDescription: "and save 17%",
     description: "Premium AI for accelerated revenue generation",
     features: [
-      "Free 14-day Trial",
-      "Seats Included = 3",
-      "Max Seats Allowed = 25",
-      "AI messages/mo = 5000",
-      "Extra AI message = £10/1000",
-      "Add Unlimited Product and Knowledge",
-      "No Visitor Cap",
+      "AI replies/mo = 5000",
       "Downloadable leads for marketing",
-      "Product config for smarter upsells",
       "Analytics history = 12 months",
       '"Ask Aurevia" AI co-pilot = ✓',
-      "Onboarding = 1-to-1 with founders (professional, hands-on help)",
-      "Discord + Priority Email 24x7",
-      "Uptime SLA = 99.5%",
-      "Social, Email and CRM Integration - Coming Soon!",
-      "White-labeling = ✓",
+      "Onboarding = 1-to-1 with founders",
+      "No Visitor Cap",
+      "Max Seats Allowed = 25",
+      "Unlimited Products and Knowledge Base",
+      "14-day free trial",
     ],
-    ctaText: "Get Beta Access",
+    ctaText: "Install from Shopify",
     ctaVariant: "default" as const,
     popular: true,
-  },
-  {
-    name: "Commerce OS",
-    monthlyPrice: "Custom",
-    annualPrice: "Custom",
-    description: "You have built the brands. Let us build your entire AI sales process.",
-    features: [
-      "Unlimited seats & usage",
-      "All-in rollout & management",
-      "Dedicated success squad",
-      "Custom integrations",
-      "Quarterly ROI reviews",
-      "Onboarding = 1-to-1 with founders (professional, hands-on help)",
-      "Product config for smarter upsells",
-      "Social, Email and CRM Integration - Coming Soon!",
-    ],
-    ctaText: "Contact Us",
-    ctaVariant: "outline" as const,
   },
 ];
 
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
+  const [currency, setCurrency] = useState<'USD' | 'GBP'>('USD');
   const containerRef = useStaggeredScrollFade(150);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+  const convertPrice = (usdPrice: number | string): string => {
+    if (typeof usdPrice === 'string') return usdPrice;
+    if (currency === 'GBP') {
+      return Math.round(usdPrice * USD_TO_GBP_RATE).toString();
     }
+    return usdPrice.toString();
   };
+
+  const getCurrencySymbol = () => currency === 'GBP' ? '£' : '$';
 
   return (
     <section id="pricing" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
@@ -109,6 +106,16 @@ export default function Pricing() {
           <p className="text-lg sm:text-xl font-light text-muted-foreground max-w-3xl mx-auto mb-6 sm:mb-8">
             Choose the plan based on your usage, seats and growth plan.
           </p>
+
+          {/* Currency Toggle */}
+          <div className="flex items-center justify-center mb-6 sm:mb-8">
+            <button
+              onClick={() => setCurrency(currency === 'USD' ? 'GBP' : 'USD')}
+              className="px-4 py-2 text-sm font-medium text-white bg-card border border-border rounded-lg hover:border-primary/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50"
+            >
+              {currency === 'USD' ? 'USD ($)' : 'GBP (£)'}
+            </button>
+          </div>
 
           {/* Monthly/Annual Toggle */}
           <div className="flex items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12">
@@ -154,12 +161,21 @@ export default function Pricing() {
                 </h3>
                 <div className="mb-3 sm:mb-4">
                   {typeof plan.monthlyPrice === "number" ? (
-                    <>
-                      <span className="text-3xl sm:text-4xl font-inter font-normal text-white">
-                        £{isAnnual ? plan.annualPrice : plan.monthlyPrice}
-                      </span>
-                      <span className="text-sm sm:text-base text-muted-foreground">/month</span>
-                    </>
+                    <div className="space-y-1">
+                      <div>
+                        <span className="text-3xl sm:text-4xl font-inter font-normal text-white">
+                          {getCurrencySymbol()}{convertPrice(isAnnual ? plan.annualPrice : plan.monthlyPrice)}
+                        </span>
+                        <span className="text-sm sm:text-base text-muted-foreground">
+                          {isAnnual ? "/year" : "/month"}
+                        </span>
+                      </div>
+                      {!isAnnual && typeof plan.annualPrice === "number" && (
+                        <div className="text-xs sm:text-sm text-muted-foreground">
+                          or {getCurrencySymbol()}{convertPrice(plan.annualPrice)}/year and save 17%
+                        </div>
+                      )}
+                    </div>
                   ) : (
                     <span className="text-3xl sm:text-4xl font-inter font-normal text-white">
                       {plan.monthlyPrice}
@@ -184,13 +200,7 @@ export default function Pricing() {
                 <Button
                   className="cta-button w-full py-2.5 sm:py-3 flex items-center justify-center gap-2 text-white border-0 text-sm sm:text-base"
                   data-variant={plan.ctaVariant}
-                  onClick={() => {
-                    if (plan.name === 'Commerce OS') {
-                      window.location.href = '/#contact';
-                    } else {
-                      window.location.href = '/#beta-tester';
-                    }
-                  }}
+                  onClick={() => openShopifyInstall()}
                 >
                   {plan.ctaText}
                   <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 cta-arrow" />

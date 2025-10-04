@@ -22,11 +22,11 @@ export default function Home() {
       <main>
         <Hero />
         <DashboardReveal />
+        <Stats />
         <FiveWays />
         <BetaTester />
         <FourSteps />
         <Industries />
-        <Stats />
         <Challenges />
         <Pricing />
         <FAQ />

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import { openShopifyInstall } from "@/lib/utils";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -200,9 +201,9 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center flex-shrink-0 w-48 justify-end">
             <Button
               className={`cta-button text-white font-medium rounded-lg transition-all duration-200 flex items-center gap-2 border-0 flex-shrink-0 ${isScrolled ? 'px-3 py-1.5' : 'px-4 py-2'} text-sm xl:text-base`}
-              onClick={() => scrollToSection("beta")}
+              onClick={() => openShopifyInstall()}
             >
-              Get Free Access!
+              Install on Shopify
               <ArrowRight className="w-3 h-3 xl:w-4 xl:h-4 cta-arrow" />
             </Button>
           </div>
@@ -211,9 +212,9 @@ export default function Navbar() {
           <div className="flex items-center gap-2 lg:hidden">
             <Button
               className={`cta-button text-white font-medium rounded-lg transition-all duration-200 flex items-center gap-1 border-0 flex-shrink-0 ${isScrolled ? 'px-2 py-1.5' : 'px-3 py-2'} text-sm`}
-              onClick={() => scrollToSection("beta")}
+              onClick={() => openShopifyInstall()}
             >
-              Get Access
+              Install
               <ArrowRight className="w-3 h-3 cta-arrow" />
             </Button>
             <button

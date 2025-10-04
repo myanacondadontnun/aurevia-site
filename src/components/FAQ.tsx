@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/accordion";
 import { ArrowRight } from "lucide-react";
 import { useScrollFade } from "./ScrollAnimations";
+import { openShopifyInstall } from "@/lib/utils";
 
 const faqs = [
   {
@@ -100,9 +101,9 @@ export default function FAQ() {
           <Button
             size="lg"
             className="cta-button text-white font-medium px-8 py-4 text-lg rounded-lg transition-all duration-200 transform hover:scale-105 hover:bg-[#095C46] flex items-center gap-2 mx-auto border-0"
-            onClick={() => scrollToSection("beta")}
+            onClick={() => openShopifyInstall()}
           >
-            Get the Beta Access!
+            Install on Shopify
             <ArrowRight className="w-5 h-5 cta-arrow" />
           </Button>
         </div>

@@ -2,6 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { useStaggeredScrollFade } from "./ScrollAnimations";
+import { buildShopifyInstallUrl } from "@/lib/utils";
 
 const stats = [
   {
@@ -55,6 +56,14 @@ export default function Stats() {
           <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
             Join thousands of successful Shopify stores already seeing measurable results from AI-powered customer engagement.
           </p>
+          <a
+            href={buildShopifyInstallUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-3 text-sm text-primary hover:underline"
+          >
+            Now available on the Shopify App Store →
+          </a>
         </div>
 
         {/* Stats Grid */}

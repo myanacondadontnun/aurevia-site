@@ -5,18 +5,19 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { trackButtonClick } from "@/lib/analytics";
+import { openShopifyInstall, buildShopifyInstallUrl } from "@/lib/utils";
 
 export default function Hero() {
   const [pillClass, setPillClass] = useState("pill-wrapper hidden");
+  const [shopInput, setShopInput] = useState("");
 
-  const scrollToSection = (sectionId: string) => {
-    // Track button click
-    trackButtonClick('Apply for Beta Access', 'hero_section');
-    
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const handleInstall = () => {
+    trackButtonClick('Install on Shopify', 'hero_section');
+    openShopifyInstall(shopInput);
+  };
+
+  const handleBrowse = () => {
+    window.open(buildShopifyInstallUrl(), '_blank', 'noopener,noreferrer');
   };
 
   useEffect(() => {
@@ -52,16 +53,32 @@ export default function Hero() {
             No scripts, no coding, fully trained on your brand.
           </p>
 
-          {/* CTA */}
-          <div className="flex justify-center">
-            <Button
-              size="lg"
-              className="cta-button text-white font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center gap-2 border-0 w-full sm:w-auto max-w-xs sm:max-w-none"
-              onClick={() => scrollToSection("beta")}
+          {/* Install Flow */}
+          <div className="flex flex-col items-center gap-3 sm:gap-4">
+            <div className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 max-w-xl mx-auto">
+              <input
+                type="text"
+                inputMode="url"
+                placeholder="yourstore.myshopify.com"
+                value={shopInput}
+                onChange={(e) => setShopInput(e.target.value)}
+                className="w-full sm:w-[360px] rounded-lg border border-border bg-card/80 text-white placeholder:text-muted-foreground/70 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/40"
+              />
+              <Button
+                size="lg"
+                className="cta-button text-white font-medium px-6 sm:px-7 py-3 sm:py-3.5 text-base rounded-lg transition-all duration-200 flex items-center gap-2 border-0"
+                onClick={handleInstall}
+              >
+                Install on Shopify
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 cta-arrow" />
+              </Button>
+            </div>
+            <button
+              onClick={handleBrowse}
+              className="text-sm text-muted-foreground hover:text-primary transition-colors"
             >
-              Apply for Beta Access!
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 cta-arrow" />
-            </Button>
+              or browse on Shopify App Store
+            </button>
           </div>
         </div>
       </div>
@@ -100,7 +117,7 @@ export default function Hero() {
         }
 
         .pill-wrapper.reveal {
-          max-width: 280px;
+          max-width: 360px;
           opacity: 1;
           transform: scale(1);
           transition-delay:
@@ -111,7 +128,7 @@ export default function Hero() {
 
         @media (min-width: 640px) {
           .pill-wrapper.reveal {
-            max-width: 460px;
+            max-width: 560px;
           }
         }
 

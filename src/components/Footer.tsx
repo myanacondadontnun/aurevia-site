@@ -2,11 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { openShopifyInstall } from "@/lib/utils";
 
 const footerLinks = {
   main: [
     { label: "Features & Benefits", href: "features" },
-    { label: "Join Beta!", href: "beta" },
+    { label: "Install on Shopify", href: "shopify" },
     { label: "Set-Up in 4 Steps", href: "how-it-works" },
     { label: "Industries", href: "industries" },
     { label: "Pricing", href: "pricing" },
@@ -38,6 +39,10 @@ export default function Footer() {
   };
 
   const handleLinkClick = (href: string) => {
+    if (href === 'shopify') {
+      openShopifyInstall();
+      return;
+    }
     if (href.startsWith('http')) {
       window.open(href, '_blank', 'noopener,noreferrer');
     } else if (href !== '#') {
@@ -64,24 +69,25 @@ export default function Footer() {
                   Aurevia.io
                 </h3>
               </div>
-              <p className="text-sm sm:text-base font-light text-muted-foreground leading-relaxed mb-6">
+              <p className="text-sm sm:text-base font-light text-muted-foreground leading-relaxed mb-2">
                 Shopify AI Sales Chatbot that recovers carts, upsells bundles, and sells 24/7.
                 GDPR-compliant & Shopify-Partner verified.
               </p>
+              <p className="text-xs text-primary">Now live on the Shopify App Store</p>
             </div>
 
             <div>
               <h4 className="text-base sm:text-lg font-inter font-normal text-white mb-4">
-                Get Early Access
+                Get Started
               </h4>
               <p className="text-xs sm:text-sm font-light text-muted-foreground mb-4">
-                Be first to try Aurevia and unlock launch-day discounts.
+                Install the app directly from the Shopify App Store.
               </p>
               <Button
                 className="cta-button text-white font-medium px-4 sm:px-6 py-2 rounded-lg transition-all duration-200 border-0 text-sm sm:text-base w-full sm:w-auto"
-                onClick={() => scrollToSection("beta")}
+                onClick={() => openShopifyInstall()}
               >
-                Get Early Access
+                Install on Shopify
               </Button>
             </div>
           </div>
