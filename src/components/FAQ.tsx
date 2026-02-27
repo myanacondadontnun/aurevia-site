@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
   AccordionContent,
@@ -30,8 +29,8 @@ const faqs = [
     answer: "Installation takes just one click from the Shopify App Store. Once installed, Aurevia automatically integrates with your store, syncing products, discounts, and branding. You can then customize settings, upload brand guidelines, and set your preferred tone of voice through our dashboard.",
   },
   {
-    question: "How much does Aurevia's AI sales chatbot cost?",
-    answer: "We offer three plans: Starter Kit at $39/seat/month, Revenue Suite at $79/seat/month, and custom Commerce OS pricing. All plans include a free trial, and we offer annual discounts of approximately 30%. Beta testers get 60 days free with all features unlocked.",
+    question: "How much does Aurevia's AI sales co-pilot cost?",
+    answer: "We offer a free trial with all features unlocked. Beta testers get 60 days free. Contact us for current plan options and pricing.",
   },
   {
     question: "Is Aurevia's AI chatbot secure, and how does it handle customer data?",
@@ -50,28 +49,16 @@ const faqs = [
 export default function FAQ() {
   const sectionRef = useScrollFade();
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section id="faq" className="py-24 px-6">
       <div className="container mx-auto max-w-4xl">
-        <div className="text-center mb-8 scroll-fade">
-          <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
-            FAQs
-          </Badge>
-        </div>
-        
         <div className="text-center mb-16 scroll-fade">
           <h2 className="text-4xl md:text-5xl font-inter font-normal mb-6 text-white">
-            We've <span className="green-highlight">Got the Answers</span> You're Looking For
+            You've Got Questions.{" "}
+            <span className="green-highlight">We've Already Answered Them</span>
           </h2>
           <p className="text-xl font-light text-muted-foreground">
-            Quick answers to your "Shopify AI Sales Chatbot" questions.
+            Merchants ask us these all the time — here are the honest answers.
           </p>
         </div>
 
@@ -103,7 +90,7 @@ export default function FAQ() {
             className="cta-button text-white font-medium px-8 py-4 text-lg rounded-lg transition-all duration-200 transform hover:scale-105 hover:bg-[#095C46] flex items-center gap-2 mx-auto border-0"
             onClick={() => openShopifyInstall()}
           >
-            Install on Shopify
+            Try for free on Shopify
             <ArrowRight className="w-5 h-5 cta-arrow" />
           </Button>
         </div>

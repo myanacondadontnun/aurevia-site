@@ -17,8 +17,7 @@ export default function ScrollAnimationsInit() {
       });
     }, observerOptions);
 
-    // Observe all scroll-fade elements
-    const scrollElements = document.querySelectorAll(".scroll-fade");
+    const scrollElements = document.querySelectorAll(".scroll-fade, .scroll-fade-scale");
     scrollElements.forEach((el) => observer.observe(el));
 
     // Badge animation

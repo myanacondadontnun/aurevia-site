@@ -67,6 +67,45 @@ export function useStaggeredScrollFade(delay = 100) {
   return containerRef;
 }
 
+export function useGridStaggerFade(cols: number, itemDelay = 100, rowDelay = 250) {
+  const containerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const children = Array.from(container.children) as HTMLElement[];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            children.forEach((child, index) => {
+              const row = Math.floor(index / cols);
+              const col = index % cols;
+              const ms = row * (cols * itemDelay + rowDelay) + col * itemDelay;
+              setTimeout(() => {
+                child.classList.add("visible");
+              }, ms);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.05,
+        rootMargin: "0px 0px -30px 0px",
+      }
+    );
+
+    observer.observe(container);
+
+    return () => observer.disconnect();
+  }, [cols, itemDelay, rowDelay]);
+
+  return containerRef;
+}
+
 export function useDashboardReveal() {
   const ref = useRef<HTMLElement>(null);
 

@@ -77,13 +77,6 @@ export const trackSignUpAttempt = (method: string = 'email') => {
   });
 };
 
-export const trackPricingPlanView = (planName: string) => {
-  trackEvent('view_item', {
-    item_category: 'pricing_plan',
-    item_name: planName,
-  });
-};
-
 export const trackContactFormSubmit = (success: boolean = true) => {
   trackEvent('contact', {
     success: success,

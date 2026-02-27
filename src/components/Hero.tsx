@@ -1,18 +1,18 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { trackButtonClick } from "@/lib/analytics";
 import { openShopifyInstall, buildShopifyInstallUrl } from "@/lib/utils";
+import ChatDemo from "./ChatDemo";
 
 export default function Hero() {
   const [pillClass, setPillClass] = useState("pill-wrapper hidden");
   const [shopInput, setShopInput] = useState("");
 
   const handleInstall = () => {
-    trackButtonClick('Install on Shopify', 'hero_section');
+    trackButtonClick('Try for free on Shopify', 'hero_section');
     openShopifyInstall(shopInput);
   };
 
@@ -29,56 +29,64 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center pt-24 sm:pt-32 pb-8 sm:pb-16 gradient-bg"
+      className="h-screen flex items-center justify-center pt-20 sm:pt-24 pb-4 sm:pb-8 gradient-bg overflow-hidden"
     >
-      <div className="container mx-auto px-4 sm:px-6 text-center">
-        <div className="max-w-5xl mx-auto animate-fade-in">
-          {/* Connected Pill */}
-          <div className="flex justify-center mb-6 sm:mb-8">
-            <div className={pillClass}>
-              <div className="pill-left">New</div>
-              <div className="pill-right">Personal AI Agent for your support</div>
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex items-center">
+          {/* Text content — left half */}
+          <div className="w-full lg:w-1/2 text-left animate-fade-in lg:pl-8 xl:pl-16">
+            {/* Connected Pill */}
+            <div className="flex justify-start mb-5 sm:mb-6">
+              <div className={pillClass}>
+                <div className="pill-left">New</div>
+                <div className="pill-right">Personal AI Agent for your support</div>
+              </div>
+            </div>
+
+            {/* Headline */}
+            <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] lg:text-5xl font-inter font-normal mb-3 sm:mb-5 leading-tight text-white">
+              Shopify AI Sales Co-Pilot{" "}
+              <span className="green-highlight">Revenue on Autopilot</span>
+            </h1>
+
+            {/* Subheadline */}
+            <p className="text-base sm:text-lg md:text-xl font-light text-muted-foreground mb-6 sm:mb-8 max-w-lg leading-relaxed">
+              Answer questions, recommend products and recover carts in real time.
+              No scripts, no coding, fully trained on your brand.
+            </p>
+
+            {/* Install Flow */}
+            <div className="flex flex-col items-start gap-3">
+              <div className="w-full flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
+                <input
+                  type="text"
+                  inputMode="url"
+                  placeholder="yourstore.myshopify.com"
+                  value={shopInput}
+                  onChange={(e) => setShopInput(e.target.value)}
+                  className="w-full sm:w-[280px] rounded-lg border border-border bg-card/80 text-white placeholder:text-muted-foreground/70 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                />
+                <Button
+                  size="default"
+                  className="cta-button text-white font-medium px-5 py-2.5 text-sm rounded-lg transition-all duration-200 flex items-center gap-2 border-0"
+                  onClick={handleInstall}
+                >
+                  Try for free on Shopify
+                  <ArrowRight className="w-4 h-4 cta-arrow" />
+                </Button>
+              </div>
+              <button
+                onClick={handleBrowse}
+                className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                or browse on Shopify App Store
+              </button>
             </div>
           </div>
 
-          {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-inter font-normal mb-4 sm:mb-6 leading-tight text-white px-2">
-            Shopify AI Sales Chatbot 24/7{" "}
-            <span className="green-highlight">Revenue on Autopilot</span>
-          </h1>
-
-          {/* Subheadline */}
-          <p className="text-lg sm:text-xl md:text-2xl font-light text-muted-foreground mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed px-2">
-            Answer questions, recommend products and recover carts in real time.
-            No scripts, no coding, fully trained on your brand.
-          </p>
-
-          {/* Install Flow */}
-          <div className="flex flex-col items-center gap-3 sm:gap-4">
-            <div className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 max-w-xl mx-auto">
-              <input
-                type="text"
-                inputMode="url"
-                placeholder="yourstore.myshopify.com"
-                value={shopInput}
-                onChange={(e) => setShopInput(e.target.value)}
-                className="w-full sm:w-[360px] rounded-lg border border-border bg-card/80 text-white placeholder:text-muted-foreground/70 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/40"
-              />
-              <Button
-                size="lg"
-                className="cta-button text-white font-medium px-6 sm:px-7 py-3 sm:py-3.5 text-base rounded-lg transition-all duration-200 flex items-center gap-2 border-0"
-                onClick={handleInstall}
-              >
-                Install on Shopify
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 cta-arrow" />
-              </Button>
-            </div>
-            <button
-              onClick={handleBrowse}
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              or browse on Shopify App Store
-            </button>
+          {/* Chat demo — right half */}
+          <div className="hidden lg:flex w-1/2 items-center justify-center">
+            <ChatDemo />
           </div>
         </div>
       </div>

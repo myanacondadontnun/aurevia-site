@@ -11,6 +11,9 @@ export default {
   	extend: {
   		fontFamily: {
   			inter: ['Inter', 'sans-serif'],
+  			playfair: ['Playfair Display', 'serif'],
+  			grotesk: ['Space Grotesk', 'sans-serif'],
+  			dmserif: ['DM Serif Display', 'serif'],
   		},
   		colors: {
   			background: 'hsl(var(--background))',

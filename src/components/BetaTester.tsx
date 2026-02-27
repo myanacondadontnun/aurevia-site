@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Check, ArrowRight } from "lucide-react";
 import { useScrollFade } from "./ScrollAnimations";
@@ -31,13 +30,6 @@ export default function BetaTester() {
   return (
     <section id="beta" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
       <div className="container mx-auto">
-        {/* Strategic Badge */}
-        <div className="text-center mb-6 sm:mb-8">
-          <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
-            Become a Beta Tester
-          </Badge>
-        </div>
-        
         <Card
           ref={cardRef as React.RefObject<HTMLDivElement>}
           className="scroll-fade bg-gradient-to-br from-primary/10 via-card to-secondary/10 border-primary/20 max-w-4xl mx-auto"
@@ -45,13 +37,13 @@ export default function BetaTester() {
           <CardContent className="p-6 sm:p-8 md:p-12 text-center">
             <div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-inter font-normal mb-4 sm:mb-6 text-white">
-                Become a Beta Tester. <span className="green-highlight">Get Aurevia Free</span>
+                We're Handpicking Merchants to{" "}
+                <span className="green-highlight">Shape What's Next</span>
               </h2>
 
               <p className="text-base sm:text-lg font-light text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed">
-                We're inviting a select group of forward-thinking Shopify merchants to test
-                Aurevia in real conditions and shape what comes next. It's not about who's
-                first — it's about who fits.
+                This isn't a waitlist. We're looking for Shopify merchants who want to
+                co-build the future of AI selling — and get rewarded for it.
               </p>
 
               {!showForm && (

@@ -2,19 +2,16 @@
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 import { openShopifyInstall } from "@/lib/utils";
 
 const footerLinks = {
   main: [
-    { label: "Features & Benefits", href: "features" },
-    { label: "Install on Shopify", href: "shopify" },
-    { label: "Set-Up in 4 Steps", href: "how-it-works" },
-    { label: "Industries", href: "industries" },
-    { label: "Pricing", href: "pricing" },
-    { label: "FAQs", href: "faq" },
+    { label: "Home", href: "/home" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Try for free on Shopify", href: "shopify", isAction: true },
   ],
   secondary: [
-    { label: "Home", href: "hero" },
     { label: "Blogs", href: "#" },
     { label: "Docs & API", href: "#" },
     { label: "Privacy Policy", href: "https://www.notion.so/AUREVIA-PRIVACY-POLICY-202fc3fea0bc81cf84f5e1aeb691a9cd?source=copy_link" },
@@ -31,22 +28,13 @@ const socialLinks = [
 ];
 
 export default function Footer() {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const handleLinkClick = (href: string) => {
-    if (href === 'shopify') {
+  const handleLinkClick = (href: string, isAction?: boolean) => {
+    if (isAction || href === 'shopify') {
       openShopifyInstall();
       return;
     }
     if (href.startsWith('http')) {
       window.open(href, '_blank', 'noopener,noreferrer');
-    } else if (href !== '#') {
-      scrollToSection(href);
     }
   };
 
@@ -59,7 +47,7 @@ export default function Footer() {
           <div className="lg:col-span-1 space-y-6">
             <div>
               {/* Logo and Company Name */}
-              <div className="flex items-center gap-2.5 mb-4">
+              <Link href="/home" className="flex items-center gap-2.5 mb-4">
                 <img 
                   src="/images/Logo_wo_bg.png" 
                   alt="Aurevia Logo" 
@@ -68,9 +56,9 @@ export default function Footer() {
                 <h3 className="text-xl sm:text-2xl font-inter font-semibold text-white logo-text">
                   Aurevia.io
                 </h3>
-              </div>
+              </Link>
               <p className="text-sm sm:text-base font-light text-muted-foreground leading-relaxed mb-2">
-                Shopify AI Sales Chatbot that recovers carts, upsells bundles, and sells 24/7.
+                Shopify AI Sales Co-Pilot that recovers carts, upsells bundles, and sells 24/7.
                 GDPR-compliant & Shopify-Partner verified.
               </p>
               <p className="text-xs text-primary">Now live on the Shopify App Store</p>
@@ -87,7 +75,7 @@ export default function Footer() {
                 className="cta-button text-white font-medium px-4 sm:px-6 py-2 rounded-lg transition-all duration-200 border-0 text-sm sm:text-base w-full sm:w-auto"
                 onClick={() => openShopifyInstall()}
               >
-                Install on Shopify
+                Try for free on Shopify
               </Button>
             </div>
           </div>
@@ -99,13 +87,23 @@ export default function Footer() {
             </h4>
             <div className="space-y-2 sm:space-y-3">
               {footerLinks.main.map((link) => (
-                <button
-                  key={link.label}
-                  onClick={() => handleLinkClick(link.href)}
-                  className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light text-left"
-                >
-                  {link.label}
-                </button>
+                link.href === "shopify" || link.isAction ? (
+                  <button
+                    key={link.label}
+                    onClick={() => handleLinkClick(link.href, link.isAction)}
+                    className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light text-left"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
+                  >
+                    {link.label}
+                  </Link>
+                )
               ))}
             </div>
           </div>
@@ -117,13 +115,25 @@ export default function Footer() {
             </h4>
             <div className="space-y-2 sm:space-y-3">
               {footerLinks.secondary.map((link) => (
-                <button
-                  key={link.label}
-                  onClick={() => handleLinkClick(link.href)}
-                  className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light text-left"
-                >
-                  {link.label}
-                </button>
+                link.href.startsWith('http') ? (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
+                  >
+                    {link.label}
+                  </a>
+                )
               ))}
             </div>
           </div>
@@ -135,32 +145,27 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
           {/* Social Links */}
           <div className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center sm:justify-start">
-            {socialLinks.map((social) => {
-              // Use anchor tags for external links, buttons for internal navigation
-              if (social.href.startsWith('http') || social.href.startsWith('https')) {
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
-                  >
-                    {social.label}
-                  </a>
-                );
-              } else {
-                return (
-                  <button
-                    key={social.label}
-                    onClick={() => handleLinkClick(social.href)}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
-                  >
-                    {social.label}
-                  </button>
-                );
-              }
-            })}
+            {socialLinks.map((social) => (
+              social.href.startsWith('http') ? (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
+                >
+                  {social.label}
+                </a>
+              ) : (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
+                >
+                  {social.label}
+                </a>
+              )
+            ))}
           </div>
 
           {/* Copyright */}

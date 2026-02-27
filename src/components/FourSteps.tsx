@@ -1,8 +1,7 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { useStaggeredScrollFade } from "./ScrollAnimations";
+import { useGridStaggerFade } from "./ScrollAnimations";
 
 const steps = [
   {
@@ -36,23 +35,17 @@ const steps = [
 ];
 
 export default function FourSteps() {
-  const containerRef = useStaggeredScrollFade(150);
+  const containerRef = useGridStaggerFade(2, 150, 250);
 
   return (
     <section id="how-it-works" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
       <div className="container mx-auto">
-        <div className="text-center mb-6 sm:mb-8 scroll-fade">
-          <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
-            Launch in minutes
-          </Badge>
-        </div>
-        
         <div className="text-center mb-12 sm:mb-16 scroll-fade">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal mb-3 sm:mb-4 text-white">
-            <span className="green-highlight">From Install → Revenue</span> in 4 Simple Steps
+            You're <span className="green-highlight">4 Steps Away</span> From Your First AI Sale
           </h2>
           <p className="text-lg sm:text-xl font-light text-muted-foreground max-w-3xl mx-auto">
-            No code, no dev hours. Just one click and Aurevia starts selling for you.
+            No developers, no complex setup. Just install, customize, and watch it sell.
           </p>
         </div>
 
@@ -63,7 +56,7 @@ export default function FourSteps() {
           {steps.map((step, index) => (
             <Card
               key={step.number}
-              className="scroll-fade bg-card border-border overflow-hidden group hover:border-primary/30 transition-all duration-300"
+              className="scroll-fade-lr bg-card border-border overflow-hidden group hover:border-primary/30 transition-all duration-300"
             >
               <CardContent className="p-6 sm:p-8">
                 {/* Step Number & Graphic Placeholder */}

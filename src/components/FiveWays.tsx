@@ -1,192 +1,152 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { useStaggeredScrollFade } from "./ScrollAnimations";
+import Link from "next/link";
+import {
+  ArrowRight,
+  Sparkles,
+  Package,
+  MessageSquare,
+  ShoppingCart,
+  BarChart3,
+  Globe,
+  Filter,
+} from "lucide-react";
+import { useGridStaggerFade, useScrollFade } from "./ScrollAnimations";
 
-const features = [
+const products = [
   {
-    title: "Recover Abandoned Carts in Seconds",
+    icon: Package,
+    categories: ["Sales", "Pre-Sale"],
+    title: "AI Product Recommendations",
     description:
-      "Aurevia's Shopify-native AI spots exit intent, answers last-minute questions, and drops a one-click checkout link — rescuing lost revenue.",
-    tags: ["Revenue Automation", "Cart Recovery", "1-Click Checkout", "AI Nudge System"],
-    imagePlaceholder: "/api/placeholder/600/400",
-    video: {
-      mp4: "https://aurevia-content.s3.eu-north-1.amazonaws.com/recover-cart-demo-1752196058488.mp4",
-      title: "Cart Recovery Demo Video",
-    },
+      "Let the AI Agent recommend products through natural, personalized conversations that increase AOV.",
+    href: "/products/recommendations",
   },
   {
-    title: "Recommend the Perfect Product, Every Time",
+    icon: MessageSquare,
+    categories: ["AI Support", "Pre-Sale", "Post-Sale"],
+    title: "Automated Responses",
     description:
-      "Our LLM reads live shopper context and your catalogue to suggest perfect products, lifting average order value on beta stores.",
-    tags: ["Personalized Selling", "Smart Upsell", "Bundles", "Auto-Scraping"],
-    imagePlaceholder: "/api/placeholder/600/400",
-    video: {
-      mp4: "https://aurevia-content.s3.eu-north-1.amazonaws.com/product-recommendation-demo-1752191499852.mp4",
-      title: "Product Recommendations Demo Video",
-    },
-  },
-  // {
-  //   title: "Sell While You Sleep, Worldwide",
-  //   description:
-  //     "Aurevia handles product & shipping queries in under 2s — freeing you for high-touch tickets and capturing global traffic you're normally missing.",
-  //   tags: ["24/7 Live AI Sales Rep", "Always-On", "Live Chat Takeover", "Notifies Urgency"],
-  //   imagePlaceholder: "/api/placeholder/600/400",
-  // },
-  {
-    title: "Match Your Brand, Voice & Style",
-    description:
-      "From colours, avatars, to tone of voice — everything is customisable. Ask Co-pilot to \"create Ferrari F1 style chatbot\" or \"speak like James Bond.\" Agent auto-adapts. No code. No design work.",
-    tags: ["On-Brand Control", "Fully Customizable", "Custom AI", "Full Brand Control"],
-    imagePlaceholder: "/api/placeholder/600/400",
-    video: {
-      mp4: "https://aurevia-content.s3.eu-north-1.amazonaws.com/chat-customisation-demo-1752192924961.mp4",
-      title: "Chat Customization Features Video",
-    },
+      "Deliver instant, context-aware responses to customer queries — 24/7. No more waiting for support hours.",
+    href: "/products/automated-responses",
   },
   {
-    title: "See What Sells, and Why",
+    icon: ShoppingCart,
+    categories: ["Sales", "Pre-Sale"],
+    title: "Cart Recovery",
     description:
-      "Visual dashboards reveal conversation sentiment, drop-offs, and top-selling SKUs. Export collected leads or correct past mistakes in seconds to keep conversions climbing.",
-    tags: ["Actionable Analytics", "Lead Generation", "Data Visualization", "Sales Analytics"],
-    imagePlaceholder: "/api/placeholder/600/400",
-    video: {
-      mp4: "https://aurevia-content.s3.eu-north-1.amazonaws.com/dashboard-lead-demo-1752193911380.mp4",
-      title: "Main Dashboard Interface Video",
-    },
+      "Spot exit intent, answer last-minute questions, and drop a one-click checkout link — rescuing lost revenue.",
+    href: "/products/cart-recovery",
+  },
+  {
+    icon: BarChart3,
+    categories: ["Analytics", "Post-Sale"],
+    title: "Conversation Analytics",
+    description:
+      "Understand what customers ask, where they drop off, and how to improve with full conversation insights.",
+    href: "/products/analytics",
+  },
+  {
+    icon: Globe,
+    categories: ["AI Support", "Pre-Sale", "Post-Sale"],
+    title: "Multilingual Support",
+    description:
+      "Engage customers worldwide in their preferred language with real-time AI translation across 95+ languages.",
+    href: "/products/multilingual",
+  },
+  {
+    icon: Filter,
+    categories: ["Sales", "Pre-Sale"],
+    title: "Lead Qualification",
+    description:
+      "Qualify leads in real-time. Identify high-intent visitors and surface them for your sales team automatically.",
+    href: "/products/lead-qualification",
   },
 ];
 
 export default function FiveWays() {
-  const containerRef = useStaggeredScrollFade(100);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const video = entry.target as HTMLVideoElement;
-          if (entry.isIntersecting && entry.intersectionRatio === 1) {
-            videoRefs.current.forEach((v) => {
-              if (v && v !== video) v.pause();
-            });
-            video.play().catch(() => {});
-          } else {
-            video.pause();
-          }
-        });
-      },
-      {
-        threshold: 1.0,
-      }
-    );
-
-    videoRefs.current.forEach((video) => {
-      if (video) observer.observe(video);
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  const containerRef = useGridStaggerFade(3, 120, 200);
+  const ctaRef = useScrollFade();
 
   return (
-    <section id="features" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
+    <section id="features" className="py-20 sm:py-24 md:py-32 px-4 sm:px-6">
       <div className="container mx-auto">
-        <div className="text-center mb-6 sm:mb-8 scroll-fade">
-          <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
-            How Aurevia Helps
-          </Badge>
-        </div>
-
-        <div className="text-center mb-12 sm:mb-16 scroll-fade">
+        <div className="text-center mb-14 sm:mb-20 scroll-fade">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal mb-4 sm:mb-6 text-white">
-            4 Ways <span className="green-highlight">Aurevia Grows</span> Your Shopify Store
+            You Shouldn't Have to Choose Between{" "}
+            <span className="green-highlight">Selling and Sleeping</span>
           </h2>
-          <p className="text-lg sm:text-xl font-light text-muted-foreground max-w-3xl mx-auto">
-            Automate chats, lift AOV and recover carts, live in minutes, no code.
+          <p className="text-lg sm:text-xl font-light text-muted-foreground max-w-2xl mx-auto">
+            Every feature below was built because a merchant like you asked for it.
           </p>
         </div>
 
         <div
           ref={containerRef as React.RefObject<HTMLDivElement>}
-          className="space-y-16 sm:space-y-20 md:space-y-24"
+          className="max-w-[1100px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
         >
-          {features.map((feature, index) => (
-            <div
-              key={feature.title}
-              className={`scroll-fade flex flex-col ${
-                index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-              } items-center gap-8 sm:gap-10 md:gap-12`}
+          {products.map((product) => (
+            <Link
+              key={product.title}
+              href={product.href}
+              className="scroll-fade-lr group relative bg-card/50 backdrop-blur-sm border border-border/30 rounded-2xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-primary/40 hover:bg-card/70 hover:shadow-xl hover:shadow-primary/[0.07] hover:-translate-y-1"
             >
-              <div className="flex-1 space-y-4 sm:space-y-6">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-inter font-normal text-white">
-                  {feature.title}
-                </h3>
-                <p className="text-base sm:text-lg font-light text-muted-foreground leading-relaxed">
-                  {feature.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {feature.tags.map((tag) => (
-                    <Badge
-                      key={tag}
-                      variant="secondary"
-                      className="bg-secondary/30 border border-border/30 text-foreground/80 text-xs sm:text-sm"
+              <div>
+                <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/15 flex items-center justify-center mb-5">
+                  <product.icon className="w-5 h-5 text-primary" />
+                </div>
+
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {product.categories.map((cat) => (
+                    <span
+                      key={cat}
+                      className="text-[11px] font-medium tracking-wide uppercase text-muted-foreground/70 bg-muted/30 px-2.5 py-0.5 rounded-full"
                     >
-                      {tag}
-                    </Badge>
+                      {cat}
+                    </span>
                   ))}
                 </div>
+
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 leading-snug">
+                  {product.title}
+                </h3>
+                <p className="text-[15px] text-muted-foreground leading-relaxed">
+                  {product.description}
+                </p>
               </div>
 
-              <div className="flex-1 w-full">
-                <Card className="bg-card border-border overflow-hidden">
-                  <CardContent className="p-0">
-                    <div className="aspect-[16/10] sm:aspect-[3/2] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center relative">
-                      {feature.video ? (
-                        <video
-                          ref={(el) => {
-                            if (el) videoRefs.current[index] = el;
-                          }}
-                          width="100%"
-                          height="100%"
-                          muted
-                          playsInline
-                          loop
-                          preload="metadata"
-                          controls={false}
-                          webkit-playsinline="true"
-                          x-webkit-airplay="allow"
-                          style={{
-                            borderRadius: "8px",
-                            objectFit: "cover",
-                            width: "100%",
-                            height: "100%",
-                          }}
-                        >
-                          <source src={feature.video.mp4} type="video/mp4" />
-                          Your browser does not support the video tag.
-                        </video>
-                      ) : (
-                        <div className="text-center text-muted-foreground p-4">
-                          <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 bg-primary/20 rounded-lg flex items-center justify-center">
-                            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-primary/40 rounded" />
-                          </div>
-                          <p className="text-sm sm:text-base font-medium text-white mb-2">
-                            {feature.title} Demo
-                          </p>
-                          <p className="text-xs sm:text-sm opacity-70">
-                            Interactive feature demo will be available here
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
+              <div className="mt-6 flex items-center gap-1.5 text-sm font-medium text-primary group-hover:gap-2.5 transition-all duration-200">
+                Learn more
+                <ArrowRight className="w-4 h-4" />
               </div>
-            </div>
+            </Link>
           ))}
         </div>
+
+        {/* CTA Card — standalone with its own scroll trigger */}
+        <Link
+          ref={ctaRef as React.Ref<HTMLAnchorElement>}
+          href="/products"
+          className="scroll-fade-scale max-w-[1100px] mx-auto mt-5 sm:mt-6 group relative rounded-2xl p-7 sm:p-8 flex flex-col items-center justify-center text-center gap-3 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-primary/25"
+          style={{
+            background:
+              "radial-gradient(ellipse at bottom left, rgba(8,147,87,0.2) 0%, rgba(2,223,166,0.06) 40%, transparent 70%)",
+          }}
+        >
+          <div className="w-12 h-12 rounded-full bg-primary/15 border border-primary/20 flex items-center justify-center mb-1">
+            <Sparkles className="w-5.5 h-5.5 text-primary" />
+          </div>
+          <h3 className="text-xl font-semibold text-white">
+            Explore more capabilities
+          </h3>
+          <p className="text-[15px] text-muted-foreground max-w-md">
+            Discover our full suite of AI-powered products built for Shopify
+          </p>
+          <span className="mt-2 inline-flex items-center gap-2 text-sm font-medium bg-primary/90 hover:bg-primary text-white px-5 py-2.5 rounded-lg transition-colors">
+            View all products
+            <ArrowRight className="w-4 h-4" />
+          </span>
+        </Link>
       </div>
     </section>
   );

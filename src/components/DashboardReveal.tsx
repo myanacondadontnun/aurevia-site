@@ -1,6 +1,5 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { useDashboardReveal, useVideoIntersection } from "./ScrollAnimations";
 
 export default function DashboardReveal() {
@@ -8,7 +7,7 @@ export default function DashboardReveal() {
   const videoRef = useVideoIntersection();
 
   return (
-    <section className="py-6 sm:py-8 px-4 sm:px-6 -mt-16 sm:-mt-20">
+    <section className="py-6 sm:py-8 px-4 sm:px-6">
       <div className="container mx-auto">
         <div className="max-w-6xl mx-auto">
           <div

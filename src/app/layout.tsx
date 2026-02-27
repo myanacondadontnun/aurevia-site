@@ -4,7 +4,7 @@ import ClientBody from "./ClientBody";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Aurevia.io - Shopify AI Sales Chatbot 24/7",
+  title: "Aurevia.io - Shopify AI Sales Co-Pilot",
   description: "Answer questions, recommend products and recover carts in real time. No scripts, no coding, fully trained on your brand.",
   keywords: ["Shopify AI", "Sales Chatbot", "E-commerce", "Cart Recovery", "Product Recommendations", "AI Sales Assistant"],
   authors: [{ name: "Aurevia.io" }],
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://aurevia.io', // Replace with your actual domain
-    title: 'Aurevia.io - Shopify AI Sales Chatbot 24/7',
+    title: 'Aurevia.io - Shopify AI Sales Co-Pilot',
     description: 'Answer questions, recommend products and recover carts in real time. No scripts, no coding, fully trained on your brand.',
     siteName: 'Aurevia.io',
     images: [
@@ -31,13 +31,13 @@ export const metadata: Metadata = {
         url: 'https://aurevia.io/images/twitter_card.png',
         width: 1200,
         height: 630,
-        alt: 'Aurevia.io - Shopify AI Sales Chatbot',
+        alt: 'Aurevia.io - Shopify AI Sales Co-Pilot',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Aurevia.io - Shopify AI Sales Chatbot 24/7',
+    title: 'Aurevia.io - Shopify AI Sales Co-Pilot',
     description: 'Answer questions, recommend products and recover carts in real time. No scripts, no coding, fully trained on your brand.',
     creator: '@crazystupidceo', // Your personal Twitter handle
     images: ['https://aurevia.io/images/twitter_card.png'],

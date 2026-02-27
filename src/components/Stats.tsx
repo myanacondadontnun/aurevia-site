@@ -1,104 +1,95 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
-import { useStaggeredScrollFade } from "./ScrollAnimations";
-import { buildShopifyInstallUrl } from "@/lib/utils";
+import { useEffect, useRef, useCallback } from "react";
+import { useScrollFade } from "./ScrollAnimations";
 
 const stats = [
-  {
-    number: "67%",
-    label: "Sales Boost",
-    description: "E-commerce sites see dramatic sales increases with AI recommendations"
-  },
-  {
-    number: "35%",
-    label: "Consumer Buying",
-    description: "Of consumers actively buy based on chatbot suggestions and recommendations"
-  },
-  {
-    number: "8×",
-    label: "ROI Return",
-    description: "Top performing companies earn up to 8× return on every dollar spent on AI customer service"
-  },
-  {
-    number: "80%",
-    label: "Issues Resolved",
-    description: "AI chatbots handle customer queries independently, reducing support costs dramatically"
-  }
+  { number: "67%", label: "AI-Driven Sales Lift" },
+  { number: "35%", label: "Buy via AI Chat" },
+  { number: "8×", label: "AI ROI Return" },
+  { number: "80%", label: "Resolved by AI" },
 ];
 
+function useStatNumberReveal(staggerMs = 150) {
+  const wrapRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const setRef = useCallback(
+    (index: number) => (el: HTMLDivElement | null) => {
+      wrapRefs.current[index] = el;
+    },
+    []
+  );
+
+  useEffect(() => {
+    const wraps = wrapRefs.current.filter(Boolean) as HTMLDivElement[];
+    if (wraps.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            wraps.forEach((wrap, i) => {
+              setTimeout(() => wrap.classList.add("visible"), i * staggerMs);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    if (wraps[0]?.parentElement) {
+      observer.observe(wraps[0].parentElement);
+    }
+
+    return () => observer.disconnect();
+  }, [staggerMs]);
+
+  return setRef;
+}
+
 export default function Stats() {
-  const containerRef = useStaggeredScrollFade(100);
+  const sectionRef = useScrollFade();
+  const setNumberRef = useStatNumberReveal(180);
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 relative overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-primary/10"></div>
-      
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-4 sm:top-10 left-8 sm:left-20 w-32 sm:w-64 h-32 sm:h-64 bg-gradient-to-r from-primary/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
-        <div 
-          className="absolute bottom-4 sm:bottom-10 right-8 sm:right-20 w-40 sm:w-80 h-40 sm:h-80 bg-gradient-to-l from-primary/5 to-transparent rounded-full blur-3xl animate-pulse" 
-          style={{ animationDelay: '1.5s' }}
-        ></div>
-      </div>
+    <section
+      ref={sectionRef as React.RefObject<HTMLElement>}
+      className="scroll-fade py-14 sm:py-16 md:py-20 px-4 sm:px-6 relative"
+    >
+      <div className="container mx-auto max-w-6xl">
+        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+          {/* Left — headline */}
+          <div className="lg:w-5/12">
+            <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] md:leading-[1.2] font-inter font-normal text-white">
+              Somewhere right now, a customer left your store.{" "}
+              <span className="green-highlight">AI would have saved that sale.</span>
+            </h2>
+          </div>
 
-      <div className="container mx-auto max-w-7xl relative z-10">
-        {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
-            Proven Results
-          </Badge>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal mb-4 sm:mb-6 text-white">
-            The Numbers Don't Lie: <span className="green-highlight">AI Delivers Real ROI</span>
-          </h2>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
-            Join thousands of successful Shopify stores already seeing measurable results from AI-powered customer engagement.
-          </p>
-          <a
-            href={buildShopifyInstallUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block mt-3 text-sm text-primary hover:underline"
-          >
-            Now available on the Shopify App Store →
-          </a>
-        </div>
-
-        {/* Stats Grid */}
-        <div 
-          ref={containerRef as React.RefObject<HTMLDivElement>}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-12"
-        >
-          {stats.map((stat, index) => (
-            <div 
-              key={index}
-              className="scroll-fade text-center group px-2 sm:px-0"
-            >
-              {/* Big Number */}
-              <div className="mb-3 sm:mb-4">
-                <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold gradient-text group-hover:scale-110 transition-transform duration-300 inline-block">
-                  {stat.number}
-                </span>
-              </div>
-              
-              {/* Label */}
-              <h3 className="gradient-text text-lg sm:text-xl md:text-2xl font-semibold mb-2 sm:mb-3 group-hover:scale-105 transition-transform duration-300">
-                {stat.label}
-              </h3>
-              
-              {/* Description Line */}
-              <div className="w-16 sm:w-20 md:w-24 h-0.5 sm:h-1 mx-auto mb-3 sm:mb-4 relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/50 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-right"></div>
-              </div>
-              
-              {/* Description */}
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xs mx-auto px-2 sm:px-0">
-                {stat.description}
-              </p>
+          {/* Right — 2×2 stat grid */}
+          <div className="lg:w-7/12">
+            <div className="grid grid-cols-2 gap-px bg-white/[0.06] rounded-2xl overflow-hidden">
+              {stats.map((stat, index) => (
+                <div
+                  key={index}
+                  className="bg-background p-6 sm:p-8 md:p-10 text-center"
+                >
+                  <div
+                    ref={setNumberRef(index)}
+                    className="stat-number-wrap"
+                  >
+                    <span className="stat-number-inner text-4xl sm:text-5xl md:text-6xl font-bold gradient-text inline-block">
+                      {stat.number}
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-2 tracking-wide uppercase">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

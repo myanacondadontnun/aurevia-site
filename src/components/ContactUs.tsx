@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
 import { trackContactFormSubmit, trackEvent } from "@/lib/analytics";
 
@@ -101,21 +100,19 @@ export default function ContactUs() {
 
       <div className="container mx-auto max-w-7xl relative z-10">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
-            Get in Touch
-          </Badge>
+        <div className="text-center mb-12 sm:mb-16 scroll-fade">
           {/* Desktop Header */}
-          <h2 className="hidden md:block text-4xl md:text-5xl mb-6 text-white">
-            <span className="font-normal">Ready to put</span> <span className="green-highlight font-bold">intelligent selling</span> <span className="font-normal">on autopilot?</span>
+          <h2 className="hidden md:block text-4xl md:text-5xl mb-6 text-white font-normal">
+            Your store never sleeps.{" "}
+            <span className="green-highlight">Your sales rep shouldn't either.</span>
           </h2>
           
           {/* Mobile Header */}
-          <h2 className="md:hidden text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 text-white">
-            <span className="green-highlight">Automate sales</span> the smart way?
+          <h2 className="md:hidden text-3xl sm:text-4xl font-normal mb-4 sm:mb-6 text-white">
+            Ready to <span className="green-highlight">sell on autopilot?</span>
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Let's discuss how Aurevia can revolutionize your business with AI-powered customer engagement.
+            Tell us about your store and we'll show you exactly how Aurevia fits.
           </p>
         </div>
 
@@ -123,7 +120,7 @@ export default function ContactUs() {
           {/* Contact Information */}
           <div className="space-y-6 sm:space-y-8">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Let's Start a Conversation</h3>
+              <h3 className="text-xl sm:text-2xl font-normal mb-4 sm:mb-6 text-white">Let's Start a Conversation</h3>
               <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
                 We're here to help you take your customer engagement to the next level. 
                 Reach out to us through any of the channels below or fill out the form.
