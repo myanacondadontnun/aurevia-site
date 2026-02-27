@@ -207,7 +207,7 @@ export default function Industries() {
                           {isCenter && (
                             <div className="flex-1 flex flex-col justify-end pb-4 animate-fade-in">
                               <div>
-                                <h4 className="text-sm font-semibold mb-2 text-white/90">Impact:</h4>
+                                <h4 className="text-sm font-normal mb-2 text-white/90">Impact:</h4>
                                 <ul className="space-y-1.5">
                                   {industry.impactPoints.map((point, idx) => (
                                     <li key={idx} className="flex items-start gap-2 text-sm">

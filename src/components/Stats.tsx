@@ -79,7 +79,7 @@ export default function Stats() {
                     ref={setNumberRef(index)}
                     className="stat-number-wrap"
                   >
-                    <span className="stat-number-inner text-4xl sm:text-5xl md:text-6xl font-bold gradient-text inline-block">
+                    <span className="stat-number-inner text-4xl sm:text-5xl md:text-6xl font-normal gradient-text inline-block">
                       {stat.number}
                     </span>
                   </div>

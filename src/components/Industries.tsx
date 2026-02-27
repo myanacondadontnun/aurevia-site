@@ -231,7 +231,7 @@ export default function Industries() {
 
                         {/* Info half */}
                         <div className="w-1/2 flex flex-col justify-center px-10 lg:px-16 xl:px-20 py-10">
-                          <span className="text-[4rem] lg:text-[5rem] xl:text-[5.5rem] font-semibold text-[#02DFA6] leading-none tracking-tight">
+                          <span className="text-[4rem] lg:text-[5rem] xl:text-[5.5rem] font-normal text-[#02DFA6] leading-none tracking-tight">
                             {industry.stat}
                           </span>
                           <div className="mt-5 w-12 h-[2px] bg-[#02DFA6]/25 rounded-full" />
@@ -310,7 +310,7 @@ export default function Industries() {
                         </div>
                         <div className="p-4">
                           <div className="flex items-start gap-3">
-                            <span className="text-2xl font-semibold text-[#02DFA6] shrink-0 leading-none">
+                            <span className="text-2xl font-normal text-[#02DFA6] shrink-0 leading-none">
                               {industry.stat}
                             </span>
                             <p className="text-[13px] leading-[1.55] text-white/55 pt-0.5">

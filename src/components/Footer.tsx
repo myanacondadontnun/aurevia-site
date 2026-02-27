@@ -53,7 +53,7 @@ export default function Footer() {
                   alt="Aurevia Logo" 
                   className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
                 />
-                <h3 className="text-xl sm:text-2xl font-inter font-semibold text-white logo-text">
+                <h3 className="text-xl sm:text-2xl font-inter font-normal text-white logo-text">
                   Aurevia.io
                 </h3>
               </Link>

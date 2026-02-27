@@ -134,7 +134,7 @@ export default function ContactUs() {
                   <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-sm sm:text-base">Email Us</h4>
+                  <h4 className="font-normal text-sm sm:text-base">Email Us</h4>
                   <p className="text-xs sm:text-sm text-muted-foreground">general@aurevia.io</p>
                 </div>
               </div>
@@ -144,7 +144,7 @@ export default function ContactUs() {
                   <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-sm sm:text-base">Call Us</h4>
+                  <h4 className="font-normal text-sm sm:text-base">Call Us</h4>
                   <p className="text-xs sm:text-sm text-muted-foreground">(+44)7733207396</p>
                 </div>
               </div>
@@ -154,7 +154,7 @@ export default function ContactUs() {
                   <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-sm sm:text-base">Visit Us</h4>
+                  <h4 className="font-normal text-sm sm:text-base">Visit Us</h4>
                   <p className="text-xs sm:text-sm text-muted-foreground">CF24 1PE,Cardiff, UK</p>
                 </div>
               </div>
@@ -162,7 +162,7 @@ export default function ContactUs() {
 
             {/* Response Time */}
             <div className="p-4 sm:p-6 rounded-lg border border-primary/20 bg-primary/5 backdrop-blur-sm">
-              <h4 className="font-semibold text-primary mb-2 text-sm sm:text-base">Quick Response Guarantee</h4>
+              <h4 className="font-normal text-primary mb-2 text-sm sm:text-base">Quick Response Guarantee</h4>
               <p className="text-xs sm:text-sm text-muted-foreground">
                 We typically respond to all inquiries within 24 hours during business days.
               </p>
@@ -192,7 +192,7 @@ export default function ContactUs() {
                 {isSubmitted ? (
                   <div className="text-center py-12">
                     <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold text-white mb-2">Message Sent!</h3>
+                    <h3 className="text-xl font-normal text-white mb-2">Message Sent!</h3>
                     <p className="text-gray-300">Thank you for reaching out. We'll get back to you soon.</p>
                   </div>
                 ) : (
@@ -287,7 +287,7 @@ export default function ContactUs() {
                     <Button 
                       type="submit" 
                       disabled={isSubmitting}
-                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-6 rounded-lg font-normal transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
                       {isSubmitting ? (
                         <div className="flex items-center gap-2">

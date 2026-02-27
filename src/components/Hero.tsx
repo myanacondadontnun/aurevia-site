@@ -144,7 +144,7 @@ export default function Hero() {
           background: linear-gradient(135deg, #000000 0%, #7f5af0 100%);
           padding: 0.375rem 0.75rem;
           font-size: 0.75rem;
-          font-weight: 600;
+          font-weight: 400;
           color: white;
           border-radius: 9999px;
           position: relative;

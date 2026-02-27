@@ -215,7 +215,7 @@ export default function Testimonials() {
                       >
                         {t.initials}
                       </span>
-                      <span className="mt-4 text-sm font-inter font-semibold tracking-[0.25em] uppercase text-white/30">
+                      <span className="mt-4 text-sm font-inter font-normal tracking-[0.25em] uppercase text-white/30">
                         {t.company}
                       </span>
                       <span className="mt-3 inline-flex items-center px-3 py-1 rounded-full text-[10px] font-inter font-medium tracking-[0.12em] uppercase border border-[#02DFA6]/10 text-[#02DFA6]/40 bg-[#02DFA6]/[0.03]">
@@ -248,7 +248,7 @@ export default function Testimonials() {
 
               {/* Attribution — matching reference layout: COMPANY | Name + Role */}
               <div className="flex items-center gap-4">
-                <span className="text-sm sm:text-base font-inter font-bold tracking-widest uppercase text-white/80">
+                <span className="text-sm sm:text-base font-inter font-normal tracking-widest uppercase text-white/80">
                   {t.company}
                 </span>
                 <span className="w-px h-8 bg-white/20" />

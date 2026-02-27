@@ -107,7 +107,7 @@ export default function FiveWays() {
                   ))}
                 </div>
 
-                <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 leading-snug">
+                <h3 className="text-lg sm:text-xl font-normal text-white mb-3 leading-snug">
                   {product.title}
                 </h3>
                 <p className="text-[15px] text-muted-foreground leading-relaxed">
@@ -136,7 +136,7 @@ export default function FiveWays() {
           <div className="w-12 h-12 rounded-full bg-primary/15 border border-primary/20 flex items-center justify-center mb-1">
             <Sparkles className="w-5.5 h-5.5 text-primary" />
           </div>
-          <h3 className="text-xl font-semibold text-white">
+          <h3 className="text-xl font-normal text-white">
             Explore more capabilities
           </h3>
           <p className="text-[15px] text-muted-foreground max-w-md">
