@@ -8,7 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { ArrowRight } from "lucide-react";
-import { useScrollFade } from "./ScrollAnimations";
+import { useScrollFade, useItemScrollFade } from "./ScrollAnimations";
 import { openShopifyInstall } from "@/lib/utils";
 
 const faqs = [
@@ -48,30 +48,31 @@ const faqs = [
 
 export default function FAQ() {
   const sectionRef = useScrollFade();
+  const listRef = useItemScrollFade(100);
 
   return (
-    <section id="faq" className="py-24 px-6">
+    <section id="faq" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
       <div className="container mx-auto max-w-4xl">
-        <div className="text-center mb-16 scroll-fade">
-          <h2 className="text-4xl md:text-5xl font-inter font-normal mb-6 text-white">
+        <div className="text-center mb-10 sm:mb-14 md:mb-16 scroll-fade">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal mb-4 sm:mb-6 text-white">
             You've Got Questions.{" "}
             <span className="green-highlight">We've Already Answered Them</span>
           </h2>
-          <p className="text-xl font-light text-muted-foreground">
+          <p className="text-base sm:text-lg md:text-xl font-light text-muted-foreground">
             Merchants ask us these all the time — here are the honest answers.
           </p>
         </div>
 
         <div
-          ref={sectionRef as React.RefObject<HTMLDivElement>}
-          className="scroll-fade faq-gradient p-8 rounded-2xl"
+          ref={listRef as React.RefObject<HTMLDivElement>}
+          className="p-4 sm:p-6 md:p-8 rounded-2xl"
         >
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-card border border-border rounded-lg px-6 data-[state=open]:border-primary/30"
+                className="scroll-fade-item bg-card border border-border rounded-lg px-4 sm:px-6 data-[state=open]:border-primary/30"
               >
                 <AccordionTrigger className="text-left font-inter font-normal text-white hover:text-[#095C46] transition-colors duration-200 py-6">
                   {faq.question}
@@ -87,11 +88,12 @@ export default function FAQ() {
         <div className="text-center mt-12 scroll-fade">
           <Button
             size="lg"
-            className="cta-button text-white font-medium px-8 py-4 text-lg rounded-lg transition-all duration-200 transform hover:scale-105 hover:bg-[#095C46] flex items-center gap-2 mx-auto border-0"
+            className="cta-button text-white font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg transition-all duration-200 transform hover:scale-105 hover:bg-[#095C46] flex items-center gap-2 mx-auto border-0 w-full sm:w-auto"
             onClick={() => openShopifyInstall()}
+            aria-label="Try Aurevia for free on Shopify"
           >
             Try for free on Shopify
-            <ArrowRight className="w-5 h-5 cta-arrow" />
+            <ArrowRight className="w-5 h-5 cta-arrow" aria-hidden="true" />
           </Button>
         </div>
       </div>

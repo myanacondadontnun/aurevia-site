@@ -39,5 +39,12 @@ export default function ClientBody({
     return startCtaShineLoop();
   }, []);
 
-  return <div className="antialiased">{children}</div>;
+  return (
+    <div className="antialiased">
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+      {children}
+    </div>
+  );
 }

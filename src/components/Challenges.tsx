@@ -83,7 +83,7 @@ function ChallengeCard({
     <Card className="challenge-card scroll-fade-lr bg-transparent border border-border/50 hover:border-primary/30 transition-all duration-300 group">
       <CardContent className="p-6 sm:p-8 h-full flex flex-col relative">
         <div className="mb-4 sm:mb-6">
-          <Icon className="challenge-icon w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground group-hover:text-[#02DFA6] transition-colors duration-300" />
+          <Icon className="challenge-icon w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground group-hover:text-[#02DFA6] transition-colors duration-300" aria-hidden="true" />
         </div>
         <h3 className="text-lg sm:text-xl font-inter font-normal text-white mb-3 sm:mb-4 group-hover:text-[#02DFA6] transition-colors duration-300">
           {challenge.problem}
@@ -99,6 +99,8 @@ function ChallengeCard({
           {!expanded && (
             <button
               onClick={() => setExpanded(true)}
+              aria-expanded={false}
+              aria-label={`Read more about: ${challenge.problem}`}
               className="mt-2 text-sm text-[#02DFA6]/80 hover:text-[#02DFA6] transition-colors duration-200 font-medium"
             >
               Read more...
@@ -111,7 +113,7 @@ function ChallengeCard({
           className="inline-flex items-center gap-1.5 mt-5 text-xs text-white/30 hover:text-white/60 transition-colors duration-200 underline underline-offset-2 decoration-white/15 hover:decoration-white/40"
         >
           Why this happens
-          <ArrowRight className="w-3 h-3" />
+          <ArrowRight className="w-3 h-3" aria-hidden="true" />
         </Link>
 
         <div className="card-hover-gradient"></div>

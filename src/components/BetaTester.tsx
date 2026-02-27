@@ -58,7 +58,7 @@ export default function BetaTester() {
                           key={index}
                           className="flex items-start sm:items-center justify-center gap-3 text-foreground max-w-lg mx-auto"
                         >
-                          <Check className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0 mt-1 sm:mt-0" />
+                          <Check className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0 mt-1 sm:mt-0" aria-hidden="true" />
                           <span className="text-sm sm:text-lg font-light text-left sm:text-center">{benefit}</span>
                         </div>
                       ))}
@@ -67,6 +67,7 @@ export default function BetaTester() {
 
                   <Button
                     size="lg"
+                    aria-label="Sign up as a beta tester"
                     className="cta-button text-white font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center gap-2 mx-auto border-0 w-full sm:w-auto max-w-xs sm:max-w-none"
                     onClick={() => {
                       // Track beta signup button click
@@ -79,7 +80,7 @@ export default function BetaTester() {
                     }}
                   >
                     Let's Get To Know You
-                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 cta-arrow" />
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 cta-arrow" aria-hidden="true" />
                   </Button>
                 </>
               )}

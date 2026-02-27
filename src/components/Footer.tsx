@@ -39,7 +39,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 border-t border-border/50">
+    <footer className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 border-t border-border/50" aria-label="Footer navigation">
       <div className="container mx-auto">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12 mb-12 sm:mb-16">
@@ -152,6 +152,7 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`Aurevia on ${social.label}`}
                   className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
                 >
                   {social.label}
@@ -160,6 +161,7 @@ export default function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
+                  aria-label={`Aurevia on ${social.label}`}
                   className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
                 >
                   {social.label}

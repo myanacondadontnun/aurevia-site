@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+"use client";
+
+import { useState, useEffect, useRef } from "react";
 
 interface Industry {
   title: string;
@@ -65,10 +67,11 @@ const industries: Industry[] = [
   }
 ];
 
-export default function Industries() {
+export default function IndustriesEnhanced() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
-  // Auto-rotate every 6 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % industries.length);
@@ -76,11 +79,8 @@ export default function Industries() {
     return () => clearInterval(interval);
   }, []);
 
-  // Calculate position relative to center with proper stacking
   const getCardPosition = (cardIndex: number) => {
     const diff = (cardIndex - activeIndex + industries.length) % industries.length;
-    
-    // Map positions: 0=center, 1=right, 2=far-right, 3=far-left, 4=left
     if (diff === 0) return 'center';
     if (diff === 1) return 'right';
     if (diff === 2) return 'far-right';
@@ -89,9 +89,9 @@ export default function Industries() {
     return 'center';
   };
 
-  const getCardStyles = (position: string) => {
+  const getCardStyles = (position: string): React.CSSProperties => {
     const baseTransition = "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
-    
+
     switch (position) {
       case 'center':
         return {
@@ -99,43 +99,43 @@ export default function Industries() {
           zIndex: 50,
           filter: 'blur(0px)',
           opacity: 1,
-          width: '320px',
+          width: 'min(320px, 80vw)',
           transition: baseTransition
         };
       case 'right':
         return {
-          transform: 'translateX(100px) scale(0.88) rotateY(-12deg)',
+          transform: 'translateX(min(100px, 22vw)) scale(0.88) rotateY(-12deg)',
           zIndex: 30,
           filter: 'blur(1px)',
           opacity: 0.8,
-          width: '280px',
+          width: 'min(280px, 70vw)',
           transition: baseTransition
         };
       case 'left':
         return {
-          transform: 'translateX(-100px) scale(0.88) rotateY(12deg)',
+          transform: 'translateX(max(-100px, -22vw)) scale(0.88) rotateY(12deg)',
           zIndex: 30,
           filter: 'blur(1px)',
           opacity: 0.8,
-          width: '280px',
+          width: 'min(280px, 70vw)',
           transition: baseTransition
         };
       case 'far-right':
         return {
-          transform: 'translateX(180px) scale(0.75) rotateY(-25deg)',
+          transform: 'translateX(min(180px, 38vw)) scale(0.75) rotateY(-25deg)',
           zIndex: 10,
           filter: 'blur(2px)',
           opacity: 0.6,
-          width: '260px',
+          width: 'min(260px, 65vw)',
           transition: baseTransition
         };
       case 'far-left':
         return {
-          transform: 'translateX(-180px) scale(0.75) rotateY(25deg)',
+          transform: 'translateX(max(-180px, -38vw)) scale(0.75) rotateY(25deg)',
           zIndex: 10,
           filter: 'blur(2px)',
           opacity: 0.6,
-          width: '260px',
+          width: 'min(260px, 65vw)',
           transition: baseTransition
         };
       default:
@@ -143,75 +143,100 @@ export default function Industries() {
     }
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        setActiveIndex((prev) => (prev + 1) % industries.length);
+      } else {
+        setActiveIndex((prev) => (prev - 1 + industries.length) % industries.length);
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      <section id="industries" className="py-24 px-6">
+      <section id="industries-enhanced" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6" aria-label="Industry impact carousel">
         <div className="container mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-light mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          <div className="text-center mb-10 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-4 sm:mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               See how Aurevia boosts revenue from fashion, food and beyond
             </h2>
-            <p className="text-xl font-light text-gray-400 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl font-light text-gray-400 max-w-3xl mx-auto">
               Real-time AI sales agent chat bot that adapts to any Shopify niche.
             </p>
           </div>
 
-          {/* 3D Carousel Container */}
-          <div className="relative max-w-7xl mx-auto overflow-hidden">
-            <div className="relative h-[500px] flex items-center justify-center" style={{ perspective: '1000px' }}>
+          <div
+            className="relative max-w-7xl mx-auto overflow-hidden"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            aria-live="polite"
+          >
+            <div className="relative h-[420px] sm:h-[460px] md:h-[500px] flex items-center justify-center" style={{ perspective: '1000px' }}>
               <div className="relative w-full max-w-4xl h-full flex items-center justify-center">
                 {industries.map((industry, index) => {
                   const position = getCardPosition(index);
                   const isCenter = position === 'center';
-                  
+
                   return (
                     <div
                       key={industry.title}
                       onClick={() => setActiveIndex(index)}
+                      role="button"
+                      tabIndex={isCenter ? 0 : -1}
+                      aria-label={`${industry.title}${isCenter ? ' (active)' : ' - click to view'}`}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setActiveIndex(index);
+                        }
+                      }}
                       className="absolute cursor-pointer rounded-2xl overflow-hidden transition-all duration-700 ease-out"
                       style={{
                         ...getCardStyles(position),
-                        height: '420px'
+                        height: 'min(420px, 65vh)'
                       }}
                     >
-                      {/* Luminar-style card with static gradient background */}
                       <div className="relative h-full w-full bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-700 rounded-2xl border border-white/10 shadow-2xl">
-                        {/* Subtle overlay for depth */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-white/5 rounded-2xl" />
-                        
-                        {/* Content */}
-                        <div className="relative h-full p-6 flex flex-col">
-                          {/* Icon */}
-                          <div className="absolute top-4 right-4 text-3xl opacity-90">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-white/5 rounded-2xl" aria-hidden="true" />
+
+                        <div className="relative h-full p-4 sm:p-6 flex flex-col">
+                          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 text-2xl sm:text-3xl opacity-90" aria-hidden="true">
                             {industry.icon}
                           </div>
-                          
-                          {/* Title Badge */}
-                          <div className={`self-start mb-4 px-3 py-1 rounded-full border transition-colors duration-300 ${
+
+                          <div className={`self-start mb-3 sm:mb-4 px-2.5 sm:px-3 py-1 rounded-full border transition-colors duration-300 ${
                             isCenter
                               ? "bg-white/20 border-white/30 text-white backdrop-blur-sm"
                               : "bg-white/10 border-white/20 text-white/70 backdrop-blur-sm"
                           }`}>
-                            <span className="text-sm font-medium">{industry.title}</span>
+                            <span className="text-xs sm:text-sm font-medium">{industry.title}</span>
                           </div>
-                          
-                          {/* Description */}
-                          <p className={`text-base leading-relaxed mb-3 flex-shrink-0 transition-colors duration-300 ${
+
+                          <p className={`text-sm sm:text-base leading-relaxed mb-3 flex-shrink-0 transition-colors duration-300 ${
                             isCenter ? "text-white" : "text-white/60"
                           }`}>
                             {industry.description}
                           </p>
-                          
-                          {/* Impact Points - Only show on center card */}
+
                           {isCenter && (
-                            <div className="flex-1 flex flex-col justify-end pb-4 animate-fade-in">
+                            <div className="flex-1 flex flex-col justify-end pb-2 sm:pb-4 animate-fade-in">
                               <div>
-                                <h4 className="text-sm font-normal mb-2 text-white/90">Impact:</h4>
-                                <ul className="space-y-1.5">
+                                <h4 className="text-xs sm:text-sm font-normal mb-2 text-white/90">Impact:</h4>
+                                <ul className="space-y-1 sm:space-y-1.5">
                                   {industry.impactPoints.map((point, idx) => (
-                                    <li key={idx} className="flex items-start gap-2 text-sm">
-                                      <span className="w-1.5 h-1.5 bg-white rounded-full mt-2 flex-shrink-0" />
+                                    <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm">
+                                      <span className="w-1.5 h-1.5 bg-white rounded-full mt-1.5 sm:mt-2 flex-shrink-0" aria-hidden="true" />
                                       <span className="text-white/90 font-light">{point}</span>
                                     </li>
                                   ))}
@@ -220,16 +245,15 @@ export default function Industries() {
                             </div>
                           )}
 
-                          {/* Visual placeholder for non-center cards */}
                           {!isCenter && (
-                            <div className="flex-1 flex items-end pb-4">
+                            <div className="flex-1 flex items-end pb-2 sm:pb-4">
                               <div className="w-full aspect-[3/2] bg-gradient-to-br from-white/10 via-white/5 to-transparent rounded-lg flex items-center justify-center border border-white/10 backdrop-blur-sm transition-opacity duration-300 opacity-60">
                                 <div className="text-center text-white/60">
-                                  <div className="w-16 h-16 mx-auto mb-3 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
-                                    <div className="w-8 h-8 bg-white/40 rounded" />
+                                  <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-2 sm:mb-3 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm" aria-hidden="true">
+                                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white/40 rounded" />
                                   </div>
-                                  <p className="text-sm text-white/80">{industry.title} Demo</p>
-                                  <p className="text-xs mt-1 text-white/50">Click to explore</p>
+                                  <p className="text-xs sm:text-sm text-white/80">{industry.title} Demo</p>
+                                  <p className="text-[10px] sm:text-xs mt-1 text-white/50">Click to explore</p>
                                 </div>
                               </div>
                             </div>
@@ -241,29 +265,33 @@ export default function Industries() {
                 })}
               </div>
             </div>
-            
-            {/* Navigation Dots */}
-            <div className="flex justify-center mt-8 gap-3">
-              {industries.map((_, index) => (
+
+            <div className="flex justify-center mt-6 sm:mt-8 gap-2 sm:gap-3" role="tablist" aria-label="Industry carousel navigation">
+              {industries.map((industry, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveIndex(index)}
-                  className={`rounded-full transition-all duration-300 backdrop-blur-sm ${
-                    index === activeIndex 
-                      ? 'w-6 h-3 bg-white shadow-lg' 
+                  role="tab"
+                  aria-selected={index === activeIndex}
+                  aria-label={`Go to ${industry.title}`}
+                  className="p-1.5"
+                >
+                  <span className={`block rounded-full transition-all duration-300 backdrop-blur-sm ${
+                    index === activeIndex
+                      ? 'w-6 h-3 bg-white shadow-lg'
                       : 'w-3 h-3 bg-white/30 hover:bg-white/50'
-                  }`}
-                />
+                  }`} />
+                </button>
               ))}
             </div>
           </div>
         </div>
-        
+
         <style jsx>{`
           .animate-fade-in {
             animation: fadeIn 0.5s ease-in-out;
           }
-          
+
           @keyframes fadeIn {
             from {
               opacity: 0;

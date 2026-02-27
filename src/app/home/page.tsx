@@ -27,7 +27,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-background">
       <ScrollAnimationsInit />
       <Navbar />
-      <main>
+      <main id="main-content">
         <Hero />
         <FiveWays />
         <FourSteps />

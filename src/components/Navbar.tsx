@@ -23,12 +23,12 @@ import {
   GitCompare,
   Calculator,
   BookMarked,
+  ChevronDown,
 } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { openShopifyInstall } from "@/lib/utils";
 
-// Solutions dropdown data (Aurevia-adapted)
 const solutionsByIndustry = [
   { title: "Fashion & Apparel", desc: "AI-powered style picks", href: "/solutions/fashion" },
   { title: "Health & Beauty", desc: "Personalized beauty tips", href: "/solutions/beauty" },
@@ -49,7 +49,6 @@ const solutionsBySize = [
   { icon: Briefcase, label: "Enterprise", href: "/solutions/enterprise" },
 ];
 
-// Products dropdown data (Aurevia-adapted)
 const productSections = [
   {
     heading: "AI Customer Support",
@@ -84,7 +83,6 @@ const productSections = [
   },
 ];
 
-// Resources dropdown data
 const resourcesItems = [
   { icon: BookOpen, label: "Blogs", href: "/resources/blogs", desc: "Latest insights and tips" },
   { icon: GitCompare, label: "AI Agent Comparisons", href: "/resources/ai-comparisons", desc: "Compare AI chatbots for e-commerce" },
@@ -100,7 +98,9 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<"products" | "solutions" | "resources" | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<"products" | "solutions" | "resources" | null>(null);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const scrollYRef = useRef(0);
 
   const handleDropdownEnter = (name: "products" | "solutions" | "resources") => {
     if (closeTimeoutRef.current) {
@@ -116,6 +116,22 @@ export default function Navbar() {
     }, 80);
   };
 
+  const closeMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(false);
+    setMobileExpanded(null);
+  }, []);
+
+  const toggleMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(prev => !prev);
+    if (isMobileMenuOpen) {
+      setMobileExpanded(null);
+    }
+  }, [isMobileMenuOpen]);
+
+  const toggleMobileExpanded = (name: "products" | "solutions" | "resources") => {
+    setMobileExpanded(prev => prev === name ? null : name);
+  };
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 100);
     window.addEventListener("scroll", handleScroll);
@@ -123,22 +139,48 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
+    if (isMobileMenuOpen) {
+      scrollYRef.current = window.scrollY;
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollYRef.current}px`;
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      window.scrollTo(0, scrollYRef.current);
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+    };
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (isMobileMenuOpen) {
         const navbar = document.getElementById("navbar");
         if (navbar && !navbar.contains(event.target as Node)) {
-          setIsMobileMenuOpen(false);
+          closeMobileMenu();
         }
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, closeMobileMenu]);
 
   return (
-    <nav className="fixed top-4 left-0 right-0 z-50 px-2 sm:px-4 md:px-6" id="navbar">
+    <nav
+      className="fixed top-4 left-0 right-0 z-50 px-2 sm:px-4 md:px-6"
+      id="navbar"
+      aria-label="Main navigation"
+    >
       <div
-        className={`glass-nav shadow-lg transition-all duration-500 ease-in-out mx-auto relative`}
+        className="glass-nav shadow-lg transition-all duration-500 ease-in-out mx-auto relative"
         style={{
           width: isScrolled ? "90%" : "100%",
           maxWidth: isScrolled ? "1200px" : "100%",
@@ -146,8 +188,7 @@ export default function Navbar() {
         }}
       >
         <div className={`flex items-center justify-between w-full transition-all duration-500 ${isScrolled ? "px-3 py-2.5 sm:px-4 sm:py-3" : "px-4 py-3 sm:px-6 sm:py-4"}`}>
-          {/* Logo */}
-          <Link href="/home" className="flex items-center flex-shrink-0 lg:w-48">
+          <Link href="/home" className="flex items-center flex-shrink-0 lg:w-48" aria-label="Aurevia.io home">
             <img
               src="/images/Logo_wo_bg.png"
               alt="Aurevia Logo"
@@ -169,12 +210,14 @@ export default function Navbar() {
               >
                 <Link
                   href="/products"
+                  aria-haspopup="true"
+                  aria-expanded={openDropdown === "products"}
                   className={`inline-flex items-center text-sm xl:text-base whitespace-nowrap transition-colors duration-200 ${openDropdown === "products" ? "text-[#02DFA6]" : "text-foreground hover:text-[#02DFA6]"}`}
                 >
                   Products
                 </Link>
                 {openDropdown === "products" && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 -mt-px">
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 -mt-px" role="menu" aria-label="Products menu">
                     <div className="bg-card border border-border rounded-xl shadow-xl p-8 min-w-[672px] grid grid-cols-2 gap-x-10 gap-y-8">
                       {productSections.map((section) => (
                         <div key={section.heading}>
@@ -186,9 +229,10 @@ export default function Navbar() {
                               <li key={item.label}>
                                 <Link
                                   href={item.href}
+                                  role="menuitem"
                                   className="flex items-center gap-2.5 text-sm font-medium text-foreground hover:text-[#02DFA6] transition-colors"
                                 >
-                                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-muted">
+                                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-muted" aria-hidden="true">
                                     <item.icon className="h-4 w-4 text-muted-foreground" />
                                   </span>
                                   {item.label}
@@ -211,14 +255,15 @@ export default function Navbar() {
               >
                 <Link
                   href="/solutions"
+                  aria-haspopup="true"
+                  aria-expanded={openDropdown === "solutions"}
                   className={`inline-flex items-center text-sm xl:text-base whitespace-nowrap transition-colors duration-200 ${openDropdown === "solutions" ? "text-[#02DFA6]" : "text-foreground hover:text-[#02DFA6]"}`}
                 >
                   Solutions
                 </Link>
                 {openDropdown === "solutions" && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 -mt-px">
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 -mt-px" role="menu" aria-label="Solutions menu">
                     <div className="bg-card border border-border rounded-xl shadow-xl p-8 min-w-[768px] grid grid-cols-3 gap-8">
-                      {/* By industry */}
                       <div>
                         <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-4">
                           By industry
@@ -226,10 +271,7 @@ export default function Navbar() {
                         <ul className="space-y-3">
                           {solutionsByIndustry.map((item) => (
                             <li key={item.title}>
-                              <Link
-                                href={item.href}
-                                className="block group"
-                              >
+                              <Link href={item.href} role="menuitem" className="block group">
                                 <span className="font-medium text-foreground group-hover:text-[#02DFA6] transition-colors block">
                                   {item.title}
                                 </span>
@@ -245,7 +287,6 @@ export default function Navbar() {
                           View all Industries →
                         </Link>
                       </div>
-                      {/* By use case + By business size */}
                       <div className="space-y-8">
                         <div>
                           <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-4">
@@ -256,9 +297,10 @@ export default function Navbar() {
                               <li key={item.label}>
                                 <Link
                                   href={item.href}
+                                  role="menuitem"
                                   className="flex items-center gap-2.5 text-sm font-medium text-foreground hover:text-[#02DFA6] transition-colors"
                                 >
-                                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-muted">
+                                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-muted" aria-hidden="true">
                                     <item.icon className="h-4 w-4 text-muted-foreground" />
                                   </span>
                                   {item.label}
@@ -276,9 +318,10 @@ export default function Navbar() {
                               <li key={item.label}>
                                 <Link
                                   href={item.href}
+                                  role="menuitem"
                                   className="flex items-center gap-2.5 text-sm font-medium text-foreground hover:text-[#02DFA6] transition-colors"
                                 >
-                                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-muted">
+                                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-muted" aria-hidden="true">
                                     <item.icon className="h-4 w-4 text-muted-foreground" />
                                   </span>
                                   {item.label}
@@ -288,7 +331,6 @@ export default function Navbar() {
                           </ul>
                         </div>
                       </div>
-                      {/* Customer stories */}
                       <div className="pl-6 border-l border-border">
                         <h4 className="font-medium text-foreground mb-3">Customer stories</h4>
                         <p className="text-xs text-muted-foreground mb-5 leading-relaxed">
@@ -296,10 +338,11 @@ export default function Navbar() {
                         </p>
                         <Link
                           href="/solutions/stories"
+                          role="menuitem"
                           className="inline-flex items-center gap-1 text-sm font-medium text-[#02DFA6] hover:underline"
                         >
                           Read success stories
-                          <ArrowRight className="h-4 w-4" />
+                          <ArrowRight className="h-4 w-4" aria-hidden="true" />
                         </Link>
                       </div>
                     </div>
@@ -315,12 +358,14 @@ export default function Navbar() {
               >
                 <Link
                   href="/resources"
+                  aria-haspopup="true"
+                  aria-expanded={openDropdown === "resources"}
                   className={`inline-flex items-center text-sm xl:text-base whitespace-nowrap transition-colors duration-200 ${openDropdown === "resources" ? "text-[#02DFA6]" : "text-foreground hover:text-[#02DFA6]"}`}
                 >
                   Resources
                 </Link>
                 {openDropdown === "resources" && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 -mt-px">
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 -mt-px" role="menu" aria-label="Resources menu">
                     <div className="bg-card border border-border rounded-xl shadow-xl p-8 min-w-[384px]">
                       <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-5">
                         Resources
@@ -330,9 +375,10 @@ export default function Navbar() {
                           <li key={item.label}>
                             <Link
                               href={item.href}
+                              role="menuitem"
                               className="flex items-center gap-3.5 p-3 rounded-lg group hover:bg-muted/50 transition-colors"
                             >
-                              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted">
+                              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted" aria-hidden="true">
                                 <item.icon className="h-4 w-4 text-muted-foreground group-hover:text-[#02DFA6] transition-colors" />
                               </span>
                               <div>
@@ -350,7 +396,6 @@ export default function Navbar() {
                 )}
               </div>
 
-              {/* Regular links */}
               {navigationLinks.map((item) => (
                 <Link
                   key={item.href}
@@ -368,14 +413,18 @@ export default function Navbar() {
             <Button
               className={`cta-button text-white font-medium rounded-lg transition-all duration-200 flex items-center gap-2 border-0 flex-shrink-0 ${isScrolled ? "px-3 py-1.5 sm:px-4 sm:py-2" : "px-4 py-2"} text-sm xl:text-base`}
               onClick={() => openShopifyInstall()}
+              aria-label="Try Aurevia for free on Shopify"
             >
               <span className="hidden sm:inline">Try for free on Shopify</span>
               <span className="sm:hidden">Try free</span>
-              <ArrowRight className="w-3 h-3 xl:w-4 xl:h-4 cta-arrow" />
+              <ArrowRight className="w-3 h-3 xl:w-4 xl:h-4 cta-arrow" aria-hidden="true" />
             </Button>
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden text-white hover:text-[#02DFA6] transition-colors duration-200 p-2"
+              onClick={toggleMobileMenu}
+              aria-label="Toggle menu"
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
+              className="lg:hidden text-white hover:text-[#02DFA6] transition-colors duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -384,44 +433,132 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-border/30 bg-background/95 backdrop-blur-md rounded-b-2xl">
+          <div
+            id="mobile-menu"
+            role="menu"
+            className="lg:hidden border-t border-border/30 bg-background/95 backdrop-blur-md rounded-b-2xl max-h-[70vh] overflow-y-auto"
+          >
             <div className="px-4 py-4 space-y-1">
-              <Link
-                href="/products"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full text-left px-3 py-2.5 text-foreground hover:text-[#02DFA6] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
-              >
-                Products
-              </Link>
-              <Link
-                href="/solutions"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full text-left px-3 py-2.5 text-foreground hover:text-[#02DFA6] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
-              >
-                Solutions
-              </Link>
-              <Link
-                href="/resources"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full text-left px-3 py-2.5 text-foreground hover:text-[#02DFA6] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
-              >
-                Resources
-              </Link>
-              {resourcesItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full text-left pl-8 pr-3 py-2 text-muted-foreground hover:text-[#02DFA6] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
+              {/* Products expandable */}
+              <div>
+                <button
+                  onClick={() => toggleMobileExpanded("products")}
+                  aria-expanded={mobileExpanded === "products"}
+                  className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#02DFA6] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
                 >
-                  {item.label}
-                </Link>
-              ))}
+                  <Link href="/products" onClick={closeMobileMenu} className="flex-1 text-left">
+                    Products
+                  </Link>
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileExpanded === "products" ? "rotate-180" : ""}`} aria-hidden="true" />
+                </button>
+                {mobileExpanded === "products" && (
+                  <div className="pl-4 pb-2 space-y-1">
+                    {productSections.map((section) => (
+                      <div key={section.heading} className="py-1">
+                        <span className="block px-3 py-1 text-[11px] font-medium text-muted-foreground uppercase tracking-wider">
+                          {section.heading}
+                        </span>
+                        {section.items.map((item) => (
+                          <Link
+                            key={item.label}
+                            href={item.href}
+                            onClick={closeMobileMenu}
+                            role="menuitem"
+                            className="flex items-center gap-2.5 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#02DFA6] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
+                          >
+                            <item.icon className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Solutions expandable */}
+              <div>
+                <button
+                  onClick={() => toggleMobileExpanded("solutions")}
+                  aria-expanded={mobileExpanded === "solutions"}
+                  className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#02DFA6] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
+                >
+                  <Link href="/solutions" onClick={closeMobileMenu} className="flex-1 text-left">
+                    Solutions
+                  </Link>
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileExpanded === "solutions" ? "rotate-180" : ""}`} aria-hidden="true" />
+                </button>
+                {mobileExpanded === "solutions" && (
+                  <div className="pl-4 pb-2 space-y-1">
+                    <span className="block px-3 py-1 text-[11px] font-medium text-muted-foreground uppercase tracking-wider">
+                      By industry
+                    </span>
+                    {solutionsByIndustry.map((item) => (
+                      <Link
+                        key={item.title}
+                        href={item.href}
+                        onClick={closeMobileMenu}
+                        role="menuitem"
+                        className="block w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#02DFA6] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
+                      >
+                        {item.title}
+                      </Link>
+                    ))}
+                    <span className="block px-3 py-1 mt-2 text-[11px] font-medium text-muted-foreground uppercase tracking-wider">
+                      By use case
+                    </span>
+                    {solutionsByUseCase.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        onClick={closeMobileMenu}
+                        role="menuitem"
+                        className="flex items-center gap-2.5 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#02DFA6] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
+                      >
+                        <item.icon className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Resources expandable */}
+              <div>
+                <button
+                  onClick={() => toggleMobileExpanded("resources")}
+                  aria-expanded={mobileExpanded === "resources"}
+                  className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#02DFA6] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
+                >
+                  <Link href="/resources" onClick={closeMobileMenu} className="flex-1 text-left">
+                    Resources
+                  </Link>
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileExpanded === "resources" ? "rotate-180" : ""}`} aria-hidden="true" />
+                </button>
+                {mobileExpanded === "resources" && (
+                  <div className="pl-4 pb-2 space-y-1">
+                    {resourcesItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={closeMobileMenu}
+                        role="menuitem"
+                        className="flex items-center gap-2.5 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#02DFA6] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
+                      >
+                        <item.icon className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               {navigationLinks.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={closeMobileMenu}
+                  role="menuitem"
                   className="block w-full text-left px-3 py-2.5 text-foreground hover:text-[#02DFA6] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
                 >
                   {item.label}

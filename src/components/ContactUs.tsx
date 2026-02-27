@@ -135,7 +135,7 @@ export default function ContactUs() {
                 </div>
                 <div>
                   <h4 className="font-normal text-sm sm:text-base">Email Us</h4>
-                  <p className="text-xs sm:text-sm text-muted-foreground">general@aurevia.io</p>
+                  <a href="mailto:general@aurevia.io" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors">general@aurevia.io</a>
                 </div>
               </div>
 
@@ -145,7 +145,7 @@ export default function ContactUs() {
                 </div>
                 <div>
                   <h4 className="font-normal text-sm sm:text-base">Call Us</h4>
-                  <p className="text-xs sm:text-sm text-muted-foreground">(+44)7733207396</p>
+                  <a href="tel:+447733207396" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors">(+44)7733207396</a>
                 </div>
               </div>
 
@@ -189,17 +189,18 @@ export default function ContactUs() {
               </CardHeader>
 
               <CardContent className="space-y-6">
+                <div aria-live="polite" aria-atomic="true">
                 {isSubmitted ? (
-                  <div className="text-center py-12">
-                    <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
+                  <div className="text-center py-12" role="status">
+                    <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" aria-hidden="true" />
                     <h3 className="text-xl font-normal text-white mb-2">Message Sent!</h3>
                     <p className="text-gray-300">Thank you for reaching out. We'll get back to you soon.</p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6" aria-busy={isSubmitting} aria-label="Contact form">
                     {submitError && (
-                      <div className="flex items-center gap-3 p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
-                        <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
+                      <div className="flex items-center gap-3 p-4 bg-red-500/10 border border-red-500/20 rounded-lg" role="alert" id="form-error">
+                        <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0" aria-hidden="true" />
                         <p className="text-red-300 text-sm">{submitError}</p>
                       </div>
                     )}
@@ -216,7 +217,7 @@ export default function ContactUs() {
                           value={formData.name}
                           onChange={handleInputChange}
                           required
-                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200"
+                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-base sm:text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200"
                           placeholder="Enter your name"
                         />
                       </div>
@@ -231,7 +232,7 @@ export default function ContactUs() {
                           value={formData.email}
                           onChange={handleInputChange}
                           required
-                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200"
+                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-base sm:text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200"
                           placeholder="Enter your email"
                         />
                       </div>
@@ -247,7 +248,7 @@ export default function ContactUs() {
                         name="company"
                         value={formData.company}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200"
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-base sm:text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200"
                         placeholder="Your company name"
                       />
                     </div>
@@ -263,7 +264,7 @@ export default function ContactUs() {
                         value={formData.subject}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200"
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-base sm:text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200"
                         placeholder="What's this about?"
                       />
                     </div>
@@ -279,7 +280,7 @@ export default function ContactUs() {
                         onChange={handleInputChange}
                         required
                         rows={6}
-                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200 resize-none"
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-base sm:text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200 resize-none"
                         placeholder="Tell us about your project and how we can help..."
                       />
                     </div>
@@ -287,22 +288,25 @@ export default function ContactUs() {
                     <Button 
                       type="submit" 
                       disabled={isSubmitting}
+                      aria-label="Send contact form"
+                      aria-describedby={submitError ? "form-error" : undefined}
                       className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-6 rounded-lg font-normal transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
                       {isSubmitting ? (
                         <div className="flex items-center gap-2">
-                          <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+                          <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" aria-hidden="true"></div>
                           Sending...
                         </div>
                       ) : (
                         <div className="flex items-center gap-2">
-                          <Send className="w-4 h-4" />
+                          <Send className="w-4 h-4" aria-hidden="true" />
                           Send Message
                         </div>
                       )}
                     </Button>
                   </form>
                 )}
+                </div>
               </CardContent>
             </div>
           </Card>

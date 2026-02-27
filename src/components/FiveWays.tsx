@@ -92,7 +92,7 @@ export default function FiveWays() {
               className="scroll-fade-lr group relative bg-card/50 backdrop-blur-sm border border-border/30 rounded-2xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-primary/40 hover:bg-card/70 hover:shadow-xl hover:shadow-primary/[0.07] hover:-translate-y-1"
             >
               <div>
-                <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/15 flex items-center justify-center mb-5">
+                <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/15 flex items-center justify-center mb-5" aria-hidden="true">
                   <product.icon className="w-5 h-5 text-primary" />
                 </div>
 
@@ -117,7 +117,7 @@ export default function FiveWays() {
 
               <div className="mt-6 flex items-center gap-1.5 text-sm font-medium text-primary group-hover:gap-2.5 transition-all duration-200">
                 Learn more
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </div>
             </Link>
           ))}
@@ -133,7 +133,7 @@ export default function FiveWays() {
               "radial-gradient(ellipse at bottom left, rgba(8,147,87,0.2) 0%, rgba(2,223,166,0.06) 40%, transparent 70%)",
           }}
         >
-          <div className="w-12 h-12 rounded-full bg-primary/15 border border-primary/20 flex items-center justify-center mb-1">
+          <div className="w-12 h-12 rounded-full bg-primary/15 border border-primary/20 flex items-center justify-center mb-1" aria-hidden="true">
             <Sparkles className="w-5.5 h-5.5 text-primary" />
           </div>
           <h3 className="text-xl font-normal text-white">
@@ -144,7 +144,7 @@ export default function FiveWays() {
           </p>
           <span className="mt-2 inline-flex items-center gap-2 text-sm font-medium bg-primary/90 hover:bg-primary text-white px-5 py-2.5 rounded-lg transition-colors">
             View all products
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </span>
         </Link>
       </div>

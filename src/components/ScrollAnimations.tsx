@@ -106,6 +106,45 @@ export function useGridStaggerFade(cols: number, itemDelay = 100, rowDelay = 250
   return containerRef;
 }
 
+export function useItemScrollFade(baseDelay = 80) {
+  const containerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const children = Array.from(container.querySelectorAll(".scroll-fade-item")) as HTMLElement[];
+    if (children.length === 0) return;
+
+    let visibleCount = 0;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            setTimeout(() => {
+              el.classList.add("visible");
+            }, visibleCount * baseDelay);
+            visibleCount++;
+            observer.unobserve(el);
+          }
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: "0px 0px -40px 0px",
+      }
+    );
+
+    children.forEach((child) => observer.observe(child));
+
+    return () => observer.disconnect();
+  }, [baseDelay]);
+
+  return containerRef;
+}
+
 export function useDashboardReveal() {
   const ref = useRef<HTMLElement>(null);
 

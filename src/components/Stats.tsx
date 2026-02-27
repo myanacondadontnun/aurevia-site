@@ -74,12 +74,14 @@ export default function Stats() {
                 <div
                   key={index}
                   className="bg-background p-6 sm:p-8 md:p-10 text-center"
+                  aria-label={`${stat.number} ${stat.label}`}
                 >
                   <div
                     ref={setNumberRef(index)}
                     className="stat-number-wrap"
+                    aria-live="polite"
                   >
-                    <span className="stat-number-inner text-4xl sm:text-5xl md:text-6xl font-normal gradient-text inline-block">
+                    <span className="stat-number-inner text-4xl sm:text-5xl md:text-6xl font-normal gradient-text inline-block" aria-hidden="true">
                       {stat.number}
                     </span>
                   </div>

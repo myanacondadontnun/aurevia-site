@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useScrollFade } from "./ScrollAnimations";
 
 interface Testimonial {
@@ -107,6 +107,8 @@ export default function Testimonials() {
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState<"left" | "right">("right");
   const [isAnimating, setIsAnimating] = useState(false);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   const go = useCallback(
     (index: number) => {
@@ -135,21 +137,44 @@ export default function Testimonials() {
     return () => clearInterval(timer);
   }, [next]);
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    const threshold = 50;
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        next();
+      } else {
+        prev();
+      }
+    }
+  };
+
   const t = testimonials[active];
 
   return (
     <section
       ref={sectionRef as React.RefObject<HTMLElement>}
       id="testimonials"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Customer testimonials"
       className="scroll-fade relative py-14 sm:py-16 md:py-20 px-4 sm:px-6 overflow-hidden"
       style={{
         background:
           "linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(0 0% 6%) 50%, hsl(0 0% 4%) 100%)",
       }}
     >
-      {/* Subtle top/bottom border lines */}
       <div
         className="absolute top-0 left-0 right-0 h-px"
+        aria-hidden="true"
         style={{
           background:
             "linear-gradient(90deg, transparent 0%, rgba(2,223,166,0.1) 50%, transparent 100%)",
@@ -157,29 +182,36 @@ export default function Testimonials() {
       />
       <div
         className="absolute bottom-0 left-0 right-0 h-px"
+        aria-hidden="true"
         style={{
           background:
             "linear-gradient(90deg, transparent 0%, rgba(2,223,166,0.1) 50%, transparent 100%)",
         }}
       />
 
-      <div className="container mx-auto max-w-6xl relative z-10">
+      <div
+        className="container mx-auto max-w-6xl relative z-10"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <div
           className={`testimonial-slide ${isAnimating ? `testimonial-exit-${direction}` : "testimonial-enter"}`}
+          aria-live="polite"
+          aria-atomic="true"
         >
-          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-14">
-            {/* Left — Image or Monogram card */}
+          <figure className="flex flex-col lg:flex-row items-center gap-10 lg:gap-14">
+            {/* Left -- Image or Monogram card */}
             <div className="w-full lg:w-5/12 flex-shrink-0">
               <div className="relative aspect-[4/5] max-w-[320px] mx-auto rounded-2xl overflow-hidden border border-white/[0.06]">
                 {t.image ? (
                   <img
                     src={t.image}
-                    alt={t.name || t.company}
+                    alt={`${t.name || t.company} - ${t.role}`}
                     className="w-full h-full object-cover"
                   />
                 ) : (
                   <>
-                    {/* Dark gradient background */}
                     <div
                       className="absolute inset-0"
                       style={{
@@ -187,8 +219,6 @@ export default function Testimonials() {
                           "linear-gradient(145deg, hsl(0 0% 8%) 0%, hsl(0 0% 4%) 60%, hsl(163 30% 6%) 100%)",
                       }}
                     />
-
-                    {/* Subtle radial glow */}
                     <div
                       className="absolute inset-0"
                       style={{
@@ -196,18 +226,15 @@ export default function Testimonials() {
                           "radial-gradient(circle at 30% 40%, rgba(2,223,166,0.06) 0%, transparent 60%)",
                       }}
                     />
-
-                    {/* Decorative grid lines */}
                     <div
                       className="absolute inset-0 opacity-[0.03]"
+                      aria-hidden="true"
                       style={{
                         backgroundImage:
                           "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
                         backgroundSize: "40px 40px",
                       }}
                     />
-
-                    {/* Content */}
                     <div className="relative h-full flex flex-col items-center justify-center p-8">
                       <span
                         className="text-[5rem] sm:text-[6rem] font-playfair font-medium text-white/[0.07] leading-none select-none"
@@ -225,9 +252,9 @@ export default function Testimonials() {
                   </>
                 )}
 
-                {/* Bottom accent line */}
                 <div
                   className="absolute bottom-0 left-0 right-0 h-[2px]"
+                  aria-hidden="true"
                   style={{
                     background:
                       "linear-gradient(90deg, transparent 0%, rgba(2,223,166,0.25) 50%, transparent 100%)",
@@ -236,7 +263,7 @@ export default function Testimonials() {
               </div>
             </div>
 
-            {/* Right — Quote */}
+            {/* Right -- Quote */}
             <div className="w-full lg:w-7/12">
               <blockquote className="mb-8 sm:mb-10">
                 <p
@@ -246,12 +273,11 @@ export default function Testimonials() {
                 </p>
               </blockquote>
 
-              {/* Attribution — matching reference layout: COMPANY | Name + Role */}
-              <div className="flex items-center gap-4">
+              <figcaption className="flex items-center gap-4">
                 <span className="text-sm sm:text-base font-inter font-normal tracking-widest uppercase text-white/80">
                   {t.company}
                 </span>
-                <span className="w-px h-8 bg-white/20" />
+                <span className="w-px h-8 bg-white/20" aria-hidden="true" />
                 <div>
                   {t.name ? (
                     <>
@@ -268,24 +294,29 @@ export default function Testimonials() {
                     </p>
                   )}
                 </div>
-              </div>
+              </figcaption>
             </div>
-          </div>
+          </figure>
         </div>
 
-        {/* Dot navigation — centered, no arrows (matching reference) */}
-        <div className="flex items-center justify-center gap-2.5 mt-12 sm:mt-14">
+        {/* Dot navigation */}
+        <div className="flex items-center justify-center gap-1 sm:gap-2.5 mt-12 sm:mt-14" role="tablist" aria-label="Testimonial navigation">
           {testimonials.map((_, i) => (
             <button
               key={i}
               onClick={() => go(i)}
+              role="tab"
+              aria-selected={i === active}
               aria-label={`Go to testimonial ${i + 1}`}
-              className={`rounded-full transition-all duration-300 ${
+              aria-current={i === active ? "true" : undefined}
+              className="p-1.5 rounded-full"
+            >
+              <span className={`block rounded-full transition-all duration-300 ${
                 i === active
                   ? "w-3 h-3 bg-white"
                   : "w-2.5 h-2.5 bg-white/20 hover:bg-white/40"
-              }`}
-            />
+              }`} />
+            </button>
           ))}
         </div>
       </div>
