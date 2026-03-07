@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import PageLayout from "@/components/PageLayout";
+import ProductsGrid from "@/components/ProductsGrid";
+import ProductsPageCTACard from "@/components/ProductsPageCTACard";
+import { buildShopifyInstallUrl } from "@/lib/utils";
 import Link from "next/link";
 import {
   FileText,
@@ -13,6 +16,7 @@ import {
   BarChart3,
   Store,
   Code2,
+  ArrowRight,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -100,42 +104,73 @@ const products = [
   },
 ];
 
+const cardClasses =
+  "h-full bg-card/50 backdrop-blur-sm border border-border/30 rounded-2xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-primary/40 hover:bg-card/70 hover:shadow-xl hover:shadow-primary/[0.07] hover:-translate-y-1";
+const iconBoxClasses =
+  "flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 border border-primary/15 text-primary mb-4 group-hover:bg-primary/20 transition-colors";
+const linkFooterClasses =
+  "mt-6 flex items-center gap-1.5 text-sm font-medium text-[#02DFA6] group-hover:gap-2.5 transition-all duration-200";
+
 export default function ProductsPage() {
   return (
     <PageLayout>
-      <div className="container mx-auto px-4 sm:px-6 py-12">
-        <h1 className="text-4xl md:text-5xl font-inter font-normal text-white text-center mb-4">
-          All products
-        </h1>
-        <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-          AI customer support, sales conversion tools, analytics, and platform integrations for your Shopify store.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {products.map((product) => (
-            <Link
-              key={product.slug}
-              href={product.href}
-              className="group block"
-            >
-              <div className="h-full bg-card border border-border rounded-2xl p-6 hover:border-primary/30 hover:bg-card/80 transition-all duration-300">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary mb-4 group-hover:bg-primary/20 transition-colors">
-                  <product.icon className="h-6 w-6" />
-                </div>
-                <h2 className="text-xl font-medium text-white mb-2 group-hover:text-[#02DFA6] transition-colors">
-                  {product.title}
-                </h2>
-                <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-                  {product.description}
-                </p>
-                <span className="inline-flex items-center gap-1 text-sm font-medium text-[#02DFA6] group-hover:gap-2 transition-all">
-                  Learn more
-                  <span className="group-hover:translate-x-0.5 transition-transform">→</span>
-                </span>
+      <section className="gradient-bg">
+        <div className="container mx-auto px-4 sm:px-6 py-14 sm:py-16">
+          <div className="scroll-fade text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-inter font-normal text-white text-center mb-4">
+              All <span className="green-highlight">products</span>
+            </h1>
+            <p className="text-lg text-muted-foreground text-center max-w-2xl mx-auto">
+              AI customer support, sales conversion tools, analytics, and platform integrations for your Shopify store.
+            </p>
+          </div>
+
+          <ProductsGrid>
+            {products.map((product, index) => {
+              const row = Math.floor(index / 3);
+              const fromRight = row % 2 === 0;
+              return (
+              <div
+                key={product.slug}
+                className={fromRight ? "scroll-fade-rl" : "scroll-fade-lr"}
+              >
+                <Link href={product.href} className="group block h-full">
+                  <div className={cardClasses}>
+                    <div>
+                      <div className={iconBoxClasses} aria-hidden="true">
+                        <product.icon className="h-6 w-6" />
+                      </div>
+                      <h2 className="text-xl font-medium text-white mb-2 group-hover:text-[#02DFA6] transition-colors">
+                        {product.title}
+                      </h2>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {product.description}
+                      </p>
+                    </div>
+                    <span className={linkFooterClasses}>
+                      Learn more
+                      <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                    </span>
+                  </div>
+                </Link>
               </div>
+            );
+            })}
+            <div className="scroll-fade-lr">
+              <ProductsPageCTACard installUrl={buildShopifyInstallUrl()} />
+            </div>
+          </ProductsGrid>
+
+          <div className="text-center mt-12">
+            <Link
+              href="/home"
+              className="text-muted-foreground hover:text-[#02DFA6] text-sm transition-colors"
+            >
+              ← Back to Home
             </Link>
-          ))}
+          </div>
         </div>
-      </div>
+      </section>
     </PageLayout>
   );
 }

@@ -90,9 +90,7 @@ const resourcesItems = [
   { icon: BookMarked, label: "Documentations", href: "/resources/docs", desc: "API guides and setup docs" },
 ];
 
-const navigationLinks = [
-  { label: "About Us", href: "/about" },
-];
+const navigationLinks: { label: string; href: string }[] = [];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);

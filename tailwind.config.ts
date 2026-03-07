@@ -14,6 +14,7 @@ export default {
   			playfair: ['Playfair Display', 'serif'],
   			grotesk: ['Space Grotesk', 'sans-serif'],
   			dmserif: ['DM Serif Display', 'serif'],
+  			roi: ['Cormorant Garamond', 'Georgia', 'Times New Roman', 'serif'],
   		},
   		colors: {
   			background: 'hsl(var(--background))',

@@ -15,7 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Core pages
     { path: "/", priority: 1.0, changeFrequency: "weekly" },
     { path: "/home/", priority: 1.0, changeFrequency: "weekly" },
-    { path: "/about/", priority: 0.7, changeFrequency: "monthly" },
 
     // Products
     { path: "/products/", priority: 0.8, changeFrequency: "monthly" },

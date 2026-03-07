@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Montserrat+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -199,6 +200,27 @@
     background: radial-gradient(ellipse at top, rgba(2, 223, 166, 0.1) 0%, transparent 50%);
   }
 
+  .roi-calculator-bg {
+    background: radial-gradient(ellipse at 30% 40%, rgba(11, 60, 47, 0.15) 0%, transparent 55%),
+      radial-gradient(ellipse at 70% 60%, rgba(2, 223, 166, 0.06) 0%, transparent 50%);
+  }
+
+  /* ROI CTA card: smooth slide up from below (noticeable); contained so no extra scrollbar */
+  .cta-card-reveal {
+    opacity: 0;
+    transform: translateY(120px);
+    transition:
+      opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    contain: layout style;
+    will-change: transform;
+  }
+  .cta-card-reveal.cta-card-visible {
+    opacity: 1;
+    transform: translateY(0);
+    will-change: auto;
+  }
+
   .phlato-gradient {
     background: linear-gradient(135deg, rgba(11, 60, 47, 0.3) 0%, rgba(2, 223, 166, 0.1) 100%);
   }
@@ -290,6 +312,38 @@
 
   .cta-button:hover .cta-arrow {
     transform: translateX(2px);
+  }
+
+  /* CTA card: horizontal shine every 4s */
+  .cta-card-shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-card-shine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.12) 40%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.12) 60%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+    animation: cta-card-shine 4s ease-in-out infinite;
+  }
+
+  @keyframes cta-card-shine {
+    0% { left: -50%; }
+    25% { left: 150%; }
+    100% { left: 150%; }
   }
 
   .sticky-cta {
@@ -440,6 +494,21 @@
   }
 
   .scroll-fade-lr.visible {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  /* Right-to-left reveal for alternating grid rows */
+  .scroll-fade-rl {
+    opacity: 0;
+    transform: translateX(40px) scale(0.96);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .scroll-fade-rl.visible {
     opacity: 1;
     transform: translateX(0) scale(1);
   }
@@ -676,6 +745,10 @@
 
   .scroll-fade-lr {
     transform: translateX(-25px) scale(0.98);
+  }
+
+  .scroll-fade-rl {
+    transform: translateX(25px) scale(0.98);
   }
 
   h1 {
@@ -941,6 +1014,7 @@
   .scroll-fade,
   .scroll-fade-item,
   .scroll-fade-lr,
+  .scroll-fade-rl,
   .scroll-fade-scale {
     opacity: 1;
     transform: none;

@@ -67,7 +67,12 @@ export function useStaggeredScrollFade(delay = 100) {
   return containerRef;
 }
 
-export function useGridStaggerFade(cols: number, itemDelay = 100, rowDelay = 250) {
+export function useGridStaggerFade(
+  cols: number,
+  itemDelay = 100,
+  rowDelay = 250,
+  threshold = 0.15
+) {
   const containerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -93,15 +98,15 @@ export function useGridStaggerFade(cols: number, itemDelay = 100, rowDelay = 250
         });
       },
       {
-        threshold: 0.05,
-        rootMargin: "0px 0px -30px 0px",
+        threshold,
+        rootMargin: "0px 0px -40px 0px",
       }
     );
 
     observer.observe(container);
 
     return () => observer.disconnect();
-  }, [cols, itemDelay, rowDelay]);
+  }, [cols, itemDelay, rowDelay, threshold]);
 
   return containerRef;
 }
