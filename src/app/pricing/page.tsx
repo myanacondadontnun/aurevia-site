@@ -199,29 +199,29 @@ export default function PricingPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main id="main-content" className="pt-28 pb-16">
+      <main id="main-content" className="pt-20 sm:pt-28 pb-12 sm:pb-16">
         {/* Page header */}
-        <section className="relative z-10 text-center px-4 sm:px-6 mb-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal text-white mb-4">
+        <section className="relative z-10 text-center px-4 sm:px-6 mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-inter font-normal text-white mb-3 sm:mb-4">
             Choose Your{" "}
             <span className="green-highlight">Plan</span>
           </h1>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
+          <p className="text-sm sm:text-lg text-muted-foreground max-w-xl mx-auto">
             All plans include a 14-day free trial. You won&apos;t be charged
             until the trial period ends.
           </p>
         </section>
 
         {/* Currency + Billing toggles */}
-        <section className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 mb-8">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+        <section className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 mb-6 sm:mb-8">
+          <div className="flex flex-col items-center justify-center gap-3 sm:gap-8 sm:flex-row">
             {/* Currency toggle */}
             <div className="flex items-center gap-2">
               <span className="text-xs text-gray-400 font-inter">Currency:</span>
               <div className="relative flex rounded-full border border-white/10 bg-black/60 p-0.5">
                 <button
                   onClick={() => setCurrency("USD")}
-                  className={`relative z-10 rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 cursor-pointer ${
+                  className={`relative z-10 rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-300 cursor-pointer min-h-[36px] ${
                     currency === "USD"
                       ? "bg-gradient-to-r from-[#02DFA6] to-[#024d3f] text-[#0d1717]"
                       : "text-gray-400 hover:text-white"
@@ -231,7 +231,7 @@ export default function PricingPage() {
                 </button>
                 <button
                   onClick={() => setCurrency("GBP")}
-                  className={`relative z-10 rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 cursor-pointer ${
+                  className={`relative z-10 rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-300 cursor-pointer min-h-[36px] ${
                     currency === "GBP"
                       ? "bg-gradient-to-r from-[#02DFA6] to-[#024d3f] text-[#0d1717]"
                       : "text-gray-400 hover:text-white"
@@ -248,7 +248,7 @@ export default function PricingPage() {
               <div className="relative flex rounded-full border border-white/10 bg-black/60 p-0.5">
                 <button
                   onClick={() => setBillingCycle("monthly")}
-                  className={`relative z-10 rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 cursor-pointer ${
+                  className={`relative z-10 rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-300 cursor-pointer min-h-[36px] ${
                     billingCycle === "monthly"
                       ? "bg-gradient-to-r from-[#02DFA6] to-[#024d3f] text-[#0d1717]"
                       : "text-gray-400 hover:text-white"
@@ -258,14 +258,14 @@ export default function PricingPage() {
                 </button>
                 <button
                   onClick={() => setBillingCycle("annual")}
-                  className={`relative z-10 rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 cursor-pointer ${
+                  className={`relative z-10 rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-300 cursor-pointer min-h-[36px] ${
                     billingCycle === "annual"
                       ? "bg-gradient-to-r from-[#02DFA6] to-[#024d3f] text-[#0d1717]"
                       : "text-gray-400 hover:text-white"
                   }`}
                 >
                   Annual
-                  <span className="ml-1 text-[10px] opacity-80">(save 2 months)</span>
+                  <span className="ml-1 text-[10px] opacity-80">(save 2mo)</span>
                 </button>
               </div>
             </div>
@@ -274,15 +274,15 @@ export default function PricingPage() {
 
         {/* Visitor estimation */}
         <section className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 mb-6">
-          <h2 className="text-lg font-semibold text-white mb-4">
+          <h2 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">
             Visitor&apos;s Estimation
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
             {visitorRanges.map((r, i) => (
               <button
                 key={i}
                 onClick={() => handleRangeSelect(i)}
-                className={`rounded-lg p-3 text-center text-xs font-medium transition-all duration-300 border cursor-pointer ${
+                className={`rounded-lg p-2.5 sm:p-3 text-center text-[11px] sm:text-xs font-medium transition-all duration-300 border cursor-pointer min-h-[44px] ${
                   selectedRange === i
                     ? "bg-gradient-to-r from-[#02DFA6] to-[#024d3f] text-[#0d1717] border-transparent"
                     : "bg-black text-white border-gray-600 hover:border-[#02DFA6]/50 hover:-translate-y-0.5"
@@ -295,11 +295,11 @@ export default function PricingPage() {
         </section>
 
         {/* Slider */}
-        <section className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 mb-10">
-          <label className="block text-sm font-medium text-white mb-3 text-center">
+        <section className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 mb-8 sm:mb-10">
+          <label className="block text-xs sm:text-sm font-medium text-white mb-3 text-center">
             Select Your Monthly Visitors
           </label>
-          <div className="relative px-4 mb-3">
+          <div className="relative px-2 sm:px-4 mb-3">
             <input
               type="range"
               min={range.min}
@@ -308,28 +308,28 @@ export default function PricingPage() {
               value={isEnterprise ? range.value : sliderValue}
               disabled={isEnterprise}
               onChange={(e) => setSliderValue(parseInt(e.target.value))}
-              className="w-full h-2 appearance-none cursor-pointer rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full h-2.5 sm:h-2 appearance-none cursor-pointer rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
               style={{
                 background: `linear-gradient(to right, #024d3f, #02DFA6, #024d3f)`,
               }}
             />
-            <div className="flex justify-between mt-2 text-xs text-gray-500">
+            <div className="flex justify-between mt-2 text-[11px] sm:text-xs text-gray-500">
               <span>{formatSliderLabel(range.min)}</span>
               <span>{formatSliderLabel(range.max)}</span>
             </div>
           </div>
           <div className="text-center">
-            <span className="text-2xl font-semibold text-[#02DFA6]">
+            <span className="text-xl sm:text-2xl font-semibold text-[#02DFA6]">
               {displayVisitors}
             </span>
-            <span className="text-sm text-gray-400 ml-2">monthly visitors</span>
+            <span className="text-xs sm:text-sm text-gray-400 ml-2">monthly visitors</span>
           </div>
         </section>
 
         {/* Plan cards */}
-        <section className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 mb-16">
+        <section className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 mb-12 sm:mb-16">
           <div
-            className={`grid gap-6 ${
+            className={`grid gap-4 sm:gap-6 ${
               visiblePlans.length === 1
                 ? "grid-cols-1 max-w-md mx-auto"
                 : visiblePlans.length === 2
@@ -363,7 +363,7 @@ export default function PricingPage() {
               return (
                 <div
                   key={plan.id}
-                  className={`relative rounded-lg p-6 transition-all duration-300 backdrop-blur-md border ${
+                  className={`relative rounded-xl p-5 sm:p-6 transition-all duration-300 backdrop-blur-md border ${
                     isRecommended
                       ? "border-[#02DFA6]"
                       : "border-white/10"
@@ -376,29 +376,29 @@ export default function PricingPage() {
                   }}
                 >
                   {isRecommended && visiblePlans.length > 1 && (
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-[#02DFA6] to-[#024d3f] text-[#0d1717] text-xs font-semibold whitespace-nowrap">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-gradient-to-r from-[#02DFA6] to-[#024d3f] text-[#0d1717] text-[11px] sm:text-xs font-semibold whitespace-nowrap">
                       Recommended for you
                     </div>
                   )}
 
-                  <div className="flex flex-col h-full min-h-[480px]">
+                  <div className="flex flex-col h-full min-h-[400px] sm:min-h-[480px]">
                     <div className="text-center">
-                      <h3 className="text-lg font-semibold text-white mb-3 font-inter">
+                      <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3 font-inter">
                         {plan.name}
                       </h3>
 
-                      <div className="mb-3 font-inter">
+                      <div className="mb-2 sm:mb-3 font-inter">
                         {rawPrice === "Custom" ? (
                           <>
-                            <span className="text-2xl text-white">Custom</span>
-                            <span className="text-sm text-gray-400 ml-1 block">
+                            <span className="text-xl sm:text-2xl text-white">Custom</span>
+                            <span className="text-xs sm:text-sm text-gray-400 ml-1 block">
                               Pricing
                             </span>
                           </>
                         ) : (
                           <>
                             <span
-                              className={`text-4xl ${
+                              className={`text-3xl sm:text-4xl ${
                                 isRecommended
                                   ? "text-[#02DFA6]"
                                   : "text-white"
@@ -406,16 +406,16 @@ export default function PricingPage() {
                             >
                               {displayPrice}
                             </span>
-                            <span className="text-sm text-gray-400 ml-1">
+                            <span className="text-xs sm:text-sm text-gray-400 ml-1">
                               {perLabel}
                             </span>
                             {billingCycle === "annual" && rawPrice > 0 && (
-                              <div className="text-xs text-[#02DFA6]/70 mt-1">
+                              <div className="text-[11px] sm:text-xs text-[#02DFA6]/70 mt-1">
                                 {sym}{formatNumber(convertPrice(rawPrice as number, currency))}/mo equivalent
                               </div>
                             )}
                             {perKLabel && (
-                              <div className="text-xs text-gray-400 mt-1">
+                              <div className="text-[11px] sm:text-xs text-gray-400 mt-1">
                                 {perKLabel}
                               </div>
                             )}
@@ -423,17 +423,17 @@ export default function PricingPage() {
                         )}
                       </div>
 
-                      <p className="text-xs text-gray-300 mb-4">
+                      <p className="text-[11px] sm:text-xs text-gray-300 mb-3 sm:mb-4">
                         {plan.description}
                       </p>
                     </div>
 
-                    <div className="mb-6 flex-grow">
-                      <ul className="space-y-2">
+                    <div className="mb-4 sm:mb-6 flex-grow">
+                      <ul className="space-y-1.5 sm:space-y-2">
                         {plan.features.map((feature, i) => (
                           <li key={i} className="flex items-start">
                             <svg
-                              className="w-4 h-4 text-[#02DFA6] mr-2 flex-shrink-0 mt-0.5"
+                              className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#02DFA6] mr-1.5 sm:mr-2 flex-shrink-0 mt-0.5"
                               fill="currentColor"
                               viewBox="0 0 20 20"
                             >
@@ -443,7 +443,7 @@ export default function PricingPage() {
                                 clipRule="evenodd"
                               />
                             </svg>
-                            <span className="text-xs text-gray-300">
+                            <span className="text-[11px] sm:text-xs text-gray-300">
                               {feature}
                             </span>
                           </li>
@@ -456,7 +456,7 @@ export default function PricingPage() {
                         href={SHOPIFY_APP_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block w-full py-2.5 px-6 text-white text-sm font-medium rounded-xl text-center transition-all duration-300 active:scale-95 hover:scale-[1.02] hover:-translate-y-[1px]"
+                        className="block w-full py-3 px-6 text-white text-sm font-medium rounded-xl text-center transition-all duration-300 active:scale-95 hover:scale-[1.02] hover:-translate-y-[1px] min-h-[44px] flex items-center justify-center"
                         style={{
                           background:
                             "linear-gradient(135deg, #0b3c2f 0%, #089357 50%, #07824d 100%)",
@@ -475,8 +475,8 @@ export default function PricingPage() {
         </section>
 
         {/* Pricing note */}
-        <section className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 text-center mb-16">
-          <p className="text-xs text-gray-500">
+        <section className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 text-center mb-12 sm:mb-16">
+          <p className="text-[11px] sm:text-xs text-gray-500">
             Prices calculated at 0.5 messages per visitor.
             {currency === "GBP" && " GBP prices are approximate based on current exchange rates."}
             {" "}All charges billed via the Shopify App Store. Cancel anytime.
@@ -484,15 +484,14 @@ export default function PricingPage() {
         </section>
 
         {/* ROI Calculator CTA */}
-        <section className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 mb-20">
+        <section className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 mb-14 sm:mb-20">
           <div
-            className="relative rounded-2xl sm:rounded-[2rem] overflow-hidden px-6 py-12 sm:px-10 sm:py-16 md:px-14 md:py-20 text-center border border-white/[0.06]"
+            className="relative rounded-2xl sm:rounded-[2rem] overflow-hidden px-5 py-10 sm:px-10 sm:py-16 md:px-14 md:py-20 text-center border border-white/[0.06]"
             style={{
               background:
                 "linear-gradient(135deg, #0b3c2f 0%, rgba(2, 223, 166, 0.18) 50%, rgba(11, 60, 47, 0.4) 100%)",
             }}
           >
-            {/* Wave overlays matching screenshot aesthetic */}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
@@ -515,15 +514,15 @@ export default function PricingPage() {
               <path d="M-30 340 Q200 300 450 340 Q650 380 830 340" stroke="white" strokeWidth="0.4" fill="none" />
             </svg>
             <div className="relative z-10">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-roi font-normal text-white mb-3 tracking-tight">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-roi font-normal text-white mb-3 tracking-tight">
                 Wondering if Aurevia is worth it?
               </h2>
-              <p className="text-sm sm:text-base text-gray-300 max-w-lg mx-auto mb-8">
+              <p className="text-xs sm:text-base text-gray-300 max-w-lg mx-auto mb-6 sm:mb-8">
                 See exactly how much additional revenue Aurevia could unlock for your store.
               </p>
               <Link
                 href="/resources/roi-calculator"
-                className="inline-flex items-center justify-center text-white font-medium px-8 py-3.5 text-base rounded-xl min-h-[48px] transition-all no-underline hover:scale-[1.02] active:scale-95"
+                className="inline-flex items-center justify-center text-white font-medium px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-base rounded-xl min-h-[44px] sm:min-h-[48px] transition-all no-underline hover:scale-[1.02] active:scale-95"
                 style={{
                   background:
                     "linear-gradient(135deg, #0b3c2f 0%, #089357 50%, #07824d 100%)",
@@ -536,25 +535,25 @@ export default function PricingPage() {
         </section>
 
         {/* Testimonial */}
-        <section className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 mb-16">
+        <section className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 mb-12 sm:mb-16">
           <div
-            className="rounded-2xl sm:rounded-3xl px-6 py-10 sm:px-12 sm:py-14 text-center"
+            className="rounded-2xl sm:rounded-3xl px-5 py-8 sm:px-12 sm:py-14 text-center"
             style={{
               background:
                 "linear-gradient(135deg, rgba(29, 39, 39, 0.6) 0%, rgba(13, 23, 23, 0.4) 100%)",
             }}
           >
             {/* Quote icon */}
-            <div className="flex justify-center mb-6">
-              <div className="w-12 h-12 rounded-full bg-white/[0.08] flex items-center justify-center">
-                <svg className="w-6 h-6 text-[#02DFA6]" fill="currentColor" viewBox="0 0 24 24">
+            <div className="flex justify-center mb-4 sm:mb-6">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/[0.08] flex items-center justify-center">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#02DFA6]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609L9.978 5.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H0z" />
                 </svg>
               </div>
             </div>
 
-            <blockquote className="mb-8">
-              <p className="text-xl sm:text-2xl md:text-3xl font-playfair italic text-white font-medium leading-snug tracking-tight max-w-3xl mx-auto">
+            <blockquote className="mb-6 sm:mb-8">
+              <p className="text-base sm:text-2xl md:text-3xl font-playfair italic text-white font-medium leading-snug tracking-tight max-w-3xl mx-auto">
                 &ldquo;We installed <span className="text-[#02DFA6]">Aurevia</span> on a Friday and by Monday our
                 support tickets had dropped by 40%. The AI doesn&apos;t just answer questions — it actually{" "}
                 <span className="text-[#02DFA6] italic">sells</span>. We&apos;ve seen a 22% uplift in
@@ -580,20 +579,34 @@ export default function PricingPage() {
         input[type="range"]::-webkit-slider-thumb {
           -webkit-appearance: none;
           appearance: none;
-          width: 18px;
-          height: 18px;
+          width: 24px;
+          height: 24px;
           border-radius: 50%;
           background: #02dfa6;
           cursor: pointer;
-          border: 2px solid #0d1717;
+          border: 3px solid #0d1717;
+          box-shadow: 0 0 8px rgba(2, 223, 166, 0.3);
         }
         input[type="range"]::-moz-range-thumb {
-          width: 18px;
-          height: 18px;
+          width: 24px;
+          height: 24px;
           border-radius: 50%;
           background: #02dfa6;
           cursor: pointer;
-          border: 2px solid #0d1717;
+          border: 3px solid #0d1717;
+          box-shadow: 0 0 8px rgba(2, 223, 166, 0.3);
+        }
+        @media (min-width: 640px) {
+          input[type="range"]::-webkit-slider-thumb {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #0d1717;
+          }
+          input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #0d1717;
+          }
         }
       `}</style>
     </div>

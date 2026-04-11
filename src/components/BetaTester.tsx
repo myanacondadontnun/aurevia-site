@@ -29,20 +29,20 @@ export default function BetaTester() {
   }, [showForm]);
 
   return (
-    <section id="beta" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
+    <section id="beta" className="py-12 sm:py-20 md:py-24 px-4 sm:px-6">
       <div className="container mx-auto">
         <Card
           ref={cardRef as React.RefObject<HTMLDivElement>}
           className="scroll-fade bg-gradient-to-br from-primary/10 via-card to-secondary/10 border-primary/20 max-w-4xl mx-auto"
         >
-          <CardContent className="p-6 sm:p-8 md:p-12 text-center">
+          <CardContent className="p-5 sm:p-8 md:p-12 text-center">
             <div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-inter font-normal mb-4 sm:mb-6 text-white">
+              <h2 className="text-xl sm:text-3xl md:text-4xl font-inter font-normal mb-3 sm:mb-6 text-white">
                 We're Handpicking Merchants to{" "}
                 <span className="green-highlight">Shape What's Next</span>
               </h2>
 
-              <p className="text-base sm:text-lg font-light text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-lg font-light text-muted-foreground mb-5 sm:mb-8 max-w-2xl mx-auto leading-relaxed">
                 This isn't a waitlist. We're looking for Shopify merchants who want to
                 co-build the future of AI selling — and get rewarded for it.
               </p>

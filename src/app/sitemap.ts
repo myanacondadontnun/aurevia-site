@@ -53,6 +53,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/resources/", priority: 0.7, changeFrequency: "weekly" },
     { path: "/resources/roi-calculator/", priority: 0.8, changeFrequency: "monthly" },
     { path: "/resources/blogs/", priority: 0.7, changeFrequency: "weekly" },
+    { path: "/resources/review-my-shopify/", priority: 0.7, changeFrequency: "monthly" },
+    { path: "/resources/blogs/reduce-checkout-abandonment-shopify/", priority: 0.7, changeFrequency: "weekly" },
+    { path: "/resources/blogs/chatbot-brand-voice/", priority: 0.7, changeFrequency: "weekly" },
+    { path: "/resources/blogs/increase-aov-shopify-without-discounts/", priority: 0.7, changeFrequency: "weekly" },
+    { path: "/resources/blogs/shopify-ecommerce-funnel-analytics/", priority: 0.7, changeFrequency: "weekly" },
+    { path: "/resources/blogs/24-7-ai-support-after-hours-sales/", priority: 0.7, changeFrequency: "weekly" },
+    { path: "/resources/blogs/reduce-repetitive-support-questions-shopify/", priority: 0.7, changeFrequency: "weekly" },
     { path: "/resources/docs/", priority: 0.7, changeFrequency: "monthly" },
     { path: "/resources/ai-comparisons/", priority: 0.7, changeFrequency: "monthly" },
   ];

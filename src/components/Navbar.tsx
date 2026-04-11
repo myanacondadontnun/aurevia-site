@@ -185,7 +185,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className="fixed top-4 left-0 right-0 z-50 px-2 sm:px-4 md:px-6"
+      className="fixed top-2 sm:top-4 left-0 right-0 z-50 px-2 sm:px-4 md:px-6"
       id="navbar"
       aria-label="Main navigation"
     >
@@ -197,7 +197,7 @@ export default function Navbar() {
           borderRadius: "1.5rem",
         }}
       >
-        <div className={`flex items-center justify-between w-full transition-all duration-500 ${isScrolled ? "px-3 py-2.5 sm:px-4 sm:py-3" : "px-4 py-3 sm:px-6 sm:py-4"}`}>
+        <div className={`flex items-center justify-between w-full transition-all duration-500 ${isScrolled ? "px-2.5 py-2 sm:px-4 sm:py-3" : "px-3 py-2.5 sm:px-6 sm:py-4"}`}>
           <Link href="/home" className="flex items-center flex-shrink-0 lg:w-48" aria-label="Aurevia.io home">
             <img
               src="/images/Logo_wo_bg.png"
@@ -461,7 +461,7 @@ export default function Navbar() {
           <div
             id="mobile-menu"
             role="menu"
-            className="lg:hidden border-t border-border/30 bg-background/95 backdrop-blur-md rounded-b-2xl max-h-[70vh] overflow-y-auto"
+            className="lg:hidden border-t border-border/30 bg-background/95 backdrop-blur-md rounded-b-2xl max-h-[75vh] overflow-y-auto overscroll-contain"
           >
             <div className="px-4 py-4 space-y-1">
               {/* Products expandable */}

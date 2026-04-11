@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
 import PageLayout from "@/components/PageLayout";
-import Link from "next/link";
+import BlogListing from "@/components/BlogListing";
 
 export const metadata: Metadata = {
-  title: "Blogs | Aurevia Resources",
-  description: "Latest insights and tips on AI sales co-pilots for e-commerce.",
+  title: "Blog | Aurevia Resources",
+  description:
+    "Research-backed guides on AI sales, Shopify optimization, checkout abandonment, and e-commerce growth strategies.",
+  alternates: {
+    canonical: "/resources/blogs",
+  },
+  openGraph: {
+    title: "Blog | Aurevia",
+    description:
+      "Research-backed guides on AI sales, Shopify optimization, and e-commerce growth.",
+    url: "https://aurevia.io/resources/blogs",
+  },
 };
 
 export default function BlogsPage() {
   return (
     <PageLayout>
-      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
-        <Link href="/resources" className="text-muted-foreground hover:text-[#02DFA6] text-sm mb-6 inline-block">
-          ← Back to Resources
-        </Link>
-        <h1 className="text-4xl md:text-5xl font-inter font-normal text-white mb-6">
-          Blogs
-        </h1>
-        <p className="text-lg text-muted-foreground">
-          Latest insights and tips on AI sales co-pilots, Shopify optimization, and e-commerce growth.
-        </p>
-      </div>
+      <BlogListing />
     </PageLayout>
   );
 }

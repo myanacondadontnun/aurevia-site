@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { useGridStaggerFade } from "./ScrollAnimations";
-import { SHOPIFY_APP_URL } from "@/lib/utils";
 import {
   ShoppingCart,
   Palette,
@@ -22,7 +22,7 @@ const challenges = [
     full:
       " No reason. No goodbye. Just another abandoned cart notification you've learned to ignore. It stings every time, because you know that was a real person ready to buy.",
     icon: ShoppingCart,
-    link: SHOPIFY_APP_URL,
+    link: "/resources/blogs/reduce-checkout-abandonment-shopify/",
   },
   {
     problem: "Your Chatbot Sounds Nothing Like You",
@@ -31,7 +31,7 @@ const challenges = [
     full:
       " it feels like a stranger hijacked your store. So robotic, so generic. Customers notice. They disengage. And you're left wondering if automation is even worth it.",
     icon: Palette,
-    link: SHOPIFY_APP_URL,
+    link: "/resources/blogs/chatbot-brand-voice/",
   },
   {
     problem: "Your Average Order Won't Budge",
@@ -40,7 +40,7 @@ const challenges = [
     full:
       " They don't. Your AOV flatlines month after month while acquisition costs keep climbing. You're working harder to earn less on every single order.",
     icon: DollarSign,
-    link: SHOPIFY_APP_URL,
+    link: "/resources/blogs/increase-aov-shopify-without-discounts/",
   },
   {
     problem: "You're Making Decisions in the Dark",
@@ -49,7 +49,7 @@ const challenges = [
     full:
       " Your gut says something's broken, but the data isn't there. So you guess. And guessing at this stage costs real money.",
     icon: BarChart2,
-    link: SHOPIFY_APP_URL,
+    link: "/resources/blogs/shopify-ecommerce-funnel-analytics/",
   },
   {
     problem: "You're Losing Customers You Never Even Reached",
@@ -58,7 +58,7 @@ const challenges = [
     full:
       " They moved on. You'll never know they existed. Multiply that by every timezone, every language you don't speak — that's revenue you're silently leaving behind.",
     icon: Globe,
-    link: SHOPIFY_APP_URL,
+    link: "/resources/blogs/24-7-ai-support-after-hours-sales/",
   },
   {
     problem: "You're Drowning in the Same Questions",
@@ -67,7 +67,7 @@ const challenges = [
     full:
       " not to copy-paste tracking links. But every hour you spend on repetitive tickets is an hour stolen from the work that actually grows your store.",
     icon: HelpCircle,
-    link: SHOPIFY_APP_URL,
+    link: "/resources/blogs/reduce-repetitive-support-questions-shopify/",
   },
 ];
 
@@ -81,8 +81,8 @@ function ChallengeCard({
 
   return (
     <Card className="challenge-card scroll-fade-lr bg-transparent border border-border/50 hover:border-primary/30 transition-all duration-300 group">
-      <CardContent className="p-6 sm:p-8 h-full flex flex-col relative">
-        <div className="mb-4 sm:mb-6">
+      <CardContent className="p-4 sm:p-8 h-full flex flex-col relative">
+        <div className="mb-3 sm:mb-6">
           <Icon className="challenge-icon w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground group-hover:text-[#02DFA6] transition-colors duration-300" aria-hidden="true" />
         </div>
         <h3 className="text-lg sm:text-xl font-inter font-normal text-white mb-3 sm:mb-4 group-hover:text-[#02DFA6] transition-colors duration-300">
@@ -108,15 +108,13 @@ function ChallengeCard({
           )}
         </div>
 
-        <a
+        <Link
           href={challenge.link}
-          target="_blank"
-          rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 mt-5 text-xs text-white/30 hover:text-white/60 transition-colors duration-200 underline underline-offset-2 decoration-white/15 hover:decoration-white/40"
         >
-          Learn more
+          Read the full guide
           <ArrowRight className="w-3 h-3" aria-hidden="true" />
-        </a>
+        </Link>
 
         <div className="card-hover-gradient"></div>
       </CardContent>
@@ -128,21 +126,21 @@ export default function Challenges() {
   const containerRef = useGridStaggerFade(3, 120, 200);
 
   return (
-    <section id="benefits" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
+    <section id="benefits" className="py-12 sm:py-20 md:py-24 px-4 sm:px-6">
       <div className="container mx-auto">
-        <div className="text-center mb-12 sm:mb-16 scroll-fade">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal mb-4 sm:mb-6 text-white">
+        <div className="text-center mb-8 sm:mb-16 scroll-fade">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-inter font-normal mb-3 sm:mb-6 text-white">
             Sound Familiar? You&apos;re Not the{" "}
             <span className="green-highlight">Only One Struggling</span>
           </h2>
-          <p className="text-lg sm:text-xl font-light text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-sm sm:text-xl font-light text-muted-foreground max-w-3xl mx-auto">
             You&apos;re not alone — and there&apos;s a way through.
           </p>
         </div>
 
         <div
           ref={containerRef as React.RefObject<HTMLDivElement>}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 max-w-7xl mx-auto"
         >
           {challenges.map((challenge, index) => (
             <ChallengeCard key={index} challenge={challenge} />

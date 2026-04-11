@@ -166,7 +166,7 @@ export default function Testimonials() {
       role="region"
       aria-roledescription="carousel"
       aria-label="Customer testimonials"
-      className="scroll-fade relative py-14 sm:py-16 md:py-20 px-4 sm:px-6 overflow-hidden"
+      className="scroll-fade relative py-10 sm:py-16 md:py-20 px-4 sm:px-6 overflow-hidden"
       style={{
         background:
           "linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(0 0% 6%) 50%, hsl(0 0% 4%) 100%)",
@@ -200,10 +200,10 @@ export default function Testimonials() {
           aria-live="polite"
           aria-atomic="true"
         >
-          <figure className="flex flex-col lg:flex-row items-center gap-10 lg:gap-14">
+          <figure className="flex flex-col lg:flex-row items-center gap-6 sm:gap-10 lg:gap-14">
             {/* Left -- Image or Monogram card */}
             <div className="w-full lg:w-5/12 flex-shrink-0">
-              <div className="relative aspect-[4/5] max-w-[320px] mx-auto rounded-2xl overflow-hidden border border-white/[0.06]">
+              <div className="relative aspect-[4/5] max-w-[240px] sm:max-w-[320px] mx-auto rounded-2xl overflow-hidden border border-white/[0.06]">
                 {t.image ? (
                   <img
                     src={t.image}
@@ -264,8 +264,8 @@ export default function Testimonials() {
             </div>
 
             {/* Right -- Quote */}
-            <div className="w-full lg:w-7/12">
-              <blockquote className="mb-8 sm:mb-10">
+            <div className="w-full lg:w-7/12 text-center lg:text-left">
+              <blockquote className="mb-6 sm:mb-10">
                 <p
                   className={`${getQuoteSize(t.quote.length)} ${t.fontClass} text-white font-medium tracking-tight leading-snug`}
                 >
@@ -273,7 +273,7 @@ export default function Testimonials() {
                 </p>
               </blockquote>
 
-              <figcaption className="flex items-center gap-4">
+              <figcaption className="flex items-center justify-center lg:justify-start gap-3 sm:gap-4">
                 <span className="text-sm sm:text-base font-inter font-normal tracking-widest uppercase text-white/80">
                   {t.company}
                 </span>
@@ -300,7 +300,7 @@ export default function Testimonials() {
         </div>
 
         {/* Dot navigation */}
-        <div className="flex items-center justify-center gap-1 sm:gap-2.5 mt-12 sm:mt-14" role="tablist" aria-label="Testimonial navigation">
+        <div className="flex items-center justify-center gap-0.5 sm:gap-2.5 mt-8 sm:mt-14" role="tablist" aria-label="Testimonial navigation">
           {testimonials.map((_, i) => (
             <button
               key={i}

@@ -55,13 +55,13 @@ export default function Stats() {
   return (
     <section
       ref={sectionRef as React.RefObject<HTMLElement>}
-      className="scroll-fade py-14 sm:py-16 md:py-20 px-4 sm:px-6 relative"
+      className="scroll-fade py-10 sm:py-16 md:py-20 px-4 sm:px-6 relative"
     >
       <div className="container mx-auto max-w-6xl">
-        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+        <div className="flex flex-col lg:flex-row items-center gap-6 sm:gap-10 lg:gap-16">
           {/* Left — headline */}
-          <div className="lg:w-5/12">
-            <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] md:leading-[1.2] font-inter font-normal text-white">
+          <div className="lg:w-5/12 text-center lg:text-left">
+            <h2 className="text-2xl sm:text-4xl md:text-[2.75rem] md:leading-[1.2] font-inter font-normal text-white">
               Somewhere right now, a customer left your store.{" "}
               <span className="green-highlight">AI would have saved that sale.</span>
             </h2>
@@ -73,7 +73,7 @@ export default function Stats() {
               {stats.map((stat, index) => (
                 <div
                   key={index}
-                  className="bg-background p-6 sm:p-8 md:p-10 text-center"
+                  className="bg-background p-4 sm:p-8 md:p-10 text-center"
                   aria-label={`${stat.number} ${stat.label}`}
                 >
                   <div
@@ -81,7 +81,7 @@ export default function Stats() {
                     className="stat-number-wrap"
                     aria-live="polite"
                   >
-                    <span className="stat-number-inner text-4xl sm:text-5xl md:text-6xl font-normal green-highlight inline-block" aria-hidden="true">
+                    <span className="stat-number-inner text-3xl sm:text-5xl md:text-6xl font-normal green-highlight inline-block" aria-hidden="true">
                       {stat.number}
                     </span>
                   </div>

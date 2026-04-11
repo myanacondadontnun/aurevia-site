@@ -88,7 +88,7 @@ export default function ContactUs() {
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 relative overflow-hidden">
+    <section id="contact" className="py-12 sm:py-20 md:py-24 px-4 sm:px-6 relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-background/50"></div>
       
@@ -108,15 +108,15 @@ export default function ContactUs() {
           </h2>
           
           {/* Mobile Header */}
-          <h2 className="md:hidden text-3xl sm:text-4xl font-normal mb-4 sm:mb-6 text-white">
+          <h2 className="md:hidden text-2xl sm:text-4xl font-normal mb-3 sm:mb-6 text-white">
             Ready to <span className="green-highlight">sell on autopilot?</span>
           </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm sm:text-xl text-muted-foreground max-w-2xl mx-auto">
             Tell us about your store and we'll show you exactly how Aurevia fits.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 md:gap-12 items-start">
           {/* Contact Information */}
           <div className="space-y-6 sm:space-y-8">
             <div>
@@ -196,7 +196,7 @@ export default function ContactUs() {
                       </div>
                     )}
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                           Full Name *

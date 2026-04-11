@@ -172,15 +172,15 @@ export default function Industries() {
 
   return (
     <div className="text-white font-inter" style={{backgroundColor: '#080808'}}>
-      <section id="industries" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6" style={{backgroundColor: '#080808'}} aria-label="Industry demos">
+      <section id="industries" className="py-10 sm:py-16 md:py-20 px-4 sm:px-6" style={{backgroundColor: '#080808'}} aria-label="Industry demos">
         <div className="container mx-auto">
           {/* Header */}
-          <div className="text-center mb-6 sm:mb-8 scroll-fade">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal mb-3 sm:mb-4 text-white">
+          <div className="text-center mb-5 sm:mb-8 scroll-fade">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal mb-2 sm:mb-4 text-white">
               Stores Like Yours Are Already{" "}
               <span className="green-highlight">Selling More</span>
             </h2>
-            <p className="text-base sm:text-lg font-light text-muted-foreground max-w-xl mx-auto">
+            <p className="text-xs sm:text-lg font-light text-muted-foreground max-w-xl mx-auto">
               See how merchants in your niche are turning conversations into conversions — on autopilot.
             </p>
           </div>
@@ -199,7 +199,7 @@ export default function Industries() {
                   role="tab"
                   aria-selected={index === activeIndex}
                   aria-controls={`industry-panel-${index}`}
-                  className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                  className={`px-3 py-2 sm:px-4 rounded-full text-[11px] sm:text-sm font-medium transition-all duration-300 whitespace-nowrap min-h-[36px] ${
                     index === activeIndex
                       ? "bg-[#02DFA6]/10 text-[#02DFA6] shadow-[0_0_12px_rgba(2,223,166,0.08)]"
                       : "text-white/40 hover:text-white/60"
@@ -326,7 +326,7 @@ export default function Industries() {
                   {industries.map((industry, index) => (
                     <div key={industry.title} className="w-full flex-shrink-0 px-1" role="tabpanel" aria-label={`${industry.title} demo`}>
                       <div className="rounded-2xl overflow-hidden border border-white/[0.06] bg-[#0c0c0c]">
-                        <div className="relative aspect-[9/13]">
+                        <div className="relative aspect-[9/14]">
                           <video
                             ref={getMobileVideoRef(index)}
                             muted
@@ -348,12 +348,12 @@ export default function Industries() {
                             />
                           </div>
                         </div>
-                        <div className="p-4">
-                          <div className="flex items-start gap-3">
-                            <span className="text-2xl font-normal text-[#02DFA6] shrink-0 leading-none">
+                        <div className="p-3 sm:p-4">
+                          <div className="flex items-start gap-2.5">
+                            <span className="text-xl sm:text-2xl font-normal text-[#02DFA6] shrink-0 leading-none">
                               {industry.stat}
                             </span>
-                            <p className="text-[13px] leading-[1.55] text-white/55 pt-0.5">
+                            <p className="text-[12px] sm:text-[13px] leading-[1.5] text-white/55 pt-0.5">
                               {industry.statDesc}
                             </p>
                           </div>

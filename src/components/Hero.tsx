@@ -20,10 +20,10 @@ export default function Hero() {
     <section
       id="hero"
       role="banner"
-      className="min-h-0 lg:min-h-[100dvh] flex items-center justify-center pt-24 sm:pt-28 pb-8 sm:pb-12 lg:pt-24 lg:pb-8 gradient-bg overflow-hidden"
+      className="min-h-0 lg:min-h-[100dvh] flex items-center justify-center pt-20 sm:pt-28 pb-6 sm:pb-12 lg:pt-24 lg:pb-8 gradient-bg overflow-hidden"
     >
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-0">
+        <div className="flex flex-col lg:flex-row items-center gap-8 sm:gap-10 lg:gap-0">
           <div className="w-full lg:w-1/2 text-center lg:text-left animate-fade-in lg:pl-8 xl:pl-16">
             <div className="flex justify-center lg:justify-start mb-5 sm:mb-6">
               <div className={pillClass}>
@@ -32,12 +32,12 @@ export default function Hero() {
               </div>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] lg:text-5xl font-inter font-normal mb-3 sm:mb-5 leading-tight text-white">
+            <h1 className="text-[1.65rem] sm:text-4xl md:text-[2.75rem] lg:text-5xl font-inter font-normal mb-3 sm:mb-5 leading-[1.2] text-white">
               Shopify AI Sales Co-Pilot{" "}
               <span className="green-highlight">Revenue on Autopilot</span>
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl font-light text-muted-foreground mb-8 sm:mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-sm sm:text-lg md:text-xl font-light text-muted-foreground mb-6 sm:mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
               Answer questions, recommend products and recover carts in real time.
               No scripts, no coding, fully trained on your brand.
             </p>
@@ -77,8 +77,10 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="flex w-full lg:w-1/2 items-center justify-center">
-            <ChatDemo />
+          <div className="flex w-full lg:w-1/2 items-center justify-center flex-shrink-0">
+            <div className="w-full flex items-center justify-center">
+              <ChatDemo />
+            </div>
           </div>
         </div>
       </div>

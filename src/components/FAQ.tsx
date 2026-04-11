@@ -105,15 +105,15 @@ function FaqChatTurn({
   const aId = `faq-a-${index}`;
 
   return (
-    <div ref={wrapRef} className="space-y-3 sm:space-y-4" role="group" aria-labelledby={qId}>
+    <div ref={wrapRef} className="space-y-2.5 sm:space-y-4" role="group" aria-labelledby={qId}>
       <div className="flex justify-end">
         <div
           id={qId}
           className={[
-            "max-w-[min(100%,36rem)] rounded-2xl rounded-tr-md border px-4 py-3 sm:px-5 sm:py-4 font-inter text-[0.95rem] sm:text-base leading-snug",
+            "max-w-[min(92%,36rem)] sm:max-w-[min(100%,36rem)] rounded-2xl rounded-tr-md border px-3.5 py-2.5 sm:px-5 sm:py-4 font-inter text-[0.82rem] sm:text-base leading-snug",
             "border-white/25 bg-white/[0.09] text-white shadow-[0_8px_30px_rgba(0,0,0,0.35)]",
             "transition-all duration-500 ease-out",
-            questionVisible ? "translate-x-0 opacity-100" : "pointer-events-none translate-x-6 opacity-0 sm:translate-x-10",
+            questionVisible ? "translate-x-0 opacity-100" : "pointer-events-none translate-x-4 opacity-0 sm:translate-x-10",
           ].join(" ")}
         >
           <span className="sr-only">Question {index + 1}. </span>
@@ -126,10 +126,10 @@ function FaqChatTurn({
           role="region"
           aria-labelledby={qId}
           className={[
-            "max-w-[min(100%,36rem)] rounded-2xl rounded-tl-md border px-4 py-3 sm:px-5 sm:py-4 font-inter font-normal text-[0.95rem] sm:text-base leading-relaxed",
+            "max-w-[min(92%,36rem)] sm:max-w-[min(100%,36rem)] rounded-2xl rounded-tl-md border px-3.5 py-2.5 sm:px-5 sm:py-4 font-inter font-normal text-[0.82rem] sm:text-base leading-relaxed",
             "border-emerald-400/35 bg-[#062a22]/90 text-zinc-50 shadow-[0_8px_28px_rgba(0,0,0,0.28)]",
             "transition-all duration-500 ease-out",
-            answerVisible ? "translate-x-0 opacity-100" : "pointer-events-none -translate-x-6 opacity-0 sm:-translate-x-10",
+            answerVisible ? "translate-x-0 opacity-100" : "pointer-events-none -translate-x-4 opacity-0 sm:-translate-x-10",
           ].join(" ")}
         >
           <p className="mb-1.5 text-[0.7rem] font-medium uppercase tracking-wide text-emerald-300/95">
@@ -150,7 +150,7 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="faq-gradient py-16 sm:py-20 md:py-24 px-4 sm:px-6"
+      className="faq-gradient py-12 sm:py-20 md:py-24 px-4 sm:px-6"
       aria-labelledby="faq-heading"
     >
       <div className="container mx-auto max-w-4xl">
@@ -158,11 +158,11 @@ export default function FAQ() {
           ref={headerRef as React.RefObject<HTMLDivElement>}
           className="text-center mb-10 sm:mb-12 md:mb-14 scroll-fade"
         >
-          <h2 id="faq-heading" className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal mb-4 sm:mb-6 text-white">
+          <h2 id="faq-heading" className="text-2xl sm:text-4xl md:text-5xl font-inter font-normal mb-3 sm:mb-6 text-white">
             You&apos;ve Got Questions.{" "}
             <span className="green-highlight">We&apos;ve Already Answered Them</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl font-light text-zinc-200">
+          <p className="text-sm sm:text-lg md:text-xl font-light text-zinc-200">
             Merchants ask us these all the time — scroll the conversation below, or open everything at once.
           </p>
           {showAllAtOnce ? (
@@ -179,7 +179,7 @@ export default function FAQ() {
         </div>
 
         <ol
-          className="m-0 list-none space-y-8 sm:space-y-10 rounded-2xl border border-white/10 bg-black/55 p-4 sm:p-6 md:p-8 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+          className="m-0 list-none space-y-6 sm:space-y-10 rounded-xl sm:rounded-2xl border border-white/10 bg-black/55 p-3 sm:p-6 md:p-8 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
           aria-label="Frequently asked questions shown as a chat conversation"
         >
           {faqs.map((faq, index) => (

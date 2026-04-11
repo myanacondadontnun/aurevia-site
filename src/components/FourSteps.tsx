@@ -38,30 +38,30 @@ export default function FourSteps() {
   const containerRef = useGridStaggerFade(2, 150, 250);
 
   return (
-    <section id="how-it-works" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
+    <section id="how-it-works" className="py-12 sm:py-20 md:py-24 px-4 sm:px-6">
       <div className="container mx-auto">
-        <div className="text-center mb-12 sm:mb-16 scroll-fade">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal mb-3 sm:mb-4 text-white">
+        <div className="text-center mb-8 sm:mb-16 scroll-fade">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-inter font-normal mb-3 sm:mb-4 text-white">
             You're <span className="green-highlight">4 Steps Away</span> From Your First AI Sale
           </h2>
-          <p className="text-lg sm:text-xl font-light text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-sm sm:text-xl font-light text-muted-foreground max-w-3xl mx-auto">
             No developers, no complex setup. Just install, customize, and watch it sell.
           </p>
         </div>
 
         <div
           ref={containerRef as React.RefObject<HTMLDivElement>}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 max-w-6xl mx-auto"
         >
           {steps.map((step, index) => (
             <Card
               key={step.number}
               className="scroll-fade-lr bg-card border-border overflow-hidden group hover:border-primary/30 transition-all duration-300"
             >
-              <CardContent className="p-6 sm:p-8">
+              <CardContent className="p-4 sm:p-8">
                 {/* Step Number & Graphic Placeholder */}
-                <div className="mb-6">
-                  <div className="aspect-[4/3] sm:aspect-[4/3] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-lg flex items-center justify-center overflow-hidden">
+                <div className="mb-4 sm:mb-6">
+                  <div className="aspect-[16/10] sm:aspect-[4/3] bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-lg flex items-center justify-center overflow-hidden">
                     {step.image ? (
                       <img
                         src={step.image}

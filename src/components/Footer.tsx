@@ -14,7 +14,7 @@ const footerLinks = {
     { label: "Try for free on Shopify", href: "shopify", isAction: true },
   ],
   secondary: [
-    { label: "Blogs", href: "#" },
+    { label: "Blogs", href: "/resources/blogs/" },
     { label: "Docs & API", href: "#" },
     { label: "Privacy Policy", href: "https://www.notion.so/AUREVIA-PRIVACY-POLICY-202fc3fea0bc81cf84f5e1aeb691a9cd?source=copy_link" },
     { label: "Terms and Conditions", href: "#" },
@@ -49,10 +49,10 @@ export default function Footer() {
   };
 
   return (
-    <footer className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 border-t border-border/50" aria-label="Footer navigation">
+    <footer className="py-10 sm:py-20 md:py-24 px-4 sm:px-6 border-t border-border/50" aria-label="Footer navigation">
       <div className="container mx-auto">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12 mb-12 sm:mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 md:gap-12 mb-8 sm:mb-16">
           {/* Company Info & CTA */}
           <div className="lg:col-span-1 space-y-6">
             <div>

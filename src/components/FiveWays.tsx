@@ -69,27 +69,27 @@ export default function FiveWays() {
   const ctaRef = useScrollFade();
 
   return (
-    <section id="features" className="py-20 sm:py-24 md:py-32 px-4 sm:px-6">
+    <section id="features" className="py-14 sm:py-24 md:py-32 px-4 sm:px-6">
       <div className="container mx-auto">
-        <div className="text-center mb-14 sm:mb-20 scroll-fade">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal mb-4 sm:mb-6 text-white">
+        <div className="text-center mb-10 sm:mb-20 scroll-fade">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-inter font-normal mb-3 sm:mb-6 text-white">
             You Shouldn't Have to Choose Between{" "}
             <span className="green-highlight">Selling and Sleeping</span>
           </h2>
-          <p className="text-lg sm:text-xl font-light text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm sm:text-xl font-light text-muted-foreground max-w-2xl mx-auto">
             Every feature below was built because a merchant like you asked for it.
           </p>
         </div>
 
         <div
           ref={containerRef as React.RefObject<HTMLDivElement>}
-          className="max-w-[1100px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
+          className="max-w-[1100px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
         >
           {products.map((product) => (
             <Link
               key={product.title}
               href={product.href}
-              className="scroll-fade-lr group relative bg-card/50 backdrop-blur-sm border border-border/30 rounded-2xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-primary/40 hover:bg-card/70 hover:shadow-xl hover:shadow-primary/[0.07] hover:-translate-y-1"
+              className="scroll-fade-lr group relative bg-card/50 backdrop-blur-sm border border-border/30 rounded-xl sm:rounded-2xl p-5 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-primary/40 hover:bg-card/70 hover:shadow-xl hover:shadow-primary/[0.07] hover:-translate-y-1"
             >
               <div>
                 <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/15 flex items-center justify-center mb-5" aria-hidden="true">
@@ -107,10 +107,10 @@ export default function FiveWays() {
                   ))}
                 </div>
 
-                <h3 className="text-lg sm:text-xl font-normal text-white mb-3 leading-snug">
+                <h3 className="text-base sm:text-xl font-normal text-white mb-2 sm:mb-3 leading-snug">
                   {product.title}
                 </h3>
-                <p className="text-[15px] text-muted-foreground leading-relaxed">
+                <p className="text-[13px] sm:text-[15px] text-muted-foreground leading-relaxed">
                   {product.description}
                 </p>
               </div>
