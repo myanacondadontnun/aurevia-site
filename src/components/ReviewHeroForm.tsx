@@ -168,21 +168,16 @@ export default function ReviewHeroForm() {
 
       const response = await fetch(FORM_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: body.toString(),
+        body: body,
+        mode: "no-cors",
       });
 
-      if (response.ok) {
-        trackContactFormSubmit(true);
-        trackEvent("shopify_audit_lead", {
-          form_name: "review_my_shopify_hero",
-        });
-        setSubmittedEmail(formData.email.trim());
-        setShowModal(true);
-      } else {
-        const errorText = await response.text();
-        throw new Error(`Server error: ${response.status} - ${errorText}`);
-      }
+      trackContactFormSubmit(true);
+      trackEvent("shopify_audit_lead", {
+        form_name: "review_my_shopify_hero",
+      });
+      setSubmittedEmail(formData.email.trim());
+      setShowModal(true);
     } catch (error) {
       trackContactFormSubmit(false);
       trackEvent("contact_form_error", {
@@ -269,7 +264,7 @@ export default function ReviewHeroForm() {
               {/* Submit button */}
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !formData.email.trim() || !formData.storeUrl.trim()}
                 className="cta-button flex-shrink-0 inline-flex items-center justify-center gap-2 text-white font-medium px-6 py-3 sm:py-3.5 rounded-xl text-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
