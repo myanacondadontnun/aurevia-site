@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
+import { Mail, Phone, Send, CheckCircle, AlertCircle } from "lucide-react";
 import { trackContactFormSubmit, trackEvent } from "@/lib/analytics";
 
 export default function ContactUs() {
@@ -135,7 +135,7 @@ export default function ContactUs() {
                 </div>
                 <div>
                   <h4 className="font-normal text-sm sm:text-base">Email Us</h4>
-                  <a href="mailto:general@aurevia.io" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors">general@aurevia.io</a>
+                  <a href="mailto:sales@aurevia.io" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors">sales@aurevia.io</a>
                 </div>
               </div>
 
@@ -149,15 +149,6 @@ export default function ContactUs() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg border border-border/50 bg-card/30 backdrop-blur-sm hover:bg-card/50 transition-all duration-300 group">
-                <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
-                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
-                </div>
-                <div>
-                  <h4 className="font-normal text-sm sm:text-base">Visit Us</h4>
-                  <p className="text-xs sm:text-sm text-muted-foreground">CF24 1PE,Cardiff, UK</p>
-                </div>
-              </div>
             </div>
 
             {/* Response Time */}

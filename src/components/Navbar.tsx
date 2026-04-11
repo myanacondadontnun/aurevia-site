@@ -87,6 +87,7 @@ const resourcesItems = [
   { icon: BookOpen, label: "Blogs", href: "/resources/blogs", desc: "Latest insights and tips" },
   { icon: GitCompare, label: "AI Agent Comparisons", href: "/resources/ai-comparisons", desc: "Compare AI chatbots for e-commerce" },
   { icon: Calculator, label: "ROI Calculator", href: "/resources/roi-calculator", desc: "Calculate your potential return" },
+  { icon: Store, label: "Review My Shopify", href: "/resources/review-my-shopify", desc: "Free professional store audit" },
   { icon: BookMarked, label: "Documentations", href: "/resources/docs", desc: "API guides and setup docs" },
 ];
 
