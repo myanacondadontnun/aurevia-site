@@ -81,7 +81,7 @@ export default function Stats() {
                     className="stat-number-wrap"
                     aria-live="polite"
                   >
-                    <span className="stat-number-inner text-4xl sm:text-5xl md:text-6xl font-normal gradient-text inline-block" aria-hidden="true">
+                    <span className="stat-number-inner text-4xl sm:text-5xl md:text-6xl font-normal green-highlight inline-block" aria-hidden="true">
                       {stat.number}
                     </span>
                   </div>

@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Check, ArrowRight } from "lucide-react";
 import { useScrollFade } from "./ScrollAnimations";
 import { trackButtonClick, trackEvent } from "@/lib/analytics";
+import CTASwarmBackdrop from "@/components/CTASwarmBackdrop";
 
 const benefits = [
   "Full access to all features, no card, for 60 days",
@@ -65,23 +66,27 @@ export default function BetaTester() {
                     </div>
                   </div>
 
-                  <Button
-                    size="lg"
-                    aria-label="Sign up as a beta tester"
-                    className="cta-button text-white font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center gap-2 mx-auto border-0 w-full sm:w-auto max-w-xs sm:max-w-none"
-                    onClick={() => {
-                      // Track beta signup button click
-                      trackButtonClick('Let\'s Get To Know You', 'beta_section');
-                      trackEvent('beta_signup_initiated', {
-                        form_id: 't59rhmzg',
-                        step: 'form_reveal'
-                      });
-                      setShowForm(true);
-                    }}
-                  >
-                    Let's Get To Know You
-                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 cta-arrow" aria-hidden="true" />
-                  </Button>
+                  <div className="flex justify-center">
+                    <Button
+                      size="lg"
+                      aria-label="Sign up as a beta tester"
+                      className="cta-button cta-button--has-swarm relative overflow-hidden text-white font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center gap-2 border-0 w-full sm:w-auto max-w-xs sm:max-w-none"
+                      onClick={() => {
+                        trackButtonClick('Let\'s Get To Know You', 'beta_section');
+                        trackEvent('beta_signup_initiated', {
+                          form_id: 't59rhmzg',
+                          step: 'form_reveal'
+                        });
+                        setShowForm(true);
+                      }}
+                    >
+                      <CTASwarmBackdrop roundedClassName="rounded-lg" />
+                      <span className="relative z-[3] flex items-center gap-2">
+                        Let&apos;s Get To Know You
+                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 cta-arrow" aria-hidden="true" />
+                      </span>
+                    </Button>
+                  </div>
                 </>
               )}
 

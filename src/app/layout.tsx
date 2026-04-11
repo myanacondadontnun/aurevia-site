@@ -73,7 +73,21 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
-        
+
+        {/* Preconnect to Google Fonts for faster loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* Non-blocking font loading: only weights actually used */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Playfair+Display:ital,wght@0,500;1,400&family=Cormorant+Garamond:wght@300;400&display=swap"
+        />
+
         {/* Google Analytics */}
         <Script
           strategy="afterInteractive"
@@ -94,16 +108,11 @@ export default function RootLayout({
             `,
           }}
         />
-        
-        <Script
-          crossOrigin="anonymous"
-          src="//unpkg.com/same-runtime/dist/index.global.js"
-        />
-        
+
         {/* Apollo Script */}
         <Script
           id="apollo-tracking"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
@@ -112,12 +121,6 @@ export default function RootLayout({
               document.head.appendChild(o)}initApollo();
             `,
           }}
-        />
-        
-        {/* Aurevia Chatbot */}
-        <Script
-          src="https://birth-theaters-par-ip.trycloudflare.com/widgets/QSQqjQUMPE/widget.js"
-          strategy="afterInteractive"
         />
       </head>
       <body suppressHydrationWarning className="antialiased">

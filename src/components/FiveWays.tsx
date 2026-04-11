@@ -142,9 +142,9 @@ export default function FiveWays() {
           <p className="text-[15px] text-muted-foreground max-w-md">
             Discover our full suite of AI-powered products built for Shopify
           </p>
-          <span className="mt-2 inline-flex items-center gap-2 text-sm font-medium bg-primary/90 hover:bg-primary text-white px-5 py-2.5 rounded-lg transition-colors">
+          <span className="mt-2 inline-flex items-center gap-2 cta-button text-sm font-medium text-white px-5 py-2.5 rounded-lg border-0">
             View all products
-            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            <ArrowRight className="w-4 h-4 cta-arrow" aria-hidden="true" />
           </span>
         </Link>
       </div>

@@ -1,24 +1,14 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { CreditCard, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { trackButtonClick } from "@/lib/analytics";
-import { openShopifyInstall, buildShopifyInstallUrl } from "@/lib/utils";
+import { SHOPIFY_APP_URL } from "@/lib/utils";
 import ChatDemo from "./ChatDemo";
+import CTASwarmBackdrop from "./CTASwarmBackdrop";
 
 export default function Hero() {
   const [pillClass, setPillClass] = useState("pill-wrapper hidden");
-  const [shopInput, setShopInput] = useState("");
-
-  const handleInstall = () => {
-    trackButtonClick('Try for free on Shopify', 'hero_section');
-    openShopifyInstall(shopInput);
-  };
-
-  const handleBrowse = () => {
-    window.open(buildShopifyInstallUrl(), '_blank', 'noopener,noreferrer');
-  };
 
   useEffect(() => {
     requestAnimationFrame(() => {
@@ -34,68 +24,65 @@ export default function Hero() {
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-0">
-          {/* Text content — left half on desktop, centered on mobile */}
           <div className="w-full lg:w-1/2 text-center lg:text-left animate-fade-in lg:pl-8 xl:pl-16">
-            {/* Connected Pill */}
             <div className="flex justify-center lg:justify-start mb-5 sm:mb-6">
               <div className={pillClass}>
                 <div className="pill-left">New</div>
-                <div className="pill-right">Personal AI Agent for your support</div>
+                <div className="pill-right">Personal AI Agent for your onboarding and support</div>
               </div>
             </div>
 
-            {/* Headline */}
             <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] lg:text-5xl font-inter font-normal mb-3 sm:mb-5 leading-tight text-white">
               Shopify AI Sales Co-Pilot{" "}
               <span className="green-highlight">Revenue on Autopilot</span>
             </h1>
 
-            {/* Subheadline */}
-            <p className="text-base sm:text-lg md:text-xl font-light text-muted-foreground mb-6 sm:mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl font-light text-muted-foreground mb-8 sm:mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
               Answer questions, recommend products and recover carts in real time.
               No scripts, no coding, fully trained on your brand.
             </p>
 
-            {/* Install Flow */}
-            <div className="flex flex-col items-center lg:items-start gap-3">
-              <div className="w-full flex flex-col sm:flex-row items-stretch sm:items-center sm:justify-center lg:justify-start gap-2 sm:gap-3">
-                <input
-                  type="text"
-                  inputMode="url"
-                  placeholder="yourstore.myshopify.com"
-                  value={shopInput}
-                  onChange={(e) => setShopInput(e.target.value)}
-                  aria-label="Your Shopify store URL"
-                  className="w-full sm:w-[280px] rounded-lg border border-border bg-card/80 text-white placeholder:text-muted-foreground/70 px-3.5 py-2.5 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                />
-                <Button
-                  size="default"
-                  className="cta-button text-white font-medium px-5 py-2.5 text-sm rounded-lg transition-all duration-200 flex items-center gap-2 border-0"
-                  onClick={handleInstall}
-                  aria-label="Install Aurevia on your Shopify store"
-                >
-                  Try for free on Shopify
-                  <ArrowRight className="w-4 h-4 cta-arrow" aria-hidden="true" />
-                </Button>
-              </div>
-              <button
-                onClick={handleBrowse}
-                aria-label="Browse Aurevia on Shopify App Store"
-                className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors"
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 justify-center lg:justify-start max-w-xl mx-auto lg:mx-0">
+              <a
+                href={SHOPIFY_APP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() =>
+                  trackButtonClick("Try Aurevia free on Shopify", "hero_section")
+                }
+                className="block no-underline"
               >
-                or browse on Shopify App Store
-              </button>
+                <span className="relative block pb-1.5">
+                  <span
+                    className="absolute left-2 right-2 bottom-0 h-2 sm:h-2.5 rounded-b-lg bg-gradient-to-r from-[#024d3f] via-[#02DFA6] to-[#024d3f] shadow-[0_0_12px_rgba(2,223,166,0.35)]"
+                    aria-hidden
+                  />
+                  <span className="relative flex min-h-[48px] items-center justify-center overflow-hidden rounded-xl border border-[#02DFA6]/25 bg-[#0d1717]/92 px-6 py-3 text-sm font-semibold text-[#fffffc] shadow-[0_0_0_1px_rgba(2,223,166,0.08),0_8px_24px_rgba(0,0,0,0.35)] backdrop-blur-[2px] sm:px-8 sm:py-3.5 sm:text-base">
+                    <CTASwarmBackdrop roundedClassName="rounded-xl" />
+                    <span className="relative z-[3]">Try Aurevia free on Shopify</span>
+                  </span>
+                </span>
+              </a>
+
+              <div className="flex items-center justify-center sm:justify-start gap-2.5 text-muted-foreground text-xs sm:text-sm">
+                <span className="relative inline-flex shrink-0" aria-hidden>
+                  <CreditCard className="w-5 h-5 opacity-70" />
+                  <X
+                    className="absolute -bottom-0.5 -right-0.5 w-3 h-3 text-muted-foreground bg-background rounded-full p-[1px]"
+                    strokeWidth={2.5}
+                  />
+                </span>
+                <span>No credit card required</span>
+              </div>
             </div>
           </div>
 
-          {/* Chat demo — right half on desktop, below text on mobile */}
           <div className="flex w-full lg:w-1/2 items-center justify-center">
             <ChatDemo />
           </div>
         </div>
       </div>
 
-      {/* Premium pill styles */}
       <style jsx>{`
         .pill-wrapper {
           display: inline-flex;

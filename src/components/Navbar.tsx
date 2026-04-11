@@ -27,7 +27,9 @@ import {
 } from "lucide-react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { openShopifyInstall } from "@/lib/utils";
+import CTASwarmBackdrop from "@/components/CTASwarmBackdrop";
 
 const solutionsByIndustry = [
   { title: "Fashion & Apparel", desc: "AI-powered style picks", href: "/solutions/fashion" },
@@ -91,9 +93,18 @@ const resourcesItems = [
   { icon: BookMarked, label: "Documentations", href: "/resources/docs", desc: "API guides and setup docs" },
 ];
 
-const navigationLinks: { label: string; href: string }[] = [];
+const navigationLinks: { label: string; href: string }[] = [
+  { label: "Pricing", href: "/pricing" },
+];
+
+function isHomePath(pathname: string | null) {
+  if (!pathname) return false;
+  return pathname === "/home" || pathname === "/home/" || pathname === "/";
+}
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const showHomeCtaSwarm = isHomePath(pathname);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<"products" | "solutions" | "resources" | null>(null);
@@ -409,15 +420,30 @@ export default function Navbar() {
 
           {/* Desktop CTA + Mobile Menu */}
           <div className="flex items-center gap-2">
-            <Button
-              className={`cta-button text-white font-medium rounded-lg transition-all duration-200 flex items-center gap-2 border-0 flex-shrink-0 ${isScrolled ? "px-3 py-1.5 sm:px-4 sm:py-2" : "px-4 py-2"} text-sm xl:text-base`}
-              onClick={() => openShopifyInstall()}
-              aria-label="Try Aurevia for free on Shopify"
-            >
-              <span className="hidden sm:inline">Try for free on Shopify</span>
-              <span className="sm:hidden">Try free</span>
-              <ArrowRight className="w-3 h-3 xl:w-4 xl:h-4 cta-arrow" aria-hidden="true" />
-            </Button>
+            {showHomeCtaSwarm ? (
+              <Button
+                className={`cta-button cta-button--has-swarm relative overflow-hidden text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2 border-0 flex-shrink-0 ${isScrolled ? "px-3 py-1.5 sm:px-4 sm:py-2" : "px-4 py-2"} text-sm xl:text-base`}
+                onClick={() => openShopifyInstall()}
+                aria-label="Try Aurevia for free on Shopify"
+              >
+                <CTASwarmBackdrop roundedClassName="rounded-lg" />
+                <span className="relative z-[3] flex items-center gap-2">
+                  <span className="hidden sm:inline">Try for free on Shopify</span>
+                  <span className="sm:hidden">Try free</span>
+                  <ArrowRight className="w-3 h-3 xl:w-4 xl:h-4 cta-arrow" aria-hidden="true" />
+                </span>
+              </Button>
+            ) : (
+              <Button
+                className={`cta-button text-white font-medium rounded-lg transition-all duration-200 flex items-center gap-2 border-0 flex-shrink-0 ${isScrolled ? "px-3 py-1.5 sm:px-4 sm:py-2" : "px-4 py-2"} text-sm xl:text-base`}
+                onClick={() => openShopifyInstall()}
+                aria-label="Try Aurevia for free on Shopify"
+              >
+                <span className="hidden sm:inline">Try for free on Shopify</span>
+                <span className="sm:hidden">Try free</span>
+                <ArrowRight className="w-3 h-3 xl:w-4 xl:h-4 cta-arrow" aria-hidden="true" />
+              </Button>
+            )}
             <button
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"

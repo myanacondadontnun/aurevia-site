@@ -220,9 +220,9 @@ export default function ReviewHeroForm() {
           aria-busy={isSubmitting}
           aria-label="Request free Shopify store audit"
         >
-          {/* Unified search bar */}
-          <div className="relative rounded-2xl bg-white/[0.07] border border-white/[0.12] backdrop-blur-md shadow-[0_4px_40px_rgba(0,0,0,0.3)] p-1.5 sm:p-2 max-w-2xl">
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-0">
+          {/* Unified search bar — bright ring + orbiting light blob on outline only */}
+          <div className="review-form-border-wrap max-w-2xl group/form">
+            <div className="review-form-border-inner flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-0 p-1.5 sm:p-2 transition-[border-color] duration-300 group-focus-within/form:border-[#02DFA6]/64">
               {/* Email input */}
               <div className="relative flex-1 group">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">

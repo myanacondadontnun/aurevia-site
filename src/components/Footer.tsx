@@ -3,7 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { openShopifyInstall } from "@/lib/utils";
+import CTASwarmBackdrop from "@/components/CTASwarmBackdrop";
 
 const footerLinks = {
   main: [
@@ -27,7 +29,15 @@ const socialLinks = [
   { label: "Reddit", href: "https://www.reddit.com/user/crackandcoke/" },
 ];
 
+function isHomePath(pathname: string | null) {
+  if (!pathname) return false;
+  return pathname === "/home" || pathname === "/home/" || pathname === "/";
+}
+
 export default function Footer() {
+  const pathname = usePathname();
+  const showHomeCtaSwarm = isHomePath(pathname);
+
   const handleLinkClick = (href: string, isAction?: boolean) => {
     if (isAction || href === 'shopify') {
       openShopifyInstall();
@@ -71,12 +81,22 @@ export default function Footer() {
               <p className="text-xs sm:text-sm font-light text-muted-foreground mb-4">
                 Install the app directly from the Shopify App Store.
               </p>
-              <Button
-                className="cta-button text-white font-medium px-4 sm:px-6 py-2 rounded-lg transition-all duration-200 border-0 text-sm sm:text-base w-full sm:w-auto"
-                onClick={() => openShopifyInstall()}
-              >
-                Try for free on Shopify
-              </Button>
+              {showHomeCtaSwarm ? (
+                <Button
+                  className="cta-button cta-button--has-swarm relative overflow-hidden text-white font-medium px-4 sm:px-6 py-2 rounded-lg transition-all duration-200 border-0 text-sm sm:text-base w-full sm:w-auto"
+                  onClick={() => openShopifyInstall()}
+                >
+                  <CTASwarmBackdrop roundedClassName="rounded-lg" />
+                  <span className="relative z-[3]">Try for free on Shopify</span>
+                </Button>
+              ) : (
+                <Button
+                  className="cta-button text-white font-medium px-4 sm:px-6 py-2 rounded-lg transition-all duration-200 border-0 text-sm sm:text-base w-full sm:w-auto"
+                  onClick={() => openShopifyInstall()}
+                >
+                  Try for free on Shopify
+                </Button>
+              )}
             </div>
           </div>
 

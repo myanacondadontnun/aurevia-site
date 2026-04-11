@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { SHOPIFY_APP_URL } from "@/lib/utils";
+import CTASwarmBackdrop from "@/components/CTASwarmBackdrop";
 
 function useManualVideoRef() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -408,18 +410,18 @@ export default function Industries() {
               <p className="text-muted-foreground mb-3 text-sm">
                 Want to see how Aurevia fits your store?
               </p>
-              <button
-                onClick={() => {
-                  const element = document.getElementById("contact");
-                  if (element) {
-                    element.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-                aria-label="Find out more about Aurevia for your store"
-                className="cta-button px-6 py-2.5 text-white rounded-full transition-all duration-200 text-sm font-medium border-0"
-              >
-                Find Out More
-              </button>
+              <div className="flex justify-center">
+                <a
+                  href={SHOPIFY_APP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Try Aurevia for free on Shopify"
+                  className="cta-button cta-button--has-swarm relative overflow-hidden inline-flex items-center justify-center px-6 py-2.5 text-white rounded-full transition-all duration-200 text-sm font-medium border-0 no-underline"
+                >
+                  <CTASwarmBackdrop roundedClassName="rounded-full" />
+                  <span className="relative z-[3]">Try for Free</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

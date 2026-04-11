@@ -7,7 +7,7 @@ const MAX_FORCE = 0.055;
 const SEP_DIST = 28;
 const COH_DIST = 120;
 const ALIGN_DIST = 70;
-const N = 52;
+const DEFAULT_BOID_COUNT = 52;
 
 interface Boid {
   x: number;
@@ -25,7 +25,16 @@ function limit(vx: number, vy: number, max: number) {
   return [vx, vy];
 }
 
-export default function CTASwarmParticles() {
+type CTASwarmParticlesProps = {
+  /** Lower counts (e.g. 12–18) when many instances exist on one page. */
+  boidCount?: number;
+  roundedClassName?: string;
+};
+
+export default function CTASwarmParticles({
+  boidCount = DEFAULT_BOID_COUNT,
+  roundedClassName = "rounded-3xl",
+}: CTASwarmParticlesProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -37,6 +46,7 @@ export default function CTASwarmParticles() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const N = Math.max(4, Math.min(boidCount, 80));
     let animationId: number;
     let boids: Boid[] = [];
     let w = 0;
@@ -235,12 +245,12 @@ export default function CTASwarmParticles() {
       ro.disconnect();
       cancelAnimationFrame(animationId);
     };
-  }, []);
+  }, [boidCount]);
 
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 z-[1] pointer-events-none overflow-hidden rounded-3xl"
+      className={`absolute inset-0 z-[1] pointer-events-none overflow-hidden ${roundedClassName}`}
       aria-hidden="true"
     >
       <canvas ref={canvasRef} className="block w-full h-full" />

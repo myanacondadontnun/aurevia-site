@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { useGridStaggerFade } from "./ScrollAnimations";
+import { SHOPIFY_APP_URL } from "@/lib/utils";
 import {
   ShoppingCart,
   Palette,
@@ -22,7 +22,7 @@ const challenges = [
     full:
       " No reason. No goodbye. Just another abandoned cart notification you've learned to ignore. It stings every time, because you know that was a real person ready to buy.",
     icon: ShoppingCart,
-    link: "/resources/blogs",
+    link: SHOPIFY_APP_URL,
   },
   {
     problem: "Your Chatbot Sounds Nothing Like You",
@@ -31,7 +31,7 @@ const challenges = [
     full:
       " it feels like a stranger hijacked your store. So robotic, so generic. Customers notice. They disengage. And you're left wondering if automation is even worth it.",
     icon: Palette,
-    link: "/resources/blogs",
+    link: SHOPIFY_APP_URL,
   },
   {
     problem: "Your Average Order Won't Budge",
@@ -40,7 +40,7 @@ const challenges = [
     full:
       " They don't. Your AOV flatlines month after month while acquisition costs keep climbing. You're working harder to earn less on every single order.",
     icon: DollarSign,
-    link: "/resources/blogs",
+    link: SHOPIFY_APP_URL,
   },
   {
     problem: "You're Making Decisions in the Dark",
@@ -49,7 +49,7 @@ const challenges = [
     full:
       " Your gut says something's broken, but the data isn't there. So you guess. And guessing at this stage costs real money.",
     icon: BarChart2,
-    link: "/resources/blogs",
+    link: SHOPIFY_APP_URL,
   },
   {
     problem: "You're Losing Customers You Never Even Reached",
@@ -58,7 +58,7 @@ const challenges = [
     full:
       " They moved on. You'll never know they existed. Multiply that by every timezone, every language you don't speak — that's revenue you're silently leaving behind.",
     icon: Globe,
-    link: "/resources/blogs",
+    link: SHOPIFY_APP_URL,
   },
   {
     problem: "You're Drowning in the Same Questions",
@@ -67,7 +67,7 @@ const challenges = [
     full:
       " not to copy-paste tracking links. But every hour you spend on repetitive tickets is an hour stolen from the work that actually grows your store.",
     icon: HelpCircle,
-    link: "/resources/blogs",
+    link: SHOPIFY_APP_URL,
   },
 ];
 
@@ -108,13 +108,15 @@ function ChallengeCard({
           )}
         </div>
 
-        <Link
+        <a
           href={challenge.link}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 mt-5 text-xs text-white/30 hover:text-white/60 transition-colors duration-200 underline underline-offset-2 decoration-white/15 hover:decoration-white/40"
         >
-          Why this happens
+          Learn more
           <ArrowRight className="w-3 h-3" aria-hidden="true" />
-        </Link>
+        </a>
 
         <div className="card-hover-gradient"></div>
       </CardContent>
