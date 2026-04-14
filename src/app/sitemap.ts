@@ -60,6 +60,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/resources/blogs/shopify-ecommerce-funnel-analytics/", priority: 0.7, changeFrequency: "weekly" },
     { path: "/resources/blogs/24-7-ai-support-after-hours-sales/", priority: 0.7, changeFrequency: "weekly" },
     { path: "/resources/blogs/reduce-repetitive-support-questions-shopify/", priority: 0.7, changeFrequency: "weekly" },
+    {
+      path: "/resources/blogs/ecommerce-ai-shopping-assistant-2026/",
+      priority: 0.75,
+      changeFrequency: "weekly",
+    },
     { path: "/resources/docs/", priority: 0.7, changeFrequency: "monthly" },
     { path: "/resources/ai-comparisons/", priority: 0.7, changeFrequency: "monthly" },
   ];

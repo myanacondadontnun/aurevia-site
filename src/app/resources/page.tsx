@@ -4,7 +4,8 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Resources | Aurevia - Shopify AI Sales Co-Pilot",
-  description: "Blogs, AI comparisons, ROI calculator, and documentation for Aurevia.",
+  description:
+    "Blogs, Review My Shopify, AI comparisons, ROI calculator, and documentation for Aurevia.",
 };
 
 export default function ResourcesPage() {
@@ -15,19 +16,25 @@ export default function ResourcesPage() {
           Resources
         </h1>
         <p className="text-lg text-muted-foreground mb-8">
-          Learn more about AI sales co-pilots, compare options, calculate ROI, and explore our docs.
+          Learn more about AI sales co-pilots, get a Shopify store review, compare options, calculate ROI, and explore our docs.
         </p>
         <div className="space-y-4">
-          <Link href="/resources/blogs" className="block text-[#02DFA6] hover:underline">
+          <Link href="/resources/blogs/" className="block text-[#02DFA6] hover:underline">
             → Blogs
           </Link>
-          <Link href="/resources/ai-comparisons" className="block text-[#02DFA6] hover:underline">
+          <Link
+            href="/resources/review-my-shopify/"
+            className="block text-[#02DFA6] hover:underline"
+          >
+            → Review My Shopify
+          </Link>
+          <Link href="/resources/ai-comparisons/" className="block text-[#02DFA6] hover:underline">
             → AI Agent Comparisons
           </Link>
-          <Link href="/resources/roi-calculator" className="block text-[#02DFA6] hover:underline">
+          <Link href="/resources/roi-calculator/" className="block text-[#02DFA6] hover:underline">
             → ROI Calculator
           </Link>
-          <Link href="/resources/docs" className="block text-[#02DFA6] hover:underline">
+          <Link href="/resources/docs/" className="block text-[#02DFA6] hover:underline">
             → Documentations
           </Link>
         </div>
