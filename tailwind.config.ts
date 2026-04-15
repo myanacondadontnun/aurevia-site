@@ -11,6 +11,7 @@ export default {
   	extend: {
   		fontFamily: {
   			inter: ['Inter', 'sans-serif'],
+  			montserrat: ['Montserrat', 'sans-serif'],
   			playfair: ['Playfair Display', 'serif'],
   			roi: ['Cormorant Garamond', 'Georgia', 'Times New Roman', 'serif'],
   		},

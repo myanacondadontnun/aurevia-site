@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { calculateROI } from "@/lib/roi";
+import { calculateROI, type ROIResult } from "@/lib/roi";
 import {
   TrendingUp,
   DollarSign,
@@ -12,10 +12,6 @@ import {
   RefreshCw,
 } from "lucide-react";
 
-const DEFAULT_VISITORS = 50000;
-const DEFAULT_ORDERS = 200;
-const DEFAULT_AOV = 50;
-
 function formatNumber(n: number): string {
   if (n >= 1000000) return `${(n / 1000000).toFixed(1)}M`;
   if (n >= 1000) return `${(n / 1000).toFixed(1)}k`;
@@ -23,35 +19,58 @@ function formatNumber(n: number): string {
 }
 
 export default function ROICalculator() {
-  const [visitors, setVisitors] = useState<string>(String(DEFAULT_VISITORS));
-  const [orders, setOrders] = useState<string>(String(DEFAULT_ORDERS));
-  const [aov, setAov] = useState<string>(String(DEFAULT_AOV));
+  const [visitors, setVisitors] = useState("");
+  const [orders, setOrders] = useState("");
+  const [aov, setAov] = useState("");
+  const [result, setResult] = useState<ROIResult | null>(null);
 
-  const numVisitors = useMemo(() => {
-    const n = Number(visitors);
-    return Number.isFinite(n) && n >= 0 ? n : 0;
-  }, [visitors]);
-  const numOrders = useMemo(() => {
-    const n = Number(orders);
-    return Number.isFinite(n) && n >= 0 ? n : 0;
-  }, [orders]);
-  const numAov = useMemo(() => {
-    const n = Number(aov);
-    return Number.isFinite(n) && n >= 0 ? n : 0;
-  }, [aov]);
+  const canCalculate = useMemo(() => {
+    const vStr = visitors.trim();
+    const oStr = orders.trim();
+    const aStr = aov.trim();
+    if (vStr === "" || oStr === "" || aStr === "") return false;
+    const v = Number(vStr);
+    const o = Number(oStr);
+    const a = Number(aStr);
+    return (
+      Number.isFinite(v) &&
+      v >= 0 &&
+      Number.isFinite(o) &&
+      o >= 0 &&
+      Number.isFinite(a) &&
+      a >= 0
+    );
+  }, [visitors, orders, aov]);
 
-  const result = useMemo(
-    () => calculateROI(numVisitors, numOrders, numAov),
-    [numVisitors, numOrders, numAov]
-  );
+  const monthlyROIDisplay =
+    result === null
+      ? "—"
+      : result.monthlyROIPercent !== null
+        ? `${result.monthlyROIPercent.toLocaleString("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}%`
+        : result.subscriptionCost === 0
+          ? "N/A"
+          : "—";
+  const monthlyROISubtext =
+    result === null
+      ? "Fill in all fields and click Calculate"
+      : result.subscriptionCost === 0
+        ? "No monthly cost on the Free plan"
+        : result.subscriptionCost === null
+          ? "Talk to sales for enterprise pricing"
+          : "Unlock Additional Sales Now";
 
   const handleCalculate = () => {
-    const v = Number(visitors);
-    const o = Number(orders);
-    const a = Number(aov);
-    if (Number.isFinite(v) && v >= 0) setVisitors(String(Math.floor(v)));
-    if (Number.isFinite(o) && o >= 0) setOrders(String(Math.floor(o)));
-    if (Number.isFinite(a) && a >= 0) setAov(String(Math.round(a * 100) / 100));
+    if (!canCalculate) return;
+    const v = Math.floor(Number(visitors.trim()));
+    const o = Math.floor(Number(orders.trim()));
+    const a = Math.round(Number(aov.trim()) * 100) / 100;
+    setVisitors(String(v));
+    setOrders(String(o));
+    setAov(String(a));
+    setResult(calculateROI(v, o, a));
   };
 
   return (
@@ -84,7 +103,11 @@ export default function ROICalculator() {
                 min={0}
                 step={1000}
                 value={visitors}
-                onChange={(e) => setVisitors(e.target.value)}
+                placeholder="e.g. 50000"
+                onChange={(e) => {
+                  setVisitors(e.target.value);
+                  setResult(null);
+                }}
                 className="w-full min-h-[44px] bg-transparent text-foreground placeholder:text-muted-foreground/60 px-2 py-2 text-base focus:outline-none"
               />
             </div>
@@ -103,7 +126,11 @@ export default function ROICalculator() {
                 min={0}
                 step={1}
                 value={orders}
-                onChange={(e) => setOrders(e.target.value)}
+                placeholder="e.g. 200"
+                onChange={(e) => {
+                  setOrders(e.target.value);
+                  setResult(null);
+                }}
                 className="w-full min-h-[44px] bg-transparent text-foreground placeholder:text-muted-foreground/60 px-2 py-2 text-base focus:outline-none"
               />
             </div>
@@ -122,7 +149,11 @@ export default function ROICalculator() {
                 min={0}
                 step={1}
                 value={aov}
-                onChange={(e) => setAov(e.target.value)}
+                placeholder="e.g. 50"
+                onChange={(e) => {
+                  setAov(e.target.value);
+                  setResult(null);
+                }}
                 className="w-full min-h-[44px] bg-transparent text-foreground placeholder:text-muted-foreground/60 px-2 py-2 text-base focus:outline-none"
               />
             </div>
@@ -136,6 +167,7 @@ export default function ROICalculator() {
             >
               <Button
                 type="submit"
+                disabled={!canCalculate}
                 className="cta-button min-h-[44px] rounded-xl px-6 py-3 text-base font-normal w-full sm:w-auto"
                 aria-label="Calculate ROI"
               >
@@ -162,7 +194,9 @@ export default function ROICalculator() {
                     Conversations per month:
                   </span>
                   <span className="text-lg font-normal text-foreground tabular-nums">
-                    {formatNumber(result.conversationsPerMonth)}
+                    {result === null
+                      ? "—"
+                      : formatNumber(result.conversationsPerMonth)}
                   </span>
                 </li>
                 <li className="flex flex-wrap items-center justify-between gap-2">
@@ -171,7 +205,7 @@ export default function ROICalculator() {
                     Potential additional sales:
                   </span>
                   <span className="text-lg font-normal text-foreground tabular-nums">
-                    {result.potentialAdditionalSales}
+                    {result === null ? "—" : result.potentialAdditionalSales}
                   </span>
                 </li>
                 <li className="flex flex-wrap items-center justify-between gap-2">
@@ -180,7 +214,9 @@ export default function ROICalculator() {
                     Potential AOV from Aurevia sales:
                   </span>
                   <span className="text-lg font-normal text-foreground tabular-nums">
-                    ${result.potentialAOVFromAurevia.toFixed(2)}
+                    {result === null
+                      ? "—"
+                      : `$${result.potentialAOVFromAurevia.toFixed(2)}`}
                   </span>
                 </li>
                 <li className="flex flex-wrap items-center justify-between gap-2">
@@ -189,10 +225,12 @@ export default function ROICalculator() {
                     Additional unlock sales from Aurevia:
                   </span>
                   <span className="text-lg font-normal text-foreground tabular-nums">
-                    ${result.additionalUnlockSales.toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
+                    {result === null
+                      ? "—"
+                      : `$${result.additionalUnlockSales.toLocaleString("en-US", {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}`}
                   </span>
                 </li>
                 <li className="flex flex-wrap items-center justify-between gap-2">
@@ -201,9 +239,11 @@ export default function ROICalculator() {
                     Subscription cost:
                   </span>
                   <span className="text-lg font-normal text-primary tabular-nums">
-                    {result.subscriptionCost !== null
-                      ? `$${result.subscriptionCost.toFixed(2)}`
-                      : "Contact us"}
+                    {result === null
+                      ? "—"
+                      : result.subscriptionCost !== null
+                        ? `$${result.subscriptionCost.toFixed(2)}`
+                        : "Contact us"}
                   </span>
                 </li>
               </ul>
@@ -221,17 +261,10 @@ export default function ROICalculator() {
                 Monthly ROI:
               </p>
               <p className="text-4xl sm:text-5xl font-normal text-foreground tabular-nums mb-2">
-                {result.monthlyROIPercent !== null
-                  ? `${result.monthlyROIPercent.toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}%`
-                  : result.subscriptionCost === 0
-                    ? "Infinite"
-                    : "—"}
+                {monthlyROIDisplay}
               </p>
               <p className="text-sm text-muted-foreground">
-                Unlock Additional Sales Now
+                {monthlyROISubtext}
               </p>
             </div>
           </div>

@@ -10,43 +10,55 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Aurevia.io - Shopify AI Sales Co-Pilot",
-  description: "Answer questions, recommend products and recover carts in real time. No scripts, no coding, fully trained on your brand.",
-  keywords: ["Shopify AI", "Sales Chatbot", "E-commerce", "Cart Recovery", "Product Recommendations", "AI Sales Assistant"],
-  authors: [{ name: "Aurevia.io" }],
-  creator: "Aurevia.io",
-  publisher: "Aurevia.io",
+  title: "Aurevia | Shopify AI Sales Agent — Convert Visitors 24/7",
+  description:
+    "Aurevia is an official Shopify Partner AI sales agent: instant shopper answers, on-brand product recommendations, and 24/7 abandoned-cart recovery—no scripts or coding required.",
+  keywords: [
+    "Shopify AI sales agent",
+    "Shopify chatbot",
+    "AI shopping assistant",
+    "Shopify cart recovery",
+    "ecommerce conversion AI",
+    "Shopify product recommendations",
+    "24/7 sales assistant",
+    "Shopify automation",
+    "official Shopify Partner",
+    "AI customer support Shopify",
+  ],
+  authors: [{ name: "Aurevia", url: "https://aurevia.io" }],
+  creator: "Aurevia",
+  publisher: "Aurevia",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://aurevia.io'), // Replace with your actual domain
-  alternates: {
-    canonical: '/',
-  },
+  metadataBase: new URL("https://aurevia.io"),
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://aurevia.io', // Replace with your actual domain
-    title: 'Aurevia.io - Shopify AI Sales Co-Pilot',
-    description: 'Answer questions, recommend products and recover carts in real time. No scripts, no coding, fully trained on your brand.',
-    siteName: 'Aurevia.io',
+    type: "website",
+    locale: "en_US",
+    url: "https://aurevia.io",
+    title: "Aurevia | Shopify AI Sales Agent — Convert Visitors 24/7",
+    description:
+      "Turn traffic into revenue with an official Shopify Partner AI that sells like your best associate: Q&A, guided buying, and always-on cart recovery trained on your brand.",
+    siteName: "Aurevia",
     images: [
       {
-        url: 'https://aurevia.io/images/twitter_card.png',
+        url: "/images/twitter_card.png",
         width: 1200,
-        height: 630,
-        alt: 'Aurevia.io - Shopify AI Sales Co-Pilot',
+        height: 600,
+        alt: "Aurevia — AI sales agent for Shopify stores, official Shopify Partner",
+        type: "image/png",
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Aurevia.io - Shopify AI Sales Co-Pilot',
-    description: 'Answer questions, recommend products and recover carts in real time. No scripts, no coding, fully trained on your brand.',
-    creator: '@crazystupidceo', // Your personal Twitter handle
-    images: ['https://aurevia.io/images/twitter_card.png'],
+    card: "summary_large_image",
+    title: "Aurevia | Shopify AI Sales Agent — Convert Visitors 24/7",
+    description:
+      "Official Shopify Partner AI: answer shoppers, recommend products, and recover carts 24/7—trained on your store without code.",
+    site: "@crazystupidceo",
+    images: ["/images/twitter_card.png"],
   },
   robots: {
     index: true,
@@ -85,7 +97,7 @@ export default function RootLayout({
         />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Playfair+Display:ital,wght@0,500;1,400&family=Cormorant+Garamond:wght@300;400&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;500&family=Playfair+Display:ital,wght@0,500;1,400&family=Cormorant+Garamond:wght@300;400&display=swap"
         />
 
         {/* Google Analytics */}

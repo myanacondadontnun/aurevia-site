@@ -46,9 +46,9 @@ export const metadata: Metadata = {
     siteName: "Aurevia.io",
     images: [
       {
-        url: "https://aurevia.io/images/twitter_card.png",
+        url: "/images/twitter_card.png",
         width: 1200,
-        height: 630,
+        height: 600,
         alt: "Free Shopify Store Audit by Aurevia",
       },
     ],
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
       "Review My Shopify Store — Free Professional Audit | Aurevia",
     description:
       "Get a free professional Shopify store review. UI/UX, trust signals, checkout flow, and a custom action plan — no agency price tag.",
-    images: ["https://aurevia.io/images/twitter_card.png"],
+    images: ["/images/twitter_card.png"],
   },
 };
 

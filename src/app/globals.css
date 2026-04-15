@@ -48,7 +48,8 @@
   body {
     @apply bg-background text-foreground font-inter;
     font-feature-settings: "rlig" 1, "calt" 1;
-    overflow-x: hidden;
+    /* clip avoids horizontal scroll without breaking position:sticky like overflow-x:hidden can */
+    overflow-x: clip;
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
