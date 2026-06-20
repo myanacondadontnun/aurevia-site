@@ -1,3 +1,5 @@
+import { newBlogPosts } from "./blog-posts";
+
 export type BlogCategory =
   | "Checkout & Conversion"
   | "AI & Chatbots"
@@ -88,9 +90,9 @@ export const blogPosts: BlogPost[] = [
     publishDate: "2026-03-10",
     readingTime: "10 min read",
     relatedSlugs: [
+      "shopify-customer-psychology-guide",
       "chatbot-brand-voice",
       "increase-aov-shopify-without-discounts",
-      "ecommerce-ai-shopping-assistant-2026",
     ],
     sections: [
       {
@@ -319,9 +321,9 @@ export const blogPosts: BlogPost[] = [
     publishDate: "2026-03-17",
     readingTime: "9 min read",
     relatedSlugs: [
+      "ai-chatbot-vs-ai-sales-agent-shopify",
+      "ai-agents-for-shopify-stores-chat-to-checkout",
       "ecommerce-ai-shopping-assistant-2026",
-      "reduce-checkout-abandonment-shopify",
-      "24-7-ai-support-after-hours-sales",
     ],
     sections: [
       {
@@ -545,9 +547,9 @@ export const blogPosts: BlogPost[] = [
     publishDate: "2026-03-24",
     readingTime: "9 min read",
     relatedSlugs: [
+      "shopify-customer-psychology-guide",
       "reduce-checkout-abandonment-shopify",
-      "shopify-ecommerce-funnel-analytics",
-      "24-7-ai-support-after-hours-sales",
+      "ai-chatbot-vs-ai-sales-agent-shopify",
     ],
     sections: [
       {
@@ -773,9 +775,9 @@ export const blogPosts: BlogPost[] = [
     publishDate: "2026-03-31",
     readingTime: "8 min read",
     relatedSlugs: [
+      "ai-agents-for-shopify-stores-chat-to-checkout",
       "reduce-checkout-abandonment-shopify",
       "increase-aov-shopify-without-discounts",
-      "24-7-ai-support-after-hours-sales",
     ],
     sections: [
       {
@@ -964,9 +966,9 @@ export const blogPosts: BlogPost[] = [
     publishDate: "2026-04-04",
     readingTime: "7 min read",
     relatedSlugs: [
+      "ai-agents-for-shopify-stores-chat-to-checkout",
       "chatbot-brand-voice",
       "reduce-repetitive-support-questions-shopify",
-      "ecommerce-ai-shopping-assistant-2026",
     ],
     sections: [
       {
@@ -1151,9 +1153,9 @@ export const blogPosts: BlogPost[] = [
     publishDate: "2026-04-09",
     readingTime: "8 min read",
     relatedSlugs: [
+      "ai-chatbot-vs-ai-sales-agent-shopify",
       "24-7-ai-support-after-hours-sales",
-      "ecommerce-ai-shopping-assistant-2026",
-      "shopify-ecommerce-funnel-analytics",
+      "ai-agents-for-shopify-stores-chat-to-checkout",
     ],
     sections: [
       {
@@ -1347,9 +1349,9 @@ export const blogPosts: BlogPost[] = [
     publishDate: "2026-04-11",
     readingTime: "14 min read",
     relatedSlugs: [
+      "ai-chatbot-vs-ai-sales-agent-shopify",
+      "ai-agents-for-shopify-stores-chat-to-checkout",
       "chatbot-brand-voice",
-      "24-7-ai-support-after-hours-sales",
-      "increase-aov-shopify-without-discounts",
     ],
     sections: [
       {
@@ -1524,4 +1526,5 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  ...newBlogPosts,
 ];
