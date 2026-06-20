@@ -14,6 +14,7 @@ export default {
   			montserrat: ['Montserrat', 'sans-serif'],
   			playfair: ['Playfair Display', 'serif'],
   			roi: ['Cormorant Garamond', 'Georgia', 'Times New Roman', 'serif'],
+  				seasons: ['The Seasons', 'Playfair Display', 'ui-serif', 'Georgia', 'Times New Roman', 'serif'],
   		},
   		colors: {
   			background: 'hsl(var(--background))',

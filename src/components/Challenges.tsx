@@ -81,7 +81,12 @@ function ChallengeCard({
 
   return (
     <Card className="challenge-card scroll-fade-lr bg-transparent border border-border/50 hover:border-primary/30 transition-all duration-300 group">
-      <CardContent className="p-4 sm:p-8 h-full flex flex-col relative">
+      <Link
+        href={challenge.link}
+        aria-label={`Read the full guide: ${challenge.problem}`}
+        className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02DFA6]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-xl"
+      >
+        <CardContent className="p-4 sm:p-8 h-full flex flex-col relative">
         <div className="mb-3 sm:mb-6">
           <Icon className="challenge-icon w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground group-hover:text-[#02DFA6] transition-colors duration-300" aria-hidden="true" />
         </div>
@@ -98,7 +103,11 @@ function ChallengeCard({
           </p>
           {!expanded && (
             <button
-              onClick={() => setExpanded(true)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setExpanded(true);
+              }}
               aria-expanded={false}
               aria-label={`Read more about: ${challenge.problem}`}
               className="mt-2 text-sm text-[#02DFA6]/80 hover:text-[#02DFA6] transition-colors duration-200 font-medium"
@@ -108,16 +117,14 @@ function ChallengeCard({
           )}
         </div>
 
-        <Link
-          href={challenge.link}
-          className="inline-flex items-center gap-1.5 mt-5 text-xs text-white/30 hover:text-white/60 transition-colors duration-200 underline underline-offset-2 decoration-white/15 hover:decoration-white/40"
-        >
+        <span className="inline-flex items-center gap-1.5 mt-5 text-xs text-white/30 group-hover:text-white/60 transition-colors duration-200 underline underline-offset-2 decoration-white/15 group-hover:decoration-white/40">
           Read the full guide
           <ArrowRight className="w-3 h-3" aria-hidden="true" />
-        </Link>
+        </span>
 
         <div className="card-hover-gradient"></div>
-      </CardContent>
+        </CardContent>
+      </Link>
     </Card>
   );
 }

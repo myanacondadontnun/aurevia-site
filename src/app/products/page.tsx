@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageLayout from "@/components/PageLayout";
 import ProductsGrid from "@/components/ProductsGrid";
 import ProductsPageCTACard from "@/components/ProductsPageCTACard";
+import MediaPlaceholder from "@/components/MediaPlaceholder";
 import { buildShopifyInstallUrl } from "@/lib/utils";
 import Link from "next/link";
 import {
@@ -21,7 +22,14 @@ import {
 
 export const metadata: Metadata = {
   title: "Products | Aurevia - Shopify AI Sales Co-Pilot",
-  description: "Explore Aurevia's AI-powered product features: automated responses, cart recovery, product recommendations, analytics, and Shopify integration.",
+  description:
+    "Shopify AI chatbot for sales: consultative product recommendations, in-chat checkout, AOV and conversion analytics, lead capture, and support automation—in one app.",
+  openGraph: {
+    title: "Products | Aurevia - Shopify AI Sales Co-Pilot",
+    description:
+      "Conversational commerce, revenue attribution, and merchant-controlled AI. Explore every capability.",
+    type: "website",
+  },
 };
 
 const products = [
@@ -30,77 +38,88 @@ const products = [
     slug: "automated-responses",
     href: "/products/automated-responses",
     icon: FileText,
-    description: "AI delivers instant, context-aware responses to customer queries—24/7. No more waiting for support hours.",
+    description:
+      "Catalog-grounded answers for pre-sales, shipping, and policy—so shoppers get instant clarity while your AI keeps selling, not stalling.",
   },
   {
     title: "Ticket Management",
     slug: "ticket-management",
     href: "/products/ticket-management",
     icon: Percent,
-    description: "Triage and resolve support tickets automatically. Route complex cases to your team when needed.",
+    description:
+      "Escalate with full context: triage complex threads, see cart and history, and hand off to humans when it truly matters.",
   },
   {
     title: "Multilingual Support",
     slug: "multilingual",
     href: "/products/multilingual",
     icon: Globe,
-    description: "Reach global customers with AI that speaks their language. Support multiple languages in one chatbot.",
+    description:
+      "One widget, every market: the same products, brand voice, and selling rules in the languages your customers use.",
   },
   {
     title: "Product Recommendations",
     slug: "recommendations",
     href: "/products/recommendations",
     icon: Package,
-    description: "Analyze live shopper context to suggest the perfect products—increasing AOV and conversion.",
+    description:
+      "Consultative discovery and curated picks with add-to-cart in chat—built to lift conversion and average order value.",
   },
   {
     title: "Cart Recovery",
     slug: "cart-recovery",
     href: "/products/cart-recovery",
     icon: ShoppingCart,
-    description: "Spot exit intent, answer last-minute questions, and drop one-click checkout links—rescuing lost revenue.",
+    description:
+      "In-session nudges, free-shipping prompts, and checkout links the moment someone hesitates—before they bounce.",
   },
   {
     title: "Lead Qualification",
     slug: "lead-qualification",
     href: "/products/lead-qualification",
     icon: Filter,
-    description: "Identify high-intent visitors in real-time and surface them for your sales team.",
+    description:
+      "Capture emails and high-intent signals from paid traffic, export leads, and follow up on real opportunities.",
   },
   {
     title: "Performance Dashboard",
     slug: "dashboard",
     href: "/products/dashboard",
     icon: Monitor,
-    description: "Monitor conversions, revenue attribution, and engagement metrics in one clear view.",
+    description:
+      "A merchant view of what matters: conversations, revenue signals, and AI health at a glance—no vanity metrics.",
   },
   {
     title: "Conversation Analytics",
     slug: "analytics",
     href: "/products/analytics",
     icon: MessageSquare,
-    description: "Understand what customers ask, where they drop off, and how to improve. Full conversation history.",
+    description:
+      "Why shoppers ask, where they drop off, and which flows win. Improve playbooks with conversation intelligence.",
   },
   {
     title: "ROI Tracking",
     slug: "roi-tracking",
     href: "/products/roi-tracking",
     icon: BarChart3,
-    description: "See exactly how much revenue Aurevia drives. Track attributed sales, cart recoveries, and upsells.",
+    description:
+      "Attribute revenue to the AI: assisted purchases, upsells, and recommendations in dollars—not just message counts.",
   },
   {
     title: "Shopify Integration",
     slug: "shopify",
     href: "/products/shopify",
     icon: Store,
-    description: "One-click install from the App Store, automatic product sync, and native checkout links.",
+    description:
+      "Native Shopify app: quick install, product sync, cart and checkout in context, store as the system of record.",
   },
   {
     title: "Custom API",
     slug: "api",
     href: "/products/api",
     icon: Code2,
-    description: "Connect Aurevia to your existing tools with our REST API. Custom integrations and webhooks.",
+    description:
+      "Webhooks, REST, and custom stacks for dev teams—connect Aurevia to the rest of your operations.",
   },
 ];
 
@@ -116,13 +135,23 @@ export default function ProductsPage() {
     <PageLayout>
       <section className="gradient-bg">
         <div className="container mx-auto px-4 sm:px-6 py-14 sm:py-16">
-          <div className="scroll-fade text-center mb-12">
+          <div className="scroll-fade text-center mb-8">
             <h1 className="text-4xl md:text-5xl font-inter font-normal text-white text-center mb-4">
               All <span className="green-highlight">products</span>
             </h1>
             <p className="text-lg text-muted-foreground text-center max-w-2xl mx-auto">
-              AI customer support, sales conversion tools, analytics, and platform integrations for your Shopify store.
+              A consultative AI sales co-pilot for Shopify: same chat runs discovery, nudges AOV, answers post-purchase
+              questions, and shows revenue impact—so you are not paying for a support bot that never closes.
             </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto mb-12 scroll-fade">
+            <MediaPlaceholder
+              ariaLabel="Placeholder for storefront and Aurevia chat widget demo"
+              caption="Drop in: storefront + widget screen recording or hero still"
+              suggestedAsset="Replace with a 15s clip or image of a product page with the Aurevia widget qualifying intent and offering a bundle (living-room / cross-sell story)."
+              aspect="wide"
+            />
           </div>
 
           <ProductsGrid>

@@ -9,7 +9,6 @@ interface Testimonial {
   role: string;
   company: string;
   industry: string;
-  fontClass: string;
   initials: string;
   image?: string;
 }
@@ -22,7 +21,6 @@ const testimonials: Testimonial[] = [
     role: "CX Lead",
     company: "Cabau Lifestyle",
     industry: "Fitness & Lifestyle",
-    fontClass: "font-playfair italic",
     initials: "C",
     image: "/images/cabau-lifestyle.png",
   },
@@ -33,7 +31,6 @@ const testimonials: Testimonial[] = [
     role: "Community Experience Head Coach",
     company: "LSKD",
     industry: "Activewear",
-    fontClass: "font-playfair italic",
     initials: "KB",
     image: "/images/lskd.png",
   },
@@ -44,7 +41,6 @@ const testimonials: Testimonial[] = [
     role: "Customer Service Manager",
     company: "Baby Gold",
     industry: "Jewelry",
-    fontClass: "font-playfair italic",
     initials: "SM",
     image: "/images/baby-gold.png",
   },
@@ -55,7 +51,6 @@ const testimonials: Testimonial[] = [
     role: "CEO",
     company: "Hairlust",
     industry: "Beauty & Haircare",
-    fontClass: "font-playfair italic",
     initials: "RS",
     image: "/images/hairlust.png",
   },
@@ -66,7 +61,6 @@ const testimonials: Testimonial[] = [
     role: "Customer Experience Manager",
     company: "VESSEL",
     industry: "Premium Goods",
-    fontClass: "font-playfair italic",
     initials: "LR",
     image: "/images/vessel.png",
   },
@@ -77,7 +71,6 @@ const testimonials: Testimonial[] = [
     role: "Customer Service Manager",
     company: "Pajar",
     industry: "Fashion & Outerwear",
-    fontClass: "font-playfair italic",
     initials: "P",
     image: "/images/pajar.png",
   },
@@ -88,7 +81,6 @@ const testimonials: Testimonial[] = [
     role: "Customer Happiness Manager",
     company: "Loop Earplugs",
     industry: "Consumer Tech",
-    fontClass: "font-playfair italic",
     initials: "MV",
     image: "/images/loop-earplugs.png",
   },
@@ -267,7 +259,7 @@ export default function Testimonials() {
             <div className="w-full lg:w-7/12 text-center lg:text-left">
               <blockquote className="mb-6 sm:mb-10">
                 <p
-                  className={`${getQuoteSize(t.quote.length)} ${t.fontClass} text-white font-medium tracking-tight leading-snug`}
+                  className={`${getQuoteSize(t.quote.length)} font-montserrat not-italic text-white font-medium tracking-tight leading-snug`}
                 >
                   &ldquo;{t.quote}&rdquo;
                 </p>

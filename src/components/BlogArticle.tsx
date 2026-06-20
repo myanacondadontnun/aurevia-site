@@ -17,7 +17,9 @@ import {
   ArrowRight,
   ArrowLeft,
   ChevronRight,
+  Lightbulb,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 import {
   type BlogPost,
   type BlogSection,
@@ -187,13 +189,27 @@ function RelatedPosts({ slug }: { slug: string }) {
 }
 
 export default function BlogArticle({ post }: { post: BlogPost }) {
+  const [isLightMode, setIsLightMode] = useState(false);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("aurevia_blog_theme");
+      if (saved === "light") setIsLightMode(true);
+    } catch {
+      // ignore
+    }
+  }, []);
+
   const formattedDate = new Date(post.publishDate).toLocaleDateString(
     "en-US",
     { year: "numeric", month: "long", day: "numeric" }
   );
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+    <div
+      className={`container mx-auto px-4 sm:px-6 max-w-6xl ${isLightMode ? "blog-light" : ""}`}
+      data-blog-theme={isLightMode ? "light" : "dark"}
+    >
       {/* Breadcrumbs */}
       <nav className="flex items-center gap-1.5 text-xs text-muted-foreground/60 mb-8 flex-wrap">
         <Link
@@ -224,11 +240,32 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
 
       {/* Article Header */}
       <header className="max-w-3xl mb-10">
-        <div className="flex items-center gap-3 mb-4">
+        <div className="flex items-center justify-between gap-4 mb-4">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#02DFA6]/10 text-[#02DFA6] border border-[#02DFA6]/20">
             <Tag className="w-3 h-3" />
             {post.category}
           </span>
+
+          <button
+            type="button"
+            onClick={() => {
+              setIsLightMode((prev) => {
+                const next = !prev;
+                try {
+                  localStorage.setItem("aurevia_blog_theme", next ? "light" : "dark");
+                } catch {
+                  // ignore
+                }
+                return next;
+              });
+            }}
+            aria-pressed={isLightMode}
+            className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-background/40 px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-white hover:border-[#02DFA6]/30 transition-colors"
+            title={isLightMode ? "Switch to dark mode" : "Switch to light mode"}
+          >
+            <Lightbulb className={`h-4 w-4 ${isLightMode ? "text-[#02DFA6]" : "text-muted-foreground"}`} />
+            {isLightMode ? "Light" : "Dark"}
+          </button>
         </div>
 
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-inter font-normal text-white mb-5 leading-tight">

@@ -1,26 +1,61 @@
 import type { Metadata } from "next";
-import PageLayout from "@/components/PageLayout";
-import Link from "next/link";
+import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+
+const title = "Increase Ecommerce Conversion Rate with AI | Aurevia";
+const desc =
+  "Move stalled traffic to purchase: guided product discovery, cart nudges, and checkout in chat. Shopify AI built for CVR and AOV, not deflection only.";
 
 export const metadata: Metadata = {
-  title: "Increase Sales Conversion | Aurevia Solutions",
-  description: "Boost conversion rates with AI-powered recommendations and cart recovery.",
+  title,
+  description: desc,
+  openGraph: { title, description: desc, type: "article" },
 };
 
 export default function ConversionPage() {
   return (
-    <PageLayout>
-      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
-        <Link href="/solutions" className="text-muted-foreground hover:text-[#02DFA6] text-sm mb-6 inline-block">
-          ← Back to Solutions
-        </Link>
-        <h1 className="text-4xl md:text-5xl font-inter font-normal text-white mb-6">
-          Increase Sales Conversion
-        </h1>
-        <p className="text-lg text-muted-foreground">
-          Turn more visitors into buyers with AI that recommends the right products and recovers abandoned carts.
-        </p>
-      </div>
-    </PageLayout>
+    <FeatureSubpageLayout
+      backHref="/solutions"
+      backLabel="← Back to Solutions"
+      headline={
+        <>
+          Turn traffic into <span className="green-highlight">revenue you can name</span>
+        </>
+      }
+      subtitle="If your sessions look healthy but the cash register does not, the gap is often intent and confidence. Aurevia runs consultative sales in the same session: clarify what they need, show a tight shortlist, add to cart, and nudge them over the line—so conversion is not a hope left to your PDP copy alone."
+      lede="This use case is for growth and ecommerce leads who are tired of “more traffic” with flat CVR. The lever is a sales-aware assistant that is allowed to do commerce, not a bot that is only allowed to say “contact us.”"
+      proofStrip={[
+        { label: "CVR and AOV", text: "Measure both: sometimes you win on rate, sometimes on basket size—Aurevia is built for both." },
+        { label: "Less guesswork on merchandising", text: "Hear the questions people actually ask, then fix PDPs, bundles, and nudges with data." },
+        { label: "Fits paid and organic", text: "Whether the click came from Meta or search, the experience after arrival decides if you get paid back." },
+      ]}
+      featureBlocks={[
+        { title: "Pre-sales that asks before it pitches", body: "Quick replies and follow-ups that mirror how your best in-store rep would narrow options." },
+        { title: "In-chat cart and checkout nudges", body: "Keep momentum: cart edits, free-shipping progress, and clear paths to pay in thread." },
+        { title: "Bundle and upsell with guardrails", body: "Revenue logic you set—so cross-sell reads helpful, not desperate." },
+        { title: "Attribution you can show internally", body: "Pair with ROI and analytics so the channel mix and site roadmap win together." },
+      ]}
+      howItWorks={[
+        { title: "Clarify intent", body: "The AI captures goals, constraints, and doubt in a few turns." },
+        { title: "Recommend with reasons", body: "Short, justified picks from your real catalog, not a random grid." },
+        { title: "Close in-session", body: "Add to cart, resolve last objections, and hand off to checkout with trust cues." },
+      ]}
+      media={{
+        ariaLabel: "Adaptive sales brain placeholder",
+        caption: "Swap in: inputs to AI brain to outputs (recommend, bundle, nudge) still or motion",
+        suggestedAsset: "Use your 'One adaptive sales brain' diagram: catalog, voice, rules in; recommendations and cart nudges out.",
+        kind: "image",
+        aspect: "wide",
+      }}
+      relatedLinks={[
+        { href: "/products/recommendations", label: "Product recommendations" },
+        { href: "/products/cart-recovery", label: "Cart recovery" },
+        { href: "/products/roi-tracking", label: "ROI tracking" },
+      ]}
+      faqs={[
+        { q: "We already run CRO on the site. Why chat?", a: "Because many questions never make it to a form—they die in hesitation. A consultative thread captures that intent the moment it appears." },
+        { q: "How fast can we test impact?", a: "Ship a pilot, compare assisted sessions against holdouts, and read weekly; your dashboard and ROI views connect to real orders." },
+        { q: "Is this one-size upsell spam?", a: "No. Merchants set tone and rules; the best programs sound like help, not pressure." },
+      ]}
+    />
   );
 }

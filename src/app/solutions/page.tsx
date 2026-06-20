@@ -2,18 +2,74 @@ import type { Metadata } from "next";
 import PageLayout from "@/components/PageLayout";
 import IndustriesShowcase from "@/components/IndustriesShowcase";
 import ROICalculatorCTACard from "@/components/ROICalculatorCTACard";
+import Link from "next/link";
 import {
   Shirt,
   Sparkles,
   Dumbbell,
   Monitor,
   Leaf,
+  ShoppingCart,
+  Headphones,
+  BarChart3,
+  Store,
+  TrendingUp,
+  Briefcase,
+  ArrowRight,
 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Solutions | Aurevia - Shopify AI Sales Co-Pilot",
-  description: "AI solutions for every industry. Fashion, beauty, fitness, electronics, home & garden — see how Aurevia helps Shopify merchants in your vertical.",
+  description:
+    "Industry playbooks, conversion and support use cases, and business-size programs—Shopify AI that sells, deflects tickets, and proves ROI.",
+  openGraph: {
+    title: "Solutions | Aurevia - Shopify AI Sales Co-Pilot",
+    description: "Ecommerce AI for fashion, beauty, fitness, and more. Match your ICP in minutes.",
+    type: "website",
+  },
 };
+
+const useCases = [
+  {
+    href: "/solutions/conversion",
+    label: "Increase sales conversion",
+    blurb: "Move stalled browsers to checkout with guided discovery, cart nudges, and bundle logic.",
+    icon: ShoppingCart,
+  },
+  {
+    href: "/solutions/support",
+    label: "Automate customer support",
+    blurb: "Deflect WISMO and returns questions with order-aware answers that still feel on-brand.",
+    icon: Headphones,
+  },
+  {
+    href: "/solutions/insights",
+    label: "Gain customer insights",
+    blurb: "Turn every chat into data: what people ask, where they drop, what to test next.",
+    icon: BarChart3,
+  },
+];
+
+const businessSizes = [
+  {
+    href: "/solutions/small-business",
+    label: "Small business",
+    blurb: "One lean tool for sales and support, live in a single sitting.",
+    icon: Store,
+  },
+  {
+    href: "/solutions/growing-business",
+    label: "Growing business",
+    blurb: "Rules, brand voice, and revenue attribution that scale with ad spend.",
+    icon: TrendingUp,
+  },
+  {
+    href: "/solutions/enterprise",
+    label: "Enterprise",
+    blurb: "Volume, process, and integrations for teams that need a secure path to rollout.",
+    icon: Briefcase,
+  },
+];
 
 const industries = [
   {
@@ -75,12 +131,74 @@ export default function SolutionsPage() {
         <div className="container mx-auto px-4 sm:px-6 py-14 sm:py-16">
           <header className="scroll-fade text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-inter font-normal text-white text-center mb-4">
-              All <span className="green-highlight">industries</span>
+              All <span className="green-highlight">solutions</span>
             </h1>
             <p className="text-lg text-muted-foreground text-center max-w-2xl mx-auto page-subheader">
-              AI solutions tailored to your industry. See how Aurevia helps Shopify merchants in every vertical.
+              Pick a use case, your stage, or your vertical—Aurevia maps consultative sales to the way you already run
+              the store. Same Shopify-native AI, tuned to the outcome you care about first.
             </p>
           </header>
+
+          <div className="max-w-5xl mx-auto mb-16">
+            <h2 className="text-sm font-medium uppercase tracking-wider text-muted-foreground text-center mb-6">
+              By use case
+            </h2>
+            <div className="grid md:grid-cols-3 gap-4">
+              {useCases.map((u) => (
+                <Link
+                  key={u.href}
+                  href={u.href}
+                  className="group rounded-2xl border border-border/40 bg-card/40 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/35 hover:-translate-y-0.5"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary mb-4">
+                    <u.icon className="h-5 w-5" aria-hidden />
+                  </span>
+                  <h3 className="font-medium text-white group-hover:text-[#02DFA6] transition-colors mb-2">
+                    {u.label}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{u.blurb}</p>
+                  <span className="inline-flex items-center gap-1 text-sm font-medium text-[#02DFA6]">
+                    Learn more
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="max-w-5xl mx-auto mb-20">
+            <h2 className="text-sm font-medium uppercase tracking-wider text-muted-foreground text-center mb-6">
+              By business size
+            </h2>
+            <div className="grid md:grid-cols-3 gap-4">
+              {businessSizes.map((b) => (
+                <Link
+                  key={b.href}
+                  href={b.href}
+                  className="group rounded-2xl border border-border/40 bg-card/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/35 hover:-translate-y-0.5"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary mb-4">
+                    <b.icon className="h-5 w-5" aria-hidden />
+                  </span>
+                  <h3 className="font-medium text-white group-hover:text-[#02DFA6] transition-colors mb-2">
+                    {b.label}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{b.blurb}</p>
+                  <span className="inline-flex items-center gap-1 text-sm font-medium text-[#02DFA6]">
+                    Learn more
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <h2 className="text-2xl md:text-3xl font-inter font-normal text-center text-white mb-2">
+            By <span className="green-highlight">industry</span>
+          </h2>
+          <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-10 text-sm sm:text-base">
+            Verticals where discovery, returns, and specs make or break the sale. Choose yours for tailored messaging.
+          </p>
 
           <IndustriesShowcase
             industries={industries.map(({ title, slug, subheader, href, image, titleHighlight }) => ({

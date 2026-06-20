@@ -4,6 +4,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "The Seasons";
+  src:
+    local("The Seasons"),
+    local("TheSeasons"),
+    url("/fonts/the-seasons.woff2") format("woff2"),
+    url("/fonts/the-seasons.woff") format("woff");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "The Seasons";
+  src:
+    local("The Seasons Italic"),
+    local("TheSeasons-Italic"),
+    url("/fonts/the-seasons-italic.woff2") format("woff2"),
+    url("/fonts/the-seasons-italic.woff") format("woff");
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --background: 0 0% 3%;
@@ -115,6 +139,13 @@
     -webkit-text-fill-color: transparent;
   }
 
+  /* Accent copy font (used for green/gradient text across the site). */
+  .accent-font {
+    font-family: "The Seasons", "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
   .green-highlight {
     color: #02DFA6;
     background: linear-gradient(135deg, #02DFA6 0%, #01C594 100%);
@@ -125,10 +156,58 @@
     line-height: 1.2;
   }
 
+  /* Home page only: use The Seasons italic for existing green/gradient copy. */
+  .home-seasons .green-highlight,
+  .home-seasons .gradient-text,
+  .home-seasons .text-gradient,
+  .home-seasons [class~='text-[#02DFA6]'],
+  .home-seasons [class~='text-[#01C594]'] {
+    font-family: "The Seasons", "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
   .logo-text {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     letter-spacing: -0.01em;
+  }
+
+  /* Blog post readability mode (only applied when `BlogArticle` adds `.blog-light`). */
+  .blog-light {
+    background: #ffffff;
+    border-radius: 1.25rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.22);
+  }
+
+  .blog-light :where(.text-white) {
+    color: rgba(10, 10, 10, 0.95) !important;
+  }
+
+  .blog-light :where(.text-muted-foreground) {
+    color: rgba(40, 40, 40, 0.72) !important;
+  }
+
+  .blog-light :where(.border-border\/30) {
+    border-color: rgba(0, 0, 0, 0.12) !important;
+  }
+
+  .blog-light :where(.border-border\/50) {
+    border-color: rgba(0, 0, 0, 0.18) !important;
+  }
+
+  .blog-light :where(.bg-background\/40) {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  .blog-light :where(a:hover) {
+    color: rgba(2, 160, 120, 1) !important;
+  }
+
+  .blog-light :where(.bg-transparent) {
+    background-color: transparent !important;
   }
 
   .touch-friendly {

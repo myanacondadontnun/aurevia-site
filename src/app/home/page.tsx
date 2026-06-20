@@ -27,14 +27,14 @@ export default function HomePage() {
     <div className="min-h-screen bg-background">
       <ScrollAnimationsInit />
       <Navbar />
-      <main id="main-content">
+      <main id="main-content" className="home-seasons">
         <Hero />
         <FiveWays />
-        <FourSteps />
         <Industries />
         <Challenges />
         <Stats />
         <Testimonials />
+        <FourSteps />
         <BetaTester />
         <FAQ />
         <ContactUs />
