@@ -134,6 +134,12 @@ export default function RootLayout({
             `,
           }}
         />
+
+        {/* Aurevia Chatbot Widget */}
+        <Script
+          src="https://lab.aurevia.io/api/widget/embed/JIVWFSWK.js"
+          strategy="afterInteractive"
+        />
       </head>
       <body suppressHydrationWarning className="antialiased">
         <ClientBody>{children}</ClientBody>
