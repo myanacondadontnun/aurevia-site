@@ -32,7 +32,7 @@ export default function Hero() {
               </div>
             </div>
 
-            <h1 className="text-[1.65rem] sm:text-4xl md:text-[2.75rem] lg:text-5xl font-inter font-normal mb-3 sm:mb-5 leading-[1.2] text-white">
+            <h1 className="text-[1.65rem] sm:text-4xl md:text-[2.75rem] lg:text-5xl font-fraunces font-normal mb-3 sm:mb-5 leading-[1.2] text-foreground">
               Shopify AI Sales Agent{" "}
               <span className="green-highlight">Revenue on Autopilot</span>
             </h1>
@@ -53,10 +53,10 @@ export default function Hero() {
               >
                 <span className="relative block pb-1.5">
                   <span
-                    className="absolute left-2 right-2 bottom-0 h-2 sm:h-2.5 rounded-b-lg bg-gradient-to-r from-[#024d3f] via-[#02DFA6] to-[#024d3f] shadow-[0_0_12px_rgba(2,223,166,0.35)]"
+                    className="absolute left-2 right-2 bottom-0 h-2 sm:h-2.5 rounded-b-lg bg-gradient-to-r from-[#024d3f] via-[#00CC99] to-[#024d3f] shadow-[0_0_12px_rgba(0,204,153,0.35)]"
                     aria-hidden
                   />
-                  <span className="relative flex min-h-[48px] items-center justify-center overflow-hidden rounded-xl border border-[#02DFA6]/25 bg-[#0d1717]/92 px-6 py-3 text-sm font-semibold text-[#fffffc] shadow-[0_0_0_1px_rgba(2,223,166,0.08),0_8px_24px_rgba(0,0,0,0.35)] backdrop-blur-[2px] sm:px-8 sm:py-3.5 sm:text-base">
+                  <span className="relative flex min-h-[48px] items-center justify-center overflow-hidden rounded-xl border border-[#00CC99]/40 bg-[#0d1717] px-6 py-3 text-sm font-semibold text-[#fffffc] shadow-[0_0_0_1px_rgba(0,204,153,0.12),0_10px_28px_rgba(0,82,61,0.28)] sm:px-8 sm:py-3.5 sm:text-base">
                     <CTASwarmBackdrop roundedClassName="rounded-xl" />
                     <span className="relative z-[3]">Try Aurevia free on Shopify</span>
                   </span>

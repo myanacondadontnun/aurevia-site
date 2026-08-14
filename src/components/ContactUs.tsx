@@ -102,13 +102,13 @@ export default function ContactUs() {
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16 scroll-fade">
           {/* Desktop Header */}
-          <h2 className="hidden md:block text-4xl md:text-5xl mb-6 text-white font-normal">
+          <h2 className="hidden md:block text-4xl md:text-5xl mb-6 text-foreground font-normal">
             Your store never sleeps.{" "}
             <span className="green-highlight">Your sales rep shouldn't either.</span>
           </h2>
           
           {/* Mobile Header */}
-          <h2 className="md:hidden text-2xl sm:text-4xl font-normal mb-3 sm:mb-6 text-white">
+          <h2 className="md:hidden text-2xl sm:text-4xl font-normal mb-3 sm:mb-6 text-foreground">
             Ready to <span className="green-highlight">sell on autopilot?</span>
           </h2>
           <p className="text-sm sm:text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -120,7 +120,7 @@ export default function ContactUs() {
           {/* Contact Information */}
           <div className="space-y-6 sm:space-y-8">
             <div>
-              <h3 className="text-xl sm:text-2xl font-normal mb-4 sm:mb-6 text-white">Let's Start a Conversation</h3>
+              <h3 className="text-xl sm:text-2xl font-normal mb-4 sm:mb-6 text-foreground">Let's Start a Conversation</h3>
               <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
                 We're here to help you take your customer engagement to the next level. 
                 Reach out to us through any of the channels below or fill out the form.
@@ -171,10 +171,10 @@ export default function ContactUs() {
             {/* Content */}
             <div className="relative z-10">
               <CardHeader className="text-center pb-6 sm:pb-8 px-4 sm:px-6">
-                <CardTitle className="text-xl sm:text-2xl text-white mb-2">
+                <CardTitle className="text-xl sm:text-2xl text-foreground mb-2">
                   Send Us a Message
                 </CardTitle>
-                <CardDescription className="text-gray-300 text-sm sm:text-base">
+                <CardDescription className="text-muted-foreground text-sm sm:text-base">
                   Fill out the form below and we'll get back to you shortly.
                 </CardDescription>
               </CardHeader>
@@ -184,8 +184,8 @@ export default function ContactUs() {
                 {isSubmitted ? (
                   <div className="text-center py-12" role="status">
                     <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" aria-hidden="true" />
-                    <h3 className="text-xl font-normal text-white mb-2">Message Sent!</h3>
-                    <p className="text-gray-300">Thank you for reaching out. We'll get back to you soon.</p>
+                    <h3 className="text-xl font-normal text-foreground mb-2">Message Sent!</h3>
+                    <p className="text-muted-foreground">Thank you for reaching out. We'll get back to you soon.</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6" aria-busy={isSubmitting} aria-label="Contact form">
@@ -198,7 +198,7 @@ export default function ContactUs() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                        <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-2">
                           Full Name *
                         </label>
                         <input
@@ -208,12 +208,12 @@ export default function ContactUs() {
                           value={formData.name}
                           onChange={handleInputChange}
                           required
-                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-base sm:text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200"
+                          className="w-full px-4 py-3 bg-white border border-black/20 rounded-lg text-base sm:text-sm text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200"
                           placeholder="Enter your name"
                         />
                       </div>
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                        <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-2">
                           Email Address *
                         </label>
                         <input
@@ -223,14 +223,14 @@ export default function ContactUs() {
                           value={formData.email}
                           onChange={handleInputChange}
                           required
-                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-base sm:text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200"
+                          className="w-full px-4 py-3 bg-white border border-black/20 rounded-lg text-base sm:text-sm text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200"
                           placeholder="Enter your email"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
+                      <label htmlFor="company" className="block text-sm font-medium text-muted-foreground mb-2">
                         Company Name
                       </label>
                       <input
@@ -239,13 +239,13 @@ export default function ContactUs() {
                         name="company"
                         value={formData.company}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-base sm:text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200"
+                        className="w-full px-4 py-3 bg-white border border-black/20 rounded-lg text-base sm:text-sm text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200"
                         placeholder="Your company name"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
+                      <label htmlFor="subject" className="block text-sm font-medium text-muted-foreground mb-2">
                         Subject *
                       </label>
                       <input
@@ -255,13 +255,13 @@ export default function ContactUs() {
                         value={formData.subject}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-base sm:text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200"
+                        className="w-full px-4 py-3 bg-white border border-black/20 rounded-lg text-base sm:text-sm text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200"
                         placeholder="What's this about?"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                      <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-2">
                         Message *
                       </label>
                       <textarea
@@ -271,7 +271,7 @@ export default function ContactUs() {
                         onChange={handleInputChange}
                         required
                         rows={6}
-                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-base sm:text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200 resize-none"
+                        className="w-full px-4 py-3 bg-white border border-black/20 rounded-lg text-base sm:text-sm text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200 resize-none"
                         placeholder="Tell us about your project and how we can help..."
                       />
                     </div>
@@ -281,11 +281,11 @@ export default function ContactUs() {
                       disabled={isSubmitting}
                       aria-label="Send contact form"
                       aria-describedby={submitError ? "form-error" : undefined}
-                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-6 rounded-lg font-normal transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-foreground py-3 px-6 rounded-lg font-normal transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
                       {isSubmitting ? (
                         <div className="flex items-center gap-2">
-                          <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" aria-hidden="true"></div>
+                          <div className="w-4 h-4 border-2 border-black/20 border-t-white rounded-full animate-spin" aria-hidden="true"></div>
                           Sending...
                         </div>
                       ) : (

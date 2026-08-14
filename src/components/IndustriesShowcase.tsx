@@ -73,8 +73,8 @@ export default function IndustriesShowcase({ industries }: IndustriesShowcasePro
             onClick={() => scrollToSection(industry.slug)}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
               activeIndex === index
-                ? "bg-primary/20 border-primary/50 text-[#02DFA6]"
-                : "bg-card/50 border-border/50 text-muted-foreground hover:border-primary/30 hover:text-white"
+                ? "bg-primary/20 border-primary/50 text-[#00CC99]"
+                : "bg-card/50 border-border/50 text-muted-foreground hover:border-primary/30 hover:text-foreground"
             }`}
           >
             {industry.title}
@@ -95,7 +95,7 @@ export default function IndustriesShowcase({ industries }: IndustriesShowcasePro
               }}
               className="min-h-[80vh] lg:min-h-[85vh] flex flex-col justify-center py-16 lg:py-24 scroll-mt-28"
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal text-white mb-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-fraunces font-normal text-foreground mb-4">
                 {industry.titleHighlight && industry.title.includes(industry.titleHighlight) ? (
                   <>
                     {industry.title.split(industry.titleHighlight)[0]}
@@ -111,7 +111,7 @@ export default function IndustriesShowcase({ industries }: IndustriesShowcasePro
               </p>
               <Link
                 href={industry.href}
-                className="inline-flex items-center gap-2 text-[#02DFA6] font-medium hover:gap-3 transition-all"
+                className="inline-flex items-center gap-2 text-[#00CC99] font-medium hover:gap-3 transition-all"
               >
                 Learn more
                 <span aria-hidden>→</span>
@@ -138,7 +138,7 @@ export default function IndustriesShowcase({ industries }: IndustriesShowcasePro
                     className="absolute inset-0 w-full h-full rounded-2xl object-cover"
                   />
                 ) : (
-                  <span className="absolute inset-0 flex items-center justify-center text-white/60 text-sm font-medium">
+                  <span className="absolute inset-0 flex items-center justify-center text-foreground/60 text-sm font-medium">
                     {industry.title} — Image placeholder
                   </span>
                 )}

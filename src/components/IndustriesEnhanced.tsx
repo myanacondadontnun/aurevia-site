@@ -163,14 +163,14 @@ export default function IndustriesEnhanced() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-gray-900 text-foreground">
       <section id="industries-enhanced" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6" aria-label="Industry impact carousel">
         <div className="container mx-auto">
           <div className="text-center mb-10 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-4 sm:mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               See how Aurevia boosts revenue from fashion, food and beyond
             </h2>
-            <p className="text-base sm:text-lg md:text-xl font-light text-gray-400 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl font-light text-muted-foreground max-w-3xl mx-auto">
               Real-time AI sales agent chat bot that adapts to any Shopify niche.
             </p>
           </div>
@@ -207,8 +207,8 @@ export default function IndustriesEnhanced() {
                         height: 'min(420px, 65vh)'
                       }}
                     >
-                      <div className="relative h-full w-full bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-700 rounded-2xl border border-white/10 shadow-2xl">
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-white/5 rounded-2xl" aria-hidden="true" />
+                      <div className="relative h-full w-full bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-700 rounded-2xl border border-black/10 shadow-2xl">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/5 rounded-2xl" aria-hidden="true" />
 
                         <div className="relative h-full p-4 sm:p-6 flex flex-col">
                           <div className="absolute top-3 right-3 sm:top-4 sm:right-4 text-2xl sm:text-3xl opacity-90" aria-hidden="true">
@@ -217,14 +217,14 @@ export default function IndustriesEnhanced() {
 
                           <div className={`self-start mb-3 sm:mb-4 px-2.5 sm:px-3 py-1 rounded-full border transition-colors duration-300 ${
                             isCenter
-                              ? "bg-white/20 border-white/30 text-white backdrop-blur-sm"
-                              : "bg-white/10 border-white/20 text-white/70 backdrop-blur-sm"
+                              ? "bg-white border-black/30 text-foreground backdrop-blur-sm"
+                              : "bg-white border-black/20 text-foreground/70 backdrop-blur-sm"
                           }`}>
                             <span className="text-xs sm:text-sm font-medium">{industry.title}</span>
                           </div>
 
                           <p className={`text-sm sm:text-base leading-relaxed mb-3 flex-shrink-0 transition-colors duration-300 ${
-                            isCenter ? "text-white" : "text-white/60"
+                            isCenter ? "text-foreground" : "text-foreground/60"
                           }`}>
                             {industry.description}
                           </p>
@@ -232,12 +232,12 @@ export default function IndustriesEnhanced() {
                           {isCenter && (
                             <div className="flex-1 flex flex-col justify-end pb-2 sm:pb-4 animate-fade-in">
                               <div>
-                                <h4 className="text-xs sm:text-sm font-normal mb-2 text-white/90">Impact:</h4>
+                                <h4 className="text-xs sm:text-sm font-normal mb-2 text-foreground/90">Impact:</h4>
                                 <ul className="space-y-1 sm:space-y-1.5">
                                   {industry.impactPoints.map((point, idx) => (
                                     <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm">
                                       <span className="w-1.5 h-1.5 bg-white rounded-full mt-1.5 sm:mt-2 flex-shrink-0" aria-hidden="true" />
-                                      <span className="text-white/90 font-light">{point}</span>
+                                      <span className="text-foreground/90 font-light">{point}</span>
                                     </li>
                                   ))}
                                 </ul>
@@ -247,13 +247,13 @@ export default function IndustriesEnhanced() {
 
                           {!isCenter && (
                             <div className="flex-1 flex items-end pb-2 sm:pb-4">
-                              <div className="w-full aspect-[3/2] bg-gradient-to-br from-white/10 via-white/5 to-transparent rounded-lg flex items-center justify-center border border-white/10 backdrop-blur-sm transition-opacity duration-300 opacity-60">
-                                <div className="text-center text-white/60">
-                                  <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-2 sm:mb-3 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm" aria-hidden="true">
-                                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white/40 rounded" />
+                              <div className="w-full aspect-[3/2] bg-gradient-to-br from-black/10 via-black/5 to-transparent rounded-lg flex items-center justify-center border border-black/10 backdrop-blur-sm transition-opacity duration-300 opacity-60">
+                                <div className="text-center text-foreground/60">
+                                  <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-2 sm:mb-3 bg-white rounded-lg flex items-center justify-center backdrop-blur-sm" aria-hidden="true">
+                                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded" />
                                   </div>
-                                  <p className="text-xs sm:text-sm text-white/80">{industry.title} Demo</p>
-                                  <p className="text-[10px] sm:text-xs mt-1 text-white/50">Click to explore</p>
+                                  <p className="text-xs sm:text-sm text-foreground/80">{industry.title} Demo</p>
+                                  <p className="text-[10px] sm:text-xs mt-1 text-foreground/50">Click to explore</p>
                                 </div>
                               </div>
                             </div>
@@ -279,7 +279,7 @@ export default function IndustriesEnhanced() {
                   <span className={`block rounded-full transition-all duration-300 backdrop-blur-sm ${
                     index === activeIndex
                       ? 'w-6 h-3 bg-white shadow-lg'
-                      : 'w-3 h-3 bg-white/30 hover:bg-white/50'
+                      : 'w-3 h-3 bg-white hover:bg-white'
                   }`} />
                 </button>
               ))}

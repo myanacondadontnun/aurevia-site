@@ -37,7 +37,7 @@ export default function BetaTester() {
         >
           <CardContent className="p-5 sm:p-8 md:p-12 text-center">
             <div>
-              <h2 className="text-xl sm:text-3xl md:text-4xl font-inter font-normal mb-3 sm:mb-6 text-white">
+              <h2 className="text-xl sm:text-3xl md:text-4xl font-fraunces font-normal mb-3 sm:mb-6 text-foreground">
                 We're Handpicking Merchants to{" "}
                 <span className="green-highlight">Shape What's Next</span>
               </h2>
@@ -50,7 +50,7 @@ export default function BetaTester() {
               {!showForm && (
                 <>
                   <div className="mb-6 sm:mb-8">
-                    <h3 className="text-lg sm:text-xl font-inter font-normal mb-4 sm:mb-6 text-white">
+                    <h3 className="text-lg sm:text-xl font-inter font-normal mb-4 sm:mb-6 text-foreground">
                       What You Get:
                     </h3>
                     <div className="space-y-3 sm:space-y-4">
@@ -70,7 +70,7 @@ export default function BetaTester() {
                     <Button
                       size="lg"
                       aria-label="Sign up as a beta tester"
-                      className="cta-button cta-button--has-swarm relative overflow-hidden text-white font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center gap-2 border-0 w-full sm:w-auto max-w-xs sm:max-w-none"
+                      className="cta-button cta-button--has-swarm relative overflow-hidden text-foreground font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center gap-2 border-0 w-full sm:w-auto max-w-xs sm:max-w-none"
                       onClick={() => {
                         trackButtonClick('Let\'s Get To Know You', 'beta_section');
                         trackEvent('beta_signup_initiated', {

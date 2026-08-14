@@ -169,7 +169,7 @@ export default function Testimonials() {
         aria-hidden="true"
         style={{
           background:
-            "linear-gradient(90deg, transparent 0%, rgba(2,223,166,0.1) 50%, transparent 100%)",
+            "linear-gradient(90deg, transparent 0%, rgba(0,204,153,0.1) 50%, transparent 100%)",
         }}
       />
       <div
@@ -177,7 +177,7 @@ export default function Testimonials() {
         aria-hidden="true"
         style={{
           background:
-            "linear-gradient(90deg, transparent 0%, rgba(2,223,166,0.1) 50%, transparent 100%)",
+            "linear-gradient(90deg, transparent 0%, rgba(0,204,153,0.1) 50%, transparent 100%)",
         }}
       />
 
@@ -195,7 +195,7 @@ export default function Testimonials() {
           <figure className="flex flex-col lg:flex-row items-center gap-6 sm:gap-10 lg:gap-14">
             {/* Left -- Image or Monogram card */}
             <div className="w-full lg:w-5/12 flex-shrink-0">
-              <div className="relative aspect-[4/5] max-w-[240px] sm:max-w-[320px] mx-auto rounded-2xl overflow-hidden border border-white/[0.06]">
+              <div className="relative aspect-[4/5] max-w-[240px] sm:max-w-[320px] mx-auto rounded-2xl overflow-hidden border border-black/[0.06]">
                 {t.image ? (
                   <img
                     src={t.image}
@@ -215,7 +215,7 @@ export default function Testimonials() {
                       className="absolute inset-0"
                       style={{
                         background:
-                          "radial-gradient(circle at 30% 40%, rgba(2,223,166,0.06) 0%, transparent 60%)",
+                          "radial-gradient(circle at 30% 40%, rgba(0,204,153,0.06) 0%, transparent 60%)",
                       }}
                     />
                     <div
@@ -229,15 +229,15 @@ export default function Testimonials() {
                     />
                     <div className="relative h-full flex flex-col items-center justify-center p-8">
                       <span
-                        className="text-[5rem] sm:text-[6rem] font-playfair font-medium text-white/[0.07] leading-none select-none"
+                        className="text-[5rem] sm:text-[6rem] font-playfair font-medium text-foreground/[0.07] leading-none select-none"
                         aria-hidden="true"
                       >
                         {t.initials}
                       </span>
-                      <span className="mt-4 text-sm font-inter font-normal tracking-[0.25em] uppercase text-white/30">
+                      <span className="mt-4 text-sm font-inter font-normal tracking-[0.25em] uppercase text-foreground/30">
                         {t.company}
                       </span>
-                      <span className="mt-3 inline-flex items-center px-3 py-1 rounded-full text-[10px] font-inter font-medium tracking-[0.12em] uppercase border border-[#02DFA6]/10 text-[#02DFA6]/40 bg-[#02DFA6]/[0.03]">
+                      <span className="mt-3 inline-flex items-center px-3 py-1 rounded-full text-[10px] font-inter font-medium tracking-[0.12em] uppercase border border-[#00CC99]/10 text-[#00CC99]/40 bg-[#00CC99]/[0.03]">
                         {t.industry}
                       </span>
                     </div>
@@ -249,7 +249,7 @@ export default function Testimonials() {
                   aria-hidden="true"
                   style={{
                     background:
-                      "linear-gradient(90deg, transparent 0%, rgba(2,223,166,0.25) 50%, transparent 100%)",
+                      "linear-gradient(90deg, transparent 0%, rgba(0,204,153,0.25) 50%, transparent 100%)",
                   }}
                 />
               </div>
@@ -259,29 +259,29 @@ export default function Testimonials() {
             <div className="w-full lg:w-7/12 text-center lg:text-left">
               <blockquote className="mb-6 sm:mb-10">
                 <p
-                  className={`${getQuoteSize(t.quote.length)} font-montserrat not-italic text-white font-medium tracking-tight leading-snug`}
+                  className={`${getQuoteSize(t.quote.length)} font-montserrat not-italic text-foreground font-medium tracking-tight leading-snug`}
                 >
                   &ldquo;{t.quote}&rdquo;
                 </p>
               </blockquote>
 
               <figcaption className="flex items-center justify-center lg:justify-start gap-3 sm:gap-4">
-                <span className="text-sm sm:text-base font-inter font-normal tracking-widest uppercase text-white/80">
+                <span className="text-sm sm:text-base font-inter font-normal tracking-widest uppercase text-foreground/80">
                   {t.company}
                 </span>
-                <span className="w-px h-8 bg-white/20" aria-hidden="true" />
+                <span className="w-px h-8 bg-white" aria-hidden="true" />
                 <div>
                   {t.name ? (
                     <>
-                      <p className="text-sm sm:text-base font-inter font-medium text-white/70">
+                      <p className="text-sm sm:text-base font-inter font-medium text-foreground/70">
                         {t.name}
                       </p>
-                      <p className="text-xs sm:text-sm font-inter text-white/40 font-light">
+                      <p className="text-xs sm:text-sm font-inter text-foreground/40 font-light">
                         {t.role}
                       </p>
                     </>
                   ) : (
-                    <p className="text-sm sm:text-base font-inter text-white/50 font-light">
+                    <p className="text-sm sm:text-base font-inter text-foreground/50 font-light">
                       {t.role}
                     </p>
                   )}
@@ -306,7 +306,7 @@ export default function Testimonials() {
               <span className={`block rounded-full transition-all duration-300 ${
                 i === active
                   ? "w-3 h-3 bg-white"
-                  : "w-2.5 h-2.5 bg-white/20 hover:bg-white/40"
+                  : "w-2.5 h-2.5 bg-white hover:bg-white"
               }`} />
             </button>
           ))}

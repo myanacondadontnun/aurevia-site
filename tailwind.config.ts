@@ -12,6 +12,7 @@ export default {
   		fontFamily: {
   			inter: ['Inter', 'sans-serif'],
   			montserrat: ['Montserrat', 'sans-serif'],
+  			fraunces: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
   			playfair: ['Playfair Display', 'serif'],
   			roi: ['Cormorant Garamond', 'Georgia', 'Times New Roman', 'serif'],
   				seasons: ['The Seasons', 'Playfair Display', 'ui-serif', 'Georgia', 'Times New Roman', 'serif'],

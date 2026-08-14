@@ -85,7 +85,7 @@ export default function FeatureSubpageLayout({
         <div className="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl py-10 sm:py-14">
           <Link
             href={backHref}
-            className="text-muted-foreground hover:text-[#02DFA6] text-sm mb-8 inline-block transition-colors"
+            className="text-muted-foreground hover:text-[#00CC99] text-sm mb-8 inline-block transition-colors"
           >
             {backLabel}
           </Link>
@@ -97,7 +97,7 @@ export default function FeatureSubpageLayout({
             )}
           >
             <div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal text-white leading-tight mb-5">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-fraunces font-normal text-foreground leading-tight mb-5">
                 {headline}
               </h1>
               <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl">
@@ -133,7 +133,7 @@ export default function FeatureSubpageLayout({
 
           {featureBlocks.length > 0 ? (
             <div className="space-y-5 mb-12">
-              <h2 className="text-xl font-medium text-white">What you get</h2>
+              <h2 className="text-xl font-medium text-foreground">What you get</h2>
               <ul className="space-y-4">
                 {featureBlocks.map((f) => (
                   <li key={f.title} className="flex gap-3">
@@ -153,7 +153,7 @@ export default function FeatureSubpageLayout({
 
           {howItWorks && howItWorks.length > 0 ? (
             <div className="mb-12">
-              <h2 className="text-xl font-medium text-white mb-6">How it works</h2>
+              <h2 className="text-xl font-medium text-foreground mb-6">How it works</h2>
               <ol className="space-y-4">
                 {howItWorks.map((step, i) => (
                   <li
@@ -161,7 +161,7 @@ export default function FeatureSubpageLayout({
                     className="flex gap-4 rounded-2xl border border-border/30 bg-card/20 p-5 sm:p-6"
                   >
                     <span
-                      className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-primary/15 text-sm font-semibold text-[#02DFA6]"
+                      className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-primary/15 text-sm font-semibold text-[#00CC99]"
                       aria-hidden
                     >
                       {i + 1}
@@ -177,7 +177,7 @@ export default function FeatureSubpageLayout({
           ) : null}
 
           <div className="mb-12 scroll-fade">
-            <h2 className="text-xl font-medium text-white mb-4">See it in action</h2>
+            <h2 className="text-xl font-medium text-foreground mb-4">See it in action</h2>
             <MediaPlaceholder
               ariaLabel={media.ariaLabel}
               caption={media.caption}
@@ -199,7 +199,7 @@ export default function FeatureSubpageLayout({
                   <Link
                     key={l.href}
                     href={l.href}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-border/50 bg-card/30 px-4 py-2 text-sm text-foreground hover:border-primary/40 hover:text-[#02DFA6] transition-colors"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-border/50 bg-card/30 px-4 py-2 text-sm text-foreground hover:border-primary/40 hover:text-[#00CC99] transition-colors"
                   >
                     {l.label}
                     <ArrowRight className="h-3.5 w-3.5" aria-hidden />
@@ -211,7 +211,7 @@ export default function FeatureSubpageLayout({
 
           {faqs && faqs.length > 0 ? (
             <div className="mb-12">
-              <h2 className="text-xl font-medium text-white mb-6">FAQ</h2>
+              <h2 className="text-xl font-medium text-foreground mb-6">FAQ</h2>
               <div className="space-y-2">
                 {faqs.map((item) => (
                   <details
@@ -241,7 +241,7 @@ export default function FeatureSubpageLayout({
             id="get-started"
           >
             <div>
-              <p className="text-white font-medium">Ready to see it on your store?</p>
+              <p className="text-foreground font-medium">Ready to see it on your store?</p>
               <p className="text-sm text-muted-foreground mt-1">
                 Install from the Shopify App Store and go live in minutes.
               </p>

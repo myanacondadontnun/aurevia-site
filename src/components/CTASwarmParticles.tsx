@@ -113,7 +113,7 @@ export default function CTASwarmParticles({
         for (const b of boids) {
           ctx.fillStyle =
             b.hue === "mint"
-              ? "rgba(2, 223, 166, 0.22)"
+              ? "rgba(0,204,153, 0.22)"
               : "rgba(255, 255, 255, 0.12)";
           ctx.beginPath();
           ctx.arc(b.x, b.y, b.hue === "mint" ? 1.5 : 1, 0, Math.PI * 2);
@@ -221,7 +221,7 @@ export default function CTASwarmParticles({
         const alpha = b.hue === "mint" ? 0.35 + Math.sin(t * 2 + b.x * 0.02) * 0.12 : 0.2;
         const r = b.hue === "mint" ? 1.6 : 1.1;
         if (b.hue === "mint") {
-          ctx.fillStyle = `rgba(2, 223, 166, ${alpha})`;
+          ctx.fillStyle = `rgba(0,204,153, ${alpha})`;
         } else {
           ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
         }

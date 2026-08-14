@@ -61,7 +61,7 @@ export default function Stats() {
         <div className="flex flex-col lg:flex-row items-center gap-6 sm:gap-10 lg:gap-16">
           {/* Left — headline */}
           <div className="lg:w-5/12 text-center lg:text-left">
-            <h2 className="text-2xl sm:text-4xl md:text-[2.75rem] md:leading-[1.2] font-inter font-normal text-white">
+            <h2 className="text-2xl sm:text-4xl md:text-[2.75rem] md:leading-[1.2] font-fraunces font-normal text-foreground">
               Somewhere right now, a customer left your store.{" "}
               <span className="green-highlight">AI would have saved that sale.</span>
             </h2>
@@ -69,7 +69,7 @@ export default function Stats() {
 
           {/* Right — 2×2 stat grid */}
           <div className="lg:w-7/12">
-            <div className="grid grid-cols-2 gap-px bg-white/[0.06] rounded-2xl overflow-hidden">
+            <div className="grid grid-cols-2 gap-px bg-white rounded-2xl overflow-hidden">
               {stats.map((stat, index) => (
                 <div
                   key={index}

@@ -41,7 +41,7 @@ export default function FourSteps() {
     <section id="how-it-works" className="py-12 sm:py-20 md:py-24 px-4 sm:px-6">
       <div className="container mx-auto">
         <div className="text-center mb-8 sm:mb-16 scroll-fade">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-inter font-normal mb-3 sm:mb-4 text-white">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-fraunces font-normal mb-3 sm:mb-4 text-foreground">
             You're <span className="green-highlight">4 Steps Away</span> From Your First AI Sale
           </h2>
           <p className="text-sm sm:text-xl font-light text-muted-foreground max-w-3xl mx-auto">
@@ -72,7 +72,7 @@ export default function FourSteps() {
                     ) : (
                       <div className="text-center">
                         <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 bg-primary/30 rounded-full flex items-center justify-center">
-                          <span className="text-xl sm:text-2xl font-inter font-medium text-primary">
+                          <span className="text-xl sm:text-2xl font-fraunces font-medium text-primary">
                             {step.number}
                           </span>
                         </div>
@@ -84,7 +84,7 @@ export default function FourSteps() {
 
                 {/* Content */}
                 <div className="space-y-3 sm:space-y-4">
-                  <h3 className="text-lg sm:text-xl font-inter font-normal text-white leading-tight">
+                  <h3 className="text-lg sm:text-xl font-inter font-normal text-foreground leading-tight">
                     Step {step.number}: {step.title}
                   </h3>
                   <p className="text-sm sm:text-base font-light text-muted-foreground leading-relaxed">

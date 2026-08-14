@@ -130,7 +130,7 @@ export default function SolutionsPage() {
       <section className="gradient-bg">
         <div className="container mx-auto px-4 sm:px-6 py-14 sm:py-16">
           <header className="scroll-fade text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-inter font-normal text-white text-center mb-4">
+            <h1 className="text-4xl md:text-5xl font-fraunces font-normal text-foreground text-center mb-4">
               All <span className="green-highlight">solutions</span>
             </h1>
             <p className="text-lg text-muted-foreground text-center max-w-2xl mx-auto page-subheader">
@@ -153,11 +153,11 @@ export default function SolutionsPage() {
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary mb-4">
                     <u.icon className="h-5 w-5" aria-hidden />
                   </span>
-                  <h3 className="font-medium text-white group-hover:text-[#02DFA6] transition-colors mb-2">
+                  <h3 className="font-medium text-foreground group-hover:text-[#00CC99] transition-colors mb-2">
                     {u.label}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-4">{u.blurb}</p>
-                  <span className="inline-flex items-center gap-1 text-sm font-medium text-[#02DFA6]">
+                  <span className="inline-flex items-center gap-1 text-sm font-medium text-[#00CC99]">
                     Learn more
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
                   </span>
@@ -180,11 +180,11 @@ export default function SolutionsPage() {
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary mb-4">
                     <b.icon className="h-5 w-5" aria-hidden />
                   </span>
-                  <h3 className="font-medium text-white group-hover:text-[#02DFA6] transition-colors mb-2">
+                  <h3 className="font-medium text-foreground group-hover:text-[#00CC99] transition-colors mb-2">
                     {b.label}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-4">{b.blurb}</p>
-                  <span className="inline-flex items-center gap-1 text-sm font-medium text-[#02DFA6]">
+                  <span className="inline-flex items-center gap-1 text-sm font-medium text-[#00CC99]">
                     Learn more
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
                   </span>
@@ -193,7 +193,7 @@ export default function SolutionsPage() {
             </div>
           </div>
 
-          <h2 className="text-2xl md:text-3xl font-inter font-normal text-center text-white mb-2">
+          <h2 className="text-2xl md:text-3xl font-fraunces font-normal text-center text-foreground mb-2">
             By <span className="green-highlight">industry</span>
           </h2>
           <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-10 text-sm sm:text-base">

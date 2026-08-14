@@ -22,13 +22,13 @@ export function ListicleHeroVisual() {
       <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-[#0b3c2f]/40 via-card to-background p-8 shadow-inner">
         <div className="pointer-events-none absolute inset-0 opacity-[0.15]">
           <svg className="h-full w-full" viewBox="0 0 400 250" fill="none" aria-hidden>
-            <circle cx="200" cy="125" r="90" stroke="#02DFA6" strokeWidth="1" strokeDasharray="6 8" />
-            <circle cx="200" cy="125" r="120" stroke="#02DFA6" strokeWidth="0.5" strokeDasharray="4 10" />
+            <circle cx="200" cy="125" r="90" stroke="#00CC99" strokeWidth="1" strokeDasharray="6 8" />
+            <circle cx="200" cy="125" r="120" stroke="#00CC99" strokeWidth="0.5" strokeDasharray="4 10" />
           </svg>
         </div>
         <div className="relative flex h-full flex-col items-center justify-center gap-4">
-          <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-[#02DFA6]/30 bg-[#02DFA6]/10 shadow-[0_0_40px_-8px_rgba(2,223,166,0.5)]">
-            <ShoppingCart className="h-10 w-10 text-[#02DFA6]" strokeWidth={1.25} />
+          <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-[#00CC99]/30 bg-[#00CC99]/10 shadow-[0_0_40px_-8px_rgba(0,204,153,0.5)]">
+            <ShoppingCart className="h-10 w-10 text-[#00CC99]" strokeWidth={1.25} />
           </div>
           <p className="max-w-sm text-center text-sm font-light text-muted-foreground">
             AI connects catalog, orders, and checkout — not just a chat bubble on top of your theme.
@@ -53,13 +53,13 @@ const capabilityNodes = [
 export function InfographicCapabilities() {
   return (
     <figure className="my-10">
-      <div className="rounded-2xl border border-[#02DFA6]/20 bg-gradient-to-br from-[#02DFA6]/[0.07] via-card/60 to-background p-6 sm:p-8">
+      <div className="rounded-2xl border border-[#00CC99]/20 bg-gradient-to-br from-[#00CC99]/[0.07] via-card/60 to-background p-6 sm:p-8">
         <div className="mx-auto grid max-w-lg gap-4 sm:grid-cols-[1fr_auto] sm:items-center">
           <div className="flex flex-col items-center justify-center sm:row-span-2">
-            <div className="flex h-24 w-24 items-center justify-center rounded-full border-2 border-[#02DFA6]/40 bg-[#02DFA6]/10">
-              <Brain className="h-11 w-11 text-[#02DFA6]" strokeWidth={1.1} />
+            <div className="flex h-24 w-24 items-center justify-center rounded-full border-2 border-[#00CC99]/40 bg-[#00CC99]/10">
+              <Brain className="h-11 w-11 text-[#00CC99]" strokeWidth={1.1} />
             </div>
-            <p className="mt-3 text-center text-xs font-medium uppercase tracking-wider text-[#02DFA6]/90">
+            <p className="mt-3 text-center text-xs font-medium uppercase tracking-wider text-[#00CC99]/90">
               Sales-grade AI
             </p>
           </div>
@@ -67,9 +67,9 @@ export function InfographicCapabilities() {
             {capabilityNodes.map(({ label, Icon }) => (
               <li
                 key={label}
-                className="flex items-start gap-3 rounded-xl border border-white/8 bg-black/20 px-3 py-2.5"
+                className="flex items-start gap-3 rounded-xl border border-black/8 bg-black/20 px-3 py-2.5"
               >
-                <Icon className="mt-0.5 h-4 w-4 shrink-0 text-[#02DFA6]" />
+                <Icon className="mt-0.5 h-4 w-4 shrink-0 text-[#00CC99]" />
                 <span className="text-sm font-light leading-snug text-muted-foreground">{label}</span>
               </li>
             ))}
@@ -101,7 +101,7 @@ const benefits: {
         Proactive nudges, bundles, and threshold messaging turn hesitation into completed orders — see our{" "}
         <Link
           href="/resources/blogs/increase-aov-shopify-without-discounts/"
-          className="text-sky-400 underline decoration-sky-400/40 underline-offset-2 hover:text-[#02DFA6] hover:decoration-[#02DFA6]"
+          className="text-sky-400 underline decoration-sky-400/40 underline-offset-2 hover:text-[#00CC99] hover:decoration-[#00CC99]"
         >
           AOV without discounts
         </Link>{" "}
@@ -129,13 +129,13 @@ export function InfographicBenefits() {
         {benefits.map(({ title, body, Icon }) => (
           <div
             key={title}
-            className="flex gap-4 rounded-xl border border-border/50 bg-card/40 p-4 transition-colors hover:border-[#02DFA6]/25"
+            className="flex gap-4 rounded-xl border border-border/50 bg-card/40 p-4 transition-colors hover:border-[#00CC99]/25"
           >
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#02DFA6]/10 text-[#02DFA6]">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#00CC99]/10 text-[#00CC99]">
               <Icon className="h-5 w-5" />
             </div>
             <div>
-              <h4 className="text-sm font-medium text-white">{title}</h4>
+              <h4 className="text-sm font-medium text-foreground">{title}</h4>
               <p className="mt-1 text-sm font-light leading-relaxed text-muted-foreground">{body}</p>
             </div>
           </div>
@@ -198,7 +198,7 @@ export function InfographicMethodology() {
                 {step}
               </span>
               <Icon className="mb-2 h-5 w-5 text-violet-300" />
-              <h4 className="text-xs font-medium text-white">{title}</h4>
+              <h4 className="text-xs font-medium text-foreground">{title}</h4>
               <p className="mt-1 text-[11px] font-light leading-snug text-muted-foreground">{detail}</p>
             </div>
           ))}

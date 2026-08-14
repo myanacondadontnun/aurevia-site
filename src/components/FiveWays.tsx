@@ -72,7 +72,7 @@ export default function FiveWays() {
     <section id="features" className="py-14 sm:py-24 md:py-32 px-4 sm:px-6">
       <div className="container mx-auto">
         <div className="text-center mb-10 sm:mb-20 scroll-fade">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-inter font-normal mb-3 sm:mb-6 text-white">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-fraunces font-normal mb-3 sm:mb-6 text-foreground">
             You Shouldn't Have to Choose Between{" "}
             <span className="green-highlight">Selling and Sleeping</span>
           </h2>
@@ -107,7 +107,7 @@ export default function FiveWays() {
                   ))}
                 </div>
 
-                <h3 className="text-base sm:text-xl font-normal text-white mb-2 sm:mb-3 leading-snug">
+                <h3 className="text-base sm:text-xl font-normal text-foreground mb-2 sm:mb-3 leading-snug">
                   {product.title}
                 </h3>
                 <p className="text-[13px] sm:text-[15px] text-muted-foreground leading-relaxed">
@@ -130,19 +130,19 @@ export default function FiveWays() {
           className="scroll-fade-scale max-w-[1100px] mx-auto mt-5 sm:mt-6 group relative rounded-2xl p-7 sm:p-8 flex flex-col items-center justify-center text-center gap-3 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-primary/25"
           style={{
             background:
-              "radial-gradient(ellipse at bottom left, rgba(8,147,87,0.2) 0%, rgba(2,223,166,0.06) 40%, transparent 70%)",
+              "radial-gradient(ellipse at bottom left, rgba(8,147,87,0.2) 0%, rgba(0,204,153,0.06) 40%, transparent 70%)",
           }}
         >
           <div className="w-12 h-12 rounded-full bg-primary/15 border border-primary/20 flex items-center justify-center mb-1" aria-hidden="true">
             <Sparkles className="w-5.5 h-5.5 text-primary" />
           </div>
-          <h3 className="text-xl font-normal text-white">
+          <h3 className="text-xl font-normal text-foreground">
             Explore more capabilities
           </h3>
           <p className="text-[15px] text-muted-foreground max-w-md">
             Discover our full suite of AI-powered products built for Shopify
           </p>
-          <span className="mt-2 inline-flex items-center gap-2 cta-button text-sm font-medium text-white px-5 py-2.5 rounded-lg border-0">
+          <span className="mt-2 inline-flex items-center gap-2 cta-button text-sm font-medium text-foreground px-5 py-2.5 rounded-lg border-0">
             View all products
             <ArrowRight className="w-4 h-4 cta-arrow" aria-hidden="true" />
           </span>

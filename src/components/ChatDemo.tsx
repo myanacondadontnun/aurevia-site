@@ -514,7 +514,7 @@ export default function ChatDemo() {
       <div className="chat-demo-container">
         <div className="chat-demo-header">
           <div className="chat-demo-avatar">
-            <img src="/images/Logo_wo_bg.png" alt="Aurevia" className="w-full h-full object-contain" />
+            <img src="/images/aurevia-logo-mark.png" alt="Aurevia" className="w-full h-full object-contain" />
           </div>
           <div className="chat-demo-header-text">
             <div className="chat-demo-name">{activeMode === "sales" ? "Sales Agent" : "Support Agent"}</div>

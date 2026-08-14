@@ -53,12 +53,12 @@ export default function StoriesPage() {
         <div className="container mx-auto px-4 sm:px-6 max-w-5xl py-10 sm:py-14">
           <Link
             href="/solutions"
-            className="text-muted-foreground hover:text-[#02DFA6] text-sm mb-8 inline-block"
+            className="text-muted-foreground hover:text-[#00CC99] text-sm mb-8 inline-block"
           >
             ← Back to Solutions
           </Link>
           <header className="mb-12 max-w-3xl">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal text-white mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-fraunces font-normal text-foreground mb-4">
               Customer <span className="green-highlight">stories</span>
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
@@ -84,8 +84,8 @@ export default function StoriesPage() {
                 <blockquote className="text-foreground/95 leading-relaxed mb-4 border-l-2 border-primary/40 pl-4">
                   {c.placeholderQuote}
                 </blockquote>
-                <p className="text-sm font-medium text-[#02DFA6] mb-8">{c.placeholderMetric}</p>
-                <h2 className="text-sm font-medium text-white mb-3">Video testimonial</h2>
+                <p className="text-sm font-medium text-[#00CC99] mb-8">{c.placeholderMetric}</p>
+                <h2 className="text-sm font-medium text-foreground mb-3">Video testimonial</h2>
                 <MediaPlaceholder
                   ariaLabel={`Video placeholder for ${c.vertical} case study`}
                   caption={c.videoCaption}

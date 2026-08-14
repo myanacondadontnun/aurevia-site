@@ -128,7 +128,7 @@ const cardClasses =
 const iconBoxClasses =
   "flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 border border-primary/15 text-primary mb-4 group-hover:bg-primary/20 transition-colors";
 const linkFooterClasses =
-  "mt-6 flex items-center gap-1.5 text-sm font-medium text-[#02DFA6] group-hover:gap-2.5 transition-all duration-200";
+  "mt-6 flex items-center gap-1.5 text-sm font-medium text-[#00CC99] group-hover:gap-2.5 transition-all duration-200";
 
 export default function ProductsPage() {
   return (
@@ -136,8 +136,8 @@ export default function ProductsPage() {
       <section className="gradient-bg">
         <div className="container mx-auto px-4 sm:px-6 py-14 sm:py-16">
           <div className="scroll-fade text-center mb-8">
-            <h1 className="text-4xl md:text-5xl font-inter font-normal text-white text-center mb-4">
-              All <span className="green-highlight">products</span>
+            <h1 className="text-4xl md:text-5xl font-fraunces font-normal text-foreground text-center mb-4">
+              All <span className="green-highlight">capabilities</span>
             </h1>
             <p className="text-lg text-muted-foreground text-center max-w-2xl mx-auto">
               A consultative AI sales co-pilot for Shopify: same chat runs discovery, nudges AOV, answers post-purchase
@@ -169,7 +169,7 @@ export default function ProductsPage() {
                       <div className={iconBoxClasses} aria-hidden="true">
                         <product.icon className="h-6 w-6" />
                       </div>
-                      <h2 className="text-xl font-medium text-white mb-2 group-hover:text-[#02DFA6] transition-colors">
+                      <h2 className="text-xl font-medium text-foreground mb-2 group-hover:text-[#00CC99] transition-colors">
                         {product.title}
                       </h2>
                       <p className="text-sm text-muted-foreground leading-relaxed">
@@ -193,7 +193,7 @@ export default function ProductsPage() {
           <div className="text-center mt-12">
             <Link
               href="/home"
-              className="text-muted-foreground hover:text-[#02DFA6] text-sm transition-colors"
+              className="text-muted-foreground hover:text-[#00CC99] text-sm transition-colors"
             >
               ← Back to Home
             </Link>

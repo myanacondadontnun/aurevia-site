@@ -40,9 +40,9 @@ export default function ROICalculatorCTACard() {
           className="relative rounded-3xl sm:rounded-[2rem] overflow-hidden px-6 py-10 sm:px-10 sm:py-12 md:px-14 md:py-14 text-center"
           style={{
             background:
-              "linear-gradient(135deg, #0b3c2f 0%, rgba(2, 223, 166, 0.18) 50%, rgba(11, 60, 47, 0.4) 100%)",
+              "linear-gradient(135deg, rgba(0,204,153,0.16) 0%, rgba(0,204,153,0.06) 55%, #ffffff 100%)",
             boxShadow:
-              "0 20px 60px -15px rgba(2, 223, 166, 0.12), 0 0 0 1px rgba(2, 223, 166, 0.06)",
+              "0 20px 60px -15px rgba(0,204,153, 0.12), 0 0 0 1px rgba(0,204,153, 0.06)",
           }}
         >
           {/* Clouds: layered soft green blobs for hazy, diffused look */}
@@ -50,7 +50,7 @@ export default function ROICalculatorCTACard() {
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "radial-gradient(ellipse 100% 80% at 5% 15%, rgba(2, 223, 166, 0.14) 0%, transparent 55%), radial-gradient(ellipse 85% 65% at 92% 85%, rgba(2, 223, 166, 0.1) 0%, transparent 50%), radial-gradient(ellipse 70% 90% at 50% 55%, rgba(255,255,255,0.05) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 75% 20%, rgba(1, 197, 148, 0.08) 0%, transparent 45%), radial-gradient(ellipse 50% 70% at 15% 75%, rgba(2, 223, 166, 0.06) 0%, transparent 50%)",
+                "radial-gradient(ellipse 100% 80% at 5% 15%, rgba(0,204,153, 0.14) 0%, transparent 55%), radial-gradient(ellipse 85% 65% at 92% 85%, rgba(0,204,153, 0.1) 0%, transparent 50%), radial-gradient(ellipse 70% 90% at 50% 55%, rgba(255,255,255,0.05) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 75% 20%, rgba(1, 197, 148, 0.08) 0%, transparent 45%), radial-gradient(ellipse 50% 70% at 15% 75%, rgba(0,204,153, 0.06) 0%, transparent 50%)",
             }}
           />
           {/* Waves: soft horizontal bands for a rolling, wave-like feel */}
@@ -58,7 +58,7 @@ export default function ROICalculatorCTACard() {
             className="absolute inset-0 pointer-events-none opacity-70"
             style={{
               background:
-                "linear-gradient(180deg, transparent 0%, rgba(2, 223, 166, 0.04) 25%, transparent 50%, rgba(11, 60, 47, 0.06) 75%, transparent 100%), linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 30%, rgba(2, 223, 166, 0.03) 70%, transparent 100%)",
+                "linear-gradient(180deg, transparent 0%, rgba(0,204,153, 0.04) 25%, transparent 50%, rgba(11, 60, 47, 0.06) 75%, transparent 100%), linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 30%, rgba(0,204,153, 0.03) 70%, transparent 100%)",
             }}
           />
           {/* Grain: layered for a more visible, organic texture */}
@@ -86,16 +86,16 @@ export default function ROICalculatorCTACard() {
             preserveAspectRatio="xMidYMid slice"
             aria-hidden
           >
-            <path d="M0 120 Q200 80 400 120 T800 120" stroke="white" strokeWidth="0.6" fill="none" />
-            <path d="M0 200 Q250 160 500 200 T800 200" stroke="white" strokeWidth="0.5" fill="none" />
-            <path d="M0 280 Q150 240 400 280 T800 280" stroke="white" strokeWidth="0.5" fill="none" />
-            <path d="M-50 60 Q100 30 300 60 Q500 90 850 60" stroke="white" strokeWidth="0.4" fill="none" />
-            <path d="M-30 340 Q200 300 450 340 Q650 380 830 340" stroke="white" strokeWidth="0.4" fill="none" />
-            <line x1="0" y1="50" x2="800" y2="50" stroke="white" strokeWidth="0.35" opacity="0.8" />
-            <line x1="0" y1="350" x2="800" y2="350" stroke="white" strokeWidth="0.35" opacity="0.8" />
+            <path d="M0 120 Q200 80 400 120 T800 120" stroke="#0b3c2f" strokeWidth="0.6" fill="none" />
+            <path d="M0 200 Q250 160 500 200 T800 200" stroke="#0b3c2f" strokeWidth="0.5" fill="none" />
+            <path d="M0 280 Q150 240 400 280 T800 280" stroke="#0b3c2f" strokeWidth="0.5" fill="none" />
+            <path d="M-50 60 Q100 30 300 60 Q500 90 850 60" stroke="#0b3c2f" strokeWidth="0.4" fill="none" />
+            <path d="M-30 340 Q200 300 450 340 Q650 380 830 340" stroke="#0b3c2f" strokeWidth="0.4" fill="none" />
+            <line x1="0" y1="50" x2="800" y2="50" stroke="#0b3c2f" strokeWidth="0.35" opacity="0.8" />
+            <line x1="0" y1="350" x2="800" y2="350" stroke="#0b3c2f" strokeWidth="0.35" opacity="0.8" />
           </svg>
           <div className="relative z-10">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-white mb-6 sm:mb-8 tracking-tight font-roi">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-foreground mb-6 sm:mb-8 tracking-tight font-roi">
               Try Aurevia.io for free
             </h2>
             <a
@@ -103,7 +103,7 @@ export default function ROICalculatorCTACard() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleClick}
-              className="inline-flex items-center justify-center cta-button text-white font-normal px-6 py-3 sm:px-8 sm:py-3.5 text-base sm:text-lg rounded-xl min-h-[48px] border-0 shadow-lg hover:shadow-primary/20 transition-all font-roi no-underline"
+              className="inline-flex items-center justify-center cta-button text-foreground font-normal px-6 py-3 sm:px-8 sm:py-3.5 text-base sm:text-lg rounded-xl min-h-[48px] border-0 shadow-lg hover:shadow-primary/20 transition-all font-roi no-underline"
               aria-label="Start for free on Shopify App Store"
             >
               Start for free

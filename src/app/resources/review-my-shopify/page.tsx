@@ -165,13 +165,13 @@ export default function ReviewMyShopifyPage() {
         <div className="container mx-auto px-4 sm:px-6 max-w-4xl relative z-10 pt-4 pb-14 sm:pb-20">
           <Link
             href="/resources"
-            className="text-muted-foreground hover:text-[#02DFA6] text-sm mb-10 inline-block transition-colors"
+            className="text-muted-foreground hover:text-[#00CC99] text-sm mb-10 inline-block transition-colors"
           >
             ← Back to Resources
           </Link>
 
           <div className="text-center max-w-3xl mx-auto mb-10">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-inter font-normal text-white mb-6 tracking-tight leading-[1.1]">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-fraunces font-normal text-foreground mb-6 tracking-tight leading-[1.1]">
               Stop Guessing.{" "}
               <span className="block sm:inline">
                 Get a{" "}
@@ -183,9 +183,9 @@ export default function ReviewMyShopifyPage() {
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-3">
               Asking forums gets your logo roasted by amateurs.
               Hiring a CRO agency costs upwards of{" "}
-              <span className="text-white font-normal">$1,200</span>.
+              <span className="text-foreground font-normal">$1,200</span>.
             </p>
-            <p className="text-lg sm:text-xl text-[#02DFA6] font-normal leading-relaxed">
+            <p className="text-lg sm:text-xl text-[#00CC99] font-normal leading-relaxed">
               Our team will tell you exactly where your funnel is leaking — for
               free.
             </p>
@@ -200,7 +200,7 @@ export default function ReviewMyShopifyPage() {
       {/* ─── Pain Point Agitator ─── */}
       <section className="py-16 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
-          <h2 className="text-3xl sm:text-4xl font-inter font-normal text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-fraunces font-normal text-foreground mb-4">
             Why isn&apos;t your Shopify store getting sales?
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-3xl mb-12">
@@ -213,14 +213,14 @@ export default function ReviewMyShopifyPage() {
             {painPoints.map((point) => (
               <div
                 key={point.label}
-                className="group relative rounded-xl border border-white/10 bg-card/60 backdrop-blur-sm p-6 transition-all duration-300 hover:border-[#02DFA6]/30"
+                className="group relative rounded-xl border border-black/10 bg-card/60 backdrop-blur-sm p-6 transition-all duration-300 hover:border-[#00CC99]/30"
               >
                 <div className="card-hover-gradient rounded-xl" />
                 <div className="relative z-10">
-                  <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center mb-4">
                     <point.icon className="w-5 h-5 text-red-400" />
                   </div>
-                  <h3 className="text-lg font-inter font-normal text-white mb-2">
+                  <h3 className="text-lg font-inter font-normal text-foreground mb-2">
                     {point.label}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
@@ -231,15 +231,15 @@ export default function ReviewMyShopifyPage() {
             ))}
           </div>
 
-          <div className="mt-12 rounded-xl border border-[#02DFA6]/20 bg-[#02DFA6]/5 p-6 sm:p-8">
-            <p className="text-base sm:text-lg text-white leading-relaxed">
-              At <span className="text-[#02DFA6] font-normal">Aurevia</span>,
+          <div className="mt-12 rounded-xl border border-[#00CC99]/20 bg-[#00CC99]/5 p-6 sm:p-8">
+            <p className="text-base sm:text-lg text-foreground leading-relaxed">
+              At <span className="text-[#00CC99] font-normal">Aurevia</span>,
               our team bridges that gap. We don&apos;t just look at
               aesthetics — we look at{" "}
-              <span className="text-white font-normal">friction</span>,{" "}
-              <span className="text-white font-normal">trust signals</span>,
+              <span className="text-foreground font-normal">friction</span>,{" "}
+              <span className="text-foreground font-normal">trust signals</span>,
               and{" "}
-              <span className="text-white font-normal">
+              <span className="text-foreground font-normal">
                 conversion psychology
               </span>
               . And we do it without the agency price tag.
@@ -253,10 +253,10 @@ export default function ReviewMyShopifyPage() {
         <div className="absolute inset-0 phlato-gradient pointer-events-none opacity-40" />
         <div className="container mx-auto px-4 sm:px-6 max-w-5xl relative z-10">
           <div className="mb-12">
-            <p className="text-sm text-[#02DFA6] font-medium tracking-wide uppercase mb-3">
+            <p className="text-sm text-[#00CC99] font-medium tracking-wide uppercase mb-3">
               The $1,200 audit — on us
             </p>
-            <h2 className="text-3xl sm:text-4xl font-inter font-normal text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl font-fraunces font-normal text-foreground mb-4">
               What&apos;s included in your free store audit?
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
@@ -271,15 +271,15 @@ export default function ReviewMyShopifyPage() {
             {auditItems.map((item, i) => (
               <div
                 key={item.title}
-                className="group relative rounded-xl border border-white/10 bg-card/60 backdrop-blur-sm p-6 transition-all duration-300 hover:border-[#02DFA6]/30"
+                className="group relative rounded-xl border border-black/10 bg-card/60 backdrop-blur-sm p-6 transition-all duration-300 hover:border-[#00CC99]/30"
                 style={{ transitionDelay: `${i * 50}ms` }}
               >
                 <div className="card-hover-gradient rounded-xl" />
                 <div className="relative z-10">
-                  <div className="w-11 h-11 rounded-lg bg-[#02DFA6]/10 flex items-center justify-center mb-4">
-                    <item.icon className="w-5 h-5 text-[#02DFA6]" />
+                  <div className="w-11 h-11 rounded-lg bg-[#00CC99]/10 flex items-center justify-center mb-4">
+                    <item.icon className="w-5 h-5 text-[#00CC99]" />
                   </div>
-                  <h3 className="text-lg font-inter font-normal text-white mb-2">
+                  <h3 className="text-lg font-inter font-normal text-foreground mb-2">
                     {item.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
@@ -292,7 +292,7 @@ export default function ReviewMyShopifyPage() {
 
           <p className="text-sm text-muted-foreground mt-8 text-center">
             …plus copywriting, merchandising, competitor research, and more.
-            Every audit typically runs <span className="text-white font-normal">15+ pages</span>.
+            Every audit typically runs <span className="text-foreground font-normal">15+ pages</span>.
           </p>
         </div>
       </section>
@@ -300,13 +300,13 @@ export default function ReviewMyShopifyPage() {
       {/* ─── FAQ / Objection Handlers ─── */}
       <section className="py-16 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
-          <h2 className="text-3xl sm:text-4xl font-inter font-normal text-white mb-12">
+          <h2 className="text-3xl sm:text-4xl font-fraunces font-normal text-foreground mb-12">
             Common questions
           </h2>
 
           <div className="space-y-8">
             <div>
-              <h3 className="text-lg font-inter font-normal text-white mb-2">
+              <h3 className="text-lg font-inter font-normal text-foreground mb-2">
                 Is this actually free? What&apos;s the catch?
               </h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -318,8 +318,8 @@ export default function ReviewMyShopifyPage() {
               </p>
             </div>
 
-            <div className="border-t border-white/10 pt-8">
-              <h3 className="text-lg font-inter font-normal text-white mb-2">
+            <div className="border-t border-black/10 pt-8">
+              <h3 className="text-lg font-inter font-normal text-foreground mb-2">
                 How is this different from posting on r/reviewmyshopify?
               </h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -332,8 +332,8 @@ export default function ReviewMyShopifyPage() {
               </p>
             </div>
 
-            <div className="border-t border-white/10 pt-8">
-              <h3 className="text-lg font-inter font-normal text-white mb-2">
+            <div className="border-t border-black/10 pt-8">
+              <h3 className="text-lg font-inter font-normal text-foreground mb-2">
                 What do I need to provide?
               </h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -343,8 +343,8 @@ export default function ReviewMyShopifyPage() {
               </p>
             </div>
 
-            <div className="border-t border-white/10 pt-8">
-              <h3 className="text-lg font-inter font-normal text-white mb-2">
+            <div className="border-t border-black/10 pt-8">
+              <h3 className="text-lg font-inter font-normal text-foreground mb-2">
                 How long does the audit take?
               </h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -355,8 +355,8 @@ export default function ReviewMyShopifyPage() {
               </p>
             </div>
 
-            <div className="border-t border-white/10 pt-8">
-              <h3 className="text-lg font-inter font-normal text-white mb-2">
+            <div className="border-t border-black/10 pt-8">
+              <h3 className="text-lg font-inter font-normal text-foreground mb-2">
                 My store is brand new — is it too early for an audit?
               </h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -373,11 +373,11 @@ export default function ReviewMyShopifyPage() {
 
       {/* ─── Final CTA ─── */}
       <section className="py-16 sm:py-24 px-4 sm:px-6">
-        <div className="container mx-auto max-w-4xl rounded-3xl bg-gradient-to-br from-[#02DFA6]/[0.08] via-[#089357]/[0.05] to-[#0b3c2f]/[0.1] border border-[#02DFA6]/15 py-16 sm:py-20 px-6 sm:px-12 text-center relative overflow-hidden">
-          <div className="absolute inset-0 z-0 rounded-3xl bg-[radial-gradient(ellipse_at_center,rgba(2,223,166,0.06)_0%,transparent_70%)] pointer-events-none" />
+        <div className="container mx-auto max-w-4xl rounded-3xl bg-gradient-to-br from-[#00CC99]/[0.08] via-[#089357]/[0.05] to-[#0b3c2f]/[0.1] border border-[#00CC99]/15 py-16 sm:py-20 px-6 sm:px-12 text-center relative overflow-hidden">
+          <div className="absolute inset-0 z-0 rounded-3xl bg-[radial-gradient(ellipse_at_center,rgba(0,204,153,0.06)_0%,transparent_70%)] pointer-events-none" />
           <CTASwarmParticles />
           <div className="relative z-10">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-dmserif font-normal text-white mb-5 leading-[1.15] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-dmserif font-normal text-foreground mb-5 leading-[1.15] tracking-tight">
               Your competitors are optimizing.
               <br />
               <span className="green-highlight">Are you?</span>
@@ -388,7 +388,7 @@ export default function ReviewMyShopifyPage() {
             </p>
             <a
               href="#review-hero"
-              className="cta-button inline-flex items-center justify-center gap-2.5 text-white font-medium px-10 py-4 rounded-xl text-base sm:text-lg transition-all duration-200 shadow-[0_8px_30px_rgba(8,147,87,0.3)]"
+              className="cta-button inline-flex items-center justify-center gap-2.5 text-foreground font-medium px-10 py-4 rounded-xl text-base sm:text-lg transition-all duration-200 shadow-[0_8px_30px_rgba(8,147,87,0.3)]"
             >
               Get my free audit now
               <span className="cta-arrow">→</span>

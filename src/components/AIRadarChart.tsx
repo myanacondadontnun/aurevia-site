@@ -59,7 +59,7 @@ const BROAD_MARKET_DATA: BroadRow[] = [
 ];
 
 const COLORS = {
-  Aurevia: "#02DFA6",
+  Aurevia: "#00CC99",
   Zipchat: "#38bdf8",
   Tidio: "#fbbf24",
   Gorgias: "#c084fc",
@@ -87,8 +87,8 @@ function CustomTooltip({
   const key = row?.key;
   const full = key && key in TOOLTIP_LABELS ? TOOLTIP_LABELS[key as keyof typeof TOOLTIP_LABELS] : label;
   return (
-    <div className="rounded-lg border border-white/10 bg-[#0d1717]/95 px-3 py-2 text-xs shadow-xl backdrop-blur-sm">
-      <p className="mb-1.5 font-medium text-white">{full}</p>
+    <div className="rounded-lg border border-black/10 bg-[#0d1717]/95 px-3 py-2 text-xs shadow-xl backdrop-blur-sm">
+      <p className="mb-1.5 font-medium text-foreground">{full}</p>
       <ul className="space-y-0.5 text-muted-foreground">
         {payload
           .filter((p): p is TooltipPayloadItem & { value: number; name: string } =>
@@ -98,7 +98,7 @@ function CustomTooltip({
           .map((p) => (
             <li key={p.name} className="flex justify-between gap-4">
               <span style={{ color: COLORS[p.name as keyof typeof COLORS] ?? "#fff" }}>{p.name}</span>
-              <span className="font-mono text-white/90">{p.value}</span>
+              <span className="font-mono text-foreground/90">{p.value}</span>
             </li>
           ))}
       </ul>
@@ -120,7 +120,7 @@ function SpiderBlock({
   return (
     <div className="rounded-2xl border border-border/50 bg-card/40 p-4 sm:p-6 backdrop-blur-sm">
       <div className="mb-4">
-        <h3 className="text-lg font-normal text-white sm:text-xl">{title}</h3>
+        <h3 className="text-lg font-normal text-foreground sm:text-xl">{title}</h3>
         <p className="mt-1 text-sm font-light text-muted-foreground">{subtitle}</p>
       </div>
       <div className="h-[320px] w-full min-h-[280px] min-w-0 sm:h-[380px]">
@@ -189,7 +189,7 @@ export default function AIRadarChart() {
 
   return (
     <section id="spider-charts" className="scroll-mt-28 scroll-fade visible" aria-labelledby="radar-heading">
-      <h2 id="radar-heading" className="mb-2 text-2xl font-normal text-white sm:text-3xl">
+      <h2 id="radar-heading" className="mb-2 text-2xl font-normal text-foreground sm:text-3xl">
         Spider diagrams: capability profiles
       </h2>
       <p className="mb-8 max-w-3xl text-base font-light text-muted-foreground">

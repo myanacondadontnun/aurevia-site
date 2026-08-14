@@ -171,12 +171,12 @@ export default function Industries() {
   };
 
   return (
-    <div className="text-white font-inter" style={{backgroundColor: '#080808'}}>
-      <section id="industries" className="py-10 sm:py-16 md:py-20 px-4 sm:px-6" style={{backgroundColor: '#080808'}} aria-label="Industry demos">
+    <div className="text-foreground font-inter" style={{backgroundColor: '#ffffff'}}>
+      <section id="industries" className="py-10 sm:py-16 md:py-20 px-4 sm:px-6" style={{backgroundColor: '#ffffff'}} aria-label="Industry demos">
         <div className="container mx-auto">
           {/* Header */}
           <div className="text-center mb-5 sm:mb-8 scroll-fade">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal mb-2 sm:mb-4 text-white">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal mb-2 sm:mb-4 text-foreground">
               Stores Like Yours Are Already{" "}
               <span className="green-highlight">Selling More</span>
             </h2>
@@ -188,7 +188,7 @@ export default function Industries() {
           {/* Industry Tabs */}
           <div className="flex justify-center mb-6 sm:mb-8">
             <div
-              className="inline-flex items-center gap-1 p-1 rounded-full border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm overflow-x-auto hide-scrollbar max-w-full"
+              className="inline-flex items-center gap-1 p-1 rounded-full border border-black/[0.06] bg-white backdrop-blur-sm overflow-x-auto hide-scrollbar max-w-full"
               role="tablist"
               aria-label="Industry categories"
             >
@@ -201,8 +201,8 @@ export default function Industries() {
                   aria-controls={`industry-panel-${index}`}
                   className={`px-3 py-2 sm:px-4 rounded-full text-[11px] sm:text-sm font-medium transition-all duration-300 whitespace-nowrap min-h-[36px] ${
                     index === activeIndex
-                      ? "bg-[#02DFA6]/10 text-[#02DFA6] shadow-[0_0_12px_rgba(2,223,166,0.08)]"
-                      : "text-white/40 hover:text-white/60"
+                      ? "bg-[#00CC99]/10 text-[#00CC99] shadow-[0_0_12px_rgba(0,204,153,0.08)]"
+                      : "text-foreground/40 hover:text-foreground/60"
                   }`}
                 >
                   {industry.title}
@@ -232,11 +232,11 @@ export default function Industries() {
                       <div
                         className="absolute -inset-[1px] rounded-2xl opacity-30"
                         style={{
-                          background: 'linear-gradient(135deg, rgba(2,223,166,0.12), transparent 60%, rgba(2,223,166,0.06))',
+                          background: 'linear-gradient(135deg, rgba(0,204,153,0.12), transparent 60%, rgba(0,204,153,0.06))',
                         }}
                       />
-                      <div className="relative flex rounded-2xl overflow-hidden border border-white/[0.08] bg-[#0c0c0c]">
-                        <div className="relative w-1/2 bg-black/40">
+                      <div className="relative flex rounded-2xl overflow-hidden border border-black/[0.08] bg-white">
+                        <div className="relative w-1/2 bg-[#eef1f0]">
                           <div className="aspect-[9/16] max-h-[520px] mx-auto">
                             <video
                               ref={getDesktopVideoRef(index)}
@@ -254,7 +254,7 @@ export default function Industries() {
                           </div>
                           <div className="absolute top-4 left-4 z-10">
                             <img
-                              src="/images/Logo_wo_bg.png"
+                              src="/images/aurevia-logo-mark.png"
                               alt="Aurevia"
                               className="w-8 h-8 object-contain opacity-60"
                             />
@@ -262,27 +262,27 @@ export default function Industries() {
                         </div>
 
                         <div className="w-1/2 flex flex-col justify-center px-10 lg:px-16 xl:px-20 py-10">
-                          <span className="text-[4rem] lg:text-[5rem] xl:text-[5.5rem] font-normal text-[#02DFA6] leading-none tracking-tight">
+                          <span className="text-[4rem] lg:text-[5rem] xl:text-[5.5rem] font-normal text-[#00CC99] leading-none tracking-tight">
                             {industry.stat}
                           </span>
-                          <div className="mt-5 w-12 h-[2px] bg-[#02DFA6]/25 rounded-full" aria-hidden="true" />
-                          <p className="mt-5 text-base lg:text-lg leading-[1.75] text-white/50 max-w-md">
+                          <div className="mt-5 w-12 h-[2px] bg-[#00CC99]/25 rounded-full" aria-hidden="true" />
+                          <p className="mt-5 text-base lg:text-lg leading-[1.75] text-foreground/50 max-w-md">
                             {industry.statDesc}
                           </p>
                           <div className="mt-8 flex items-center gap-4">
                             <button
                               onClick={prevSlide}
                               aria-label="Previous industry"
-                              className="w-10 h-10 flex items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.06] transition-all duration-200"
+                              className="w-10 h-10 flex items-center justify-center rounded-full border border-black/[0.08] bg-white hover:border-black/20 hover:bg-white transition-all duration-200"
                             >
-                              <ChevronLeft className="w-4 h-4 text-white/50" aria-hidden="true" />
+                              <ChevronLeft className="w-4 h-4 text-foreground/50" aria-hidden="true" />
                             </button>
                             <button
                               onClick={nextSlide}
                               aria-label="Next industry"
-                              className="w-10 h-10 flex items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.06] transition-all duration-200"
+                              className="w-10 h-10 flex items-center justify-center rounded-full border border-black/[0.08] bg-white hover:border-black/20 hover:bg-white transition-all duration-200"
                             >
-                              <ChevronRight className="w-4 h-4 text-white/50" aria-hidden="true" />
+                              <ChevronRight className="w-4 h-4 text-foreground/50" aria-hidden="true" />
                             </button>
                             <div className="flex gap-1.5 ml-3">
                               {industries.map((_, i) => (
@@ -293,8 +293,8 @@ export default function Industries() {
                                   aria-current={i === activeIndex ? "true" : undefined}
                                   className={`rounded-full transition-all duration-300 ${
                                     i === activeIndex
-                                      ? "w-5 h-1.5 bg-[#02DFA6]"
-                                      : "w-1.5 h-1.5 bg-white/20 hover:bg-white/35"
+                                      ? "w-5 h-1.5 bg-[#00CC99]"
+                                      : "w-1.5 h-1.5 bg-white hover:bg-white"
                                   }`}
                                 />
                               ))}
@@ -325,7 +325,7 @@ export default function Industries() {
                 >
                   {industries.map((industry, index) => (
                     <div key={industry.title} className="w-full flex-shrink-0 px-1" role="tabpanel" aria-label={`${industry.title} demo`}>
-                      <div className="rounded-2xl overflow-hidden border border-white/[0.06] bg-[#0c0c0c]">
+                      <div className="rounded-2xl overflow-hidden border border-black/[0.06] bg-white">
                         <div className="relative aspect-[9/14]">
                           <video
                             ref={getMobileVideoRef(index)}
@@ -342,7 +342,7 @@ export default function Industries() {
                           </video>
                           <div className="absolute top-3 left-3 z-10">
                             <img
-                              src="/images/Logo_wo_bg.png"
+                              src="/images/aurevia-logo-mark.png"
                               alt="Aurevia"
                               className="w-6 h-6 object-contain opacity-70"
                             />
@@ -350,10 +350,10 @@ export default function Industries() {
                         </div>
                         <div className="p-3 sm:p-4">
                           <div className="flex items-start gap-2.5">
-                            <span className="text-xl sm:text-2xl font-normal text-[#02DFA6] shrink-0 leading-none">
+                            <span className="text-xl sm:text-2xl font-normal text-[#00CC99] shrink-0 leading-none">
                               {industry.stat}
                             </span>
-                            <p className="text-[12px] sm:text-[13px] leading-[1.5] text-white/55 pt-0.5">
+                            <p className="text-[12px] sm:text-[13px] leading-[1.5] text-foreground/55 pt-0.5">
                               {industry.statDesc}
                             </p>
                           </div>
@@ -367,16 +367,16 @@ export default function Industries() {
               <button
                 onClick={prevSlide}
                 aria-label="Previous industry"
-                className="absolute left-2 top-[40%] -translate-y-1/2 z-10 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full border border-white/[0.08] bg-black/60 backdrop-blur-sm"
+                className="absolute left-2 top-[40%] -translate-y-1/2 z-10 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full border border-black/[0.08] bg-white shadow-sm backdrop-blur-sm"
               >
-                <ChevronLeft className="w-4 h-4 text-white/70" aria-hidden="true" />
+                <ChevronLeft className="w-4 h-4 text-foreground/70" aria-hidden="true" />
               </button>
               <button
                 onClick={nextSlide}
                 aria-label="Next industry"
-                className="absolute right-2 top-[40%] -translate-y-1/2 z-10 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full border border-white/[0.08] bg-black/60 backdrop-blur-sm"
+                className="absolute right-2 top-[40%] -translate-y-1/2 z-10 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full border border-black/[0.08] bg-white shadow-sm backdrop-blur-sm"
               >
-                <ChevronRight className="w-4 h-4 text-white/70" aria-hidden="true" />
+                <ChevronRight className="w-4 h-4 text-foreground/70" aria-hidden="true" />
               </button>
             </div>
 
@@ -396,8 +396,8 @@ export default function Industries() {
                 >
                   <span className={`block rounded-full transition-all duration-300 ${
                     index === activeIndex
-                      ? "w-5 h-1.5 bg-[#02DFA6]"
-                      : "w-1.5 h-1.5 bg-white/20 hover:bg-white/35"
+                      ? "w-5 h-1.5 bg-[#00CC99]"
+                      : "w-1.5 h-1.5 bg-white hover:bg-white"
                   }`} />
                 </button>
               ))}
@@ -416,7 +416,7 @@ export default function Industries() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Try Aurevia for free on Shopify"
-                  className="cta-button cta-button--has-swarm relative overflow-hidden inline-flex items-center justify-center px-6 py-2.5 text-white rounded-full transition-all duration-200 text-sm font-medium border-0 no-underline"
+                  className="cta-button cta-button--has-swarm relative overflow-hidden inline-flex items-center justify-center px-6 py-2.5 text-foreground rounded-full transition-all duration-200 text-sm font-medium border-0 no-underline"
                 >
                   <CTASwarmBackdrop roundedClassName="rounded-full" />
                   <span className="relative z-[3]">Try for Free</span>

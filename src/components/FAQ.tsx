@@ -111,7 +111,7 @@ function FaqChatTurn({
           id={qId}
           className={[
             "max-w-[min(92%,36rem)] sm:max-w-[min(100%,36rem)] rounded-2xl rounded-tr-md border px-3.5 py-2.5 sm:px-5 sm:py-4 font-inter text-[0.82rem] sm:text-base leading-snug",
-            "border-white/25 bg-white/[0.09] text-white shadow-[0_8px_30px_rgba(0,0,0,0.35)]",
+            "border-black/25 bg-white text-foreground shadow-[0_8px_24px_rgba(45,55,55,0.1)]",
             "transition-all duration-500 ease-out",
             questionVisible ? "translate-x-0 opacity-100" : "pointer-events-none translate-x-4 opacity-0 sm:translate-x-10",
           ].join(" ")}
@@ -127,12 +127,12 @@ function FaqChatTurn({
           aria-labelledby={qId}
           className={[
             "max-w-[min(92%,36rem)] sm:max-w-[min(100%,36rem)] rounded-2xl rounded-tl-md border px-3.5 py-2.5 sm:px-5 sm:py-4 font-inter font-normal text-[0.82rem] sm:text-base leading-relaxed",
-            "border-emerald-400/35 bg-[#062a22]/90 text-zinc-50 shadow-[0_8px_28px_rgba(0,0,0,0.28)]",
+            "border-[#00CC99]/30 bg-[#00CC99]/12 text-foreground shadow-[0_8px_24px_rgba(45,55,55,0.1)]",
             "transition-all duration-500 ease-out",
             answerVisible ? "translate-x-0 opacity-100" : "pointer-events-none -translate-x-4 opacity-0 sm:-translate-x-10",
           ].join(" ")}
         >
-          <p className="mb-1.5 text-[0.7rem] font-medium uppercase tracking-wide text-emerald-300/95">
+          <p className="mb-1.5 text-[0.7rem] font-medium uppercase tracking-wide text-[#00795c]">
             Aurevia
           </p>
           {faq.answer}
@@ -158,20 +158,20 @@ export default function FAQ() {
           ref={headerRef as React.RefObject<HTMLDivElement>}
           className="text-center mb-10 sm:mb-12 md:mb-14 scroll-fade"
         >
-          <h2 id="faq-heading" className="text-2xl sm:text-4xl md:text-5xl font-inter font-normal mb-3 sm:mb-6 text-white">
+          <h2 id="faq-heading" className="text-2xl sm:text-4xl md:text-5xl font-fraunces font-normal mb-3 sm:mb-6 text-foreground">
             You&apos;ve Got Questions.{" "}
             <span className="green-highlight">We&apos;ve Already Answered Them</span>
           </h2>
-          <p className="text-sm sm:text-lg md:text-xl font-light text-zinc-200">
+          <p className="text-sm sm:text-lg md:text-xl font-light text-muted-foreground">
             Merchants ask us these all the time — scroll the conversation below, or open everything at once.
           </p>
           {showAllAtOnce ? (
-            <p className="mt-5 text-sm text-zinc-300">All answers are visible — you can still scroll the transcript.</p>
+            <p className="mt-5 text-sm text-muted-foreground">All answers are visible — you can still scroll the transcript.</p>
           ) : (
             <button
               type="button"
               onClick={() => setShowAllAtOnce(true)}
-              className="mt-5 text-sm font-medium text-emerald-300 underline-offset-4 hover:text-emerald-200 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-400"
+              className="mt-5 text-sm font-medium text-[#00795c] underline-offset-4 hover:text-[#00CC99] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-400"
             >
               Show all questions and answers at once
             </button>
@@ -179,7 +179,7 @@ export default function FAQ() {
         </div>
 
         <ol
-          className="m-0 list-none space-y-6 sm:space-y-10 rounded-xl sm:rounded-2xl border border-white/10 bg-black/55 p-3 sm:p-6 md:p-8 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+          className="m-0 list-none space-y-6 sm:space-y-10 rounded-xl sm:rounded-2xl border border-black/10 bg-white p-3 sm:p-6 md:p-8 backdrop-blur-sm shadow-[0_10px_40px_rgba(45,55,55,0.06)]"
           aria-label="Frequently asked questions shown as a chat conversation"
         >
           {faqs.map((faq, index) => (
@@ -195,7 +195,7 @@ export default function FAQ() {
         >
           <Button
             size="lg"
-            className="cta-button cta-button--has-swarm relative overflow-hidden text-white font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center gap-2 border-0 w-full sm:w-auto"
+            className="cta-button cta-button--has-swarm relative overflow-hidden text-foreground font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center gap-2 border-0 w-full sm:w-auto"
             onClick={() => openShopifyInstall()}
             aria-label="Try Aurevia for free on Shopify"
           >

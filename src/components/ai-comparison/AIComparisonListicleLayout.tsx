@@ -103,8 +103,8 @@ export default function AIComparisonListicleLayout({ children }: { children: Rea
             className={cn(
               "shrink-0 rounded-full border px-3 py-1.5 text-xs font-medium transition-all duration-300",
               active != null && active === item.id
-                ? "border-[#02DFA6]/45 bg-[#02DFA6]/[0.14] text-[#02DFA6] shadow-[0_0_0_1px_rgba(2,223,166,0.18),0_6px_20px_-8px_rgba(2,223,166,0.25)]"
-                : "border-border/50 bg-card/40 text-muted-foreground hover:border-[#02DFA6]/28 hover:text-white",
+                ? "border-[#00CC99]/45 bg-[#00CC99]/[0.14] text-[#00CC99] shadow-[0_0_0_1px_rgba(0,204,153,0.18),0_6px_20px_-8px_rgba(0,204,153,0.25)]"
+                : "border-border/50 bg-card/40 text-muted-foreground hover:border-[#00CC99]/28 hover:text-foreground",
             )}
           >
             {item.label}
@@ -122,7 +122,7 @@ export default function AIComparisonListicleLayout({ children }: { children: Rea
               <p className="mb-3 text-[11px] font-medium uppercase tracking-wider text-muted-foreground/70">
                 On this page
               </p>
-              <ul className="space-y-1 border-l border-white/[0.08] pl-0">
+              <ul className="space-y-1 border-l border-black/[0.08] pl-0">
                 {AI_COMPARISON_TOC.map((item) => {
                   const isActive = active != null && active === item.id;
                   return (
@@ -132,13 +132,13 @@ export default function AIComparisonListicleLayout({ children }: { children: Rea
                         className={cn(
                           "relative block rounded-lg py-2.5 pl-3 pr-2.5 text-[13px] leading-snug transition-all duration-300 ease-out",
                           isActive
-                            ? "bg-white/[0.09] pl-3.5 font-medium text-white shadow-[0_2px_16px_-4px_rgba(0,0,0,0.45)] ring-1 ring-white/[0.08]"
-                            : "font-light text-muted-foreground hover:bg-white/[0.04] hover:text-white/95",
+                            ? "bg-white pl-3.5 font-medium text-foreground shadow-[0_2px_16px_-4px_rgba(0,0,0,0.45)] ring-1 ring-black/[0.08]"
+                            : "font-light text-muted-foreground hover:bg-white hover:text-foreground/95",
                         )}
                       >
                         {isActive && (
                           <span
-                            className="pointer-events-none absolute left-1 top-1/2 h-[70%] w-[3px] -translate-y-1/2 rounded-full bg-[#02DFA6] shadow-[0_0_12px_rgba(2,223,166,0.45)]"
+                            className="pointer-events-none absolute left-1 top-1/2 h-[70%] w-[3px] -translate-y-1/2 rounded-full bg-[#00CC99] shadow-[0_0_12px_rgba(0,204,153,0.45)]"
                             aria-hidden
                           />
                         )}
@@ -159,20 +159,20 @@ export default function AIComparisonListicleLayout({ children }: { children: Rea
         <aside className="relative hidden min-h-0 xl:block xl:overflow-visible" aria-label="Get started">
           <div className="sticky top-28 z-20 w-full pb-10">
             <div className="max-h-[calc(100dvh-7.5rem)] overflow-y-auto overflow-x-visible overscroll-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <div className="overflow-hidden rounded-xl border border-white/[0.08] bg-[#051210] p-3.5 shadow-lg shadow-black/35 ring-1 ring-[#02DFA6]/10">
+              <div className="overflow-hidden rounded-xl border border-black/[0.08] bg-[#051210] p-3.5 shadow-lg shadow-black/35 ring-1 ring-[#00CC99]/10">
                 <div className="mb-3 flex items-center gap-2">
                   <img
-                    src="/images/Logo_wo_bg.png"
+                    src="/images/aurevia-logo-mark.png"
                     alt=""
                     width={24}
                     height={24}
                     className="h-6 w-6 shrink-0 object-contain"
                   />
-                  <span className="font-montserrat text-xs font-thin tracking-[0.05em] text-white/90">
+                  <span className="font-montserrat text-xs font-thin tracking-[0.05em] text-foreground/90">
                     Aurevia.io
                   </span>
                 </div>
-                <h2 className="font-playfair text-lg font-normal leading-snug text-white sm:text-xl">
+                <h2 className="font-playfair text-lg font-normal leading-snug text-foreground sm:text-xl">
                   Hire your AI sales co-pilot
                 </h2>
                 <p className="mt-1.5 text-xs font-light leading-relaxed text-muted-foreground">
@@ -183,20 +183,20 @@ export default function AIComparisonListicleLayout({ children }: { children: Rea
                     href={SHOPIFY_APP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-[#02DFA6] px-3 py-2 text-xs font-medium text-black transition-colors hover:bg-[#02DFA6]/90"
+                    className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-[#00cc99] px-3 py-2 text-xs font-medium text-black transition-colors hover:bg-[#00cc99]/90"
                   >
                     Try for free
                     <ArrowRight className="h-3.5 w-3.5" />
                   </a>
                   <Link
                     href="/pricing/"
-                    className="inline-flex items-center justify-center rounded-lg border border-white/15 bg-transparent px-3 py-2 text-xs font-medium text-white transition-colors hover:border-[#02DFA6]/40 hover:bg-white/[0.04]"
+                    className="inline-flex items-center justify-center rounded-lg border border-black/15 bg-transparent px-3 py-2 text-xs font-medium text-foreground transition-colors hover:border-[#00CC99]/40 hover:bg-white"
                   >
                     View pricing
                   </Link>
                   <Link
                     href="/resources/roi-calculator/"
-                    className="text-center text-[11px] font-light text-muted-foreground underline-offset-2 hover:text-[#02DFA6] hover:underline"
+                    className="text-center text-[11px] font-light text-muted-foreground underline-offset-2 hover:text-[#00CC99] hover:underline"
                   >
                     Model ROI with our calculator →
                   </Link>

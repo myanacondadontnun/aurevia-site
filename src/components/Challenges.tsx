@@ -84,13 +84,13 @@ function ChallengeCard({
       <Link
         href={challenge.link}
         aria-label={`Read the full guide: ${challenge.problem}`}
-        className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02DFA6]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-xl"
+        className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00CC99]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-xl"
       >
         <CardContent className="p-4 sm:p-8 h-full flex flex-col relative">
         <div className="mb-3 sm:mb-6">
-          <Icon className="challenge-icon w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground group-hover:text-[#02DFA6] transition-colors duration-300" aria-hidden="true" />
+          <Icon className="challenge-icon w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground group-hover:text-[#00CC99] transition-colors duration-300" aria-hidden="true" />
         </div>
-        <h3 className="text-lg sm:text-xl font-inter font-normal text-white mb-3 sm:mb-4 group-hover:text-[#02DFA6] transition-colors duration-300">
+        <h3 className="text-lg sm:text-xl font-inter font-normal text-foreground mb-3 sm:mb-4 group-hover:text-[#00CC99] transition-colors duration-300">
           {challenge.problem}
         </h3>
 
@@ -110,14 +110,14 @@ function ChallengeCard({
               }}
               aria-expanded={false}
               aria-label={`Read more about: ${challenge.problem}`}
-              className="mt-2 text-sm text-[#02DFA6]/80 hover:text-[#02DFA6] transition-colors duration-200 font-medium"
+              className="mt-2 text-sm text-[#00CC99]/80 hover:text-[#00CC99] transition-colors duration-200 font-medium"
             >
               Read more...
             </button>
           )}
         </div>
 
-        <span className="inline-flex items-center gap-1.5 mt-5 text-xs text-white/30 group-hover:text-white/60 transition-colors duration-200 underline underline-offset-2 decoration-white/15 group-hover:decoration-white/40">
+        <span className="inline-flex items-center gap-1.5 mt-5 text-xs text-foreground/30 group-hover:text-foreground/60 transition-colors duration-200 underline underline-offset-2 decoration-white/15 group-hover:decoration-white/40">
           Read the full guide
           <ArrowRight className="w-3 h-3" aria-hidden="true" />
         </span>
@@ -136,7 +136,7 @@ export default function Challenges() {
     <section id="benefits" className="py-12 sm:py-20 md:py-24 px-4 sm:px-6">
       <div className="container mx-auto">
         <div className="text-center mb-8 sm:mb-16 scroll-fade">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-inter font-normal mb-3 sm:mb-6 text-white">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-fraunces font-normal mb-3 sm:mb-6 text-foreground">
             Sound Familiar? You&apos;re Not the{" "}
             <span className="green-highlight">Only One Struggling</span>
           </h2>

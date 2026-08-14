@@ -33,7 +33,7 @@ function renderFormattedText(text: string) {
   return parts.map((part, i) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
-        <strong key={i} className="font-semibold text-white">
+        <strong key={i} className="font-semibold text-foreground">
           {part.slice(2, -2)}
         </strong>
       );
@@ -58,7 +58,7 @@ function BulletList({ items }: { items: string[] }) {
           key={i}
           className="flex gap-3 text-[15px] sm:text-base text-muted-foreground font-light leading-relaxed"
         >
-          <span className="text-[#02DFA6] mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-[#02DFA6]/60" />
+          <span className="text-[#00CC99] mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-[#00CC99]/60" />
           <span>{renderFormattedText(item)}</span>
         </li>
       ))}
@@ -74,7 +74,7 @@ function OrderedList({ items }: { items: string[] }) {
           key={i}
           className="flex gap-3 text-[15px] sm:text-base text-muted-foreground font-light leading-relaxed"
         >
-          <span className="text-[#02DFA6] font-medium text-sm mt-0.5 shrink-0 w-6 h-6 rounded-full border border-[#02DFA6]/30 flex items-center justify-center">
+          <span className="text-[#00CC99] font-medium text-sm mt-0.5 shrink-0 w-6 h-6 rounded-full border border-[#00CC99]/30 flex items-center justify-center">
             {i + 1}
           </span>
           <span className="flex-1">{renderFormattedText(item)}</span>
@@ -87,7 +87,7 @@ function OrderedList({ items }: { items: string[] }) {
 function SubSectionBlock({ sub }: { sub: SubSection }) {
   return (
     <div className="mb-6">
-      <h4 className="text-base sm:text-lg font-inter font-normal text-white mb-3">
+      <h4 className="text-base sm:text-lg font-inter font-normal text-foreground mb-3">
         {sub.title}
       </h4>
       {sub.paragraphs.map((p, i) => (
@@ -103,7 +103,7 @@ function SectionBlock({ section }: { section: BlogSection }) {
   return (
     <section id={section.id} className="mb-10 scroll-mt-24">
       {section.title && (
-        <h2 className="text-xl sm:text-2xl font-inter font-normal text-white mb-4 pb-2 border-b border-border/30">
+        <h2 className="text-xl sm:text-2xl font-fraunces font-normal text-foreground mb-4 pb-2 border-b border-border/30">
           {section.title}
         </h2>
       )}
@@ -133,7 +133,7 @@ function TableOfContents({ sections }: { sections: BlogSection[] }) {
           <li key={s.id}>
             <a
               href={`#${s.id}`}
-              className="text-sm text-muted-foreground/70 hover:text-[#02DFA6] transition-colors duration-200 block py-0.5 leading-snug"
+              className="text-sm text-muted-foreground/70 hover:text-[#00CC99] transition-colors duration-200 block py-0.5 leading-snug"
             >
               {s.title}
             </a>
@@ -142,7 +142,7 @@ function TableOfContents({ sections }: { sections: BlogSection[] }) {
         <li>
           <a
             href="#faqs"
-            className="text-sm text-muted-foreground/70 hover:text-[#02DFA6] transition-colors duration-200 block py-0.5 leading-snug"
+            className="text-sm text-muted-foreground/70 hover:text-[#00CC99] transition-colors duration-200 block py-0.5 leading-snug"
           >
             FAQs
           </a>
@@ -158,7 +158,7 @@ function RelatedPosts({ slug }: { slug: string }) {
 
   return (
     <section className="mt-14">
-      <h2 className="text-xl sm:text-2xl font-inter font-normal text-white mb-6">
+      <h2 className="text-xl sm:text-2xl font-fraunces font-normal text-foreground mb-6">
         Related Articles
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -168,12 +168,12 @@ function RelatedPosts({ slug }: { slug: string }) {
             href={`/resources/blogs/${post.slug}/`}
             className="group block"
           >
-            <Card className="h-full bg-transparent border border-border/50 hover:border-[#02DFA6]/30 transition-all duration-300">
+            <Card className="h-full bg-transparent border border-border/50 hover:border-[#00CC99]/30 transition-all duration-300">
               <CardContent className="p-5">
-                <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#02DFA6]/10 text-[#02DFA6] border border-[#02DFA6]/20 mb-3">
+                <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#00CC99]/10 text-[#00CC99] border border-[#00CC99]/20 mb-3">
                   {post.category}
                 </span>
-                <h3 className="text-sm sm:text-base font-inter font-normal text-white mb-2 group-hover:text-[#02DFA6] transition-colors duration-200 leading-snug">
+                <h3 className="text-sm sm:text-base font-inter font-normal text-foreground mb-2 group-hover:text-[#00CC99] transition-colors duration-200 leading-snug">
                   {post.title}
                 </h3>
                 <p className="text-xs text-muted-foreground font-light line-clamp-2">
@@ -214,21 +214,21 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
       <nav className="flex items-center gap-1.5 text-xs text-muted-foreground/60 mb-8 flex-wrap">
         <Link
           href="/home/"
-          className="hover:text-[#02DFA6] transition-colors"
+          className="hover:text-[#00CC99] transition-colors"
         >
           Home
         </Link>
         <ChevronRight className="w-3 h-3" />
         <Link
           href="/resources/"
-          className="hover:text-[#02DFA6] transition-colors"
+          className="hover:text-[#00CC99] transition-colors"
         >
           Resources
         </Link>
         <ChevronRight className="w-3 h-3" />
         <Link
           href="/resources/blogs/"
-          className="hover:text-[#02DFA6] transition-colors"
+          className="hover:text-[#00CC99] transition-colors"
         >
           Blog
         </Link>
@@ -241,7 +241,7 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
       {/* Article Header */}
       <header className="max-w-3xl mb-10">
         <div className="flex items-center justify-between gap-4 mb-4">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#02DFA6]/10 text-[#02DFA6] border border-[#02DFA6]/20">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#00CC99]/10 text-[#00CC99] border border-[#00CC99]/20">
             <Tag className="w-3 h-3" />
             {post.category}
           </span>
@@ -260,15 +260,15 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
               });
             }}
             aria-pressed={isLightMode}
-            className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-background/40 px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-white hover:border-[#02DFA6]/30 transition-colors"
+            className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-background/40 px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:border-[#00CC99]/30 transition-colors"
             title={isLightMode ? "Switch to dark mode" : "Switch to light mode"}
           >
-            <Lightbulb className={`h-4 w-4 ${isLightMode ? "text-[#02DFA6]" : "text-muted-foreground"}`} />
+            <Lightbulb className={`h-4 w-4 ${isLightMode ? "text-[#00CC99]" : "text-muted-foreground"}`} />
             {isLightMode ? "Light" : "Dark"}
           </button>
         </div>
 
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-inter font-normal text-white mb-5 leading-tight">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-fraunces font-normal text-foreground mb-5 leading-tight">
           {post.title}
         </h1>
 
@@ -296,7 +296,7 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
           {/* FAQs */}
           {post.faqs.length > 0 && (
             <section id="faqs" className="mb-10 scroll-mt-24">
-              <h2 className="text-xl sm:text-2xl font-inter font-normal text-white mb-4 pb-2 border-b border-border/30">
+              <h2 className="text-xl sm:text-2xl font-fraunces font-normal text-foreground mb-4 pb-2 border-b border-border/30">
                 Frequently Asked Questions
               </h2>
               <Accordion type="single" collapsible className="w-full">
@@ -306,7 +306,7 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
                     value={`faq-${i}`}
                     className="border-border/30"
                   >
-                    <AccordionTrigger className="text-left text-white hover:text-[#02DFA6] hover:no-underline py-4 text-[15px] sm:text-base">
+                    <AccordionTrigger className="text-left text-foreground hover:text-[#00CC99] hover:no-underline py-4 text-[15px] sm:text-base">
                       {faq.question}
                     </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground font-light text-[15px] sm:text-base leading-relaxed">
@@ -319,8 +319,8 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
           )}
 
           {/* CTA */}
-          <div className="mt-12 mb-8 rounded-xl border border-[#02DFA6]/20 bg-gradient-to-br from-[#02DFA6]/5 to-transparent p-6 sm:p-8">
-            <h3 className="text-lg sm:text-xl font-inter font-normal text-white mb-2">
+          <div className="mt-12 mb-8 rounded-xl border border-[#00CC99]/20 bg-gradient-to-br from-[#00CC99]/5 to-transparent p-6 sm:p-8">
+            <h3 className="text-lg sm:text-xl font-inter font-normal text-foreground mb-2">
               Ready to put this into practice?
             </h3>
             <p className="text-sm sm:text-base text-muted-foreground font-light mb-5 max-w-lg">
@@ -332,14 +332,14 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
                 href={SHOPIFY_APP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#02DFA6] text-black text-sm font-medium hover:bg-[#02DFA6]/90 transition-colors duration-200"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#00cc99] text-black text-sm font-medium hover:bg-[#00cc99]/90 transition-colors duration-200"
               >
                 Try Aurevia Free
                 <ArrowRight className="w-4 h-4" />
               </a>
               <Link
                 href="/resources/blogs/"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border/50 text-muted-foreground text-sm font-medium hover:border-[#02DFA6]/30 hover:text-white transition-all duration-200"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border/50 text-muted-foreground text-sm font-medium hover:border-[#00CC99]/30 hover:text-foreground transition-all duration-200"
               >
                 <ArrowLeft className="w-4 h-4" />
                 All Articles

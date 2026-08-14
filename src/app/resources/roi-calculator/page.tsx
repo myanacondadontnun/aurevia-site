@@ -18,11 +18,11 @@ export default function ROICalculatorPage() {
           <div className="container mx-auto max-w-6xl">
             <Link
               href="/resources"
-              className="text-muted-foreground hover:text-[#02DFA6] text-sm mb-4 inline-block transition-colors font-normal"
+              className="text-muted-foreground hover:text-[#00CC99] text-sm mb-4 inline-block transition-colors font-normal"
             >
               ← Back to Resources
             </Link>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-normal text-white tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-normal text-foreground tracking-tight">
               Calculate your <span className="green-highlight">ROI</span>
             </h1>
           </div>

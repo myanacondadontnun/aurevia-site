@@ -60,11 +60,11 @@ export default function Footer() {
               {/* Logo and Company Name */}
               <Link href="/home" className="flex items-center gap-2.5 mb-4">
                 <img 
-                  src="/images/Logo_wo_bg.png" 
+                  src="/images/aurevia-logo-mark.png" 
                   alt="Aurevia Logo" 
                   className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
                 />
-                <h3 className="text-xl sm:text-2xl font-inter font-normal text-white logo-text">
+                <h3 className="text-xl sm:text-2xl font-fraunces font-normal text-foreground logo-text">
                   Aurevia.io
                 </h3>
               </Link>
@@ -76,7 +76,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="text-base sm:text-lg font-inter font-normal text-white mb-4">
+              <h4 className="text-base sm:text-lg font-inter font-normal text-foreground mb-4">
                 Get Started
               </h4>
               <p className="text-xs sm:text-sm font-light text-muted-foreground mb-4">
@@ -84,7 +84,7 @@ export default function Footer() {
               </p>
               {showHomeCtaSwarm ? (
                 <Button
-                  className="cta-button cta-button--has-swarm relative overflow-hidden text-white font-medium px-4 sm:px-6 py-2 rounded-lg transition-all duration-200 border-0 text-sm sm:text-base w-full sm:w-auto"
+                  className="cta-button cta-button--has-swarm relative overflow-hidden text-foreground font-medium px-4 sm:px-6 py-2 rounded-lg transition-all duration-200 border-0 text-sm sm:text-base w-full sm:w-auto"
                   onClick={() => openShopifyInstall()}
                 >
                   <CTASwarmBackdrop roundedClassName="rounded-lg" />
@@ -92,7 +92,7 @@ export default function Footer() {
                 </Button>
               ) : (
                 <Button
-                  className="cta-button text-white font-medium px-4 sm:px-6 py-2 rounded-lg transition-all duration-200 border-0 text-sm sm:text-base w-full sm:w-auto"
+                  className="cta-button text-foreground font-medium px-4 sm:px-6 py-2 rounded-lg transition-all duration-200 border-0 text-sm sm:text-base w-full sm:w-auto"
                   onClick={() => openShopifyInstall()}
                 >
                   Try for free on Shopify
@@ -103,7 +103,7 @@ export default function Footer() {
 
           {/* Main Links */}
           <div className="lg:col-span-1">
-            <h4 className="text-base sm:text-lg font-inter font-normal text-white mb-4 sm:mb-6">
+            <h4 className="text-base sm:text-lg font-inter font-normal text-foreground mb-4 sm:mb-6">
               Quick Links
             </h4>
             <div className="space-y-2 sm:space-y-3">
@@ -131,7 +131,7 @@ export default function Footer() {
 
           {/* Secondary Links */}
           <div className="lg:col-span-1">
-            <h4 className="text-base sm:text-lg font-inter font-normal text-white mb-4 sm:mb-6">
+            <h4 className="text-base sm:text-lg font-inter font-normal text-foreground mb-4 sm:mb-6">
               Resources
             </h4>
             <div className="space-y-2 sm:space-y-3">

@@ -10,7 +10,7 @@ const FORM_ENDPOINT =
   "https://script.google.com/macros/s/AKfycby2Um5z2N6m9X1WzbNACYogzZf60qtXeoMYaZEg0zIKwCyZQ6CL_53HUcAibwzx92fKlw/exec";
 
 const inputClass =
-  "w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-base sm:text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200";
+  "w-full px-4 py-3 bg-white border border-black/20 rounded-lg text-base sm:text-sm text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent backdrop-blur-sm transition-all duration-200";
 
 export default function ShopifyAuditLeadForm() {
   const [formData, setFormData] = useState({
@@ -102,11 +102,11 @@ export default function ShopifyAuditLeadForm() {
       className="scroll-mt-28"
       aria-labelledby="free-audit-heading"
     >
-      <Card className="border-white/10 bg-card/40 backdrop-blur-sm max-w-xl mx-auto">
+      <Card className="border-black/10 bg-card/40 backdrop-blur-sm max-w-xl mx-auto">
         <CardHeader>
           <CardTitle
             id="free-audit-heading"
-            className="text-2xl md:text-3xl font-normal text-white"
+            className="text-2xl md:text-3xl font-normal text-foreground"
           >
             Claim your free professional audit
           </CardTitle>
@@ -123,7 +123,7 @@ export default function ShopifyAuditLeadForm() {
                   className="w-14 h-14 text-emerald-400 mx-auto mb-4"
                   aria-hidden="true"
                 />
-                <h3 className="text-xl font-normal text-white mb-2">
+                <h3 className="text-xl font-normal text-foreground mb-2">
                   You&apos;re on the list
                 </h3>
                 <p className="text-muted-foreground text-sm">
@@ -155,7 +155,7 @@ export default function ShopifyAuditLeadForm() {
                 <div>
                   <label
                     htmlFor="audit-first-name"
-                    className="block text-sm font-medium text-gray-300 mb-2"
+                    className="block text-sm font-medium text-muted-foreground mb-2"
                   >
                     First name <span className="text-red-400">*</span>
                   </label>
@@ -175,7 +175,7 @@ export default function ShopifyAuditLeadForm() {
                 <div>
                   <label
                     htmlFor="audit-email"
-                    className="block text-sm font-medium text-gray-300 mb-2"
+                    className="block text-sm font-medium text-muted-foreground mb-2"
                   >
                     Email <span className="text-red-400">*</span>
                   </label>
@@ -195,7 +195,7 @@ export default function ShopifyAuditLeadForm() {
                 <div>
                   <label
                     htmlFor="audit-store-url"
-                    className="block text-sm font-medium text-gray-300 mb-2"
+                    className="block text-sm font-medium text-muted-foreground mb-2"
                   >
                     Shopify store URL <span className="text-red-400">*</span>
                   </label>
@@ -214,7 +214,7 @@ export default function ShopifyAuditLeadForm() {
                 <div>
                   <label
                     htmlFor="audit-struggle"
-                    className="block text-sm font-medium text-gray-300 mb-2"
+                    className="block text-sm font-medium text-muted-foreground mb-2"
                   >
                     Biggest struggle right now{" "}
                     <span className="text-muted-foreground font-normal">
@@ -242,12 +242,12 @@ export default function ShopifyAuditLeadForm() {
                   type="submit"
                   disabled={isSubmitting}
                   aria-describedby={submitError ? "audit-form-error" : undefined}
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-6 rounded-lg font-normal transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-foreground py-3 px-6 rounded-lg font-normal transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center justify-center gap-2">
                       <span
-                        className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"
+                        className="w-4 h-4 border-2 border-black/20 border-t-white rounded-full animate-spin"
                         aria-hidden="true"
                       />
                       Sending…

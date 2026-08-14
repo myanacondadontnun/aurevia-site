@@ -24,8 +24,8 @@ function CategoryPill({
       onClick={onClick}
       className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 border ${
         isActive
-          ? "bg-[#02DFA6]/15 border-[#02DFA6]/40 text-[#02DFA6]"
-          : "bg-transparent border-border/50 text-muted-foreground hover:border-[#02DFA6]/30 hover:text-white"
+          ? "bg-[#00CC99]/15 border-[#00CC99]/40 text-[#00CC99]"
+          : "bg-transparent border-border/50 text-muted-foreground hover:border-[#00CC99]/30 hover:text-foreground"
       }`}
     >
       {category}
@@ -41,16 +41,16 @@ function BlogCard({ post }: { post: (typeof blogPosts)[number] }) {
 
   return (
     <Link href={`/resources/blogs/${post.slug}/`} className="group block h-full">
-      <Card className="h-full bg-transparent border border-border/50 hover:border-[#02DFA6]/30 transition-all duration-300 overflow-hidden">
+      <Card className="h-full bg-transparent border border-border/50 hover:border-[#00CC99]/30 transition-all duration-300 overflow-hidden">
         <CardContent className="p-6 sm:p-8 h-full flex flex-col">
           <div className="flex items-center gap-3 mb-4">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#02DFA6]/10 text-[#02DFA6] border border-[#02DFA6]/20">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#00CC99]/10 text-[#00CC99] border border-[#00CC99]/20">
               <Tag className="w-3 h-3" />
               {post.category}
             </span>
           </div>
 
-          <h2 className="text-lg sm:text-xl font-inter font-normal text-white mb-3 group-hover:text-[#02DFA6] transition-colors duration-300 leading-snug">
+          <h2 className="text-lg sm:text-xl font-inter font-normal text-foreground mb-3 group-hover:text-[#00CC99] transition-colors duration-300 leading-snug">
             {post.title}
           </h2>
 
@@ -66,7 +66,7 @@ function BlogCard({ post }: { post: (typeof blogPosts)[number] }) {
                 {post.readingTime}
               </span>
             </div>
-            <span className="inline-flex items-center gap-1 text-xs text-[#02DFA6]/70 group-hover:text-[#02DFA6] transition-colors duration-200 font-medium">
+            <span className="inline-flex items-center gap-1 text-xs text-[#00CC99]/70 group-hover:text-[#00CC99] transition-colors duration-200 font-medium">
               Read
               <ArrowRight className="w-3 h-3 transform group-hover:translate-x-0.5 transition-transform duration-200" />
             </span>
@@ -108,13 +108,13 @@ export default function BlogListing() {
     <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
       <Link
         href="/resources/"
-        className="text-muted-foreground hover:text-[#02DFA6] text-sm mb-6 inline-flex items-center gap-1 transition-colors duration-200"
+        className="text-muted-foreground hover:text-[#00CC99] text-sm mb-6 inline-flex items-center gap-1 transition-colors duration-200"
       >
         ← Back to Resources
       </Link>
 
       <div className="mb-10 sm:mb-14">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-inter font-normal text-white mb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-fraunces font-normal text-foreground mb-4">
           Blog
         </h1>
         <p className="text-base sm:text-lg text-muted-foreground font-light max-w-2xl">
@@ -132,7 +132,7 @@ export default function BlogListing() {
             placeholder="Search articles..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-white/5 border border-border/50 text-white text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:border-[#02DFA6]/40 focus:ring-1 focus:ring-[#02DFA6]/20 transition-all duration-200"
+            className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-white border border-border/50 text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:border-[#00CC99]/40 focus:ring-1 focus:ring-[#00CC99]/20 transition-all duration-200"
           />
         </div>
 

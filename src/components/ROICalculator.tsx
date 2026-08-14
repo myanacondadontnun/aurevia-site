@@ -80,10 +80,10 @@ export default function ROICalculator() {
     >
       {/* Zipchat-style: single full-width block with greenish glass background */}
       <div
-        className="container mx-auto px-4 sm:px-6 rounded-2xl sm:rounded-3xl border border-white/10 py-8 sm:py-10 lg:py-12 backdrop-blur-md"
+        className="container mx-auto px-4 sm:px-6 rounded-2xl sm:rounded-3xl border border-black/10 py-8 sm:py-10 lg:py-12 backdrop-blur-md"
         style={{
           background: "rgba(11, 60, 47, 0.12)",
-          boxShadow: "0 4px 24px -4px rgba(2, 223, 166, 0.08), inset 0 1px 0 rgba(255,255,255,0.04)",
+          boxShadow: "0 4px 24px -4px rgba(0,204,153, 0.08), inset 0 1px 0 rgba(255,255,255,0.04)",
         }}
       >
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 xl:gap-16 items-stretch lg:items-start">
@@ -184,7 +184,7 @@ export default function ROICalculator() {
               className="rounded-2xl lg:rounded-3xl border border-border p-6 sm:p-8 shadow-lg"
               style={{
                 background:
-                  "linear-gradient(135deg, rgba(11, 60, 47, 0.25) 0%, rgba(2, 223, 166, 0.08) 100%)",
+                  "linear-gradient(135deg, rgba(11, 60, 47, 0.25) 0%, rgba(0,204,153, 0.08) 100%)",
               }}
             >
               <ul className="space-y-4">
@@ -254,7 +254,7 @@ export default function ROICalculator() {
               className="rounded-2xl lg:rounded-3xl border border-border p-6 sm:p-8 shadow-lg flex flex-col items-center text-center"
               style={{
                 background:
-                  "linear-gradient(135deg, rgba(11, 60, 47, 0.2) 0%, rgba(2, 223, 166, 0.06) 100%)",
+                  "linear-gradient(135deg, rgba(11, 60, 47, 0.2) 0%, rgba(0,204,153, 0.06) 100%)",
               }}
             >
               <p className="text-base font-normal text-foreground mb-2">
