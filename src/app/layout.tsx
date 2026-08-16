@@ -142,11 +142,19 @@ export default function RootLayout({
           }}
         />
 
-        {/* Aurevia Chatbot Widget */}
+        {/* Aurevia website chat widget — self-hosted, talks to app.aurevia.io
+            (see Widget/website-widget.js; the public/ copy is the served build).
+            The widget key is publishable (rotatable from the admin dashboard). */}
         <Script
-          src="https://lab.aurevia.io/api/widget/embed/JIVWFSWK.js"
-          strategy="afterInteractive"
+          id="aurevia-widget-env"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `window.__AUREVIA_SITE_WIDGET__ = { apiKey: ${JSON.stringify(
+              process.env.NEXT_PUBLIC_AUREVIA_WIDGET_KEY || ""
+            )} };`,
+          }}
         />
+        <Script src="/website-widget.js" strategy="afterInteractive" />
       </head>
       <body suppressHydrationWarning className="antialiased">
         <ClientBody>{children}</ClientBody>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import CustomerLogos from "@/components/CustomerLogos";
 import FiveWays from "@/components/FiveWays";
 import BetaTester from "@/components/BetaTester";
 import FourSteps from "@/components/FourSteps";
@@ -29,6 +30,7 @@ export default function HomePage() {
       <Navbar />
       <main id="main-content" className="home-seasons">
         <Hero />
+        <CustomerLogos />
         <FiveWays />
         <Industries />
         <Challenges />

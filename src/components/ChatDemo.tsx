@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { MessageSquare, Headphones, ChevronLeft, ChevronRight, ShoppingBag, Check } from "lucide-react";
+import { MessageSquare, Headphones, ChevronLeft, ChevronRight, SquarePen, ArrowUp, Image as ImageIcon } from "lucide-react";
 
 export interface DemoProduct {
   id: string;
@@ -240,6 +240,22 @@ const supportConversation: Message[] = [
 type ChatMode = "sales" | "support";
 type TypingFrom = "none" | "aurevia" | "customer";
 
+/* Aurevia mark, same as the real website widget: the spinning/breathing knot ring
+   alone — no inner glyph. */
+function AureviaMark({ size, animate = false }: { size: number; animate?: boolean }) {
+  return (
+    <span
+      className={`chat-demo-mark ${animate ? "chat-demo-mark-animate" : ""}`}
+      style={{ width: size, height: size }}
+      aria-hidden
+    >
+      <span className="chat-demo-mark-breathe">
+        <img src="/images/widget-mark-outer.png" alt="" className="chat-demo-mark-outer" />
+      </span>
+    </span>
+  );
+}
+
 function ProductCarousel({ products }: { products: DemoProduct[] }) {
   const stripRef = useRef<HTMLDivElement>(null);
 
@@ -258,31 +274,15 @@ function ProductCarousel({ products }: { products: DemoProduct[] }) {
         {products.map((p) => (
           <article key={p.id} className="chat-demo-product-card">
             <div className="chat-demo-product-img-wrap">
-              <img src={p.image} alt="" className="chat-demo-product-img" loading="lazy" />
+              <div className="chat-demo-product-img-frame">
+                <img src={p.image} alt="" className="chat-demo-product-img" loading="lazy" />
+              </div>
             </div>
             <div className="chat-demo-product-body">
               <h4 className="chat-demo-product-name">{p.name}</h4>
               <p className="chat-demo-product-price">{p.price}</p>
-              <label className="chat-demo-product-select-wrap">
-                <span className="sr-only">Variant</span>
-                <select className="chat-demo-product-select" disabled defaultValue={p.variants?.[0] ?? "Default"}>
-                  {(p.variants ?? ["One size"]).map((v) => (
-                    <option key={v} value={v}>
-                      {v}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <div className="chat-demo-qty-row">
-                <span className="chat-demo-qty-label">Qty:</span>
-                <div className="chat-demo-qty-stepper" aria-hidden>
-                  <span>−</span>
-                  <span>1</span>
-                  <span>+</span>
-                </div>
-              </div>
-              <button type="button" className={`chat-demo-add-cart ${p.primaryPick ? "chat-demo-add-cart-primary" : ""}`}>
-                Add to Cart
+              <button type="button" className="chat-demo-product-cta">
+                Add to cart
               </button>
             </div>
           </article>
@@ -408,7 +408,7 @@ function ChatPanel({
     }, 520);
     const t2 = setTimeout(() => {
       if (!cancelled) setCartPhase("checkout");
-    }, 1400);
+    }, 2100);
     return () => {
       cancelled = true;
       clearTimeout(t1);
@@ -427,18 +427,22 @@ function ChatPanel({
       <div className="chat-demo-messages" ref={scrollRef}>
         {visibleMessages.map((msgIndex) => {
           const msg = conversation[msgIndex];
+          const bubbleText = msg.text.split("\n").map((line, i) => (
+            <span key={i}>
+              {line}
+              {i < msg.text.split("\n").length - 1 && <br />}
+            </span>
+          ));
           return (
             <div key={msgIndex} className="chat-demo-msg-block">
-              <div
-                className={`chat-demo-bubble ${msg.sender === "aurevia" ? "chat-demo-left" : "chat-demo-right"} chat-demo-pop`}
-              >
-                {msg.text.split("\n").map((line, i) => (
-                  <span key={i}>
-                    {line}
-                    {i < msg.text.split("\n").length - 1 && <br />}
-                  </span>
-                ))}
-              </div>
+              {msg.sender === "aurevia" ? (
+                <div className="chat-demo-bot-row">
+                  <AureviaMark size={26} />
+                  <div className="chat-demo-bubble chat-demo-left chat-demo-pop">{bubbleText}</div>
+                </div>
+              ) : (
+                <div className="chat-demo-bubble chat-demo-right chat-demo-pop">{bubbleText}</div>
+              )}
               {msg.products && msg.products.length > 0 && <ProductCarousel products={msg.products} />}
               {msg.supportWidget === "order-lookup" && <SupportOrderCard />}
               {msg.supportWidget === "tracking" && <SupportTrackingCard />}
@@ -447,10 +451,13 @@ function ChatPanel({
         })}
 
         {typingFrom === "aurevia" && (
-          <div className="chat-demo-bubble chat-demo-left chat-demo-typing-bubble">
-            <span className="chat-demo-dot" />
-            <span className="chat-demo-dot" />
-            <span className="chat-demo-dot" />
+          <div className="chat-demo-bot-row">
+            <AureviaMark size={26} />
+            <div className="chat-demo-bubble chat-demo-left chat-demo-typing-bubble">
+              <span className="chat-demo-dot" />
+              <span className="chat-demo-dot" />
+              <span className="chat-demo-dot" />
+            </div>
           </div>
         )}
         {typingFrom === "customer" && (
@@ -462,26 +469,65 @@ function ChatPanel({
         )}
       </div>
 
-      {mode === "sales" && (cartPhase === "adding" || cartPhase === "bar" || cartPhase === "checkout") && (
-        <div className={`chat-demo-cart-dock ${cartPhase !== "adding" ? "chat-demo-cart-dock-visible" : ""}`}>
-          <div className="chat-demo-cart-fly" aria-hidden={cartPhase !== "adding"}>
-            <span className="chat-demo-cart-fly-dot" />
+      {mode === "sales" && (cartPhase === "bar" || cartPhase === "checkout") && (
+        <div className="chat-demo-cart-sticky">
+          <div className="chat-demo-cart-sticky-inner chat-demo-cart-bar-in">
+            <span className="chat-demo-cart-summary">1 item · £58.00</span>
+            <span className="chat-demo-view-cart">VIEW CART</span>
           </div>
-          <div className={`chat-demo-cart-bar ${cartPhase === "bar" || cartPhase === "checkout" ? "chat-demo-cart-bar-in" : ""}`}>
-            <div className="chat-demo-cart-bar-icon">
-              {cartPhase === "checkout" ? <Check className="w-4 h-4 text-[#063028]" strokeWidth={3} /> : <ShoppingBag className="w-4 h-4 text-[#063028]" />}
-            </div>
-            <div className="chat-demo-cart-bar-text">
-              <span className="chat-demo-cart-bar-title">Black Core Duffel</span>
-              <span className="chat-demo-cart-bar-sub">Added to cart</span>
-            </div>
-          </div>
-          {cartPhase === "checkout" && (
-            <div className="chat-demo-checkout-row chat-demo-checkout-reveal">
-              <span className="chat-demo-checkout-link">🔗 Your checkout link</span>
-            </div>
-          )}
         </div>
+      )}
+
+      <div className="chat-demo-input-wrap">
+        <div className="chat-demo-input-pill">
+          <span className="chat-demo-attach-btn" aria-hidden>
+            <ImageIcon className="w-4 h-4" strokeWidth={2} />
+          </span>
+          <span className="chat-demo-input-placeholder">Ask Aurevia</span>
+          <span className="chat-demo-send-btn" aria-hidden>
+            <ArrowUp className="w-[18px] h-[18px]" strokeWidth={2.5} />
+          </span>
+        </div>
+        <div className="chat-demo-powered-by">
+          <img src="/images/aurevia-logo-mark.png" alt="" />
+          <span>Powered by Aurevia.io</span>
+        </div>
+      </div>
+
+      {mode === "sales" && (
+        <>
+          <div className={`chat-demo-minicart-backdrop ${cartPhase === "checkout" ? "chat-demo-minicart-open" : ""}`} aria-hidden />
+          <div className={`chat-demo-minicart ${cartPhase === "checkout" ? "chat-demo-minicart-open" : ""}`} aria-hidden={cartPhase !== "checkout"}>
+            <div className="chat-demo-minicart-head">
+              <span className="chat-demo-minicart-title">Your cart</span>
+              <span className="chat-demo-minicart-close">×</span>
+            </div>
+            <div className="chat-demo-minicart-line">
+              <div className="chat-demo-minicart-thumb">
+                <img src={IMG_DUFFEL_BLACK} alt="" />
+              </div>
+              <div className="chat-demo-minicart-main">
+                <span className="chat-demo-minicart-item-title">Core Gym Duffel</span>
+                <span className="chat-demo-minicart-variant">Black</span>
+                <div className="chat-demo-minicart-meta">
+                  <span className="chat-demo-minicart-price">£58.00</span>
+                  <span className="chat-demo-minicart-qty">
+                    <span className="chat-demo-minicart-qty-btn">−</span>
+                    <span className="chat-demo-minicart-qty-val">1</span>
+                    <span className="chat-demo-minicart-qty-btn">+</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="chat-demo-minicart-footer">
+              <div className="chat-demo-minicart-total">
+                <span>Total</span>
+                <strong>£58.00</strong>
+              </div>
+              <span className="chat-demo-minicart-checkout">Checkout</span>
+            </div>
+          </div>
+        </>
       )}
     </>
   );
@@ -511,18 +557,22 @@ export default function ChatDemo() {
         </button>
       </div>
 
-      <div className="chat-demo-container">
+      <div className="chat-demo-scale-wrap">
+        <div className="chat-demo-container">
         <div className="chat-demo-header">
           <div className="chat-demo-avatar">
-            <img src="/images/aurevia-logo-mark.png" alt="Aurevia" className="w-full h-full object-contain" />
+            <AureviaMark size={32} animate />
           </div>
           <div className="chat-demo-header-text">
-            <div className="chat-demo-name">{activeMode === "sales" ? "Sales Agent" : "Support Agent"}</div>
+            <div className="chat-demo-name font-fraunces">{activeMode === "sales" ? "Sales Agent" : "Support Agent"}</div>
             <div className="chat-demo-status">
               <span className="chat-demo-status-dot" />
               Online
             </div>
           </div>
+          <button type="button" className="chat-demo-new-chat-btn" aria-label="Start new chat" tabIndex={-1}>
+            <SquarePen className="w-[15px] h-[15px]" strokeWidth={2} />
+          </button>
         </div>
 
         {activeMode === "sales" ? (
@@ -530,6 +580,7 @@ export default function ChatDemo() {
         ) : (
           <ChatPanel key="support" mode="support" conversation={supportConversation} />
         )}
+        </div>
       </div>
     </div>
   );

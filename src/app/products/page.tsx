@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import PageLayout from "@/components/PageLayout";
 import ProductsGrid from "@/components/ProductsGrid";
 import ProductsPageCTACard from "@/components/ProductsPageCTACard";
-import MediaPlaceholder from "@/components/MediaPlaceholder";
 import { buildShopifyInstallUrl } from "@/lib/utils";
 import Link from "next/link";
 import {
@@ -143,15 +142,6 @@ export default function ProductsPage() {
               A consultative AI sales co-pilot for Shopify: same chat runs discovery, nudges AOV, answers post-purchase
               questions, and shows revenue impact—so you are not paying for a support bot that never closes.
             </p>
-          </div>
-
-          <div className="max-w-3xl mx-auto mb-12 scroll-fade">
-            <MediaPlaceholder
-              ariaLabel="Placeholder for storefront and Aurevia chat widget demo"
-              caption="Drop in: storefront + widget screen recording or hero still"
-              suggestedAsset="Replace with a 15s clip or image of a product page with the Aurevia widget qualifying intent and offering a bundle (living-room / cross-sell story)."
-              aspect="wide"
-            />
           </div>
 
           <ProductsGrid>

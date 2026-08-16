@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageLayout from "@/components/PageLayout";
-import MediaPlaceholder from "@/components/MediaPlaceholder";
 import { buildShopifyInstallUrl } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
@@ -84,15 +83,7 @@ export default function StoriesPage() {
                 <blockquote className="text-foreground/95 leading-relaxed mb-4 border-l-2 border-primary/40 pl-4">
                   {c.placeholderQuote}
                 </blockquote>
-                <p className="text-sm font-medium text-[#00CC99] mb-8">{c.placeholderMetric}</p>
-                <h2 className="text-sm font-medium text-foreground mb-3">Video testimonial</h2>
-                <MediaPlaceholder
-                  ariaLabel={`Video placeholder for ${c.vertical} case study`}
-                  caption={c.videoCaption}
-                  suggestedAsset={c.videoHint}
-                  aspect="video"
-                  kind="video"
-                />
+                <p className="text-sm font-medium text-[#00CC99]">{c.placeholderMetric}</p>
               </article>
             ))}
           </div>

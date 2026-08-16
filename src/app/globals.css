@@ -942,86 +942,92 @@
   color: #00CC99;
 }
 
+/* Exact replica of #aurevia-chat-container (400×660, 12px radius, shadow-lg,
+   #F3F6F5 surface with the same top-right ambient glow), visually scaled down as
+   one unit to fit the hero — every internal proportion stays pixel-true. */
+.chat-demo-scale-wrap {
+  width: 340px;  /* 400 × 0.85 */
+  height: 561px; /* 660 × 0.85 */
+}
+
 .chat-demo-container {
-  width: 340px;
-  min-width: 340px;
-  max-width: 340px;
-  height: 440px;
-  border-radius: 1.25rem;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  background: #ffffff;
-  backdrop-filter: blur(18px);
+  position: relative; /* anchors the slide-up mini-cart + backdrop */
+  width: 400px;
+  min-width: 400px;
+  max-width: 400px;
+  height: 660px;
+  transform: scale(0.85);
+  transform-origin: top left;
+  border-radius: 12px;
+  background-color: #F3F6F5;
+  background-image: radial-gradient(circle at 100% -20%, rgba(0, 82, 61, 0.22) 0%, transparent 65%);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   box-shadow:
-    0 0 0 1px rgba(0,204,153, 0.08),
-    0 18px 48px rgba(45, 55, 55, 0.14);
+    0 24px 48px rgba(15, 15, 15, 0.18),
+    0 8px 16px rgba(15, 15, 15, 0.08);
 }
 
-@media (max-width: 359px) {
+@media (max-width: 419px) {
+  .chat-demo-scale-wrap {
+    width: 312px;  /* 400 × 0.78 */
+    height: 515px; /* 660 × 0.78 */
+  }
+
   .chat-demo-container {
-    width: calc(100vw - 2rem);
-    min-width: calc(100vw - 2rem);
-    max-width: calc(100vw - 2rem);
+    transform: scale(0.78);
   }
 }
 
-@media (min-width: 480px) {
-  .chat-demo-container {
-    width: 380px;
-    min-width: 380px;
-    max-width: 380px;
-    height: 480px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .chat-demo-container {
-    width: 380px;
-    min-width: 380px;
-    max-width: 380px;
-    height: 560px;
-  }
-}
-
+/* Header: 52px tall, transparent in light mode (no border, no shadow) — the
+   container's own surface + glow shows through. Net padding mirrors the widget's
+   6px 8px outer + 4px 10px inner nesting. */
 .chat-demo-header {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  background: #f3f6f5;
+  gap: 8px;
+  height: 52px;
+  padding: 10px 18px;
+  flex-shrink: 0;
+  background: transparent;
 }
 
 .chat-demo-header-text {
   min-width: 0;
+  flex: 1;
 }
 
+/* Aurevia mark renders with no chip at all in the real widget header — no circle,
+   no clip, just the glyph floating directly on the header background. */
 .chat-demo-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(0,204,153, 0.12);
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  padding: 6px;
 }
 
 .chat-demo-name {
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
   color: #2d3737;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
 }
 
 .chat-demo-status {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
-  font-size: 0.7rem;
-  color: #6b7573;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 300;
+  color: #2d3737;
+  opacity: 0.9;
+  margin-top: 1px;
+  line-height: 1.1;
 }
 
 .chat-demo-status-dot {
@@ -1032,23 +1038,38 @@
   display: inline-block;
 }
 
+.chat-demo-new-chat-btn {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #2d3737;
+  opacity: 0.75;
+  cursor: default;
+  transition: opacity 0.16s ease, background-color 0.16s ease;
+}
+
+.chat-demo-new-chat-btn:hover {
+  opacity: 1;
+  background: rgba(45, 55, 55, 0.06);
+}
+
+/* Messages area: 20px padding, 16px list gap — same as #aurevia-messages-container */
 .chat-demo-messages {
   flex: 1 1 0%;
   min-height: 0;
   overflow-y: auto;
-  padding: 0.75rem;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 16px;
   scroll-behavior: smooth;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.06) 100%);
-}
-
-@media (min-width: 480px) {
-  .chat-demo-messages {
-    padding: 1rem;
-    gap: 0.5rem;
-  }
+  background: transparent;
 }
 
 .chat-demo-messages::-webkit-scrollbar {
@@ -1060,37 +1081,35 @@
   border-radius: 10px;
 }
 
+/* Bubbles: 12px radius + 4px corner pinch, shadow-sm — exact widget values.
+   Bot: 10px 12px padding, 13px/1.45. User: 10px 13px padding, 14px/1.5. */
 .chat-demo-bubble {
   max-width: 85%;
-  padding: 0.5rem 0.75rem;
-  border-radius: 1rem;
-  font-size: 0.72rem;
-  line-height: 1.45;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(15, 15, 15, 0.06), 0 1px 1px rgba(15, 15, 15, 0.04);
   word-wrap: break-word;
 }
 
-@media (min-width: 480px) {
-  .chat-demo-bubble {
-    padding: 0.625rem 0.875rem;
-    font-size: 0.8rem;
-    line-height: 1.5;
-  }
-}
-
+/* Bot bubble: neutral white card, not brand-tinted — the real widget keeps received
+   messages neutral and reserves the accent green for actions (buttons, links). */
 .chat-demo-left {
   align-self: flex-start;
-  background: rgba(0,204,153, 0.12);
-  border: 1px solid rgba(0,204,153, 0.28);
-  color: #17342b;
-  border-bottom-left-radius: 0.25rem;
+  background: #ffffff;
+  color: #2d3737;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  border-top-left-radius: 4px;
 }
 
 .chat-demo-right {
   align-self: flex-end;
-  background: #f1f4f3;
-  border: 1px solid rgba(45, 55, 55, 0.1);
-  color: #2d3737;
-  border-bottom-right-radius: 0.25rem;
+  background: #2d3737;
+  color: #ffffff;
+  padding: 10px 13px;
+  font-size: 14px;
+  line-height: 1.5;
+  border-bottom-right-radius: 4px;
 }
 
 .chat-demo-msg-block {
@@ -1127,7 +1146,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(0,204,153, 0.6);
+  background: rgba(45, 55, 55, 0.45);
   animation: chatDotBounce 1.2s ease-in-out infinite;
 }
 
@@ -1142,12 +1161,11 @@
 .chat-demo-typing-bubble.chat-demo-right {
   align-self: flex-end;
   border-bottom-right-radius: 0.25rem;
-  background: #f1f4f3;
-  border: 1px solid rgba(45, 55, 55, 0.1);
+  background: #2d3737;
 }
 
 .chat-demo-dot-customer {
-  background: rgba(45, 55, 55, 0.5) !important;
+  background: rgba(255, 255, 255, 0.7) !important;
   animation: chatDotBounceCustomer 1.2s ease-in-out infinite;
 }
 
@@ -1181,25 +1199,24 @@
   }
 }
 
-/* Chat product carousel */
+/* Chat product carousel — exact .aurevia-scroll-container metrics: 10px gap,
+   4px 36px 5px padding, 30px dark overlay nav chevrons at left/right 2px. */
 .chat-demo-carousel-wrap {
   position: relative;
-  display: flex;
-  align-items: stretch;
-  gap: 0.25rem;
-  margin: 0.15rem 0 0.35rem;
-  padding: 0 0.15rem;
+  margin: 2px 0;
+  padding: 0;
 }
 
 .chat-demo-carousel-strip {
   display: flex;
-  gap: 0.5rem;
+  align-items: stretch;
+  gap: 10px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  flex: 1;
   min-width: 0;
-  padding: 0.2rem 0;
+  padding: 4px 36px 5px;
+  scroll-behavior: smooth;
 }
 
 .chat-demo-carousel-strip::-webkit-scrollbar {
@@ -1207,139 +1224,121 @@
 }
 
 .chat-demo-carousel-nav {
-  flex-shrink: 0;
-  width: 28px;
-  border-radius: 9999px;
-  border: 1px solid rgba(45, 55, 55, 0.12);
-  background: #ffffff;
-  color: #2d3737;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 6;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: rgba(30, 30, 30, 0.72);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  align-self: center;
-  box-shadow: 0 2px 8px rgba(45, 55, 55, 0.1);
-  transition: background 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  transition: background 0.15s ease;
 }
 
 .chat-demo-carousel-nav:hover {
-  background: rgba(0,204,153, 0.12);
-  border-color: rgba(0,204,153, 0.35);
+  background: rgba(30, 30, 30, 0.88);
 }
 
+.chat-demo-carousel-nav-left {
+  left: 2px;
+}
+
+.chat-demo-carousel-nav-right {
+  right: 2px;
+}
+
+/* Dark gradient card, 160px wide, 12px radius — the real widget's light-mode
+   product-card treatment (.aurevia-product-card). */
 .chat-demo-product-card {
-  flex: 0 0 128px;
+  flex: 0 0 160px;
+  width: 160px;
   scroll-snap-align: start;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-}
-
-@media (min-width: 480px) {
-  .chat-demo-product-card {
-    flex: 0 0 148px;
-  }
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(160deg, #2D3737 0%, #0F3D30 100%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 .chat-demo-product-img-wrap {
-  height: 80px;
-  background: #f0f2f1;
-  position: relative;
-  overflow: hidden;
+  padding: 8px 8px 6px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(248, 248, 248, 0.95) 100%);
+  border-radius: 12px 12px 0 0;
 }
 
-@media (min-width: 480px) {
-  .chat-demo-product-img-wrap {
-    height: 100px;
-  }
+.chat-demo-product-img-frame {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fafafa;
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .chat-demo-product-img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 6px;
+  box-sizing: border-box;
 }
 
 .chat-demo-product-body {
-  padding: 0.45rem 0.5rem 0.55rem;
-  background: linear-gradient(180deg, rgba(2, 160, 130, 0.95) 0%, rgba(1, 110, 88, 0.98) 100%);
+  padding: 7px 10px 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1 1 auto;
 }
 
 .chat-demo-product-name {
   margin: 0;
-  font-size: 0.68rem;
-  font-weight: 600;
-  line-height: 1.25;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.22;
   color: #fff;
 }
 
 .chat-demo-product-price {
-  margin: 0.1rem 0 0.35rem;
-  font-size: 0.72rem;
+  margin: 0;
+  font-size: 14px;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.95);
-}
-
-.chat-demo-product-select-wrap {
-  display: block;
-  margin-bottom: 0.35rem;
-}
-
-.chat-demo-product-select {
-  width: 100%;
-  font-size: 0.6rem;
-  padding: 0.2rem 1.35rem 0.2rem 0.35rem;
-  border-radius: 0.35rem;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  background: rgba(0, 0, 0, 0.12);
+  letter-spacing: 0.01em;
+  line-height: 1.2;
   color: #fff;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.25rem center;
-  cursor: default;
 }
 
-.chat-demo-qty-row {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin-bottom: 0.35rem;
-}
-
-.chat-demo-qty-label {
-  font-size: 0.58rem;
-  color: rgba(255, 255, 255, 0.88);
-}
-
-.chat-demo-qty-stepper {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.62rem;
-  color: #fff;
-  padding: 0.12rem 0.4rem;
-  border-radius: 0.35rem;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-}
-
-.chat-demo-add-cart {
+/* Collapsed-card CTA — exact .aurevia-product-card-cta: translucent white chip
+   pinned to the card bottom (cards ship collapsed; no variant/qty controls). */
+.chat-demo-product-cta {
   width: 100%;
-  border: none;
-  border-radius: 0.45rem;
-  padding: 0.35rem 0.25rem;
-  font-size: 0.62rem;
+  margin-top: auto;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 11px;
   font-weight: 600;
+  text-align: center;
   cursor: default;
-  background: #fff;
-  color: #017a62;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.15s ease;
 }
 
-.chat-demo-add-cart-primary {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
+.chat-demo-product-cta:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Support mock cards */
@@ -1347,13 +1346,13 @@
   margin: 0.15rem 0 0.35rem;
   border-radius: 0.75rem;
   overflow: hidden;
-  border: 1px solid rgba(45, 55, 55, 0.1);
-  background: #f6f8f7;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(15, 15, 15, 0.06), 0 1px 1px rgba(15, 15, 15, 0.04);
 }
 
 .chat-demo-support-card-head {
-  padding: 0.4rem 0.65rem;
-  font-size: 0.62rem;
+  padding: 7px 12px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -1363,18 +1362,18 @@
 }
 
 .chat-demo-support-card-body {
-  padding: 0.55rem 0.65rem 0.65rem;
+  padding: 10px 12px 12px;
 }
 
 .chat-demo-support-muted {
   margin: 0;
-  font-size: 0.62rem;
+  font-size: 12px;
   color: #6b7573;
 }
 
 .chat-demo-support-strong {
-  margin: 0.15rem 0 0.4rem;
-  font-size: 0.78rem;
+  margin: 3px 0 7px;
+  font-size: 13px;
   font-weight: 600;
   color: #2d3737;
 }
@@ -1422,7 +1421,7 @@
 
 .chat-demo-support-eta {
   margin: 0;
-  font-size: 0.62rem;
+  font-size: 12px;
   color: rgba(0,204,153, 0.9);
 }
 
@@ -1435,142 +1434,383 @@
   }
 }
 
-/* Cart + checkout demo strip */
-.chat-demo-cart-dock {
+/* Two-layer Aurevia mark (mirrors the real widget: spinning outer ring, static glyph) */
+.chat-demo-mark {
   position: relative;
+  display: inline-block;
   flex-shrink: 0;
-  padding: 0.5rem 0.75rem 0.65rem;
-  border-top: 1px solid rgba(45, 55, 55, 0.08);
-  background: #f3f6f5;
-  overflow: hidden;
 }
 
-.chat-demo-cart-fly {
-  pointer-events: none;
+.chat-demo-mark-breathe {
   position: absolute;
-  left: 50%;
-  bottom: 2.75rem;
-  width: 10px;
-  height: 10px;
-  margin-left: -5px;
-  z-index: 2;
+  inset: 0;
 }
 
-.chat-demo-cart-fly-dot {
+.chat-demo-mark-outer,
+.chat-demo-mark-inner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   display: block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #00CC99;
-  box-shadow: 0 0 14px rgba(0,204,153, 0.65);
-  animation: chatCartFly 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.chat-demo-cart-dock-visible .chat-demo-cart-fly {
-  opacity: 0;
-  transition: opacity 0.2s ease;
+.chat-demo-mark-animate .chat-demo-mark-breathe {
+  animation: chatMarkBreathe 4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }
 
-.chat-demo-cart-bar {
+.chat-demo-mark-animate .chat-demo-mark-outer {
+  animation: chatMarkSpin 10s linear infinite;
+}
+
+@keyframes chatMarkSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes chatMarkBreathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.035);
+  }
+}
+
+/* Bot rows: 26px mark avatar top-aligned beside the bubble, 8px gap — exact
+   .aurevia-message.bot values. Row capped at 95% like the widget's messages. */
+.chat-demo-bot-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 95%;
+}
+
+.chat-demo-bot-row .chat-demo-bubble {
+  max-width: none;
+  min-width: 0;
+}
+
+/* Sticky cart bar above the input — exact .aurevia-cart-sticky-bar metrics:
+   6px 16px 0 outer, 9px 12px 10px inner, 12px type. */
+.chat-demo-cart-sticky {
+  flex-shrink: 0;
+  padding: 6px 16px 0;
+  background: transparent;
+}
+
+.chat-demo-cart-sticky-inner {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.45rem 0.55rem;
-  border-radius: 0.65rem;
-  background: rgba(255, 255, 255, 0.94);
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 12px 10px;
+  border-radius: 9px 9px 0 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f5f6 100%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: none;
+  box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.05);
   opacity: 0;
-  transform: translateY(12px) scale(0.98);
+  transform: translateY(12px);
+}
+
+.chat-demo-cart-summary {
+  font-size: 12px;
+  font-weight: 600;
+  color: #111111;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+}
+
+.chat-demo-view-cart {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  color: #2d3737;
+  white-space: nowrap;
+  cursor: default;
+}
+
+/* Input bar — mirrors the real widget's message pill: white capsule, soft
+   lifted shadow, round dark send button (accent green is reserved for the
+   product/cart CTAs; the send button itself sits near-black in light mode). */
+.chat-demo-input-wrap {
+  flex-shrink: 0;
+  padding: 0 8px 8px;
+  background: transparent;
+}
+
+/* Input pill: 18px radius, 6px 6px 6px 16px padding, 38px round buttons —
+   exact .aurevia-input-container metrics. */
+.chat-demo-input-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 6px 6px 16px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 15, 15, 0.05);
+  box-shadow:
+    0 1px 2px rgba(15, 15, 15, 0.04),
+    0 6px 16px rgba(15, 15, 15, 0.1),
+    0 1px 0 rgba(255, 255, 255, 0.6) inset;
+}
+
+.chat-demo-input-placeholder {
+  flex: 1;
+  font-size: 14px;
+  padding: 8px 12px 8px 0;
+  color: rgb(154, 154, 154);
+}
+
+.chat-demo-send-btn {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .chat-demo-cart-bar-in {
   animation: chatCartBarIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.chat-demo-cart-bar-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 0.5rem;
-  background: rgba(0,204,153, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.chat-demo-cart-bar-text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.05rem;
-  min-width: 0;
-}
-
-.chat-demo-cart-bar-title {
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: #0d1717;
-}
-
-.chat-demo-cart-bar-sub {
-  font-size: 0.62rem;
-  color: #017a62;
-  font-weight: 500;
-}
-
-.chat-demo-checkout-row {
-  margin-top: 0.45rem;
-  display: flex;
-  align-items: center;
-}
-
-.chat-demo-checkout-link {
-  font-size: 0.72rem;
-  font-weight: 500;
-  color: #5eaeff;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  cursor: default;
-}
-
-.chat-demo-checkout-reveal {
-  animation: chatCheckoutReveal 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes chatCartFly {
-  0% {
-    opacity: 0;
-    transform: translate(0, 28px) scale(0.6);
-  }
-  35% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.95;
-    transform: translate(0, -6px) scale(1);
-  }
-}
-
 @keyframes chatCartBarIn {
   from {
     opacity: 0;
-    transform: translateY(14px) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes chatCheckoutReveal {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-    filter: blur(4px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
+}
+
+.chat-demo-attach-btn {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  margin-left: -10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+}
+
+.chat-demo-powered-by {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 0 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(45, 55, 55, 0.5);
+  user-select: none;
+}
+
+.chat-demo-powered-by img {
+  height: 15px;
+  width: auto;
+  display: block;
+  opacity: 0.85;
+}
+
+/* Slide-up mini-cart panel — mirrors the widget's aurevia-mini-cart-panel */
+.chat-demo-minicart-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  background: rgba(15, 15, 15, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.chat-demo-minicart-backdrop.chat-demo-minicart-open {
+  opacity: 1;
+}
+
+.chat-demo-minicart {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  background: #F3F6F5;
+  border-radius: 14px 14px 0 0;
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.18);
+  transform: translateY(110%);
+  transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+  visibility: hidden;
+}
+
+.chat-demo-minicart.chat-demo-minicart-open {
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.chat-demo-minicart-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.chat-demo-minicart-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.chat-demo-minicart-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.06);
+  color: #374151;
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+
+.chat-demo-minicart-line {
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.chat-demo-minicart-thumb {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.chat-demo-minicart-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.chat-demo-minicart-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chat-demo-minicart-item-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.25;
+}
+
+.chat-demo-minicart-variant {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.chat-demo-minicart-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.chat-demo-minicart-price {
+  font-size: 12px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.chat-demo-minicart-qty {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.chat-demo-minicart-qty-btn {
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  background: #fff;
+  color: #374151;
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+
+.chat-demo-minicart-qty-val {
+  width: 36px;
+  height: 28px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-demo-minicart-footer {
+  padding: 12px 14px 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.chat-demo-minicart-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.chat-demo-minicart-total strong {
+  font-size: 16px;
+  color: #111827;
+}
+
+.chat-demo-minicart-checkout {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  background: #00CC99;
+  color: #ffffff;
+  cursor: default;
 }
 
 /* Testimonial carousel transitions */

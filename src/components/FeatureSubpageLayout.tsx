@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
-import MediaPlaceholder, { type MediaPlaceholderAspect } from "@/components/MediaPlaceholder";
+import type { MediaPlaceholderAspect } from "@/components/MediaPlaceholder";
 import { buildShopifyInstallUrl, cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
@@ -72,7 +72,6 @@ export default function FeatureSubpageLayout({
   proofStrip,
   featureBlocks,
   howItWorks,
-  media,
   relatedLinks,
   faqs,
   heroVisual,
@@ -176,18 +175,6 @@ export default function FeatureSubpageLayout({
             </div>
           ) : null}
 
-          <div className="mb-12 scroll-fade">
-            <h2 className="text-xl font-medium text-foreground mb-4">See it in action</h2>
-            <MediaPlaceholder
-              ariaLabel={media.ariaLabel}
-              caption={media.caption}
-              suggestedAsset={media.suggestedAsset}
-              aspect={media.aspect}
-              kind={media.kind}
-              imageSrc={media.imageSrc}
-              imageAlt={media.imageAlt}
-            />
-          </div>
 
           {relatedLinks.length > 0 ? (
             <div className="mb-12">
