@@ -195,9 +195,11 @@
         '.aurevia-site-header { display: flex; align-items: center; gap: 8px; height: 52px; padding: 10px 14px 10px 18px; flex-shrink: 0; }\n' +
         '.aurevia-site-header-logo { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }\n' +
         '.aurevia-site-header-info { flex: 1; min-width: 0; display: flex; flex-direction: column; }\n' +
-        '.aurevia-site-header-title { font-family: var(--aurevia-font-display); font-weight: 600; font-size: 16px; color: #2D3737; line-height: 1.15; letter-spacing: -0.01em; }\n' +
-        '.aurevia-site-header-status { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 300; color: #2D3737; opacity: 0.9; margin-top: 1px; line-height: 1.1; }\n' +
-        '.aurevia-site-header-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #00CC99; display: inline-block; }\n' +
+        /* !important on the two title rules: "#aurevia-site-panel *" below resets
+           font-family: inherit at ID specificity, which otherwise silently beats these
+           plain class selectors and the display face never actually renders. */
+        '.aurevia-site-header-title { font-family: var(--aurevia-font-display) !important; font-weight: 600; font-size: 16px; color: #2D3737; line-height: 1.15; letter-spacing: -0.01em; }\n' +
+        '.aurevia-site-header-subtitle { display: block; font-size: 11px; font-weight: 300; color: #2D3737; opacity: 0.9; margin-top: 1px; line-height: 1.1; }\n' +
         '.aurevia-site-header-btn {\n' +
         '  width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;\n' +
         '  padding: 0; border: none; border-radius: var(--aurevia-radius-sm); background: transparent;\n' +
@@ -270,7 +272,7 @@
 
         /* Contact form (lead-form styling from the storefront widget; rendered in the dock) */
         '.aurevia-site-form { padding: 12px; }\n' +
-        '.aurevia-site-form-title { font-family: var(--aurevia-font-display); font-size: 15px; font-weight: 600; color: #2D3737; margin: 0 0 2px; }\n' +
+        '.aurevia-site-form-title { font-family: var(--aurevia-font-display) !important; font-size: 15px; font-weight: 600; color: #2D3737; margin: 0 0 2px; }\n' +
         '.aurevia-site-form-intro { font-size: 12px; color: #6B7573; margin: 0 0 10px; line-height: 1.4; }\n' +
         '.aurevia-site-form-field { margin-bottom: 8px; }\n' +
         '.aurevia-site-form-field label { display: block; font-size: 11px; font-weight: 500; color: #6B7573; margin-bottom: 3px; }\n' +
@@ -385,7 +387,7 @@
                 '<div class="aurevia-site-header-logo">' + this.markHtml(32, true) + '</div>' +
                 '<div class="aurevia-site-header-info">' +
                     '<span class="aurevia-site-header-title">Aurevia</span>' +
-                    '<span class="aurevia-site-header-status">Online</span>' +
+                    '<span class="aurevia-site-header-subtitle" id="aurevia-site-subtitle">AI Sales &amp; Support Agent</span>' +
                 '</div>' +
                 '<button type="button" class="aurevia-site-header-btn" id="aurevia-site-new-chat" aria-label="Start new chat" title="Start new chat">' +
                     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="7" x2="12" y2="13"/><line x1="9" y1="10" x2="15" y2="10"/></svg>' +
@@ -414,6 +416,7 @@
         this.dockEl = panel.querySelector('#aurevia-site-dock');
         this.inputEl = panel.querySelector('#aurevia-site-input');
         this.sendBtn = panel.querySelector('#aurevia-site-send');
+        this.subtitleEl = panel.querySelector('#aurevia-site-subtitle');
 
         var self = this;
         bubble.addEventListener('click', function () { self.open(); });
@@ -713,6 +716,9 @@
             session_id: this.sessionId,
             page_url: window.location.href,
         }).then(function (payload) {
+            if (payload && payload.subtitle && self.subtitleEl) {
+                self.subtitleEl.textContent = payload.subtitle;
+            }
             self.renderResponse(payload);
         }).catch(function () {
             self.addBotMessage("Hi, I'm Aurevia's assistant. What brings you here today?");
