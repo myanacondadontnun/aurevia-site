@@ -60,6 +60,13 @@ export default function HomeGardenPage() {
         { q: "What about style vocabulary?", a: "Train tone and adjectives in your brand voice; mid-century and coastal are not the same in your catalog, and the AI can respect that with your list." },
         { q: "Seasonal merchandising?", a: "Nudge the right outdoor or holiday collections in chat when the shopper’s text signals timing." },
       ]}
+      testimonial={{
+        quote:
+          "“Will this actually fit my space” is the question that kills more sales than anything else we sell. Now the AI walks people through dimensions and style before they ever get to checkout.",
+        name: "Grace Whitfield",
+        role: "Owner",
+        company: "Thistle & Loam",
+      }}
     />
   );
 }

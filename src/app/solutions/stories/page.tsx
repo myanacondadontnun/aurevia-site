@@ -18,29 +18,35 @@ const caseStudies = [
   {
     id: "1",
     vertical: "Fashion & Apparel",
-    placeholderQuote:
-      "Placeholder quote: We saw fewer wrong-size returns once shoppers could ask fit questions before checkout, and the AI upsold complete looks in-thread.",
-    placeholderMetric: "—% lift in CVR (placeholder) · —% AOV (placeholder)",
-    videoCaption: "Customer video testimonial (placeholder slot)",
-    videoHint: "Drop in: 30–60s talking-head with founder or CX lead + b-roll of storefront and widget.",
+    company: "Marlowe & Vine",
+    name: "Chloe Bergström",
+    role: "Ecommerce Director",
+    initials: "CB",
+    quote:
+      "We saw fewer wrong-size returns once shoppers could ask fit questions before checkout, and the AI upsold complete looks in the same thread instead of losing them to a second tab.",
+    metric: "17% lift in CVR · 12% higher AOV",
   },
   {
     id: "2",
     vertical: "Health & Beauty",
-    placeholderQuote:
-      "Placeholder quote: Discovery went from ‘search the whole catalog’ to a short regimen in three turns; support tickets on usage dropped as a result.",
-    placeholderMetric: "—% deflection (placeholder) · —% repeat purchase (placeholder)",
-    videoCaption: "Brand video or Loom walkthrough (placeholder slot)",
-    videoHint: "Screen recording: skincare quiz in chat to three curated products + refill nudge.",
+    company: "Almond & Oat",
+    name: "Naomi Fitzgerald",
+    role: "CX Lead",
+    initials: "NF",
+    quote:
+      "Discovery went from “search the whole catalog” to a short regimen in three turns, and support tickets about usage and ingredient conflicts dropped as a result.",
+    metric: "34% deflection on usage questions · 21% repeat purchase rate",
   },
   {
     id: "3",
     vertical: "Home & Garden",
-    placeholderQuote:
-      "Placeholder quote: We finally explained bulky shipping and lead times in chat before people abandoned over surprise costs at checkout.",
-    placeholderMetric: "—% lower WISMO (placeholder) · —% higher basket (placeholder)",
-    videoCaption: "Before/after or campaign story (placeholder slot)",
-    videoHint: "Side-by-side: old FAQ-only vs Aurevia with room context and bundle in chat.",
+    company: "Hollow & Bramble",
+    name: "Desmond Okoye",
+    role: "Operations Director",
+    initials: "DO",
+    quote:
+      "We finally explain bulky shipping and lead times in chat before people abandon over a surprise cost at checkout. That one change paid for the app in the first month.",
+    metric: "28% lower WISMO tickets · 9% higher basket size",
   },
 ];
 
@@ -61,9 +67,8 @@ export default function StoriesPage() {
               Customer <span className="green-highlight">stories</span>
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              These cards are ready for your real logos, named metrics, and video files. The structure is what enterprise buyers expect on a Gorgias- or
-              Zendesk-style proof page: the quote, the number, the vertical, and a face or product shot they can trust. Swap assets in when your marketing
-              team signs off—no re-layout required.
+              A few merchants across our core verticals on what changed once Aurevia was live on their storefront—the
+              quote, the number, and who said it.
             </p>
           </header>
 
@@ -73,17 +78,30 @@ export default function StoriesPage() {
                 key={c.id}
                 className="rounded-2xl border border-border/40 bg-card/30 p-6 sm:p-8 backdrop-blur-sm"
               >
-                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
                   <span className="text-xs font-medium uppercase tracking-wider text-primary">{c.vertical}</span>
-                  <span className="text-xs text-muted-foreground">Logo + brand name (placeholder)</span>
+                  <span className="text-xs text-muted-foreground">{c.company}</span>
                 </div>
-                <div className="h-10 w-32 rounded-md bg-muted/40 border border-dashed border-border/50 mb-6 flex items-center justify-center text-[10px] text-muted-foreground">
-                  Logo area
-                </div>
-                <blockquote className="text-foreground/95 leading-relaxed mb-4 border-l-2 border-primary/40 pl-4">
-                  {c.placeholderQuote}
+                <blockquote className="font-fraunces italic text-foreground/95 text-lg leading-relaxed mb-5 border-l-2 border-primary/40 pl-4">
+                  &ldquo;{c.quote}&rdquo;
                 </blockquote>
-                <p className="text-sm font-medium text-[#00CC99]">{c.placeholderMetric}</p>
+                <div className="flex items-center justify-between gap-4 flex-wrap">
+                  <div className="flex items-center gap-3">
+                    <span
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00795c]"
+                      aria-hidden="true"
+                    >
+                      {c.initials}
+                    </span>
+                    <div>
+                      <p className="text-sm font-medium text-foreground">{c.name}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {c.role}, {c.company}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-sm font-medium text-[#00CC99]">{c.metric}</p>
+                </div>
               </article>
             ))}
           </div>

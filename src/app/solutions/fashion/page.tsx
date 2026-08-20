@@ -60,6 +60,13 @@ export default function FashionPage() {
         { q: "What about fast fashion vs premium?", a: "Set tone, upsell rules, and how assertively to present alternatives; the AI should feel like your brand, not a generic mall." },
         { q: "Do you handle multi-currency and global shipping?", a: "Pair accurate policy copy with the locales you serve; the AI can speak your shipping story where you enable it." },
       ]}
+      testimonial={{
+        quote:
+          "Sizing questions used to be our single biggest source of returns. The AI walks people through fit the way our best in-store associate used to, and our return rate actually moved because of it.",
+        name: "Yasmin Torres",
+        role: "Brand Director",
+        company: "Rowe & Rue",
+      }}
     />
   );
 }

@@ -92,14 +92,12 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
-        {/* Non-blocking font loading: only weights actually used */}
+        {/* Non-blocking font loading: only weights actually used.
+            Site-wide type system is just two families — Fraunces (display) and
+            Montserrat (everything else, including body copy and testimonials). */}
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;500&family=Playfair+Display:ital,wght@0,500;1,400&family=Cormorant+Garamond:wght@300;400&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap"
         />
         {/* Fraunces — editorial display serif shared with the Aurevia app */}
         <link

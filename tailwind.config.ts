@@ -10,12 +10,15 @@ export default {
   theme: {
   	extend: {
   		fontFamily: {
-  			inter: ['Inter', 'sans-serif'],
+  			// Site-wide type system: Fraunces (display/serif) + Montserrat (everything else).
+  			// `inter`/`playfair`/`roi`/`seasons` are kept as aliases so existing classNames
+  			// across the codebase don't need to change — they just resolve to one of the two.
+  			inter: ['Montserrat', 'sans-serif'],
   			montserrat: ['Montserrat', 'sans-serif'],
   			fraunces: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
-  			playfair: ['Playfair Display', 'serif'],
-  			roi: ['Cormorant Garamond', 'Georgia', 'Times New Roman', 'serif'],
-  				seasons: ['The Seasons', 'Playfair Display', 'ui-serif', 'Georgia', 'Times New Roman', 'serif'],
+  			playfair: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
+  			roi: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
+  			seasons: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
   		},
   		colors: {
   			background: 'hsl(var(--background))',

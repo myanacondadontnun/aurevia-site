@@ -47,6 +47,7 @@ export default function EnterprisePage() {
         aspect: "wide",
       }}
       relatedLinks={[
+        { href: "/contact", label: "Talk to sales" },
         { href: "/products/api", label: "Custom API" },
         { href: "/resources/docs", label: "Documentation" },
         { href: "/solutions/growing-business", label: "Growing business" },
@@ -56,6 +57,13 @@ export default function EnterprisePage() {
         { q: "What about non-Shopify front ends?", a: "Talk to us about your product catalog and identity model; the goal is a reliable connection between truth and the AI, whatever your stack is piloting." },
         { q: "How do we govern model behavior in regulated categories?", a: "Layer merchant rules, claims restrictions, and human escalation to match the categories you are responsible for in-market." },
       ]}
+      testimonial={{
+        quote:
+          "We needed something that could sit across multiple regional storefronts without losing consistency or breaking our compliance rules. Aurevia's the first AI tool our legal team didn't flag in review.",
+        name: "Margaret Chen",
+        role: "VP of Digital",
+        company: "Halden Group",
+      }}
     />
   );
 }

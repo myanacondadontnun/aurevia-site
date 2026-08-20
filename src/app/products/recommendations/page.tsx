@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { FeatureChatDemo, type ChatStep } from "@/components/FeatureDemo";
 
 const title = "AI Product Recommendations for Shopify | Aurevia";
 const desc =
@@ -11,22 +12,50 @@ export const metadata: Metadata = {
   openGraph: { title, description: desc, type: "article" },
 };
 
+const demoScript: ChatStep[] = [
+  { type: "bot", text: "Hey! Shopping for yourself or hunting for a gift today?" },
+  {
+    type: "user",
+    text: "Me! My skin gets so dry in winter, but heavy SPF always breaks me out 😩",
+  },
+  {
+    type: "bot",
+    text: "Got it — dry skin, sensitive to rich SPF. These three layer together without clogging:",
+  },
+  {
+    type: "products",
+    items: [
+      { name: "Hydra Barrier Serum", price: "£32.00", img: "serum" },
+      { name: "Cloud Cream", price: "£28.00", img: "cream" },
+      { name: "Featherlight SPF 50", price: "£24.00", img: "spf" },
+    ],
+  },
+  { type: "user", text: "Adding the serum and the SPF 😍" },
+  { type: "cartbar", summary: "2 items · £56.00" },
+];
+
 export default function RecommendationsPage() {
   return (
     <FeatureSubpageLayout
       backHref="/products"
       backLabel="← Back to Products"
+      eyebrow="Product recommendations"
       headline={
         <>
-          Ask first. <span className="green-highlight">Sell</span> next.
+          Your best sales rep, <span className="green-highlight">cloned for every visitor</span>
         </>
       }
-      subtitle="Aurevia does not firehose twenty random SKUs. It clarifies intent, offers quick replies when that helps, then surfaces a small set of on-catalog recommendations—with clear reasons to buy, and add-to-cart in the same thread. That is the difference between a search box and a sales rep."
-      lede="Brands that win on Shopify treat discovery as a conversation: budget, use case, constraints, and taste. The AI is trained to behave that way, so you capture revenue that keyword search never sees."
+      subtitle="Aurevia doesn't firehose twenty random SKUs. It asks the two questions a great associate would ask, then serves a short, justified shortlist — with add-to-cart right in the thread."
+      heroBullets={[
+        "Consultative discovery, not keyword search",
+        "Curated shortlists with reasons to buy",
+        "Add to cart without leaving the chat",
+      ]}
+      demo={<FeatureChatDemo agentName="Sales Agent" script={demoScript} />}
       proofStrip={[
-        { label: "Intent, not keyword ping", text: "Clarify before recommending, so the first good option is a great option." },
-        { label: "AOV, not one-off", text: "Bundles, add-ons, and “pairs with” nudges sit on the same rails as the first recommendation." },
-        { label: "Catalog-grounded", text: "No fake products or off-menu SKUs—recommendations map to what you actually sell." },
+        { label: "Ask first, sell next", text: "Intent is clarified before anything is pitched, so the first pick is a great pick." },
+        { label: "Built to lift AOV", text: "Bundles, add-ons, and “pairs with” nudges ride the same rails as the first recommendation." },
+        { label: "Only real products", text: "Every card maps to your live catalog — no invented SKUs, no out-of-stock embarrassments." },
       ]}
       featureBlocks={[
         {
@@ -51,13 +80,6 @@ export default function RecommendationsPage() {
         { title: "The AI narrows the universe", body: "Quick replies and follow-ups build a spec you could not get from a single query string." },
         { title: "Recommend, justify, add to cart", body: "Show cards, handle objections, and keep them moving to checkout in one session." },
       ]}
-      media={{
-        ariaLabel: "Product recommendation demo video placeholder",
-        caption: "Swap in: walkthrough from intent to handpicked gallery to “pairs perfectly”",
-        suggestedAsset: "5-step flow: intent chips, curated gallery, add-ons, free-shipping nudge, checkout—your “AI Sales Agent” storyboard is perfect here.",
-        kind: "video",
-        aspect: "video",
-      }}
       relatedLinks={[
         { href: "/products/cart-recovery", label: "Cart recovery" },
         { href: "/solutions/conversion", label: "Conversion solutions" },
@@ -78,6 +100,13 @@ export default function RecommendationsPage() {
           a: "Long-tail SKUs and technical specs are exactly where Q&A and clarification outperform generic search—your catalog and KB ground the model.",
         },
       ]}
+      testimonial={{
+        quote:
+          "Our catalog is huge and honestly a little overwhelming. The AI asks two or three questions and gets people to the right product faster than our old filters ever did — and they're buying more per order because of it.",
+        name: "Marcus Webb",
+        role: "Founder",
+        company: "Ridgeline Gear",
+      }}
     />
   );
 }

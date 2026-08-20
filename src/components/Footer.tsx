@@ -16,9 +16,11 @@ const footerLinks = {
   secondary: [
     { label: "Blogs", href: "/resources/blogs/" },
     { label: "Review My Shopify", href: "/resources/review-my-shopify/" },
-    { label: "Docs & API", href: "#" },
-    { label: "Privacy Policy", href: "https://www.notion.so/AUREVIA-PRIVACY-POLICY-202fc3fea0bc81cf84f5e1aeb691a9cd?source=copy_link" },
-    { label: "Terms and Conditions", href: "#" },
+    { label: "Docs & API", href: "/resources/docs/" },
+    { label: "Contact us", href: "/contact" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms and Conditions", href: "/terms" },
+    { label: "GDPR Compliance", href: "/gdpr" },
   ],
 };
 

@@ -3,7 +3,9 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Search, Clock, ArrowRight, Tag } from "lucide-react";
+import { buildShopifyInstallUrl } from "@/lib/utils";
 import {
   blogPosts,
   getAllCategories,
@@ -170,6 +172,39 @@ export default function BlogListing() {
           </p>
         </div>
       )}
+
+      <div className="mt-14 sm:mt-16 rounded-2xl border border-border/30 bg-card/20 p-6 sm:p-8">
+        <p className="font-fraunces italic text-lg sm:text-xl text-foreground leading-relaxed mb-5">
+          &ldquo;Half of what I know about running the store better came from this blog before I ever installed the
+          app. It's the rare vendor content that's actually useful instead of just a sales pitch.&rdquo;
+        </p>
+        <div className="flex items-center gap-3">
+          <span
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00795c]"
+            aria-hidden="true"
+          >
+            LN
+          </span>
+          <div>
+            <p className="text-sm font-medium text-foreground">Lena Novak</p>
+            <p className="text-xs text-muted-foreground">Owner, Novak & Sons</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-2xl border border-primary/20 bg-primary/[0.06] p-6 sm:p-8">
+        <div>
+          <p className="text-foreground font-medium">Ready to see it on your store?</p>
+          <p className="text-sm text-muted-foreground mt-1">
+            Install from the Shopify App Store and go live in minutes.
+          </p>
+        </div>
+        <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl w-full sm:w-auto">
+          <a href={buildShopifyInstallUrl()} target="_blank" rel="noopener noreferrer">
+            Start free on Shopify
+          </a>
+        </Button>
+      </div>
     </div>
   );
 }

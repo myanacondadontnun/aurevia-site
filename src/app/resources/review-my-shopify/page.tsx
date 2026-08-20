@@ -4,6 +4,8 @@ import Link from "next/link";
 import ReviewHeroForm from "@/components/ReviewHeroForm";
 import FloatingParticles from "@/components/FloatingParticles";
 import CTASwarmParticles from "@/components/CTASwarmParticles";
+import { Button } from "@/components/ui/button";
+import { buildShopifyInstallUrl } from "@/lib/utils";
 import {
   Eye,
   ShieldCheck,
@@ -146,6 +148,7 @@ const painPoints = [
 ];
 
 export default function ReviewMyShopifyPage() {
+  const installUrl = buildShopifyInstallUrl();
   return (
     <PageLayout>
       <script
@@ -371,13 +374,51 @@ export default function ReviewMyShopifyPage() {
         </div>
       </section>
 
+      {/* ─── Testimonial + secondary CTA ─── */}
+      <section className="pb-16 sm:pb-24 px-4 sm:px-6">
+        <div className="container mx-auto max-w-4xl">
+          <div className="rounded-2xl border border-border/30 bg-card/20 p-6 sm:p-8 mb-8">
+            <p className="font-fraunces italic text-lg sm:text-xl text-foreground leading-relaxed mb-5">
+              &ldquo;We requested the audit half-expecting a generic checklist. Instead we got fifteen pages that
+              named the exact three things quietly killing our checkout, in order of what to fix first.&rdquo;
+            </p>
+            <div className="flex items-center gap-3">
+              <span
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00795c]"
+                aria-hidden="true"
+              >
+                MK
+              </span>
+              <div>
+                <p className="text-sm font-medium text-foreground">Mireille Kanu</p>
+                <p className="text-xs text-muted-foreground">Founder, Amberlight Goods</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-2xl border border-primary/20 bg-primary/[0.06] p-6 sm:p-8">
+            <div>
+              <p className="text-foreground font-medium">Already sure Aurevia's a fit?</p>
+              <p className="text-sm text-muted-foreground mt-1">
+                Skip the audit and install straight from the Shopify App Store.
+              </p>
+            </div>
+            <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl w-full sm:w-auto">
+              <a href={installUrl} target="_blank" rel="noopener noreferrer">
+                Start free on Shopify
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* ─── Final CTA ─── */}
       <section className="py-16 sm:py-24 px-4 sm:px-6">
         <div className="container mx-auto max-w-4xl rounded-3xl bg-gradient-to-br from-[#00CC99]/[0.08] via-[#089357]/[0.05] to-[#0b3c2f]/[0.1] border border-[#00CC99]/15 py-16 sm:py-20 px-6 sm:px-12 text-center relative overflow-hidden">
           <div className="absolute inset-0 z-0 rounded-3xl bg-[radial-gradient(ellipse_at_center,rgba(0,204,153,0.06)_0%,transparent_70%)] pointer-events-none" />
           <CTASwarmParticles />
           <div className="relative z-10">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-dmserif font-normal text-foreground mb-5 leading-[1.15] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-fraunces font-normal text-foreground mb-5 leading-[1.15] tracking-tight">
               Your competitors are optimizing.
               <br />
               <span className="green-highlight">Are you?</span>

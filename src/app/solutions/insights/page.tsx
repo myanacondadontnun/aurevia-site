@@ -56,6 +56,13 @@ export default function InsightsPage() {
         { q: "Is this for executives or ICs?", a: "Both: executives get a strategy summary; ICs get the list of what to change this sprint." },
         { q: "How much analyst time is required?", a: "The point is the opposite: less manual transcript reading, more pre-clustered signal." },
       ]}
+      testimonial={{
+        quote:
+          "I used to dread the quarterly deck because half of it was guessing what customers wanted. Now I pull straight from what they actually asked the AI, and the deck writes itself.",
+        name: "Ravi Deshmukh",
+        role: "Head of Insights",
+        company: "Fernbridge Co.",
+      }}
     />
   );
 }

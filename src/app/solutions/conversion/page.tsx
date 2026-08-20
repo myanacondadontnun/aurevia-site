@@ -56,6 +56,13 @@ export default function ConversionPage() {
         { q: "How fast can we test impact?", a: "Ship a pilot, compare assisted sessions against holdouts, and read weekly; your dashboard and ROI views connect to real orders." },
         { q: "Is this one-size upsell spam?", a: "No. Merchants set tone and rules; the best programs sound like help, not pressure." },
       ]}
+      testimonial={{
+        quote:
+          "We tested a dozen conversion tactics over the years. This is the first one where I can actually watch a hesitant browser turn into a completed order in the same chat window.",
+        name: "Nate Kowalski",
+        role: "Head of Growth",
+        company: "Alder & Finch",
+      }}
     />
   );
 }

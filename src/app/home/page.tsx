@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import CustomerLogos from "@/components/CustomerLogos";
 import FiveWays from "@/components/FiveWays";
-import BetaTester from "@/components/BetaTester";
 import FourSteps from "@/components/FourSteps";
 import Industries from "@/components/Industries";
 import Stats from "@/components/Stats";
@@ -37,7 +36,6 @@ export default function HomePage() {
         <Stats />
         <Testimonials />
         <FourSteps />
-        <BetaTester />
         <FAQ />
         <ContactUs />
       </main>

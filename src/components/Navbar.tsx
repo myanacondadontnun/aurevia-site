@@ -230,14 +230,16 @@ export default function Navbar() {
                 onMouseEnter={() => handleDropdownEnter("platform")}
                 onMouseLeave={handleDropdownLeave}
               >
-                <Link
-                  href="/products"
+                <button
+                  type="button"
                   aria-haspopup="true"
                   aria-expanded={openDropdown === "platform"}
-                  className={`inline-flex items-center text-sm xl:text-base whitespace-nowrap transition-colors duration-200 ${openDropdown === "platform" ? "text-[#00CC99]" : "text-foreground hover:text-[#00CC99]"}`}
+                  onClick={() => handleDropdownEnter("platform")}
+                  className={`inline-flex items-center gap-1 text-sm xl:text-base whitespace-nowrap transition-colors duration-200 cursor-default ${openDropdown === "platform" ? "text-[#00CC99]" : "text-foreground hover:text-[#00CC99]"}`}
                 >
                   Platform
-                </Link>
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${openDropdown === "platform" ? "rotate-180" : ""}`} aria-hidden="true" />
+                </button>
                 {openDropdown === "platform" && (
                   <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 -mt-px" role="menu" aria-label="Platform menu">
                     <div className="bg-card border border-border rounded-2xl shadow-xl p-4 min-w-[720px] grid grid-cols-2 gap-3">
@@ -280,14 +282,16 @@ export default function Navbar() {
                 onMouseEnter={() => handleDropdownEnter("solutions")}
                 onMouseLeave={handleDropdownLeave}
               >
-                <Link
-                  href="/solutions"
+                <button
+                  type="button"
                   aria-haspopup="true"
                   aria-expanded={openDropdown === "solutions"}
-                  className={`inline-flex items-center text-sm xl:text-base whitespace-nowrap transition-colors duration-200 ${openDropdown === "solutions" ? "text-[#00CC99]" : "text-foreground hover:text-[#00CC99]"}`}
+                  onClick={() => handleDropdownEnter("solutions")}
+                  className={`inline-flex items-center gap-1 text-sm xl:text-base whitespace-nowrap transition-colors duration-200 cursor-default ${openDropdown === "solutions" ? "text-[#00CC99]" : "text-foreground hover:text-[#00CC99]"}`}
                 >
                   Solutions
-                </Link>
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${openDropdown === "solutions" ? "rotate-180" : ""}`} aria-hidden="true" />
+                </button>
                 {openDropdown === "solutions" && (
                   <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 -mt-px" role="menu" aria-label="Solutions menu">
                     <div className="bg-card border border-border rounded-2xl shadow-xl p-8 min-w-[860px] grid grid-cols-3 gap-x-12 gap-y-6">
@@ -335,14 +339,16 @@ export default function Navbar() {
                 onMouseEnter={() => handleDropdownEnter("resources")}
                 onMouseLeave={handleDropdownLeave}
               >
-                <Link
-                  href="/resources"
+                <button
+                  type="button"
                   aria-haspopup="true"
                   aria-expanded={openDropdown === "resources"}
-                  className={`inline-flex items-center text-sm xl:text-base whitespace-nowrap transition-colors duration-200 ${openDropdown === "resources" ? "text-[#00CC99]" : "text-foreground hover:text-[#00CC99]"}`}
+                  onClick={() => handleDropdownEnter("resources")}
+                  className={`inline-flex items-center gap-1 text-sm xl:text-base whitespace-nowrap transition-colors duration-200 cursor-default ${openDropdown === "resources" ? "text-[#00CC99]" : "text-foreground hover:text-[#00CC99]"}`}
                 >
                   Resources
-                </Link>
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${openDropdown === "resources" ? "rotate-180" : ""}`} aria-hidden="true" />
+                </button>
                 {openDropdown === "resources" && (
                   <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 -mt-px" role="menu" aria-label="Resources menu">
                     <div className="bg-card border border-border rounded-xl shadow-xl p-8 min-w-[384px]">
@@ -454,9 +460,7 @@ export default function Navbar() {
                   aria-expanded={mobileExpanded === "platform"}
                   className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
                 >
-                  <Link href="/products" onClick={closeMobileMenu} className="flex-1 text-left">
-                    Platform
-                  </Link>
+                  <span className="flex-1 text-left">Platform</span>
                   <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileExpanded === "platform" ? "rotate-180" : ""}`} aria-hidden="true" />
                 </button>
                 {mobileExpanded === "platform" && (
@@ -491,9 +495,7 @@ export default function Navbar() {
                   aria-expanded={mobileExpanded === "solutions"}
                   className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
                 >
-                  <Link href="/solutions" onClick={closeMobileMenu} className="flex-1 text-left">
-                    Solutions
-                  </Link>
+                  <span className="flex-1 text-left">Solutions</span>
                   <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileExpanded === "solutions" ? "rotate-180" : ""}`} aria-hidden="true" />
                 </button>
                 {mobileExpanded === "solutions" && (
@@ -539,9 +541,7 @@ export default function Navbar() {
                   aria-expanded={mobileExpanded === "resources"}
                   className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
                 >
-                  <Link href="/resources" onClick={closeMobileMenu} className="flex-1 text-left">
-                    Resources
-                  </Link>
+                  <span className="flex-1 text-left">Resources</span>
                   <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileExpanded === "resources" ? "rotate-180" : ""}`} aria-hidden="true" />
                 </button>
                 {mobileExpanded === "resources" && (

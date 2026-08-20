@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { FeatureChatDemo, type ChatStep } from "@/components/FeatureDemo";
 
 const title = "In-Session Cart Recovery for Shopify | Aurevia";
 const desc =
@@ -11,22 +12,48 @@ export const metadata: Metadata = {
   openGraph: { title, description: desc, type: "article" },
 };
 
+const demoScript: ChatStep[] = [
+  {
+    type: "card",
+    head: "Exit intent detected",
+    title: "Cart: £58.00 · 1 item",
+    note: "Shopper idle at checkout for 40s",
+  },
+  {
+    type: "bot",
+    text: "Before you go — anything holding you back? Shipping's free on this order, by the way 👀",
+  },
+  { type: "user", text: "Oh! I thought shipping was extra.\nCan it arrive by Friday though?" },
+  {
+    type: "bot",
+    text: "Yes — order in the next 3 hours and it lands Thursday. Your cart's ready whenever you are:",
+  },
+  { type: "cartbar", summary: "1 item · £58.00 · Free shipping" },
+  { type: "user", text: "Okay you got me. Checking out 🙌" },
+];
+
 export default function CartRecoveryPage() {
   return (
     <FeatureSubpageLayout
       backHref="/products"
       backLabel="← Back to Products"
+      eyebrow="Cart recovery"
       headline={
         <>
-          Catch hesitation <span className="green-highlight">in the session</span>
+          Save the sale <span className="green-highlight">before the tab closes</span>
         </>
       }
-      subtitle="Abandonment is not a single moment—it is a series of small doubts. Aurevia steps in while the buyer is still on your store: answer the sizing question, remove the policy doubt, and drop a one-click path to pay. Email sequences still matter; this is about revenue you can save today."
-      lede="If you are already paying for ads, the highest ROI moment is the one before they leave. In-session cart recovery is built around cart-aware dialog, nudges, and checkout handoff—aligned with the north-star playbook for reactive selling."
+      subtitle="Recovery emails arrive hours after the moment is gone. Aurevia catches the hesitation live — answers the last objection, shows the free-shipping math, and drops a one-tap path to pay while the shopper is still on your store."
+      heroBullets={[
+        "Real-time exit-intent rescue",
+        "Cart-aware, objection-first replies",
+        "One-tap checkout handoff",
+      ]}
+      demo={<FeatureChatDemo agentName="Sales Agent" script={demoScript} />}
       proofStrip={[
-        { label: "In-context", text: "The AI already knows the cart, line items, and what was discussed—no backtracking." },
-        { label: "Nudges that feel fair", text: "Free-shipping or bundle prompts only when the intent is warm, not when it is spam." },
-        { label: "Checkout, not detours", text: "One coherent thread from doubt to pay—fewer “let me get back to you” stalls." },
+        { label: "The moment that matters", text: "70% of carts are abandoned — and the cheapest one to save is the one still on your site." },
+        { label: "Context, not spam", text: "The AI already knows the cart, the line items, and what was discussed. No generic pop-up begging." },
+        { label: "Doubt → paid, one thread", text: "From last objection to checkout link without ever leaving the conversation." },
       ]}
       featureBlocks={[
         {
@@ -51,13 +78,6 @@ export default function CartRecoveryPage() {
         { title: "Defuse the objection", body: "Short, factual answers and relevant picks bring confidence back in-line." },
         { title: "Hand off to checkout", body: "Drive to cart review or a checkout link with trust cues your store already provides." },
       ]}
-      media={{
-        ariaLabel: "Before and after cart recovery demo placeholder",
-        caption: "Swap in: two-panel or short clip of abandon vs. nudge + complete checkout",
-        suggestedAsset: "Record or mock a stuck cart: AI resolves the last objection, shows progress to free ship, and lands on a View cart / Pay button.",
-        kind: "video",
-        aspect: "wide",
-      }}
       relatedLinks={[
         { href: "/products/recommendations", label: "Product recommendations" },
         { href: "/solutions/conversion", label: "Conversion solutions" },
@@ -77,6 +97,13 @@ export default function CartRecoveryPage() {
           a: "Aurevia is built Shopify-native, so the journey stays in your store’s real cart and policies.",
         },
       ]}
+      testimonial={{
+        quote:
+          "Every abandoned cart notification used to feel like a tiny loss we just accepted. Now the AI catches the hesitation in real time and hands them a checkout link before they've even closed the tab.",
+        name: "Tomasz Wolski",
+        role: "Growth Lead",
+        company: "Basecamp Outfitters",
+      }}
     />
   );
 }

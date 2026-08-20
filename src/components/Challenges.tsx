@@ -4,15 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { useGridStaggerFade } from "./ScrollAnimations";
-import {
-  ShoppingCart,
-  Palette,
-  DollarSign,
-  BarChart2,
-  Globe,
-  HelpCircle,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight, ShoppingCart, Check, Clock, Minus } from "lucide-react";
 
 const challenges = [
   {
@@ -21,17 +13,8 @@ const challenges = [
       "You did everything right — the ad worked, they browsed, they added to cart. Then they left...",
     full:
       " No reason. No goodbye. Just another abandoned cart notification you've learned to ignore. It stings every time, because you know that was a real person ready to buy.",
-    icon: ShoppingCart,
+    visual: "cart" as const,
     link: "/resources/blogs/reduce-checkout-abandonment-shopify/",
-  },
-  {
-    problem: "Your Chatbot Sounds Nothing Like You",
-    teaser:
-      "You spent years building a brand voice your customers love. Then your chatbot replies and...",
-    full:
-      " it feels like a stranger hijacked your store. So robotic, so generic. Customers notice. They disengage. And you're left wondering if automation is even worth it.",
-    icon: Palette,
-    link: "/resources/blogs/chatbot-brand-voice/",
   },
   {
     problem: "Your Average Order Won't Budge",
@@ -39,17 +22,8 @@ const challenges = [
       "You keep running promos, slashing margins, hoping customers will add just one more item...",
     full:
       " They don't. Your AOV flatlines month after month while acquisition costs keep climbing. You're working harder to earn less on every single order.",
-    icon: DollarSign,
+    visual: "aov" as const,
     link: "/resources/blogs/increase-aov-shopify-without-discounts/",
-  },
-  {
-    problem: "You're Making Decisions in the Dark",
-    teaser:
-      "You know customers are chatting, clicking, browsing — but you have no idea where they drop off...",
-    full:
-      " Your gut says something's broken, but the data isn't there. So you guess. And guessing at this stage costs real money.",
-    icon: BarChart2,
-    link: "/resources/blogs/shopify-ecommerce-funnel-analytics/",
   },
   {
     problem: "You're Losing Customers You Never Even Reached",
@@ -57,19 +31,108 @@ const challenges = [
       "Someone in Tokyo loved your product at 3am your time. They had a question. Nobody answered...",
     full:
       " They moved on. You'll never know they existed. Multiply that by every timezone, every language you don't speak — that's revenue you're silently leaving behind.",
-    icon: Globe,
+    visual: "reach" as const,
     link: "/resources/blogs/24-7-ai-support-after-hours-sales/",
   },
-  {
-    problem: "You're Drowning in the Same Questions",
-    teaser:
-      "\"Where's my order?\" — for the 47th time today. You started this business to build something meaningful...",
-    full:
-      " not to copy-paste tracking links. But every hour you spend on repetitive tickets is an hour stolen from the work that actually grows your store.",
-    icon: HelpCircle,
-    link: "/resources/blogs/reduce-repetitive-support-questions-shopify/",
-  },
 ];
+
+/* Scene 1 — a checkout stepper that reaches Cart, then stalls one step short of
+   Checkout and drifts back. Two steps already done (dark), the last still open. */
+function CartVisual() {
+  return (
+    <div className="cv-stepper">
+      <div className="cv-track-wrap">
+        <div className="cv-track" />
+        <div className="cv-track-fill" />
+        <div className="cv-step" style={{ left: "8%" }} />
+        <div className="cv-step" style={{ left: "50%" }} />
+        <div className="cv-step cv-step--pending" style={{ left: "92%" }} />
+        <div className="cv-ping" />
+        <div className="cv-chip">
+          <ShoppingCart aria-hidden="true" strokeWidth={2.25} />
+        </div>
+      </div>
+      <div className="cv-labels">
+        <span className="cv-label">Browse</span>
+        <span className="cv-label">Cart</span>
+        <span className="cv-label">Checkout</span>
+      </div>
+    </div>
+  );
+}
+
+/* Scene 2 — an area chart that redraws itself on loop, always landing in the
+   same low, flat band well under the dashed "target" line above it. */
+function AOVVisual() {
+  return (
+    <>
+      <svg viewBox="0 0 320 156" className="absolute inset-0 h-full w-full" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="cvAreaFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#00CC99" stopOpacity="0.24" />
+            <stop offset="100%" stopColor="#00CC99" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <line x1="26" y1="52" x2="294" y2="52" stroke="hsl(var(--border))" strokeWidth="1.5" strokeDasharray="3 5" strokeLinecap="round" />
+        <path
+          d="M26 96 Q70 88 108 93 T186 90 T264 86 L294 84 L294 132 L26 132 Z"
+          fill="url(#cvAreaFill)"
+        />
+        <path
+          className="cv-chart-line"
+          d="M26 96 Q70 88 108 93 T186 90 T264 86 L294 84"
+          fill="none"
+          stroke="#00CC99"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <circle className="cv-chart-dot" cx="294" cy="84" r="4" fill="#00CC99" />
+      </svg>
+      <span className="cv-flat-badge">
+        <Minus aria-hidden="true" strokeWidth={3} />
+        Flat
+      </span>
+    </>
+  );
+}
+
+/* Scene 3 — an outgoing message that never gets a reply: typing dots settle
+   into a single "sent" checkmark, while a row of timezone chips takes turns
+   lighting up — nobody's actually awake to answer. */
+function ReachVisual() {
+  return (
+    <div className="absolute inset-0 flex items-center justify-between px-7 sm:px-8">
+      <div className="cv-msg-bubble">
+        <span className="cv-msg-dots">
+          <span className="cv-msg-dot" />
+          <span className="cv-msg-dot" />
+          <span className="cv-msg-dot" />
+        </span>
+        <span className="cv-msg-sent">
+          <Check aria-hidden="true" strokeWidth={2.5} />
+        </span>
+      </div>
+      <div className="cv-tz-row">
+        {[0, 1, 2, 3].map((i) => (
+          <span key={i} className="cv-tz-chip">
+            <Clock aria-hidden="true" strokeWidth={2} />
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ChallengeVisual({ variant }: { variant: "cart" | "aov" | "reach" }) {
+  return (
+    <div className="challenge-visual">
+      {variant === "cart" && <CartVisual />}
+      {variant === "aov" && <AOVVisual />}
+      {variant === "reach" && <ReachVisual />}
+    </div>
+  );
+}
 
 function ChallengeCard({
   challenge,
@@ -77,20 +140,17 @@ function ChallengeCard({
   challenge: (typeof challenges)[number];
 }) {
   const [expanded, setExpanded] = useState(false);
-  const Icon = challenge.icon;
 
   return (
-    <Card className="challenge-card scroll-fade-lr bg-transparent border border-border/50 hover:border-primary/30 transition-all duration-300 group">
+    <Card className="challenge-card scroll-fade-lr bg-transparent border border-border/50 hover:border-primary/30 transition-all duration-300 group overflow-hidden">
       <Link
         href={challenge.link}
         aria-label={`Read the full guide: ${challenge.problem}`}
         className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00CC99]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-xl"
       >
+        <ChallengeVisual variant={challenge.visual} />
         <CardContent className="p-4 sm:p-8 h-full flex flex-col relative">
-        <div className="mb-3 sm:mb-6">
-          <Icon className="challenge-icon w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground group-hover:text-[#00CC99] transition-colors duration-300" aria-hidden="true" />
-        </div>
-        <h3 className="text-lg sm:text-xl font-inter font-normal text-foreground mb-3 sm:mb-4 group-hover:text-[#00CC99] transition-colors duration-300">
+        <h3 className="text-lg sm:text-xl font-inter font-normal text-foreground mb-3 sm:mb-4 mt-4 sm:mt-6 group-hover:text-[#00CC99] transition-colors duration-300">
           {challenge.problem}
         </h3>
 
@@ -147,7 +207,7 @@ export default function Challenges() {
 
         <div
           ref={containerRef as React.RefObject<HTMLDivElement>}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 max-w-7xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8 max-w-7xl mx-auto"
         >
           {challenges.map((challenge, index) => (
             <ChallengeCard key={index} challenge={challenge} />

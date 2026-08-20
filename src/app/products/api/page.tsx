@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { FeatureCodeDemo } from "@/components/FeatureDemo";
 
 const title = "Aurevia API & Webhooks for Developers | Integrations";
 const desc =
@@ -11,22 +12,47 @@ export const metadata: Metadata = {
   openGraph: { title, description: desc, type: "article" },
 };
 
+const demoLines = [
+  "POST /webhooks/aurevia  HTTP/1.1",
+  "",
+  "{",
+  '  "event": "lead.captured",',
+  '  "conversation_id": "cnv_8f2a91",',
+  '  "contact": { "email": "tom@northarc.co" },',
+  '  "intent": "wholesale",',
+  '  "cart_value": 4000,',
+  '  "transcript_url": "https://…/cnv_8f2a91"',
+  "}",
+];
+
 export default function ApiPage() {
   return (
     <FeatureSubpageLayout
       backHref="/products"
       backLabel="← Back to Products"
+      eyebrow="Custom API"
       headline={
         <>
-          Wire Aurevia to <span className="green-highlight">your</span> stack
+          Wire Aurevia into <span className="green-highlight">your stack</span>
         </>
       }
-      subtitle="The Shopify app is the default path, but your operations may not stop at a single store view. The API and webhook surface is for teams that need reliable events, back-office sync, and custom workflows—so engineering can trust the plumbing while marketing still gets a high-performing assistant on the site."
-      lede="Use this when you already run a CDP, custom CRM, or in-house data warehouse, or when you are piloting non-standard storefronts and need a stable contract for what “conversation and outcome” means in your system."
+      subtitle="Webhooks for every lead, escalation, and outcome. REST for everything else. Engineering gets a stable contract and clean payloads — marketing still gets a high-performing assistant on the storefront."
+      heroBullets={[
+        "Webhooks for leads, tickets & outcomes",
+        "REST API with per-environment keys",
+        "Payloads that map to your data model",
+      ]}
+      demo={
+        <FeatureCodeDemo
+          fileName="webhook — lead.captured"
+          lines={demoLines}
+          responseChip="200 OK · delivered in 84ms"
+        />
+      }
       proofStrip={[
-        { label: "Integrator-friendly", text: "Clear boundaries: store, conversation, and outcome events without mystery payloads." },
-        { label: "Extensible", text: "Build on top of the same product intelligence merchants see in the dashboard." },
-        { label: "Security-minded", text: "Treat keys and per-environment access the way you already do for the rest of your commerce APIs." },
+        { label: "No mystery payloads", text: "Clear boundaries between store, conversation, and outcome events — documented with real examples." },
+        { label: "Build on the same brain", text: "The intelligence merchants see in the dashboard is the same surface your systems consume." },
+        { label: "Keys handled properly", text: "Per-environment access and rotation, the way you already run the rest of your commerce APIs." },
       ]}
       featureBlocks={[
         {
@@ -51,13 +77,6 @@ export default function ApiPage() {
         { title: "Connect securely", body: "Issue keys, test in staging, and validate with your security checklist." },
         { title: "Go live in phases", body: "Pilot a cohort, then expand; watch logs and business metrics in parallel." },
       ]}
-      media={{
-        ariaLabel: "Architecture diagram or API documentation placeholder",
-        caption: "Swap in: diagram of Store → Aurevia → CRM/warehouse, or a docs page screenshot",
-        suggestedAsset: "A simple one-slide diagram: webhooks to your queue, optional REST to enrich sessions, and read-only links to your docs site.",
-        kind: "image",
-        aspect: "wide",
-      }}
       relatedLinks={[
         { href: "/resources/docs", label: "Documentation" },
         { href: "/solutions/enterprise", label: "Enterprise" },
@@ -77,6 +96,13 @@ export default function ApiPage() {
           a: "High-volume orgs get guidance aligned to real chat throughput and your batch jobs—tune with us before launch day.",
         },
       ]}
+      testimonial={{
+        quote:
+          "Our dev team is small and stretched thin, so “just another integration” usually means it never ships. Aurevia's API docs were clean enough that we had a working proof of concept before our first coffee break.",
+        name: "Diego Ferreira",
+        role: "Lead Engineer",
+        company: "Norr Studio",
+      }}
     />
   );
 }

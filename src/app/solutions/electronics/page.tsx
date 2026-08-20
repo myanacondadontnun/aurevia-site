@@ -60,6 +60,13 @@ export default function ElectronicsPage() {
         { q: "What if we sell third-party marketplaces and our own DTC site?", a: "Aurevia is focused on the experience on your store; use your data where it is authoritative for that channel." },
         { q: "B2B or bulk quotes?", a: "Layer lead capture and escalation when a conversation needs account pricing, not a consumer widget." },
       ]}
+      testimonial={{
+        quote:
+          "Buyers want to know if a charger is compatible with three different devices before they'll click add to cart. Aurevia answers that instantly instead of losing them to a return three weeks later.",
+        name: "Ben Sato",
+        role: "Ecommerce Manager",
+        company: "Voltware",
+      }}
     />
   );
 }

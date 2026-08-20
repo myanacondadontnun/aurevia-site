@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { FeatureChatDemo, type ChatStep } from "@/components/FeatureDemo";
 
 const title = "Ecommerce Chat Escalation & Handoff | Aurevia";
 const desc =
@@ -11,22 +12,49 @@ export const metadata: Metadata = {
   openGraph: { title, description: desc, type: "article" },
 };
 
+const demoScript: ChatStep[] = [
+  { type: "user", text: "My order arrived damaged 😞 The mug is cracked down the side." },
+  {
+    type: "bot",
+    text: "Oh no — so sorry, Maya. I've pulled up order #48291. I can ship a free replacement today, or refund you in full. Which works better?",
+  },
+  { type: "user", text: "Replacement please. The outer box was soaked too, FYI." },
+  {
+    type: "bot",
+    text: "Done — your replacement ships today with tracking. And I'm flagging the packaging issue to the team with your photos attached.",
+  },
+  {
+    type: "card",
+    head: "Ticket created",
+    title: "#1042 · Damaged on arrival",
+    note: "Priority: high · Full transcript & order attached",
+    progress: true,
+  },
+  { type: "user", text: "Wow, that was easy. Thank you!" },
+];
+
 export default function TicketManagementPage() {
   return (
     <FeatureSubpageLayout
       backHref="/products"
       backLabel="← Back to Products"
+      eyebrow="Ticket management"
       headline={
         <>
-          Escalation that keeps <span className="green-highlight">revenue</span> in the loop
+          Fewer tickets. <span className="green-highlight">Better handoffs.</span>
         </>
       }
-      subtitle="Aurevia is not a full replacement for your helpdesk—but it is the front line that should never send you a context-free “customer is angry” ping. Triage, status, and full conversation + cart context land where your team works, so the fix is fast and the sale is not lost by default."
-      lede="Use this when volume grows: the AI deflects and sells first; humans get clear triage, not a firehose. Think handoff, not ticket ping-pong."
+      subtitle="The AI resolves the routine issues on its own — refunds, replacements, WISMO — and when something genuinely needs a human, your team gets the full story: transcript, order, cart, and what was already promised."
+      heroBullets={[
+        "AI resolves the repetitive 80%",
+        "Escalations arrive with full context",
+        "Your rules decide what needs a human",
+      ]}
+      demo={<FeatureChatDemo agentName="Support Agent" script={demoScript} />}
       proofStrip={[
-        { label: "Context-rich", text: "See what they asked, what they bought, and what the AI already offered." },
-        { label: "Faster first reply", text: "Your team opens the right queue with the story pre-written by the customer." },
-        { label: "Revenue-friendly", text: "Escalation does not have to mean abandoning a warm cart." },
+        { label: "No blank tickets", text: "Every escalation carries what they asked, what they bought, and what the AI already offered." },
+        { label: "First reply, pre-written", text: "Your team opens the right queue with the story already gathered — no “can you repeat that?”" },
+        { label: "The cart stays warm", text: "Escalating a problem never has to mean abandoning a sale mid-thread." },
       ]}
       featureBlocks={[
         {
@@ -51,13 +79,6 @@ export default function TicketManagementPage() {
         { title: "Triggers you define", body: "Escalation rules reflect your risk, SLAs, and customer tiers—not a one-size list." },
         { title: "Team picks up in context", body: "Humans get chat history, cart, and what was promised so the customer is not re-explaining." },
       ]}
-      media={{
-        ariaLabel: "Placeholder for merchant dashboard with assign and status",
-        caption: "Swap in: static or screen capture of conversation list + assign to team + cart sidebar",
-        suggestedAsset: "A UI mock: active chats on the left, message thread, right rail with line items, status pill, and Assign action—see your 'live chat + history' reference.",
-        kind: "image",
-        aspect: "wide",
-      }}
       relatedLinks={[
         { href: "/products/automated-responses", label: "Automated responses" },
         { href: "/products/lead-qualification", label: "Lead capture" },
@@ -78,6 +99,13 @@ export default function TicketManagementPage() {
           a: "Yes. Merchant rules and policy hierarchy keep the AI in bounds; sensitive topics can route to humans immediately if you prefer.",
         },
       ]}
+      testimonial={{
+        quote:
+          "Our shared support inbox used to be a graveyard of unanswered questions by Friday. Now most of it never even reaches a human, and the tickets that do come through are the ones that actually need a person.",
+        name: "Fatima Rahman",
+        role: "Customer Support Lead",
+        company: "Willowbrook Studio",
+      }}
     />
   );
 }

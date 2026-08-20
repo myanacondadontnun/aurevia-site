@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { FeatureMetricsDemo } from "@/components/FeatureDemo";
 
 const title = "Ecommerce AI Performance Dashboard | Aurevia";
 const desc =
@@ -16,17 +17,39 @@ export default function DashboardPage() {
     <FeatureSubpageLayout
       backHref="/products"
       backLabel="← Back to Products"
+      eyebrow="Performance dashboard"
       headline={
         <>
-          A command center for <span className="green-highlight">outcomes</span>
+          Monday morning, <span className="green-highlight">answered in one screen</span>
         </>
       }
-      subtitle="The dashboard is where you see whether the investment is working: are shoppers engaging, is the AI staying on-brand, and is revenue moving—not just how many messages you processed. It is the daily screen for heads of ecommerce who need signal, not a firehose of chat logs."
-      lede="Pair this with ROI tracking and conversation analytics: the dashboard is the snapshot; the other views are the drill-down when you are optimizing a campaign or a playbook."
+      subtitle="Open the dashboard and know in ten seconds whether the AI earned its keep this week: revenue assisted, conversations handled, and where humans had to step in. Signal for operators — not a firehose of chat logs."
+      heroBullets={[
+        "Revenue and conversations, one view",
+        "AI health: coverage & deflection",
+        "Built for a weekly operator check-in",
+      ]}
+      demo={
+        <FeatureMetricsDemo
+          title="Performance"
+          stats={[
+            { label: "Revenue assisted", value: "£12,480", delta: "▲ 18%" },
+            { label: "Conversations", value: "1,284", delta: "▲ 9%" },
+            { label: "Resolved by AI", value: "82%", delta: "▲ 4pts" },
+          ]}
+          rows={[
+            { label: "Recommendation → checkout", value: "212", pct: 86 },
+            { label: "Question → add to cart", value: "147", pct: 60 },
+            { label: "Cart rescue → paid", value: "58", pct: 24 },
+          ]}
+          rowsHeading="Top converting flows"
+          chart
+        />
+      }
       proofStrip={[
-        { label: "At a glance", text: "KPIs that connect chat activity to the business, not a wall of unlabeled widgets." },
-        { label: "Team-ready", text: "Give leadership and operators the same numbers so plans do not get debated from different spreadsheets." },
-        { label: "Actionable", text: "Spot what to test next: prompts, products, or regions—without a separate BI hire." },
+        { label: "Signal, not noise", text: "KPIs that connect chat activity to the business — no wall of unlabeled widgets." },
+        { label: "One truth for the team", text: "Leadership and operators read the same numbers, so plans stop being debated from different spreadsheets." },
+        { label: "Points at the next fix", text: "Spot what to test next — prompts, products, or regions — without hiring a BI analyst." },
       ]}
       featureBlocks={[
         {
@@ -51,13 +74,6 @@ export default function DashboardPage() {
         { title: "Run your week", body: "Check the headline metrics and the exceptions that need attention." },
         { title: "Iterate in place", body: "Adjust rules, copy, and priorities from the same home base." },
       ]}
-      media={{
-        ariaLabel: "Performance dashboard video placeholder",
-        caption: "Swap in: screen capture pan across KPIs and a healthy trend line",
-        suggestedAsset: "8–12s Lottie or video: conversations, sales snapshot, a sparkline, and a clean dark UI matching your brand mock.",
-        kind: "video",
-        aspect: "video",
-      }}
       relatedLinks={[
         { href: "/products/analytics", label: "Conversation analytics" },
         { href: "/products/roi-tracking", label: "ROI tracking" },
@@ -77,6 +93,13 @@ export default function DashboardPage() {
           a: "Early on, use trends and qualitative wins alongside absolute figures; the product hardens with your feedback.",
         },
       ]}
+      testimonial={{
+        quote:
+          "I don't need to ask anyone for a report anymore. I open the dashboard Monday morning, see what the AI closed over the weekend, and know exactly what to look at first.",
+        name: "Renee Okafor",
+        role: "Operations Manager",
+        company: "Sable Ridge Coffee",
+      }}
     />
   );
 }

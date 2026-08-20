@@ -31,6 +31,27 @@ export default function ROICalculatorPage() {
         {/* Calculator block */}
         <ROICalculator />
 
+        <div className="container mx-auto max-w-6xl">
+          <div className="scroll-fade my-12 max-w-2xl mx-auto rounded-2xl border border-border/30 bg-card/20 p-6 sm:p-8">
+            <p className="font-fraunces italic text-lg sm:text-xl text-foreground leading-relaxed mb-5">
+              &ldquo;The calculator undersold it, honestly. Once we saw the real attributed revenue in the dashboard,
+              it matched what the estimate promised almost exactly.&rdquo;
+            </p>
+            <div className="flex items-center gap-3">
+              <span
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00795c]"
+                aria-hidden="true"
+              >
+                TH
+              </span>
+              <div>
+                <p className="text-sm font-medium text-foreground">Theo Hastings</p>
+                <p className="text-xs text-muted-foreground">Finance Lead, Ember & Co.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* CTA card */}
         <ROICalculatorCTACard />
       </div>

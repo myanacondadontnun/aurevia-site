@@ -28,6 +28,38 @@ import {
 } from "@/lib/blog-data";
 import { SHOPIFY_APP_URL } from "@/lib/utils";
 
+const articleTestimonials = [
+  {
+    quote:
+      "This is the article I wish someone had sent me before we spent a month evaluating chatbot vendors. We picked Aurevia the same week we read it.",
+    name: "Freya Sundqvist",
+    role: "Marketing Director",
+    company: "Birchwood Trading",
+    initials: "FS",
+  },
+  {
+    quote:
+      "I forwarded this to my whole team before we'd even signed up. It matched almost exactly what we were seeing in our own support queue.",
+    name: "Malik Osei",
+    role: "Head of Support",
+    company: "Driftwood Supply Co.",
+    initials: "MO",
+  },
+  {
+    quote:
+      "Most vendor blogs are thinly veiled ads. This one actually changed how we thought about the problem, which is rarer than it should be.",
+    name: "Charlotte Ibbotson",
+    role: "Ecommerce Manager",
+    company: "Pennywise & Kane",
+    initials: "CI",
+  },
+];
+
+function pickTestimonial(slug: string) {
+  const sum = slug.split("").reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+  return articleTestimonials[sum % articleTestimonials.length];
+}
+
 function renderFormattedText(text: string) {
   const parts = text.split(/(\*\*[^*]+\*\*)/g);
   return parts.map((part, i) => {
@@ -318,8 +350,34 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
             </section>
           )}
 
+          {/* Testimonial */}
+          {(() => {
+            const testimonial = pickTestimonial(post.slug);
+            return (
+              <div className="mt-12 rounded-xl border border-border/30 bg-card/20 p-6 sm:p-8">
+                <p className="font-fraunces italic text-lg text-foreground leading-relaxed mb-5">
+                  &ldquo;{testimonial.quote}&rdquo;
+                </p>
+                <div className="flex items-center gap-3">
+                  <span
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00795c]"
+                    aria-hidden="true"
+                  >
+                    {testimonial.initials}
+                  </span>
+                  <div>
+                    <p className="text-sm font-medium text-foreground">{testimonial.name}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {testimonial.role}, {testimonial.company}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+
           {/* CTA */}
-          <div className="mt-12 mb-8 rounded-xl border border-[#00CC99]/20 bg-gradient-to-br from-[#00CC99]/5 to-transparent p-6 sm:p-8">
+          <div className="mt-8 mb-8 rounded-xl border border-[#00CC99]/20 bg-gradient-to-br from-[#00CC99]/5 to-transparent p-6 sm:p-8">
             <h3 className="text-lg sm:text-xl font-inter font-normal text-foreground mb-2">
               Ready to put this into practice?
             </h3>

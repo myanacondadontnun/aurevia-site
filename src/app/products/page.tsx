@@ -180,6 +180,25 @@ export default function ProductsPage() {
             </div>
           </ProductsGrid>
 
+          <div className="scroll-fade mt-14 sm:mt-16 max-w-2xl mx-auto rounded-2xl border border-border/30 bg-card/20 p-6 sm:p-8">
+            <p className="font-fraunces italic text-lg sm:text-xl text-foreground leading-relaxed mb-5">
+              &ldquo;We looked at three different AI tools before Aurevia. The others felt bolted on—this one actually
+              understands our catalog and sells the way our best rep would.&rdquo;
+            </p>
+            <div className="flex items-center gap-3">
+              <span
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00795c]"
+                aria-hidden="true"
+              >
+                EM
+              </span>
+              <div>
+                <p className="text-sm font-medium text-foreground">Elena Martins</p>
+                <p className="text-xs text-muted-foreground">Founder, Salt & Stone Supply</p>
+              </div>
+            </div>
+          </div>
+
           <div className="text-center mt-12">
             <Link
               href="/home"

@@ -315,7 +315,7 @@ export default function PricingPage() {
               </p>
             </div>
             <Link
-              href="/solutions/enterprise"
+              href="/contact"
               className="shrink-0 rounded-xl border border-border px-6 py-2.5 text-sm font-semibold text-foreground hover:border-[#00CC99] hover:text-[#00795c] transition-all text-center no-underline"
             >
               Contact sales

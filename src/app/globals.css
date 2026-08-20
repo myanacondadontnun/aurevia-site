@@ -4,29 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* local() only — the woff files were never shipped in public/fonts, so the url()
-   sources 404'd for every visitor before falling back to the serif stack anyway.
-   Drop the .woff2/.woff files into public/fonts and re-add url() sources to self-host. */
-@font-face {
-  font-family: "The Seasons";
-  src:
-    local("The Seasons"),
-    local("TheSeasons");
-  font-weight: 300 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "The Seasons";
-  src:
-    local("The Seasons Italic"),
-    local("TheSeasons-Italic");
-  font-weight: 300 900;
-  font-style: italic;
-  font-display: swap;
-}
-
 @layer base {
   :root {
     /* Light theme — mirrors the Aurevia app-frontend brand palette
@@ -142,9 +119,9 @@
 
   /* Accent copy font (used for green/gradient text across the site). */
   .accent-font {
-    font-family: "The Seasons", "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+    font-family: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
     font-style: italic;
-    font-weight: 400;
+    font-weight: 500;
   }
 
   .green-highlight {
@@ -157,19 +134,19 @@
     line-height: 1.2;
   }
 
-  /* Home page only: use The Seasons italic for existing green/gradient copy. */
+  /* Home page only: use Fraunces italic for existing green/gradient copy. */
   .home-seasons .green-highlight,
   .home-seasons .gradient-text,
   .home-seasons .text-gradient,
   .home-seasons [class~='text-[#00CC99]'],
   .home-seasons [class~='text-[#009973]'] {
-    font-family: "The Seasons", "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+    font-family: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
     font-style: italic;
-    font-weight: 400;
+    font-weight: 500;
   }
 
   .logo-text {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Fraunces', ui-serif, Georgia, serif;
     font-weight: 500;
     letter-spacing: -0.01em;
   }
@@ -661,14 +638,6 @@
     transform: translateY(0);
   }
 
-  .challenge-icon {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .challenge-card:hover .challenge-icon {
-    transform: scale(1.1) rotate(5deg);
-  }
-
   .card-hover-gradient {
     position: absolute;
     top: 0;
@@ -688,6 +657,58 @@
 
   .challenge-card:hover .card-hover-gradient {
     opacity: 1;
+  }
+
+  /* "Selling and Sleeping" feature grid: cells are separated by hairlines instead
+     of individual card boxes. Column/row count tracks the grid's own breakpoints
+     (1 col below sm, 2 cols sm–lg, 3 cols from lg) so the divider pattern always
+     lands between real columns/rows rather than cutting through a cell. */
+  /* Every rule below is written as `:nth-child(...)` so all declarations share
+     the same specificity — the browser then just picks whichever rule comes
+     last in source order for a given viewport, with no surprise overrides. */
+  .divider-grid > *:nth-child(n + 1) {
+    border-top: none;
+    border-right: none;
+  }
+
+  .divider-grid > *:nth-child(n + 2) {
+    border-top: 1px solid hsl(var(--border));
+  }
+
+  @media (min-width: 640px) {
+    .divider-grid > *:nth-child(n + 2) {
+      border-top: none;
+    }
+
+    .divider-grid > *:nth-child(odd) {
+      border-right: 1px solid hsl(var(--border));
+    }
+
+    .divider-grid > *:nth-child(n + 3) {
+      border-top: 1px solid hsl(var(--border));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .divider-grid > *:nth-child(n + 3) {
+      border-top: none;
+    }
+
+    .divider-grid > *:nth-child(odd) {
+      border-right: none;
+    }
+
+    .divider-grid > *:nth-child(n + 1) {
+      border-right: 1px solid hsl(var(--border));
+    }
+
+    .divider-grid > *:nth-child(3n) {
+      border-right: none;
+    }
+
+    .divider-grid > *:nth-child(n + 4) {
+      border-top: 1px solid hsl(var(--border));
+    }
   }
 
   .mosaic-fashion {
@@ -765,6 +786,286 @@
 
   .animate-slide-in-right {
     animation: slideInRight 0.6s ease-out forwards;
+  }
+
+  /* "Sound Familiar" challenge cards: small animated scenes that dramatize each
+     pain point, sitting above the card copy like a media/hero strip. */
+  .challenge-visual {
+    position: relative;
+    height: 156px;
+    overflow: hidden;
+    background: radial-gradient(140% 100% at 10% -20%, rgba(0,204,153,0.13) 0%, transparent 60%), hsl(var(--muted));
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  /* ---------- Scene 1: checkout stepper ---------- */
+  .cv-stepper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .cv-track-wrap {
+    position: relative;
+    width: 78%;
+    height: 2px;
+  }
+
+  .cv-track {
+    position: absolute;
+    inset: 0;
+    background: hsl(var(--border));
+    border-radius: 2px;
+  }
+
+  .cv-track-fill {
+    position: absolute;
+    inset: 0;
+    width: 50%;
+    background: linear-gradient(90deg, #0b3c2f, #00CC99);
+    border-radius: 2px;
+  }
+
+  .cv-step {
+    position: absolute;
+    top: 50%;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: #0b3c2f;
+    box-shadow: 0 0 0 4px hsl(var(--muted));
+  }
+
+  .cv-step--pending {
+    background: hsl(var(--muted));
+    border: 1.5px solid rgba(0,204,153, 0.45);
+  }
+
+  .cv-chip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 32px;
+    height: 32px;
+    margin: -16px 0 0 -16px;
+    border-radius: 50%;
+    background: #0b3c2f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow: 0 8px 18px rgba(11, 60, 47, 0.32), 0 2px 5px rgba(15, 15, 15, 0.1);
+    animation: cvChipDrift 4.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+
+  .cv-chip svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .cv-ping {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 32px;
+    height: 32px;
+    margin: -16px 0 0 -16px;
+    border-radius: 50%;
+    border: 1.5px solid hsl(var(--chart-4));
+    animation: cvPing 4.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+
+  .cv-labels {
+    display: flex;
+    width: 78%;
+    justify-content: space-between;
+  }
+
+  .cv-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
+    opacity: 0.65;
+  }
+
+  /* ---------- Scene 2: AOV flatline chart ---------- */
+  .cv-chart-line {
+    stroke-dasharray: 240;
+    animation: cvChartDraw 3.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+
+  .cv-chart-dot {
+    animation: cvDotPulse 3.8s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .cv-flat-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px 3px 6px;
+    border-radius: 999px;
+    background: hsl(var(--background) / 0.7);
+    border: 1px solid hsl(var(--border));
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .cv-flat-badge svg {
+    width: 11px;
+    height: 11px;
+    color: hsl(var(--chart-4));
+  }
+
+  /* ---------- Scene 3: unanswered message + timezone row ---------- */
+  .cv-msg-bubble {
+    position: relative;
+    width: 48px;
+    height: 32px;
+    border-radius: 14px 14px 4px 14px;
+    background: #0b3c2f;
+    box-shadow: 0 8px 18px rgba(11, 60, 47, 0.28), 0 2px 5px rgba(15, 15, 15, 0.1);
+  }
+
+  .cv-msg-dots {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    animation: cvDotsOut 4.2s ease-in-out infinite;
+  }
+
+  .cv-msg-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    animation: cvDotBounce 1.1s ease-in-out infinite;
+  }
+
+  .cv-msg-dot:nth-child(2) { animation-delay: 0.12s; }
+  .cv-msg-dot:nth-child(3) { animation-delay: 0.24s; }
+
+  .cv-msg-sent {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: cvSentIn 4.2s ease-in-out infinite;
+  }
+
+  .cv-msg-sent svg {
+    width: 13px;
+    height: 13px;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .cv-tz-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cv-tz-chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: hsl(var(--background) / 0.7);
+    border: 1px solid hsl(var(--border));
+    color: hsl(var(--muted-foreground) / 0.6);
+    animation: cvTzCycle 4.2s ease-in-out infinite;
+  }
+
+  .cv-tz-chip svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .cv-tz-chip:nth-child(1) { animation-delay: 0s; }
+  .cv-tz-chip:nth-child(2) { animation-delay: 1.05s; }
+  .cv-tz-chip:nth-child(3) { animation-delay: 2.1s; }
+  .cv-tz-chip:nth-child(4) { animation-delay: 3.15s; }
+}
+
+@keyframes cvChipDrift {
+  0%, 8% { left: 50%; opacity: 1; }
+  46%, 58% { left: 74%; opacity: 1; }
+  74% { left: 74%; opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  88% { left: 58%; opacity: 0.55; transform: translate(-50%, -50%) scale(0.85); }
+  100% { left: 50%; opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes cvPing {
+  0%, 60% { opacity: 0; transform: translate(-50%, -50%) scale(0.7); left: 74%; }
+  70% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); left: 74%; }
+  85% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); left: 74%; }
+  100% { opacity: 0; left: 50%; }
+}
+
+@keyframes cvChartDraw {
+  0% { stroke-dashoffset: 240; }
+  35%, 100% { stroke-dashoffset: 0; }
+}
+
+@keyframes cvDotPulse {
+  0%, 30% { opacity: 0; transform: scale(0.5); }
+  45% { opacity: 1; transform: scale(1); }
+  75% { opacity: 1; transform: scale(1); }
+  90%, 100% { opacity: 0; transform: scale(0.5); }
+}
+
+@keyframes cvDotsOut {
+  0%, 55% { opacity: 1; }
+  65%, 100% { opacity: 0; }
+}
+
+@keyframes cvDotBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+  30% { transform: translateY(-3px); opacity: 1; }
+}
+
+@keyframes cvSentIn {
+  0%, 60% { opacity: 0; transform: translateY(2px); }
+  75%, 100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cvTzCycle {
+  0%, 100% {
+    color: hsl(var(--muted-foreground) / 0.6);
+    background: hsl(var(--background) / 0.7);
+    border-color: hsl(var(--border));
+    box-shadow: none;
+  }
+  15% {
+    color: #00CC99;
+    background: rgba(0,204,153, 0.12);
+    border-color: rgba(0,204,153, 0.4);
+    box-shadow: 0 0 0 3px rgba(0,204,153, 0.08);
+  }
+  35% {
+    color: hsl(var(--muted-foreground) / 0.6);
+    background: hsl(var(--background) / 0.7);
+    border-color: hsl(var(--border));
+    box-shadow: none;
   }
 }
 

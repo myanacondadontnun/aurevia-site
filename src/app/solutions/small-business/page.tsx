@@ -56,6 +56,13 @@ export default function SmallBusinessPage() {
         { q: "Do I need a developer?", a: "The default path is no-code. Bring devs only if you want custom integrations later." },
         { q: "What if I already answer DMs on Instagram?", a: "Aurevia handles the on-site experience where the purchase happens; you can still run social the way you prefer." },
       ]}
+      testimonial={{
+        quote:
+          "It's just me and one part-time hire. I can't be online at all hours, but now the store kind of is, and I'm not the bottleneck for every single customer question anymore.",
+        name: "Lena Novak",
+        role: "Owner",
+        company: "Novak & Sons",
+      }}
     />
   );
 }

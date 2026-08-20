@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { FeatureChatDemo, type ChatStep } from "@/components/FeatureDemo";
 
 const title = "Ecommerce Lead Capture & Export | Aurevia";
 const desc =
@@ -11,22 +12,49 @@ export const metadata: Metadata = {
   openGraph: { title, description: desc, type: "article" },
 };
 
+const demoScript: ChatStep[] = [
+  { type: "user", text: "Do you do bulk pricing? I'd need around 200 units for a company retreat." },
+  {
+    type: "bot",
+    text: "We do! 200+ units qualifies for our wholesale tier. What's your timeline looking like?",
+  },
+  { type: "user", text: "Next month ideally. Budget is around £4k." },
+  {
+    type: "bot",
+    text: "That's a great fit. I've passed the details to our sales team — Sarah will email you a tailored quote today. What's the best address?",
+  },
+  { type: "user", text: "tom@northarc.co — thanks!" },
+  {
+    type: "card",
+    head: "Lead captured",
+    title: "High intent · B2B · £4k budget",
+    note: "Timeline 30 days · Transcript attached · Synced to CRM",
+    progress: true,
+  },
+];
+
 export default function LeadQualificationPage() {
   return (
     <FeatureSubpageLayout
       backHref="/products"
       backLabel="← Back to Products"
+      eyebrow="Lead qualification"
       headline={
         <>
-          You paid for the traffic—<span className="green-highlight">keep the people</span>
+          You paid for the traffic — <span className="green-highlight">keep the people</span>
         </>
       }
-      subtitle="Aurevia ties conversations to contact records so a chat is not a black hole. Capture emails when it makes sense, see who is browsing versus buying, and export leads to your follow-up process. Sales and marketing get names they can work—not anonymous threads that never leave the widget."
-      lede="Use this for high-consideration catalogs, B2B-light storefronts, or any brand where a human will eventually pick up the phone. The AI can qualify intent first so your team spends minutes on the right accounts."
+      subtitle="Every anonymous chat is a lead you almost had. Aurevia qualifies intent in the conversation — budget, timeline, use case — captures the email at the natural moment, and hands your team a name worth calling."
+      heroBullets={[
+        "Qualifies budget & timeline in-chat",
+        "Captures emails after value, not before",
+        "Exports clean records to your CRM",
+      ]}
+      demo={<FeatureChatDemo agentName="Sales Agent" script={demoScript} />}
       proofStrip={[
-        { label: "Attribution", text: "Know which sessions produced a lead, not just which ads got clicks." },
-        { label: "Compliance-minded", text: "Collect only what you need; align copy with your privacy policy and regions." },
-        { label: "Revenue, not just names", text: "Pair leads with what they almost bought to prioritize outreach." },
+        { label: "Names, not sessions", text: "Know which conversations produced a lead — not just which ads got clicks." },
+        { label: "Qualified before you call", text: "Budget, timeline, and intent arrive with the contact, so outreach minutes land on the right accounts." },
+        { label: "Privacy-minded by design", text: "Collect only what you need, with copy aligned to your policy and regions." },
       ]}
       featureBlocks={[
         {
@@ -51,13 +79,6 @@ export default function LeadQualificationPage() {
         { title: "Tag and triage", body: "Status and notes help marketing and support sort hot versus nurture leads." },
         { title: "Sync or export", body: "Move contacts into the tools you already pay for, on a schedule that fits ops." },
       ]}
-      media={{
-        ariaLabel: "Lead table export mock placeholder",
-        caption: "Swap in: lead list UI with name, email, captured time, and Export",
-        suggestedAsset: "Use your dashboard still: a simple table, export button, and maybe a “captured from chat” column.",
-        kind: "image",
-        aspect: "wide",
-      }}
       relatedLinks={[
         { href: "/products/ticket-management", label: "Escalation" },
         { href: "/solutions/insights", label: "Customer insights" },
@@ -77,6 +98,13 @@ export default function LeadQualificationPage() {
           a: "The lead arrives with a transcript of what they need. Your team and automations are not starting from a bare address alone.",
         },
       ]}
+      testimonial={{
+        quote:
+          "Our sales team used to chase every form fill, even the tire-kickers. Now leads show up with a transcript that already tells us their budget and timeline, so reps only spend time where it counts.",
+        name: "Jonas Kell",
+        role: "Sales Director",
+        company: "Meridian Supply Co.",
+      }}
     />
   );
 }

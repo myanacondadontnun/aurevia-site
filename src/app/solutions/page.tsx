@@ -211,6 +211,25 @@ export default function SolutionsPage() {
             }))}
           />
 
+          <div className="scroll-fade mt-16 mb-16 max-w-2xl mx-auto rounded-2xl border border-border/30 bg-card/20 p-6 sm:p-8">
+            <p className="font-fraunces italic text-lg sm:text-xl text-foreground leading-relaxed mb-5">
+              &ldquo;We didn't have to pick one use case—Aurevia handles discovery, support, and recovery in the same
+              chat. It just quietly took over the jobs we kept meaning to hire for.&rdquo;
+            </p>
+            <div className="flex items-center gap-3">
+              <span
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00795c]"
+                aria-hidden="true"
+              >
+                RH
+              </span>
+              <div>
+                <p className="text-sm font-medium text-foreground">Ryan Hollis</p>
+                <p className="text-xs text-muted-foreground">Operations Lead, Marrow & Co.</p>
+              </div>
+            </div>
+          </div>
+
           <ROICalculatorCTACard />
         </div>
       </section>

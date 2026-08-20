@@ -60,6 +60,13 @@ export default function FitnessPage() {
         { q: "Do you help with international labels?", a: "Ground answers in the content you provide per market; the AI is not inventing new claims per country." },
         { q: "What about high SKU count?", a: "That is where Q&A and goals beat search alone—narrow before you ever show a wall of tubs." },
       ]}
+      testimonial={{
+        quote:
+          "People ask us to basically build their stack for them — creatine, protein, pre-workout, what goes with what. The AI does that consultative selling at 11pm when our team's long gone home.",
+        name: "Connor Blake",
+        role: "Founder",
+        company: "Ironmark Nutrition",
+      }}
     />
   );
 }

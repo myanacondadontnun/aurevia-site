@@ -83,13 +83,13 @@ export default function FiveWays() {
 
         <div
           ref={containerRef as React.RefObject<HTMLDivElement>}
-          className="max-w-[1100px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+          className="divider-grid max-w-[1100px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
         >
           {products.map((product) => (
             <Link
               key={product.title}
               href={product.href}
-              className="scroll-fade-lr group relative bg-card/50 backdrop-blur-sm border border-border/30 rounded-xl sm:rounded-2xl p-5 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-primary/40 hover:bg-card/70 hover:shadow-xl hover:shadow-primary/[0.07] hover:-translate-y-1"
+              className="scroll-fade-lr group relative p-6 sm:p-8 flex flex-col justify-between transition-colors duration-300 hover:bg-primary/[0.04]"
             >
               <div>
                 <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/15 flex items-center justify-center mb-5" aria-hidden="true">

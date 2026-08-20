@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { FeatureMetricsDemo } from "@/components/FeatureDemo";
 
 const title = "Conversation Analytics for Shopify | Aurevia";
 const desc =
@@ -16,17 +17,40 @@ export default function AnalyticsPage() {
     <FeatureSubpageLayout
       backHref="/products"
       backLabel="← Back to Products"
+      eyebrow="Conversation analytics"
       headline={
         <>
-          Read the <span className="green-highlight">stories in the data</span>
+          Your customers are telling you <span className="green-highlight">what to fix</span>
         </>
       }
-      subtitle="This is the behavior layer: top intents, common objections, and drop-off points in the journey. You use it to fix copy, adjust merchandising, and coach the AI—because real growth comes from learning what people actually needed and did not get fast enough. ROI is money; analytics is the why and what next."
-      lede="Merchants use conversation analytics to answer: What should our PDP clarify? Which products confuse people? What should we A/B in the widget next week? It is a learning system, not a report card for chat volume."
+      subtitle="Every chat is a tiny piece of market research. Aurevia clusters what shoppers actually ask — the sizing doubts, the shipping confusion, the products that stall — into a ranked list of what to improve next."
+      heroBullets={[
+        "Top questions, auto-clustered weekly",
+        "Drop-off points mapped to the journey",
+        "One transcript-backed truth for the team",
+      ]}
+      demo={
+        <FeatureMetricsDemo
+          title="Conversation intelligence"
+          stats={[
+            { label: "Intents tracked", value: "47", delta: "▲ 6 new" },
+            { label: "Questions clustered", value: "1.9k" },
+            { label: "Journey drop-off", value: "−23%", delta: "vs last month" },
+          ]}
+          rows={[
+            { label: "“Does it run true to size?”", value: "214", pct: 90 },
+            { label: "“Where is my order?”", value: "178", pct: 74 },
+            { label: "“Is it in stock in black?”", value: "121", pct: 51 },
+            { label: "“Do you ship to the EU?”", value: "96", pct: 40 },
+          ]}
+          rowsHeading="Top questions this week"
+          chart={false}
+        />
+      }
       proofStrip={[
-        { label: "Behavior-first", text: "Intents, friction, and patterns—not vanity chat totals." },
-        { label: "Journey view", text: "See how questions connect to add-to-carts, exits, and handoffs over time." },
-        { label: "Team alignment", text: "Give marketing, product, and support the same transcript-backed truth." },
+        { label: "Behavior, not vanity", text: "Intents, friction, and patterns — not a chat-volume counter dressed up as insight." },
+        { label: "The journey, connected", text: "See how questions link to add-to-carts, exits, and handoffs over time." },
+        { label: "Everyone reads one truth", text: "Marketing, product, and support work from the same transcript-backed evidence." },
       ]}
       featureBlocks={[
         {
@@ -51,13 +75,6 @@ export default function AnalyticsPage() {
         { title: "Review weekly", body: "Pick the top 3 frictions; assign owners in product, CX, and growth." },
         { title: "Ship improvements", body: "Update site copy, KB entries, and AI rules with evidence, not hunches." },
       ]}
-      media={{
-        ariaLabel: "Funnel and top questions chart placeholder",
-        caption: "Swap in: top intents bar chart or funnel vs site baseline",
-        suggestedAsset: "A chart of “Top questions this week” or a funnel: landed → asked → add to cart, with a highlight on the biggest drop.",
-        kind: "image",
-        aspect: "video",
-      }}
       relatedLinks={[
         { href: "/products/roi-tracking", label: "ROI tracking" },
         { href: "/solutions/insights", label: "Insights solutions" },
@@ -77,6 +94,13 @@ export default function AnalyticsPage() {
           a: "Yes—treat conversation exports as inputs to your own BI or agency reviews if you outgrow the built-in views.",
         },
       ]}
+      testimonial={{
+        quote:
+          "We used to guess why the return rate on our travel mugs was high. Aurevia's analytics showed everyone was asking the same lid question we'd buried on page three of the PDP. Fixed the copy, watched the tickets disappear.",
+        name: "Priya Nair",
+        role: "Head of Ecommerce",
+        company: "Faro Home Goods",
+      }}
     />
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { FeatureChatDemo, type ChatStep } from "@/components/FeatureDemo";
 
 const title = "Multilingual AI Chat for Shopify Stores | Aurevia";
 const desc =
@@ -11,22 +12,48 @@ export const metadata: Metadata = {
   openGraph: { title, description: desc, type: "article" },
 };
 
+const demoScript: ChatStep[] = [
+  { type: "user", text: "Bonjour ! Est-ce que ce sac est imperméable ?" },
+  {
+    type: "card",
+    head: "Language detected",
+    title: "Français 🇫🇷",
+    note: "Replying in the shopper's language",
+  },
+  {
+    type: "bot",
+    text: "Bonjour ! Oui — l'extérieur est déperlant et l'intérieur se nettoie d'un coup d'éponge. Parfait sous la pluie 🌧️",
+  },
+  { type: "user", text: "Génial ! Et la livraison en France ?" },
+  {
+    type: "bot",
+    text: "Livraison en France en 4–6 jours ouvrés, et offerte dès 75 €. Je l'ajoute à votre panier ?",
+  },
+  { type: "user", text: "Oui, avec plaisir !" },
+];
+
 export default function MultilingualPage() {
   return (
     <FeatureSubpageLayout
       backHref="/products"
       backLabel="← Back to Products"
+      eyebrow="Multilingual support"
       headline={
         <>
-          One store, <span className="green-highlight">every market</span> you ship to
+          Fluent in <span className="green-highlight">every market</span> you ship to
         </>
       }
-      subtitle="Aurevia does not just translate a generic script. The same product rules, cart actions, and brand tone apply in each language you enable—so you scale internationally without a separate bot per locale or a support team that is awake around the clock in five time zones."
-      lede="If you already invest in global traffic, language should be a growth lever, not a patchwork of spreadsheets. Multilingual support here means the AI can still recommend, upsell, and hand off—coherently."
+      subtitle="A shopper in Paris asks in French. One in Seoul asks in Korean. Aurevia answers each of them natively — same catalog, same brand voice, same selling instincts — in 95+ languages, without a separate bot per locale."
+      heroBullets={[
+        "95+ languages, auto-detected",
+        "Same brand voice everywhere",
+        "Sells and upsells in every locale",
+      ]}
+      demo={<FeatureChatDemo agentName="Sales Agent" script={demoScript} />}
       proofStrip={[
-        { label: "One brain", text: "Same consultative flow and guardrails, localized—not a forked, unmaintained bot per country." },
-        { label: "Shopper experience", text: "Quick replies and natural questions read naturally in the buyer’s language." },
-        { label: "Ops simplicity", text: "Less manual routing between regional inboxes; more one queue with context." },
+        { label: "One brain, every locale", text: "The same consultative flow and guardrails, localized — not a forked, unmaintained bot per country." },
+        { label: "Reads like a native", text: "Fit questions, comparisons, and policy answers that sound natural, not machine-translated." },
+        { label: "One queue for your team", text: "No more routing between regional inboxes — every conversation lands with full context." },
       ]}
       featureBlocks={[
         {
@@ -51,13 +78,6 @@ export default function MultilingualPage() {
         { title: "Shoppers self-select or auto-detect", body: "Meet customers in their language from the first message." },
         { title: "Measure by region", body: "See which markets drive assisted revenue and which questions repeat—tune with data." },
       ]}
-      media={{
-        ariaLabel: "Placeholder for same chat in two languages",
-        caption: "Swap in: side-by-side or toggle UI showing the same flow in two locales",
-        suggestedAsset: "Show one conversation duplicated EN/ES (or your priority pair) with matching product cards and Add to cart.",
-        kind: "image",
-        aspect: "wide",
-      }}
       relatedLinks={[
         { href: "/products/shopify", label: "Shopify integration" },
         { href: "/products/automated-responses", label: "Automated responses" },
@@ -77,6 +97,13 @@ export default function MultilingualPage() {
           a: "Confirm target locales with your success contact; we will align UI and messaging to what your storefront already supports.",
         },
       ]}
+      testimonial={{
+        quote:
+          "We ship to fourteen countries and used to only really support English. The first week we turned on multilingual chat, we got a five-star review from a customer in Seoul who said it was the first brand that “spoke to them properly.”",
+        name: "Clara Lindqvist",
+        role: "International Manager",
+        company: "Northfold",
+      }}
     />
   );
 }

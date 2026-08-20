@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useScrollFade } from "./ScrollAnimations";
@@ -16,7 +17,7 @@ const faqs = [
   {
     question: "Can a chatbot help reduce abandoned carts on Shopify?",
     answer:
-      "Absolutely! Aurevia's AI specifically targets cart abandonment by detecting exit intent, answering last-minute questions, and providing one-click checkout links. Our beta stores have seen significant improvements in cart recovery rates through real-time engagement.",
+      "Absolutely! Aurevia's AI specifically targets cart abandonment by detecting exit intent, answering last-minute questions, and providing one-click checkout links. Merchants using Aurevia have seen significant improvements in cart recovery rates through real-time engagement.",
   },
   {
     question: "How can I use an AI chatbot to upsell and cross-sell on Shopify?",
@@ -30,8 +31,19 @@ const faqs = [
   },
   {
     question: "How much does Aurevia's AI sales co-pilot cost?",
-    answer:
-      "We offer a free trial with all features unlocked. Beta testers get 60 days free. Contact us for current plan options and pricing.",
+    answer: (
+      <>
+        Every plan starts with a 14-day free trial, no credit card required.
+        After that, plans start at $19/month based on your traffic — see our{" "}
+        <Link
+          href="/pricing"
+          className="font-medium underline underline-offset-2 hover:text-[#00CC99]"
+        >
+          Pricing page
+        </Link>{" "}
+        for full details.
+      </>
+    ),
   },
   {
     question: "Is Aurevia's AI chatbot secure, and how does it handle customer data?",

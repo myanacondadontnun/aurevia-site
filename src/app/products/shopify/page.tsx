@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { FeatureChatDemo, type ChatStep } from "@/components/FeatureDemo";
 
 const title = "Aurevia Shopify App — AI Sales Co-Pilot | Install";
 const desc =
@@ -11,22 +12,49 @@ export const metadata: Metadata = {
   openGraph: { title, description: desc, type: "article" },
 };
 
+const demoScript: ChatStep[] = [
+  {
+    type: "card",
+    head: "Store connected",
+    title: "128 products synced",
+    note: "Collections, discounts & policies imported",
+    progress: true,
+  },
+  {
+    type: "bot",
+    text: "I've read your catalog and brand voice. Try me — ask anything a customer would.",
+  },
+  { type: "user", text: "Does the Terra planter fit a 30cm pot?" },
+  {
+    type: "bot",
+    text: "It does — inner diameter is 32cm with a drainage tray included, and it's frost-proof for outdoors. Want one in your cart?",
+  },
+  { type: "user", text: "Okay, that's impressive 😄" },
+  { type: "cartbar", summary: "1 item · £44.00" },
+];
+
 export default function ShopifyPage() {
   return (
     <FeatureSubpageLayout
       backHref="/products"
       backLabel="← Back to Products"
+      eyebrow="Shopify integration"
       headline={
         <>
           Native to Shopify, <span className="green-highlight">not bolted on</span>
         </>
       }
-      subtitle="Aurevia lives where your product data, cart, and checkout already do. You install from the App Store, sync what you sell, and turn on a consultative AI that can recommend, nudge, and answer—without theme surgery or a six-week project. The platform bet is simple: the store stays the system of record; the AI executes on top."
-      lede="If you are a Shopify brand, this is the shortest path to conversational commerce that actually does commerce: add to cart, cart edits, and hands-off to checkout the way your customers expect, with governance you can trust."
+      subtitle="One click from the App Store and Aurevia syncs your catalog, discounts, and policies — then starts selling with your store as the system of record. No theme surgery, no six-week project."
+      heroBullets={[
+        "One-click App Store install",
+        "Catalog & policy sync, automatic",
+        "Real cart and checkout actions",
+      ]}
+      demo={<FeatureChatDemo agentName="Sales Agent" script={demoScript} />}
       proofStrip={[
-        { label: "Fast setup", text: "Go from install to a live, brand-styled conversation in a single work session when you are ready." },
-        { label: "Stays in sync", text: "Product and policy changes flow through to what the AI can say and sell." },
-        { label: "Merchant in control", text: "Rules, voice, and escalation reflect how you want to run the brand." },
+        { label: "Live in one sitting", text: "From install to a brand-styled conversation on your storefront in a single work session." },
+        { label: "Always in sync", text: "Product and policy changes flow straight through to what the AI can say and sell." },
+        { label: "You hold the keys", text: "Rules, voice, and escalation reflect how you run the brand — not how a bot vendor does." },
       ]}
       featureBlocks={[
         {
@@ -51,13 +79,6 @@ export default function ShopifyPage() {
         { title: "Turn on the widget", body: "Drop in where shoppers need help: PDP, collection, and cart are common starting points." },
         { title: "Tune and measure", body: "Adjust selling rules, watch conversations, and connect ROI so you can scale spend with confidence." },
       ]}
-      media={{
-        ariaLabel: "Shopify install and first message demo placeholder",
-        caption: "Swap in: screencast from App Store click to first live product chat",
-        suggestedAsset: "Record install → first conversation showing a product card and add to cart, or a split-screen: PDP + chat overlay.",
-        kind: "video",
-        aspect: "video",
-      }}
       relatedLinks={[
         { href: "/products/api", label: "Custom API" },
         { href: "/pricing", label: "Pricing" },
@@ -77,6 +98,13 @@ export default function ShopifyPage() {
           a: "See current plans on the pricing page; trials are structured so you can test full workflows before you commit.",
         },
       ]}
+      testimonial={{
+        quote:
+          "Installing Aurevia felt like the opposite of every other app we've added — it just synced with our catalog and matched our brand voice out of the box. We were live the same afternoon.",
+        name: "Ollie Bennett",
+        role: "Store Owner",
+        company: "Cricket & Pine",
+      }}
     />
   );
 }

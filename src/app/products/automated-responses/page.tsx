@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { FeatureChatDemo, type ChatStep } from "@/components/FeatureDemo";
 
 const title = "AI Automated Responses for Shopify | Aurevia";
 const desc =
@@ -11,22 +12,48 @@ export const metadata: Metadata = {
   openGraph: { title, description: desc, type: "article" },
 };
 
+const demoScript: ChatStep[] = [
+  { type: "user", text: "Hi! Do you ship to Canada? How long does it take?" },
+  {
+    type: "bot",
+    text: "We do! 🇨🇦 Standard shipping to Canada is 5–8 business days, express is 2–3. And orders over $75 ship free.",
+  },
+  {
+    type: "card",
+    head: "Answered from your policies",
+    title: "Shipping & delivery",
+    note: "Source: store policy · updated 2 days ago",
+  },
+  { type: "user", text: "What about customs fees? I've been burned before 😅" },
+  {
+    type: "bot",
+    text: "Duties are calculated at checkout — the price you see is final. No surprise fees at the door, promise.",
+  },
+  { type: "user", text: "Amazing. Ordering now!" },
+];
+
 export default function AutomatedResponsesPage() {
   return (
     <FeatureSubpageLayout
       backHref="/products"
       backLabel="← Back to Products"
+      eyebrow="Automated responses"
       headline={
         <>
-          Instant answers that still feel like <span className="green-highlight">selling</span>—not stalling
+          Every question answered in <span className="green-highlight">seconds, not shifts</span>
         </>
       }
-      subtitle="Aurevia is not a generic help bot. It answers with your catalog, policies, and brand voice, then nudges shoppers toward the right product and the cart. You get 24/7 coverage without a script that dead-ends in “contact support.”"
-      lede="You paid for the traffic. Make sure the first message they get is accurate, on-brand, and revenue-aware. Merchants use automated responses to reduce repeat questions, shorten time-to-answer, and keep humans for the conversations that need a person."
+      subtitle="Your shoppers don't wait for business hours — and now they don't have to. Aurevia answers from your catalog, policies, and brand voice, then steers the conversation back toward the sale."
+      heroBullets={[
+        "Live 24/7, in your brand voice",
+        "Grounded in your store data",
+        "Hands off to humans with full context",
+      ]}
+      demo={<FeatureChatDemo agentName="Support Agent" script={demoScript} />}
       proofStrip={[
-        { label: "Ecommerce-native", text: "Recommendations and cart context live in the same thread as policies and shipping." },
-        { label: "Guardrails", text: "Grounded in your data so shoppers do not get fantasy SKUs or made-up return rules." },
-        { label: "Escalation-ready", text: "When a thread needs a human, your team gets full history—not a blank ticket." },
+        { label: "Answers in seconds", text: "Shipping, sizing, and policy questions resolved instantly — before they become tickets." },
+        { label: "Zero made-up answers", text: "Every reply is grounded in your published data, so shoppers never hear fantasy SKUs or invented return rules." },
+        { label: "Sells while it supports", text: "The same thread that answers a question can recommend a product and open the cart." },
       ]}
       featureBlocks={[
         {
@@ -60,13 +87,6 @@ export default function AutomatedResponsesPage() {
           body: "Adjust responses and rules from the dashboard; watch what gets asked and what converts so you can iterate weekly.",
         },
       ]}
-      media={{
-        ariaLabel: "Demo placeholder for instant AI response with product card",
-        caption: "Swap in: 15–20s screen recording of a shipping question that ends on a product recommendation",
-        suggestedAsset: "Record a browser session: shopper asks about delivery, AI answers, then steers to a high-fit SKU with an Add to cart chip.",
-        aspect: "video",
-        kind: "video",
-      }}
       relatedLinks={[
         { href: "/products/shopify", label: "Shopify integration" },
         { href: "/products/ticket-management", label: "Escalation and context" },
@@ -87,6 +107,13 @@ export default function AutomatedResponsesPage() {
           a: "Yes. The AI can hand off with full context so your team picks up the conversation without making the customer repeat themselves.",
         },
       ]}
+      testimonial={{
+        quote:
+          "We're a two-person team and customers used to wait until Monday for an answer. Now someone gets a real, specific response at 2am on a Saturday, and half the time they check out right after.",
+        name: "Hannah Voss",
+        role: "Co-Founder",
+        company: "Marlin & Ash",
+      }}
     />
   );
 }

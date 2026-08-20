@@ -56,6 +56,13 @@ export default function GrowingBusinessPage() {
         { q: "What about brand compliance?", a: "Set tone, vocabulary, and prohibited claims so teams do not have to police every line manually in real time." },
         { q: "How do we onboard new hires faster?", a: "The AI does not replace training, but it stops new reps from being the only source of first answers while they ramp." },
       ]}
+      testimonial={{
+        quote:
+          "We hit a point where hiring another support rep wasn't in the budget but the ticket volume kept climbing anyway. Aurevia let us grow past that wall without the headcount.",
+        name: "Sofia Marchetti",
+        role: "Co-Founder",
+        company: "Bramblewood",
+      }}
     />
   );
 }

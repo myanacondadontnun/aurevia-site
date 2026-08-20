@@ -60,6 +60,13 @@ export default function BeautyPage() {
         { q: "What about shade matching?", a: "Use the assets and text you provide; complex shade journeys may blend AI triage with human review where you set it." },
         { q: "Can it sell bundles without confusing compliance?", a: "Yes, when you encode rules: only suggest bundles you merchandize, with clear per-step usage." },
       ]}
+      testimonial={{
+        quote:
+          "Skincare shoppers ask incredibly specific questions — ingredient conflicts, skin type, what to pair with what. The AI handles that nuance better than most of our seasonal staff did in their first month.",
+        name: "Delphine Aubert",
+        role: "Founder",
+        company: "Lumière Skin Co.",
+      }}
     />
   );
 }

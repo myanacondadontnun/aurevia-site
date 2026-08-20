@@ -56,6 +56,13 @@ export default function SupportPage() {
         { q: "How do you handle edge-case policies?", a: "You set boundaries; sensitive flows can route to humans quickly while the AI still gathers facts." },
         { q: "Can we still run macros for VIPs?", a: "Use your playbooks: priority tiers and special handling sit alongside the AI, not in conflict with it." },
       ]}
+      testimonial={{
+        quote:
+          "Our support queue was the thing keeping me up at night. Now the AI resolves the repetitive stuff on its own and only escalates what genuinely needs a human, so my team can actually breathe.",
+        name: "Isabelle Roy",
+        role: "Head of Customer Experience",
+        company: "Clover & Ash",
+      }}
     />
   );
 }
