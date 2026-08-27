@@ -184,6 +184,65 @@ export function useDashboardReveal() {
   return ref;
 }
 
+export function useParallaxContainer(strength = 32) {
+  const containerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const items = Array.from(
+      container.querySelectorAll<HTMLElement>(".parallax-item")
+    );
+    if (items.length === 0) return;
+
+    const inView = new Set<HTMLElement>();
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      inView.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        const viewportCenter = window.innerHeight / 2;
+        const elementCenter = rect.top + rect.height / 2;
+        const progress = (viewportCenter - elementCenter) / window.innerHeight;
+        item.style.transform = `translateY(${progress * strength}px)`;
+      });
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const item = entry.target as HTMLElement;
+          if (entry.isIntersecting) {
+            inView.add(item);
+          } else {
+            inView.delete(item);
+          }
+        });
+        onScroll();
+      },
+      { threshold: 0, rootMargin: "200px 0px 200px 0px" }
+    );
+
+    items.forEach((item) => observer.observe(item));
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [strength]);
+
+  return containerRef;
+}
+
 export function useVideoIntersection() {
   const videoRef = useRef<HTMLVideoElement>(null);
 

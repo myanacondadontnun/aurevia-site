@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import CustomerLogos from "@/components/CustomerLogos";
 import FiveWays from "@/components/FiveWays";
-import FourSteps from "@/components/FourSteps";
+import DashboardShowcase from "@/components/DashboardShowcase";
 import Industries from "@/components/Industries";
 import Stats from "@/components/Stats";
 import Challenges from "@/components/Challenges";
@@ -35,7 +35,7 @@ export default function HomePage() {
         <Challenges />
         <Stats />
         <Testimonials />
-        <FourSteps />
+        <DashboardShowcase />
         <FAQ />
         <ContactUs />
       </main>
