@@ -29,6 +29,27 @@ export default function HomePage() {
       <Navbar />
       <main id="main-content" className="home-seasons">
         <Hero />
+        <div className="flex flex-wrap items-center justify-center gap-4 py-6 sm:py-8">
+          <a href="https://fazier.com" target="_blank" rel="noopener noreferrer">
+            <img
+              src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=neutral"
+              width={120}
+              alt="Fazier badge"
+            />
+          </a>
+          <a
+            href="https://launchigniter.com/product/aurevia?ref=badge-aurevia"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://launchigniter.com/api/badge/aurevia?theme=neutral"
+              alt="Featured on LaunchIgniter"
+              width={212}
+              height={55}
+            />
+          </a>
+        </div>
         <CustomerLogos />
         <FiveWays />
         <Industries />
