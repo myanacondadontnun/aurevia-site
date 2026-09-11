@@ -34,6 +34,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SHOPIFY_APP_URL } from "@/lib/utils";
 import CTASwarmBackdrop from "@/components/CTASwarmBackdrop";
+import PixelCodeBadge from "@/components/PixelCodeBadge";
 
 // One consolidated Solutions mega-menu: By goal · By industry · By capability.
 const solutionsByGoal = [
@@ -107,6 +108,7 @@ const resourcesItems = [
 
 const navigationLinks: { label: string; href: string }[] = [
   { label: "Pricing", href: "/pricing" },
+  { label: "Pixel & Code", href: "/pixel-and-code/" },
 ];
 
 function isHomePath(pathname: string | null) {
@@ -381,15 +383,29 @@ export default function Navbar() {
                 )}
               </div>
 
-              {navigationLinks.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-foreground hover:text-[#00CC99] transition-all duration-300 text-sm xl:text-base whitespace-nowrap"
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navigationLinks.map((item) =>
+                item.href.startsWith("/pixel-and-code") ? (
+                  // Plain <a>, not <Link>: Pixel & Code is a self-contained
+                  // multi-page section whose script re-initializes on every
+                  // real navigation — a Next client-side transition would skip that.
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="transition-transform duration-300 hover:scale-105 flex-shrink-0"
+                    aria-label={item.label}
+                  >
+                    <PixelCodeBadge />
+                  </a>
+                ) : (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="text-foreground hover:text-[#00CC99] transition-all duration-300 text-sm xl:text-base whitespace-nowrap"
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
             </div>
           </div>
 
@@ -562,17 +578,30 @@ export default function Navbar() {
                 )}
               </div>
 
-              {navigationLinks.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={closeMobileMenu}
-                  role="menuitem"
-                  className="block w-full text-left px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navigationLinks.map((item) =>
+                item.href.startsWith("/pixel-and-code") ? (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={closeMobileMenu}
+                    role="menuitem"
+                    aria-label={item.label}
+                    className="block w-full px-3 py-2.5"
+                  >
+                    <PixelCodeBadge />
+                  </a>
+                ) : (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={closeMobileMenu}
+                    role="menuitem"
+                    className="block w-full text-left px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
             </div>
           </div>
         )}

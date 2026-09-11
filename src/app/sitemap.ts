@@ -60,6 +60,18 @@ const staticRoutes: {
   { path: "/resources/review-my-shopify/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/resources/docs/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/resources/ai-comparisons/", priority: 0.7, changeFrequency: "monthly" },
+
+  // Pixel & Code (dev studio site, merged in at /pixel-and-code)
+  { path: "/pixel-and-code/", priority: 0.5, changeFrequency: "monthly" },
+  { path: "/pixel-and-code/about/", priority: 0.4, changeFrequency: "monthly" },
+  { path: "/pixel-and-code/how-we-work/", priority: 0.4, changeFrequency: "monthly" },
+  { path: "/pixel-and-code/saas-development/", priority: 0.4, changeFrequency: "monthly" },
+  { path: "/pixel-and-code/ai-automation/", priority: 0.4, changeFrequency: "monthly" },
+  { path: "/pixel-and-code/web-app-development/", priority: 0.4, changeFrequency: "monthly" },
+  { path: "/pixel-and-code/recruitment-platform-development/", priority: 0.4, changeFrequency: "monthly" },
+  { path: "/pixel-and-code/development-partners/", priority: 0.4, changeFrequency: "monthly" },
+  { path: "/pixel-and-code/aurevia-io/", priority: 0.4, changeFrequency: "monthly" },
+  { path: "/pixel-and-code/jcrpharma-co-uk/", priority: 0.4, changeFrequency: "monthly" },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

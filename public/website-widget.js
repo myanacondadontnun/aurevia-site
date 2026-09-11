@@ -29,7 +29,9 @@
     var ASSET_BASE = 'https://app-widgets-aurevia.s3.eu-west-2.amazonaws.com/default';
 
     var ENV = (typeof window !== 'undefined' && window.__AUREVIA_SITE_WIDGET__) || {};
-    var BASE_URL = ENV.baseUrl || 'https://app.aurevia.io';
+    // Django backend — NOT app.aurevia.io, which is the merchant SPA's static host and
+    // rejects POST/OPTIONS with an empty 405 (no CORS headers). Override via ENV.baseUrl.
+    var BASE_URL = ENV.baseUrl || 'https://api.aurevia.io';
     var CHAT_URL = BASE_URL.replace(/\/$/, '') + '/api/website-widget/chat/';
     // Publishable widget key (visible in the browser by design; rotatable from the admin
     // dashboard). Set via window.__AUREVIA_SITE_WIDGET__.apiKey before this script loads.

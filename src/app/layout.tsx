@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import ClientBody from "./ClientBody";
 import Script from "next/script";
+import AureviaWidgetLoader from "@/components/AureviaWidgetLoader";
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -104,6 +105,12 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&display=swap"
         />
+        {/* Press Start 2P + JetBrains Mono — only used by the small Pixel & Code
+            brand badge in the navbar, kept out of the site-wide type system above */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@700&display=swap"
+        />
 
         {/* Google Analytics */}
         <Script
@@ -140,22 +147,10 @@ export default function RootLayout({
           }}
         />
 
-        {/* Aurevia website chat widget — self-hosted, talks to app.aurevia.io
-            (see Widget/website-widget.js; the public/ copy is the served build).
-            The widget key is publishable (rotatable from the admin dashboard). */}
-        <Script
-          id="aurevia-widget-env"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `window.__AUREVIA_SITE_WIDGET__ = { apiKey: ${JSON.stringify(
-              process.env.NEXT_PUBLIC_AUREVIA_WIDGET_KEY || ""
-            )} };`,
-          }}
-        />
-        <Script src="/website-widget.js" strategy="afterInteractive" />
       </head>
       <body suppressHydrationWarning className="antialiased">
         <ClientBody>{children}</ClientBody>
+        <AureviaWidgetLoader />
       </body>
     </html>
   );

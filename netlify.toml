@@ -10,3 +10,18 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[functions]
+  directory = "netlify/functions"
+
+# Pixel & Code's chat widget calls this clean path; proxied (status 200, not a
+# redirect) to the actual function so the browser URL stays /pixel-and-code/api/chat.
+[[redirects]]
+  from = "/pixel-and-code/api/chat"
+  to = "/.netlify/functions/pixel-chat"
+  status = 200
+# Homepage lead form posts here; same proxy pattern as the chat.
+[[redirects]]
+  from = "/pixel-and-code/api/lead"
+  to = "/.netlify/functions/pixel-lead"
+  status = 200
