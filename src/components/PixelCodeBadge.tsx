@@ -1,7 +1,8 @@
 // Pixel & Code's actual wordmark: "Pixel" in Press Start 2P, "&" in JetBrains
 // Mono (lime), "Code" in the system monospace stack — exactly the fonts/colors
 // from pixel-and-code/styles.css (.logo-pixel / .logo-amp / .logo-code), just
-// laid out on one line with no mark icon or dark backdrop for Aurevia's navbar.
+// laid out on one line with no mark icon or dark backdrop. Used as the "Built by"
+// credit in Aurevia's footer.
 //
 // "&Code" outline is drawn as 8 offset copies (text-shadow). "Pixel" uses a
 // text-stroke under the fill (paint-order: stroke fill) instead — see the note
@@ -51,7 +52,7 @@ export default function PixelCodeBadge() {
       >
         Pixel
       </span>
-      <span style={{ fontFamily: '"JetBrains Mono", monospace', fontWeight: 700, color: "#c7f94a", margin: "0 0.1em", textShadow: OUTLINE }}>
+      <span style={{ fontFamily: '"JetBrains Mono", monospace', fontWeight: 700, color: "#00cc99", margin: "0 0.1em", textShadow: OUTLINE }}>
         &amp;
       </span>
       <span style={{ fontFamily: "Menlo, Monaco, Consolas, 'Cascadia Code', ui-monospace, monospace", fontWeight: 500, color: "#f2f3f5", textShadow: OUTLINE }}>
