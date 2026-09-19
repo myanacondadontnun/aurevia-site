@@ -15,6 +15,7 @@ const footerLinks = {
     { label: "Try for free on Shopify", href: "shopify", isAction: true },
   ],
   secondary: [
+    { label: "Channels (WhatsApp & Instagram)", href: "/channels" },
     { label: "Blogs", href: "/resources/blogs/" },
     { label: "Review My Shopify", href: "/resources/review-my-shopify/" },
     { label: "Docs & API", href: "/resources/docs/" },
@@ -208,6 +209,12 @@ export default function Footer() {
             </a>
             <p className="text-xs sm:text-sm font-light text-muted-foreground text-center sm:text-right">
               © 2025 Aurevia Artificial Intelligence Ltd – All rights reserved.
+            </p>
+            {/* Company number and registered office: required by platform reviewers (Meta
+                access verification asks for "details of the business providing the service")
+                and by UK company disclosure rules. */}
+            <p className="text-xs font-light text-muted-foreground text-center sm:text-right">
+              Registered in England &amp; Wales, company no. 16622049 · 2 North Road, Cardiff, CF10 3DY
             </p>
           </div>
         </div>

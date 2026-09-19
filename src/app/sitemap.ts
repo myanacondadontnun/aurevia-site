@@ -20,6 +20,7 @@ const staticRoutes: {
   { path: "/", priority: 1.0, changeFrequency: "weekly" },
   { path: "/home/", priority: 1.0, changeFrequency: "weekly" },
   { path: "/pricing/", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/channels/", priority: 0.8, changeFrequency: "monthly" },
 
   // Products
   { path: "/products/", priority: 0.8, changeFrequency: "monthly" },
