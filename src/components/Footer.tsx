@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import PixelCodeBadge from "@/components/PixelCodeBadge";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { openShopifyInstall } from "@/lib/utils";
@@ -199,14 +198,15 @@ export default function Footer() {
               self-contained section whose vanilla script re-initialises on a real
               navigation, which a Next client-side transition would skip. */}
           <div className="flex flex-col items-center sm:items-end gap-1.5">
-            <a
-              href="/pixel-and-code/"
-              className="flex items-center gap-2 text-xs sm:text-sm font-light text-muted-foreground hover:text-foreground transition-colors duration-200"
-              aria-label="Built by Pixel & Code"
-            >
-              <span>Built by</span>
-              <PixelCodeBadge />
-            </a>
+            <p className="text-xs sm:text-sm font-light text-muted-foreground text-center sm:text-right">
+              Built by{" "}
+              <a
+                href="/pixel-and-code/"
+                className="font-fraunces underline underline-offset-2 hover:text-primary transition-colors duration-200"
+              >
+                Pixel &amp; Code
+              </a>
+            </p>
             <p className="text-xs sm:text-sm font-light text-muted-foreground text-center sm:text-right">
               © 2025 Aurevia Artificial Intelligence Ltd – All rights reserved.
             </p>

@@ -28,15 +28,16 @@ export default function PxcFooter({ links }: { links: FooterLink[] }) {
       </div>
       <div className="footer__solutions">
         <span className="footer__solutions-label">Solutions</span>
-        <a href="/pixel-and-code/saas-development/" data-link>SaaS Product Development</a>
+        <a href="/pixel-and-code/shopify-brand-building/" data-link>Shopify Brand Building</a>
+        <a href="/pixel-and-code/web-app-development/" data-link>Websites &amp; Web Apps</a>
         <a href="/pixel-and-code/ai-automation/" data-link>AI &amp; Automation</a>
-        <a href="/pixel-and-code/web-app-development/" data-link>Web Apps, Websites &amp; Storefronts</a>
+        <a href="/pixel-and-code/saas-development/" data-link>SaaS Product Development</a>
         <a href="/pixel-and-code/recruitment-platform-development/" data-link>Recruitment Platforms</a>
         <a href="/pixel-and-code/development-partners/" data-link>For Agencies</a>
       </div>
       <div className="footer__bottom">
         <span>© <span data-year>2026</span> Pixel &amp; Code</span>
-        <span>Designed &amp; built with pixels and code.</span>
+        <span>Shopify brands, websites and AI automation.</span>
       </div>
     </footer>
   );

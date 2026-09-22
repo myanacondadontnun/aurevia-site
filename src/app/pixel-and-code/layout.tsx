@@ -4,19 +4,19 @@ import Script from "next/script";
 export const metadata: Metadata = {
   title: "Pixel & Code",
   description:
-    "Pixel & Code is a two-founder product studio. SaaS products, AI automations and internal platforms — fixed scope, weekly working releases, first launch in about six weeks.",
+    "Pixel & Code is a two-founder brand and product studio. Shopify brands built from scratch — logo, colour, packaging, product design and a custom storefront — plus websites, web apps and AI automation.",
   openGraph: {
     type: "website",
     siteName: "Pixel & Code",
-    title: "Pixel & Code — SaaS, AI automation and internal tools",
-    description: "Built by a senior two-founder team. Fixed scope, weekly releases, first launch in about six weeks. Free scoping call.",
+    title: "Pixel & Code — Shopify brand building, websites and AI automation",
+    description: "Logo, colour, packaging, product design and a custom Shopify storefront — built by the two people you talk to. Live in about six weeks. Free scoping call.",
     url: "https://aurevia.io/pixel-and-code/",
     images: [{ url: "https://aurevia.io/pixel-and-code/assets/brand/og.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pixel & Code — SaaS, AI automation and internal tools",
-    description: "Built by a senior two-founder team. Fixed scope, weekly releases, first launch in about six weeks.",
+    title: "Pixel & Code — Shopify brand building, websites and AI automation",
+    description: "Logo, colour, packaging, product design and a custom Shopify storefront. Live in about six weeks.",
     images: ["https://aurevia.io/pixel-and-code/assets/brand/og.png"],
   },
 };

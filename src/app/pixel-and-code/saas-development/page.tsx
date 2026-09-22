@@ -26,9 +26,9 @@ export default function SaasDevelopmentPage() {
       <PxcNav
         logoHref="/pixel-and-code/"
         links={[
+          { href: "/pixel-and-code/shopify-brand-building/", label: "Shopify" },
           { href: "/pixel-and-code/#work", label: "Our work" },
           { href: "/pixel-and-code/#process", label: "How we work" },
-          { href: "/pixel-and-code/#team", label: "Who we are" },
           { href: "/pixel-and-code/#pricing", label: "Pricing" },
         ]}
         ctaHref="https://calendly.com/km-kkishal/30min"
@@ -92,8 +92,7 @@ export default function SaasDevelopmentPage() {
             <h2 className="section__title" data-split>A production SaaS platform, not a demo.</h2>
           </div>
           <p className="case-summary reveal-up" style={{ maxWidth: 760, marginBottom: "2.5rem" }}>
-            SaaS Product Development is one of our three core offers — launching or rebuilding a
-            production-ready platform without you assembling an internal product team first.
+            SaaS is the deepest end of our web app work — launching or rebuilding a production-ready platform without you assembling an internal product team first.
           </p>
           <div className="feature-grid">
             <article className="feature-card reveal-up"><h3>Product discovery</h3><p>Scope, users, and priorities mapped before a line of code.</p></article>

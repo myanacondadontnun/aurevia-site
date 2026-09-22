@@ -105,13 +105,6 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&display=swap"
         />
-        {/* Press Start 2P + JetBrains Mono — only used by the small Pixel & Code
-            brand badge in the navbar, kept out of the site-wide type system above */}
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@700&display=swap"
-        />
-
         {/* Google Analytics */}
         <Script
           strategy="afterInteractive"

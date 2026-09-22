@@ -28,9 +28,9 @@ export default function AiAutomationPage() {
       <PxcNav
         logoHref="/pixel-and-code/"
         links={[
+          { href: "/pixel-and-code/shopify-brand-building/", label: "Shopify" },
           { href: "/pixel-and-code/#work", label: "Our work" },
           { href: "/pixel-and-code/#process", label: "How we work" },
-          { href: "/pixel-and-code/#team", label: "Who we are" },
           { href: "/pixel-and-code/#pricing", label: "Pricing" },
         ]}
         ctaHref={CALENDLY}
