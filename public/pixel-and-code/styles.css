@@ -20,6 +20,19 @@
   --ff-pixel: "Press Start 2P", var(--ff-mono);
   --ff-display: "Fraunces", Georgia, "Times New Roman", serif; /* aurevia.io's editorial serif, loaded by the root layout */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Section bands. Translucent, not opaque — the fixed .bg radial + grain must
+     still read through them, otherwise the page loses its depth. */
+  --band-raise: rgba(255, 255, 255, 0.038);
+  --band-deep: rgba(3, 4, 5, 0.5);
+
+  /* Hero brand-kit specimen. A worked example of an identity we might design —
+     deliberately NOT the Pixel & Code accent, so it reads as a client's palette. */
+  --kit-ink: #211a14;
+  --kit-paper: #f3ece1;
+  --kit-clay: #b8563c;
+  --kit-sage: #7d8c6a;
+  --kit-brass: #c3954e;
 }
 
 .pxc, .pxc * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -149,8 +162,8 @@ html.lenis, html.lenis body { height: auto; }
 .btn--lg { padding: 1.1rem 2rem; font-size: 1.05rem; }
 
 /* ---------- Layout ---------- */
-.section { padding: clamp(5rem, 12vh, 9rem) clamp(1.2rem, 5vw, 5rem); position: relative; }
-.section__head { margin-bottom: 3.5rem; }
+.section { padding: clamp(6.5rem, 15vh, 11.5rem) clamp(1.2rem, 5vw, 5rem); position: relative; }
+.section__head { margin-bottom: clamp(3.5rem, 7vh, 5.5rem); }
 .section__label {
   font-family: var(--ff-mono); font-size: 0.8rem; letter-spacing: 0.15em;
   color: var(--accent); display: inline-block; margin-bottom: 1rem;
@@ -201,12 +214,14 @@ html.lenis, html.lenis body { height: auto; }
 
 /* ---------- Services: 2×2 glass cards with 3D ---------- */
 /* staggered / zig-zag layout — cards alternate sides, visuals face inward */
-.svc-grid { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--line); }
+.svc-grid { display: flex; flex-direction: column; gap: 0.8rem; }
 .svc-card {
   position: relative; display: grid; grid-template-columns: 4.5rem minmax(0, 1fr) minmax(0, 1.25fr);
   gap: 1.5rem 2rem; align-items: start; width: 100%;
-  padding: 2.4rem 0.5rem; border-bottom: 1px solid var(--line);
+  padding: 2.8rem 2rem; border-radius: 16px; background: rgba(255, 255, 255, 0.035);
+  transition: background .3s;
 }
+.svc-card:hover { background: rgba(255, 255, 255, 0.055); }
 .svc-card__title { transition: color .3s; }
 .svc-card:hover .svc-card__title { color: var(--accent); }
 .svc-card__text { min-width: 0; }
@@ -222,11 +237,14 @@ html.lenis, html.lenis body { height: auto; }
 
 /* The flagship offer (Shopify brand building). Same row, given weight by an accent
    rail, a lifted ground and a live index — so ordering isn't the only signal. */
-.svc-card--lead { background: linear-gradient(90deg, rgba(0,204,153,0.07), transparent 58%); box-shadow: inset 3px 0 0 var(--accent); padding-left: 1.4rem; }
+.svc-card--lead { background: linear-gradient(90deg, rgba(0,204,153,0.09), rgba(255,255,255,0.035) 58%); box-shadow: inset 3px 0 0 var(--accent); }
+/* .svc-card:hover is (0,2,0) and would flatten the lead's gradient — this has to
+   out-specify it, and sit after it. */
+.svc-card--lead:hover { background: linear-gradient(90deg, rgba(0,204,153,0.13), rgba(255,255,255,0.055) 58%); }
 .svc-card--lead .svc-card__idx { color: var(--accent); }
 .svc-card--lead .svc-card__desc { color: var(--text); }
 .svc-card__tag { display: inline-block; margin-top: 0.7rem; font-family: var(--ff-mono); font-size: 0.7rem; color: var(--accent); border: 1px solid rgba(0,204,153,0.35); border-radius: 100px; padding: 0.15rem 0.55rem; }
-@media (max-width: 720px) { .svc-card--lead { padding-left: 1rem; } }
+
 
 
 /* ---------- Process (pinned) ---------- */
@@ -241,9 +259,8 @@ html.lenis, html.lenis body { height: auto; }
 /* Steps: a hairline list; each row carries a 3x3 pixel block that fills as it scrolls in */
 .step {
   position: relative; display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); gap: 1.4rem;
-  padding: 1.7rem 0; border-top: 1px solid var(--line);
+  padding: 1.6rem 1.4rem; border-radius: 14px; background: rgba(255, 255, 255, 0.035);
 }
-.step:last-child { border-bottom: 1px solid var(--line); }
 .step__blocks { display: grid; grid-template-columns: repeat(3, 0.5rem); grid-template-rows: repeat(3, 0.5rem); gap: 0.22rem; margin-top: 0.45rem; align-self: start; }
 .step__blocks i { width: 0.5rem; height: 0.5rem; background: #262a33; }
 .step__blocks i.is-on { background: var(--accent); }
@@ -299,7 +316,7 @@ html.lenis, html.lenis body { height: auto; }
   .testimonial-feature__name, .testimonial-feature__role { text-align: center; }
 }
 
-.logo-strip { margin-top: 3rem; padding-top: 2.4rem; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.5rem 3rem; }
+.logo-strip { margin-top: 3rem; padding-top: 2.4rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.5rem 3rem; }
 .logo-strip__label { font-family: var(--ff-mono); font-size: 0.8rem; color: var(--muted); }
 .logo-strip__row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2.4rem; }
 .logo-strip__row img { height: 26px; width: auto; object-fit: contain; opacity: 0.75; transition: opacity .3s; }
@@ -307,7 +324,7 @@ html.lenis, html.lenis body { height: auto; }
 .logo-strip__row img.logo-strip__img--light { height: 22px; padding: 0.3rem 0.6rem; background: #f6f7f5; border-radius: 6px; }
 
 /* ---------- Proof bar (homepage) ---------- */
-.proof-bar { padding: 2.4rem clamp(1.2rem, 5vw, 5rem); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.proof-bar { padding: 3.2rem clamp(1.2rem, 5vw, 5rem); }
 .proof-bar__inner {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.8rem 1.2rem;
   font-family: var(--ff-mono); font-size: 0.85rem; color: var(--muted); text-align: center;
@@ -315,15 +332,14 @@ html.lenis, html.lenis body { height: auto; }
 .proof-bar__dot { color: var(--accent); font-size: 0.7rem; }
 
 /* ---------- Work ---------- */
-.work__list { border-top: 1px solid var(--line); }
+.work__list { display: flex; flex-direction: column; gap: 0.7rem; }
 .project {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  padding: 2rem 0.5rem; border-bottom: 1px solid var(--line); position: relative;
-  transition: padding .4s var(--ease);
+  padding: 1.7rem 1.5rem; border-radius: 14px; background: rgba(255, 255, 255, 0.035); position: relative;
+  transition: background .3s, padding .4s var(--ease);
 }
-.project::after { content: ""; position: absolute; left: 0; bottom: -1px; height: 1px; width: 0; background: var(--grad); transition: width .5s var(--ease); }
 .project:hover .project__year { color: var(--accent); }
-.project:hover::after { width: 100%; }
+.project:hover { background: rgba(255, 255, 255, 0.06); }
 .project__meta { display: flex; flex-direction: column; gap: 0.2rem; }
 .project__meta h3 { font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 600; letter-spacing: -0.02em; transition: color .3s; }
 .project__meta span { color: var(--muted); font-family: var(--ff-mono); font-size: 0.85rem; }
@@ -592,21 +608,23 @@ html.lenis, html.lenis body { height: auto; }
   .project__logo { width: 40px; height: 40px; border-radius: 10px; }
 }
 
-.feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; }
+/* Cards are told apart by their own ground and the gap between them, not by a
+   lattice. The old ::before tick hung off a border that no longer exists — the
+   card's icon is the mark now. */
 .feature-card {
-  display: block; position: relative; padding: 1.6rem 1.5rem 1.8rem;
-  border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  display: block; position: relative; padding: 2.2rem 2rem 2.4rem;
+  border-radius: 14px; background: rgba(255, 255, 255, 0.045);
+  transition: background .3s;
 }
-.feature-card::before { content: ""; position: absolute; left: 1.5rem; top: 0; width: 0.42em; height: 0.42em; background: var(--line); transform: translateY(-50%); transition: background .3s; }
-.feature-card:hover::before { background: var(--accent); }
+.feature-card:hover { background: rgba(255, 255, 255, 0.07); }
 .feature-card__tag { font-family: var(--ff-mono); font-size: 0.7rem; color: var(--accent-dim); letter-spacing: 0.05em; text-transform: uppercase; }
 .feature-card h3 { font-size: 1.15rem; font-weight: 600; margin: 0.6rem 0 0.5rem; letter-spacing: -0.01em; }
 .feature-card p { color: var(--muted); font-size: 0.95rem; }
 
 /* ---------- FAQ accordion (landing pages) ---------- */
 .faq { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.8rem; }
-.faq { gap: 0; border-top: 1px solid var(--line); }
-.faq__item { border-bottom: 1px solid var(--line); padding: 0 0.3rem; }
+.faq__item { border-radius: 12px; background: rgba(255, 255, 255, 0.035); padding: 0 1.2rem; }
 .faq__item summary {
   padding: 1.3rem 0; cursor: pointer; font-weight: 500; list-style: none;
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
@@ -623,7 +641,7 @@ html.lenis, html.lenis body { height: auto; }
 .lp-proof { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 3.5rem); align-items: center; }
 .lp-proof__text p { color: var(--muted); font-size: 1.02rem; margin-bottom: 1.2rem; }
 .lp-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.lp-split > div { padding: 1.6rem 0 0; border-top: 1px solid var(--line); }
+.lp-split > div { padding: 1.6rem 1.5rem; border-radius: 14px; background: rgba(255, 255, 255, 0.035); }
 .lp-split h3 { font-size: 1rem; color: var(--accent); font-family: var(--ff-mono); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.8rem; }
 .lp-split p { color: var(--muted); font-size: 0.98rem; line-height: 1.6; }
 @media (max-width: 760px) {
@@ -773,7 +791,7 @@ html.lenis, html.lenis body { height: auto; }
 /* ---------- Quotes (static, two-up) ---------- */
 .quotes { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 1.5rem; }
 .quote { padding: 0.4rem 2.6rem 0.4rem 0; display: flex; flex-direction: column; }
-.quote + .quote { border-left: 1px solid var(--line); padding-left: 2.6rem; padding-right: 0; }
+.quote + .quote { padding-left: 2.6rem; padding-right: 0; }
 .quote__mark { font-family: var(--ff-pixel); font-size: 1.6rem; color: var(--accent); line-height: 1; margin-bottom: 1rem; }
 .quote__text { font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.55; font-weight: 500; letter-spacing: -0.01em; flex: 1; }
 .quote__by { display: flex; align-items: center; gap: 0.9rem; margin-top: 1.6rem; }
@@ -787,8 +805,8 @@ html.lenis, html.lenis body { height: auto; }
 @media (max-width: 760px) { .quotes { grid-template-columns: 1fr; gap: 2.2rem; } .quote { padding-right: 0; } .quote + .quote { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 2.2rem; } }
 
 /* ---------- Engagement models (rows, not cards) ---------- */
-.models { border-top: 1px solid var(--line); }
-.model { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.6fr) minmax(0, 0.9fr); gap: 2rem; padding: 2rem 0.5rem; border-bottom: 1px solid var(--line); align-items: start; }
+.models { display: flex; flex-direction: column; gap: 0.8rem; }
+.model { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.6fr) minmax(0, 0.9fr); gap: 2.4rem; padding: 2.4rem 2rem; border-radius: 16px; background: rgba(255, 255, 255, 0.035); align-items: start; }
 .model h3 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 .model__for { display: block; margin-top: 0.5rem; font-family: var(--ff-mono); font-size: 0.8rem; color: var(--accent-dim); }
 .model p { color: var(--muted); font-size: 0.98rem; }
@@ -823,7 +841,7 @@ html.lenis, html.lenis body { height: auto; }
 .contact__note { grid-column: 1 / -1; text-align: left; }
 .contact__note.is-error { color: #ff9b8a; }
 .field--hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-.contact__side { border-left: 1px solid var(--line); padding: 0.2rem 0 0 2.4rem; }
+.contact__side { padding: 0.2rem 0 0 2.4rem; }
 .contact__side h3 { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
 .contact__side p { color: var(--muted); font-size: 0.98rem; margin-bottom: 1.2rem; }
 .contact__side .btn { width: 100%; justify-content: center; }
@@ -862,7 +880,7 @@ html.lenis, html.lenis body { height: auto; }
 @media (max-width: 520px) { .weeks__labels span:nth-child(3), .weeks__labels span:nth-child(4) { visibility: hidden; } }
 
 /* ---------- Facts line (replaces the service-word marquee) ---------- */
-.facts { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1.3rem clamp(1.2rem, 5vw, 5rem); background: rgba(255,255,255,0.02); }
+.facts { padding: 1.8rem clamp(1.2rem, 5vw, 5rem); background: rgba(255,255,255,0.02); }
 .facts__inner { display: flex; flex-wrap: wrap; gap: 0.7rem 2.4rem; font-family: var(--ff-mono); font-size: 0.85rem; color: var(--muted); }
 .facts__inner span b { color: var(--text); font-weight: 500; }
 .facts__inner .px { margin-right: 0.55rem; vertical-align: 0.05em; }
@@ -918,3 +936,95 @@ html.lenis, html.lenis body { height: auto; }
 .svc-card__title, .project__meta h3, .model h3, .step h3, .contact__side h3, .roadmap__card h3 { font-weight: 500; letter-spacing: -0.015em; }
 .quote__text { font-weight: 400; font-variation-settings: "opsz" 48, "SOFT" 30; font-size: clamp(1.15rem, 1.7vw, 1.4rem); line-height: 1.5; letter-spacing: -0.005em; }
 .hero__title em, .section__title em, .contact__title em { font-style: normal; }
+
+/* ============================================================
+   Section bands, hero brand kit, and supporting vectors
+   Added 2026-09 — the page previously ran every section on one
+   flat --bg, so nothing told you where a section started.
+   ============================================================ */
+
+/* ---------- Bands: alternating grounds so sections read as separate ---------- */
+/* Translucent over the fixed .bg, so the radial tint and grain still show. */
+.band { position: relative; }
+.band--raise { background: var(--band-raise); }
+.band--deep { background: var(--band-deep); }
+/* One hairline per boundary: a band draws its own top rule, and the element
+   after it draws nothing, so adjacent bands never double up to 2px. */
+/* No rules on a band: the change in ground IS the boundary. Drawing both reads
+   as noise, which is what the flat all-one-colour page had too much of. */
+
+/* ---------- Hero brand kit: what a brand build actually produces ---------- */
+/* Replaces the six-week bar chart. Five tiles — mark, palette, type, packaging,
+   storefront grid — assembled in sequence by script.js (initKit). No fake browser
+   chrome anywhere: the storefront tile is a product grid, not a drawn window. */
+.kit { display: flex; flex-direction: column; gap: 1.4rem; min-width: 0; }
+.kit__board {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: minmax(0, auto); gap: 0.7rem;
+}
+.kit__tile {
+  margin: 0; min-width: 0; border-radius: 14px; border: 1px solid var(--line);
+  background: var(--surface); padding: 1rem; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 0.7rem;
+}
+.kit__cap {
+  font-family: var(--ff-mono); font-size: 0.62rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+}
+/* Mark — the drawn logo, on the specimen's own paper so it reads as a client asset */
+.kit__tile--mark { grid-column: span 1; background: var(--kit-paper); border-color: transparent; aspect-ratio: 1; padding: 0.9rem; }
+.kit__tile--mark .kit__cap { color: var(--kit-ink); opacity: 0.5; }
+.kit__mark { width: 100%; flex: 1; display: block; }
+.kit__mark path, .kit__mark circle { vector-effect: non-scaling-stroke; }
+/* Type specimen */
+.kit__tile--type { grid-column: span 2; }
+.kit__specimen {
+  font-family: var(--ff-display); font-variation-settings: "opsz" 144, "SOFT" 30;
+  font-weight: 500; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 0.9;
+  letter-spacing: -0.03em; color: var(--text);
+}
+.kit__specimen span { color: var(--accent); }
+.kit__stack { font-family: var(--ff-mono); font-size: 0.68rem; color: var(--muted); }
+/* Palette */
+.kit__tile--palette { grid-column: span 2; }
+.kit__swatches { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.4rem; }
+.kit__swatches i { display: block; height: 2.4rem; border-radius: 7px; transform-origin: bottom; }
+.kit__sw--1 { background: var(--kit-ink); }
+.kit__sw--2 { background: var(--kit-clay); }
+.kit__sw--3 { background: var(--kit-brass); }
+.kit__sw--4 { background: var(--kit-sage); }
+.kit__sw--5 { background: var(--kit-paper); }
+/* Packaging */
+.kit__tile--pack { grid-column: span 1; }
+.kit__pack { width: 100%; flex: 1; display: block; }
+/* Storefront — a collection grid, deliberately not a drawn browser window */
+.kit__tile--store { grid-column: span 3; }
+.kit__store { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; }
+.kit__card { min-width: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+.kit__card i { display: block; aspect-ratio: 1; border-radius: 8px; background: rgba(255,255,255,0.07); transition: background .6s var(--ease), opacity .6s var(--ease); }
+.kit__card--lead i { background: var(--kit-clay); opacity: 0.85; }
+.kit__card b { display: block; height: 4px; width: 72%; border-radius: 2px; background: rgba(255,255,255,0.16); }
+.kit__card s { display: block; height: 4px; width: 38%; border-radius: 2px; background: var(--accent-dim); }
+.kit__caption { font-family: var(--ff-mono); font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 0.9rem; }
+/* Assembly animation is opacity + transform only; script.js sets the start state
+   and plays it, so a no-GSAP/reduced-motion visit simply gets the finished board. */
+@media (max-width: 960px) {
+  .kit__board { max-width: 520px; }
+}
+@media (max-width: 420px) {
+  .kit__tile { padding: 0.8rem; border-radius: 12px; }
+  .kit__swatches i { height: 1.9rem; }
+  .kit__store { gap: 0.4rem; }
+}
+
+/* ---------- Card icons: hand-drawn line vectors, not an icon font ---------- */
+.feature-card__icon { display: block; width: 26px; height: 26px; margin-bottom: 1rem; color: var(--accent-dim); transition: color .3s; }
+.feature-card:hover .feature-card__icon { color: var(--accent); }
+.feature-card__icon path, .feature-card__icon circle, .feature-card__icon rect { vector-effect: non-scaling-stroke; }
+
+/* ---------- Inline figures used inside bands ---------- */
+.band-figure { margin: clamp(2.5rem, 6vh, 4rem) 0 0; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: #0c0d10; box-shadow: 0 40px 90px -30px rgba(0,0,0,0.6); }
+.band-figure img { width: 100%; display: block; }
+.band-figure figcaption { font-family: var(--ff-mono); font-size: 0.72rem; color: var(--muted); padding: 0.85rem 1.1rem; border-top: 1px solid var(--line); }
+.band-figure figcaption a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+.band-figure figcaption a:hover { color: var(--accent); }

@@ -451,8 +451,10 @@ function pcBoot() {
       .to(".hero__sub", { opacity: 1, y: 0, duration: 0.5 }, "-=0.4")
       .to(".hero__actions", { opacity: 1, y: 0, duration: 0.5 }, "-=0.35")
       .to(".hero__trust", { opacity: 1, y: 0, duration: 0.4 }, "-=0.3")
-      .from(".weeks__col i", { scaleY: 0, transformOrigin: "bottom", duration: 0.35, stagger: 0.03, ease: "power2.out" }, "-=0.9")
-      .to(".weeks__labels, .weeks__caption", { opacity: 1, y: 0, duration: 0.4 }, "-=0.3");
+      .from("[data-kit-tile]", { opacity: 0, y: 18, scale: 0.97, duration: 0.5, stagger: 0.08, ease: "power3.out" }, "-=0.95")
+      .from("[data-kit-sw]", { scaleY: 0, duration: 0.35, stagger: 0.05, ease: "power2.out" }, "-=0.45")
+      .from("[data-kit-pop]", { scale: 0, transformOrigin: "center", duration: 0.4, ease: "back.out(2)" }, "-=0.35")
+      .to(".kit__caption", { opacity: 1, y: 0, duration: 0.4 }, "-=0.3");
   }
 
   /* ---------- Reveal fallback (no GSAP / reduced) ---------- */
@@ -788,25 +790,29 @@ function pcBoot() {
     });
   }
 
-  /* ---------- Hero timeline: a lime pixel walks the six columns, lighting each label ---------- */
-  (function initWalker() {
-    const bars = document.querySelector(".weeks__bars");
-    if (!bars || reduce) return;
-    const cols = bars.querySelectorAll(".weeks__col");
-    const labels = document.querySelectorAll(".weeks__labels span");
-    if (cols.length !== 6) return;
-    const w = document.createElement("i"); w.className = "weeks__walker"; bars.appendChild(w);
-    let k = 0;
-    function place(instant) {
-      const c = cols[k]; const top = c.firstElementChild;
-      const br = bars.getBoundingClientRect(), tr = top.getBoundingClientRect();
-      const x = c.getBoundingClientRect().left - br.left;
-      const y = tr.top - br.top - top.offsetHeight * 0.5 - 4; // one bar above the column's top
-      gsap.to(w, { x, y, opacity: 1, duration: instant ? 0 : 0.35, ease: "steps(3)" });
-      labels.forEach((l, i) => l.classList.toggle("is-lit", i === k));
+  /* ---------- Hero brand kit: the mark draws itself, then the lead product lands ---------- */
+  (function initKit() {
+    const board = document.querySelector("[data-kit]");
+    if (!board || reduce) return;
+
+    // Stroke-draw the monogram once, on a length the browser measures for us.
+    const mark = board.querySelector("[data-kit-draw]");
+    if (mark && typeof mark.getTotalLength === "function") {
+      const len = mark.getTotalLength();
+      gsap.set(mark, { strokeDasharray: len, strokeDashoffset: len });
+      gsap.to(mark, { strokeDashoffset: 0, duration: 1.1, delay: 0.9, ease: "power2.inOut" });
     }
-    setTimeout(() => { place(true); setInterval(() => { k = (k + 1) % 6; place(false); }, 900); }, 1800);
-    window.addEventListener("resize", () => place(true));
+
+    // The storefront grid keeps working after the intro: each card takes a turn
+    // as the "lead" product, which is the one thing on the board that moves.
+    const cards = board.querySelectorAll(".kit__card");
+    if (cards.length < 2) return;
+    let k = 0;
+    setInterval(() => {
+      cards[k].classList.remove("kit__card--lead");
+      k = (k + 1) % cards.length;
+      cards[k].classList.add("kit__card--lead");
+    }, 2200);
   })();
 
   /* ---------- Process steps: 3x3 pixel block fills in as each step arrives ---------- */

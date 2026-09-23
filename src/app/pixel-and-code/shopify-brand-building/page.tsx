@@ -4,6 +4,7 @@ import PxcNav from "../_components/PxcNav";
 import PxcFooter from "../_components/PxcFooter";
 import ChatWidget from "../_components/ChatWidget";
 import BodyBg from "../_components/BodyBg";
+import PxcIcon from "../_components/PxcIcon";
 
 export const metadata: Metadata = {
   title: "Shopify Brand Building — Pixel & Code",
@@ -63,7 +64,7 @@ export default function ShopifyBrandBuildingPage() {
         </section>
 
         {/* PROBLEM */}
-        <section className="section" style={{ paddingTop: 0 }}>
+        <section className="section band band--raise">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> Why most stores blur together</span>
             <h2 className="section__title" data-split>The theme is not the brand.</h2>
@@ -71,18 +72,21 @@ export default function ShopifyBrandBuildingPage() {
           <div className="feature-grid">
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Sameness</span>
+              <PxcIcon name="sameness" />
               <h3>Everyone bought the same theme</h3>
               <p>A popular Shopify theme is running on tens of thousands of stores. Shoppers can&apos;t
                  name why yours feels familiar, but it does — and familiar is not memorable.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Fragments</span>
+              <PxcIcon name="fragments" />
               <h3>The brand was assembled from pieces</h3>
               <p>A logo from a marketplace, a palette from the theme demo, packaging from whoever
                  printed it. Nothing was designed to sit next to anything else.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Handoffs</span>
+              <PxcIcon name="handoffs" />
               <h3>Three freelancers, three directions</h3>
               <p>A designer, a Shopify dev and a packaging supplier who never spoke. You end up being
                  the one holding the brand together.</p>
@@ -91,7 +95,7 @@ export default function ShopifyBrandBuildingPage() {
         </section>
 
         {/* DELIVERABLES */}
-        <section className="section" style={{ paddingTop: 0 }}>
+        <section className="section">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> What you get</span>
             <h2 className="section__title" data-split>Everything the brand touches.</h2>
@@ -103,54 +107,63 @@ export default function ShopifyBrandBuildingPage() {
           <div className="feature-grid">
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Identity</span>
+              <PxcIcon name="naming" />
               <h3>Naming &amp; positioning</h3>
               <p>What the brand stands for, who it&apos;s for and how it talks — written down before
                  anything gets drawn.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Identity</span>
+              <PxcIcon name="mark" />
               <h3>Logo &amp; wordmark</h3>
               <p>An original mark with the full set of exports: horizontal, stacked, icon, light and
                  dark, plus the editable source files.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Identity</span>
+              <PxcIcon name="palette" />
               <h3>Colour &amp; type system</h3>
               <p>A palette and typeface pairing documented in a short brand guide, so your ads,
                  emails and packaging stay consistent long after launch.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Product</span>
+              <PxcIcon name="packaging" />
               <h3>Packaging &amp; product design</h3>
               <p>Labels, boxes, inserts and unboxing — designed with the same system as the store, in
                  print-ready files your supplier can use.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Storefront</span>
+              <PxcIcon name="storefront" />
               <h3>Custom Shopify theme</h3>
               <p>Your own theme, not a licensed one: custom sections your team can rearrange in the
                  admin, built to stay fast on a phone.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Storefront</span>
+              <PxcIcon name="grid" />
               <h3>Collection &amp; product pages</h3>
               <p>Structured around how people actually decide — imagery, copy blocks, size and
                  variant pickers, bundles, upsells and reviews.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Launch</span>
+              <PxcIcon name="plug" />
               <h3>Apps &amp; integrations</h3>
               <p>Email, reviews, analytics, subscriptions and shipping wired in and tested, so launch
                  day isn&apos;t the first time anything runs.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Launch</span>
+              <PxcIcon name="migrate" />
               <h3>Migration without downtime</h3>
               <p>Already trading? We work on your live store, keep products, orders and history in
                  place, and switch over when the new storefront is ready.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Handover</span>
+              <PxcIcon name="handover" />
               <h3>The files, not just the pixels</h3>
               <p>Editable brand sources, the theme code, a short brand guide and a recorded
                  walkthrough of how to run it all yourself.</p>
@@ -159,7 +172,7 @@ export default function ShopifyBrandBuildingPage() {
         </section>
 
         {/* PROOF — the store itself is the argument, so it gets the full width */}
-        <section className="section" style={{ paddingTop: 0 }} id="stores">
+        <section className="section band band--deep" id="stores">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> Proof</span>
             <h2 className="section__title" data-split>Stores we&apos;ve built.</h2>
@@ -238,7 +251,7 @@ export default function ShopifyBrandBuildingPage() {
         </section>
 
         {/* TIMELINE + INVESTMENT */}
-        <section className="section" style={{ paddingTop: 0 }}>
+        <section className="section">
           <div className="lp-split">
             <div className="reveal-up">
               <h3>Timeline</h3>
@@ -256,7 +269,7 @@ export default function ShopifyBrandBuildingPage() {
         </section>
 
         {/* FAQ */}
-        <section className="section" style={{ paddingTop: 0 }}>
+        <section className="section band band--raise">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> Questions</span>
             <h2 className="section__title" data-split>Before you reach out.</h2>

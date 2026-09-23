@@ -4,6 +4,8 @@ import PxcNav from "./_components/PxcNav";
 import PxcFooter from "./_components/PxcFooter";
 import ChatWidget from "./_components/ChatWidget";
 import MarkRow from "./_components/MarkRow";
+import BrandKit from "./_components/BrandKit";
+import PxcIcon from "./_components/PxcIcon";
 
 const CALENDLY = "https://calendly.com/km-kkishal/30min";
 
@@ -67,26 +69,7 @@ export default function PixelAndCodeHome() {
               <p className="hero__trust reveal-up">30-min call, no pitch <span className="px"></span> Fixed-price builds <span className="px"></span> You own the store and the files</p>
             </div>
 
-            {/* The six weeks, drawn in the brand's own pixel language — no stock art, no 3D. */}
-            <div className="weeks" aria-label="A typical six-week brand and store build">
-              <div className="weeks__bars" aria-hidden="true">
-                <div className="weeks__col"><i></i><i></i></div>
-                <div className="weeks__col"><i></i><i></i><i></i><i></i></div>
-                <div className="weeks__col"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div className="weeks__col"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div className="weeks__col"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div className="weeks__col weeks__col--now"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-              </div>
-              <div className="weeks__labels reveal-up">
-                <span><b>wk 1</b>Scope</span>
-                <span><b>wk 2</b>Identity</span>
-                <span><b>wk 3</b>Design</span>
-                <span><b>wk 4</b>Build</span>
-                <span><b>wk 5</b>Products</span>
-                <span className="is-now"><b>wk 6</b>Launch</span>
-              </div>
-              <p className="weeks__caption reveal-up">Something real to look at every Friday from week two.</p>
-            </div>
+            <BrandKit />
           </div>
         </section>
 
@@ -101,7 +84,7 @@ export default function PixelAndCodeHome() {
         </section>
 
         {/* SHOPIFY — the headline offer, given its own section above everything else */}
-        <section className="section" id="shopify">
+        <section className="section band band--raise" id="shopify">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> What we&rsquo;re known for</span>
             <h2 className="section__title">A whole Shopify brand, not just a theme.</h2>
@@ -114,41 +97,62 @@ export default function PixelAndCodeHome() {
           <div className="feature-grid">
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Identity</span>
+              <PxcIcon name="mark" />
               <h3>Logo &amp; wordmark</h3>
               <p>A real mark designed for your brand, delivered in every format you&rsquo;ll ever need —
                  store, packaging, socials, print.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Identity</span>
+              <PxcIcon name="palette" />
               <h3>Colour &amp; type system</h3>
               <p>A palette and typeface pairing that holds together across the storefront, your ads
                  and your packaging, written down so anyone can apply it.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Product</span>
+              <PxcIcon name="packaging" />
               <h3>Product &amp; packaging design</h3>
               <p>Labels, boxes, inserts and product imagery designed alongside the brand rather than
                  bolted on afterwards by someone else.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Storefront</span>
+              <PxcIcon name="storefront" />
               <h3>Custom Shopify storefront</h3>
               <p>Built as a custom theme on your own Shopify store — your sections, your layouts,
                  your checkout flow. Fast on mobile, because that&rsquo;s where the sales are.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Storefront</span>
+              <PxcIcon name="cart" />
               <h3>Product pages that sell</h3>
               <p>Collection and product pages structured around how people actually decide — the
                  photography, the copy blocks, the upsells and the bundles.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Launch</span>
+              <PxcIcon name="handover" />
               <h3>Apps, integrations &amp; handover</h3>
               <p>Reviews, email, analytics and shipping wired up, then the whole store handed to you
                  with the brand files and a recorded walkthrough.</p>
             </article>
           </div>
+          {/* A real store we built, not an illustration of one. */}
+          <figure className="band-figure reveal-up">
+            <img
+              src="/pixel-and-code/assets/screenshots/shopify/sreya-creates-home.jpg"
+              alt="Sreya Creates — a custom Shopify storefront built by Pixel &amp; Code"
+              loading="lazy"
+              width={1280}
+              height={711}
+            />
+            <figcaption>
+              Sreya Creates &mdash; brand and storefront, built by us.{" "}
+              <a href="https://sreyacreates.com" target="_blank" rel="noopener">sreyacreates.com &#8599;</a>
+            </figcaption>
+          </figure>
+
           <div className="case-actions reveal-up" style={{ marginTop: "2.5rem" }}>
             <a href="/pixel-and-code/shopify-brand-building/" className="btn btn--primary">
               <span>See how a Shopify brand build works</span>
@@ -159,7 +163,7 @@ export default function PixelAndCodeHome() {
         </section>
 
         {/* PROOF */}
-        <section className="testimonials section">
+        <section className="testimonials section band band--deep">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> Proof</span>
             <h2 className="section__title">What it&rsquo;s like to work with us.</h2>
@@ -198,7 +202,7 @@ export default function PixelAndCodeHome() {
         <MarkRow />
 
         {/* SERVICES */}
-        <section className="services section" id="services">
+        <section className="services section band band--raise" id="services">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> What we do</span>
             <h2 className="section__title">Three ways to work with us.</h2>
@@ -314,7 +318,7 @@ export default function PixelAndCodeHome() {
         <MarkRow />
 
         {/* WORK — every row carries an outcome, not just a category */}
-        <section className="work section" id="work">
+        <section className="work section band band--raise" id="work">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> Selected work</span>
             <h2 className="section__title">Things we&rsquo;ve built.</h2>
@@ -391,7 +395,7 @@ export default function PixelAndCodeHome() {
         </section>
 
         {/* ENGAGEMENT MODELS */}
-        <section className="section" id="pricing">
+        <section className="section band band--deep" id="pricing">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> Ways to engage</span>
             <h2 className="section__title">Pick the shape that fits.</h2>
@@ -486,7 +490,7 @@ export default function PixelAndCodeHome() {
         </section>
 
         {/* FAQ */}
-        <section className="section" id="faq">
+        <section className="section band band--raise" id="faq">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> Questions</span>
             <h2 className="section__title">Before you get in touch.</h2>
