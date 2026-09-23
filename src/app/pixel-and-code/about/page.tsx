@@ -29,8 +29,8 @@ export default function AboutPage() {
           { href: "/pixel-and-code/#process", label: "How we work" },
           { href: "/pixel-and-code/#pricing", label: "Pricing" },
         ]}
-        ctaHref="https://calendly.com/km-kkishal/30min"
-        ctaLabel="Book a call"
+        ctaHref="https://calendly.com/ritwik-mandal-aurevia/30min"
+        ctaLabel="Book a call with Ritwik"
         ctaExternal
       />
 
@@ -133,14 +133,14 @@ export default function AboutPage() {
       </main>
 
       <div className="case-crosslink">
-        <a href="/pixel-and-code/how-we-work/">How we work →</a>
+        <a href="/pixel-and-code/#process">How we work →</a>
         <a href="/pixel-and-code/#work">See our work →</a>
       </div>
 
       <PxcFooter
         links={[
           { href: "/pixel-and-code/about/", label: "About" },
-          { href: "/pixel-and-code/how-we-work/", label: "Process" },
+          { href: "/pixel-and-code/#process", label: "Process" },
           { href: "/pixel-and-code/#work", label: "Work" },
           { href: "/pixel-and-code/#contact", label: "Contact" },
         ]}

@@ -66,7 +66,6 @@ const staticRoutes: {
   { path: "/pixel-and-code/", priority: 0.5, changeFrequency: "monthly" },
   { path: "/pixel-and-code/shopify-brand-building/", priority: 0.5, changeFrequency: "monthly" },
   { path: "/pixel-and-code/about/", priority: 0.4, changeFrequency: "monthly" },
-  { path: "/pixel-and-code/how-we-work/", priority: 0.4, changeFrequency: "monthly" },
   { path: "/pixel-and-code/saas-development/", priority: 0.4, changeFrequency: "monthly" },
   { path: "/pixel-and-code/ai-automation/", priority: 0.4, changeFrequency: "monthly" },
   { path: "/pixel-and-code/web-app-development/", priority: 0.4, changeFrequency: "monthly" },

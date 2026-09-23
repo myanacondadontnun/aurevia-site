@@ -5,7 +5,7 @@ import PxcFooter from "../_components/PxcFooter";
 import ChatWidget from "../_components/ChatWidget";
 import BodyBg from "../_components/BodyBg";
 
-const CALENDLY = "https://calendly.com/km-kkishal/30min";
+const CALENDLY = "https://calendly.com/ritwik-mandal-aurevia/30min";
 
 export const metadata: Metadata = {
   title: "AI & Workflow Automation for Businesses — Pixel & Code",
@@ -34,7 +34,7 @@ export default function AiAutomationPage() {
           { href: "/pixel-and-code/#pricing", label: "Pricing" },
         ]}
         ctaHref={CALENDLY}
-        ctaLabel="Book a call"
+        ctaLabel="Book a call with Ritwik"
         ctaExternal
       />
 

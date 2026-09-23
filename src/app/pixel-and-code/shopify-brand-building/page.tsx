@@ -5,6 +5,7 @@ import PxcFooter from "../_components/PxcFooter";
 import ChatWidget from "../_components/ChatWidget";
 import BodyBg from "../_components/BodyBg";
 import PxcIcon from "../_components/PxcIcon";
+import Showcase from "../_components/Showcase";
 
 export const metadata: Metadata = {
   title: "Shopify Brand Building — Pixel & Code",
@@ -35,8 +36,8 @@ export default function ShopifyBrandBuildingPage() {
           { href: "/pixel-and-code/#process", label: "How we work" },
           { href: "/pixel-and-code/#pricing", label: "Pricing" },
         ]}
-        ctaHref="https://calendly.com/km-kkishal/30min"
-        ctaLabel="Book a call"
+        ctaHref="https://calendly.com/ritwik-mandal-aurevia/30min"
+        ctaLabel="Book a call with Ritwik"
         ctaExternal
       />
 
@@ -51,11 +52,11 @@ export default function ShopifyBrandBuildingPage() {
             six weeks.
           </p>
           <div className="case-actions reveal-up">
-            <a href="https://calendly.com/km-kkishal/30min" target="_blank" rel="noopener" className="btn btn--primary" data-track="book_call">
-              <span>Book a free scoping call</span>
+            <a href="https://calendly.com/ritwik-mandal-aurevia/30min" target="_blank" rel="noopener" className="btn btn--primary" data-track="book_call">
+              <span>Book a 30-min call with Ritwik</span>
               <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </a>
-            <a href="#contact" className="btn btn--ghost"><span>Send us your brief</span></a>
+            <a href="#contact" className="btn btn--ghost"><span>Get a fixed quote</span></a>
           </div>
           <div className="page-hero__scroll reveal-up">
             <span>Scroll</span>
@@ -64,7 +65,7 @@ export default function ShopifyBrandBuildingPage() {
         </section>
 
         {/* PROBLEM */}
-        <section className="section band band--raise">
+        <section className="section band band--raise" data-wm="Theme">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> Why most stores blur together</span>
             <h2 className="section__title" data-split>The theme is not the brand.</h2>
@@ -172,7 +173,7 @@ export default function ShopifyBrandBuildingPage() {
         </section>
 
         {/* PROOF — the store itself is the argument, so it gets the full width */}
-        <section className="section band band--deep" id="stores">
+        <section className="section band band--deep" id="stores" data-wm="Proof">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> Proof</span>
             <h2 className="section__title" data-split>Stores we&apos;ve built.</h2>
@@ -250,6 +251,15 @@ export default function ShopifyBrandBuildingPage() {
           </p>
         </section>
 
+        {/* SHOWCASE — Shopify stores we rate; explicitly not ours */}
+        <section className="section band band--raise" id="bar" data-wm="Taste">
+          <div className="section__head">
+            <span className="section__label reveal-up"><span className="px"></span> What we rate</span>
+            <h2 className="section__title" data-split>The bar we build to.</h2>
+          </div>
+          <Showcase only={["Shopify"]} />
+        </section>
+
         {/* TIMELINE + INVESTMENT */}
         <section className="section">
           <div className="lp-split">
@@ -269,7 +279,7 @@ export default function ShopifyBrandBuildingPage() {
         </section>
 
         {/* FAQ */}
-        <section className="section band band--raise">
+        <section className="section band band--raise" data-wm="Ask">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> Questions</span>
             <h2 className="section__title" data-split>Before you reach out.</h2>

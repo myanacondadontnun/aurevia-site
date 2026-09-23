@@ -23,6 +23,17 @@ export default function PxcNav({
   ctaExternal?: boolean;
 }) {
   return (
+    <>
+      {/* One-line banner above the nav, Charle-style: the studio's own product
+          is the credential. Plain <a> — /home is outside this section. */}
+      <div className="topbar">
+        <span className="topbar__by">Built by</span>
+        <a href="/home/" className="topbar__brand" aria-label="Aurevia.io">
+          <img src="/pixel-and-code/assets/logos/aurevia.png" alt="" className="topbar__mark" />
+          <b>Aurevia.io</b>
+        </a>
+        <a href="/home/" className="topbar__link">See Aurevia &#8599;</a>
+      </div>
     <header className="nav" data-nav>
       <div className="nav__brand">
         <a href={logoHref} className="nav__logo" aria-label="Pixel & Code — home">
@@ -41,5 +52,6 @@ export default function PxcNav({
       </nav>
       <button className="nav__burger" data-burger aria-label="Menu"><span></span><span></span></button>
     </header>
+    </>
   );
 }

@@ -42,8 +42,8 @@ export default function JcrPharmaCaseStudyPage() {
           { href: "/pixel-and-code/#process", label: "How we work" },
           { href: "/pixel-and-code/#pricing", label: "Pricing" },
         ]}
-        ctaHref="https://calendly.com/km-kkishal/30min"
-        ctaLabel="Book a call"
+        ctaHref="https://calendly.com/ritwik-mandal-aurevia/30min"
+        ctaLabel="Book a call with Ritwik"
         ctaExternal
       />
 

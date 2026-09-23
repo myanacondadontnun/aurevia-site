@@ -4,10 +4,17 @@ import PxcNav from "./_components/PxcNav";
 import PxcFooter from "./_components/PxcFooter";
 import ChatWidget from "./_components/ChatWidget";
 import MarkRow from "./_components/MarkRow";
-import BrandKit from "./_components/BrandKit";
+import StoreLoop from "./_components/StoreLoop";
+import Deliverables from "./_components/Deliverables";
+import ServiceGrounds from "./_components/ServiceGrounds";
+import Work from "./_components/Work";
+import PricingTabs from "./_components/PricingTabs";
 import PxcIcon from "./_components/PxcIcon";
+import Showcase from "./_components/Showcase";
+import AureviaBand from "./_components/AureviaBand";
 
-const CALENDLY = "https://calendly.com/km-kkishal/30min";
+// Ritwik's Calendly — every "Book a call with Ritwik" CTA points here.
+const CALENDLY = "https://calendly.com/ritwik-mandal-aurevia/30min";
 
 export const metadata: Metadata = {
   title: "Pixel & Code — Shopify brand building: identity, product design and custom storefronts",
@@ -39,7 +46,7 @@ export default function PixelAndCodeHome() {
           { href: "/pixel-and-code/#pricing", label: "Pricing" },
         ]}
         ctaHref={CALENDLY}
-        ctaLabel="Book a call"
+        ctaLabel="Book a call with Ritwik"
         ctaExternal
       />
 
@@ -51,7 +58,7 @@ export default function PixelAndCodeHome() {
               <p className="hero__eyebrow reveal-up"><span className="px px--pulse"></span> A Shopify brand &amp; store studio</p>
               <h1 className="hero__title">
                 <span className="line"><span>Your Shopify brand,</span></span>
-                <span className="line"><span>built from <em>scratch</em>.</span></span>
+                <span className="line"><span>built <em data-swap data-words="from scratch|to sell|in six weeks|for phones">from scratch</em>.</span></span>
               </h1>
               <p className="hero__sub reveal-up">
                 Pixel &amp; Code builds Shopify brands end to end — the logo, the colours, the
@@ -61,30 +68,52 @@ export default function PixelAndCodeHome() {
               <p className="hero__builds reveal-up"><b>We build</b> brand identity <span className="px"></span> logo &amp; colour <span className="px"></span> product &amp; packaging design <span className="px"></span> custom Shopify storefronts <span className="px"></span> websites &amp; web apps <span className="px"></span> AI automation</p>
               <div className="hero__actions reveal-up">
                 <a href={CALENDLY} target="_blank" rel="noopener" className="btn btn--primary" data-track="book_call">
-                  <span>Book a free scoping call</span>
+                  <span>Book a 30-min call with Ritwik</span>
                   <Arrow />
                 </a>
-                <a href="#shopify" className="btn btn--ghost"><span>See what a brand build includes</span></a>
+                <a href="#contact" className="btn btn--ghost"><span>Get a fixed quote</span></a>
               </div>
               <p className="hero__trust reveal-up">30-min call, no pitch <span className="px"></span> Fixed-price builds <span className="px"></span> You own the store and the files</p>
             </div>
 
-            <BrandKit />
+            <div className="hero__visual">
+              <div className="stickers" aria-hidden="true">
+                <i className="sticker sticker--block" />
+                <i className="sticker sticker--tri" />
+                <i className="sticker sticker--squiggle" />
+                <i className="sticker sticker--dot" />
+              </div>
+              <StoreLoop />
+            </div>
           </div>
         </section>
 
-        {/* FACTS — replaces the decorative service-word ticker */}
-        <section className="facts" aria-label="Facts">
-          <div className="facts__inner">
-            <span><span className="px"></span><b>Sreya Creates</b> — brand and custom storefront, live at sreyacreates.com</span>
-            <span><span className="px"></span><b>Aurevia</b> — our own Shopify app, shipped weekly for 12+ months</span>
-            <span><span className="px"></span><b>JCR Pharma</b> — three portals live in about six weeks</span>
-            <span><span className="px"></span><b>Every project</b> — your store, your repos, your accounts, from week one</span>
+
+        {/* SERVICES */}
+        <section className="services section" id="services" data-wm="Services">
+          <div className="section__head">
+            <span className="section__label reveal-up"><span className="px"></span> Our services</span>
+            <h2 className="section__title">Three ways to work with us.</h2>
           </div>
+          <ServiceGrounds />
         </section>
+
+        {/* AUREVIA — our own product, as a section (see AureviaBand.tsx) */}
+        <AureviaBand />
+
+        {/* SHOWCASE — ours plus the sites we rate; labelled per card in Showcase.tsx */}
+        <section className="section" id="bar" data-wm="Taste">
+          <div className="section__head">
+            <span className="section__label reveal-up"><span className="px"></span> What we rate</span>
+            <h2 className="section__title">The bar we build to.</h2>
+          </div>
+          <Showcase />
+        </section>
+
+        <MarkRow />
 
         {/* SHOPIFY — the headline offer, given its own section above everything else */}
-        <section className="section band band--raise" id="shopify">
+        <section className="section band band--raise" id="shopify" data-wm="Brand">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> What we&rsquo;re known for</span>
             <h2 className="section__title">A whole Shopify brand, not just a theme.</h2>
@@ -94,64 +123,27 @@ export default function PixelAndCodeHome() {
             logo from a marketplace. We start at the other end: what the brand is, what it looks
             like, how the products are presented — then build the storefront to match.
           </p>
-          <div className="feature-grid">
-            <article className="feature-card reveal-up">
-              <span className="feature-card__tag">Identity</span>
-              <PxcIcon name="mark" />
-              <h3>Logo &amp; wordmark</h3>
-              <p>A real mark designed for your brand, delivered in every format you&rsquo;ll ever need —
-                 store, packaging, socials, print.</p>
-            </article>
-            <article className="feature-card reveal-up">
-              <span className="feature-card__tag">Identity</span>
-              <PxcIcon name="palette" />
-              <h3>Colour &amp; type system</h3>
-              <p>A palette and typeface pairing that holds together across the storefront, your ads
-                 and your packaging, written down so anyone can apply it.</p>
-            </article>
-            <article className="feature-card reveal-up">
-              <span className="feature-card__tag">Product</span>
-              <PxcIcon name="packaging" />
-              <h3>Product &amp; packaging design</h3>
-              <p>Labels, boxes, inserts and product imagery designed alongside the brand rather than
-                 bolted on afterwards by someone else.</p>
-            </article>
-            <article className="feature-card reveal-up">
-              <span className="feature-card__tag">Storefront</span>
-              <PxcIcon name="storefront" />
-              <h3>Custom Shopify storefront</h3>
-              <p>Built as a custom theme on your own Shopify store — your sections, your layouts,
-                 your checkout flow. Fast on mobile, because that&rsquo;s where the sales are.</p>
-            </article>
-            <article className="feature-card reveal-up">
-              <span className="feature-card__tag">Storefront</span>
-              <PxcIcon name="cart" />
-              <h3>Product pages that sell</h3>
-              <p>Collection and product pages structured around how people actually decide — the
-                 photography, the copy blocks, the upsells and the bundles.</p>
-            </article>
-            <article className="feature-card reveal-up">
-              <span className="feature-card__tag">Launch</span>
-              <PxcIcon name="handover" />
-              <h3>Apps, integrations &amp; handover</h3>
-              <p>Reviews, email, analytics and shipping wired up, then the whole store handed to you
-                 with the brand files and a recorded walkthrough.</p>
-            </article>
-          </div>
-          {/* A real store we built, not an illustration of one. */}
-          <figure className="band-figure reveal-up">
-            <img
-              src="/pixel-and-code/assets/screenshots/shopify/sreya-creates-home.jpg"
-              alt="Sreya Creates — a custom Shopify storefront built by Pixel &amp; Code"
-              loading="lazy"
-              width={1280}
-              height={711}
+          <div className="pinned" data-loop-scope>
+            <StoreLoop
+              large
+              pins={[
+                { key: "mark", phase: "is-mark", label: "Logo & wordmark", x: "3%", y: "16%" },
+                { key: "colour", phase: "is-colour", label: "Colour & type", x: "34%", y: "40%" },
+                { key: "storefront", phase: "is-type", label: "Custom storefront", x: "4%", y: "62%" },
+                { key: "packaging", phase: "is-type", label: "Packaging & product", x: "78%", y: "28%" },
+                { key: "products", phase: "is-products", label: "Product pages", x: "36%", y: "84%" },
+                { key: "apps", phase: "is-live", label: "Apps & handover", x: "66%", y: "8%" },
+              ]}
             />
-            <figcaption>
-              Sreya Creates &mdash; brand and storefront, built by us.{" "}
-              <a href="https://sreyacreates.com" target="_blank" rel="noopener">sreyacreates.com &#8599;</a>
-            </figcaption>
-          </figure>
+            <ol className="pinned__list">
+              <li data-pin-item="mark"><b>Logo &amp; wordmark</b><span>A real mark, in every format you&rsquo;ll need — store, packaging, socials, print.</span></li>
+              <li data-pin-item="colour"><b>Colour &amp; type system</b><span>A palette and pairing that holds across storefront, ads and packaging, written down.</span></li>
+              <li data-pin-item="storefront"><b>Custom Shopify storefront</b><span>Your own theme on your own store — sections, layouts, checkout — fast on a phone.</span></li>
+              <li data-pin-item="packaging"><b>Product &amp; packaging design</b><span>Labels, boxes, inserts and imagery designed with the brand, not bolted on after.</span></li>
+              <li data-pin-item="products"><b>Product pages that sell</b><span>Collection and product pages built around how people decide: imagery, copy, bundles.</span></li>
+              <li data-pin-item="apps"><b>Apps, integrations &amp; handover</b><span>Reviews, email, analytics and shipping wired up, then the whole store handed to you.</span></li>
+            </ol>
+          </div>
 
           <div className="case-actions reveal-up" style={{ marginTop: "2.5rem" }}>
             <a href="/pixel-and-code/shopify-brand-building/" className="btn btn--primary">
@@ -162,8 +154,57 @@ export default function PixelAndCodeHome() {
           </div>
         </section>
 
+        {/* PROCESS — four hand-over artefacts, fanned on scroll (Deliverables.tsx) */}
+        <section className="process section band band--raise" id="process" data-wm="Process">
+          <div className="section__head process__head">
+            <div>
+              <span className="section__label"><span className="px"></span> How we work</span>
+              <h2 className="section__title">From brief to <em>launch</em>, in four steps.</h2>
+            </div>
+            <p className="process__intro">You always know what is being built this week, why, and
+               what you will be able to look at on Friday.</p>
+          </div>
+          <Deliverables />
+
+        </section>
+
+        {/* PROOF BAR */}
+        <section className="proof-bar">
+          <div className="proof-bar__inner reveal-up">
+            <span>Something to look at every week</span>
+            <span className="proof-bar__dot">✦</span>
+            <span>You talk to the designers and engineers</span>
+            <span className="proof-bar__dot">✦</span>
+            <span>You own the store, the files and the code</span>
+            <span className="proof-bar__dot">✦</span>
+            <span>Full handover at launch</span>
+          </div>
+        </section>
+
+        <MarkRow />
+
+        {/* WORK — every row carries an outcome, not just a category */}
+        <section className="work section band band--deep" id="work" data-wm="Work">
+          <div className="section__head">
+            <span className="section__label reveal-up"><span className="px"></span> Selected work</span>
+            <h2 className="section__title">Things we&rsquo;ve built.</h2>
+          </div>
+          <Work />
+        </section>
+
+        {/* ENGAGEMENT MODELS */}
+        <section className="section" id="pricing" data-wm="Price">
+          <div className="section__head">
+            <span className="section__label reveal-up"><span className="px"></span> Ways to engage</span>
+            <h2 className="section__title">Pick the shape that fits.</h2>
+          </div>
+          <PricingTabs />
+        </section>
+
+        <MarkRow />
+
         {/* PROOF */}
-        <section className="testimonials section band band--deep">
+        <section className="testimonials section band band--deep" data-wm="Proof">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> Proof</span>
             <h2 className="section__title">What it&rsquo;s like to work with us.</h2>
@@ -189,282 +230,24 @@ export default function PixelAndCodeHome() {
           <p className="quotes__note">Shopify is where we spend most of our time: Aurevia, the AI sales agent listed below, is our own product, live on the Shopify App Store. We built it, we run it, and we sit inside the same admin your store does &mdash; so we don&rsquo;t quote ourselves, <a href="/pixel-and-code/aurevia-io/">read how it was built</a> instead.</p>
           <div className="logo-strip">
             <span className="logo-strip__label">Worked with</span>
-            <div className="logo-strip__row">
-              <img src="/pixel-and-code/assets/logos/sreya-creates-wordmark.png" alt="Sreya Creates" loading="lazy" className="logo-strip__img--light" />
-              <img src="/pixel-and-code/assets/logos/aurevia.png" alt="Aurevia" loading="lazy" />
-              <img src="/pixel-and-code/assets/logos/jcrpharma.png" alt="JCR Pharma" loading="lazy" className="logo-strip__img--light" />
-              <img src="/pixel-and-code/assets/logos/masters-in-minds.png" alt="Masters in Minds" loading="lazy" className="logo-strip__img--light" />
-              <img src="/pixel-and-code/assets/logos/cpq-agent.svg" alt="Expedite Commerce" loading="lazy" />
+            <div className="logo-marquee" aria-label="Sreya Creates, Aurevia, JCR Pharma, Masters in Minds, Expedite Commerce">
+              {[0, 1].map((dup) => (
+                <div className="logo-marquee__track" aria-hidden={dup === 1} key={dup}>
+                  <img src="/pixel-and-code/assets/logos/sreya-creates-wordmark.png" alt="" loading="lazy" className="logo-strip__img--light" />
+                  <span className="logo-marquee__sep">&#10033;</span>
+                  <img src="/pixel-and-code/assets/logos/aurevia.png" alt="" loading="lazy" />
+                  <span className="logo-marquee__sep">&#10033;</span>
+                  <img src="/pixel-and-code/assets/logos/jcrpharma.png" alt="" loading="lazy" className="logo-strip__img--light" />
+                  <span className="logo-marquee__sep">&#10033;</span>
+                  <img src="/pixel-and-code/assets/logos/masters-in-minds.png" alt="" loading="lazy" className="logo-strip__img--light" />
+                  <span className="logo-marquee__sep">&#10033;</span>
+                  <img src="/pixel-and-code/assets/logos/cpq-agent.svg" alt="" loading="lazy" />
+                  <span className="logo-marquee__sep">&#10033;</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
-
-        <MarkRow />
-
-        {/* SERVICES */}
-        <section className="services section band band--raise" id="services">
-          <div className="section__head">
-            <span className="section__label reveal-up"><span className="px"></span> What we do</span>
-            <h2 className="section__title">Three ways to work with us.</h2>
-          </div>
-          <div className="svc-grid">
-            <article className="svc-card svc-card--lead">
-              <span className="svc-card__idx" aria-hidden="true">01</span>
-              <div className="svc-card__head">
-                <h3 className="svc-card__title">Shopify brand building</h3>
-                <span className="svc-card__tag">What we&rsquo;re known for</span>
-              </div>
-              <div className="svc-card__text">
-                <p className="svc-card__desc">A brand built from nothing — logo, colour, type,
-                   packaging and product design — and a custom Shopify storefront built to match.
-                   Already trading? We rebuild the store around the brand you have.</p>
-                <span className="svc-card__stack">Logo &amp; identity <span className="px"></span> Colour &amp; type <span className="px"></span> Packaging <span className="px"></span> Product design <span className="px"></span> Custom theme</span>
-                <a href="/pixel-and-code/shopify-brand-building/" className="svc-card__link"><span>See how we build Shopify brands ↗</span></a>
-              </div>
-            </article>
-
-            <article className="svc-card">
-              <span className="svc-card__idx" aria-hidden="true">02</span>
-              <div className="svc-card__head"><h3 className="svc-card__title">Websites &amp; web apps</h3></div>
-              <div className="svc-card__text">
-                <p className="svc-card__desc">Software built around your operation — dashboards,
-                   portals, marketplaces and job boards — plus the marketing site that sells it.
-                   JCR Pharma and Masters in Minds were both built this way.</p>
-                <span className="svc-card__stack">Dashboards <span className="px"></span> Portals <span className="px"></span> Marketplaces &amp; job boards <span className="px"></span> Marketing sites <span className="px"></span> SaaS</span>
-                <a href="/pixel-and-code/web-app-development/" className="svc-card__link"><span>See how we build platforms ↗</span></a>
-              </div>
-            </article>
-
-            <article className="svc-card">
-              <span className="svc-card__idx" aria-hidden="true">03</span>
-              <div className="svc-card__head"><h3 className="svc-card__title">AI automation</h3></div>
-              <div className="svc-card__text">
-                <p className="svc-card__desc">Short version: we plug practical AI into the systems you
-                   already run, so the repetitive work stops landing on someone&rsquo;s desk.</p>
-                <span className="svc-card__stack">AI agents <span className="px"></span> Automation <span className="px"></span> CRM/API integrations</span>
-                <a href="/pixel-and-code/ai-automation/" className="svc-card__link"><span>See how we build AI &amp; automation ↗</span></a>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        {/* PROCESS — each step says what lands in your inbox, not how we feel about code */}
-        <section className="process section" id="process">
-          <div className="process__sticky">
-            <div className="process__left">
-              <span className="section__label"><span className="px"></span> How we work</span>
-              <h2 className="section__title">From brief to <em>launch</em>, in four steps.</h2>
-              <p className="process__intro">You always know what is being built this week, why, and
-                 what you will be able to look at on Friday.</p>
-              <a href="/pixel-and-code/how-we-work/" className="btn btn--ghost" style={{ marginTop: "1.8rem" }}>
-                <span>See the full process</span>
-                <Arrow />
-              </a>
-            </div>
-            <div className="process__right" data-steps>
-              <div className="step" data-step>
-                <span className="step__blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-                <div className="step__body">
-                <span className="step__index">01</span>
-                <h3>Scope</h3>
-                <p>A 30-minute call, then we map it: who you sell to, what the brand has to say, what the store must do at launch.</p>
-                <span className="step__deliverable">You get: a written scope and a fixed quote, within one business day</span>
-                </div>
-              </div>
-              <div className="step" data-step>
-                <span className="step__blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-                <div className="step__body">
-                <span className="step__index">02</span>
-                <h3>Identity &amp; design</h3>
-                <p>Logo, palette and type first, then the real storefront screens — reviewed with you before any production code starts.</p>
-                <span className="step__deliverable">You get: your brand direction, then a clickable store design</span>
-                </div>
-              </div>
-              <div className="step" data-step>
-                <span className="step__blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-                <div className="step__body">
-                <span className="step__index">03</span>
-                <h3>Build</h3>
-                <p>The custom theme built on your own Shopify store, with products, collections and apps wired in as we go.</p>
-                <span className="step__deliverable">You get: a Friday preview link and a short written changelog, every week</span>
-                </div>
-              </div>
-              <div className="step" data-step>
-                <span className="step__blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-                <div className="step__body">
-                <span className="step__index">04</span>
-                <h3>Launch &amp; hand over</h3>
-                <p>We go live, watch the first real orders, fix what they find, then hand the whole thing to you.</p>
-                <span className="step__deliverable">You get: the store, the brand files, written docs and a recorded walkthrough</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* PROOF BAR */}
-        <section className="proof-bar">
-          <div className="proof-bar__inner reveal-up">
-            <span>Something to look at every week</span>
-            <span className="proof-bar__dot">✦</span>
-            <span>You talk to the designers and engineers</span>
-            <span className="proof-bar__dot">✦</span>
-            <span>You own the store, the files and the code</span>
-            <span className="proof-bar__dot">✦</span>
-            <span>Full handover at launch</span>
-          </div>
-        </section>
-
-        <MarkRow />
-
-        {/* WORK — every row carries an outcome, not just a category */}
-        <section className="work section band band--raise" id="work">
-          <div className="section__head">
-            <span className="section__label reveal-up"><span className="px"></span> Selected work</span>
-            <h2 className="section__title">Things we&rsquo;ve built.</h2>
-          </div>
-          <div className="work__list" data-work>
-            <a className="project" data-project href="https://sreyacreates.com" target="_blank" rel="noopener">
-              <div className="project__brand">
-                <span className="project__logo project__logo--light"><img src="/pixel-and-code/assets/logos/sreya-creates.png" alt="" loading="lazy" /></span>
-                <div className="project__meta">
-                  <h3>Sreya Creates <span className="project__tag">Brand + store</span></h3>
-                  <span>Handmade jewellery, Kolkata <span className="px"></span> Shopify</span>
-                  <span className="project__outcome">Logo, palette and type designed from scratch, then a custom storefront built for one-of-a-kind stock and seasonal Pujo drops.</span>
-                </div>
-              </div>
-              <span className="project__year">&apos;25</span>
-              <span className="project__arrow">↗</span>
-            </a>
-            <a className="project" data-project href="/pixel-and-code/aurevia-io/">
-              <div className="project__brand">
-                <span className="project__logo"><img src="/pixel-and-code/assets/logos/aurevia.png" alt="" loading="lazy" /></span>
-                <div className="project__meta">
-                  <h3>Aurevia <span className="project__tag">Built &amp; run by us</span></h3>
-                  <span>AI sales agent for Shopify <span className="px"></span> Brand, product &amp; SaaS</span>
-                  <span className="project__outcome">Named, branded and built in-house; live on the Shopify App Store with a new release every week for over a year.</span>
-                </div>
-              </div>
-              <span className="project__year">&apos;25</span>
-              <span className="project__arrow">↗</span>
-            </a>
-            <a className="project" data-project href="/pixel-and-code/jcrpharma-co-uk/">
-              <div className="project__brand">
-                <span className="project__logo project__logo--light"><img src="/pixel-and-code/assets/logos/jcrpharma.png" alt="" loading="lazy" /></span>
-                <div className="project__meta">
-                  <h3>JCR Pharma</h3>
-                  <span>Life-sciences &amp; biometrics recruitment platform</span>
-                  <span className="project__outcome">Candidate portal, employer portal and internal dashboard live in about six weeks; time-to-hire almost halved.</span>
-                </div>
-              </div>
-              <span className="project__year">&apos;24</span>
-              <span className="project__arrow">↗</span>
-            </a>
-            <a className="project" data-project href="https://www.mastersinminds.com/" target="_blank" rel="noopener">
-              <div className="project__brand">
-                <span className="project__logo project__logo--light"><img src="/pixel-and-code/assets/logos/masters-in-minds.png" alt="" loading="lazy" /></span>
-                <div className="project__meta">
-                  <h3>Masters in Minds</h3>
-                  <span>Business consulting website</span>
-                  <span className="project__outcome">Marketing site designed and built end to end.</span>
-                </div>
-              </div>
-              <span className="project__year">&apos;24</span>
-              <span className="project__arrow">↗</span>
-            </a>
-            <a className="project" data-project href="https://www.expeditecommerce.com/cpq-software/" target="_blank" rel="noopener">
-              <div className="project__brand">
-                <span className="project__logo"><img src="/pixel-and-code/assets/logos/cpq-agent.svg" alt="" loading="lazy" /></span>
-                <div className="project__meta">
-                  <h3>AI CPQ Agent</h3>
-                  <span>Conversational configure-price-quote <span className="px"></span> AI automation</span>
-                  <span className="project__outcome">A Claude-powered quoting agent plugged into a live enterprise sales stack.</span>
-                </div>
-              </div>
-              <span className="project__year">&apos;25</span>
-              <span className="project__arrow">↗</span>
-            </a>
-          </div>
-          <div className="verticals">
-            <span className="verticals__label">Sectors we&rsquo;ve shipped in</span>
-            <a href="/pixel-and-code/shopify-brand-building/">Ecommerce &amp; Shopify</a>
-            <a href="/pixel-and-code/jcrpharma-co-uk/">Recruitment &amp; life sciences</a>
-            <a href="https://www.mastersinminds.com/" target="_blank" rel="noopener">Professional services</a>
-            <a href="https://www.expeditecommerce.com/cpq-software/" target="_blank" rel="noopener">B2B SaaS &amp; enterprise sales</a>
-          </div>
-        </section>
-
-        {/* ENGAGEMENT MODELS */}
-        <section className="section band band--deep" id="pricing">
-          <div className="section__head">
-            <span className="section__label reveal-up"><span className="px"></span> Ways to engage</span>
-            <h2 className="section__title">Pick the shape that fits.</h2>
-          </div>
-          <div className="models">
-            <div className="model">
-              <div>
-                <h3>Shopify brand build</h3>
-                <span className="model__for">For founders launching or relaunching a store</span>
-              </div>
-              <div>
-                <p>The whole thing: brand identity, logo, colour and type, packaging and product design, and a custom Shopify storefront built on top of it.</p>
-                <ul>
-                  <li>Fixed scope and fixed price, agreed after the scoping call</li>
-                  <li>Live in about six weeks</li>
-                  <li>Brand only, or store only, if that&rsquo;s all you need</li>
-                </ul>
-              </div>
-              <div className="model__terms">Fixed price<span>~6 weeks to launch</span><span>Quote within one business day</span></div>
-            </div>
-            <div className="model">
-              <div>
-                <h3>Website or web app build</h3>
-                <span className="model__for">For businesses that need software, not a store</span>
-              </div>
-              <div>
-                <p>A marketing site, an internal platform or a full SaaS product — designed, built and launched the same way, week by week.</p>
-                <ul>
-                  <li>Fixed scope and fixed price per phase</li>
-                  <li>First launch in about six weeks</li>
-                  <li>A demo of working software every week</li>
-                </ul>
-              </div>
-              <div className="model__terms">Fixed price<span>~6 weeks to first launch</span><span>Quote within one business day</span></div>
-            </div>
-            <div className="model">
-              <div>
-                <h3>AI automation</h3>
-                <span className="model__for">Add-on, or on its own</span>
-              </div>
-              <div>
-                <p>One workflow automated end to end and plugged into the systems you already run, with a human in the loop where it matters.</p>
-                <ul>
-                  <li>Fixed price per automation</li>
-                  <li>Judged on the hours it removes, not the demo</li>
-                </ul>
-              </div>
-              <div className="model__terms">Fixed price<span>Audit first, then build</span><span>Quote within one business day</span></div>
-            </div>
-            <div className="model">
-              <div>
-                <h3>Full handover</h3>
-                <span className="model__for">Included in every project</span>
-              </div>
-              <div>
-                <p>We don&rsquo;t sell retainers. At launch everything is yours: the Shopify store, the brand files, the code, the infrastructure and a recorded walkthrough of how it all fits together.</p>
-                <ul>
-                  <li>Store, repos and cloud accounts in your name from week one</li>
-                  <li>Editable brand source files, not just exported PNGs</li>
-                  <li>Need more later? A new fixed-price phase, quoted the same way</li>
-                </ul>
-              </div>
-              <div className="model__terms">No lock-in<span>Nothing to migrate later</span><span>Come back when you need us</span></div>
-            </div>
-          </div>
-          <p className="models__note">Every engagement starts with a free 30-minute scoping call. Afterwards you get a written scope and a fixed quote within one business day, whether or not you go ahead.</p>
-        </section>
-
-        <MarkRow />
 
         {/* FOUNDERS */}
         <section className="section" id="team">
@@ -490,7 +273,7 @@ export default function PixelAndCodeHome() {
         </section>
 
         {/* FAQ */}
-        <section className="section band band--raise" id="faq">
+        <section className="section band band--raise" id="faq" data-wm="Ask">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> Questions</span>
             <h2 className="section__title">Before you get in touch.</h2>
@@ -499,7 +282,7 @@ export default function PixelAndCodeHome() {
             <details className="faq__item"><summary>Do you use a Shopify theme or build it custom?</summary><p>Custom. We build the storefront as your own theme so the layouts, sections and product pages are designed for your brand, not adapted from someone else&rsquo;s. It still lives in your Shopify admin, so your team edits content the normal way.</p></details>
             <details className="faq__item"><summary>Can you do just the branding, or just the store?</summary><p>Yes, either. Plenty of merchants come to us with a brand they already like and want the store rebuilt around it, and some want the identity, logo and packaging only. The full build is simply the two together.</p></details>
             <details className="faq__item"><summary>We already sell on Shopify. Can you rebuild what we have?</summary><p>Yes. We work on your existing store, keep your products, orders and apps in place, and launch the new storefront when it&rsquo;s ready — not by starting a new store from scratch.</p></details>
-            <details className="faq__item"><summary>How much does a project cost?</summary><p>It depends on scope, which is why we start with a free scoping call. After it you get a written scope and a fixed quote within one business day. Every engagement is fixed price. We don&rsquo;t sell retainers.</p></details>
+            <details className="faq__item"><summary>How much does a project cost?</summary><p>Every package has a &ldquo;from&rdquo; price on this page &mdash; a brand and custom Shopify store starts at &pound;4,900, a marketing site at &pound;2,400, a web app MVP at &pound;7,900, an automation audit is &pound;490. After a free 30-minute call you get a written scope and a fixed number within one business day. No retainers.</p></details>
             <details className="faq__item"><summary>How long does it take?</summary><p>A brand and store build typically launches in about six weeks. Brand-only work is faster; larger platforms are phased so something real is live early and grows from there.</p></details>
             <details className="faq__item"><summary>What do we own at the end?</summary><p>Everything. The Shopify store is in your name from week one, and at launch you get the editable brand source files, the theme code, the documentation and a recorded walkthrough.</p></details>
             <details className="faq__item"><summary>Do you only work on Shopify?</summary><p>No — it&rsquo;s what we&rsquo;re known for, but we also build websites, web apps and internal platforms (JCR Pharma, Masters in Minds), and AI automations that plug into systems a business already runs.</p></details>
@@ -535,9 +318,9 @@ export default function PixelAndCodeHome() {
                 <p className="contact__note" data-lead-note aria-live="polite"></p>
               </form>
               <aside className="contact__side">
-                <h3>Prefer to talk?</h3>
+                <h3>Prefer to talk to Ritwik?</h3>
                 <p>Book a free 30-minute scoping call. We map the brand and the store with you and send a written scope and fixed quote afterwards.</p>
-                <a href={CALENDLY} target="_blank" rel="noopener" className="btn btn--primary" data-track="book_call"><span>Book a scoping call</span></a>
+                <a href={CALENDLY} target="_blank" rel="noopener" className="btn btn--primary" data-track="book_call"><span>Book a 30-min call with Ritwik</span></a>
                 <div className="contact__alt">
                   Email <a href="mailto:sales@aurevia.io" data-track="email_click">sales@aurevia.io</a><br />
                   or <button type="button" data-open-chat>scope it with our AI assistant</button>

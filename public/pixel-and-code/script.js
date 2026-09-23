@@ -451,10 +451,8 @@ function pcBoot() {
       .to(".hero__sub", { opacity: 1, y: 0, duration: 0.5 }, "-=0.4")
       .to(".hero__actions", { opacity: 1, y: 0, duration: 0.5 }, "-=0.35")
       .to(".hero__trust", { opacity: 1, y: 0, duration: 0.4 }, "-=0.3")
-      .from("[data-kit-tile]", { opacity: 0, y: 18, scale: 0.97, duration: 0.5, stagger: 0.08, ease: "power3.out" }, "-=0.95")
-      .from("[data-kit-sw]", { scaleY: 0, duration: 0.35, stagger: 0.05, ease: "power2.out" }, "-=0.45")
-      .from("[data-kit-pop]", { scale: 0, transformOrigin: "center", duration: 0.4, ease: "back.out(2)" }, "-=0.35")
-      .to(".kit__caption", { opacity: 1, y: 0, duration: 0.4 }, "-=0.3");
+      .from("[data-loop] .loop__page", { opacity: 0, y: 22, duration: 0.6, ease: "power3.out" }, "-=0.9")
+      .to(".loop__caption", { opacity: 1, y: 0, duration: 0.4 }, "-=0.3");
   }
 
   /* ---------- Reveal fallback (no GSAP / reduced) ---------- */
@@ -790,45 +788,119 @@ function pcBoot() {
     });
   }
 
-  /* ---------- Hero brand kit: the mark draws itself, then the lead product lands ---------- */
-  (function initKit() {
-    const board = document.querySelector("[data-kit]");
-    if (!board || reduce) return;
+  /* ---------- Aurevia band: the four-step rail advances on a timer ---------- */
+  (function initAurevia() {
+    const root = document.querySelector("[data-aur]");
+    if (!root || reduce) return;
+    const steps = root.querySelectorAll("[data-aur-step]");
+    const fill = root.querySelector(".aur__fill");
+    if (steps.length < 2) return;
+    let k = 2; // matches the server-rendered is-on
+    setInterval(() => {
+      steps[k].classList.remove("is-on");
+      k = (k + 1) % steps.length;
+      steps[k].classList.add("is-on");
+      if (fill) fill.style.transform = "scaleX(" + (k / (steps.length - 1)) + ")";
+    }, 2400);
+  })();
 
-    // Stroke-draw the monogram once, on a length the browser measures for us.
-    const mark = board.querySelector("[data-kit-draw]");
-    if (mark && typeof mark.getTotalLength === "function") {
-      const len = mark.getTotalLength();
-      gsap.set(mark, { strokeDasharray: len, strokeDashoffset: len });
-      gsap.to(mark, { strokeDashoffset: 0, duration: 1.1, delay: 0.9, ease: "power2.inOut" });
-    }
-
-    // The storefront grid keeps working after the intro: each card takes a turn
-    // as the "lead" product, which is the one thing on the board that moves.
-    const cards = board.querySelectorAll(".kit__card");
-    if (cards.length < 2) return;
+  /* ---------- Hero: the highlighted word cycles ---------- */
+  (function initSwap() {
+    const em = document.querySelector("[data-swap]");
+    if (!em || reduce) return;
+    const words = (em.dataset.words || "").split("|").map((w) => w.trim()).filter(Boolean);
+    if (words.length < 2) return;
     let k = 0;
     setInterval(() => {
-      cards[k].classList.remove("kit__card--lead");
-      k = (k + 1) % cards.length;
-      cards[k].classList.add("kit__card--lead");
-    }, 2200);
+      em.classList.add("is-out");
+      setTimeout(() => { k = (k + 1) % words.length; em.textContent = words[k]; em.classList.remove("is-out"); }, 300);
+    }, 2600);
+  })();
+
+  /* ---------- Blank store -> branded store, three specimens on a loop (every instance) ---------- */
+  document.querySelectorAll("[data-loop]").forEach((root, idx) => {
+    const word = root.querySelector("[data-loop-word]");
+    const scope = root.closest("[data-loop-scope]") || root;
+    const pins = Array.from(scope.querySelectorAll("[data-pin]"));
+    const items = Array.from(scope.querySelectorAll("[data-pin-item]"));
+    const brands = [
+      { cls: "brand-a", name: "NOON" },
+      { cls: "brand-b", name: "HALO" },
+      { cls: "brand-c", name: "RIVER" },
+    ];
+    const phases = ["is-mark", "is-colour", "is-type", "is-products", "is-live"];
+    const clear = () => {
+      root.classList.remove(...phases, ...brands.map((b) => b.cls));
+      pins.forEach((p) => p.classList.remove("is-on"));
+      items.forEach((li) => li.classList.remove("is-on"));
+    };
+    const light = (phase) => {
+      root.classList.add(phase);
+      pins.filter((p) => p.dataset.phase === phase).forEach((p) => {
+        p.classList.add("is-on");
+        items.filter((li) => li.dataset.pinItem === p.dataset.pin).forEach((li) => li.classList.add("is-on"));
+      });
+    };
+    if (reduce) { root.classList.add(brands[0].cls); phases.forEach(light); word.textContent = brands[0].name; return; }
+    let i = idx % brands.length; // instances start on different specimens
+    const run = () => {
+      const b = brands[i];
+      clear(); root.classList.add("is-blank");
+      word.textContent = "\u00a0";
+      setTimeout(() => { root.classList.remove("is-blank"); root.classList.add(b.cls); light("is-mark"); }, 700);
+      setTimeout(() => light("is-colour"), 1500);
+      setTimeout(() => { word.textContent = b.name; light("is-type"); }, 2300);
+      setTimeout(() => light("is-products"), 3100);
+      setTimeout(() => light("is-live"), 3900);
+      setTimeout(() => { i = (i + 1) % brands.length; run(); }, 7400);
+    };
+    setTimeout(run, 900 + idx * 400);
+  });
+
+  /* ---------- Pricing tabs: buttons, not anchors, so nothing scroll-jumps ---------- */
+  document.querySelectorAll("[data-tabs]").forEach((root) => {
+    const tabs = Array.from(root.querySelectorAll("[data-tab]"));
+    const panels = Array.from(root.querySelectorAll("[data-panel]"));
+    const show = (key) => {
+      tabs.forEach((t) => { const on = t.dataset.tab === key; t.classList.toggle("is-active", on); t.setAttribute("aria-selected", String(on)); });
+      panels.forEach((p) => { const on = p.dataset.panel === key; p.classList.toggle("is-active", on); p.hidden = !on; });
+    };
+    tabs.forEach((t) => t.addEventListener("click", () => show(t.dataset.tab)));
+  });
+
+  /* ---------- Process: the hand-over stack fans out once it scrolls into view ---------- */
+  (function initHand() {
+    const hand = document.querySelector("[data-hand]");
+    if (!hand) return;
+    if (reduce || !("IntersectionObserver" in window)) { hand.classList.add("is-on"); return; }
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { hand.classList.add("is-on"); io.disconnect(); }
+    }, { rootMargin: "0px 0px -20% 0px" });
+    io.observe(hand);
   })();
 
   /* ---------- Process steps: 3x3 pixel block fills in as each step arrives ---------- */
-  gsap.utils.toArray("[data-step]").forEach((step) => {
-    const px = step.querySelectorAll(".step__blocks i");
-    if (!px.length) return;
-    ScrollTrigger.create({
-      trigger: step, start: "top 78%", once: true,
-      onEnter: () => px.forEach((b, k) => setTimeout(() => b.classList.add("is-on"), 70 * k)),
-    });
-  });
+  (function initStepBlocks() {
+    const steps = Array.from(document.querySelectorAll("[data-step]"));
+    if (!steps.length) return;
+    const light = (step) => step.querySelectorAll(".step__blocks i").forEach((b, k) => setTimeout(() => b.classList.add("is-on"), 70 * k));
+    if (!("IntersectionObserver" in window)) { steps.forEach(light); return; }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { light(e.target); io.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -20% 0px" });
+    steps.forEach((st) => io.observe(st));
+  })();
 
   /* ---------- Section-label pixel blinks once on entry ---------- */
-  gsap.utils.toArray(".section__label").forEach((el) => {
-    ScrollTrigger.create({ trigger: el, start: "top 85%", once: true, onEnter: () => el.classList.add("is-in") });
-  });
+  (function initLabels() {
+    const els = Array.from(document.querySelectorAll(".section__label"));
+    if (!els.length) return;
+    if (!("IntersectionObserver" in window)) { els.forEach((el) => el.classList.add("is-in")); return; }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -12% 0px" });
+    els.forEach((el) => io.observe(el));
+  })();
 
   /* ---------- Stat counters ---------- */
   gsap.utils.toArray("[data-num]").forEach((el) => {
