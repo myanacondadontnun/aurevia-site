@@ -449,6 +449,7 @@ function pcBoot() {
     tl.to(".hero__eyebrow", { opacity: 1, y: 0, duration: 0.5 })
       .to(lines, { yPercent: 0, duration: 0.7, stagger: 0.1 }, "-=0.3")
       .to(".hero__sub", { opacity: 1, y: 0, duration: 0.5 }, "-=0.4")
+      .to(".hero__builds", { opacity: 1, y: 0, duration: 0.5 }, "-=0.35")
       .to(".hero__actions", { opacity: 1, y: 0, duration: 0.5 }, "-=0.35")
       .to(".hero__trust", { opacity: 1, y: 0, duration: 0.4 }, "-=0.3")
       .from("[data-loop] .loop__page", { opacity: 0, y: 22, duration: 0.6, ease: "power3.out" }, "-=0.9")

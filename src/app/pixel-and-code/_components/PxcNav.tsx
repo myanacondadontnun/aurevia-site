@@ -27,7 +27,7 @@ export default function PxcNav({
       {/* One-line banner above the nav, Charle-style: the studio's own product
           is the credential. Plain <a> — /home is outside this section. */}
       <div className="topbar">
-        <span className="topbar__by">Built by</span>
+        <span className="topbar__by">Powered by</span>
         <a href="/home/" className="topbar__brand" aria-label="Aurevia.io">
           <img src="/pixel-and-code/assets/logos/aurevia.png" alt="" className="topbar__mark" />
           <b>Aurevia.io</b>

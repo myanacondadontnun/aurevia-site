@@ -3,12 +3,12 @@
 // to UK market rates for the scope (theme-based store builds ~£3k, custom stores
 // £8–20k, agencies "from £5k", MVP studios $8.9k–$24.9k) and sit just under the
 // agency floor. script.js (initTabs) switches panels; the first is open without JS.
-interface Pkg { name: string; who: string; price: string; time: string; inc: string[]; lead?: boolean; }
+interface Pkg { name: string; who: string; price: string; time: string; inc: string[]; lead?: boolean; monthly?: boolean; }
 interface Tab { key: string; label: string; intro: string; pkgs: Pkg[]; }
 
 const tabs: Tab[] = [
   {
-    key: "shopify", label: "Shopify", intro: "Brand and store, or either on its own. Every package is fixed price and you own the store, the files and the theme from week one.",
+    key: "shopify", label: "Shopify", intro: "Brand and store, or either on its own, then a monthly plan that keeps the store changing with the calendar. Every build is fixed price and you own the store, the files and the theme from week one.",
     pkgs: [
       { name: "Brand only", who: "You have a store, you need an identity", price: "from £1,900", time: "3 weeks",
         inc: ["Logo & wordmark with every export", "Colour & type system, written down", "Packaging templates, print-ready", "A short brand guide your developer can build against"] },
@@ -16,6 +16,8 @@ const tabs: Tab[] = [
         inc: ["Everything in Brand only", "Custom Shopify theme on your own store", "Collection & product pages built to sell", "Apps wired in: reviews, email, analytics, shipping", "Launch, first-orders watch and full handover"] },
       { name: "Store only", who: "You like your brand, the store lets it down", price: "from £2,900", time: "3–4 weeks",
         inc: ["Custom theme around the identity you have", "Migration on your live store, no downtime", "Product pages, cart and checkout flow", "Handover with theme code and a walkthrough"] },
+      { name: "Occasion pages", who: "After launch: the store changes with the calendar", price: "£290", time: "monthly", monthly: true,
+        inc: ["A custom landing page for each sale or festival", "Homepage, banners and collections switched on a date", "Rolled back afterwards, nothing left stale", "Calendar agreed up front, every page approved by you", "Cancel any month"] },
     ],
   },
   {
@@ -49,18 +51,21 @@ const tabs: Tab[] = [
   },
 ];
 
-export default function PricingTabs() {
+// `only`: render a single service's sheets with no tab strip (the Shopify page
+// shows just its own packages). script.js's initTabs is a no-op without [data-tabs].
+export default function PricingTabs({ only }: { only?: string }) {
+  const shown = only ? tabs.filter((t) => t.key === only) : tabs;
   return (
-    <div className="ptabs" data-tabs>
-      <div className="ptabs__nav" role="tablist" aria-label="Choose a service">
+    <div className={`ptabs${only ? " ptabs--single" : ""}`} data-tabs={only ? undefined : ""}>
+      {!only && <div className="ptabs__nav" role="tablist" aria-label="Choose a service">
         {tabs.map((t, i) => (
           <button key={t.key} type="button" role="tab" className={`ptabs__tab${i === 0 ? " is-active" : ""}`} data-tab={t.key} aria-selected={i === 0} aria-controls={`ptab-${t.key}`}>
             {t.label}
           </button>
         ))}
-      </div>
-      {tabs.map((t, i) => (
-        <div key={t.key} id={`ptab-${t.key}`} role="tabpanel" className={`ptabs__panel${i === 0 ? " is-active" : ""}`} data-panel={t.key} hidden={i !== 0}>
+      </div>}
+      {shown.map((t, i) => (
+        <div key={t.key} id={`ptab-${t.key}`} role={only ? undefined : "tabpanel"} className={`ptabs__panel${i === 0 ? " is-active" : ""}`} data-panel={t.key} hidden={i !== 0}>
           <p className="ptabs__intro">{t.intro}</p>
           <div className={`ptabs__grid ptabs__grid--${t.pkgs.length}`}>
             {t.pkgs.map((p, i) => {
@@ -80,13 +85,12 @@ export default function PricingTabs() {
                     ))}
                   </ol>
                   <div className="qs__total">
-                    <span className="qs__total-label">{from ? "Total, from" : "Total"}</span>
-                    <b className="qs__amount"><em>{amount}</em></b>
-                    <small>{p.time} &middot; fixed price</small>
+                    <span className="qs__total-label">{p.monthly ? "Per month" : from ? "Starting from" : "One price"}</span>
+                    <b className="qs__amount"><em>{from && <small>from</small>}{amount}{p.monthly && <small className="qs__per">/ month</small>}</em></b>
+                    <small className="qs__time">{p.monthly ? "Ongoing \u00b7 no minimum term \u00b7 cancel any month" : `${p.time} \u00b7 fixed scope, fixed number`}</small>
                   </div>
-                  <span className="qs__stamp" aria-hidden="true">Fixed</span>
                   {p.lead && <span className="qs__stamp qs__stamp--lead" aria-hidden="true">Recommended</span>}
-                  <a href="#contact" className="qs__sign">Get a fixed quote <i aria-hidden="true">&#8594;</i></a>
+                  <a href="#contact" className="qs__sign">{p.monthly ? "Add to any store" : "Get a fixed quote"} <i aria-hidden="true">&#8594;</i></a>
                 </article>
               );
             })}

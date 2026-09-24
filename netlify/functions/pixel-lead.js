@@ -10,12 +10,16 @@ exports.handler = async (event) => {
   if (b.company_url) return { statusCode: 200, body: JSON.stringify({ ok: true }) }; // honeypot
   const name = String(b.name || "").trim().slice(0, 120);
   const email = String(b.email || "").trim().slice(0, 200);
-  const project = String(b.project || "").trim().slice(0, 4000);
+  const store = String(b.store || "").trim().slice(0, 300);
+  // The founders-section call form sends a store URL instead of a brief; a
+  // project line is synthesised so the email still reads as a lead.
+  const project = String(b.project || "").trim().slice(0, 4000) || (store ? `Booked a call. Store: ${store}` : "");
+  const source = b.source === "founders call" ? "founders call" : "homepage form";
   if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || !project) {
     return { statusCode: 400, body: JSON.stringify({ ok: false, error: "Name, a valid email and a short project description are required." }) };
   }
   try {
-    const ok = await sendLeadEmail({ name, email, project, source: "homepage form", page: String(b.page || "").slice(0, 200) });
+    const ok = await sendLeadEmail({ name, email, store, project, source, page: String(b.page || "").slice(0, 200) });
     if (!ok) await sendErrorAlert("lead form: email not sent (missing RESEND_API_KEY / LEAD_EMAIL?)", JSON.stringify({ name, email }), "form");
     return { statusCode: 200, body: JSON.stringify({ ok: true }) };
   } catch (e) {

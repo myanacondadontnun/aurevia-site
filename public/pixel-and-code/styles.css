@@ -1597,3 +1597,204 @@ html.lenis, html.lenis body { height: auto; }
 .qs__sign:hover i { transform: translateX(4px); }
 .qs__sign:hover { color: var(--accent-text); }
 @media (max-width: 900px) { .qs__stamp--lead { right: 1.2rem; top: 1rem; } .qs__head { padding-right: 5rem; } }
+
+/* ============================================================
+   2026-09 homepage pass: grouped showcase with a live-rendered card,
+   prominent "from" prices, six-up testimonials, the founders' call
+   form with inline Calendly, a drawn contact watermark, sitemap footer.
+   ============================================================ */
+
+/* ---------- Showcase: three groups, one heading each ---------- */
+.showcase__group + .showcase__group { margin-top: clamp(2.2rem, 5vh, 3.4rem); }
+.showcase__heading {
+  display: flex; align-items: center; gap: 0.6rem; margin: 0 0 1rem;
+  font-family: var(--ff-mono); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--accent-text);
+}
+.showcase__heading .px { width: 0.55em; height: 0.55em; }
+.showcase__heading small { font-size: 0.66rem; font-weight: 500; color: var(--muted); padding: 0.15rem 0.5rem; border: 1px solid var(--line); border-radius: 100px; margin-left: 0.2rem; }
+.showcase__heading::after { content: ""; flex: 1; height: 1px; background: var(--line); margin-left: 0.4rem; }
+
+/* Live-rendered card: the real site, in a frame four times the card's width,
+   scaled to a quarter — so the page lays out at a desktop viewport whatever
+   the column width is. Pointer events off so the card stays one link. */
+.showcase__shot--live { background: #fff; }
+.showcase__frame {
+  position: absolute; left: 0; top: 0; width: 400%; height: 400%; border: 0; display: block;
+  max-width: none; max-height: none; transform: scale(0.25); transform-origin: 0 0; pointer-events: none; background: #fff;
+  opacity: 0.96; transition: opacity .3s;
+}
+.showcase__card:hover .showcase__frame { opacity: 1; }
+.showcase__live {
+  position: absolute; right: 0.6rem; top: 0.6rem; z-index: 1; display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: var(--ff-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #fff; background: rgba(8, 43, 34, 0.86); border-radius: 100px; padding: 0.28rem 0.6rem; backdrop-filter: blur(6px);
+}
+.showcase__live i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(0,204,153,0.6); animation: livePulse 1.8s ease-out infinite; }
+@keyframes livePulse { 0% { box-shadow: 0 0 0 0 rgba(0,204,153,0.6); } 100% { box-shadow: 0 0 0 7px rgba(0,204,153,0); } }
+@media (prefers-reduced-motion: reduce) { .showcase__live i { animation: none; } }
+
+/* ---------- Pricing: the "from" price is the headline of every sheet ---------- */
+.qs__total {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0.25rem;
+  margin-top: 0.7rem; padding-top: 0.9rem; border-top: 2px solid var(--ink);
+}
+.qs__total-label { font-family: var(--ff-mono); font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.qs__amount { font-family: var(--ff-display); font-variation-settings: "opsz" 96; font-weight: 800; font-size: clamp(2.1rem, 3.2vw, 2.8rem); letter-spacing: -0.04em; line-height: 1; }
+.qs__amount em { display: inline-flex; align-items: baseline; gap: 0.3em; font-style: normal; background: var(--accent); color: var(--ink); padding: 0.06em 0.28em 0.08em; border-radius: 0.16em; }
+.qs__amount em small { font-family: var(--ff-mono); font-size: 0.34em; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.qs__time { font-family: var(--ff-mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+.qs--lead .qs__amount em { box-shadow: 0 8px 22px -10px rgba(0, 204, 153, 0.7); }
+
+/* ---------- Testimonials: six cards on ink, the client story leading ---------- */
+.quotes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.quote, .quote + .quote { padding: 1.5rem 1.5rem 1.4rem; border: 0; border-radius: 20px; background: var(--tint); transition: background .3s, transform .4s var(--ease); }
+.quote:hover { background: var(--tint-2); transform: translateY(-3px); }
+.quote--lead { grid-column: span 2; background: rgba(0, 204, 153, 0.10); border: 1px solid rgba(0, 204, 153, 0.28); }
+.quote--lead .quote__text { font-size: clamp(1.15rem, 1.9vw, 1.45rem); }
+.quote__text { font-size: 1.02rem; }
+.quote__logo--initial { font-family: var(--ff-display); font-weight: 800; font-size: 1.2rem; color: var(--ink); background: var(--accent); }
+@media (max-width: 1000px) { .quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); } .quote--lead { grid-column: span 2; } }
+@media (max-width: 760px) { .quotes { grid-template-columns: 1fr; gap: 1rem; } .quote--lead { grid-column: auto; } .quote + .quote { border-top: 0; padding-top: 1.5rem; } }
+
+/* ---------- Founders: the call form, and the calendar it opens into ---------- */
+.call {
+  margin-top: clamp(2.4rem, 5vh, 3.6rem); padding: clamp(1.4rem, 3vw, 2.2rem);
+  border-radius: 22px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--card-shadow);
+  display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 1.4rem clamp(1.4rem, 4vw, 3rem); align-items: center;
+  position: relative; overflow: hidden;
+}
+.call::before { content: ""; position: absolute; right: -2.5rem; top: -2.5rem; width: 9rem; aspect-ratio: 1; border-radius: 28% 28% 28% 4%; background: var(--mint); transform: rotate(-14deg); pointer-events: none; }
+.call > * { position: relative; z-index: 1; }
+.call__head { min-width: 0; }
+.call__lead { margin-top: 0.9rem; color: var(--muted); font-size: 1rem; line-height: 1.5; }
+.call__fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; align-items: stretch; min-width: 0; }
+.call__fields .field input { padding: 1.3rem 1rem 0.6rem; }
+.call__btn { grid-column: 1 / -1; justify-content: center; white-space: nowrap; }
+.call__note { grid-column: 1 / -1; font-family: var(--ff-mono); font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+.call__note.is-error { color: var(--error); }
+.call--open { grid-template-columns: 1fr; gap: 1rem; align-items: start; }
+.call__embed { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #fff; min-height: 700px; }
+.call__embed iframe { width: 100%; height: 720px; border: 0; display: block; }
+.call__alt { font-family: var(--ff-mono); font-size: 0.78rem; color: var(--muted); }
+.call__alt a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 960px) { .call { grid-template-columns: 1fr; } .call__fields { grid-template-columns: 1fr 1fr; } .call__fields .field:nth-child(3) { grid-column: 1 / -1; } }
+@media (max-width: 560px) { .call__fields { grid-template-columns: 1fr; } .call__embed iframe { height: 900px; } .call__embed { min-height: 0; } }
+
+/* ---------- Contact: a drawn watermark, not a word ---------- */
+/* Replaces the invisible ink-on-ink mark: a dot grid fading in from the right,
+   the bracket mark outlined in mint, a ring behind it, and a few loose pixels. */
+.contact::before { content: none; }
+.contact__wm { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.contact__wm-grid {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.22) 1.1px, transparent 1.6px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 60% 80% at 88% 55%, #000 0%, transparent 70%);
+          mask-image: radial-gradient(ellipse 60% 80% at 88% 55%, #000 0%, transparent 70%);
+  opacity: 0.55;
+}
+.contact__wm-mark {
+  position: absolute; right: clamp(-3rem, -3vw, 0rem); bottom: clamp(-2rem, 2vh, 2rem); width: clamp(15rem, 34vw, 32rem); aspect-ratio: 1;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%2300cc99' stroke-width='0.9'><rect x='2' y='14' width='4' height='4'/><rect x='2' y='30' width='4' height='4'/><rect x='8' y='22' width='4' height='4'/><rect x='18' y='18' width='12' height='12'/><rect x='21' y='21' width='6' height='6' fill='%2300cc99' stroke='none' opacity='0.5'/><rect x='36' y='22' width='4' height='4'/><rect x='42' y='14' width='4' height='4'/><rect x='42' y='30' width='4' height='4'/></svg>") no-repeat center / contain;
+  opacity: 0.22; transform: rotate(-6deg);
+}
+.contact__wm-ring {
+  position: absolute; right: clamp(2rem, 9vw, 9rem); bottom: clamp(3rem, 12vh, 9rem); width: clamp(10rem, 22vw, 20rem); aspect-ratio: 1; border-radius: 50%;
+  border: 1.5px dashed rgba(0, 204, 153, 0.35); opacity: 0.7; animation: wmSpin 60s linear infinite;
+}
+.contact__wm-bits {
+  position: absolute; left: clamp(-1rem, 2vw, 3rem); top: 12%; width: clamp(7rem, 14vw, 12rem); aspect-ratio: 1;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40' fill='%2300cc99'><rect x='2' y='2' width='4' height='4' opacity='0.5'/><rect x='12' y='6' width='3' height='3' opacity='0.35'/><rect x='6' y='16' width='5' height='5' opacity='0.28'/><rect x='22' y='14' width='3' height='3' opacity='0.45'/><rect x='30' y='4' width='4' height='4' opacity='0.25'/><rect x='18' y='28' width='4' height='4' opacity='0.4'/><rect x='34' y='24' width='3' height='3' opacity='0.3'/><rect x='4' y='32' width='3' height='3' opacity='0.35'/><rect x='28' y='34' width='5' height='5' opacity='0.22'/></svg>") no-repeat center / contain;
+  opacity: 0.6;
+}
+@keyframes wmSpin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .contact__wm-ring { animation: none; } }
+@media (max-width: 760px) { .contact__wm-ring { display: none; } .contact__wm-mark { opacity: 0.14; } }
+
+/* ---------- Footer: brand + four columns, then the legal line ---------- */
+.footer { padding: clamp(3rem, 7vh, 4.5rem) clamp(1.2rem, 5vw, 5rem) 1.8rem; }
+.footer__grid {
+  display: grid; grid-template-columns: minmax(0, 1.7fr) repeat(4, minmax(0, 1fr)); gap: 2.4rem clamp(1.4rem, 3vw, 2.6rem);
+  padding-bottom: 2.6rem; border-bottom: 1px solid var(--line);
+}
+.footer__brand { min-width: 0; }
+.footer__logo { font-size: 1.7rem; }
+.footer__blurb { margin-top: 1.1rem; color: var(--muted); font-size: 0.92rem; line-height: 1.6; max-width: 34ch; }
+.footer__blurb a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+.footer__email { display: inline-block; margin-top: 1rem; font-family: var(--ff-mono); font-size: 0.9rem; color: var(--accent-text); border-bottom: 1px solid var(--accent-text); transition: color .3s, border-color .3s; }
+.footer__email:hover { color: var(--text); border-color: var(--text); }
+.footer__people { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; margin-top: 0.9rem; font-family: var(--ff-mono); font-size: 0.74rem; }
+.footer__people a { color: var(--muted); transition: color .3s; }
+.footer__people a:hover { color: var(--text); }
+.footer__col { display: flex; flex-direction: column; gap: 0.6rem; min-width: 0; }
+.footer__label { font-family: var(--ff-mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 0.3rem; }
+.footer__col a { color: var(--muted); font-size: 0.92rem; transition: color .3s; }
+.footer__col a:hover { color: var(--text); }
+.footer__bottom { align-items: center; gap: 0.6rem 1.5rem; padding-top: 1.4rem; border-top: 0; }
+.footer__bottom a { color: var(--muted); transition: color .3s; }
+.footer__bottom a:hover { color: var(--text); }
+.footer__legal { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; }
+@media (max-width: 1000px) { .footer__grid { grid-template-columns: 1fr 1fr; } .footer__brand { grid-column: 1 / -1; } }
+@media (max-width: 520px) { .footer__grid { grid-template-columns: 1fr; } }
+
+/* Ghost buttons on ink grounds: the ink border vanishes, so use the text colour. */
+.band--deep .btn--ghost, .contact .btn--ghost { border-color: var(--text); color: var(--text); }
+.band--deep .btn--ghost:hover, .contact .btn--ghost:hover { background: var(--text); color: var(--ink); }
+
+/* ============================================================
+   Shopify brand-building page (2026-09): skimmable, same funk as home.
+   ============================================================ */
+/* Skim strip: four big facts you can read in five seconds */
+.skim { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.8rem; margin-top: clamp(1rem, 3vh, 2rem); }
+.skim__tile {
+  position: relative; overflow: hidden; padding: 1.3rem 1.3rem 1.2rem; border-radius: 18px;
+  background: var(--surface); border: 1px solid var(--line); box-shadow: var(--card-shadow); min-width: 0;
+  transition: transform .4s var(--ease), background .3s;
+}
+.skim__tile:hover { transform: translateY(-3px); background: var(--tint-2); }
+.skim__tile::after { content: ""; position: absolute; right: -0.9rem; bottom: -0.9rem; width: 3.2rem; aspect-ratio: 1; border-radius: 30% 30% 30% 4%; background: var(--mint); transform: rotate(-14deg); }
+.skim__big { display: block; font-family: var(--ff-display); font-variation-settings: "opsz" 96; font-weight: 800; font-size: clamp(1.9rem, 3vw, 2.6rem); letter-spacing: -0.04em; line-height: 1; position: relative; z-index: 1; }
+.skim__big em { font-style: normal; background: var(--accent); color: var(--ink); padding: 0.02em 0.16em; border-radius: 0.16em; }
+.skim__label { display: block; margin-top: 0.5rem; font-family: var(--ff-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); position: relative; z-index: 1; }
+@media (max-width: 900px) { .skim { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Before / after: what a bought-theme store is made of vs. what we hand over */
+.swap { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 1rem; align-items: stretch; }
+.swap__col { padding: 1.4rem 1.4rem 1.2rem; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--card-shadow); min-width: 0; }
+.swap__col--after { border: 2px solid var(--accent); }
+.swap__head { display: flex; align-items: center; gap: 0.5rem; font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.9rem; }
+.swap__col--after .swap__head { color: var(--accent-text); }
+.swap__col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+.swap__col li { display: flex; gap: 0.6rem; align-items: baseline; font-size: 0.98rem; color: var(--text); }
+.swap__col--before li { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--kit-clay); text-decoration-thickness: 1.5px; }
+.swap__col li::before { content: ""; flex: 0 0 auto; width: 0.45em; height: 0.45em; background: var(--tint-4); }
+.swap__col--after li::before { background: var(--accent); }
+.swap__arrow { display: grid; place-items: center; font-family: var(--ff-display); font-weight: 800; font-size: 2.2rem; color: var(--accent-text); padding: 0 0.4rem; }
+@media (max-width: 760px) { .swap { grid-template-columns: 1fr; } .swap__arrow { transform: rotate(90deg); padding: 0; } }
+
+/* Occasions: the festive page, with the calendar of pages that follow it */
+.occasion { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; margin-top: clamp(2.5rem, 6vh, 4rem); }
+.occasion .case-shot { margin: 0; }
+.occasion__shot { position: relative; }
+.occasion__sticker {
+  position: absolute; z-index: 2; left: -0.6rem; top: -0.8rem; transform: rotate(-6deg);
+  font-family: var(--ff-mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600;
+  color: var(--ink); background: var(--accent); padding: 0.4rem 0.7rem; border-radius: 6px; box-shadow: 0 10px 24px -12px rgba(0,0,0,0.5);
+}
+.occasion__text h3 { font-family: var(--ff-display); font-variation-settings: "opsz" 64; font-weight: 800; font-size: clamp(1.6rem, 2.8vw, 2.3rem); letter-spacing: -0.03em; line-height: 1.05; margin: 0.8rem 0 1rem; }
+.occasion__text p { color: var(--muted); font-size: 1.02rem; margin-bottom: 1rem; }
+.occasion__text p strong { color: var(--text); font-weight: 600; }
+.occasion__list { list-style: none; margin: 1.2rem 0 1.4rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.occasion__list li { font-family: var(--ff-mono); font-size: 0.74rem; letter-spacing: 0.04em; padding: 0.4rem 0.75rem; border-radius: 100px; border: 1px solid var(--line); color: var(--text); background: var(--tint); }
+.occasion__list li.is-live { background: var(--accent); color: var(--ink); border-color: var(--accent); font-weight: 600; }
+@media (max-width: 860px) { .occasion { grid-template-columns: 1fr; } .occasion__sticker { left: 0.6rem; top: 0.6rem; } }
+
+/* Single-service pricing: no tab strip, sheets sit straight under the heading */
+.ptabs--single .ptabs__intro { margin-top: 0; }
+
+/* Page hero reuses the home hero grid; stickers and loop come along for free */
+.hero--page .hero__title { font-size: clamp(2.6rem, 5vw, 5rem); }
+
+/* Four Shopify sheets: 2×2 on desktop so the monthly plan reads as part of the set */
+.ptabs__grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.qs__amount em .qs__per { text-transform: none; letter-spacing: 0; font-size: 0.42em; font-weight: 500; }

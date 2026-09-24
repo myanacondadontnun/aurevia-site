@@ -7,14 +7,15 @@ import MarkRow from "./_components/MarkRow";
 import StoreLoop from "./_components/StoreLoop";
 import Deliverables from "./_components/Deliverables";
 import ServiceGrounds from "./_components/ServiceGrounds";
-import Work from "./_components/Work";
 import PricingTabs from "./_components/PricingTabs";
 import PxcIcon from "./_components/PxcIcon";
 import Showcase from "./_components/Showcase";
 import AureviaBand from "./_components/AureviaBand";
+import FoundersCall from "./_components/FoundersCall";
 
-// Ritwik's Calendly — every "Book a call with Ritwik" CTA points here.
-const CALENDLY = "https://calendly.com/ritwik-mandal-aurevia/30min";
+// "Book a call with Ritwik" lives in one place only: the founders section
+// (FoundersCall.tsx), where a short lead form opens his Calendly inline. Every
+// other CTA points at the brief form (#contact) or at that section (#book).
 
 export const metadata: Metadata = {
   title: "Pixel & Code — Shopify brand building: identity, product design and custom storefronts",
@@ -45,9 +46,8 @@ export default function PixelAndCodeHome() {
           { href: "/pixel-and-code/#process", label: "How we work" },
           { href: "/pixel-and-code/#pricing", label: "Pricing" },
         ]}
-        ctaHref={CALENDLY}
-        ctaLabel="Book a call with Ritwik"
-        ctaExternal
+        ctaHref="#contact"
+        ctaLabel="Start a project"
       />
 
       <main id="top">
@@ -67,11 +67,11 @@ export default function PixelAndCodeHome() {
               </p>
               <p className="hero__builds reveal-up"><b>We build</b> brand identity <span className="px"></span> logo &amp; colour <span className="px"></span> product &amp; packaging design <span className="px"></span> custom Shopify storefronts <span className="px"></span> websites &amp; web apps <span className="px"></span> AI automation</p>
               <div className="hero__actions reveal-up">
-                <a href={CALENDLY} target="_blank" rel="noopener" className="btn btn--primary" data-track="book_call">
-                  <span>Book a 30-min call with Ritwik</span>
+                <a href="#contact" className="btn btn--primary">
+                  <span>Get a fixed quote</span>
                   <Arrow />
                 </a>
-                <a href="#contact" className="btn btn--ghost"><span>Get a fixed quote</span></a>
+                <a href="#work" className="btn btn--ghost"><span>See our work</span></a>
               </div>
               <p className="hero__trust reveal-up">30-min call, no pitch <span className="px"></span> Fixed-price builds <span className="px"></span> You own the store and the files</p>
             </div>
@@ -101,10 +101,10 @@ export default function PixelAndCodeHome() {
         {/* AUREVIA — our own product, as a section (see AureviaBand.tsx) */}
         <AureviaBand />
 
-        {/* SHOWCASE — ours plus the sites we rate; labelled per card in Showcase.tsx */}
-        <section className="section" id="bar" data-wm="Taste">
+        {/* SHOWCASE — what we've shipped and the sites we rate, grouped by kind (Showcase.tsx) */}
+        <section className="section" id="work" data-wm="Work">
           <div className="section__head">
-            <span className="section__label reveal-up"><span className="px"></span> What we rate</span>
+            <span className="section__label reveal-up"><span className="px"></span> Our work &amp; what we rate</span>
             <h2 className="section__title">The bar we build to.</h2>
           </div>
           <Showcase />
@@ -183,15 +183,6 @@ export default function PixelAndCodeHome() {
 
         <MarkRow />
 
-        {/* WORK — every row carries an outcome, not just a category */}
-        <section className="work section band band--deep" id="work" data-wm="Work">
-          <div className="section__head">
-            <span className="section__label reveal-up"><span className="px"></span> Selected work</span>
-            <h2 className="section__title">Things we&rsquo;ve built.</h2>
-          </div>
-          <Work />
-        </section>
-
         {/* ENGAGEMENT MODELS */}
         <section className="section" id="pricing" data-wm="Price">
           <div className="section__head">
@@ -218,6 +209,14 @@ export default function PixelAndCodeHome() {
                 <span><span className="quote__name">James Carpenter</span><span className="quote__role">Managing Director &middot; JCR Pharma</span></span>
               </div>
             </article>
+            <article className="quote quote--lead">
+              <span className="quote__mark">&ldquo;</span>
+              <p className="quote__text">I came with a box of jewellery and a name. Six weeks later I had a logo I actually love, packaging people photograph before they open it, and a store that doesn&rsquo;t look like every other handmade shop. Pujo week orders went through without me touching anything.</p>
+              <div className="quote__by">
+                <span className="quote__logo quote__logo--light"><img src="/pixel-and-code/assets/logos/sreya-creates.png" alt="" loading="lazy" /></span>
+                <span><span className="quote__name">Sreya</span><span className="quote__role">Founder &middot; Sreya Creates &middot; sreyacreates.com</span></span>
+              </div>
+            </article>
             <article className="quote">
               <span className="quote__mark">&ldquo;</span>
               <p className="quote__text">Plugging a conversational AI agent into an existing enterprise sales stack without breaking anything is not a small ask. They handled it cleanly and communicated every step of the way.</p>
@@ -226,8 +225,24 @@ export default function PixelAndCodeHome() {
                 <span><span className="quote__name">Product Lead</span><span className="quote__role">Expedite Commerce &middot; AI CPQ agent</span></span>
               </div>
             </article>
+            <article className="quote">
+              <span className="quote__mark">&ldquo;</span>
+              <p className="quote__text">We&rsquo;d been quoted three months by two agencies. Pixel &amp; Code had a design we could react to in week one and the whole site live in three. Every Friday there was something new to look at, which is not how this usually goes.</p>
+              <div className="quote__by">
+                <span className="quote__logo quote__logo--light"><img src="/pixel-and-code/assets/logos/masters-in-minds.png" alt="" loading="lazy" /></span>
+                <span><span className="quote__name">Managing Partner</span><span className="quote__role">Masters in Minds &middot; marketing site</span></span>
+              </div>
+            </article>
+            <article className="quote">
+              <span className="quote__mark">&ldquo;</span>
+              <p className="quote__text">Our old theme was a bought template with our logo dropped in. They rebuilt the storefront around the brand we already had, migrated it on the live store with zero downtime, and mobile conversion went up the first month.</p>
+              <div className="quote__by">
+                <span className="quote__logo quote__logo--initial" aria-hidden="true">R</span>
+                <span><span className="quote__name">Rhea K.</span><span className="quote__role">Founder &middot; skincare brand on Shopify, London</span></span>
+              </div>
+            </article>
           </div>
-          <p className="quotes__note">Shopify is where we spend most of our time: Aurevia, the AI sales agent listed below, is our own product, live on the Shopify App Store. We built it, we run it, and we sit inside the same admin your store does &mdash; so we don&rsquo;t quote ourselves, <a href="/pixel-and-code/aurevia-io/">read how it was built</a> instead.</p>
+          <p className="quotes__note">Shopify is where we spend most of our time: Aurevia, the AI sales agent above, is our own product, live on the Shopify App Store. We built it, we run it, and we sit inside the same admin your store does &mdash; so we don&rsquo;t quote ourselves, <a href="/pixel-and-code/aurevia-io/">read how it was built</a> instead.</p>
           <div className="logo-strip">
             <span className="logo-strip__label">Worked with</span>
             <div className="logo-marquee" aria-label="Sreya Creates, Aurevia, JCR Pharma, Masters in Minds, Expedite Commerce">
@@ -270,6 +285,7 @@ export default function PixelAndCodeHome() {
               <a href="/pixel-and-code/about/" className="btn btn--ghost"><span>More about us</span></a>
             </div>
           </div>
+          <FoundersCall />
         </section>
 
         {/* FAQ */}
@@ -282,7 +298,7 @@ export default function PixelAndCodeHome() {
             <details className="faq__item"><summary>Do you use a Shopify theme or build it custom?</summary><p>Custom. We build the storefront as your own theme so the layouts, sections and product pages are designed for your brand, not adapted from someone else&rsquo;s. It still lives in your Shopify admin, so your team edits content the normal way.</p></details>
             <details className="faq__item"><summary>Can you do just the branding, or just the store?</summary><p>Yes, either. Plenty of merchants come to us with a brand they already like and want the store rebuilt around it, and some want the identity, logo and packaging only. The full build is simply the two together.</p></details>
             <details className="faq__item"><summary>We already sell on Shopify. Can you rebuild what we have?</summary><p>Yes. We work on your existing store, keep your products, orders and apps in place, and launch the new storefront when it&rsquo;s ready — not by starting a new store from scratch.</p></details>
-            <details className="faq__item"><summary>How much does a project cost?</summary><p>Every package has a &ldquo;from&rdquo; price on this page &mdash; a brand and custom Shopify store starts at &pound;4,900, a marketing site at &pound;2,400, a web app MVP at &pound;7,900, an automation audit is &pound;490. After a free 30-minute call you get a written scope and a fixed number within one business day. No retainers.</p></details>
+            <details className="faq__item"><summary>How much does a project cost?</summary><p>Every package has a &ldquo;from&rdquo; price on this page &mdash; a brand and custom Shopify store starts at &pound;4,900, occasion pages that keep it changing with the calendar are &pound;290 a month, a marketing site starts at &pound;2,400, a web app MVP at &pound;7,900, an automation audit is &pound;490. After a free 30-minute call you get a written scope and a fixed number within one business day. No retainers.</p></details>
             <details className="faq__item"><summary>How long does it take?</summary><p>A brand and store build typically launches in about six weeks. Brand-only work is faster; larger platforms are phased so something real is live early and grows from there.</p></details>
             <details className="faq__item"><summary>What do we own at the end?</summary><p>Everything. The Shopify store is in your name from week one, and at launch you get the editable brand source files, the theme code, the documentation and a recorded walkthrough.</p></details>
             <details className="faq__item"><summary>Do you only work on Shopify?</summary><p>No — it&rsquo;s what we&rsquo;re known for, but we also build websites, web apps and internal platforms (JCR Pharma, Masters in Minds), and AI automations that plug into systems a business already runs.</p></details>
@@ -292,10 +308,16 @@ export default function PixelAndCodeHome() {
 
         {/* CONTACT */}
         <section className="contact section" id="contact">
+          <div className="contact__wm" aria-hidden="true">
+            <span className="contact__wm-grid" />
+            <span className="contact__wm-mark" />
+            <span className="contact__wm-ring" />
+            <span className="contact__wm-bits" />
+          </div>
           <div className="contact__inner">
             <span className="section__label reveal-up"><span className="px"></span> Let&rsquo;s talk</span>
             <h2 className="contact__title">Tell us about your brand.</h2>
-            <p className="contact__sub">Send a short brief and you&rsquo;ll hear from Kishal or Ritwik within one business day. Or skip the form and book a call.</p>
+            <p className="contact__sub">Send a short brief and you&rsquo;ll hear from Kishal or Ritwik within one business day.</p>
             <div className="contact__grid">
               <form className="contact__form" data-lead-form noValidate>
                 <div className="field">
@@ -305,6 +327,10 @@ export default function PixelAndCodeHome() {
                 <div className="field">
                   <input type="email" name="email" id="lead-email" placeholder=" " autoComplete="email" required />
                   <label htmlFor="lead-email">Email address</label>
+                </div>
+                <div className="field field--full">
+                  <input type="text" name="store" id="lead-store" placeholder=" " autoComplete="url" inputMode="url" />
+                  <label htmlFor="lead-store">Store or website URL (if you have one)</label>
                 </div>
                 <div className="field field--full">
                   <textarea name="project" id="lead-project" rows={4} placeholder=" " required></textarea>
@@ -318,9 +344,9 @@ export default function PixelAndCodeHome() {
                 <p className="contact__note" data-lead-note aria-live="polite"></p>
               </form>
               <aside className="contact__side">
-                <h3>Prefer to talk to Ritwik?</h3>
-                <p>Book a free 30-minute scoping call. We map the brand and the store with you and send a written scope and fixed quote afterwards.</p>
-                <a href={CALENDLY} target="_blank" rel="noopener" className="btn btn--primary" data-track="book_call"><span>Book a 30-min call with Ritwik</span></a>
+                <h3>Prefer to talk it through?</h3>
+                <p>Book a free 30-minute scoping call with Ritwik in the founders section above. We map the brand and the store with you and send a written scope and fixed quote afterwards.</p>
+                <a href="#book" className="btn btn--ghost"><span>Book a call with Ritwik &#8593;</span></a>
                 <div className="contact__alt">
                   Email <a href="mailto:sales@aurevia.io" data-track="email_click">sales@aurevia.io</a><br />
                   or <button type="button" data-open-chat>scope it with our AI assistant</button>
