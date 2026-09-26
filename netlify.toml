@@ -31,33 +31,41 @@
   from = "/products/multilingual/*"
   to = "/products/"
   status = 301
+  force = true
 [[redirects]]
   from = "/products/api/*"
   to = "/products/"
   status = 301
+  force = true
 [[redirects]]
   from = "/resources/docs/*"
   to = "/help/"
   status = 301
+  force = true
 
 # Consolidated / retired pages (site audit 2026-09-26).
 [[redirects]]
   from = "/products/analytics/*"
   to = "/products/roi-tracking/"
   status = 301
+  force = true
 [[redirects]]
   from = "/solutions/insights/*"
   to = "/products/roi-tracking/"
   status = 301
+  force = true
 [[redirects]]
   from = "/solutions/stories/*"
   to = "/solutions/"
   status = 301
+  force = true
 [[redirects]]
   from = "/solutions/industries/*"
   to = "/solutions/#industries"
   status = 301
+  force = true
 [[redirects]]
   from = "/pixel-and-code/shopify-brand-building/*"
   to = "/pixel-and-code/"
   status = 301
+  force = true
