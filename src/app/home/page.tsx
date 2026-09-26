@@ -2,14 +2,12 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import CustomerLogos from "@/components/CustomerLogos";
-import FiveWays from "@/components/FiveWays";
-import DashboardShowcase from "@/components/DashboardShowcase";
+import WidgetCapabilities from "@/components/WidgetCapabilities";
+import AppCapabilities from "@/components/AppCapabilities";
 import Industries from "@/components/Industries";
+import MerchantReviews from "@/components/MerchantReviews";
 import Stats from "@/components/Stats";
-import Challenges from "@/components/Challenges";
-import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
-import ContactUs from "@/components/ContactUs";
 import Footer from "@/components/Footer";
 import ScrollAnimationsInit from "@/components/ScrollAnimationsInit";
 
@@ -51,14 +49,12 @@ export default function HomePage() {
           </a>
         </div>
         <CustomerLogos />
-        <FiveWays />
-        <Industries />
-        <Challenges />
+        <WidgetCapabilities />
         <Stats />
-        <Testimonials />
-        <DashboardShowcase />
+        <AppCapabilities />
+        <MerchantReviews />
+        <Industries />
         <FAQ />
-        <ContactUs />
       </main>
       <Footer />
     </div>

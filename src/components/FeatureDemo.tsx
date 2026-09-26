@@ -86,9 +86,39 @@ export type ChatStep =
       progress?: boolean;
       delay?: number;
     }
-  | { type: "cartbar"; summary: string; delay?: number };
+  | { type: "cartbar"; summary: string; delay?: number }
+  /** Flip a visible product card's CTA to "Added ✓" */
+  | { type: "addcart"; name: string; delay?: number }
+  /** Slide the mini-cart drawer up over the chat */
+  | { type: "minicart"; items: DemoCartLine[]; total: string; delay?: number }
+  /** Two-product comparison card with a verdict */
+  | { type: "compare"; a: DemoCompareSide; b: DemoCompareSide; rows: DemoCompareRow[]; verdict: string; delay?: number }
+  /** Human agent joins: header flips to the agent, later bot messages render as the agent */
+  | { type: "agent"; name: string; role?: string; delay?: number };
 
-function AureviaMark({ size, animate = false }: { size: number; animate?: boolean }) {
+export interface DemoCartLine {
+  name: string;
+  price: string;
+  img: string;
+  variant?: string;
+  qty?: number;
+}
+
+export interface DemoCompareSide {
+  name: string;
+  price: string;
+  img: string;
+  rating?: string;
+}
+
+export interface DemoCompareRow {
+  label: string;
+  a: string;
+  b: string;
+  winner?: "a" | "b";
+}
+
+export function AureviaMark({ size, animate = false }: { size: number; animate?: boolean }) {
   return (
     <span
       className={`chat-demo-mark ${animate ? "chat-demo-mark-animate" : ""}`}
@@ -102,12 +132,12 @@ function AureviaMark({ size, animate = false }: { size: number; animate?: boolea
   );
 }
 
-function DemoProducts({ items }: { items: DemoProductItem[] }) {
+function DemoProducts({ items, added }: { items: DemoProductItem[]; added: string[] }) {
   return (
     <div className="chat-demo-carousel-wrap chat-demo-pop">
       <div className="chat-demo-carousel-strip" style={{ padding: "4px 2px 5px" }}>
         {items.map((p) => (
-          <article key={p.name} className="chat-demo-product-card">
+          <article key={p.name} className={`chat-demo-product-card ${added.includes(p.name) ? "chat-demo-product-added" : ""}`}>
             <div className="chat-demo-product-img-wrap">
               <div className="chat-demo-product-img-frame">
                 <img
@@ -122,7 +152,7 @@ function DemoProducts({ items }: { items: DemoProductItem[] }) {
               <h4 className="chat-demo-product-name">{p.name}</h4>
               <p className="chat-demo-product-price">{p.price}</p>
               <button type="button" className="chat-demo-product-cta" tabIndex={-1}>
-                Add to cart
+                {added.includes(p.name) ? "Added ✓" : "Add to cart"}
               </button>
             </div>
           </article>
@@ -161,19 +191,153 @@ function DemoStatusCard({
   );
 }
 
+function DemoCompareCard({
+  a,
+  b,
+  rows,
+  verdict,
+}: {
+  a: DemoCompareSide;
+  b: DemoCompareSide;
+  rows: DemoCompareRow[];
+  verdict: string;
+}) {
+  return (
+    <div className="chat-demo-compare chat-demo-pop">
+      <div className="chat-demo-compare-head">Side by side</div>
+      <div className="chat-demo-compare-grid">
+        <div className="chat-demo-compare-label" />
+        {[a, b].map((side) => (
+          <div key={side.name} className="chat-demo-compare-product">
+            <div className="chat-demo-compare-img">
+              <img src={DEMO_IMAGES[side.img] ?? side.img} alt="" loading="lazy" />
+            </div>
+            <span className="chat-demo-compare-name">{side.name}</span>
+            <span className="chat-demo-compare-price">{side.price}</span>
+          </div>
+        ))}
+        {rows.map((row, i) => (
+          <div key={row.label} className="chat-demo-compare-row" style={{ animationDelay: `${0.25 + i * 0.18}s` }}>
+            <span className="chat-demo-compare-label">{row.label}</span>
+            <span className={`chat-demo-compare-cell ${row.winner === "a" ? "chat-demo-compare-win" : ""}`}>{row.a}</span>
+            <span className={`chat-demo-compare-cell ${row.winner === "b" ? "chat-demo-compare-win" : ""}`}>{row.b}</span>
+          </div>
+        ))}
+      </div>
+      <div className="chat-demo-compare-verdict">
+        <span className="chat-demo-compare-verdict-tag">Verdict</span>
+        {verdict}
+      </div>
+    </div>
+  );
+}
+
+function DemoMiniCart({ open, items, total }: { open: boolean; items: DemoCartLine[]; total: string }) {
+  return (
+    <>
+      <div className={`chat-demo-minicart-backdrop ${open ? "chat-demo-minicart-open" : ""}`} aria-hidden />
+      <div className={`chat-demo-minicart ${open ? "chat-demo-minicart-open" : ""}`} aria-hidden={!open}>
+        <div className="chat-demo-minicart-head">
+          <span className="chat-demo-minicart-title">Your cart</span>
+          <span className="chat-demo-minicart-close">×</span>
+        </div>
+        {items.map((line) => (
+          <div key={line.name} className="chat-demo-minicart-line">
+            <div className="chat-demo-minicart-thumb">
+              <img src={DEMO_IMAGES[line.img] ?? line.img} alt="" />
+            </div>
+            <div className="chat-demo-minicart-main">
+              <span className="chat-demo-minicart-item-title">{line.name}</span>
+              {line.variant ? <span className="chat-demo-minicart-variant">{line.variant}</span> : null}
+              <div className="chat-demo-minicart-meta">
+                <span className="chat-demo-minicart-price">{line.price}</span>
+                <span className="chat-demo-minicart-qty">
+                  <span className="chat-demo-minicart-qty-btn">−</span>
+                  <span className="chat-demo-minicart-qty-val">{line.qty ?? 1}</span>
+                  <span className="chat-demo-minicart-qty-btn">+</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+        <div className="chat-demo-minicart-footer">
+          <div className="chat-demo-minicart-total">
+            <span>Total</span>
+            <strong>{total}</strong>
+          </div>
+          <span className="chat-demo-minicart-checkout">Checkout</span>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function AgentAvatar({ name, size }: { name: string; size: number }) {
+  const initials = name
+    .split(" ")
+    .map((w) => w[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+  return (
+    <span className="chat-demo-agent-avatar" style={{ width: size, height: size, fontSize: size * 0.4 }} aria-hidden>
+      {initials}
+    </span>
+  );
+}
+
 export function FeatureChatDemo({
   agentName = "Sales Agent",
   script,
+  bare = false,
+  loopPause = 6000,
+  startOnView = false,
+  scale,
 }: {
   agentName?: string;
   script: ChatStep[];
+  /** Skip the built-in 0.85 scale wrap (for device frames that do their own scaling) */
+  bare?: boolean;
+  /** ms to hold the finished conversation before it replays */
+  loopPause?: number;
+  /** Start the script when the demo scrolls into view and reset when it leaves */
+  startOnView?: boolean;
+  /** Override the built-in 0.85 scale (the container is 400×660 at scale 1) */
+  scale?: number;
 }) {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [armed, setArmed] = useState(!startOnView);
   const [visible, setVisible] = useState<number[]>([]);
   const [typingFrom, setTypingFrom] = useState<"none" | "bot" | "user">("none");
   const [cartBar, setCartBar] = useState<string | null>(null);
+  const [added, setAdded] = useState<string[]>([]);
+  const [miniCart, setMiniCart] = useState<{ items: DemoCartLine[]; total: string } | null>(null);
+  const [agent, setAgent] = useState<{ name: string; role?: string; at: number } | null>(null);
   const [cycle, setCycle] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  useEffect(() => {
+    if (!startOnView) return;
+    const el = rootRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setArmed(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setArmed(true);
+          io.disconnect();
+        }
+      },
+      // Arm while the demo is still ~a screen's third below the fold, so the first
+      // message is already on screen by the time the row is fully in view.
+      { threshold: 0.01, rootMargin: "0px 0px 30% 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [startOnView]);
 
   useEffect(() => {
     timersRef.current.forEach(clearTimeout);
@@ -181,14 +345,19 @@ export function FeatureChatDemo({
     setVisible([]);
     setTypingFrom("none");
     setCartBar(null);
+    setAdded([]);
+    setMiniCart(null);
+    setAgent(null);
 
-    let elapsed = 600;
+    if (!armed) return;
+
+    let elapsed = 120;
 
     script.forEach((step, index) => {
-      elapsed += step.delay ?? (step.type === "user" ? 1900 : 1100);
+      elapsed += step.delay ?? (index === 0 ? 150 : step.type === "user" ? 1900 : 1100);
 
       if (step.type === "bot" || step.type === "user") {
-        const typing = step.typing ?? Math.min(1600, 500 + step.text.length * 14);
+        const typing = step.typing ?? (index === 0 ? 450 : Math.min(1600, 500 + step.text.length * 14));
         const side = step.type === "bot" ? "bot" : "user";
         const t1 = setTimeout(() => setTypingFrom(side), elapsed);
         elapsed += typing;
@@ -200,20 +369,32 @@ export function FeatureChatDemo({
       } else if (step.type === "cartbar") {
         const t = setTimeout(() => setCartBar(step.summary), elapsed);
         timersRef.current.push(t);
+      } else if (step.type === "addcart") {
+        const t = setTimeout(() => setAdded((prev) => [...prev, step.name]), elapsed);
+        timersRef.current.push(t);
+      } else if (step.type === "minicart") {
+        const t = setTimeout(() => setMiniCart({ items: step.items, total: step.total }), elapsed);
+        timersRef.current.push(t);
+      } else if (step.type === "agent") {
+        const t = setTimeout(() => {
+          setAgent({ name: step.name, role: step.role, at: index });
+          setVisible((prev) => [...prev, index]);
+        }, elapsed);
+        timersRef.current.push(t);
       } else {
         const t = setTimeout(() => setVisible((prev) => [...prev, index]), elapsed);
         timersRef.current.push(t);
       }
     });
 
-    const loop = setTimeout(() => setCycle((c) => c + 1), elapsed + 6000);
+    const loop = setTimeout(() => setCycle((c) => c + 1), elapsed + loopPause);
     timersRef.current.push(loop);
 
     return () => {
       timersRef.current.forEach(clearTimeout);
       timersRef.current = [];
     };
-  }, [cycle, script]);
+  }, [cycle, script, loopPause, armed]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -221,18 +402,21 @@ export function FeatureChatDemo({
     }
   }, [visible, typingFrom, cartBar]);
 
-  return (
-    <div className="chat-demo-scale-wrap">
-      <div className="chat-demo-container">
-        <div className="chat-demo-header">
+  const container = (
+      <div
+        ref={rootRef}
+        className={`chat-demo-container ${bare ? "chat-demo-bare" : ""}`}
+        style={scale !== undefined && !bare ? { transform: `scale(${scale})` } : undefined}
+      >
+        <div className={`chat-demo-header ${agent ? "chat-demo-header-agent" : ""}`}>
           <div className="chat-demo-avatar">
-            <AureviaMark size={32} animate />
+            {agent ? <AgentAvatar name={agent.name} size={32} /> : <AureviaMark size={32} animate />}
           </div>
           <div className="chat-demo-header-text">
-            <div className="chat-demo-name font-fraunces">{agentName}</div>
+            <div className="chat-demo-name font-fraunces">{agent ? agent.name : agentName}</div>
             <div className="chat-demo-status">
               <span className="chat-demo-status-dot" />
-              Online
+              {agent ? agent.role ?? "Live agent" : "Online"}
             </div>
           </div>
           <button type="button" className="chat-demo-new-chat-btn" aria-label="Start new chat" tabIndex={-1}>
@@ -244,8 +428,22 @@ export function FeatureChatDemo({
           {visible.map((i) => {
             const step = script[i];
             if (step.type === "products") {
-              return <DemoProducts key={i} items={step.items} />;
+              return <DemoProducts key={i} items={step.items} added={added} />;
             }
+            if (step.type === "compare") {
+              return <DemoCompareCard key={i} a={step.a} b={step.b} rows={step.rows} verdict={step.verdict} />;
+            }
+            if (step.type === "agent") {
+              return (
+                <div key={i} className="chat-demo-system-line chat-demo-pop">
+                  <AgentAvatar name={step.name} size={18} />
+                  <span>
+                    <strong>{step.name}</strong> joined the chat
+                  </span>
+                </div>
+              );
+            }
+            if (step.type === "addcart" || step.type === "minicart") return null;
             if (step.type === "card") {
               return (
                 <DemoStatusCard
@@ -265,10 +463,11 @@ export function FeatureChatDemo({
                 {li < lines.length - 1 && <br />}
               </span>
             ));
+            const fromAgent = agent !== null && i > agent.at;
             return step.type === "bot" ? (
               <div key={i} className="chat-demo-bot-row">
-                <AureviaMark size={26} />
-                <div className="chat-demo-bubble chat-demo-left chat-demo-pop">{bubble}</div>
+                {fromAgent ? <AgentAvatar name={agent.name} size={26} /> : <AureviaMark size={26} />}
+                <div className={`chat-demo-bubble chat-demo-left chat-demo-pop ${fromAgent ? "chat-demo-left-agent" : ""}`}>{bubble}</div>
               </div>
             ) : (
               <div key={i} className="chat-demo-bubble chat-demo-right chat-demo-pop">
@@ -279,7 +478,7 @@ export function FeatureChatDemo({
 
           {typingFrom === "bot" && (
             <div className="chat-demo-bot-row">
-              <AureviaMark size={26} />
+              {agent ? <AgentAvatar name={agent.name} size={26} /> : <AureviaMark size={26} />}
               <div className="chat-demo-bubble chat-demo-left chat-demo-typing-bubble">
                 <span className="chat-demo-dot" />
                 <span className="chat-demo-dot" />
@@ -320,7 +519,15 @@ export function FeatureChatDemo({
             <span>Powered by Aurevia.io</span>
           </div>
         </div>
+
+        {miniCart ? <DemoMiniCart open items={miniCart.items} total={miniCart.total} /> : null}
       </div>
+  );
+
+  if (bare) return container;
+  return (
+    <div className="chat-demo-scale-wrap" style={scale !== undefined ? { width: 400 * scale, height: 660 * scale } : undefined}>
+      {container}
     </div>
   );
 }

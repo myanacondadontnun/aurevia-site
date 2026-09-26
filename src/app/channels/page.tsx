@@ -4,7 +4,7 @@ import PageLayout from "@/components/PageLayout";
 
 const title = "Messaging Channels — WhatsApp & Instagram | Aurevia";
 const desc =
-  "Aurevia answers your customers wherever they message you: on your store, on WhatsApp Business, and in Instagram DMs and comments. One AI agent, one inbox, your catalogue.";
+  "Aurevia answers your customers wherever they message you: on your store, on WhatsApp Business, and in Instagram DMs and comments. One AI agent, one inbox, your catalogue. WhatsApp and Instagram are in early access.";
 
 export const metadata: Metadata = {
   title,

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { getReview } from "@/lib/reviews";
 import { FeatureChatDemo, type ChatStep } from "@/components/FeatureDemo";
 
 const title = "AI Product Recommendations for Shopify | Aurevia";
@@ -9,29 +10,45 @@ const desc =
 export const metadata: Metadata = {
   title,
   description: desc,
-  openGraph: { title, description: desc, type: "article" },
+  alternates: { canonical: "/products/recommendations" },
+  openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/products/recommendations/" },
 };
 
 const demoScript: ChatStep[] = [
   { type: "bot", text: "Hey! Shopping for yourself or hunting for a gift today?" },
-  {
-    type: "user",
-    text: "Me! My skin gets so dry in winter, but heavy SPF always breaks me out 😩",
-  },
-  {
-    type: "bot",
-    text: "Got it — dry skin, sensitive to rich SPF. These three layer together without clogging:",
-  },
+  { type: "user", text: "Me. Gallery opening on Friday — sharp, but not stiff." },
+  { type: "bot", text: "Say less. Three pieces that do exactly that, and they layer:" },
   {
     type: "products",
     items: [
-      { name: "Hydra Barrier Serum", price: "£32.00", img: "serum" },
-      { name: "Cloud Cream", price: "£28.00", img: "cream" },
-      { name: "Featherlight SPF 50", price: "£24.00", img: "spf" },
+      { name: "Tailored Cashmere Blazer", price: "$1,590.00", img: "/images/demo/lv/cashmere-blazer.webp" },
+      { name: "Silk Draped Blouse", price: "$520.00", img: "/images/demo/lv/silk-blouse.webp" },
+      { name: "Patent Ankle Boots", price: "$970.00", img: "/images/demo/lv/patent-boots.webp" },
     ],
   },
-  { type: "user", text: "Adding the serum and the SPF 😍" },
-  { type: "cartbar", summary: "2 items · £56.00" },
+  { type: "user", text: "Adding the blouse and the boots." },
+  { type: "addcart", name: "Silk Draped Blouse" },
+  { type: "addcart", name: "Patent Ankle Boots", delay: 400 },
+  { type: "cartbar", summary: "2 items · $1,490.00" },
+];
+
+const compareScript: ChatStep[] = [
+  { type: "user", text: "Metro hoodie or the Pop Pink jacket for cold morning runs?" },
+  { type: "bot", text: "Depends what you're running through:" },
+  {
+    type: "compare",
+    delay: 500,
+    a: { name: "Metro Yellow hoodie", price: "$129.00", img: "/images/demo/lv/metro-hoodie.webp" },
+    b: { name: "Pop Pink zip-up", price: "$148.00", img: "/images/demo/lv/pop-pink-jacket.webp" },
+    rows: [
+      { label: "Weather", a: "Dry cold", b: "Wind + rain", winner: "b" },
+      { label: "Warmth", a: "Heavy fleece", b: "Light shell", winner: "a" },
+      { label: "Fit", a: "Oversized", b: "Fitted" },
+      { label: "Rating", a: "5.0 (2)", b: "4.5 (2)", winner: "a" },
+    ],
+    verdict: "Wet mornings, take the jacket. Dry and cold, the hoodie wins.",
+  },
+  { type: "bot", text: "Want both? I can bundle them for you.", delay: 2400 },
 ];
 
 export default function RecommendationsPage() {
@@ -100,13 +117,33 @@ export default function RecommendationsPage() {
           a: "Long-tail SKUs and technical specs are exactly where Q&A and clarification outperform generic search—your catalog and KB ground the model.",
         },
       ]}
-      testimonial={{
-        quote:
-          "Our catalog is huge and honestly a little overwhelming. The AI asks two or three questions and gets people to the right product faster than our old filters ever did — and they're buying more per order because of it.",
-        name: "Marcus Webb",
-        role: "Founder",
-        company: "Ridgeline Gear",
+      secondDemo={{
+        eyebrow: "When they can't decide",
+        title: "Two options, one honest verdict",
+        body: "Stuck between two products is where most carts die. The agent lays them out side by side, highlights the winner per row, and says which one fits the shopper's actual situation.",
+        demo: <FeatureChatDemo agentName="Lucien" script={compareScript} loopPause={5000} />,
+        points: ["Winner highlighted per row", "Plain-English verdict", "Add either from the card"],
       }}
+      screenshot={{
+        src: "/images/app/dashboard-mode-desktop.webp",
+        url: "app.aurevia.io/dashboard",
+        title: "Which recommendations turned into orders",
+        caption: "Top Recommended Products shows every product the agent suggested: how often it was shown, added to cart and bought, and the revenue it produced.",
+      }}
+      setup={{
+        title: "Three settings, then it sells your way",
+        steps: [
+          { src: "/images/app/products-desktop.webp", title: "Sync the catalog", body: "One click pulls products, collections and discounts from Shopify. Hide anything the agent shouldn't suggest with the Assistant switch." },
+          { src: "/images/app/persona-desktop.webp", title: "Set how hard it sells", body: "Upsell strength, what recommendations are based on, cross-sell prompts and urgency triggers, all in AI Behaviour." },
+          { src: "/images/app/knowledge-desktop.webp", title: "Add what the catalog can't say", body: "Size guides, fabric notes and brand rules go into the Knowledge Base so recommendations come with reasons." },
+        ],
+      }}
+      review={getReview("masks-capes")}
+      alsoSee={[
+        { href: "/products/cart-recovery", title: "Cart recovery", body: "Nudges while they're still on the store, emails after they leave." },
+        { href: "/products/automated-responses", title: "Product questions", body: "Fit, fabric, shipping and returns answered from your own data." },
+        { href: "/products/roi-tracking", title: "Insights & ROI", body: "Revenue influenced, tied to real Shopify orders." },
+      ]}
     />
   );
 }

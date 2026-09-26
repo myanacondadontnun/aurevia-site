@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { getReview } from "@/lib/reviews";
 import { FeatureMetricsDemo } from "@/components/FeatureDemo";
 
 const title = "Ecommerce AI Revenue & ROI Tracking | Aurevia";
@@ -9,7 +10,8 @@ const desc =
 export const metadata: Metadata = {
   title,
   description: desc,
-  openGraph: { title, description: desc, type: "article" },
+  alternates: { canonical: "/products/roi-tracking" },
+  openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/products/roi-tracking/" },
 };
 
 export default function RoiTrackingPage() {
@@ -27,20 +29,20 @@ export default function RoiTrackingPage() {
       heroBullets={[
         "Revenue attributed per conversation",
         "Feature-level breakdown: recs, rescues, upsells",
-        "Before/after benchmarks for campaigns",
+        "Attribution tied to real Shopify orders",
       ]}
       demo={
         <FeatureMetricsDemo
           title="Revenue attribution"
           stats={[
-            { label: "AI-attributed revenue", value: "£23.9k", delta: "▲ 32%" },
-            { label: "Assisted AOV", value: "£64", delta: "▲ 12%" },
+            { label: "AI-attributed revenue", value: "$23.9k", delta: "▲ 32%" },
+            { label: "Assisted AOV", value: "$64", delta: "▲ 12%" },
             { label: "Return on spend", value: "11×" },
           ]}
           rows={[
-            { label: "Product recommendations", value: "£11.2k", pct: 88 },
-            { label: "Cart rescues", value: "£7.4k", pct: 58 },
-            { label: "Bundles & upsells", value: "£5.3k", pct: 42 },
+            { label: "Product recommendations", value: "$11.2k", pct: 88 },
+            { label: "Cart rescues", value: "$7.4k", pct: 58 },
+            { label: "Bundles & upsells", value: "$5.3k", pct: 42 },
           ]}
           rowsHeading="Revenue by feature"
           chart
@@ -49,7 +51,7 @@ export default function RoiTrackingPage() {
       proofStrip={[
         { label: "Dollar-linked, defensible", text: "Outcomes tied to the AI with a definition you can stand behind in a finance review." },
         { label: "Know what to double down on", text: "See which behaviors move revenue — recs, bundles, nudges — feature by feature." },
-        { label: "Like-for-like benchmarks", text: "Compare periods and campaigns fairly, not against a bot measured in message counts." },
+        { label: "Real orders, not estimates", text: "A card that says Not tracked means exactly that. Every number ties back to an order Shopify sent us." },
       ]}
       featureBlocks={[
         {
@@ -75,8 +77,6 @@ export default function RoiTrackingPage() {
         { title: "Tie to campaigns", body: "See whether paid traffic, launches, and sales events scale with the AI, not in spite of it." },
       ]}
       relatedLinks={[
-        { href: "/products/analytics", label: "Conversation analytics" },
-        { href: "/solutions/insights", label: "Customer insights" },
         { href: "/resources/roi-calculator", label: "ROI calculator" },
       ]}
       faqs={[
@@ -93,13 +93,26 @@ export default function RoiTrackingPage() {
           a: "Weekly for operators, monthly for executive decisions—enough to see signal without chasing noise.",
         },
       ]}
-      testimonial={{
-        quote:
-          "I was skeptical any chatbot could prove its own worth. Being able to point to a real dollar figure — not a vague “engagement” metric — is what got this past our finance lead.",
-        name: "Aisha Bello",
-        role: "CFO",
-        company: "Verlane Goods",
+      screenshot={{
+        src: "/images/app/dashboard-mode-desktop.webp",
+        url: "app.aurevia.io/dashboard",
+        title: "Influenced revenue, per product",
+        caption: "Revenue Influenced and Orders Influenced total the orders where the agent recommended, added to cart or generated the checkout. Below it, every recommended product with shown, added, bought and revenue.",
       }}
+      setup={{
+        title: "How attribution works",
+        steps: [
+          { src: "/images/app/live-activity-desktop.webp", title: "The chat adds to cart", body: "When the agent adds an item or creates a checkout, the cart is tagged with the chat session." },
+          { src: "/images/app/dashboard-mode-desktop.webp", title: "Shopify sends the order", body: "The order webhook carries the tag. Aurevia matches it to the session and credits that conversation." },
+          { src: "/images/app/dashboard-desktop.webp", title: "You read real numbers", body: "Orders placed without a chat are never credited. A card that says Not tracked means exactly that." },
+        ],
+      }}
+      review={getReview("l1nk")}
+      alsoSee={[
+        { href: "/products/dashboard", title: "Dashboard & Ask Aurevia", body: "Ask questions about the numbers instead of reading charts." },
+        { href: "/products/recommendations", title: "Recommendations", body: "Where most influenced revenue comes from." },
+        { href: "/pricing", title: "Pricing", body: "Every plan includes attribution." },
+      ]}
     />
   );
 }

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { blogPosts } from "@/lib/blog-data";
+import { helpArticles } from "@/lib/help-articles";
 
 /**
  * Sitemap for static export (Cloudflare Pages, etc.): regenerated on every `next build`.
@@ -17,7 +18,6 @@ const staticRoutes: {
   changeFrequency: "weekly" | "monthly";
 }[] = [
   // Core pages
-  { path: "/", priority: 1.0, changeFrequency: "weekly" },
   { path: "/home/", priority: 1.0, changeFrequency: "weekly" },
   { path: "/pricing/", priority: 0.9, changeFrequency: "weekly" },
   { path: "/channels/", priority: 0.8, changeFrequency: "monthly" },
@@ -28,13 +28,10 @@ const staticRoutes: {
   { path: "/products/automated-responses/", priority: 0.8, changeFrequency: "monthly" },
   { path: "/products/recommendations/", priority: 0.8, changeFrequency: "monthly" },
   { path: "/products/cart-recovery/", priority: 0.8, changeFrequency: "monthly" },
-  { path: "/products/analytics/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/products/dashboard/", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/products/multilingual/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/products/ticket-management/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/products/lead-qualification/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/products/roi-tracking/", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/products/api/", priority: 0.6, changeFrequency: "monthly" },
 
   // Solutions
   { path: "/solutions/", priority: 0.8, changeFrequency: "monthly" },
@@ -43,9 +40,6 @@ const staticRoutes: {
   { path: "/solutions/enterprise/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/solutions/support/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/solutions/conversion/", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/solutions/insights/", priority: 0.6, changeFrequency: "monthly" },
-  { path: "/solutions/stories/", priority: 0.6, changeFrequency: "monthly" },
-  { path: "/solutions/industries/", priority: 0.6, changeFrequency: "monthly" },
 
   // Industry verticals
   { path: "/solutions/fashion/", priority: 0.6, changeFrequency: "monthly" },
@@ -59,12 +53,13 @@ const staticRoutes: {
   { path: "/resources/roi-calculator/", priority: 0.8, changeFrequency: "monthly" },
   { path: "/resources/blogs/", priority: 0.7, changeFrequency: "weekly" },
   { path: "/resources/review-my-shopify/", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/resources/docs/", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/help/", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/book-demo/", priority: 0.8, changeFrequency: "monthly" },
   { path: "/resources/ai-comparisons/", priority: 0.7, changeFrequency: "monthly" },
 
   // Pixel & Code (dev studio site, merged in at /pixel-and-code)
   { path: "/pixel-and-code/", priority: 0.5, changeFrequency: "monthly" },
-  { path: "/pixel-and-code/shopify-brand-building/", priority: 0.5, changeFrequency: "monthly" },
+  { path: "/pixel-and-code/how-we-work/", priority: 0.5, changeFrequency: "monthly" },
   { path: "/pixel-and-code/about/", priority: 0.4, changeFrequency: "monthly" },
   { path: "/pixel-and-code/saas-development/", priority: 0.4, changeFrequency: "monthly" },
   { path: "/pixel-and-code/ai-automation/", priority: 0.4, changeFrequency: "monthly" },
@@ -92,5 +87,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...fromStatic, ...fromBlog];
+  const fromHelp: MetadataRoute.Sitemap = helpArticles.map((a) => ({
+    url: `${siteUrl}/help/${a.slug}/`,
+    lastModified: new Date(a.updated),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...fromStatic, ...fromBlog, ...fromHelp];
 }

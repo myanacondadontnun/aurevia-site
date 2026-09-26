@@ -14,7 +14,8 @@ interface FooterLink {
 //  - bottom bar: copyright, legal, and the one-line positioning
 // Plain <a> tags throughout — see layout.tsx for why.
 const services: FooterLink[] = [
-  { href: "/pixel-and-code/shopify-brand-building/", label: "Shopify brand building" },
+  { href: "/pixel-and-code/", label: "Shopify brand building" },
+  { href: "/pixel-and-code/how-we-work/", label: "How we work" },
   { href: "/pixel-and-code/web-app-development/", label: "Websites & web apps" },
   { href: "/pixel-and-code/ai-automation/", label: "AI & automation" },
   { href: "/pixel-and-code/saas-development/", label: "SaaS product development" },

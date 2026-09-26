@@ -4,6 +4,7 @@ import { CreditCard, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { trackButtonClick } from "@/lib/analytics";
 import { SHOPIFY_APP_URL } from "@/lib/utils";
+import TrustStrip from "@/components/TrustStrip";
 import ChatDemo from "./ChatDemo";
 import CTASwarmBackdrop from "./CTASwarmBackdrop";
 
@@ -20,7 +21,7 @@ export default function Hero() {
     <section
       id="hero"
       role="banner"
-      className="min-h-0 lg:min-h-[100dvh] flex items-center justify-center pt-20 sm:pt-28 pb-6 sm:pb-12 lg:pt-24 lg:pb-8 gradient-bg overflow-hidden"
+      className="min-h-0 lg:min-h-[100dvh] flex items-center justify-center pt-20 sm:pt-28 pb-6 sm:pb-12 lg:pt-24 lg:pb-8 hero-bg overflow-hidden"
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex flex-col lg:flex-row items-center gap-8 sm:gap-10 lg:gap-0">
@@ -49,21 +50,18 @@ export default function Hero() {
                 href={SHOPIFY_APP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() =>
-                  trackButtonClick("Try Aurevia free on Shopify", "hero_section")
-                }
-                className="block no-underline"
+                onClick={() => trackButtonClick("Start free trial", "hero_section")}
+                className="cta-button inline-flex min-h-[48px] items-center justify-center whitespace-nowrap rounded-xl px-6 py-3 text-sm font-semibold sm:px-8 sm:py-3.5 sm:text-base"
               >
-                <span className="relative block pb-1.5">
-                  <span
-                    className="absolute left-2 right-2 bottom-0 h-2 sm:h-2.5 rounded-b-lg bg-gradient-to-r from-[#024d3f] via-[#00CC99] to-[#024d3f] shadow-[0_0_12px_rgba(0,204,153,0.35)]"
-                    aria-hidden
-                  />
-                  <span className="relative flex min-h-[48px] items-center justify-center overflow-hidden rounded-xl border border-[#00CC99]/40 bg-[#0d1717] px-6 py-3 text-sm font-semibold text-[#fffffc] shadow-[0_0_0_1px_rgba(0,204,153,0.12),0_10px_28px_rgba(0,82,61,0.28)] sm:px-8 sm:py-3.5 sm:text-base">
-                    <CTASwarmBackdrop roundedClassName="rounded-xl" />
-                    <span className="relative z-[3]">Try Aurevia free on Shopify</span>
-                  </span>
-                </span>
+                Start free trial
+              </a>
+
+              <a
+                href="/book-demo"
+                onClick={() => trackButtonClick("Book a demo", "hero_section")}
+                className="inline-flex min-h-[48px] items-center justify-center whitespace-nowrap rounded-xl border border-border/70 bg-card px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:border-[#00CC99]/60 hover:text-[#00795c] sm:px-8 sm:py-3.5 sm:text-base"
+              >
+                Book a demo
               </a>
 
               <div className="flex items-center justify-center sm:justify-start gap-2.5 text-muted-foreground text-xs sm:text-sm">
@@ -76,6 +74,9 @@ export default function Hero() {
                 </span>
                 <span>No credit card required</span>
               </div>
+            </div>
+            <div className="mt-5 flex justify-center lg:justify-start">
+              <TrustStrip />
             </div>
           </div>
 

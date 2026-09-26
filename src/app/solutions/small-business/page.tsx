@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { getReview } from "@/lib/reviews";
 
 const title = "AI Sales Chat for Small Shopify Stores | Aurevia";
 const desc =
@@ -8,7 +9,8 @@ const desc =
 export const metadata: Metadata = {
   title,
   description: desc,
-  openGraph: { title, description: desc, type: "article" },
+  alternates: { canonical: "/solutions/small-business" },
+  openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/solutions/small-business/" },
 };
 
 export default function SmallBusinessPage() {
@@ -26,7 +28,7 @@ export default function SmallBusinessPage() {
       proofStrip={[
         { label: "Hours, not months", text: "Go from App Store to first live assist without a dev sprint." },
         { label: "All-in-one thread", text: "Sales and pre/post support share one place so you are not context-switching across five inboxes." },
-        { label: "Room to grow", text: "When you add SKUs, languages, and headcount, the same foundation scales with you." },
+        { label: "Room to grow", text: "When you add SKUs, channels, and headcount, the same foundation scales with you." },
       ]}
       featureBlocks={[
         { title: "Sell while you run the business", body: "Discovery, cart nudges, and checkout nudges run without you re-typing the same answer in DMs." },
@@ -39,13 +41,6 @@ export default function SmallBusinessPage() {
         { title: "Write like you talk", body: "Plain-English rules so the bot sells the way you would." },
         { title: "Check numbers weekly", body: "Use the dashboard to see if time saved and extra revenue justify the next step." },
       ]}
-      media={{
-        ariaLabel: "Founder storyboard or testimonial placeholder",
-        caption: "Swap in: 3 frames—install, first sale, week-one stat—or a short founder video",
-        suggestedAsset: "A simple three-panel still: “Day 0 install → first assisted cart → 7-day snapshot”—or a 30s phone selfie placeholder for a future case study clip.",
-        kind: "video",
-        aspect: "wide",
-      }}
       relatedLinks={[
         { href: "/products/shopify", label: "Shopify app" },
         { href: "/solutions/growing-business", label: "Growing business" },
@@ -54,15 +49,9 @@ export default function SmallBusinessPage() {
       faqs={[
         { q: "We only have a few hundred sessions a week. Is it worth it?", a: "Yes—early-stage is when every conversion counts double. A single recovered cart or upsell can pay for the cost of a light tool if your margins are healthy." },
         { q: "Do I need a developer?", a: "The default path is no-code. Bring devs only if you want custom integrations later." },
-        { q: "What if I already answer DMs on Instagram?", a: "Aurevia handles the on-site experience where the purchase happens; you can still run social the way you prefer." },
+        { q: "What if I already answer DMs on Instagram?", a: "Connect Instagram in Settings → Channels and the same agent answers DMs and moderates comments. It is in early access, and you can keep handling social yourself until you are ready." },
       ]}
-      testimonial={{
-        quote:
-          "It's just me and one part-time hire. I can't be online at all hours, but now the store kind of is, and I'm not the bottleneck for every single customer question anymore.",
-        name: "Lena Novak",
-        role: "Owner",
-        company: "Novak & Sons",
-      }}
+      review={getReview("chawla")}
     />
   );
 }

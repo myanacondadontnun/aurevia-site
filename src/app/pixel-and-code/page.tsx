@@ -41,7 +41,7 @@ export default function PixelAndCodeHome() {
       <PxcNav
         logoHref="/pixel-and-code/#top"
         links={[
-          { href: "/pixel-and-code/shopify-brand-building/", label: "Shopify" },
+          { href: "/pixel-and-code/", label: "Shopify" },
           { href: "/pixel-and-code/#work", label: "Our work" },
           { href: "/pixel-and-code/#process", label: "How we work" },
           { href: "/pixel-and-code/#pricing", label: "Pricing" },
@@ -146,11 +146,11 @@ export default function PixelAndCodeHome() {
           </div>
 
           <div className="case-actions reveal-up" style={{ marginTop: "2.5rem" }}>
-            <a href="/pixel-and-code/shopify-brand-building/" className="btn btn--primary">
+            <a href="/pixel-and-code/" className="btn btn--primary">
               <span>See how a Shopify brand build works</span>
               <Arrow />
             </a>
-            <a href="/pixel-and-code/shopify-brand-building/#stores" className="btn btn--ghost"><span>See a store we built</span></a>
+            <a href="/pixel-and-code/#stores" className="btn btn--ghost"><span>See a store we built</span></a>
           </div>
         </section>
 
@@ -359,7 +359,7 @@ export default function PixelAndCodeHome() {
 
       <PxcFooter
         links={[
-          { href: "/pixel-and-code/shopify-brand-building/", label: "Shopify brands" },
+          { href: "/pixel-and-code/", label: "Shopify brands" },
           { href: "/pixel-and-code/#work", label: "Our work" },
           { href: "/pixel-and-code/#process", label: "How we work" },
           { href: "/pixel-and-code/#pricing", label: "Pricing" },

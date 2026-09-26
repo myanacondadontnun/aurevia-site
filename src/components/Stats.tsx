@@ -1,98 +1,38 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { Clock, CalendarCheck, Rocket, Hand } from "lucide-react";
 import { useScrollFade } from "./ScrollAnimations";
 
-const stats = [
-  { number: "67%", label: "AI-Driven Sales Lift" },
-  { number: "35%", label: "Buy via AI Chat" },
-  { number: "8×", label: "AI ROI Return" },
-  { number: "80%", label: "Resolved by AI" },
+const facts = [
+  { icon: Clock, value: "24/7", label: "Selling while you sleep", note: "Every page, every hour, in your brand's voice." },
+  { icon: CalendarCheck, value: "14 days", label: "Free trial, no card", note: "500 shopper messages included. Billed through Shopify after." },
+  { icon: Rocket, value: "~10 min", label: "Install to first chat", note: "Catalog syncs itself. Add your policies and go live." },
+  { icon: Hand, value: "1 click", label: "Take over any chat", note: "From the dashboard or your phone, then hand back to the AI." },
 ];
 
-function useStatNumberReveal(staggerMs = 150) {
-  const wrapRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  const setRef = useCallback(
-    (index: number) => (el: HTMLDivElement | null) => {
-      wrapRefs.current[index] = el;
-    },
-    []
-  );
-
-  useEffect(() => {
-    const wraps = wrapRefs.current.filter(Boolean) as HTMLDivElement[];
-    if (wraps.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            wraps.forEach((wrap, i) => {
-              setTimeout(() => wrap.classList.add("visible"), i * staggerMs);
-            });
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2, rootMargin: "0px 0px -40px 0px" }
-    );
-
-    if (wraps[0]?.parentElement) {
-      observer.observe(wraps[0].parentElement);
-    }
-
-    return () => observer.disconnect();
-  }, [staggerMs]);
-
-  return setRef;
-}
-
 export default function Stats() {
-  const sectionRef = useScrollFade();
-  const setNumberRef = useStatNumberReveal(180);
-
+  const ref = useScrollFade();
   return (
-    <section
-      ref={sectionRef as React.RefObject<HTMLElement>}
-      className="scroll-fade py-10 sm:py-16 md:py-20 px-4 sm:px-6 relative"
-    >
-      <div className="container mx-auto max-w-6xl">
-        <div className="flex flex-col lg:flex-row items-center gap-6 sm:gap-10 lg:gap-16">
-          {/* Left — headline */}
-          <div className="lg:w-5/12 text-center lg:text-left">
-            <h2 className="text-2xl sm:text-4xl md:text-[2.75rem] md:leading-[1.2] font-fraunces font-normal text-foreground">
-              Somewhere right now, a customer left your store.{" "}
-              <span className="green-highlight">AI would have saved that sale.</span>
-            </h2>
-          </div>
-
-          {/* Right — 2×2 stat grid */}
-          <div className="lg:w-7/12">
-            <div className="grid grid-cols-2 gap-px bg-white rounded-2xl overflow-hidden">
-              {stats.map((stat, index) => (
-                <div
-                  key={index}
-                  className="bg-background p-4 sm:p-8 md:p-10 text-center"
-                  aria-label={`${stat.number} ${stat.label}`}
-                >
-                  <div
-                    ref={setNumberRef(index)}
-                    className="stat-number-wrap"
-                    aria-live="polite"
-                  >
-                    <span className="stat-number-inner text-3xl sm:text-5xl md:text-6xl font-normal green-highlight inline-block" aria-hidden="true">
-                      {stat.number}
-                    </span>
-                  </div>
-                  <p className="text-xs sm:text-sm text-muted-foreground mt-2 tracking-wide uppercase">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+    <section className="py-14 sm:py-24 px-4 sm:px-6">
+      <div ref={ref as React.RefObject<HTMLDivElement>} className="container mx-auto max-w-6xl scroll-fade">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="font-fraunces text-2xl font-normal leading-tight text-foreground sm:text-4xl md:text-[2.75rem]">
+            Somewhere right now, a customer left your store.{" "}
+            <span className="green-highlight">AI would have saved that sale.</span>
+          </h2>
         </div>
+        <ul className="mt-10 grid grid-cols-1 gap-4 sm:mt-14 sm:grid-cols-2 lg:grid-cols-4">
+          {facts.map((f) => (
+            <li key={f.value} className="rounded-2xl border border-border/60 bg-card p-6">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#009973]/10 text-[#00795c]" aria-hidden="true">
+                <f.icon className="h-5 w-5" />
+              </span>
+              <p className="mt-4 font-fraunces text-3xl leading-none text-foreground sm:text-4xl">{f.value}</p>
+              <p className="mt-2 text-sm font-medium text-foreground">{f.label}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{f.note}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

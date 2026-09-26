@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { getReview } from "@/lib/reviews";
 import { FeatureChatDemo, type ChatStep } from "@/components/FeatureDemo";
 
-const title = "Aurevia Shopify App — AI Sales Co-Pilot | Install";
+const title = "Aurevia for Shopify — Native AI Sales Agent";
 const desc =
   "5-minute install from the Shopify App Store. Product sync, cart-aware chat, and checkout paths that respect your store. Conversational AI built native for Shopify.";
 
 export const metadata: Metadata = {
   title,
   description: desc,
-  openGraph: { title, description: desc, type: "article" },
+  alternates: { canonical: "/products/shopify" },
+  openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/products/shopify/" },
 };
 
 const demoScript: ChatStep[] = [
@@ -71,7 +73,7 @@ export default function ShopifyPage() {
         },
         {
           title: "Room to grow with your business",
-          body: "Start lean; add languages, stricter rules, and analytics depth as you scale.",
+          body: "Start lean; add knowledge sources, stricter rules, team seats and channels as you scale.",
         },
       ]}
       howItWorks={[
@@ -80,7 +82,6 @@ export default function ShopifyPage() {
         { title: "Tune and measure", body: "Adjust selling rules, watch conversations, and connect ROI so you can scale spend with confidence." },
       ]}
       relatedLinks={[
-        { href: "/products/api", label: "Custom API" },
         { href: "/pricing", label: "Pricing" },
         { href: "/solutions/small-business", label: "Small business" },
       ]}
@@ -95,16 +96,29 @@ export default function ShopifyPage() {
         },
         {
           q: "Is there a free plan?",
-          a: "See current plans on the pricing page; trials are structured so you can test full workflows before you commit.",
+          a: "No free plan, but every store gets a 14-day trial with 500 shopper messages and no card. Paid plans start at $19 a month and are billed through Shopify.",
         },
       ]}
-      testimonial={{
-        quote:
-          "Installing Aurevia felt like the opposite of every other app we've added — it just synced with our catalog and matched our brand voice out of the box. We were live the same afternoon.",
-        name: "Ollie Bennett",
-        role: "Store Owner",
-        company: "Cricket & Pine",
+      screenshot={{
+        src: "/images/app/products-desktop.webp",
+        url: "app.aurevia.io/product-management",
+        title: "Your catalog, scored and in sync",
+        caption: "Products, collections and discounts pull from Shopify and stay current through webhooks. Each product gets a score for SEO, images, completeness and AI readiness, with an Ask Aurevia to fix button.",
       }}
+      setup={{
+        title: "Install to first chat in about ten minutes",
+        steps: [
+          { src: "/images/app/products-desktop.webp", title: "Install and sync", body: "Approve the Shopify permissions, and the catalog syncs itself during onboarding." },
+          { src: "/images/app/knowledge-desktop.webp", title: "Add your policies", body: "Shipping, returns and sizing from your Shopify policy pages, one click." },
+          { src: "/images/app/dashboard-desktop.webp", title: "Enable the embed", body: "One toggle in the theme editor. Aurevia checks your theme and confirms the widget is live." },
+        ],
+      }}
+      review={getReview("fresh-famous")}
+      alsoSee={[
+        { href: "/help/install-and-enable-the-widget", title: "Help: install guide", body: "Every step, with what to expect." },
+        { href: "/products/dashboard", title: "Dashboard & Ask Aurevia", body: "What you see once it's running." },
+        { href: "/pricing", title: "Pricing", body: "Billed through Shopify, 14-day trial, no card." },
+      ]}
     />
   );
 }

@@ -8,7 +8,7 @@ const SHOPIFY_APP_URL = "https://apps.shopify.com/aurevia-io";
 const steps = [
   { n: "01", t: "Greet", d: "Opens the conversation with every visitor, in their language, before they bounce." },
   { n: "02", t: "Recommend", d: "Reads your catalogue and suggests the right product and bundle for what they asked." },
-  { n: "03", t: "Recover", d: "Chases the abandoned cart on WhatsApp and email with the exact items left behind." },
+  { n: "03", t: "Recover", d: "Follows up the abandoned cart by email with the exact items left behind, in the store's voice." },
   { n: "04", t: "Report", d: "Shows you what it talked about and what it sold, in your own dashboard." },
 ];
 

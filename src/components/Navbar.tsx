@@ -33,15 +33,14 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SHOPIFY_APP_URL } from "@/lib/utils";
-import CTASwarmBackdrop from "@/components/CTASwarmBackdrop";
 
-// One consolidated Solutions mega-menu: By goal · By industry · By capability.
+// One consolidated Solutions mega-menu: By goal · By industry. (Capabilities live under Platform.)
 const solutionsByGoal = [
   { icon: TrendingUp, label: "Increase sales", href: "/solutions/conversion" },
   { icon: ShoppingCart, label: "Reduce cart abandonment", href: "/products/cart-recovery" },
   { icon: Headphones, label: "Automate support", href: "/solutions/support" },
   { icon: DollarSign, label: "Increase AOV", href: "/products/recommendations" },
-  { icon: BarChart3, label: "Customer insights", href: "/solutions/insights" },
+  { icon: BarChart3, label: "Customer insights", href: "/products/roi-tracking" },
   { icon: Filter, label: "Qualify leads", href: "/products/lead-qualification" },
 ];
 
@@ -51,15 +50,6 @@ const solutionsByIndustry = [
   { icon: Dumbbell, label: "Fitness & supplements", href: "/solutions/fitness" },
   { icon: Smartphone, label: "Electronics", href: "/solutions/electronics" },
   { icon: Home, label: "Home & garden", href: "/solutions/home-garden" },
-];
-
-const solutionsByCapability = [
-  { icon: Package, label: "AI product recommendations", href: "/products/recommendations" },
-  { icon: MessageSquare, label: "AI product questions", href: "/products/automated-responses" },
-  { icon: FileText, label: "Ticket management", href: "/products/ticket-management" },
-  { icon: Globe, label: "Multilingual support", href: "/products/multilingual" },
-  { icon: ShoppingCart, label: "Cart recovery", href: "/products/cart-recovery" },
-  { icon: BarChart3, label: "ROI tracking", href: "/products/roi-tracking" },
 ];
 
 // Platform overview — the product's core pillars, shown as a card grid.
@@ -93,6 +83,18 @@ const platformPillars: {
     title: "Insights & ROI",
     desc: "Attribute revenue to the AI: assisted sales, AOV lift, and conversation intelligence.",
     href: "/products/roi-tracking",
+  },
+  {
+    icon: FileText,
+    title: "Live Takeover & Tickets",
+    desc: "Watch every chat, step in from your phone, and run support tickets from one inbox.",
+    href: "/products/ticket-management",
+  },
+  {
+    icon: MessageSquare,
+    title: "Channels",
+    desc: "The same agent on WhatsApp and Instagram DMs, with comment moderation built in.",
+    href: "/channels",
     badge: "New",
   },
 ];
@@ -102,7 +104,7 @@ const resourcesItems = [
   { icon: GitCompare, label: "AI Agent Comparisons", href: "/resources/ai-comparisons", desc: "Compare AI chatbots for e-commerce" },
   { icon: Calculator, label: "ROI Calculator", href: "/resources/roi-calculator", desc: "Calculate your potential return" },
   { icon: Store, label: "Review My Shopify", href: "/resources/review-my-shopify", desc: "Free professional store audit" },
-  { icon: BookMarked, label: "Documentations", href: "/resources/docs", desc: "API guides and setup docs" },
+  { icon: BookMarked, label: "Help center", href: "/help", desc: "Setup and how-to guides" },
 ];
 
 const navigationLinks: { label: string; href: string }[] = [
@@ -294,11 +296,10 @@ export default function Navbar() {
                 </button>
                 {openDropdown === "solutions" && (
                   <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 -mt-px" role="menu" aria-label="Solutions menu">
-                    <div className="bg-card border border-border rounded-2xl shadow-xl p-8 min-w-[860px] grid grid-cols-3 gap-x-12 gap-y-6">
+                    <div className="bg-card border border-border rounded-2xl shadow-xl p-8 min-w-[640px] grid grid-cols-2 gap-x-12 gap-y-6">
                       {[
                         { heading: "By goal", items: solutionsByGoal, seeAll: { href: "/solutions", label: "See all use cases" } },
-                        { heading: "By industry", items: solutionsByIndustry, seeAll: { href: "/solutions/industries", label: "View all industries" } },
-                        { heading: "By capability", items: solutionsByCapability, seeAll: { href: "/products", label: "See all capabilities" } },
+                        { heading: "By industry", items: solutionsByIndustry, seeAll: { href: "/solutions#industries", label: "View all industries" } },
                       ].map((col) => (
                         <div key={col.heading} className="flex flex-col">
                           <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-4">
@@ -398,19 +399,18 @@ export default function Navbar() {
             {showHomeCtaSwarm ? (
               <Button
                 asChild
-                className={`cta-button cta-button--has-swarm relative overflow-hidden text-primary-foreground font-semibold rounded-lg transition-all duration-200 flex items-center justify-center gap-2 border-0 flex-shrink-0 ${isScrolled ? "px-3 py-1.5 sm:px-4 sm:py-2" : "px-4 py-2"} text-sm xl:text-base`}
+                className={`cta-button text-primary-foreground font-semibold rounded-lg transition-all duration-200 flex items-center justify-center gap-2 border-0 flex-shrink-0 ${isScrolled ? "px-3 py-1.5 sm:px-4 sm:py-2" : "px-4 py-2"} text-sm xl:text-base`}
               >
                 <a
                   href={SHOPIFY_APP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Try Aurevia for free on Shopify"
+                  aria-label="Start your free Aurevia trial on Shopify"
                   className="flex items-center justify-center gap-2"
                 >
-                  <CTASwarmBackdrop roundedClassName="rounded-lg" />
                   <span className="relative z-[3] flex items-center gap-2">
-                    <span className="hidden sm:inline">Try for free on Shopify</span>
-                    <span className="sm:hidden">Try free</span>
+                    <span className="hidden sm:inline">Start free trial</span>
+                    <span className="sm:hidden">Start trial</span>
                     <ArrowRight className="w-3 h-3 xl:w-4 xl:h-4 cta-arrow" aria-hidden="true" />
                   </span>
                 </a>
@@ -424,11 +424,11 @@ export default function Navbar() {
                   href={SHOPIFY_APP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Try Aurevia for free on Shopify"
+                  aria-label="Start your free Aurevia trial on Shopify"
                   className="flex items-center gap-2"
                 >
-                  <span className="hidden sm:inline">Try for free on Shopify</span>
-                  <span className="sm:hidden">Try free</span>
+                  <span className="hidden sm:inline">Start free trial</span>
+                  <span className="sm:hidden">Start trial</span>
                   <ArrowRight className="w-3 h-3 xl:w-4 xl:h-4 cta-arrow" aria-hidden="true" />
                 </a>
               </Button>
@@ -502,8 +502,7 @@ export default function Navbar() {
                   <div className="pl-4 pb-2 space-y-1">
                     {[
                       { heading: "By goal", items: solutionsByGoal, seeAll: { href: "/solutions", label: "See all use cases" } },
-                      { heading: "By industry", items: solutionsByIndustry, seeAll: { href: "/solutions/industries", label: "View all industries" } },
-                      { heading: "By capability", items: solutionsByCapability, seeAll: { href: "/products", label: "See all capabilities" } },
+                      { heading: "By industry", items: solutionsByIndustry, seeAll: { href: "/solutions#industries", label: "View all industries" } },
                     ].map((col) => (
                       <div key={col.heading} className="py-1">
                         <span className="block px-3 py-1 text-[11px] font-medium text-muted-foreground uppercase tracking-wider">

@@ -3,6 +3,10 @@ import { ArrowRight, CheckCircle2, Check } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 import type { MediaPlaceholderAspect } from "@/components/MediaPlaceholder";
 import { buildShopifyInstallUrl, cn } from "@/lib/utils";
+import type { Review } from "@/lib/reviews";
+import ReviewQuote from "@/components/ReviewQuote";
+import TrustStrip from "@/components/TrustStrip";
+import { BrowserFrame } from "@/components/DeviceFrames";
 import { Button } from "@/components/ui/button";
 
 export interface FeatureBlock {
@@ -30,13 +34,6 @@ export interface FaqItem {
   a: string;
 }
 
-export interface TestimonialQuote {
-  quote: string;
-  name: string;
-  role: string;
-  company: string;
-}
-
 export interface FeatureSubpageLayoutProps {
   backHref: string;
   backLabel: string;
@@ -54,18 +51,18 @@ export interface FeatureSubpageLayoutProps {
   proofStrip?: ProofItem[];
   featureBlocks: FeatureBlock[];
   howItWorks?: HowStep[];
-  media?: {
-    ariaLabel: string;
-    caption: string;
-    suggestedAsset: string;
-    aspect?: MediaPlaceholderAspect;
-    kind?: "video" | "image";
-    imageSrc?: string;
-    imageAlt?: string;
-  };
   relatedLinks: RelatedLink[];
   faqs?: FaqItem[];
-  testimonial?: TestimonialQuote;
+  /** A second scripted scene, shown mid-page beside its own copy */
+  secondDemo?: { eyebrow: string; title: string; body: string; demo: React.ReactNode; points?: string[] };
+  /** A real dashboard capture with a caption */
+  screenshot?: { src?: string; mobile?: string; url: string; title: string; caption: string };
+  /** Small settings captures showing how merchants configure this */
+  setup?: { title: string; steps: { src?: string; title: string; body: string }[] };
+  /** A verbatim App Store review that matches this page */
+  review?: Review;
+  /** Adjacent capabilities worth a click */
+  alsoSee?: { href: string; title: string; body: string }[];
   /** Optional right column or full-width image above fold */
   heroVisual?: {
     src: string;
@@ -88,8 +85,12 @@ export default function FeatureSubpageLayout({
   howItWorks,
   relatedLinks,
   faqs,
-  testimonial,
   heroVisual,
+  secondDemo,
+  screenshot,
+  setup,
+  review,
+  alsoSee,
 }: FeatureSubpageLayoutProps) {
   const installUrl = buildShopifyInstallUrl();
   const hasHeroAside = Boolean(demo || heroVisual);
@@ -138,7 +139,7 @@ export default function FeatureSubpageLayout({
                   rel="noopener noreferrer"
                   className="cta-button inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-base font-medium text-foreground border-0"
                 >
-                  Start free on Shopify
+                  Start free trial
                   <ArrowRight className="w-4 h-4 cta-arrow" aria-hidden="true" />
                 </a>
                 <Button
@@ -146,9 +147,10 @@ export default function FeatureSubpageLayout({
                   variant="outline"
                   className="rounded-xl border-border/60 px-6 py-3 h-auto text-base"
                 >
-                  <Link href="/pricing">View pricing</Link>
+                  <Link href="/book-demo">Book a demo</Link>
                 </Button>
               </div>
+              <TrustStrip className="mt-4" />
 
               {heroBullets && heroBullets.length > 0 ? (
                 <ul className="mt-7 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:gap-x-6">
@@ -254,36 +256,74 @@ export default function FeatureSubpageLayout({
           </section>
         ) : null}
 
-        {/* ─── Testimonial ─── */}
-        {testimonial ? (
+        {/* ─── Second scene ─── */}
+        {secondDemo ? (
           <section className="pb-14 sm:pb-20">
-            <figure className="mx-auto max-w-3xl text-center">
-              <blockquote>
-                <p className="font-fraunces italic text-xl sm:text-2xl md:text-[1.7rem] text-foreground leading-relaxed">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </p>
-              </blockquote>
-              <figcaption className="mt-7 flex items-center justify-center gap-3">
-                <span
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00795c]"
-                  aria-hidden="true"
-                >
-                  {testimonial.name
-                    .split(" ")
-                    .map((w) => w[0])
-                    .slice(0, 2)
-                    .join("")}
-                </span>
-                <span className="text-left">
-                  <span className="block text-sm font-medium text-foreground">
-                    {testimonial.name}
-                  </span>
-                  <span className="block text-xs text-muted-foreground">
-                    {testimonial.role}, {testimonial.company}
-                  </span>
-                </span>
-              </figcaption>
-            </figure>
+            <div className="grid items-center gap-10 md:grid-cols-2">
+              <div className="flex justify-center md:order-2">{secondDemo.demo}</div>
+              <div className="max-w-md mx-auto md:mx-0 text-center md:text-left">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#00795c]">{secondDemo.eyebrow}</p>
+                <h2 className="text-2xl sm:text-3xl font-fraunces font-normal text-foreground leading-tight mb-3">{secondDemo.title}</h2>
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{secondDemo.body}</p>
+                {secondDemo.points ? (
+                  <ul className="mt-5 flex flex-wrap justify-center md:justify-start gap-2">
+                    {secondDemo.points.map((pt) => (
+                      <li key={pt} className="text-xs sm:text-[13px] px-3 py-1.5 rounded-full border border-border/70 bg-card text-foreground/80">
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {/* ─── Dashboard capture ─── */}
+        {screenshot ? (
+          <section className="pb-14 sm:pb-20">
+            <div className="mx-auto max-w-2xl text-center mb-8">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#00795c]">In your dashboard</p>
+              <h2 className="text-2xl sm:text-3xl font-fraunces font-normal text-foreground leading-tight mb-3">{screenshot.title}</h2>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{screenshot.caption}</p>
+            </div>
+            <div className="mx-auto max-w-4xl px-2 sm:px-4 pb-10">
+              <BrowserFrame desktop={screenshot.src} mobile={screenshot.mobile} url={screenshot.url} alt={screenshot.title} />
+            </div>
+          </section>
+        ) : null}
+
+        {/* ─── Setup ─── */}
+        {setup ? (
+          <section className="pb-14 sm:pb-20">
+            <h2 className="text-2xl sm:text-3xl font-fraunces font-normal text-foreground text-center mb-10">{setup.title}</h2>
+            <ol className="grid gap-6 md:grid-cols-3">
+              {setup.steps.map((st, i) => (
+                <li key={st.title} className="rounded-2xl border border-border/60 bg-card overflow-hidden">
+                  <div className="aspect-[16/10] bg-muted/40 border-b border-border/60">
+                    {st.src ? (
+                      <img src={st.src} alt={st.title} loading="lazy" className="h-full w-full object-cover object-top" />
+                    ) : (
+                      <div className="flex h-full items-center justify-center text-xs text-muted-foreground">Screenshot pending</div>
+                    )}
+                  </div>
+                  <div className="p-5">
+                    <p className="text-xs font-semibold text-[#00795c] mb-1">Step {i + 1}</p>
+                    <h3 className="font-medium text-foreground mb-1.5">{st.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{st.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ) : null}
+
+        {/* ─── Review ─── */}
+        {review ? (
+          <section className="pb-14 sm:pb-20">
+            <div className="mx-auto max-w-3xl">
+              <ReviewQuote review={review} />
+            </div>
           </section>
         ) : null}
 
@@ -314,6 +354,23 @@ export default function FeatureSubpageLayout({
                 </details>
               ))}
             </div>
+          </section>
+        ) : null}
+
+        {/* ─── Also worth knowing ─── */}
+        {alsoSee && alsoSee.length > 0 ? (
+          <section className="pb-14 sm:pb-20">
+            <h2 className="text-xl sm:text-2xl font-fraunces font-normal text-foreground text-center mb-8">Also worth knowing</h2>
+            <ul className="grid gap-4 md:grid-cols-3">
+              {alsoSee.map((a) => (
+                <li key={a.href}>
+                  <Link href={a.href} className="group block h-full rounded-2xl border border-border/60 bg-card p-5 hover:border-[#009973]/60 transition-colors">
+                    <h3 className="font-medium text-foreground group-hover:text-[#00795c] mb-1.5">{a.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{a.body}</p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </section>
         ) : null}
 
@@ -360,14 +417,14 @@ export default function FeatureSubpageLayout({
                   rel="noopener noreferrer"
                   className="cta-button inline-flex items-center justify-center gap-2 rounded-xl px-8 py-3.5 text-base font-medium text-foreground border-0"
                 >
-                  Start free on Shopify
+                  Start free trial
                   <ArrowRight className="w-4 h-4 cta-arrow" aria-hidden="true" />
                 </a>
                 <Link
-                  href="/pricing"
+                  href="/book-demo"
                   className="inline-flex items-center justify-center rounded-xl border border-border/60 px-8 py-3.5 text-base text-foreground transition-colors hover:border-primary/40 hover:text-[#00CC99]"
                 >
-                  View pricing
+                  Book a demo
                 </Link>
               </div>
             </div>

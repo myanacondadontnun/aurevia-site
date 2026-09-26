@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/products" },
   title: "Products | Aurevia - Shopify AI Sales Co-Pilot",
   description:
     "Shopify AI chatbot for sales: consultative product recommendations, in-chat checkout, AOV and conversion analytics, lead capture, and support automation—in one app.",
@@ -47,14 +48,6 @@ const products = [
     icon: Percent,
     description:
       "Escalate with full context: triage complex threads, see cart and history, and hand off to humans when it truly matters.",
-  },
-  {
-    title: "Multilingual Support",
-    slug: "multilingual",
-    href: "/products/multilingual",
-    icon: Globe,
-    description:
-      "One widget, every market: the same products, brand voice, and selling rules in the languages your customers use.",
   },
   {
     title: "Product Recommendations",
@@ -89,12 +82,12 @@ const products = [
       "A merchant view of what matters: conversations, revenue signals, and AI health at a glance—no vanity metrics.",
   },
   {
-    title: "Conversation Analytics",
-    slug: "analytics",
-    href: "/products/analytics",
+    title: "Channels: WhatsApp & Instagram",
+    slug: "channels",
+    href: "/channels",
     icon: MessageSquare,
     description:
-      "Why shoppers ask, where they drop off, and which flows win. Improve playbooks with conversation intelligence.",
+      "The same agent answering on WhatsApp and Instagram DMs, with comment moderation built in. Early access.",
   },
   {
     title: "ROI Tracking",
@@ -111,14 +104,6 @@ const products = [
     icon: Store,
     description:
       "Native Shopify app: quick install, product sync, cart and checkout in context, store as the system of record.",
-  },
-  {
-    title: "Custom API",
-    slug: "api",
-    href: "/products/api",
-    icon: Code2,
-    description:
-      "Webhooks, REST, and custom stacks for dev teams—connect Aurevia to the rest of your operations.",
   },
 ];
 
@@ -180,24 +165,6 @@ export default function ProductsPage() {
             </div>
           </ProductsGrid>
 
-          <div className="scroll-fade mt-14 sm:mt-16 max-w-2xl mx-auto rounded-2xl border border-border/30 bg-card/20 p-6 sm:p-8">
-            <p className="font-fraunces italic text-lg sm:text-xl text-foreground leading-relaxed mb-5">
-              &ldquo;We looked at three different AI tools before Aurevia. The others felt bolted on—this one actually
-              understands our catalog and sells the way our best rep would.&rdquo;
-            </p>
-            <div className="flex items-center gap-3">
-              <span
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00795c]"
-                aria-hidden="true"
-              >
-                EM
-              </span>
-              <div>
-                <p className="text-sm font-medium text-foreground">Elena Martins</p>
-                <p className="text-xs text-muted-foreground">Founder, Salt & Stone Supply</p>
-              </div>
-            </div>
-          </div>
 
           <div className="text-center mt-12">
             <Link

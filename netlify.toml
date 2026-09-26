@@ -25,3 +25,39 @@
   from = "/pixel-and-code/api/lead"
   to = "/.netlify/functions/pixel-lead"
   status = 200
+
+# Retired product pages (capabilities that never shipped) and the old docs page.
+[[redirects]]
+  from = "/products/multilingual/*"
+  to = "/products/"
+  status = 301
+[[redirects]]
+  from = "/products/api/*"
+  to = "/products/"
+  status = 301
+[[redirects]]
+  from = "/resources/docs/*"
+  to = "/help/"
+  status = 301
+
+# Consolidated / retired pages (site audit 2026-09-26).
+[[redirects]]
+  from = "/products/analytics/*"
+  to = "/products/roi-tracking/"
+  status = 301
+[[redirects]]
+  from = "/solutions/insights/*"
+  to = "/products/roi-tracking/"
+  status = 301
+[[redirects]]
+  from = "/solutions/stories/*"
+  to = "/solutions/"
+  status = 301
+[[redirects]]
+  from = "/solutions/industries/*"
+  to = "/solutions/#industries"
+  status = 301
+[[redirects]]
+  from = "/pixel-and-code/shopify-brand-building/*"
+  to = "/pixel-and-code/"
+  status = 301

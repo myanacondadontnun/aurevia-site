@@ -1,7 +1,10 @@
 /**
- * Aurevia pricing: AI messages = visitors × 0.5
- * Tiers: 0-5k free; 5k-50k $49 + $15/1k; 50k-150k $99 + $13/1k; >150k contact us
+ * Aurevia pricing model for the ROI calculator.
+ * AI messages ≈ visitors × 0.5 (a shopper who opens the chat sends a few messages; most visitors never open it).
+ * Plans (monthly, billed through Shopify): Starter $19 / 500 msgs · Growth $49 / 1,500 · Pro $89 / 3,000 · Scale $149 / 6,000.
+ * Beyond Scale: top-ups at $10 per 250 messages. Above ~20k messages we quote a custom plan.
  */
+
 export interface PricingResult {
   aiMessages: number;
   planName: string;
@@ -9,48 +12,34 @@ export interface PricingResult {
   costPerVisitor: number | null;
 }
 
+const PLANS = [
+  { name: "Starter", monthly: 19, messages: 500 },
+  { name: "Growth", monthly: 49, messages: 1500 },
+  { name: "Pro", monthly: 89, messages: 3000 },
+  { name: "Scale", monthly: 149, messages: 6000 },
+] as const;
+
+const TOPUP_PRICE = 10;
+const TOPUP_MESSAGES = 250;
+const CUSTOM_ABOVE = 20000;
+
 export function getPricing(visitors: number): PricingResult {
   const clamped = Math.max(0, Math.floor(Number(visitors) || 0));
-  const aiMessages = clamped * 0.5;
+  const aiMessages = Math.round(clamped * 0.5);
+  const perVisitor = (cost: number) => (clamped > 0 ? Math.round((cost / clamped) * 10000) / 10000 : null);
 
-  if (clamped < 5000) {
-    return {
-      aiMessages,
-      planName: "Free",
-      monthlyCost: 0,
-      costPerVisitor: clamped > 0 ? 0 : null,
-    };
+  if (aiMessages > CUSTOM_ABOVE) {
+    return { aiMessages, planName: "Custom", monthlyCost: null, costPerVisitor: null };
   }
 
-  if (clamped < 50000) {
-    const base = 49;
-    const messageCost = (aiMessages / 1000) * 15;
-    const monthlyCost = Math.round((base + messageCost) * 100) / 100;
-    return {
-      aiMessages,
-      planName: "Growth",
-      monthlyCost,
-      costPerVisitor: clamped > 0 ? Math.round((monthlyCost / clamped) * 10000) / 10000 : null,
-    };
+  const plan = PLANS.find((p) => aiMessages <= p.messages);
+  if (plan) {
+    return { aiMessages, planName: plan.name, monthlyCost: plan.monthly, costPerVisitor: perVisitor(plan.monthly) };
   }
 
-  if (clamped <= 150000) {
-    // 50,000–150,000: Scale
-    const base = 99;
-    const messageCost = (aiMessages / 1000) * 13;
-    const monthlyCost = Math.round((base + messageCost) * 100) / 100;
-    return {
-      aiMessages,
-      planName: "Scale",
-      monthlyCost,
-      costPerVisitor: clamped > 0 ? Math.round((monthlyCost / clamped) * 10000) / 10000 : null,
-    };
-  }
-
-  return {
-    aiMessages,
-    planName: "Contact us",
-    monthlyCost: null,
-    costPerVisitor: null,
-  };
+  // Scale plus top-ups for the overage
+  const scale = PLANS[PLANS.length - 1];
+  const topups = Math.ceil((aiMessages - scale.messages) / TOPUP_MESSAGES);
+  const monthlyCost = scale.monthly + topups * TOPUP_PRICE;
+  return { aiMessages, planName: "Scale + top-ups", monthlyCost, costPerVisitor: perVisitor(monthlyCost) };
 }

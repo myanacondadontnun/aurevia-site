@@ -37,29 +37,11 @@ export default function ResourcesPage() {
           <Link href="/resources/roi-calculator/" className="block text-[#00CC99] hover:underline">
             → ROI Calculator
           </Link>
-          <Link href="/resources/docs/" className="block text-[#00CC99] hover:underline">
-            → Documentations
+          <Link href="/help/" className="block text-[#00CC99] hover:underline">
+            → Help center
           </Link>
         </div>
 
-        <div className="mb-12 rounded-2xl border border-border/30 bg-card/20 p-6 sm:p-8">
-          <p className="font-fraunces italic text-lg sm:text-xl text-foreground leading-relaxed mb-5">
-            &ldquo;I read half the docs and one comparison article before I installed anything else. That's rare for
-            me—usually I just wing it and regret an app choice a month later.&rdquo;
-          </p>
-          <div className="flex items-center gap-3">
-            <span
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00795c]"
-              aria-hidden="true"
-            >
-              OB
-            </span>
-            <div>
-              <p className="text-sm font-medium text-foreground">Ollie Bennett</p>
-              <p className="text-xs text-muted-foreground">Store Owner, Cricket & Pine</p>
-            </div>
-          </div>
-        </div>
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-2xl border border-primary/20 bg-primary/[0.06] p-6 sm:p-8 mb-12">
           <div>

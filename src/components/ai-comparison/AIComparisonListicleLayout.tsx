@@ -185,7 +185,7 @@ export default function AIComparisonListicleLayout({ children }: { children: Rea
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-[#00cc99] px-3 py-2 text-xs font-medium text-black transition-colors hover:bg-[#00cc99]/90"
                   >
-                    Try for free
+                    Start free trial
                     <ArrowRight className="h-3.5 w-3.5" />
                   </a>
                   <Link

@@ -7,7 +7,7 @@ import ChatWidget from "../_components/ChatWidget";
 export const metadata: Metadata = {
   title: "Aurevia — Shopify AI Sales Agent | Pixel & Code",
   description:
-    "How Pixel & Code built Aurevia, a Django-powered AI sales and support agent for Shopify merchants, over a year-long engagement — from cart recovery to 95-language support.",
+    "How Pixel & Code built Aurevia, a Django-powered AI sales and support agent for Shopify merchants, over a year-long engagement, from cart recovery to live takeover and a merchant copilot.",
   alternates: { canonical: "https://aurevia.io/pixel-and-code/aurevia-io/" },
   openGraph: {
     type: "article",
@@ -37,12 +37,12 @@ export default function AureviaCaseStudyPage() {
       <PxcNav
         logoHref="/pixel-and-code/"
         links={[
-          { href: "/pixel-and-code/shopify-brand-building/", label: "Shopify" },
+          { href: "/pixel-and-code/", label: "Shopify" },
           { href: "/pixel-and-code/#work", label: "Our work" },
           { href: "/pixel-and-code/#process", label: "How we work" },
           { href: "/pixel-and-code/#pricing", label: "Pricing" },
         ]}
-        ctaHref="https://calendly.com/ritwik-mandal-aurevia/30min"
+        ctaHref="/contact/"
         ctaLabel="Book a call with Ritwik"
         ctaExternal
       />
@@ -148,8 +148,8 @@ export default function AureviaCaseStudyPage() {
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Global</span>
-              <h3>Multilingual Support</h3>
-              <p>Real-time translation across 95+ languages, so the agent is never off the clock or off-language.</p>
+              <h3>Live Takeover &amp; Tickets</h3>
+              <p>Ask for a human and a ticket opens, the team is pinged, and the same chat turns into a live conversation the merchant can hand back to the AI.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Sales ops</span>
@@ -174,39 +174,14 @@ export default function AureviaCaseStudyPage() {
         <section className="section">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> Impact</span>
-            <h2 className="section__title" data-split>What merchants are seeing.</h2>
-          </div>
-          <div className="stats__grid" style={{ marginBottom: "2rem" }}>
-            <div className="stat" data-stat>
-              <div className="stat__num"><span data-num="67">0</span>%</div>
-              <div className="stat__label">AI-driven sales lift</div>
-            </div>
-            <div className="stat" data-stat>
-              <div className="stat__num"><span data-num="35">0</span>%</div>
-              <div className="stat__label">Purchases made via AI chat</div>
-            </div>
-            <div className="stat" data-stat>
-              <div className="stat__num"><span data-num="8">0</span>×</div>
-              <div className="stat__label">Return on AI investment</div>
-            </div>
-            <div className="stat" data-stat>
-              <div className="stat__num"><span data-num="80">0</span>%</div>
-              <div className="stat__label">Questions resolved by AI</div>
-            </div>
+            <h2 className="section__title" data-split>What shipped.</h2>
           </div>
           <p className="case-note reveal-up">
-            Figures reported by Aurevia across its merchant base — including a 28% conversion lift for
-            apparel stores, 31% more repeat-order revenue in beauty, 23% fewer returns in fitness &amp;
-            fashion, and an 18% AOV boost for supplement brands. Source:
-            {" "}<a href="https://aurevia.io" target="_blank" rel="noopener">aurevia.io</a>.
+            Aurevia is live on the Shopify App Store with a 14-day trial. Merchants get an AI sales agent on the
+            storefront, live takeover and tickets, cart-recovery emails, a knowledge base with corrections, and a
+            dashboard that attributes revenue to real Shopify orders. We publish customer numbers only with the
+            merchant&apos;s permission, so there are none on this page yet.
           </p>
-
-          <div className="case-pullquote reveal-up">
-            <span className="case-pullquote__mark" aria-hidden="true">&ldquo;</span>
-            <p>During last year&apos;s BFCM, a technical hiccup left one merchant with a 600-question support
-               backlog — Aurevia&apos;s agent cleared the entire queue in minutes, without adding headcount.</p>
-            <cite>Reported by <b>Cabau Lifestyle</b>, an Aurevia merchant</cite>
-          </div>
         </section>
 
         {/* CTA */}

@@ -40,6 +40,7 @@ import {
 import { SHOPIFY_APP_URL } from "@/lib/utils";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/resources/ai-comparisons" },
   title: "Shopify AI Sales Agents Compared (2026) | Aurevia",
   description:
     "Listicle-style comparison of Shopify AI chatbots: helpdesk titans, chat hybrids, niche tools, and proactive sales agents — with spider diagrams, tables, and internal guides.",
@@ -604,7 +605,7 @@ export default function AIComparisonsPage() {
             aria-labelledby="verdict-heading"
           >
             <h2 id="verdict-heading" className="text-2xl font-normal text-foreground sm:text-3xl">
-              Verdict: why Aurevia wins the revenue use case
+              Verdict: where each tool fits, and where Aurevia is strongest
             </h2>
             <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
               <Card className="border-border/40 bg-black/25">
@@ -642,24 +643,6 @@ export default function AIComparisonsPage() {
             </blockquote>
           </section>
 
-          <div className="mt-12 rounded-2xl border border-border/30 bg-card/20 p-6 sm:p-8">
-            <p className="font-fraunces italic text-lg sm:text-xl text-foreground leading-relaxed mb-5">
-              &ldquo;We'd run two different helpdesk bots before this. Neither one ever tried to sell anything—they
-              just closed tickets. This is the first one that actually moved revenue, not just resolution time.&rdquo;
-            </p>
-            <div className="flex items-center gap-3">
-              <span
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00795c]"
-                aria-hidden="true"
-              >
-                JP
-              </span>
-              <div>
-                <p className="text-sm font-medium text-foreground">Julian Pryce</p>
-                <p className="text-xs text-muted-foreground">Head of Digital, Foundry & Oak</p>
-              </div>
-            </div>
-          </div>
 
           <div className="mt-8 rounded-xl border border-[#00CC99]/20 bg-gradient-to-br from-[#00CC99]/5 to-transparent p-6 sm:p-8">
             <h3 className="text-lg font-normal text-foreground sm:text-xl">Ready to ship your AI sales co-pilot?</h3>

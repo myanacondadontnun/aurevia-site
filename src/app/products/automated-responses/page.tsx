@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { getReview } from "@/lib/reviews";
 import { FeatureChatDemo, type ChatStep } from "@/components/FeatureDemo";
 
 const title = "AI Automated Responses for Shopify | Aurevia";
@@ -9,7 +10,8 @@ const desc =
 export const metadata: Metadata = {
   title,
   description: desc,
-  openGraph: { title, description: desc, type: "article" },
+  alternates: { canonical: "/products/automated-responses" },
+  openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/products/automated-responses/" },
 };
 
 const demoScript: ChatStep[] = [
@@ -32,6 +34,14 @@ const demoScript: ChatStep[] = [
   { type: "user", text: "Amazing. Ordering now!" },
 ];
 
+const orderScript: ChatStep[] = [
+  { type: "user", text: "Where's my order? #1042, camille@example.com" },
+  { type: "bot", text: "Found it. Here's where it is right now:" },
+  { type: "card", delay: 500, head: "Order #1042 · Shipped", title: "UPS Ground · 1Z 999 AA1 01", note: "Left the regional hub this morning · est. delivery Thursday", progress: true },
+  { type: "bot", text: "I'll keep an eye on it. Want me to message you if the estimate changes?", delay: 1200 },
+  { type: "user", text: "Yes please!", delay: 1400 },
+];
+
 export default function AutomatedResponsesPage() {
   return (
     <FeatureSubpageLayout
@@ -52,7 +62,7 @@ export default function AutomatedResponsesPage() {
       demo={<FeatureChatDemo agentName="Support Agent" script={demoScript} />}
       proofStrip={[
         { label: "Answers in seconds", text: "Shipping, sizing, and policy questions resolved instantly — before they become tickets." },
-        { label: "Zero made-up answers", text: "Every reply is grounded in your published data, so shoppers never hear fantasy SKUs or invented return rules." },
+        { label: "Grounded answers only", text: "Replies come from your catalog and the documents you add. When it does not know, it says so and offers a human." },
         { label: "Sells while it supports", text: "The same thread that answers a question can recommend a product and open the cart." },
       ]}
       featureBlocks={[
@@ -107,13 +117,34 @@ export default function AutomatedResponsesPage() {
           a: "Yes. The AI can hand off with full context so your team picks up the conversation without making the customer repeat themselves.",
         },
       ]}
-      testimonial={{
-        quote:
-          "We're a two-person team and customers used to wait until Monday for an answer. Now someone gets a real, specific response at 2am on a Saturday, and half the time they check out right after.",
-        name: "Hannah Voss",
-        role: "Co-Founder",
-        company: "Marlin & Ash",
+      secondDemo={{
+        eyebrow: "Where is my order",
+        title: "Order updates without a ticket",
+        body: "Give the agent an order number and email and it looks the order up in Shopify, shows the status, carrier and tracking, and offers to keep watching it. The most common support question, gone from your inbox.",
+        demo: <FeatureChatDemo agentName="Lucien" script={orderScript} loopPause={5000} />,
+        points: ["Live Shopify order lookup", "Carrier and tracking link", "No human needed"],
       }}
+      screenshot={{
+        src: "/images/app/knowledge-desktop.webp",
+        mobile: "/images/app/knowledge-mobile.webp",
+        url: "app.aurevia.io/knowledge",
+        title: "Everything it answers from, in one list",
+        caption: "Links, files and text you add become the agent's sources. Each shows its sync status, so you always know what it can and can't answer.",
+      }}
+      setup={{
+        title: "How merchants set it up",
+        steps: [
+          { src: "/images/app/knowledge-desktop.webp", title: "Add your policies", body: "Paste a link, drop a PDF or type it. Aurevia also suggests your Shopify policy pages so you can add them all in one click." },
+          { src: "/images/app/persona-desktop.webp", title: "Set Always and Never rules", body: "Hard constraints the agent follows in every reply, such as never promising delivery dates." },
+          { src: "/images/app/live-activity-desktop.webp", title: "Correct once, fixed forever", body: "See an answer you'd phrase differently in Live Activity? Correct it inline and the agent uses your version from then on." },
+        ],
+      }}
+      review={getReview("purebronze")}
+      alsoSee={[
+        { href: "/products/ticket-management", title: "Live takeover & tickets", body: "When a shopper asks for a person, your team joins the same chat." },
+        { href: "/products/recommendations", title: "Recommendations", body: "From a vague ask to a shortlist with reasons." },
+        { href: "/help/train-the-ai-with-your-content", title: "Help: training the AI", body: "Step-by-step guide to sources and corrections." },
+      ]}
     />
   );
 }

@@ -20,7 +20,6 @@ interface Plan {
   tagline: string;
   overage: string;
   cta: string;
-  highlight?: boolean;
   features: string[];
 }
 
@@ -48,12 +47,10 @@ const plans: Plan[] = [
     tagline: "For growing stores turning traffic into paying customers.",
     overage: "+ $10 per 250 messages",
     cta: "Start free trial",
-    highlight: true,
     features: [
       "Everything in Starter, plus:",
       "1,500 AI messages / month",
       "Cart recovery automation",
-      "Multi-language support",
       "Custom AI selling rules",
       "Advanced analytics dashboard",
       "Priority email support",
@@ -70,10 +67,8 @@ const plans: Plan[] = [
       "Everything in Growth, plus:",
       "3,000 AI messages / month",
       "ROI & revenue attribution",
-      "API access & custom integrations",
       "Custom AI training tools",
       "Team seats & collaboration",
-      "Priority live chat support",
     ],
   },
   {
@@ -86,11 +81,8 @@ const plans: Plan[] = [
     features: [
       "Everything in Pro, plus:",
       "6,000 AI messages / month",
-      "Dedicated account manager",
-      "Custom AI model training",
-      "White-label options",
-      "Enterprise security & compliance",
-      "SLA & priority support",
+      "Unlimited team seats",
+      "Priority support",
     ],
   },
 ];
@@ -113,7 +105,6 @@ const comparison: { group: string; rows: { label: string; values: (boolean | str
       { label: "AI product recommendations", values: [true, true, true, true] },
       { label: "Automated responses & Q&A", values: [true, true, true, true] },
       { label: "Cart recovery automation", values: [false, true, true, true] },
-      { label: "Multilingual support", values: [false, true, true, true] },
       { label: "Custom AI selling rules", values: [false, true, true, true] },
       { label: "Custom AI training tools", values: [false, false, true, true] },
     ],
@@ -123,9 +114,7 @@ const comparison: { group: string; rows: { label: string; values: (boolean | str
     rows: [
       { label: "Analytics dashboard", values: ["Basic", "Advanced", "Advanced", "Custom"] },
       { label: "ROI & revenue attribution", values: [false, true, true, true] },
-      { label: "API access & integrations", values: [false, false, true, true] },
       { label: "Team collaboration", values: [false, false, true, true] },
-      { label: "SLA & enterprise security", values: [false, false, false, true] },
     ],
   },
   {
@@ -151,7 +140,7 @@ const faqs = [
   },
   {
     q: "Can I change or cancel my plan anytime?",
-    a: "Absolutely. Upgrade, downgrade, or cancel from your dashboard at any time. Changes take effect on your next billing cycle and there are no lock-in contracts.",
+    a: "Yes, from Settings → Subscription. Upgrades apply immediately and are prorated. Downgrades take effect at your next billing date. If you cancel, you keep access until the end of the paid cycle. No lock-in contracts.",
   },
   {
     q: "How am I billed?",
@@ -173,7 +162,9 @@ function formatNumber(n: number): string {
 
 export default function PricingPage() {
   const [currency, setCurrency] = useState<Currency>("USD");
-  const [billing, setBilling] = useState<BillingCycle>("monthly");
+  const [billing, setBilling] = useState<BillingCycle>("annual");
+  const [traffic, setTraffic] = useState<number>(1);
+  const recommendedIndex = Math.min(traffic, 3); // pills 1-3 map to cards 1-3; the last two both mean Scale
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const sym = currencySymbols[currency];
 
@@ -181,14 +172,15 @@ export default function PricingPage() {
     const monthly = convert(plan.monthly, currency);
     if (billing === "annual") {
       const perMo = Math.round(monthly * 0.8);
-      const yearly = perMo * 12;
-      return { big: `${sym}${formatNumber(yearly)}`, sub: "/year", note: `${sym}${formatNumber(perMo)}/mo · save 20%` };
+      return { perMonth: `${sym}${formatNumber(perMo)}`, billed: `Billed annually for ${sym}${formatNumber(perMo * 12)}` };
     }
-    return { big: `${sym}${formatNumber(monthly)}`, sub: "/month", note: null as string | null };
+    return { perMonth: `${sym}${formatNumber(monthly)}`, billed: `Billed monthly for ${sym}${formatNumber(monthly)}` };
   }
 
+  const trafficOptions = ["under 25k", "over 25k", "over 75k", "over 150k", "over 300k"];
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="pricing-page min-h-screen bg-background">
       <Navbar />
       <main id="main-content" className="pt-24 sm:pt-32 pb-16">
         {/* Hero */}
@@ -200,7 +192,7 @@ export default function PricingPage() {
             Pricing that grows{" "}
             <span className="green-highlight">with your store</span>
           </h1>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
+          <p className="text-base sm:text-lg text-foreground/75 max-w-xl mx-auto">
             Pick a plan that matches your traffic. Start with a 14-day free trial—you&apos;re
             only charged once you&apos;re selling more.
           </p>
@@ -213,7 +205,7 @@ export default function PricingPage() {
                   key={c}
                   onClick={() => setBilling(c)}
                   className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all ${
-                    billing === c ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+                    billing === c ? "bg-primary text-primary-foreground shadow-sm" : "text-foreground/75 hover:text-foreground"
                   }`}
                 >
                   {c === "monthly" ? "Monthly" : "Annual"}
@@ -227,7 +219,7 @@ export default function PricingPage() {
                   key={cur}
                   onClick={() => setCurrency(cur)}
                   className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-all ${
-                    currency === cur ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+                    currency === cur ? "bg-primary text-primary-foreground shadow-sm" : "text-foreground/75 hover:text-foreground"
                   }`}
                 >
                   {currencySymbols[cur]} {cur}
@@ -237,53 +229,77 @@ export default function PricingPage() {
           </div>
 
           {/* Trust badges */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-foreground/75">
             <span className="inline-flex items-center gap-1.5"><Check className="h-4 w-4 text-[#00CC99]" /> 14-day free trial</span>
             <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-[#00CC99]" /> Billed via Shopify</span>
             <span className="inline-flex items-center gap-1.5"><Star className="h-4 w-4 text-[#00CC99]" /> Official Shopify Partner</span>
             <span className="inline-flex items-center gap-1.5"><Check className="h-4 w-4 text-[#00CC99]" /> Cancel anytime</span>
+          </div>
+
+          {/* Traffic selector → recommended plan */}
+          <div className="mt-10">
+            <p className="text-base sm:text-lg font-medium text-foreground">What is your monthly visitor count?</p>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5" role="radiogroup" aria-label="Monthly visitor count">
+              {trafficOptions.map((label, i) => (
+                <button
+                  key={label}
+                  type="button"
+                  role="radio"
+                  aria-checked={traffic === i}
+                  onClick={() => setTraffic(i)}
+                  className={`rounded-full border px-5 py-2.5 text-sm sm:text-base transition-colors ${
+                    traffic === i
+                      ? "border-[#0f3d30] bg-[#0f3d30] text-white"
+                      : "border-border bg-card text-foreground hover:border-[#009973]/60"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <p className="mt-4 text-sm text-foreground/75">14-day free trial on every plan. No card. Billed through Shopify.</p>
           </div>
         </section>
 
         {/* Plan cards */}
         <section className="px-4 sm:px-6 mt-12 sm:mt-14 max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
-            {plans.map((plan) => {
+            {plans.map((plan, index) => {
               const price = priceDisplay(plan);
+              const recommended = index === recommendedIndex;
               return (
                 <div
                   key={plan.id}
                   className={`relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 ${
-                    plan.highlight
-                      ? "border-2 border-[#00CC99] bg-card shadow-[0_18px_50px_-16px_rgba(0,153,115,0.35)]"
-                      : "border border-border bg-card hover:border-[#00CC99]/40 hover:shadow-lg"
+                    recommended
+                      ? "border-2 border-[#0f3d30] bg-card shadow-[0_18px_50px_-16px_rgba(15,61,48,0.35)]"
+                      : "border border-border bg-card hover:border-[#009973]/40 hover:shadow-lg"
                   }`}
                 >
-                  {plan.highlight && (
-                    <span className="absolute -top-3 left-6 rounded-full bg-gradient-to-r from-[#00CC99] to-[#009973] px-3 py-1 text-[11px] font-semibold text-primary-foreground">
-                      Most popular
-                    </span>
-                  )}
-                  <h3 className="text-lg font-semibold text-foreground">{plan.name}</h3>
-                  <p className="mt-1.5 text-sm text-muted-foreground min-h-[40px]">{plan.tagline}</p>
+                  <div className="flex items-center gap-2.5">
+                    <h3 className="text-lg font-semibold text-foreground">{plan.name}</h3>
+                    {recommended && (
+                      <span className="rounded-full bg-[#0f3d30] px-2.5 py-1 text-[11px] font-semibold text-white">Recommended</span>
+                    )}
+                  </div>
 
-                  <div className="mt-5 flex items-end gap-1.5">
-                    <span className="text-4xl font-fraunces font-normal text-foreground">{price.big}</span>
-                    <span className="mb-1 text-sm text-muted-foreground">{price.sub}</span>
+                  <div className="mt-5 flex items-end gap-2">
+                    <span className="text-4xl font-fraunces font-normal leading-none text-foreground">{price.perMonth}</span>
+                    <span className="mb-0.5 text-sm text-foreground/75">per month</span>
                   </div>
-                  <div className="min-h-[38px] mt-1">
-                    {price.note && <p className="text-xs text-[#00795c] font-medium">{price.note}</p>}
-                    <p className="text-xs text-muted-foreground">{plan.overage}</p>
-                  </div>
+                  <span className="mt-3 inline-flex w-fit rounded-md bg-[#009973]/12 px-2.5 py-1 text-sm font-semibold text-[#00795c]">
+                    {price.billed}
+                  </span>
+                  <p className="mt-2 text-sm text-foreground/75">with a 14-day free trial, no card</p>
 
                   <a
                     href={SHOPIFY_APP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`mt-5 flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold transition-all min-h-[44px] no-underline ${
-                      plan.highlight
-                        ? "cta-button text-primary-foreground"
-                        : "border border-border text-foreground hover:border-[#00CC99] hover:text-[#00795c]"
+                      recommended
+                        ? "cta-button"
+                        : "border border-border text-foreground hover:border-[#009973] hover:text-[#00795c]"
                     }`}
                   >
                     {plan.cta}
@@ -293,12 +309,16 @@ export default function PricingPage() {
                     {plan.features.map((f, i) => (
                       <li key={i} className="flex items-start gap-2.5 text-sm">
                         <Check className="h-4 w-4 shrink-0 mt-0.5 text-[#00CC99]" />
-                        <span className={i === 0 && f.startsWith("Everything") ? "font-medium text-foreground" : "text-muted-foreground"}>
+                        <span className={i === 0 && f.startsWith("Everything") ? "font-medium text-foreground" : "text-foreground/80"}>
                           {f}
                         </span>
                       </li>
                     ))}
                   </ul>
+
+                  <p className="mt-auto border-t border-border/60 pt-4 text-sm text-foreground/80">
+                    Extra messages: {sym}{convert(10, currency)} for 250 messages
+                  </p>
                 </div>
               );
             })}
@@ -308,9 +328,9 @@ export default function PricingPage() {
           <div className="mt-5 flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h3 className="text-lg font-semibold text-foreground">
-                Unlimited <span className="text-sm font-normal text-muted-foreground">— custom pricing</span>
+                Unlimited <span className="text-sm font-normal text-foreground/75">— custom pricing</span>
               </h3>
-              <p className="mt-1 text-sm text-muted-foreground max-w-xl">
+              <p className="mt-1 text-sm text-foreground/75 max-w-xl">
                 For very high-volume stores: unlimited AI messages, a dedicated success manager, and a custom plan built around your operation.
               </p>
             </div>
@@ -322,7 +342,7 @@ export default function PricingPage() {
             </Link>
           </div>
 
-          <p className="mt-6 text-center text-xs text-muted-foreground">
+          <p className="mt-6 text-center text-xs text-foreground/75">
             Prices estimated at ~0.5 AI messages per visitor. {currency === "GBP" && "GBP is approximate. "}
             All charges billed securely via the Shopify App Store.
           </p>
@@ -337,7 +357,7 @@ export default function PricingPage() {
             <table className="w-full min-w-[720px] text-left text-sm">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="p-4 font-medium text-muted-foreground w-[28%]">Features</th>
+                  <th className="p-4 font-medium text-foreground/75 w-[28%]">Features</th>
                   {plans.map((p) => (
                     <th key={p.id} className="p-4 text-center font-semibold text-foreground">
                       {p.name}
@@ -349,7 +369,7 @@ export default function PricingPage() {
                 {comparison.map((section) => (
                   <Fragment key={section.group}>
                     <tr className="bg-muted/40">
-                      <td colSpan={5} className="px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                      <td colSpan={5} className="px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-foreground/75">
                         {section.group}
                       </td>
                     </tr>
@@ -363,7 +383,7 @@ export default function PricingPage() {
                             ) : v === false ? (
                               <Minus className="mx-auto h-4 w-4 text-muted-foreground/40" />
                             ) : (
-                              <span className="text-muted-foreground">{v}</span>
+                              <span className="text-foreground/75">{v}</span>
                             )}
                           </td>
                         ))}
@@ -391,7 +411,7 @@ export default function PricingPage() {
             </blockquote>
             <div className="mt-6">
               <p className="text-sm font-medium text-foreground">Sophie Marchand</p>
-              <p className="text-xs text-muted-foreground">Head of E-Commerce, Lumière &amp; Co.</p>
+              <p className="text-xs text-foreground/75">Head of E-Commerce, Lumière &amp; Co.</p>
             </div>
           </div>
         </section>
@@ -410,10 +430,10 @@ export default function PricingPage() {
                   className="flex w-full items-center justify-between gap-4 p-5 text-left"
                 >
                   <span className="text-sm sm:text-base font-medium text-foreground">{faq.q}</span>
-                  <ChevronDown className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform ${openFaq === i ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`h-5 w-5 shrink-0 text-foreground/75 transition-transform ${openFaq === i ? "rotate-180" : ""}`} />
                 </button>
                 {openFaq === i && (
-                  <p className="px-5 pb-5 -mt-1 text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+                  <p className="px-5 pb-5 -mt-1 text-sm text-foreground/75 leading-relaxed">{faq.a}</p>
                 )}
               </div>
             ))}
@@ -444,7 +464,7 @@ export default function PricingPage() {
                   rel="noopener noreferrer"
                   className="cta-button text-primary-foreground font-semibold rounded-xl px-7 py-3 text-sm sm:text-base min-h-[48px] inline-flex items-center justify-center no-underline"
                 >
-                  Try for free on Shopify
+                  Start free trial
                 </a>
                 <Link
                   href="/resources/roi-calculator"

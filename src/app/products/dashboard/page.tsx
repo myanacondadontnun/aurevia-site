@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { getReview } from "@/lib/reviews";
 import { FeatureMetricsDemo } from "@/components/FeatureDemo";
 
-const title = "Ecommerce AI Performance Dashboard | Aurevia";
+const title = "Dashboard & Ask Aurevia Copilot | Aurevia";
 const desc =
   "A merchant home for what matters: conversations, revenue-leaning signals, and how your AI is performing. Shopify AI analytics without vanity charts.";
 
 export const metadata: Metadata = {
   title,
   description: desc,
-  openGraph: { title, description: desc, type: "article" },
+  alternates: { canonical: "/products/dashboard" },
+  openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/products/dashboard/" },
 };
 
 export default function DashboardPage() {
@@ -17,7 +19,7 @@ export default function DashboardPage() {
     <FeatureSubpageLayout
       backHref="/products"
       backLabel="← Back to Products"
-      eyebrow="Performance dashboard"
+      eyebrow="Dashboard & Ask Aurevia"
       headline={
         <>
           Monday morning, <span className="green-highlight">answered in one screen</span>
@@ -75,9 +77,7 @@ export default function DashboardPage() {
         { title: "Iterate in place", body: "Adjust rules, copy, and priorities from the same home base." },
       ]}
       relatedLinks={[
-        { href: "/products/analytics", label: "Conversation analytics" },
         { href: "/products/roi-tracking", label: "ROI tracking" },
-        { href: "/solutions/insights", label: "Insights solutions" },
       ]}
       faqs={[
         {
@@ -89,17 +89,31 @@ export default function DashboardPage() {
           a: "Use your org’s process for logins; the goal is one honest view of performance for brand and partners alike.",
         },
         {
-          q: "What if we are in beta and numbers move around?",
-          a: "Early on, use trends and qualitative wins alongside absolute figures; the product hardens with your feedback.",
+          q: "Can I ask the dashboard questions instead of reading charts?",
+          a: "Yes. Ask Aurevia is built into the dashboard: press ⌘K and ask in plain English. It answers with charts and sources, and can propose catalog fixes that you confirm before anything is written to Shopify.",
         },
       ]}
-      testimonial={{
-        quote:
-          "I don't need to ask anyone for a report anymore. I open the dashboard Monday morning, see what the AI closed over the weekend, and know exactly what to look at first.",
-        name: "Renee Okafor",
-        role: "Operations Manager",
-        company: "Sable Ridge Coffee",
+      screenshot={{
+        src: "/images/app/ask-aurevia-desktop.webp",
+        mobile: "/images/app/ask-aurevia-mobile.webp",
+        url: "app.aurevia.io/product-management",
+        title: "Ask it to fix something, then confirm",
+        caption: "Ask Aurevia proposes the edit as a card: the product, the new title and description. Nothing is written to Shopify until you click Confirm.",
       }}
+      setup={{
+        title: "What you'll actually look at",
+        steps: [
+          { src: "/images/app/dashboard-desktop.webp", title: "Home, in chat view", body: "Active chats, resolution rate, sold by AI, and a copilot box in the middle of the page." },
+          { src: "/images/app/dashboard-mode-desktop.webp", title: "Home, in dashboard view", body: "Revenue and orders influenced, the recommendation funnel and the questions shoppers ask most." },
+          { src: "/images/app/live-activity-desktop.webp", title: "Live Activity", body: "Every open conversation with the shopper's cart beside it, refreshing as it happens." },
+        ],
+      }}
+      review={getReview("l1nk")}
+      alsoSee={[
+        { href: "/products/roi-tracking", title: "Insights & ROI", body: "How attribution works, number by number." },
+        { href: "/help/use-ask-aurevia", title: "Help: Ask Aurevia", body: "Prompts that work and what the copilot can change." },
+        { href: "/help/read-the-dashboard-metrics", title: "Help: reading the metrics", body: "What every card means." },
+      ]}
     />
   );
 }

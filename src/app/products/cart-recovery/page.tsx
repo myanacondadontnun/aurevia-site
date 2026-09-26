@@ -1,35 +1,26 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
 import { FeatureChatDemo, type ChatStep } from "@/components/FeatureDemo";
+import { getReview } from "@/lib/reviews";
+import AbandonedCartEmail from "@/components/AbandonedCartEmail";
 
-const title = "In-Session Cart Recovery for Shopify | Aurevia";
+const title = "Cart Recovery for Shopify: In-Chat Nudges and Follow-Up Emails | Aurevia";
 const desc =
-  "Nudge hesitant shoppers in real time: last-minute Q&A, free-shipping progress, and checkout links. Reduce abandonment before email even matters.";
+  "Catch hesitation while the shopper is still on your store, then follow up abandoned carts by email in your own voice, with the exact items, quiet hours and frequency caps.";
 
 export const metadata: Metadata = {
   title,
   description: desc,
-  openGraph: { title, description: desc, type: "article" },
+  alternates: { canonical: "/products/cart-recovery" },
+  openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/products/cart-recovery/" },
 };
 
-const demoScript: ChatStep[] = [
-  {
-    type: "card",
-    head: "Exit intent detected",
-    title: "Cart: £58.00 · 1 item",
-    note: "Shopper idle at checkout for 40s",
-  },
-  {
-    type: "bot",
-    text: "Before you go — anything holding you back? Shipping's free on this order, by the way 👀",
-  },
-  { type: "user", text: "Oh! I thought shipping was extra.\nCan it arrive by Friday though?" },
-  {
-    type: "bot",
-    text: "Yes — order in the next 3 hours and it lands Thursday. Your cart's ready whenever you are:",
-  },
-  { type: "cartbar", summary: "1 item · £58.00 · Free shipping" },
-  { type: "user", text: "Okay you got me. Checking out 🙌" },
+const nudgeScript: ChatStep[] = [
+  { type: "bot", text: "Still thinking about the Silk Draped Blouse? Happy to help if anything's holding you back — sizing, shipping, or the hem." },
+  { type: "user", text: "Honestly just wondering if it'll arrive before Friday.", delay: 1800 },
+  { type: "bot", text: "Order in the next 2 hours and it ships today. Express lands Wednesday, standard Thursday. Both before Friday." },
+  { type: "cartbar", summary: "1 item · $520.00 · Free shipping", delay: 600 },
+  { type: "user", text: "Okay, doing it.", delay: 1500 },
 ];
 
 export default function CartRecoveryPage() {
@@ -40,70 +31,76 @@ export default function CartRecoveryPage() {
       eyebrow="Cart recovery"
       headline={
         <>
-          Save the sale <span className="green-highlight">before the tab closes</span>
+          Save the sale <span className="green-highlight">before and after they leave</span>
         </>
       }
-      subtitle="Recovery emails arrive hours after the moment is gone. Aurevia catches the hesitation live — answers the last objection, shows the free-shipping math, and drops a one-tap path to pay while the shopper is still on your store."
+      subtitle="On the store, the agent notices a cart that has gone quiet and opens with the question that usually stops people. After they leave, it writes the follow-up email itself: the exact items, your tone, a one-click way back, and replies that land in your inbox."
       heroBullets={[
-        "Real-time exit-intent rescue",
-        "Cart-aware, objection-first replies",
-        "One-tap checkout handoff",
+        "In-chat nudge when a cart goes quiet",
+        "Follow-up emails written in your voice",
+        "Quiet hours, frequency caps and a minimum cart value",
       ]}
-      demo={<FeatureChatDemo agentName="Sales Agent" script={demoScript} />}
+      demo={<FeatureChatDemo agentName="Lucien" script={nudgeScript} loopPause={5000} />}
       proofStrip={[
-        { label: "The moment that matters", text: "70% of carts are abandoned — and the cheapest one to save is the one still on your site." },
-        { label: "Context, not spam", text: "The AI already knows the cart, the line items, and what was discussed. No generic pop-up begging." },
-        { label: "Doubt → paid, one thread", text: "From last objection to checkout link without ever leaving the conversation." },
+        { label: "On the store", text: "If a shopper has items in the cart and the chat has been closed for a few minutes, the agent opens with a short, cart-aware nudge. Once per session, never nagging." },
+        { label: "After they leave", text: "You choose the delay, from ten minutes to a day. The email shows the real line items and prices and links straight back to the cart." },
+        { label: "Replies come back to you", text: "Shoppers answer the email, the reply lands in your Aurevia inbox, and the agent responds in the same thread with the cart still attached." },
       ]}
       featureBlocks={[
         {
-          title: "Answer what stopped them",
-          body: "Shipping, fit, return anxiety, and payment questions—solved in chat before they close the tab.",
+          title: "Written by the AI, or by you",
+          body: "Let Aurevia write the subject and opener in your store's voice with guidance you give it, or use your own templates. The product list, prices and total are always rendered from the real cart.",
         },
         {
-          title: "Line-item and cart awareness",
-          body: "Update quantities, swap variants, and keep the math transparent so the decision feels easy.",
+          title: "Guardrails your brand can stand behind",
+          body: "A minimum cart value, a frequency cap in days, quiet hours in your timezone, and one-click unsubscribe on every email.",
         },
         {
-          title: "Urgency without sleaze",
-          body: "Use ethical nudges your brand can stand behind—merchants set how hard the pitch goes.",
+          title: "Optional second email and discount",
+          body: "Add a second touch one to seventy-two hours later, and a discount code you can choose to include on the first email or hold back.",
         },
         {
-          title: "Paired with re-engagement you already run",
-          body: "Session rescue complements email and SMS, instead of being the only line of defense after they leave.",
+          title: "Results you can read",
+          body: "Abandoned, emailed, replied, recovered and recovered revenue, with every cart listed by status.",
         },
       ]}
       howItWorks={[
-        { title: "Detect stall signals", body: "High-intent questions, time on page, and cart value inform what to say next." },
-        { title: "Defuse the objection", body: "Short, factual answers and relevant picks bring confidence back in-line." },
-        { title: "Hand off to checkout", body: "Drive to cart review or a checkout link with trust cues your store already provides." },
+        { title: "A cart goes quiet", body: "Idle past your threshold with items still in it. The agent nudges in chat if they're on the store, and schedules the email if they've left." },
+        { title: "The email goes out", body: "Under your store's sender name, from an Aurevia-hosted address, outside quiet hours, never more often than your cap allows." },
+        { title: "They reply or return", body: "Replies are answered by the agent in the same thread. Purchases close the cart and show up as recovered revenue." },
       ]}
       relatedLinks={[
         { href: "/products/recommendations", label: "Product recommendations" },
-        { href: "/solutions/conversion", label: "Conversion solutions" },
-        { href: "/products/roi-tracking", label: "ROI tracking" },
+        { href: "/help/cart-recovery-emails", label: "Set up cart recovery" },
+        { href: "/products/roi-tracking", label: "Insights & ROI" },
       ]}
       faqs={[
         {
-          q: "Is this only email and SMS follow-up?",
-          a: "No. The emphasis is live rescue while the session is still active, layered with the remarketing you already do.",
+          q: "Does this replace my email or SMS flows?",
+          a: "It replaces the abandoned-cart email. Everything else you run stays as it is. If you'd rather keep your existing flow, leave Aurevia's recovery switched off.",
         },
         {
-          q: "Can we set cart-value thresholds for nudges?",
-          a: "Yes. Merchant rules and instructions help govern when upsells and urgency prompts should appear.",
+          q: "Who is emailed?",
+          a: "Shoppers who gave an email in the chat, or who are signed in to your store, and who haven't opted out. Consent wording is recorded with each lead.",
         },
         {
-          q: "Does it work with discount codes and Shopify checkout?",
-          a: "Aurevia is built Shopify-native, so the journey stays in your store’s real cart and policies.",
+          q: "Does it use my message quota?",
+          a: "Only when the AI writes the email copy. Emails using your own templates don't count, and if you run out of messages recovery switches to your templates automatically.",
         },
       ]}
-      testimonial={{
-        quote:
-          "Every abandoned cart notification used to feel like a tiny loss we just accepted. Now the AI catches the hesitation in real time and hands them a checkout link before they've even closed the tab.",
-        name: "Tomasz Wolski",
-        role: "Growth Lead",
-        company: "Basecamp Outfitters",
+      secondDemo={{
+        eyebrow: "After they leave",
+        title: "The email they actually get",
+        body: "Written in your store's voice, with the exact items and prices from the real cart, a one-click way back, and a reply address that lands in your Aurevia inbox. Sent under your store's name, outside quiet hours, never more often than your cap allows.",
+        demo: <AbandonedCartEmail />,
+        points: ["Real line items and total", "Your sender name", "Replies answered by the AI"],
       }}
+      review={getReview("littleangel")}
+      alsoSee={[
+        { href: "/products/recommendations", title: "Recommendations", body: "Fewer abandoned carts start with the right product in it." },
+        { href: "/help/cart-recovery-emails", title: "Help: cart recovery", body: "Every setting explained." },
+        { href: "/products/roi-tracking", title: "Insights & ROI", body: "Recovered revenue shows up next to everything else the agent influenced." },
+      ]}
     />
   );
 }

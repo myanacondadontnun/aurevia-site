@@ -8,7 +8,8 @@ const desc =
 export const metadata: Metadata = {
   title,
   description: desc,
-  openGraph: { title, description: desc, type: "article" },
+  alternates: { canonical: "/solutions/conversion" },
+  openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/solutions/conversion/" },
 };
 
 export default function ConversionPage() {
@@ -30,7 +31,7 @@ export default function ConversionPage() {
       ]}
       featureBlocks={[
         { title: "Pre-sales that asks before it pitches", body: "Quick replies and follow-ups that mirror how your best in-store rep would narrow options." },
-        { title: "In-chat cart and checkout nudges", body: "Keep momentum: cart edits, free-shipping progress, and clear paths to pay in thread." },
+        { title: "In-chat cart and checkout nudges", body: "Keep momentum: cart edits, free-shipping progress, and a one-tap checkout link in the thread." },
         { title: "Bundle and upsell with guardrails", body: "Revenue logic you set—so cross-sell reads helpful, not desperate." },
         { title: "Attribution you can show internally", body: "Pair with ROI and analytics so the channel mix and site roadmap win together." },
       ]}
@@ -39,13 +40,6 @@ export default function ConversionPage() {
         { title: "Recommend with reasons", body: "Short, justified picks from your real catalog, not a random grid." },
         { title: "Close in-session", body: "Add to cart, resolve last objections, and hand off to checkout with trust cues." },
       ]}
-      media={{
-        ariaLabel: "Adaptive sales brain placeholder",
-        caption: "Swap in: inputs to AI brain to outputs (recommend, bundle, nudge) still or motion",
-        suggestedAsset: "Use your 'One adaptive sales brain' diagram: catalog, voice, rules in; recommendations and cart nudges out.",
-        kind: "image",
-        aspect: "wide",
-      }}
       relatedLinks={[
         { href: "/products/recommendations", label: "Product recommendations" },
         { href: "/products/cart-recovery", label: "Cart recovery" },
@@ -53,16 +47,9 @@ export default function ConversionPage() {
       ]}
       faqs={[
         { q: "We already run CRO on the site. Why chat?", a: "Because many questions never make it to a form—they die in hesitation. A consultative thread captures that intent the moment it appears." },
-        { q: "How fast can we test impact?", a: "Ship a pilot, compare assisted sessions against holdouts, and read weekly; your dashboard and ROI views connect to real orders." },
+        { q: "How fast can we test impact?", a: "Install, let it run for a week, then read Revenue Influenced and Orders Influenced on the dashboard. Every number ties to a real Shopify order." },
         { q: "Is this one-size upsell spam?", a: "No. Merchants set tone and rules; the best programs sound like help, not pressure." },
       ]}
-      testimonial={{
-        quote:
-          "We tested a dozen conversion tactics over the years. This is the first one where I can actually watch a hesitant browser turn into a completed order in the same chat window.",
-        name: "Nate Kowalski",
-        role: "Head of Growth",
-        company: "Alder & Finch",
-      }}
     />
   );
 }

@@ -8,7 +8,8 @@ const desc =
 export const metadata: Metadata = {
   title,
   description: desc,
-  openGraph: { title, description: desc, type: "article" },
+  alternates: { canonical: "/solutions/beauty" },
+  openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/solutions/beauty/" },
 };
 
 export default function BeautyPage() {
@@ -43,16 +44,9 @@ export default function BeautyPage() {
         { title: "Educate, then add to cart", body: "Micro-explainers in chat, not a wall of long-form blog links." },
         { title: "Nudge subscription where it helps", body: "Refill prompts that match the routine you just built, not a generic banner." },
       ]}
-      media={{
-        ariaLabel: "Beauty vertical demo: skin type to regimen",
-        caption: "Swap in: 15s clip of dry vs oily branch to curated picks",
-        suggestedAsset: "Show the ‘ask if dry or oily’ rule, then 2 product cards with a gentle regimen upsell—your custom instructions mock is a good template for stills first.",
-        kind: "video",
-        aspect: "video",
-      }}
       relatedLinks={[
         { href: "/solutions/conversion", label: "Conversion" },
-        { href: "/solutions/insights", label: "Customer insights" },
+        { href: "/products/roi-tracking", label: "Insights & ROI" },
         { href: "/solutions/small-business", label: "Small business" },
       ]}
       faqs={[
@@ -60,13 +54,6 @@ export default function BeautyPage() {
         { q: "What about shade matching?", a: "Use the assets and text you provide; complex shade journeys may blend AI triage with human review where you set it." },
         { q: "Can it sell bundles without confusing compliance?", a: "Yes, when you encode rules: only suggest bundles you merchandize, with clear per-step usage." },
       ]}
-      testimonial={{
-        quote:
-          "Skincare shoppers ask incredibly specific questions — ingredient conflicts, skin type, what to pair with what. The AI handles that nuance better than most of our seasonal staff did in their first month.",
-        name: "Delphine Aubert",
-        role: "Founder",
-        company: "Lumière Skin Co.",
-      }}
     />
   );
 }

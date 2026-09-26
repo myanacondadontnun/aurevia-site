@@ -8,7 +8,8 @@ const desc =
 export const metadata: Metadata = {
   title,
   description: desc,
-  openGraph: { title, description: desc, type: "article" },
+  alternates: { canonical: "/solutions/growing-business" },
+  openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/solutions/growing-business/" },
 };
 
 export default function GrowingBusinessPage() {
@@ -30,22 +31,15 @@ export default function GrowingBusinessPage() {
       ]}
       featureBlocks={[
         { title: "Custom selling playbooks", body: "Bundle logic, add-on rules, and ‘never lead with X’ policies without shipping new code for every test." },
-        { title: "Attribution for grown-up budgets", body: "See how assisted sessions compare to holdouts; allocate spend to what works, not the loudest channel." },
+        { title: "Attribution for grown-up budgets", body: "See revenue and orders the agent influenced, per product, so budget follows what actually converts." },
         { title: "Multi-team alignment", body: "Give growth, product, and CX a shared read on intents and frictions from real chats." },
         { title: "Scale headcount with leverage", body: "Let humans do judgment calls; let the AI do volume that does not need a person." },
       ]}
       howItWorks={[
         { title: "Document what ‘good’ looks like", body: "Turn your best rep’s talk track into written rules the model can follow." },
-        { title: "Roll out in cohorts", body: "Pilot new categories, regions, or campaigns with clear success metrics." },
+        { title: "Tune it without a dev", body: "Tone, handoff rules, hours, cart recovery and knowledge all live in the dashboard, so the team iterates weekly." },
         { title: "Tighten weekly", body: "Review analytics and fix the top 3 frictions; compound improvements beat one hero launch." },
       ]}
-      media={{
-        ariaLabel: "Custom selling instructions panel placeholder",
-        caption: "Swap in: your “That’s not how I’d sell it” rules UI or screen recording",
-        suggestedAsset: "A screen capture scrolling custom instructions: e.g. ask skin type first, do not open with premium, correct bad recs. Your brand mock is ideal.",
-        kind: "video",
-        aspect: "wide",
-      }}
       relatedLinks={[
         { href: "/products/roi-tracking", label: "ROI tracking" },
         { href: "/solutions/enterprise", label: "Enterprise" },
@@ -56,13 +50,6 @@ export default function GrowingBusinessPage() {
         { q: "What about brand compliance?", a: "Set tone, vocabulary, and prohibited claims so teams do not have to police every line manually in real time." },
         { q: "How do we onboard new hires faster?", a: "The AI does not replace training, but it stops new reps from being the only source of first answers while they ramp." },
       ]}
-      testimonial={{
-        quote:
-          "We hit a point where hiring another support rep wasn't in the budget but the ticket volume kept climbing anyway. Aurevia let us grow past that wall without the headcount.",
-        name: "Sofia Marchetti",
-        role: "Co-Founder",
-        company: "Bramblewood",
-      }}
     />
   );
 }

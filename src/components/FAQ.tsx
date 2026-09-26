@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useScrollFade } from "./ScrollAnimations";
 import { openShopifyInstall } from "@/lib/utils";
-import CTASwarmBackdrop from "@/components/CTASwarmBackdrop";
+import { AureviaMark } from "@/components/FeatureDemo";
 import { useEffect, useRef, useState } from "react";
 
 const faqs = [
@@ -48,7 +48,7 @@ const faqs = [
   {
     question: "Is Aurevia's AI chatbot secure, and how does it handle customer data?",
     answer:
-      "Yes, Aurevia is fully GDPR-compliant and Shopify-Partner verified. We follow enterprise-grade security protocols to protect customer data. All conversations are encrypted, and we provide detailed privacy controls so you can manage data according to your policies.",
+      "Aurevia is a Shopify app and follows Shopify's data and privacy requirements. Chats, leads and tickets are stored in AWS EU-West with encryption in transit and at rest, shopper data requests and deletions come through Shopify's standard GDPR webhooks, and our GDPR page lists exactly what we hold and for how long.",
   },
   {
     question: "Can a live agent take over a conversation from Aurevia's chatbot?",
@@ -122,8 +122,7 @@ function FaqChatTurn({
         <div
           id={qId}
           className={[
-            "max-w-[min(92%,36rem)] sm:max-w-[min(100%,36rem)] rounded-2xl rounded-tr-md border px-3.5 py-2.5 sm:px-5 sm:py-4 font-inter text-[0.82rem] sm:text-base leading-snug",
-            "border-black/25 bg-white text-foreground shadow-[0_8px_24px_rgba(45,55,55,0.1)]",
+            "chat-demo-bubble chat-demo-right max-w-[min(92%,36rem)] sm:max-w-[min(100%,36rem)] !text-[0.9rem] sm:!text-base !leading-snug",
             "transition-all duration-500 ease-out",
             questionVisible ? "translate-x-0 opacity-100" : "pointer-events-none translate-x-4 opacity-0 sm:translate-x-10",
           ].join(" ")}
@@ -132,21 +131,19 @@ function FaqChatTurn({
           {faq.question}
         </div>
       </div>
-      <div className="flex justify-start">
+      <div
+        className={[
+          "chat-demo-bot-row transition-all duration-500 ease-out",
+          answerVisible ? "translate-x-0 opacity-100" : "pointer-events-none -translate-x-4 opacity-0 sm:-translate-x-10",
+        ].join(" ")}
+      >
+        <AureviaMark size={28} />
         <div
           id={aId}
           role="region"
           aria-labelledby={qId}
-          className={[
-            "max-w-[min(92%,36rem)] sm:max-w-[min(100%,36rem)] rounded-2xl rounded-tl-md border px-3.5 py-2.5 sm:px-5 sm:py-4 font-inter font-normal text-[0.82rem] sm:text-base leading-relaxed",
-            "border-[#00CC99]/30 bg-[#00CC99]/12 text-foreground shadow-[0_8px_24px_rgba(45,55,55,0.1)]",
-            "transition-all duration-500 ease-out",
-            answerVisible ? "translate-x-0 opacity-100" : "pointer-events-none -translate-x-4 opacity-0 sm:-translate-x-10",
-          ].join(" ")}
+          className="chat-demo-bubble chat-demo-left max-w-[min(100%,36rem)] !text-[0.9rem] sm:!text-base !leading-relaxed"
         >
-          <p className="mb-1.5 text-[0.7rem] font-medium uppercase tracking-wide text-[#00795c]">
-            Aurevia
-          </p>
           {faq.answer}
         </div>
       </div>
@@ -191,7 +188,7 @@ export default function FAQ() {
         </div>
 
         <ol
-          className="m-0 list-none space-y-6 sm:space-y-10 rounded-xl sm:rounded-2xl border border-black/10 bg-white p-3 sm:p-6 md:p-8 backdrop-blur-sm shadow-[0_10px_40px_rgba(45,55,55,0.06)]"
+          className="m-0 list-none space-y-6 sm:space-y-10 rounded-xl sm:rounded-2xl border border-black/5 bg-[#f3f6f5] p-3 sm:p-6 md:p-8 shadow-[0_10px_40px_rgba(45,55,55,0.06)]"
           aria-label="Frequently asked questions shown as a chat conversation"
         >
           {faqs.map((faq, index) => (
@@ -207,13 +204,12 @@ export default function FAQ() {
         >
           <Button
             size="lg"
-            className="cta-button cta-button--has-swarm relative overflow-hidden text-foreground font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center gap-2 border-0 w-full sm:w-auto"
+            className="cta-button font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center gap-2 border-0 w-full sm:w-auto"
             onClick={() => openShopifyInstall()}
-            aria-label="Try Aurevia for free on Shopify"
+            aria-label="Start your free Aurevia trial on Shopify"
           >
-            <CTASwarmBackdrop roundedClassName="rounded-lg" />
-            <span className="relative z-[3] flex items-center gap-2">
-              Try for free on Shopify
+            <span className="flex items-center gap-2">
+              Start free trial
               <ArrowRight className="w-5 h-5 cta-arrow" aria-hidden="true" />
             </span>
           </Button>

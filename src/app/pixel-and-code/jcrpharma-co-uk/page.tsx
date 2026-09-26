@@ -37,7 +37,7 @@ export default function JcrPharmaCaseStudyPage() {
       <PxcNav
         logoHref="/pixel-and-code/"
         links={[
-          { href: "/pixel-and-code/shopify-brand-building/", label: "Shopify" },
+          { href: "/pixel-and-code/", label: "Shopify" },
           { href: "/pixel-and-code/#work", label: "Our work" },
           { href: "/pixel-and-code/#process", label: "How we work" },
           { href: "/pixel-and-code/#pricing", label: "Pricing" },

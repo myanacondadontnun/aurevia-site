@@ -8,7 +8,8 @@ const desc =
 export const metadata: Metadata = {
   title,
   description: desc,
-  openGraph: { title, description: desc, type: "article" },
+  alternates: { canonical: "/solutions/fitness" },
+  openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/solutions/fitness/" },
 };
 
 export default function FitnessPage() {
@@ -43,13 +44,6 @@ export default function FitnessPage() {
         { title: "Build a defensible plan", body: "Short lists with the ‘why’ tied to the shopper in their words." },
         { title: "Keep the regimen going", body: "Refill and complement nudges on the timeline that matches the product, not a generic blast." },
       ]}
-      media={{
-        ariaLabel: "Fitness supplement demo: goal to stack",
-        caption: "Swap in: 15s clip of goal questions to stack recommendation",
-        suggestedAsset: "A flow: “goal + dietary constraint” → two SKUs + shaker upsell, with a trust line that stays inside your label claims.",
-        kind: "video",
-        aspect: "video",
-      }}
       relatedLinks={[
         { href: "/solutions/conversion", label: "Conversion" },
         { href: "/solutions/enterprise", label: "Enterprise" },
@@ -60,13 +54,6 @@ export default function FitnessPage() {
         { q: "Do you help with international labels?", a: "Ground answers in the content you provide per market; the AI is not inventing new claims per country." },
         { q: "What about high SKU count?", a: "That is where Q&A and goals beat search alone—narrow before you ever show a wall of tubs." },
       ]}
-      testimonial={{
-        quote:
-          "People ask us to basically build their stack for them — creatine, protein, pre-workout, what goes with what. The AI does that consultative selling at 11pm when our team's long gone home.",
-        name: "Connor Blake",
-        role: "Founder",
-        company: "Ironmark Nutrition",
-      }}
     />
   );
 }

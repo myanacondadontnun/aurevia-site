@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
 
-const title = "Enterprise Ecommerce AI & Integrations | Aurevia";
+const title = "Aurevia for Larger Shopify Brands | Custom Plans";
 const desc =
-  "High-volume Shopify brands: security review–friendly rollout, custom integrations, and operational process. AI sales and support with the rigor your org expects.";
+  "High-volume Shopify stores: unlimited seats, priority support, a custom message allowance, and a GDPR-ready data setup. Talk to us about a plan that fits your traffic.";
 
 export const metadata: Metadata = {
   title,
   description: desc,
-  openGraph: { title, description: desc, type: "article" },
+  alternates: { canonical: "/solutions/enterprise" },
+  openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/solutions/enterprise/" },
 };
 
 export default function EnterprisePage() {
@@ -18,52 +19,38 @@ export default function EnterprisePage() {
       backLabel="← Back to Solutions"
       headline={
         <>
-          The same <span className="green-highlight">revenue</span> story, enterprise-grade
+          The same <span className="green-highlight">revenue</span> story, at volume
         </>
       }
-      subtitle="At volume, a storefront assistant has to pass legal, security, and data reviews—not just a marketing demo. This path is for teams that need staged rollouts, integration contracts, and alignment between ecommerce, customer experience, and IT. Aurevia’s Shopify-native core is the pilot; the API and process layer is how you make it last."
-      lede="Pair this with the API and documentation resources when you are ready. The goal is not a science fair project—it is a governed path from pilot cohort to org-wide, with a shared definition of what ‘AI influenced’ means in your reports."
+      subtitle="Larger stores need the same agent with more room: more messages, more seats, a team that answers fast, and clear answers on where data lives. That is what the custom plan covers. No separate product, no re-platforming."
+      lede="Aurevia is Shopify-native. Your catalog, orders and cart stay in Shopify; the agent reads them through the app you installed. If you have a legal or security review to pass, we'll work through it with you."
       proofStrip={[
-        { label: "Process, not a weekend hack", text: "Staging, sign-off, and success criteria the CFO and CISO can recognize." },
-        { label: "Your identity and data model", text: "Webhooks and APIs map to the CRM and data warehouse you already fund." },
-        { label: "Runbooks for humans", text: "Escalation, audit, and training so frontline teams are not left improvising on day thirty." },
+        { label: "Room to run", text: "A message allowance sized to your traffic, unlimited team seats, and top-ups that never expire." },
+        { label: "One agent, every channel", text: "Storefront today; WhatsApp and Instagram in early access on the same rules and knowledge." },
+        { label: "Data you can explain", text: "Chats and leads stored in the EU-West region, GDPR requests handled through Shopify's standard webhooks, and a written data policy you can forward." },
       ]}
       featureBlocks={[
-        { title: "Integration-first mindset", body: "Connect the conversation and outcome events the rest of the business already monitors." },
-        { title: "Scale without re-platforming", body: "Keep Shopify as the commerce core while you orchestrate the AI layer to match your change windows." },
-        { title: "Region and policy complexity", body: "Multi-brand or multi-geo teams get structure around what can be said where." },
-        { title: "Partner-friendly", body: "Give agencies and SIs a contract they can implement against, not a black box." },
+        { title: "Custom message allowance", body: "Scale plans stop at 6,000 messages a month. Above that we quote a flat monthly allowance instead of stacking top-ups." },
+        { title: "Team at scale", body: "Owner, admin and member roles. Members handle conversations and tickets; admins shape the AI. Unlimited seats on custom plans." },
+        { title: "Priority support", body: "A named contact, faster replies, and help with rollout: knowledge sources, handoff rules and hours set up with you." },
+        { title: "Governed behaviour", body: "Always and Never rules, corrections, handoff thresholds and working hours give you a documented control layer over what the agent says." },
       ]}
       howItWorks={[
-        { title: "Scope the pilot", body: "Pick categories, geos, or traffic slices with a clear success plan." },
-        { title: "Security and legal alignment", body: "Work through reviews with documentation and the controls you need on paper." },
-        { title: "Expand with evidence", body: "Scale traffic and use cases on outcomes, not enthusiasm alone." },
+        { title: "Talk to us", body: "Share traffic, order volume and what you need the agent to own. We size the allowance." },
+        { title: "Pilot on your store", body: "Install, train on your documents, run for two to four weeks and read the attributed revenue." },
+        { title: "Move to the custom plan", body: "Billed through Shopify like every other plan, so procurement sees one invoice." },
       ]}
-      media={{
-        ariaLabel: "Trust compliance or RFP one-pager placeholder",
-        caption: "Swap in: security checklist, logo wall, or slide cover for RFP",
-        suggestedAsset: "A single executive-friendly visual: checkmarks for GDPR readiness, data handling, SSO/roadmap, support SLAs—whatever your sales team needs as a static PDF hero.",
-        kind: "image",
-        aspect: "wide",
-      }}
       relatedLinks={[
-        { href: "/contact", label: "Talk to sales" },
-        { href: "/products/api", label: "Custom API" },
-        { href: "/resources/docs", label: "Documentation" },
-        { href: "/solutions/growing-business", label: "Growing business" },
+        { href: "/contact", label: "Talk to us" },
+        { href: "/pricing", label: "Plans and pricing" },
+        { href: "/gdpr", label: "GDPR and data handling" },
+        { href: "/help", label: "Help center" },
       ]}
       faqs={[
-        { q: "Do you sign DPAs and security questionnaires?", a: "Enterprise review packages are handled with your team; we approach them as standard for brands at scale, not a one-off favor." },
-        { q: "What about non-Shopify front ends?", a: "Talk to us about your product catalog and identity model; the goal is a reliable connection between truth and the AI, whatever your stack is piloting." },
-        { q: "How do we govern model behavior in regulated categories?", a: "Layer merchant rules, claims restrictions, and human escalation to match the categories you are responsible for in-market." },
+        { q: "Is there an API or a way to pull data into our warehouse?", a: "Not yet. Today the dashboard is the reporting surface, and leads export as CSV. If you need a specific feed, tell us what for and we'll be straight about timing." },
+        { q: "Will you complete a security questionnaire or sign a DPA?", a: "Yes. Send it over. Our GDPR page describes the data we hold, where, and for how long; the DPA follows the same terms." },
+        { q: "Can we run it on more than one store?", a: "Yes. One login can belong to several stores and switch between them. Each store keeps its own agent, knowledge and plan." },
       ]}
-      testimonial={{
-        quote:
-          "We needed something that could sit across multiple regional storefronts without losing consistency or breaking our compliance rules. Aurevia's the first AI tool our legal team didn't flag in review.",
-        name: "Margaret Chen",
-        role: "VP of Digital",
-        company: "Halden Group",
-      }}
     />
   );
 }

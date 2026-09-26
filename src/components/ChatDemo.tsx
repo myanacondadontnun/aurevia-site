@@ -29,145 +29,84 @@ interface Message {
 const svg = (raw: string) =>
   `data:image/svg+xml,${encodeURIComponent(raw.replace(/\n\s*/g, ""))}`;
 
-const IMG_DUFFEL_BLACK = svg(`
-<svg xmlns="http://www.w3.org/2000/svg" width="280" height="280" viewBox="0 0 280 280">
-  <defs>
-    <linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#eef1f0"/><stop offset="100%" stop-color="#dde2e0"/></linearGradient>
-    <linearGradient id="d" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3a3f42"/><stop offset="100%" stop-color="#1e2224"/></linearGradient>
-  </defs>
-  <rect width="280" height="280" fill="url(#b)"/>
-  <path d="M108 88 Q140 60 172 88" stroke="#4a4f52" stroke-width="5" fill="none" stroke-linecap="round"/>
-  <rect x="60" y="100" width="160" height="95" rx="24" fill="url(#d)"/>
-  <rect x="60" y="102" width="160" height="14" rx="7" fill="#4a5054"/>
-  <line x1="78" y1="138" x2="202" y2="138" stroke="#4a5054" stroke-width="1.5"/>
-  <rect x="98" y="148" width="84" height="36" rx="8" fill="#32383b" stroke="#4a5054" stroke-width="1"/>
-  <circle cx="140" cy="138" r="3.5" fill="#6c7378"/>
-  <rect x="62" y="195" width="156" height="6" rx="3" fill="rgba(0,0,0,0.08)"/>
-</svg>`);
-
-const IMG_TOWEL = svg(`
-<svg xmlns="http://www.w3.org/2000/svg" width="280" height="280" viewBox="0 0 280 280">
-  <defs>
-    <linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#eef1f0"/><stop offset="100%" stop-color="#dde2e0"/></linearGradient>
-    <linearGradient id="t" x1="0" y1="0" x2="1" y2="0.3"><stop offset="0%" stop-color="#c4e8df"/><stop offset="100%" stop-color="#7ec8b8"/></linearGradient>
-  </defs>
-  <rect width="280" height="280" fill="url(#b)"/>
-  <rect x="65" y="82" width="150" height="32" rx="6" fill="url(#t)"/>
-  <rect x="65" y="114" width="150" height="28" rx="0" fill="#9ed6c8"/>
-  <rect x="65" y="142" width="150" height="24" rx="0" fill="#b4dfd5"/>
-  <rect x="65" y="166" width="150" height="20" rx="0" fill="#c4e8df"/>
-  <path d="M65 186 L65 194 Q140 210 215 194 L215 186 Z" fill="#d0ede5"/>
-  <line x1="65" y1="96" x2="215" y2="96" stroke="#a2d4c8" stroke-width="1"/>
-  <line x1="65" y1="128" x2="215" y2="128" stroke="#8bcabc" stroke-width="1"/>
-  <rect x="62" y="200" width="156" height="5" rx="2.5" fill="rgba(0,0,0,0.06)"/>
-</svg>`);
-
-const IMG_DUFFEL_OLIVE = svg(`
-<svg xmlns="http://www.w3.org/2000/svg" width="280" height="280" viewBox="0 0 280 280">
-  <defs>
-    <linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#eef1f0"/><stop offset="100%" stop-color="#dde2e0"/></linearGradient>
-    <linearGradient id="o" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5a6340"/><stop offset="100%" stop-color="#3d4430"/></linearGradient>
-  </defs>
-  <rect width="280" height="280" fill="url(#b)"/>
-  <path d="M108 88 Q140 60 172 88" stroke="#6b7550" stroke-width="5" fill="none" stroke-linecap="round"/>
-  <rect x="60" y="100" width="160" height="95" rx="24" fill="url(#o)"/>
-  <rect x="60" y="102" width="160" height="14" rx="7" fill="#6b7550"/>
-  <line x1="78" y1="138" x2="202" y2="138" stroke="#6b7550" stroke-width="1.5"/>
-  <rect x="98" y="148" width="84" height="36" rx="8" fill="#4c5438" stroke="#6b7550" stroke-width="1"/>
-  <circle cx="140" cy="138" r="3.5" fill="#8a956e"/>
-  <rect x="62" y="195" width="156" height="6" rx="3" fill="rgba(0,0,0,0.08)"/>
-</svg>`);
-
 const salesConversation: Message[] = [
   {
     sender: "aurevia",
-    text: "Hey Jenny 👋 What are you feeling today? Something practical, something fun, or a bit of both?",
+    text: "Hey Camille 👋 Shopping for yourself today, or hunting for a gift?",
     delay: 550,
     typingDuration: 1000,
   },
   {
     sender: "customer",
-    text: "Heyy. Need a gym bag. Mine's falling apart 😭\nBut I don't want something bulky.",
+    text: "Me. Gallery opening on Friday.\nSharp, but I don't want to look like I'm going to a board meeting.",
     delay: 2200,
-    typingDuration: 1100,
+    typingDuration: 1200,
   },
   {
     sender: "aurevia",
-    text: "Got it. Compact but still fits everything.\nDo you carry shoes inside or separately?",
+    text: "Got it. Polished, not corporate.\nAre you thinking one statement piece, or a full look?",
     delay: 1300,
     typingDuration: 900,
   },
   {
     sender: "customer",
-    text: "Inside. That's the problem. My bag ends up smelling lol.\nDoes yours have proper ventilation or is it just \"marketing ventilation\"?",
+    text: "Full look ideally. And I run cold, galleries are always freezing.",
     delay: 2400,
-    typingDuration: 1300,
+    typingDuration: 1100,
   },
   {
     sender: "aurevia",
-    text: "Fair question. Ours has a separate zip shoe compartment with mesh airflow panels.\n\nIt's physically separated from the main section, so sweat doesn't transfer.\n\nIt's also water-resistant inside, so you can wipe it down.",
+    text: "Then a layer that reads as elegant rather than warm.\n\nThe cashmere blazer does exactly that: satin lapel, cut close through the waist, and it's properly warm.\n\nUnder it, the silk draped blouse. Asymmetric hem, so it still shows when the blazer is open.",
     delay: 1000,
-    typingDuration: 1450,
+    typingDuration: 1500,
   },
   {
     sender: "customer",
-    text: "Okay that sounds decent.\nWill it actually fit trainers + change of clothes + bottle?",
-    delay: 2800,
-    typingDuration: 1000,
-  },
-  {
-    sender: "aurevia",
-    text: "Yes. It fits:\n• 1 pair trainers (up to UK 10)\n• Full change of clothes\n• 1L bottle\n• Small toiletry pouch\n\nIf you pack light, you'll still have room left.\n\nHow many gym days a week?",
-    delay: 900,
-    typingDuration: 1300,
-  },
-  {
-    sender: "customer",
-    text: "Like 4-5 😅",
+    text: "Okay that sounds good. Shoes?",
     delay: 2600,
-    typingDuration: 550,
+    typingDuration: 700,
   },
   {
     sender: "aurevia",
-    text: "Then I'd suggest:\n• 1 × Core Gym Duffel (for daily use)\n• Optional: 1 × Quick-dry towel add-on\n\nFrequent users usually grab two so one can air out. But one is fine to start.\n\nWant me to add the Core Duffel in black to your cart?",
+    text: "Patent ankle boots. Sculpted heel, mirror finish, and the height is an evening height without being a standing-for-three-hours problem.\n\nHere's the look:",
     delay: 900,
-    typingDuration: 1650,
+    typingDuration: 1400,
     products: [
       {
-        id: "core-black",
-        name: "Core Gym Duffel",
-        price: "£58.00",
-        image: IMG_DUFFEL_BLACK,
-        variants: ["Black", "Slate", "Olive"],
+        id: "blazer",
+        name: "Tailored Cashmere Blazer",
+        price: "$1,590.00",
+        image: "/images/demo/lv/cashmere-blazer.webp",
+        variants: ["Noir", "Ivory"],
         primaryPick: true,
       },
       {
-        id: "towel",
-        name: "Quick-dry Towel",
-        price: "£12.00",
-        image: IMG_TOWEL,
-        variants: ["Small", "Large"],
+        id: "blouse",
+        name: "Silk Draped Blouse",
+        price: "$520.00",
+        image: "/images/demo/lv/silk-blouse.webp",
+        variants: ["Champagne", "Noir"],
       },
       {
-        id: "core-olive",
-        name: "Core Gym Duffel",
-        price: "£58.00",
-        image: IMG_DUFFEL_OLIVE,
-        variants: ["Olive", "Black", "Slate"],
+        id: "boots",
+        name: "Patent Ankle Boots",
+        price: "$970.00",
+        image: "/images/demo/lv/patent-boots.webp",
+        variants: ["37", "38", "39", "40"],
       },
     ],
   },
   {
     sender: "customer",
-    text: "Yeah add the black one.",
+    text: "Add the blouse in champagne.",
     delay: 2800,
-    typingDuration: 500,
+    typingDuration: 600,
   },
   {
     sender: "aurevia",
-    text: "Done ✔️ Black Core Duffel is in your cart.\n\nYou can still switch colours before checkout.",
+    text: "Done ✔️ Silk Draped Blouse, champagne, is in your cart.\n\nYou're over $300, so shipping's on us. Want me to hold the blazer too?",
     delay: 700,
-    typingDuration: 900,
+    typingDuration: 1000,
     triggerCheckoutDemo: true,
   },
 ];
@@ -194,7 +133,7 @@ const supportConversation: Message[] = [
   },
   {
     sender: "aurevia",
-    text: "Alright, I can see your order was placed on the 22nd and dispatched on the 24th via Royal Mail Tracked 48.\n\nTracking shows it's currently at the regional sorting centre and in transit. Estimated delivery is within 1–2 working days.\n\nWould you like the tracking link resent to your email?",
+    text: "Alright, I can see your order was placed on the 22nd and dispatched on the 24th via UPS Ground.\n\nTracking shows it's currently at the regional sorting centre and in transit. Estimated delivery is within 1–2 working days.\n\nWould you like the tracking link resent to your email?",
     delay: 1300,
     typingDuration: 1050,
     supportWidget: "tracking",
@@ -219,7 +158,7 @@ const supportConversation: Message[] = [
   },
   {
     sender: "aurevia",
-    text: "If it hasn't been delivered by end of day tomorrow, we'll open a courier investigation immediately.\n\nIf Royal Mail confirms it's delayed or lost, we can either:\n\n1. Send a replacement with priority shipping\n2. Issue a full refund\n\nYou won't be left waiting without resolution.",
+    text: "If it hasn't been delivered by end of day tomorrow, we'll open a courier investigation immediately.\n\nIf UPS confirms it's delayed or lost, we can either:\n\n1. Send a replacement with priority shipping\n2. Issue a full refund\n\nYou won't be left waiting without resolution.",
     delay: 650,
     typingDuration: 1050,
   },
@@ -317,12 +256,12 @@ function SupportTrackingCard() {
     <div className="chat-demo-support-card chat-demo-pop">
       <div className="chat-demo-support-card-head">Shipment status</div>
       <div className="chat-demo-support-card-body">
-        <p className="chat-demo-support-strong">Royal Mail Tracked 48</p>
-        <p className="chat-demo-support-muted">Regional sorting centre · In transit</p>
+        <p className="chat-demo-support-strong">UPS Ground</p>
+        <p className="chat-demo-support-muted">Regional hub · In transit</p>
         <div className="chat-demo-support-track-visual" aria-hidden>
           <div className="chat-demo-support-track-fill" />
         </div>
-        <p className="chat-demo-support-eta">Est. delivery 1–2 working days</p>
+        <p className="chat-demo-support-eta">Est. delivery 1–2 business days</p>
       </div>
     </div>
   );
@@ -472,7 +411,7 @@ function ChatPanel({
       {mode === "sales" && (cartPhase === "bar" || cartPhase === "checkout") && (
         <div className="chat-demo-cart-sticky">
           <div className="chat-demo-cart-sticky-inner chat-demo-cart-bar-in">
-            <span className="chat-demo-cart-summary">1 item · £58.00</span>
+            <span className="chat-demo-cart-summary">1 item · $520.00</span>
             <span className="chat-demo-view-cart">VIEW CART</span>
           </div>
         </div>
@@ -504,13 +443,13 @@ function ChatPanel({
             </div>
             <div className="chat-demo-minicart-line">
               <div className="chat-demo-minicart-thumb">
-                <img src={IMG_DUFFEL_BLACK} alt="" />
+                <img src="/images/demo/lv/silk-blouse.webp" alt="" />
               </div>
               <div className="chat-demo-minicart-main">
-                <span className="chat-demo-minicart-item-title">Core Gym Duffel</span>
-                <span className="chat-demo-minicart-variant">Black</span>
+                <span className="chat-demo-minicart-item-title">Silk Draped Blouse</span>
+                <span className="chat-demo-minicart-variant">Champagne</span>
                 <div className="chat-demo-minicart-meta">
-                  <span className="chat-demo-minicart-price">£58.00</span>
+                  <span className="chat-demo-minicart-price">$520.00</span>
                   <span className="chat-demo-minicart-qty">
                     <span className="chat-demo-minicart-qty-btn">−</span>
                     <span className="chat-demo-minicart-qty-val">1</span>
@@ -522,7 +461,7 @@ function ChatPanel({
             <div className="chat-demo-minicart-footer">
               <div className="chat-demo-minicart-total">
                 <span>Total</span>
-                <strong>£58.00</strong>
+                <strong>$520.00</strong>
               </div>
               <span className="chat-demo-minicart-checkout">Checkout</span>
             </div>

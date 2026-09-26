@@ -5,19 +5,18 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { openShopifyInstall } from "@/lib/utils";
-import CTASwarmBackdrop from "@/components/CTASwarmBackdrop";
 
 const footerLinks = {
   main: [
     { label: "Home", href: "/home" },
     { label: "Pricing", href: "/pricing" },
-    { label: "Try for free on Shopify", href: "shopify", isAction: true },
+    { label: "Start free trial", href: "shopify", isAction: true },
   ],
   secondary: [
     { label: "Channels (WhatsApp & Instagram)", href: "/channels" },
     { label: "Blogs", href: "/resources/blogs/" },
     { label: "Review My Shopify", href: "/resources/review-my-shopify/" },
-    { label: "Docs & API", href: "/resources/docs/" },
+    { label: "Help center", href: "/help/" },
     { label: "Contact us", href: "/contact" },
     { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Terms and Conditions", href: "/terms" },
@@ -26,11 +25,9 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { label: "Instagram", href: "#" },
   { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61571429595824#" },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/aurevia-ai/" },
   { label: "X", href: "https://x.com/crazystupidceo" },
-  { label: "Reddit", href: "https://www.reddit.com/user/crackandcoke/" },
 ];
 
 function isHomePath(pathname: string | null) {
@@ -87,18 +84,17 @@ export default function Footer() {
               </p>
               {showHomeCtaSwarm ? (
                 <Button
-                  className="cta-button cta-button--has-swarm relative overflow-hidden text-foreground font-medium px-4 sm:px-6 py-2 rounded-lg transition-all duration-200 border-0 text-sm sm:text-base w-full sm:w-auto"
+                  className="cta-button text-foreground font-medium px-4 sm:px-6 py-2 rounded-lg transition-all duration-200 border-0 text-sm sm:text-base w-full sm:w-auto"
                   onClick={() => openShopifyInstall()}
                 >
-                  <CTASwarmBackdrop roundedClassName="rounded-lg" />
-                  <span className="relative z-[3]">Try for free on Shopify</span>
+                  Start free trial
                 </Button>
               ) : (
                 <Button
                   className="cta-button text-foreground font-medium px-4 sm:px-6 py-2 rounded-lg transition-all duration-200 border-0 text-sm sm:text-base w-full sm:w-auto"
                   onClick={() => openShopifyInstall()}
                 >
-                  Try for free on Shopify
+                  Start free trial
                 </Button>
               )}
             </div>

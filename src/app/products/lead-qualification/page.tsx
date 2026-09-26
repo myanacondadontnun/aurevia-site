@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { getReview } from "@/lib/reviews";
 import { FeatureChatDemo, type ChatStep } from "@/components/FeatureDemo";
 
 const title = "Ecommerce Lead Capture & Export | Aurevia";
@@ -9,7 +10,8 @@ const desc =
 export const metadata: Metadata = {
   title,
   description: desc,
-  openGraph: { title, description: desc, type: "article" },
+  alternates: { canonical: "/products/lead-qualification" },
+  openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/products/lead-qualification/" },
 };
 
 const demoScript: ChatStep[] = [
@@ -18,7 +20,7 @@ const demoScript: ChatStep[] = [
     type: "bot",
     text: "We do! 200+ units qualifies for our wholesale tier. What's your timeline looking like?",
   },
-  { type: "user", text: "Next month ideally. Budget is around £4k." },
+  { type: "user", text: "Next month ideally. Budget is around $4k." },
   {
     type: "bot",
     text: "That's a great fit. I've passed the details to our sales team — Sarah will email you a tailored quote today. What's the best address?",
@@ -26,9 +28,9 @@ const demoScript: ChatStep[] = [
   { type: "user", text: "tom@northarc.co — thanks!" },
   {
     type: "card",
-    head: "Lead captured",
-    title: "High intent · B2B · £4k budget",
-    note: "Timeline 30 days · Transcript attached · Synced to CRM",
+    head: "Saved to Leads",
+    title: "High intent · B2B · $4k budget",
+    note: "Timeline 30 days · Transcript attached · In your Leads tab",
     progress: true,
   },
 ];
@@ -66,8 +68,8 @@ export default function LeadQualificationPage() {
           body: "Review what they asked, what the AI said, and what to do next when your team takes over.",
         },
         {
-          title: "Export to how you work",
-          body: "Get a clean table for your CRM, lifecycle email, or sales queue—less copy-paste from random inboxes.",
+          title: "Export when you need to",
+          body: "Every lead sits in the Leads tab with its transcript. Export the list as CSV on any paid plan and drop it into the tools you already use."
         },
         {
           title: "Pair with high-intent signals",
@@ -77,12 +79,11 @@ export default function LeadQualificationPage() {
       howItWorks={[
         { title: "Engage, then request", body: "Qualify the problem first; the ask for an email is contextual, not cold." },
         { title: "Tag and triage", body: "Status and notes help marketing and support sort hot versus nurture leads." },
-        { title: "Sync or export", body: "Move contacts into the tools you already pay for, on a schedule that fits ops." },
+        { title: "Follow up", body: "Open the latest chat, copy the email, or export the list as CSV when you want it somewhere else." },
       ]}
       relatedLinks={[
         { href: "/products/ticket-management", label: "Escalation" },
-        { href: "/solutions/insights", label: "Customer insights" },
-        { href: "/products/analytics", label: "Analytics" },
+        { href: "/products/roi-tracking", label: "Insights & ROI" },
       ]}
       faqs={[
         {
@@ -91,20 +92,25 @@ export default function LeadQualificationPage() {
         },
         {
           q: "Does this replace my ESP?",
-          a: "No. It feeds your stack—export or integrate—so the email platform or CRM you already use gets better inputs.",
+          a: "No. Leads live in Aurevia with their conversation history, and you can export them as CSV for the email platform or CRM you already use. There is no automatic sync today.",
         },
         {
           q: "How is this different from a pop-up form?",
           a: "The lead arrives with a transcript of what they need. Your team and automations are not starting from a bare address alone.",
         },
       ]}
-      testimonial={{
-        quote:
-          "Our sales team used to chase every form fill, even the tire-kickers. Now leads show up with a transcript that already tells us their budget and timeline, so reps only spend time where it counts.",
-        name: "Jonas Kell",
-        role: "Sales Director",
-        company: "Meridian Supply Co.",
+      screenshot={{
+        src: "/images/app/leads-desktop.webp",
+        url: "app.aurevia.io/lead-management",
+        title: "Every lead with the conversation attached",
+        caption: "Lead Collection lists shoppers who gave an email, with phone, chat count and last chat. Open the latest conversation or export the list as CSV.",
       }}
+      review={getReview("l1nk")}
+      alsoSee={[
+        { href: "/products/ticket-management", title: "Live takeover & tickets", body: "Pick up a hot lead in the chat yourself." },
+        { href: "/products/cart-recovery", title: "Cart recovery", body: "Leads with a cart get the follow-up email automatically." },
+        { href: "/help/take-over-a-live-chat", title: "Help: Live Activity", body: "Filters, details panel and takeover." },
+      ]}
     />
   );
 }

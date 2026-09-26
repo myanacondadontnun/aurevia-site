@@ -8,7 +8,7 @@
 // custom stores £8–20k, agencies "from £5k"); the full packages live in PricingTabs.
 const services = [
   {
-    ground: "ink", n: "01", href: "/pixel-and-code/shopify-brand-building/",
+    ground: "ink", n: "01", href: "/pixel-and-code/",
     tag: "What we're known for", title: "Shopify brand building",
     desc: "A brand built from nothing — logo, colour, type, packaging and product design — and a custom Shopify storefront built to match. Already trading? We rebuild the store around the brand you have.",
     terms: "From £4,900 · live in 6 weeks", cta: "See how we build Shopify brands",

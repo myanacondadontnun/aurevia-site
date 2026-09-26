@@ -323,26 +323,25 @@
   }
 
   .cta-button {
-    background: linear-gradient(135deg, #00e0a8 0%, #00cc99 45%, #009973 100%);
-    color: hsl(var(--primary-foreground));
+    background: #009973 !important; /* app's --brand-accent-strong; beats the shadcn bg-primary utility */
+    color: #ffffff !important;
     position: relative;
-    overflow: hidden;
     border: none !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 6px 16px -8px rgba(0, 153, 115, 0.6);
     transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
   }
 
   .cta-button:hover {
-    background: linear-gradient(135deg, #00cc99 0%, #00b386 45%, #008566 100%);
+    background: #007f60 !important;
     transform: translateY(-1px);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 6px 16px rgba(0,153,115,0.3);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 10px 22px -10px rgba(0, 121, 92, 0.6);
   }
 
-  /* Swarm lives behind label inside the button — solid gradient keeps the CTA
-     high-contrast against the light navbar; particles render over it. */
-  .cta-button.cta-button--has-swarm {
-    background: linear-gradient(135deg, #00e0a8 0%, #00cc99 45%, #009973 100%);
+  .cta-button:focus-visible {
+    outline: 2px solid #00cc99;
+    outline-offset: 2px;
   }
 
   .cta-button.cta-button--has-swarm:hover {
@@ -2165,4 +2164,552 @@
   .stat-number-inner {
     transform: translateY(0);
   }
+}
+
+/* =====================================================================
+   Capability showcase (home): device frames, compare card, agent mode,
+   abandoned-cart email mockup. Chat pieces reuse the chat-demo-* system.
+   ===================================================================== */
+
+/* Bare chat container: no built-in scale, fills whatever frame holds it */
+.chat-demo-container.chat-demo-bare {
+  transform: none;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  height: 100%;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Product card after "add to cart" */
+.chat-demo-product-added .chat-demo-product-cta {
+  background-color: #00cc99;
+  border-color: #00cc99;
+  color: #0f3d30;
+  animation: chatPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Comparison card */
+.chat-demo-compare {
+  flex-shrink: 0; /* overflow:hidden would otherwise let the flex column squeeze it */
+  margin: 0.15rem 0 0.35rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(15, 15, 15, 0.06), 0 1px 1px rgba(15, 15, 15, 0.04);
+}
+.chat-demo-compare-head {
+  padding: 7px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #00795c;
+  background: rgba(0, 204, 153, 0.1);
+  border-bottom: 1px solid rgba(45, 55, 55, 0.06);
+}
+.chat-demo-compare-grid {
+  display: grid;
+  grid-template-columns: 64px 1fr 1fr;
+  gap: 0;
+  padding: 10px 10px 4px;
+}
+.chat-demo-compare-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 0 4px 8px;
+  text-align: center;
+}
+.chat-demo-compare-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f5f5f5;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+.chat-demo-compare-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.chat-demo-compare-name {
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #2d3737;
+}
+.chat-demo-compare-price {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0f3d30;
+}
+.chat-demo-compare-row {
+  display: contents;
+}
+.chat-demo-compare-row > * {
+  padding: 6px 4px;
+  border-top: 1px solid rgba(45, 55, 55, 0.07);
+  font-size: 11px;
+  line-height: 1.3;
+  opacity: 0;
+  animation: chatPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: inherit;
+}
+.chat-demo-compare-label {
+  color: #6b7573;
+  font-weight: 500;
+}
+.chat-demo-compare-cell {
+  text-align: center;
+  color: #2d3737;
+}
+.chat-demo-compare-win {
+  color: #00795c;
+  font-weight: 700;
+  background: rgba(0, 204, 153, 0.08);
+  border-radius: 6px;
+}
+.chat-demo-compare-verdict {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 9px 12px 11px;
+  border-top: 1px solid rgba(45, 55, 55, 0.07);
+  font-size: 12px;
+  line-height: 1.4;
+  color: #2d3737;
+}
+.chat-demo-compare-verdict-tag {
+  flex-shrink: 0;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #0f3d30;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+/* Human agent mode */
+.chat-demo-agent-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: linear-gradient(160deg, #6d5bd0 0%, #4a3aa8 100%);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9);
+}
+.chat-demo-header-agent .chat-demo-status-dot {
+  background: #6d5bd0;
+  box-shadow: 0 0 8px rgba(109, 91, 208, 0.6);
+}
+.chat-demo-left-agent {
+  border-left: 3px solid #6d5bd0;
+}
+.chat-demo-system-line {
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 10px 4px 5px;
+  border-radius: 999px;
+  background: rgba(109, 91, 208, 0.1);
+  color: #4a3aa8;
+  font-size: 11px;
+  margin: 2px 0;
+}
+
+/* Phone frame — 375×775 screen scaled into a fixed box */
+.demo-phone {
+  width: 300px;
+  height: 620px;
+  position: relative;
+  flex-shrink: 0;
+}
+.demo-phone-shell {
+  width: 375px;
+  height: 775px;
+  transform: scale(0.8);
+  transform-origin: top left;
+  border-radius: 46px;
+  background: #101312;
+  padding: 11px;
+  box-shadow:
+    0 30px 60px -20px rgba(15, 30, 25, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+}
+.demo-phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 36px;
+  overflow: hidden;
+  background: #f3f6f5;
+  display: flex;
+  flex-direction: column;
+}
+.demo-phone-notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 112px;
+  height: 30px;
+  border-radius: 999px;
+  background: #101312;
+  z-index: 5;
+}
+.demo-store-bar {
+  flex-shrink: 0;
+  height: 86px;
+  padding: 46px 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-family: 'Fraunces', ui-serif, Georgia, serif;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  color: #111;
+}
+.demo-store-bar svg {
+  width: 20px;
+  height: 20px;
+  color: #111;
+}
+.demo-phone-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+}
+@media (max-width: 639px) {
+  .demo-phone {
+    width: 262px;
+    height: 542px;
+  }
+  .demo-phone-shell {
+    transform: scale(0.7);
+  }
+}
+
+/* Browser frame for dashboard screenshots, with optional phone overlay */
+.demo-browser {
+  position: relative;
+  border-radius: 14px;
+  overflow: visible;
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border) / 0.7);
+  box-shadow: 0 30px 60px -24px rgba(15, 30, 25, 0.3);
+}
+.demo-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 36px;
+  padding: 0 12px;
+  border-bottom: 1px solid hsl(var(--border) / 0.7);
+  border-radius: 14px 14px 0 0;
+  background: hsl(var(--background));
+}
+.demo-browser-dots {
+  display: flex;
+  gap: 5px;
+}
+.demo-browser-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: hsl(var(--border));
+}
+.demo-browser-url {
+  flex: 1;
+  max-width: 320px;
+  margin: 0 auto;
+  height: 22px;
+  border-radius: 6px;
+  background: hsl(var(--border) / 0.45);
+  font-size: 11px;
+  color: hsl(var(--muted-foreground));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.01em;
+}
+.demo-browser-body {
+  border-radius: 0 0 14px 14px;
+  overflow: hidden;
+  background: hsl(var(--card));
+}
+.demo-browser-body img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.demo-browser-pending {
+  aspect-ratio: 16 / 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--muted-foreground));
+  font-size: 13px;
+  background: repeating-linear-gradient(
+    -45deg,
+    hsl(var(--border) / 0.25) 0 10px,
+    transparent 10px 20px
+  );
+}
+.demo-browser-phone {
+  position: absolute;
+  right: -6%;
+  bottom: -10%;
+  width: 24%;
+  min-width: 96px;
+  border-radius: 18px;
+  padding: 5px;
+  background: #101312;
+  box-shadow: 0 20px 40px -16px rgba(15, 30, 25, 0.45);
+}
+.demo-browser-phone-left {
+  right: auto;
+  left: -6%;
+}
+@media (max-width: 639px) {
+  /* keep the overlay inside the page gutter on phones */
+  .demo-browser-phone {
+    right: 2%;
+    bottom: -8%;
+    width: 30%;
+  }
+  .demo-browser-phone-left {
+    right: auto;
+    left: 2%;
+  }
+}
+.demo-browser-phone-screen {
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  aspect-ratio: 9 / 19.5;
+}
+.demo-browser-phone-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* Abandoned-cart email mockup */
+.demo-email {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+  color: #1f2937;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 30px 60px -24px rgba(15, 30, 25, 0.3);
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Inter', sans-serif;
+}
+.demo-email-meta {
+  padding: 12px 18px;
+  background: #f8faf9;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 11.5px;
+  color: #6b7280;
+  display: grid;
+  gap: 3px;
+}
+.demo-email-meta strong {
+  color: #111827;
+  font-weight: 600;
+}
+.demo-email-body {
+  padding: 18px 18px 20px;
+}
+.demo-email-body h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+.demo-email-body p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #374151;
+}
+.demo-email-lines {
+  margin: 14px 0;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+.demo-email-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f5f4;
+}
+.demo-email-line:last-child {
+  border-bottom: none;
+}
+.demo-email-thumb {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f5f5f5;
+  border: 1px solid #e5e7eb;
+}
+.demo-email-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.demo-email-line-main {
+  flex: 1;
+  min-width: 0;
+}
+.demo-email-line-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.25;
+}
+.demo-email-line-qty {
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+.demo-email-line-price {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #111827;
+  white-space: nowrap;
+}
+.demo-email-total {
+  text-align: right;
+  font-size: 12.5px;
+  color: #374151;
+  margin-bottom: 14px;
+}
+.demo-email-total strong {
+  color: #111827;
+  font-weight: 700;
+}
+.demo-email-btn {
+  display: inline-block;
+  padding: 11px 22px;
+  border-radius: 9px;
+  background: #4b9a78;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  animation: demoEmailBtn 3.2s ease-in-out infinite;
+}
+@keyframes demoEmailBtn {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(75, 154, 120, 0); }
+  50% { box-shadow: 0 0 0 6px rgba(75, 154, 120, 0.18); }
+}
+.demo-email-foot {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #374151;
+}
+.demo-email-sign {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #6b7280;
+}
+.demo-email-reply {
+  margin: 12px 18px 16px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(0, 204, 153, 0.08);
+  border: 1px solid rgba(0, 204, 153, 0.25);
+  font-size: 11.5px;
+  color: #0f3d30;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-email-btn,
+  .chat-demo-compare-row > * {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Capability rows: each row reveals once as it enters the viewport — mockup slides in
+   from its side, copy rises a beat later. Cheap transforms only, so phones stay smooth. */
+.cap-row {
+  --cap-dir: 40px;
+}
+.cap-row.cap-row-reverse {
+  --cap-dir: -40px;
+}
+.cap-row .cap-row-visual,
+.cap-row .cap-row-copy {
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.cap-row .cap-row-visual {
+  transform: translateX(var(--cap-dir)) scale(0.97);
+}
+.cap-row .cap-row-copy {
+  transform: translateY(22px);
+  transition-delay: 0.15s;
+}
+.cap-row.is-visible .cap-row-visual,
+.cap-row.is-visible .cap-row-copy {
+  opacity: 1;
+  transform: none;
+}
+@media (max-width: 767px) {
+  .cap-row .cap-row-visual {
+    transform: translateY(28px) scale(0.98);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cap-row .cap-row-visual,
+  .cap-row .cap-row-copy {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Hero shares the merchant dashboard's background (app --brand-bg). */
+.hero-bg {
+  background: #f3f6f5;
+}
+
+/* Pricing page: the site's global light weight (p/span/div = 300) hurts readability on
+   dense plan cards and the comparison table, so this page reads at normal weight. */
+.pricing-page,
+.pricing-page p,
+.pricing-page span,
+.pricing-page div,
+.pricing-page li,
+.pricing-page td,
+.pricing-page th {
+  font-weight: 400;
 }

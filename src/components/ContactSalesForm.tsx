@@ -13,7 +13,6 @@ const goals = [
   "Cart recovery",
   "Support automation",
   "Product recommendations & AOV",
-  "Multilingual support",
   "Enterprise / custom rollout",
   "Not sure yet",
 ];

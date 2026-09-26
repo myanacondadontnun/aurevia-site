@@ -8,7 +8,8 @@ const desc =
 export const metadata: Metadata = {
   title,
   description: desc,
-  openGraph: { title, description: desc, type: "article" },
+  alternates: { canonical: "/solutions/home-garden" },
+  openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/solutions/home-garden/" },
 };
 
 export default function HomeGardenPage() {
@@ -43,13 +44,6 @@ export default function HomeGardenPage() {
         { title: "Show real combinations", body: "Only SKUs you stock; visual consistency in copy when your PDP images carry the look." },
         { title: "Nudge the complete job", body: "Cart the pieces that make the first purchase work—without feeling like a hardware store upsell at checkout." },
       ]}
-      media={{
-        ariaLabel: "Home decor demo: room context to bundle",
-        caption: "Swap in: 15s clip: living room request to vase + coasters bundle",
-        suggestedAsset: "Match your Orbit Vase + coasters bundle mock: the AI ties room context to a bundle add-to-cart with a small discount callout if you run one.",
-        kind: "video",
-        aspect: "video",
-      }}
       relatedLinks={[
         { href: "/solutions/conversion", label: "Conversion" },
         { href: "/products/recommendations", label: "Recommendations" },
@@ -60,13 +54,6 @@ export default function HomeGardenPage() {
         { q: "What about style vocabulary?", a: "Train tone and adjectives in your brand voice; mid-century and coastal are not the same in your catalog, and the AI can respect that with your list." },
         { q: "Seasonal merchandising?", a: "Nudge the right outdoor or holiday collections in chat when the shopper’s text signals timing." },
       ]}
-      testimonial={{
-        quote:
-          "“Will this actually fit my space” is the question that kills more sales than anything else we sell. Now the AI walks people through dimensions and style before they ever get to checkout.",
-        name: "Grace Whitfield",
-        role: "Owner",
-        company: "Thistle & Loam",
-      }}
     />
   );
 }

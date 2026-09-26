@@ -26,7 +26,7 @@ export default function WebAppDevelopmentPage() {
       <PxcNav
         logoHref="/pixel-and-code/"
         links={[
-          { href: "/pixel-and-code/shopify-brand-building/", label: "Shopify" },
+          { href: "/pixel-and-code/", label: "Shopify" },
           { href: "/pixel-and-code/#work", label: "Our work" },
           { href: "/pixel-and-code/#process", label: "How we work" },
           { href: "/pixel-and-code/#pricing", label: "Pricing" },
@@ -92,7 +92,7 @@ export default function WebAppDevelopmentPage() {
             <h2 className="section__title" data-split>Software built around your operation.</h2>
           </div>
           <p className="case-summary reveal-up" style={{ maxWidth: 760, marginBottom: "2.5rem" }}>
-            Websites and web apps are our second core offer, after <a href="/pixel-and-code/shopify-brand-building/">Shopify brand building</a> — building the system around your business instead of forcing your business into a disconnected tool.
+            Websites and web apps are our second core offer, after <a href="/pixel-and-code/">Shopify brand building</a> — building the system around your business instead of forcing your business into a disconnected tool.
           </p>
           <div className="feature-grid">
             <article className="feature-card reveal-up"><h3>Internal dashboards</h3><p>See and manage what matters without exporting a spreadsheet.</p></article>

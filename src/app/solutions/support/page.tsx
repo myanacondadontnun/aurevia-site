@@ -8,7 +8,8 @@ const desc =
 export const metadata: Metadata = {
   title,
   description: desc,
-  openGraph: { title, description: desc, type: "article" },
+  alternates: { canonical: "/solutions/support" },
+  openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/solutions/support/" },
 };
 
 export default function SupportPage() {
@@ -39,13 +40,6 @@ export default function SupportPage() {
         { title: "Shoppers self-serve WISMO", body: "Order lookups and clear timelines reduce ‘where is my order’ load." },
         { title: "Triage the exceptions", body: "Only the threads that need policy judgment hit your team." },
       ]}
-      media={{
-        ariaLabel: "Pre-sales and post-sales chat mock placeholder",
-        caption: "Swap in: side-by-side phone UIs: product Q vs. order tracking in chat",
-        suggestedAsset: "Use your dual-mobile mock: TrailLite pre-sales + order #12345 post-sales with in-transit card.",
-        kind: "image",
-        aspect: "wide",
-      }}
       relatedLinks={[
         { href: "/products/automated-responses", label: "Automated responses" },
         { href: "/products/ticket-management", label: "Escalation" },
@@ -56,13 +50,6 @@ export default function SupportPage() {
         { q: "How do you handle edge-case policies?", a: "You set boundaries; sensitive flows can route to humans quickly while the AI still gathers facts." },
         { q: "Can we still run macros for VIPs?", a: "Use your playbooks: priority tiers and special handling sit alongside the AI, not in conflict with it." },
       ]}
-      testimonial={{
-        quote:
-          "Our support queue was the thing keeping me up at night. Now the AI resolves the repetitive stuff on its own and only escalates what genuinely needs a human, so my team can actually breathe.",
-        name: "Isabelle Roy",
-        role: "Head of Customer Experience",
-        company: "Clover & Ash",
-      }}
     />
   );
 }
