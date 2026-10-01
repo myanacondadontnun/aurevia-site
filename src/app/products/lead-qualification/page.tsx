@@ -38,6 +38,7 @@ const demoScript: ChatStep[] = [
 export default function LeadQualificationPage() {
   return (
     <FeatureSubpageLayout
+      path="/products/lead-qualification"
       backHref="/products"
       backLabel="← Back to Products"
       eyebrow="Lead qualification"

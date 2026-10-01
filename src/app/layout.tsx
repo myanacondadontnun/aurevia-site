@@ -1,8 +1,30 @@
 import type { Metadata, Viewport } from "next";
+import { Fraunces, Montserrat } from "next/font/google";
 import "./globals.css";
 import ClientBody from "./ClientBody";
 import Script from "next/script";
 import AureviaWidgetLoader from "@/components/AureviaWidgetLoader";
+import JsonLd from "@/components/JsonLd";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/schema";
+
+// Site-wide type system is two families — Fraunces (display) and Montserrat
+// (everything else). Both are self-hosted by next/font: downloaded at build time
+// and served from /_next/static, so there is no render-blocking request to
+// fonts.googleapis.com, and the size-adjusted fallbacks keep text from shifting
+// when the web fonts swap in. Exposed as CSS variables for Tailwind and globals.css.
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-montserrat",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  display: "swap",
+  variable: "--font-fraunces",
+});
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -80,7 +102,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${montserrat.variable} ${fraunces.variable}`}>
       <head>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/x-icon" sizes="any" href="/favicon.ico" />
@@ -89,22 +111,6 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
 
-        {/* Preconnect to Google Fonts for faster loading */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-
-        {/* Non-blocking font loading: only weights actually used.
-            Site-wide type system is just two families — Fraunces (display) and
-            Montserrat (everything else, including body copy and testimonials). */}
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap"
-        />
-        {/* Fraunces — editorial display serif shared with the Aurevia app */}
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&display=swap"
-        />
         {/* Google Analytics */}
         <Script
           strategy="afterInteractive"
@@ -172,6 +178,8 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
+        <JsonLd data={organizationJsonLd} />
+        <JsonLd data={websiteJsonLd} />
         <ClientBody>{children}</ClientBody>
         <AureviaWidgetLoader />
       </body>

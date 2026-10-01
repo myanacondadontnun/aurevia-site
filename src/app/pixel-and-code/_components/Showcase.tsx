@@ -15,7 +15,7 @@ interface Pick {
   url: string;
   group: ShowcaseGroup;
   why: string;
-  img?: string;      // defaults to /assets/showcase/<slug>.jpg
+  img?: string;      // defaults to /assets/showcase/<slug>.webp
   render?: string;   // same-origin URL to render live instead of an image
   external?: boolean; // default true; false for case-study pages inside this section
   tag?: string;      // small mono label next to the name (year, "App Store", …)
@@ -24,7 +24,7 @@ interface Pick {
 const picks: Pick[] = [
   // Shopify stores
   { slug: "sreya-creates", name: "Sreya Creates", url: "https://sreyacreates.com/", group: "Shopify stores", tag: "'25",
-    img: "/pixel-and-code/assets/screenshots/shopify/sreya-creates-home.jpg",
+    img: "/pixel-and-code/assets/screenshots/shopify/sreya-creates-home.webp",
     why: "Handmade jewellery, Kolkata. Brand and custom storefront: one-of-a-kind stock, Pujo drops, gift-wrap at checkout." },
   { slug: "astrid-miyu", name: "Astrid & Miyu", url: "https://www.astridandmiyu.com/", group: "Shopify stores",
     why: "Ear-stacking as a navigation idea — the store is organised the way people actually buy." },
@@ -39,18 +39,18 @@ const picks: Pick[] = [
 
   // Websites
   { slug: "aurevia", name: "Aurevia", url: "/pixel-and-code/aurevia-io/", group: "Websites", external: false, tag: "aurevia.io",
-    render: "/home/",
+    render: "/",
     why: "AI sales agent for Shopify — named, branded, built and run in-house. This is the live site, not a screenshot." },
   { slug: "mim", name: "Masters in Minds", url: "https://www.mastersinminds.com/", group: "Websites", tag: "'24",
-    img: "/pixel-and-code/assets/work/mim.jpg",
+    img: "/pixel-and-code/assets/work/mim.webp",
     why: "Business consulting. A marketing site designed and built end to end, from copy structure to launch." },
 
   // Web apps
   { slug: "jcr", name: "JCR Pharma", url: "/pixel-and-code/jcrpharma-co-uk/", group: "Web apps", external: false, tag: "'24",
-    img: "/pixel-and-code/assets/screenshots/jcrpharma/hero.png",
+    img: "/pixel-and-code/assets/screenshots/jcrpharma/hero.webp",
     why: "Life-sciences recruitment. Job board, candidate portal, employer portal and the internal dashboard, in six weeks." },
   { slug: "cpq", name: "AI CPQ Agent", url: "https://www.expeditecommerce.com/cpq-software/", group: "Web apps", tag: "'25",
-    img: "/pixel-and-code/assets/work/cpq.jpg",
+    img: "/pixel-and-code/assets/work/cpq.webp",
     why: "Expedite Commerce. A Claude-powered quoting agent inside a live enterprise sales stack." },
   { slug: "linear", name: "Linear", url: "https://linear.app/", group: "Web apps",
     why: "The product is the hero. Dark, fast, nothing decorative that isn't also informative." },
@@ -60,7 +60,7 @@ const order: ShowcaseGroup[] = ["Shopify stores", "Websites", "Web apps"];
 
 function Card({ p }: { p: Pick }) {
   const external = p.external !== false;
-  const src = p.img ?? `/pixel-and-code/assets/showcase/${p.slug}.jpg`;
+  const src = p.img ?? `/pixel-and-code/assets/showcase/${p.slug}.webp`;
   return (
     <a
       className={`showcase__card${p.render ? " showcase__card--live" : ""}`}

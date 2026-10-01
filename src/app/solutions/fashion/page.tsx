@@ -15,10 +15,12 @@ export const metadata: Metadata = {
 export default function FashionPage() {
   return (
     <FeatureSubpageLayout
+      path="/solutions/fashion"
+      breadcrumbLabel="Fashion & apparel"
       backHref="/solutions"
       backLabel="← Back to Solutions"
       heroVisual={{
-        src: "/images/fashion-apparel.jpg",
+        src: "/images/fashion-apparel.webp",
         alt: "Fashion retail environment representing apparel ecommerce",
       }}
       headline={

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import PageLayout from "@/components/PageLayout";
 import BlogListing from "@/components/BlogListing";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Blog | Aurevia Resources",
@@ -20,6 +22,7 @@ export const metadata: Metadata = {
 export default function BlogsPage() {
   return (
     <PageLayout>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Resources", path: "/resources" }, { name: "Blog", path: "/resources/blogs" }])} />
       <BlogListing />
     </PageLayout>
   );

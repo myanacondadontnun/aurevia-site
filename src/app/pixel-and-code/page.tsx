@@ -205,7 +205,7 @@ export default function PixelAndCodeHome() {
               <span className="quote__mark">&ldquo;</span>
               <p className="quote__text">We were running our whole recruitment process by hand before this. They shipped our job board, a candidate portal, an employer portal and the internal dashboard we run it all from in about six weeks, and cut our time-to-hire almost in half.</p>
               <div className="quote__by">
-                <span className="quote__logo quote__logo--light"><img src="/pixel-and-code/assets/logos/jcrpharma.png" alt="" loading="lazy" /></span>
+                <span className="quote__logo quote__logo--light"><img src="/pixel-and-code/assets/logos/jcrpharma.webp" alt="JCR Pharma logo" loading="lazy" /></span>
                 <span><span className="quote__name">James Carpenter</span><span className="quote__role">Managing Director &middot; JCR Pharma</span></span>
               </div>
             </article>
@@ -213,7 +213,7 @@ export default function PixelAndCodeHome() {
               <span className="quote__mark">&ldquo;</span>
               <p className="quote__text">I came with a box of jewellery and a name. Six weeks later I had a logo I actually love, packaging people photograph before they open it, and a store that doesn&rsquo;t look like every other handmade shop. Pujo week orders went through without me touching anything.</p>
               <div className="quote__by">
-                <span className="quote__logo quote__logo--light"><img src="/pixel-and-code/assets/logos/sreya-creates.png" alt="" loading="lazy" /></span>
+                <span className="quote__logo quote__logo--light"><img src="/pixel-and-code/assets/logos/sreya-creates.webp" alt="Sreya Creates logo" loading="lazy" /></span>
                 <span><span className="quote__name">Sreya</span><span className="quote__role">Founder &middot; Sreya Creates &middot; sreyacreates.com</span></span>
               </div>
             </article>
@@ -221,7 +221,7 @@ export default function PixelAndCodeHome() {
               <span className="quote__mark">&ldquo;</span>
               <p className="quote__text">Plugging a conversational AI agent into an existing enterprise sales stack without breaking anything is not a small ask. They handled it cleanly and communicated every step of the way.</p>
               <div className="quote__by">
-                <span className="quote__logo"><img src="/pixel-and-code/assets/logos/cpq-agent.svg" alt="" loading="lazy" /></span>
+                <span className="quote__logo"><img src="/pixel-and-code/assets/logos/cpq-agent.svg" alt="Expedite Commerce CPQ agent logo" loading="lazy" /></span>
                 <span><span className="quote__name">Product Lead</span><span className="quote__role">Expedite Commerce &middot; AI CPQ agent</span></span>
               </div>
             </article>
@@ -229,7 +229,7 @@ export default function PixelAndCodeHome() {
               <span className="quote__mark">&ldquo;</span>
               <p className="quote__text">We&rsquo;d been quoted three months by two agencies. Pixel &amp; Code had a design we could react to in week one and the whole site live in three. Every Friday there was something new to look at, which is not how this usually goes.</p>
               <div className="quote__by">
-                <span className="quote__logo quote__logo--light"><img src="/pixel-and-code/assets/logos/masters-in-minds.png" alt="" loading="lazy" /></span>
+                <span className="quote__logo quote__logo--light"><img src="/pixel-and-code/assets/logos/masters-in-minds.webp" alt="Masters in Minds logo" loading="lazy" /></span>
                 <span><span className="quote__name">Managing Partner</span><span className="quote__role">Masters in Minds &middot; marketing site</span></span>
               </div>
             </article>
@@ -248,15 +248,15 @@ export default function PixelAndCodeHome() {
             <div className="logo-marquee" aria-label="Sreya Creates, Aurevia, JCR Pharma, Masters in Minds, Expedite Commerce">
               {[0, 1].map((dup) => (
                 <div className="logo-marquee__track" aria-hidden={dup === 1} key={dup}>
-                  <img src="/pixel-and-code/assets/logos/sreya-creates-wordmark.png" alt="" loading="lazy" className="logo-strip__img--light" />
+                  <img src="/pixel-and-code/assets/logos/sreya-creates-wordmark.webp" alt={dup === 0 ? "Sreya Creates" : ""} loading="lazy" className="logo-strip__img--light" />
                   <span className="logo-marquee__sep">&#10033;</span>
-                  <img src="/pixel-and-code/assets/logos/aurevia.png" alt="" loading="lazy" />
+                  <img src="/pixel-and-code/assets/logos/aurevia.webp" alt={dup === 0 ? "Aurevia" : ""} loading="lazy" />
                   <span className="logo-marquee__sep">&#10033;</span>
-                  <img src="/pixel-and-code/assets/logos/jcrpharma.png" alt="" loading="lazy" className="logo-strip__img--light" />
+                  <img src="/pixel-and-code/assets/logos/jcrpharma.webp" alt={dup === 0 ? "JCR Pharma" : ""} loading="lazy" className="logo-strip__img--light" />
                   <span className="logo-marquee__sep">&#10033;</span>
-                  <img src="/pixel-and-code/assets/logos/masters-in-minds.png" alt="" loading="lazy" className="logo-strip__img--light" />
+                  <img src="/pixel-and-code/assets/logos/masters-in-minds.webp" alt={dup === 0 ? "Masters in Minds" : ""} loading="lazy" className="logo-strip__img--light" />
                   <span className="logo-marquee__sep">&#10033;</span>
-                  <img src="/pixel-and-code/assets/logos/cpq-agent.svg" alt="" loading="lazy" />
+                  <img src="/pixel-and-code/assets/logos/cpq-agent.svg" alt={dup === 0 ? "Expedite Commerce" : ""} loading="lazy" />
                   <span className="logo-marquee__sep">&#10033;</span>
                 </div>
               ))}
@@ -269,11 +269,11 @@ export default function PixelAndCodeHome() {
           <div className="founders">
             <div className="founders__faces">
               <figure>
-                <img src="/pixel-and-code/assets/headshots/ritwik.jpg" alt="Ritwik Mandal" loading="lazy" />
+                <img src="/pixel-and-code/assets/headshots/ritwik.webp" alt="Ritwik Mandal" loading="lazy" />
                 <figcaption>Ritwik Mandal <span>Co-founder &middot; CEO</span><a href="https://www.linkedin.com/in/ritwik-mandal-gtm/" target="_blank" rel="noopener" className="founders__li">LinkedIn ↗</a></figcaption>
               </figure>
               <figure>
-                <img src="/pixel-and-code/assets/headshots/kishal.jpg" alt="Kishal Mandal" loading="lazy" />
+                <img src="/pixel-and-code/assets/headshots/kishal.webp" alt="Kishal Mandal" loading="lazy" />
                 <figcaption>Kishal Mandal <span>Co-founder &middot; CTO</span><a href="https://www.linkedin.com/in/kishal/" target="_blank" rel="noopener" className="founders__li">LinkedIn ↗</a></figcaption>
               </figure>
             </div>

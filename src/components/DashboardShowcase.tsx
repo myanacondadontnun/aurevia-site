@@ -7,31 +7,31 @@ const panels = [
     title: "Every metric, one glance",
     description:
       "Active chats, resolution rate, revenue sold by AI — your entire operation surfaces the moment you log in.",
-    image: "/images/home-dashboard.png",
+    image: "/images/home-dashboard.webp",
   },
   {
     title: "Live on your storefront, selling in real time",
     description:
       "Aurevia chats with shoppers on your live store, recommending products and closing sales — this is the widget actually running, not a mockup.",
-    image: "/images/widget-storefront-demo.png",
+    image: "/images/widget-storefront-demo.webp",
   },
   {
     title: "Feed it your docs, watch it get sharper",
     description:
       "Drop in return policies, size guides, and FAQs — Aurevia stays on-brand and stops guessing on technical questions.",
-    image: "/images/ai-training-dashboard.png",
+    image: "/images/ai-training-dashboard.webp",
   },
   {
     title: "Watch every conversation as it happens",
     description:
       "See what shoppers are asking and what's in their cart, and step in yourself with one click if you need to.",
-    image: "/images/lead-management-dashboard.png",
+    image: "/images/lead-management-dashboard.webp",
   },
   {
     title: "Your whole catalog, always in sync",
     description:
       "Products, pricing, and stock sync straight from Shopify — no manual uploads, no stale listings.",
-    image: "/images/product-management-dashboard.png",
+    image: "/images/product-management-dashboard.webp",
   },
 ];
 

@@ -15,6 +15,8 @@ export const metadata: Metadata = {
 export default function ConversionPage() {
   return (
     <FeatureSubpageLayout
+      path="/solutions/conversion"
+      breadcrumbLabel="Increase sales"
       backHref="/solutions"
       backLabel="← Back to Solutions"
       headline={

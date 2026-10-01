@@ -18,7 +18,7 @@ const staticRoutes: {
   changeFrequency: "weekly" | "monthly";
 }[] = [
   // Core pages
-  { path: "/home/", priority: 1.0, changeFrequency: "weekly" },
+  { path: "/", priority: 1.0, changeFrequency: "weekly" },
   { path: "/pricing/", priority: 0.9, changeFrequency: "weekly" },
   { path: "/channels/", priority: 0.8, changeFrequency: "monthly" },
 
@@ -68,14 +68,20 @@ const staticRoutes: {
   { path: "/pixel-and-code/development-partners/", priority: 0.4, changeFrequency: "monthly" },
   { path: "/pixel-and-code/aurevia-io/", priority: 0.4, changeFrequency: "monthly" },
   { path: "/pixel-and-code/jcrpharma-co-uk/", priority: 0.4, changeFrequency: "monthly" },
+
+  // Company and legal
+  { path: "/contact/", priority: 0.5, changeFrequency: "monthly" },
+  { path: "/privacy-policy/", priority: 0.3, changeFrequency: "monthly" },
+  { path: "/terms/", priority: 0.3, changeFrequency: "monthly" },
+  { path: "/gdpr/", priority: 0.3, changeFrequency: "monthly" },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-
-  const fromStatic = staticRoutes.map(({ path, priority, changeFrequency }) => ({
+  // No lastModified on static routes: stamping every page with the build time
+  // tells Google everything changed on every deploy, which teaches it to ignore
+  // the field. Blog posts and help articles below carry their real dates.
+  const fromStatic: MetadataRoute.Sitemap = staticRoutes.map(({ path, priority, changeFrequency }) => ({
     url: `${siteUrl}${path}`,
-    lastModified: now,
     changeFrequency,
     priority,
   }));

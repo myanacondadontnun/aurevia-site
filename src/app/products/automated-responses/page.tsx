@@ -45,6 +45,7 @@ const orderScript: ChatStep[] = [
 export default function AutomatedResponsesPage() {
   return (
     <FeatureSubpageLayout
+      path="/products/automated-responses"
       backHref="/products"
       backLabel="← Back to Products"
       eyebrow="Automated responses"

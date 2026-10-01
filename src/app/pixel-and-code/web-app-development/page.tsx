@@ -4,6 +4,8 @@ import PxcNav from "../_components/PxcNav";
 import PxcFooter from "../_components/PxcFooter";
 import ChatWidget from "../_components/ChatWidget";
 import BodyBg from "../_components/BodyBg";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Web Application Development — Pixel & Code",
@@ -22,6 +24,7 @@ export default function WebAppDevelopmentPage() {
     <>
       <BodyBg mode="code" />
       <Chrome />
+      <JsonLd data={breadcrumbJsonLd([{ name: "Pixel & Code", path: "/pixel-and-code" }, { name: "Web app development", path: "/pixel-and-code/web-app-development" }])} />
 
       <PxcNav
         logoHref="/pixel-and-code/"
@@ -125,7 +128,7 @@ export default function WebAppDevelopmentPage() {
               <a href="/pixel-and-code/jcrpharma-co-uk/" className="btn btn--ghost"><span>Read the JCR Pharma case study ↗</span></a>
             </div>
             <figure className="case-shot reveal-up" style={{ margin: 0 }}>
-              <img src="/pixel-and-code/assets/screenshots/jcrpharma/employers.png" alt="JCR Pharma employer hiring page" loading="lazy" />
+              <img src="/pixel-and-code/assets/screenshots/jcrpharma/employers.webp" alt="JCR Pharma employer hiring page" loading="lazy" />
             </figure>
           </div>
         </section>

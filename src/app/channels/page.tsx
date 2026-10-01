@@ -61,7 +61,7 @@ export default function ChannelsPage() {
       <section className="gradient-bg">
         <div className="container mx-auto px-4 sm:px-6 max-w-4xl py-10 sm:py-14">
           <Link
-            href="/home"
+            href="/"
             className="text-muted-foreground hover:text-[#00CC99] text-sm mb-8 inline-block transition-colors"
           >
             ← Back to home

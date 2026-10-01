@@ -15,6 +15,8 @@ export const metadata: Metadata = {
 export default function EnterprisePage() {
   return (
     <FeatureSubpageLayout
+      path="/solutions/enterprise"
+      breadcrumbLabel="Enterprise"
       backHref="/solutions"
       backLabel="← Back to Solutions"
       headline={

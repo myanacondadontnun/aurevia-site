@@ -41,6 +41,7 @@ const afterHoursScript: ChatStep[] = [
 export default function TicketManagementPage() {
   return (
     <FeatureSubpageLayout
+      path="/products/ticket-management"
       backHref="/products"
       backLabel="← Back to Products"
       eyebrow="Live takeover & tickets"

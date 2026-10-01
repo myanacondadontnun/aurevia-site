@@ -38,6 +38,8 @@ import {
   type ListicleAgent,
 } from "@/lib/ai-comparison-content";
 import { SHOPIFY_APP_URL } from "@/lib/utils";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/resources/ai-comparisons" },
@@ -301,6 +303,7 @@ export default function AIComparisonsPage() {
 
   return (
     <PageLayout>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Resources", path: "/resources" }, { name: "AI Agent Comparisons", path: "/resources/ai-comparisons" }])} />
       <div className="container mx-auto max-w-[1320px] px-4 sm:px-6">
         <Link
           href="/resources/"

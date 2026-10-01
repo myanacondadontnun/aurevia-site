@@ -1,3 +1,6 @@
+/* eslint-disable @next/next/no-html-link-for-pages --
+   Links out of this section to the Aurevia homepage ("/") are plain <a> on purpose:
+   Pixel & Code pages need a full browser navigation in and out (see layout.tsx). */
 import PcMark from "./PcMark";
 
 interface NavLink {
@@ -25,14 +28,14 @@ export default function PxcNav({
   return (
     <>
       {/* One-line banner above the nav, Charle-style: the studio's own product
-          is the credential. Plain <a> — /home is outside this section. */}
+          is the credential. Plain <a> — the Aurevia homepage is outside this section. */}
       <div className="topbar">
         <span className="topbar__by">Powered by</span>
-        <a href="/home/" className="topbar__brand" aria-label="Aurevia.io">
-          <img src="/pixel-and-code/assets/logos/aurevia.png" alt="" className="topbar__mark" />
+        <a href="/" className="topbar__brand" aria-label="Aurevia.io">
+          <img src="/pixel-and-code/assets/logos/aurevia.webp" alt="" className="topbar__mark" />
           <b>Aurevia.io</b>
         </a>
-        <a href="/home/" className="topbar__link">See Aurevia &#8599;</a>
+        <a href="/" className="topbar__link">See Aurevia &#8599;</a>
       </div>
     <header className="nav" data-nav>
       <div className="nav__brand">
@@ -42,7 +45,7 @@ export default function PxcNav({
             <span className="logo-pixel">Pixel</span><span className="logo-amp">&amp;</span><span className="logo-code">Code</span>
           </span>
         </a>
-        <a href="/home/" className="nav__by">by Aurevia</a>
+        <a href="/" className="nav__by">by Aurevia</a>
       </div>
       <nav className="nav__links">
         {links.map((link) => (

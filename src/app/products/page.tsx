@@ -18,6 +18,8 @@ import {
   Code2,
   ArrowRight,
 } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/products" },
@@ -117,6 +119,7 @@ const linkFooterClasses =
 export default function ProductsPage() {
   return (
     <PageLayout>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Products", path: "/products" }])} />
       <section className="gradient-bg">
         <div className="container mx-auto px-4 sm:px-6 py-14 sm:py-16">
           <div className="scroll-fade text-center mb-8">
@@ -168,7 +171,7 @@ export default function ProductsPage() {
 
           <div className="text-center mt-12">
             <Link
-              href="/home"
+              href="/"
               className="text-muted-foreground hover:text-[#00CC99] text-sm transition-colors"
             >
               ← Back to Home

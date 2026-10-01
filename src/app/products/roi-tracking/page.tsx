@@ -17,6 +17,7 @@ export const metadata: Metadata = {
 export default function RoiTrackingPage() {
   return (
     <FeatureSubpageLayout
+      path="/products/roi-tracking"
       backHref="/products"
       backLabel="← Back to Products"
       eyebrow="ROI tracking"

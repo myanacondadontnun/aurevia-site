@@ -17,6 +17,7 @@ export const metadata: Metadata = {
 export default function DashboardPage() {
   return (
     <FeatureSubpageLayout
+      path="/products/dashboard"
       backHref="/products"
       backLabel="← Back to Products"
       eyebrow="Dashboard & Ask Aurevia"

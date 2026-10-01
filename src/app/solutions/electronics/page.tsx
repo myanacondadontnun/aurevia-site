@@ -15,10 +15,12 @@ export const metadata: Metadata = {
 export default function ElectronicsPage() {
   return (
     <FeatureSubpageLayout
+      path="/solutions/electronics"
+      breadcrumbLabel="Electronics"
       backHref="/solutions"
       backLabel="← Back to Solutions"
       heroVisual={{
-        src: "/images/electronics.jpg",
+        src: "/images/electronics.webp",
         alt: "Consumer electronics and gadgets representing technology ecommerce",
       }}
       headline={

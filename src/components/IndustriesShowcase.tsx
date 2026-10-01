@@ -134,7 +134,7 @@ export default function IndustriesShowcase({ industries }: IndustriesShowcasePro
                 {industry.image ? (
                   <img
                     src={industry.image}
-                    alt=""
+                    alt={`${industry.title} store on Shopify`}
                     className="absolute inset-0 w-full h-full rounded-2xl object-cover"
                   />
                 ) : (

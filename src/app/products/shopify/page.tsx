@@ -38,6 +38,7 @@ const demoScript: ChatStep[] = [
 export default function ShopifyPage() {
   return (
     <FeatureSubpageLayout
+      path="/products/shopify"
       backHref="/products"
       backLabel="← Back to Products"
       eyebrow="Shopify integration"

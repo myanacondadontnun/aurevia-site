@@ -17,6 +17,8 @@ import {
   Search,
   LayoutDashboard,
 } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title:
@@ -151,6 +153,7 @@ export default function ReviewMyShopifyPage() {
   const installUrl = buildShopifyInstallUrl();
   return (
     <PageLayout>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Resources", path: "/resources" }, { name: "Review My Shopify", path: "/resources/review-my-shopify" }])} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

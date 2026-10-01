@@ -3,6 +3,8 @@ import PageLayout from "@/components/PageLayout";
 import Link from "next/link";
 import ROICalculator from "@/components/ROICalculator";
 import ROICalculatorCTACard from "@/components/ROICalculatorCTACard";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "ROI Calculator | Aurevia Resources",
@@ -14,6 +16,7 @@ export const metadata: Metadata = {
 export default function ROICalculatorPage() {
   return (
     <PageLayout>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Resources", path: "/resources" }, { name: "ROI Calculator", path: "/resources/roi-calculator" }])} />
       <div className="w-full overflow-x-hidden font-roi font-light antialiased px-6 sm:px-8 md:px-10 lg:px-16 xl:px-24">
         {/* Calculator hero - single headline, ROI highlighted */}
         <section className="w-full pt-6 pb-4 sm:pt-8 sm:pb-6">

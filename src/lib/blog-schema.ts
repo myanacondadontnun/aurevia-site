@@ -44,7 +44,7 @@ export function getBlogPostJsonLd(post: BlogPost) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: `${SITE_URL}/home/`,
+        item: `${SITE_URL}/`,
       },
       {
         "@type": "ListItem",

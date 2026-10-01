@@ -3,6 +3,8 @@ import Chrome from "../_components/Chrome";
 import PxcNav from "../_components/PxcNav";
 import PxcFooter from "../_components/PxcFooter";
 import ChatWidget from "../_components/ChatWidget";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "About — Pixel & Code",
@@ -20,6 +22,7 @@ export default function AboutPage() {
   return (
     <>
       <Chrome />
+      <JsonLd data={breadcrumbJsonLd([{ name: "Pixel & Code", path: "/pixel-and-code" }, { name: "About", path: "/pixel-and-code/about" }])} />
 
       <PxcNav
         logoHref="/pixel-and-code/"
@@ -83,7 +86,7 @@ export default function AboutPage() {
           </div>
           <div className="team-grid">
             <article className="team-card reveal-up">
-              <div className="team-card__avatar"><img src="/pixel-and-code/assets/headshots/kishal.jpg" alt="Kishal Mandal" loading="lazy" /></div>
+              <div className="team-card__avatar"><img src="/pixel-and-code/assets/headshots/kishal.webp" alt="Kishal Mandal" loading="lazy" /></div>
               <h3>Kishal Mandal</h3>
               <span className="team-card__role">Co-founder · CTO</span>
               <p>
@@ -94,7 +97,7 @@ export default function AboutPage() {
               </p>
             </article>
             <article className="team-card reveal-up">
-              <div className="team-card__avatar"><img src="/pixel-and-code/assets/headshots/ritwik.jpg" alt="Ritwik Mandal" loading="lazy" /></div>
+              <div className="team-card__avatar"><img src="/pixel-and-code/assets/headshots/ritwik.webp" alt="Ritwik Mandal" loading="lazy" /></div>
               <h3>Ritwik Mandal</h3>
               <span className="team-card__role">Co-founder · CEO</span>
               <p>

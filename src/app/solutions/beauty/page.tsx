@@ -15,10 +15,12 @@ export const metadata: Metadata = {
 export default function BeautyPage() {
   return (
     <FeatureSubpageLayout
+      path="/solutions/beauty"
+      breadcrumbLabel="Health & beauty"
       backHref="/solutions"
       backLabel="← Back to Solutions"
       heroVisual={{
-        src: "/images/health-beauty.jpg",
+        src: "/images/health-beauty.webp",
         alt: "Skincare and beauty products representing health and beauty ecommerce",
       }}
       headline={

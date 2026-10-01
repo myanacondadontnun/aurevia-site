@@ -13,12 +13,12 @@ export default {
   			// Site-wide type system: Fraunces (display/serif) + Montserrat (everything else).
   			// `inter`/`playfair`/`roi`/`seasons` are kept as aliases so existing classNames
   			// across the codebase don't need to change — they just resolve to one of the two.
-  			inter: ['Montserrat', 'sans-serif'],
-  			montserrat: ['Montserrat', 'sans-serif'],
-  			fraunces: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
-  			playfair: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
-  			roi: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
-  			seasons: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
+  			inter: ['var(--font-montserrat)', 'sans-serif'],
+  			montserrat: ['var(--font-montserrat)', 'sans-serif'],
+  			fraunces: ['var(--font-fraunces)', 'ui-serif', 'Georgia', 'serif'],
+  			playfair: ['var(--font-fraunces)', 'ui-serif', 'Georgia', 'serif'],
+  			roi: ['var(--font-fraunces)', 'ui-serif', 'Georgia', 'serif'],
+  			seasons: ['var(--font-fraunces)', 'ui-serif', 'Georgia', 'serif'],
   		},
   		colors: {
   			background: 'hsl(var(--background))',

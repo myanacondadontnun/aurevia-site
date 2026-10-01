@@ -7,6 +7,8 @@ import { useScrollFade } from "./ScrollAnimations";
 import { openShopifyInstall } from "@/lib/utils";
 import { AureviaMark } from "@/components/FeatureDemo";
 import { useEffect, useRef, useState } from "react";
+import JsonLd from "@/components/JsonLd";
+import { faqJsonLd } from "@/lib/schema";
 
 const faqs = [
   {
@@ -31,6 +33,9 @@ const faqs = [
   },
   {
     question: "How much does Aurevia's AI sales co-pilot cost?",
+    // Plain-text copy of the answer below, for the FAQ schema. Keep the two in step.
+    answerText:
+      "Every plan starts with a 14-day free trial, no credit card required. After that, plans start at $19/month based on your traffic — see our Pricing page for full details.",
     answer: (
       <>
         Every plan starts with a 14-day free trial, no credit card required.
@@ -61,6 +66,13 @@ const faqs = [
       "Aurevia is specifically built for Shopify sales, not just support. It's trained on your brand, handles complex product recommendations, recovers carts in real-time, and provides actionable sales analytics. Unlike generic chatbots, Aurevia acts as a true AI sales representative that understands your business goals.",
   },
 ];
+
+const faqSchema = faqJsonLd(
+  faqs.map((faq) => ({
+    question: faq.question,
+    answer: typeof faq.answer === "string" ? faq.answer : (faq.answerText ?? ""),
+  }))
+);
 
 const ANSWER_DELAY_MS = 420;
 
@@ -162,6 +174,7 @@ export default function FAQ() {
       className="faq-gradient py-12 sm:py-20 md:py-24 px-4 sm:px-6"
       aria-labelledby="faq-heading"
     >
+      <JsonLd data={faqSchema} />
       <div className="container mx-auto max-w-4xl">
         <div
           ref={headerRef as React.RefObject<HTMLDivElement>}

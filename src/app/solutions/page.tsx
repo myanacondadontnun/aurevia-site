@@ -17,6 +17,8 @@ import {
   Briefcase,
   ArrowRight,
 } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/solutions" },
@@ -80,7 +82,7 @@ const industries = [
     icon: Shirt,
     description: "Recognize your visitors' style and preferences to recommend the latest trends and outfits that fit their fashion sense, while helping them choose the right size.",
     subheader: "Shoppers bounce when they can't find their style or size. Recommend trends and fits they'll love, cut returns, and turn browsers into buyers—without the guesswork.",
-    image: "/images/fashion-apparel.jpg",
+    image: "/images/fashion-apparel.webp",
     titleHighlight: "Apparel",
   },
   {
@@ -90,7 +92,7 @@ const industries = [
     icon: Sparkles,
     description: "Chat about your visitors' skincare concerns to suggest the best beauty products that enhance their natural glow.",
     subheader: "Beauty and skincare shoppers are overwhelmed by choice. Help them find the right products for their concerns and skin type so they buy with confidence and come back.",
-    image: "/images/health-beauty.jpg",
+    image: "/images/health-beauty.webp",
     titleHighlight: "Beauty",
   },
   {
@@ -100,7 +102,7 @@ const industries = [
     icon: Dumbbell,
     description: "Recognize your visitors' health goals to recommend supplements and wellness products that support their well-being.",
     subheader: "Your visitors have goals—build muscle, lose weight, stay energized. Recommend the supplements and gear that match their journey so every click leads closer to a sale.",
-    image: "/images/fitness.jpg",
+    image: "/images/fitness.webp",
     titleHighlight: "Supplements",
   },
   {
@@ -110,7 +112,7 @@ const industries = [
     icon: Monitor,
     description: "Understand your visitors' tech needs to recommend the right gadgets and devices that enhance their digital lifestyle.",
     subheader: "Tech shoppers spend hours comparing specs and reviews. Surface the right gadgets for their needs and budget so they stop searching and start checking out.",
-    image: "/images/electronics.jpg",
+    image: "/images/electronics.webp",
     titleHighlight: "Electronics",
   },
   {
@@ -120,7 +122,7 @@ const industries = [
     icon: Leaf,
     description: "Identify your visitors' home and garden needs to suggest products that beautify their living spaces and outdoor areas.",
     subheader: "From first apartment to dream garden, shoppers want their space to feel right. Suggest decor, plants, and finds that match their style and turn inspiration into orders.",
-    image: "/images/home-garden.jpg",
+    image: "/images/home-garden.webp",
     titleHighlight: "Garden",
   },
 ];
@@ -128,6 +130,7 @@ const industries = [
 export default function SolutionsPage() {
   return (
     <PageLayout>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Solutions", path: "/solutions" }])} />
       <section className="gradient-bg">
         <div className="container mx-auto px-4 sm:px-6 py-14 sm:py-16">
           <header className="scroll-fade text-center mb-12">

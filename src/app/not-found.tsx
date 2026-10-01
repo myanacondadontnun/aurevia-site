@@ -29,7 +29,7 @@ export default function NotFound() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-14">
             <Button asChild className="cta-button rounded-xl px-6 py-3 h-auto text-base border-0">
-              <Link href="/home">
+              <Link href="/">
                 Back to home
                 <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
               </Link>

@@ -1,3 +1,6 @@
+/* eslint-disable @next/next/no-html-link-for-pages --
+   Links out of this section to the Aurevia homepage ("/") are plain <a> on purpose:
+   Pixel & Code pages need a full browser navigation in and out (see layout.tsx). */
 import PcMark from "./PcMark";
 
 interface FooterLink {
@@ -32,7 +35,7 @@ const work: (FooterLink & { external?: boolean })[] = [
 ];
 
 const aurevia: (FooterLink & { external?: boolean })[] = [
-  { href: "/home/", label: "Aurevia.io" },
+  { href: "/", label: "Aurevia.io" },
   { href: "/products/", label: "AI sales agent for Shopify" },
   { href: "/solutions/", label: "Solutions" },
   { href: "/pricing/", label: "Aurevia pricing" },
@@ -57,7 +60,7 @@ export default function PxcFooter({ links }: { links: FooterLink[] }) {
           </div>
           <p className="footer__blurb">
             A Shopify brand and store studio run by two founders. Logo, colour, packaging,
-            custom storefronts, websites, web apps and AI automation. Powered by <a href="/home/">Aurevia.io</a>.
+            custom storefronts, websites, web apps and AI automation. Powered by <a href="/">Aurevia.io</a>.
           </p>
           <a href="mailto:sales@aurevia.io" className="footer__email" data-track="email_click">sales@aurevia.io</a>
           <div className="footer__people">
@@ -96,7 +99,7 @@ export default function PxcFooter({ links }: { links: FooterLink[] }) {
       </div>
 
       <div className="footer__bottom">
-        <span>&copy; <span data-year>2026</span> Pixel &amp; Code &middot; a studio by <a href="/home/">Aurevia.io</a></span>
+        <span>&copy; <span data-year>2026</span> Pixel &amp; Code &middot; a studio by <a href="/">Aurevia.io</a></span>
         <span className="footer__legal">
           <a href="/privacy-policy/">Privacy</a>
           <a href="/terms/">Terms</a>

@@ -4,6 +4,8 @@ import PxcNav from "../_components/PxcNav";
 import PxcFooter from "../_components/PxcFooter";
 import ChatWidget from "../_components/ChatWidget";
 import BodyBg from "../_components/BodyBg";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Technical Delivery Partner for Agencies — Pixel & Code",
@@ -22,6 +24,7 @@ export default function DevelopmentPartnersPage() {
     <>
       <BodyBg mode="code" />
       <Chrome />
+      <JsonLd data={breadcrumbJsonLd([{ name: "Pixel & Code", path: "/pixel-and-code" }, { name: "Development partners", path: "/pixel-and-code/development-partners" }])} />
 
       <PxcNav
         logoHref="/pixel-and-code/"
@@ -124,7 +127,7 @@ export default function DevelopmentPartnersPage() {
               <a href="/pixel-and-code/aurevia-io/" className="btn btn--ghost"><span>Read the Aurevia case study ↗</span></a>
             </div>
             <figure className="case-shot reveal-up" style={{ margin: 0 }}>
-              <img src="/pixel-and-code/assets/screenshots/aurevia/ai_training.png" alt="Aurevia dashboard — AI training and knowledge base" loading="lazy" />
+              <img src="/pixel-and-code/assets/screenshots/aurevia/ai_training.webp" alt="Aurevia dashboard — AI training and knowledge base" loading="lazy" />
             </figure>
           </div>
         </section>

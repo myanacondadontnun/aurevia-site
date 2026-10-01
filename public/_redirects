@@ -1,0 +1,27 @@
+# Host-level redirects for Cloudflare Pages (aurevia.io is served from Cloudflare,
+# so the [[redirects]] in netlify.toml never run there). One hop each, straight to
+# the final trailing-slash URL. Keep in sync with netlify.toml.
+
+# The homepage lives at "/".
+/home / 301
+/home/ / 301
+
+# Retired product pages (capabilities that never shipped) and the old docs page.
+/products/multilingual /products/ 301
+/products/multilingual/* /products/ 301
+/products/api /products/ 301
+/products/api/* /products/ 301
+/resources/docs /help/ 301
+/resources/docs/* /help/ 301
+
+# Consolidated / retired pages (site audit 2026-09-26).
+/products/analytics /products/roi-tracking/ 301
+/products/analytics/* /products/roi-tracking/ 301
+/solutions/insights /products/roi-tracking/ 301
+/solutions/insights/* /products/roi-tracking/ 301
+/solutions/stories /solutions/ 301
+/solutions/stories/* /solutions/ 301
+/solutions/industries /solutions/#industries 301
+/solutions/industries/* /solutions/#industries 301
+/pixel-and-code/shopify-brand-building /pixel-and-code/ 301
+/pixel-and-code/shopify-brand-building/* /pixel-and-code/ 301

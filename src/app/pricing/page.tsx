@@ -4,6 +4,8 @@ import { useState, Fragment } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
+import { faqJsonLd } from "@/lib/schema";
 import { SHOPIFY_APP_URL } from "@/lib/utils";
 import { Check, Minus, ChevronDown, ShieldCheck, Sparkles, Star } from "lucide-react";
 
@@ -418,6 +420,7 @@ export default function PricingPage() {
 
         {/* FAQ */}
         <section className="px-4 sm:px-6 mt-20 max-w-3xl mx-auto">
+          <JsonLd data={faqJsonLd(faqs.map((f) => ({ question: f.q, answer: f.a })))} />
           <h2 className="text-2xl sm:text-4xl font-fraunces font-normal text-foreground text-center mb-8">
             Pricing <span className="green-highlight">questions</span>
           </h2>

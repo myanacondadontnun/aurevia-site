@@ -15,6 +15,8 @@ export const metadata: Metadata = {
 export default function SupportPage() {
   return (
     <FeatureSubpageLayout
+      path="/solutions/support"
+      breadcrumbLabel="Automate support"
       backHref="/solutions"
       backLabel="← Back to Solutions"
       headline={

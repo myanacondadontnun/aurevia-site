@@ -22,7 +22,7 @@ const testimonials: Testimonial[] = [
     company: "Cabau Lifestyle",
     industry: "Fitness & Lifestyle",
     initials: "C",
-    image: "/images/cabau-lifestyle.png",
+    image: "/images/cabau-lifestyle.webp",
   },
   {
     quote:
@@ -32,7 +32,7 @@ const testimonials: Testimonial[] = [
     company: "LSKD",
     industry: "Activewear",
     initials: "KB",
-    image: "/images/lskd.png",
+    image: "/images/lskd.webp",
   },
   {
     quote:
@@ -42,7 +42,7 @@ const testimonials: Testimonial[] = [
     company: "Baby Gold",
     industry: "Jewelry",
     initials: "SM",
-    image: "/images/baby-gold.png",
+    image: "/images/baby-gold.webp",
   },
   {
     quote:
@@ -52,7 +52,7 @@ const testimonials: Testimonial[] = [
     company: "Hairlust",
     industry: "Beauty & Haircare",
     initials: "RS",
-    image: "/images/hairlust.png",
+    image: "/images/hairlust.webp",
   },
   {
     quote:
@@ -62,7 +62,7 @@ const testimonials: Testimonial[] = [
     company: "VESSEL",
     industry: "Premium Goods",
     initials: "LR",
-    image: "/images/vessel.png",
+    image: "/images/vessel.webp",
   },
   {
     quote:
@@ -72,7 +72,7 @@ const testimonials: Testimonial[] = [
     company: "Pajar",
     industry: "Fashion & Outerwear",
     initials: "P",
-    image: "/images/pajar.png",
+    image: "/images/pajar.webp",
   },
   {
     quote:
@@ -82,7 +82,7 @@ const testimonials: Testimonial[] = [
     company: "Loop Earplugs",
     industry: "Consumer Tech",
     initials: "MV",
-    image: "/images/loop-earplugs.png",
+    image: "/images/loop-earplugs.webp",
   },
 ];
 

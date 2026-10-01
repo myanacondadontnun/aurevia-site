@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import HelpShell from "@/components/help/HelpShell";
 import { HELP_CATEGORIES, helpArticles } from "@/lib/help-articles";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Help Center | Aurevia",
@@ -12,6 +14,7 @@ export const metadata: Metadata = {
 export default function HelpIndexPage() {
   return (
     <HelpShell>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Help center", path: "/help" }])} />
       <header className="mb-10">
         <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00795c] mb-3">Help center</p>
         <h1 className="text-3xl sm:text-5xl font-fraunces font-normal text-foreground mb-3">

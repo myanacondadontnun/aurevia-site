@@ -77,8 +77,8 @@ export default function BookDemo() {
     <div className="min-h-[100dvh] lg:grid lg:grid-cols-2">
       {/* Left: the product, in one glance */}
       <aside className="hero-bg relative flex flex-col items-center px-6 pt-6 pb-4 lg:min-h-[100dvh] lg:justify-center lg:px-12 lg:pb-10">
-        <Link href="/home" className="absolute left-6 top-5 flex items-center gap-2 lg:left-10 lg:top-8" aria-label="Aurevia home">
-          <img src="/images/aurevia-logo-mark.png" alt="" className="h-7 w-auto" />
+        <Link href="/" className="absolute left-6 top-5 flex items-center gap-2 lg:left-10 lg:top-8" aria-label="Aurevia home">
+          <img src="/images/aurevia-logo-mark.webp" alt="" className="h-7 w-auto" />
           <span className="font-fraunces text-lg text-foreground">Aurevia.io</span>
         </Link>
         <div className="mt-14 hidden lg:block">

@@ -4,6 +4,8 @@ import PxcNav from "../_components/PxcNav";
 import PxcFooter from "../_components/PxcFooter";
 import ChatWidget from "../_components/ChatWidget";
 import BodyBg from "../_components/BodyBg";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "How We Work — Pixel & Code",
@@ -22,6 +24,7 @@ export default function HowWeWorkPage() {
     <>
       <BodyBg mode="code" />
       <Chrome />
+      <JsonLd data={breadcrumbJsonLd([{ name: "Pixel & Code", path: "/pixel-and-code" }, { name: "How we work", path: "/pixel-and-code/how-we-work" }])} />
 
       <PxcNav
         logoHref="/pixel-and-code/"

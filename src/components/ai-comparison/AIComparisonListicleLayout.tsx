@@ -162,7 +162,7 @@ export default function AIComparisonListicleLayout({ children }: { children: Rea
               <div className="overflow-hidden rounded-xl border border-black/[0.08] bg-[#051210] p-3.5 shadow-lg shadow-black/35 ring-1 ring-[#00CC99]/10">
                 <div className="mb-3 flex items-center gap-2">
                   <img
-                    src="/images/aurevia-logo-mark.png"
+                    src="/images/aurevia-logo-mark.webp"
                     alt=""
                     width={24}
                     height={24}

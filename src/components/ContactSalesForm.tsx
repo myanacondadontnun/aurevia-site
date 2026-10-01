@@ -327,7 +327,7 @@ export default function ContactSalesForm() {
           </div>
           <p className="mt-4 text-center text-xs text-muted-foreground">
             Rather not schedule right now? We&apos;ve got your details and will follow up by email. Or{" "}
-            <Link href="/home" className="text-[#00CC99] hover:underline">
+            <Link href="/" className="text-[#00CC99] hover:underline">
               head back to the homepage
             </Link>
             .

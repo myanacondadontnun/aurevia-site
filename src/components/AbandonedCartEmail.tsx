@@ -32,7 +32,7 @@ export default function AbandonedCartEmail() {
           {lines.map((l) => (
             <div key={l.name} className="demo-email-line">
               <div className="demo-email-thumb">
-                <img src={l.img} alt="" loading="lazy" />
+                <img src={l.img} alt={l.name} loading="lazy" />
               </div>
               <div className="demo-email-line-main">
                 <div className="demo-email-line-title">{l.name}</div>

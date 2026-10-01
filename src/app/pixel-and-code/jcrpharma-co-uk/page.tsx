@@ -3,6 +3,8 @@ import Chrome from "../_components/Chrome";
 import PxcNav from "../_components/PxcNav";
 import PxcFooter from "../_components/PxcFooter";
 import ChatWidget from "../_components/ChatWidget";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "JCR Pharma — Life Sciences Recruitment Platform | Pixel & Code",
@@ -33,6 +35,7 @@ export default function JcrPharmaCaseStudyPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
       <Chrome />
+      <JsonLd data={breadcrumbJsonLd([{ name: "Pixel & Code", path: "/pixel-and-code" }, { name: "JCR Pharma", path: "/pixel-and-code/jcrpharma-co-uk" }])} />
 
       <PxcNav
         logoHref="/pixel-and-code/"
@@ -94,7 +97,7 @@ export default function JcrPharmaCaseStudyPage() {
 
         <div className="case-shot-full">
           <figure className="case-shot reveal-up">
-            <img src="/pixel-and-code/assets/screenshots/jcrpharma/hero.png" alt="JCR Pharma homepage" loading="eager" />
+            <img src="/pixel-and-code/assets/screenshots/jcrpharma/hero.webp" alt="JCR Pharma homepage" loading="eager" />
           </figure>
         </div>
 
@@ -163,14 +166,14 @@ export default function JcrPharmaCaseStudyPage() {
           </div>
 
           <div className="case-shot-grid">
-            <figure className="case-shot reveal-up"><img src="/pixel-and-code/assets/screenshots/jcrpharma/jobs-list.png" alt="JCR Pharma job search with specialism, contract, seniority and work-mode filters" loading="lazy" /></figure>
-            <figure className="case-shot reveal-up"><img src="/pixel-and-code/assets/screenshots/jcrpharma/blogs.png" alt="JCR Pharma insights and blog listing" loading="lazy" /></figure>
+            <figure className="case-shot reveal-up"><img src="/pixel-and-code/assets/screenshots/jcrpharma/jobs-list.webp" alt="JCR Pharma job search with specialism, contract, seniority and work-mode filters" loading="lazy" /></figure>
+            <figure className="case-shot reveal-up"><img src="/pixel-and-code/assets/screenshots/jcrpharma/blogs.webp" alt="JCR Pharma insights and blog listing" loading="lazy" /></figure>
           </div>
         </section>
 
         <div className="case-shot-full">
           <figure className="case-shot reveal-up">
-            <img src="/pixel-and-code/assets/screenshots/jcrpharma/jobs-featured.png" alt="JCR Pharma featured opportunities on the homepage" loading="lazy" />
+            <img src="/pixel-and-code/assets/screenshots/jcrpharma/jobs-featured.webp" alt="JCR Pharma featured opportunities on the homepage" loading="lazy" />
           </figure>
         </div>
 
@@ -186,9 +189,9 @@ export default function JcrPharmaCaseStudyPage() {
             are grouped and published. No developer needed for day-to-day changes.
           </p>
           <div className="case-shot-grid case-shot-grid--3">
-            <figure className="case-shot reveal-up"><img src="/pixel-and-code/assets/screenshots/jcrpharma/admin-jobs.png" alt="JCR Pharma admin — job board with status, featured flag and applicant counts" loading="lazy" /></figure>
-            <figure className="case-shot reveal-up"><img src="/pixel-and-code/assets/screenshots/jcrpharma/admin-applications.png" alt="JCR Pharma admin — candidate applications with CV download and status" loading="lazy" /></figure>
-            <figure className="case-shot reveal-up"><img src="/pixel-and-code/assets/screenshots/jcrpharma/admin-blogs.png" alt="JCR Pharma admin — blog management with featured and group toggles" loading="lazy" /></figure>
+            <figure className="case-shot reveal-up"><img src="/pixel-and-code/assets/screenshots/jcrpharma/admin-jobs.webp" alt="JCR Pharma admin — job board with status, featured flag and applicant counts" loading="lazy" /></figure>
+            <figure className="case-shot reveal-up"><img src="/pixel-and-code/assets/screenshots/jcrpharma/admin-applications.webp" alt="JCR Pharma admin — candidate applications with CV download and status" loading="lazy" /></figure>
+            <figure className="case-shot reveal-up"><img src="/pixel-and-code/assets/screenshots/jcrpharma/admin-blogs.webp" alt="JCR Pharma admin — blog management with featured and group toggles" loading="lazy" /></figure>
           </div>
         </section>
 

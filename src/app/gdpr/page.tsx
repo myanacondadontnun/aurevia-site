@@ -75,7 +75,7 @@ export default function GdprPage() {
           body: (
             <p>
               Merchants who need a signed Data Processing Agreement (DPA) for their own compliance review can
-              request one through our <a href="/contact">contact form</a> or by emailing{" "}
+              request one through our <a href="/contact/">contact form</a> or by emailing{" "}
               <a href="mailto:privacy@aurevia.io">privacy@aurevia.io</a>.
             </p>
           ),

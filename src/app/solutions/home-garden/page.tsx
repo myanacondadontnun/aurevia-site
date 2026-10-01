@@ -15,10 +15,12 @@ export const metadata: Metadata = {
 export default function HomeGardenPage() {
   return (
     <FeatureSubpageLayout
+      path="/solutions/home-garden"
+      breadcrumbLabel="Home & garden"
       backHref="/solutions"
       backLabel="← Back to Solutions"
       heroVisual={{
-        src: "/images/home-garden.jpg",
+        src: "/images/home-garden.webp",
         alt: "Home and garden setting representing home decor ecommerce",
       }}
       headline={

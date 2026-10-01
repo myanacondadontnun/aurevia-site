@@ -212,9 +212,9 @@ export default function Navbar() {
         }}
       >
         <div className={`flex items-center justify-between w-full transition-all duration-500 ${isScrolled ? "px-2.5 py-2 sm:px-4 sm:py-3" : "px-3 py-2.5 sm:px-6 sm:py-4"}`}>
-          <Link href="/home" className="flex items-center flex-shrink-0 lg:w-48" aria-label="Aurevia.io home">
+          <Link href="/" className="flex items-center flex-shrink-0 lg:w-48" aria-label="Aurevia.io home">
             <img
-              src="/images/aurevia-logo-mark.png"
+              src="/images/aurevia-logo-mark.webp"
               alt="Aurevia Logo"
               className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
             />

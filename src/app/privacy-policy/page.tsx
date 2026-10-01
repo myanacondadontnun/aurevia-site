@@ -99,7 +99,7 @@ export default function PrivacyPolicyPage() {
               Conversation transcripts and store data are retained for as long as a merchant&apos;s account is
               active, plus a limited period afterward to allow reinstatement and meet accounting obligations.
               Merchants can request earlier deletion at any time; see{" "}
-              <a href="/gdpr">our GDPR page</a> for how.
+              <a href="/gdpr/">our GDPR page</a> for how.
             </p>
           ),
         },
@@ -109,7 +109,7 @@ export default function PrivacyPolicyPage() {
             <p>
               Depending on where you&apos;re located, you may have the right to access, correct, export, or
               delete your personal data, and to object to or restrict certain processing. See{" "}
-              <a href="/gdpr">GDPR Compliance</a> for the full list and how to exercise them. Shoppers who want
+              <a href="/gdpr/">GDPR Compliance</a> for the full list and how to exercise them. Shoppers who want
               their chat data removed should contact the merchant&apos;s store directly, or reach us at{" "}
               <a href="mailto:privacy@aurevia.io">privacy@aurevia.io</a> and we&apos;ll route the request.
             </p>
@@ -148,7 +148,7 @@ export default function PrivacyPolicyPage() {
           body: (
             <p>
               Questions or requests: <a href="mailto:privacy@aurevia.io">privacy@aurevia.io</a>, or use our{" "}
-              <a href="/contact">contact form</a>. Aurevia Artificial Intelligence Ltd.
+              <a href="/contact/">contact form</a>. Aurevia Artificial Intelligence Ltd.
             </p>
           ),
         },

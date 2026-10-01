@@ -26,6 +26,13 @@
   to = "/.netlify/functions/pixel-lead"
   status = 200
 
+# The homepage lives at "/". (Mirrored in public/_redirects for Cloudflare Pages.)
+[[redirects]]
+  from = "/home/*"
+  to = "/"
+  status = 301
+  force = true
+
 # Retired product pages (capabilities that never shipped) and the old docs page.
 [[redirects]]
   from = "/products/multilingual/*"

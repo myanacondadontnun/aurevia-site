@@ -3,6 +3,8 @@ import Chrome from "../_components/Chrome";
 import PxcNav from "../_components/PxcNav";
 import PxcFooter from "../_components/PxcFooter";
 import ChatWidget from "../_components/ChatWidget";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Aurevia — Shopify AI Sales Agent | Pixel & Code",
@@ -33,6 +35,7 @@ export default function AureviaCaseStudyPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
       <Chrome />
+      <JsonLd data={breadcrumbJsonLd([{ name: "Pixel & Code", path: "/pixel-and-code" }, { name: "Aurevia", path: "/pixel-and-code/aurevia-io" }])} />
 
       <PxcNav
         logoHref="/pixel-and-code/"
@@ -94,7 +97,7 @@ export default function AureviaCaseStudyPage() {
 
         <div className="case-shot-full">
           <figure className="case-shot reveal-up">
-            <img src="/images/home-dashboard.png" alt="Aurevia dashboard — home" loading="eager" />
+            <img src="/images/home-dashboard.webp" alt="Aurevia dashboard — home" loading="eager" />
           </figure>
         </div>
 
@@ -159,14 +162,14 @@ export default function AureviaCaseStudyPage() {
           </div>
 
           <div className="case-shot-grid">
-            <figure className="case-shot reveal-up"><img src="/images/product-management-dashboard.png" alt="Aurevia dashboard — product catalog and AI readiness" loading="lazy" /></figure>
-            <figure className="case-shot reveal-up"><img src="/images/ai-training-dashboard.png" alt="Aurevia dashboard — AI training and knowledge base" loading="lazy" /></figure>
+            <figure className="case-shot reveal-up"><img src="/images/product-management-dashboard.webp" alt="Aurevia dashboard — product catalog and AI readiness" loading="lazy" /></figure>
+            <figure className="case-shot reveal-up"><img src="/images/ai-training-dashboard.webp" alt="Aurevia dashboard — AI training and knowledge base" loading="lazy" /></figure>
           </div>
         </section>
 
         <div className="case-shot-full">
           <figure className="case-shot reveal-up">
-            <img src="/images/lead-management-dashboard.png" alt="Aurevia dashboard — leads and live conversations" loading="lazy" />
+            <img src="/images/lead-management-dashboard.webp" alt="Aurevia dashboard — leads and live conversations" loading="lazy" />
           </figure>
         </div>
 

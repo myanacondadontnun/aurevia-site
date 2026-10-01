@@ -15,10 +15,12 @@ export const metadata: Metadata = {
 export default function FitnessPage() {
   return (
     <FeatureSubpageLayout
+      path="/solutions/fitness"
+      breadcrumbLabel="Fitness & supplements"
       backHref="/solutions"
       backLabel="← Back to Solutions"
       heroVisual={{
-        src: "/images/fitness.jpg",
+        src: "/images/fitness.webp",
         alt: "Fitness and wellness setting representing sports nutrition ecommerce",
       }}
       headline={

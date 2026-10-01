@@ -54,6 +54,7 @@ const compareScript: ChatStep[] = [
 export default function RecommendationsPage() {
   return (
     <FeatureSubpageLayout
+      path="/products/recommendations"
       backHref="/products"
       backLabel="← Back to Products"
       eyebrow="Product recommendations"

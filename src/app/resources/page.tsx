@@ -3,17 +3,21 @@ import PageLayout from "@/components/PageLayout";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { buildShopifyInstallUrl } from "@/lib/utils";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Resources | Aurevia - Shopify AI Sales Co-Pilot",
   description:
     "Blogs, Review My Shopify, AI comparisons, ROI calculator, and documentation for Aurevia.",
+  alternates: { canonical: "/resources" },
 };
 
 export default function ResourcesPage() {
   const installUrl = buildShopifyInstallUrl();
   return (
     <PageLayout>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Resources", path: "/resources" }])} />
       <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
         <h1 className="text-4xl md:text-5xl font-fraunces font-normal text-foreground mb-6">
           Resources

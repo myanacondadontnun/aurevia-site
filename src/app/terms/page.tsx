@@ -47,7 +47,7 @@ export default function TermsPage() {
           body: (
             <p>
               Subscriptions are billed through the Shopify Billing API on the plan you select. Prices are shown
-              on our <a href="/pricing">pricing page</a> and may change with notice; continued use after a price
+              on our <a href="/pricing/">pricing page</a> and may change with notice; continued use after a price
               change constitutes acceptance. Cancelling or uninstalling stops future billing but doesn&apos;t
               refund charges already incurred, except where required by law or Shopify&apos;s billing policies.
             </p>
@@ -90,7 +90,7 @@ export default function TermsPage() {
           body: (
             <p>
               Aurevia integrates with Shopify and other third-party providers (see our{" "}
-              <a href="/privacy-policy">Privacy Policy</a> for subprocessors). We&apos;re not responsible for the
+              <a href="/privacy-policy/">Privacy Policy</a> for subprocessors). We&apos;re not responsible for the
               availability or acts of those third parties, though we choose them carefully.
             </p>
           ),
@@ -141,7 +141,7 @@ export default function TermsPage() {
           body: (
             <p>
               Questions about these terms: <a href="mailto:sales@aurevia.io">sales@aurevia.io</a> or our{" "}
-              <a href="/contact">contact form</a>.
+              <a href="/contact/">contact form</a>.
             </p>
           ),
         },

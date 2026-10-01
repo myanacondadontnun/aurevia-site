@@ -1355,7 +1355,7 @@ html.lenis, html.lenis body { height: auto; }
    ============================================================ */
 /* Specimen brands for the loop. Fictional; labelled on the panel. */
 :root {
-  --spec-a-bg: #f3ede3; --spec-a-ac: #b8563c; --spec-a-tx: #211a14; --spec-a-ff: "Fraunces", Georgia, serif;
+  --spec-a-bg: #f3ede3; --spec-a-ac: #b8563c; --spec-a-tx: #211a14; --spec-a-ff: var(--font-fraunces), "Fraunces", Georgia, serif;
   --spec-b-bg: #0e1f1a; --spec-b-ac: #00cc99; --spec-b-tx: #f2f7f4; --spec-b-ff: "Bricolage Grotesque", sans-serif;
   --spec-c-bg: #e8eef7; --spec-c-ac: #1f4fd8; --spec-c-tx: #0f1a33; --spec-c-ff: "JetBrains Mono", monospace;
 }
@@ -1447,7 +1447,7 @@ html.lenis, html.lenis body { height: auto; }
 .hand__swatches i { display: block; aspect-ratio: 1; border-radius: 6px; }
 .hand__swatches i:nth-child(1) { background: var(--kit-ink); } .hand__swatches i:nth-child(2) { background: var(--kit-clay); }
 .hand__swatches i:nth-child(3) { background: var(--kit-brass); } .hand__swatches i:nth-child(4) { background: var(--kit-sage); }
-.hand__aa { font-family: "Fraunces", Georgia, serif; font-size: 2rem; line-height: 1; color: var(--kit-ink); }
+.hand__aa { font-family: var(--font-fraunces), "Fraunces", Georgia, serif; font-size: 2rem; line-height: 1; color: var(--kit-ink); }
 .hand__url { display: block; height: 1.3rem; border-radius: 100px; background: var(--mint); position: relative; }
 .hand__url::after { content: ""; position: absolute; left: 0.6rem; top: 50%; width: 55%; height: 4px; margin-top: -2px; border-radius: 2px; background: var(--accent-text); opacity: 0.6; }
 .hand__shot { flex: 1; border-radius: 8px; background: var(--mint); display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.35rem; padding: 0.45rem; align-content: end; }

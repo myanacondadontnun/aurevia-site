@@ -5,6 +5,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import HelpShell from "@/components/help/HelpShell";
 import HelpToc from "@/components/help/HelpToc";
 import { getAdjacentArticles, getHelpArticle, getHelpSlugs, helpArticles, sectionId } from "@/lib/help-articles";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export function generateStaticParams() {
   return getHelpSlugs().map((slug) => ({ slug }));
@@ -36,6 +38,13 @@ export default async function HelpArticlePage({ params }: Props) {
 
   return (
     <HelpShell aside={<HelpToc items={toc} />}>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Help center", path: "/help" },
+          { name: article.title, path: `/help/${article.slug}` },
+        ])}
+      />
       <article className="max-w-3xl">
         <p className="text-xs font-semibold tracking-[0.16em] uppercase text-[#00795c] mb-3">{article.category}</p>
         <h1 className="text-3xl sm:text-4xl font-fraunces font-normal text-foreground leading-tight mb-3">{article.title}</h1>

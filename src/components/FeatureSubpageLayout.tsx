@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Check } from "lucide-react";
+import { ArrowRight, CheckCircle2, Check, ChevronRight } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 import type { MediaPlaceholderAspect } from "@/components/MediaPlaceholder";
 import { buildShopifyInstallUrl, cn } from "@/lib/utils";
@@ -8,6 +8,8 @@ import ReviewQuote from "@/components/ReviewQuote";
 import TrustStrip from "@/components/TrustStrip";
 import { BrowserFrame } from "@/components/DeviceFrames";
 import { Button } from "@/components/ui/button";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, faqJsonLd } from "@/lib/schema";
 
 export interface FeatureBlock {
   title: string;
@@ -37,6 +39,10 @@ export interface FaqItem {
 export interface FeatureSubpageLayoutProps {
   backHref: string;
   backLabel: string;
+  /** This page's own path, e.g. "/products/cart-recovery". Turns the back link into a breadcrumb trail (with BreadcrumbList schema). */
+  path?: string;
+  /** Name of this page in the breadcrumb trail. Defaults to the eyebrow. */
+  breadcrumbLabel?: string;
   /** Small uppercase label above the H1, e.g. "Cart recovery" */
   eyebrow?: string;
   /** Main H1 content — use <span className="green-highlight"> for accents */
@@ -74,6 +80,8 @@ export interface FeatureSubpageLayoutProps {
 export default function FeatureSubpageLayout({
   backHref,
   backLabel,
+  path,
+  breadcrumbLabel,
   eyebrow,
   headline,
   subtitle,
@@ -94,18 +102,53 @@ export default function FeatureSubpageLayout({
 }: FeatureSubpageLayoutProps) {
   const installUrl = buildShopifyInstallUrl();
   const hasHeroAside = Boolean(demo || heroVisual);
+  const crumbName = breadcrumbLabel ?? eyebrow;
+  const crumbs =
+    path && crumbName
+      ? [
+          { name: "Home", path: "/" },
+          { name: backLabel.replace(/^←\s*Back to\s*/, ""), path: backHref },
+          { name: crumbName, path },
+        ]
+      : null;
 
   return (
     <PageLayout>
+      {crumbs ? <JsonLd data={breadcrumbJsonLd(crumbs)} /> : null}
+      {faqs && faqs.length > 0 ? (
+        <JsonLd data={faqJsonLd(faqs.map((f) => ({ question: f.q, answer: f.a })))} />
+      ) : null}
+
       {/* ─── Hero ─── */}
       <section className="gradient-bg">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl pt-6 sm:pt-10 pb-14 sm:pb-20">
-          <Link
-            href={backHref}
-            className="text-muted-foreground hover:text-[#00CC99] text-sm inline-block transition-colors"
-          >
-            {backLabel}
-          </Link>
+          {crumbs ? (
+            <nav aria-label="Breadcrumb">
+              <ol className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
+                {crumbs.map((c, i) => (
+                  <li key={c.path} className="flex items-center gap-1.5">
+                    {i > 0 ? <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/60" aria-hidden /> : null}
+                    {i < crumbs.length - 1 ? (
+                      <Link href={c.path} className="hover:text-[#00CC99] transition-colors">
+                        {c.name}
+                      </Link>
+                    ) : (
+                      <span aria-current="page" className="text-foreground/80">
+                        {c.name}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          ) : (
+            <Link
+              href={backHref}
+              className="text-muted-foreground hover:text-[#00CC99] text-sm inline-block transition-colors"
+            >
+              {backLabel}
+            </Link>
+          )}
 
           <div
             className={cn(

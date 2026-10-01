@@ -4,6 +4,8 @@ import PxcNav from "../_components/PxcNav";
 import PxcFooter from "../_components/PxcFooter";
 import ChatWidget from "../_components/ChatWidget";
 import BodyBg from "../_components/BodyBg";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 const CALENDLY = "https://calendly.com/ritwik-mandal-aurevia/30min";
 
@@ -24,6 +26,7 @@ export default function AiAutomationPage() {
     <>
       <BodyBg mode="code" />
       <Chrome />
+      <JsonLd data={breadcrumbJsonLd([{ name: "Pixel & Code", path: "/pixel-and-code" }, { name: "AI & workflow automation", path: "/pixel-and-code/ai-automation" }])} />
 
       <PxcNav
         logoHref="/pixel-and-code/"
@@ -163,7 +166,7 @@ export default function AiAutomationPage() {
               <a href="/pixel-and-code/aurevia-io/" className="btn btn--ghost"><span>Read the Aurevia case study ↗</span></a>
             </div>
             <figure className="case-shot reveal-up" style={{ margin: 0 }}>
-              <img src="/images/lead-management-dashboard.png" alt="Aurevia dashboard — live conversations with human takeover" loading="lazy" />
+              <img src="/images/lead-management-dashboard.webp" alt="Aurevia dashboard — live conversations with human takeover" loading="lazy" />
             </figure>
           </div>
         </section>

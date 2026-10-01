@@ -220,6 +220,73 @@ function RelatedPosts({ slug }: { slug: string }) {
   );
 }
 
+// Who is behind the blog. Bios are the same facts as /pixel-and-code/about — keep
+// them in step. Posts are credited to the team; the founders are named so readers
+// (and search engines) can see who stands behind the advice.
+const AUTHORS = [
+  {
+    name: "Kishal Mandal",
+    role: "Co-founder & CTO",
+    photo: "/pixel-and-code/assets/headshots/kishal.webp",
+    bio: "Builds production AI systems, with 5+ years across AI and full-stack engineering. Kaggle Notebooks Master and published AI researcher.",
+  },
+  {
+    name: "Ritwik Mandal",
+    role: "Co-founder & CEO",
+    photo: "/pixel-and-code/assets/headshots/ritwik.webp",
+    bio: "MSc in Operations, Project & Supply Chain Management from the University of Manchester. Takes Aurevia's demo calls with Shopify merchants.",
+  },
+];
+
+function AuthorBox() {
+  return (
+    <section
+      id="about-the-author"
+      aria-labelledby="about-the-author-heading"
+      className="mt-12 scroll-mt-24 rounded-xl border border-border/30 bg-card/20 p-6 sm:p-8"
+    >
+      <h2
+        id="about-the-author-heading"
+        className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground mb-3"
+      >
+        About the author
+      </h2>
+      <p className="text-base text-foreground font-medium mb-1">The Aurevia team</p>
+      <p className="text-sm text-muted-foreground font-light leading-relaxed mb-6">
+        Aurevia is an AI sales agent for Shopify stores, built and run by its two founders. We write about what
+        we learn building it for Shopify merchants.
+      </p>
+      <ul className="grid gap-5 sm:grid-cols-2">
+        {AUTHORS.map((a) => (
+          <li key={a.name} className="flex gap-3">
+            <img
+              src={a.photo}
+              alt={a.name}
+              width={44}
+              height={44}
+              loading="lazy"
+              className="h-11 w-11 shrink-0 rounded-full object-cover"
+            />
+            <div>
+              <p className="text-sm font-medium text-foreground">{a.name}</p>
+              <p className="text-xs text-muted-foreground mb-1">{a.role}</p>
+              <p className="text-xs text-muted-foreground font-light leading-relaxed">{a.bio}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+      {/* Plain <a>: /pixel-and-code is a self-contained section that needs a full page load. */}
+      <a
+        href="/pixel-and-code/about/"
+        className="mt-5 inline-flex items-center gap-1.5 text-sm text-[#00CC99] hover:underline"
+      >
+        Meet the team
+        <ArrowRight className="w-3.5 h-3.5" />
+      </a>
+    </section>
+  );
+}
+
 export default function BlogArticle({ post }: { post: BlogPost }) {
   const [isLightMode, setIsLightMode] = useState(false);
 
@@ -245,7 +312,7 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
       {/* Breadcrumbs */}
       <nav className="flex items-center gap-1.5 text-xs text-muted-foreground/60 mb-8 flex-wrap">
         <Link
-          href="/home/"
+          href="/"
           className="hover:text-[#00CC99] transition-colors"
         >
           Home
@@ -304,7 +371,10 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
           {post.title}
         </h1>
 
-        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-muted-foreground">
+          <a href="#about-the-author" className="hover:text-[#00CC99] transition-colors">
+            By the Aurevia team
+          </a>
           <span className="flex items-center gap-1.5">
             <Calendar className="w-3.5 h-3.5" />
             {formattedDate}
@@ -349,6 +419,8 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
               </Accordion>
             </section>
           )}
+
+          <AuthorBox />
 
           {/* Testimonial */}
           {(() => {

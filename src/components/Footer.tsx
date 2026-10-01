@@ -8,19 +8,19 @@ import { openShopifyInstall } from "@/lib/utils";
 
 const footerLinks = {
   main: [
-    { label: "Home", href: "/home" },
+    { label: "Home", href: "/" },
     { label: "Pricing", href: "/pricing" },
     { label: "Start free trial", href: "shopify", isAction: true },
   ],
   secondary: [
-    { label: "Channels (WhatsApp & Instagram)", href: "/channels" },
+    { label: "Channels (WhatsApp & Instagram)", href: "/channels/" },
     { label: "Blogs", href: "/resources/blogs/" },
     { label: "Review My Shopify", href: "/resources/review-my-shopify/" },
     { label: "Help center", href: "/help/" },
-    { label: "Contact us", href: "/contact" },
-    { label: "Privacy Policy", href: "/privacy-policy" },
-    { label: "Terms and Conditions", href: "/terms" },
-    { label: "GDPR Compliance", href: "/gdpr" },
+    { label: "Contact us", href: "/contact/" },
+    { label: "Privacy Policy", href: "/privacy-policy/" },
+    { label: "Terms and Conditions", href: "/terms/" },
+    { label: "GDPR Compliance", href: "/gdpr/" },
   ],
 };
 
@@ -58,9 +58,9 @@ export default function Footer() {
           <div className="lg:col-span-1 space-y-6">
             <div>
               {/* Logo and Company Name */}
-              <Link href="/home" className="flex items-center gap-2.5 mb-4">
+              <Link href="/" className="flex items-center gap-2.5 mb-4">
                 <img 
-                  src="/images/aurevia-logo-mark.png" 
+                  src="/images/aurevia-logo-mark.webp" 
                   alt="Aurevia Logo" 
                   className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
                 />

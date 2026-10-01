@@ -189,7 +189,7 @@ function AureviaMark({ size, animate = false }: { size: number; animate?: boolea
       aria-hidden
     >
       <span className="chat-demo-mark-breathe">
-        <img src="/images/widget-mark-outer.png" alt="" className="chat-demo-mark-outer" />
+        <img src="/images/widget-mark-outer.webp" alt="" className="chat-demo-mark-outer" />
       </span>
     </span>
   );
@@ -214,7 +214,7 @@ function ProductCarousel({ products }: { products: DemoProduct[] }) {
           <article key={p.id} className="chat-demo-product-card">
             <div className="chat-demo-product-img-wrap">
               <div className="chat-demo-product-img-frame">
-                <img src={p.image} alt="" className="chat-demo-product-img" loading="lazy" />
+                <img src={p.image} alt={p.name} className="chat-demo-product-img" loading="lazy" />
               </div>
             </div>
             <div className="chat-demo-product-body">
@@ -428,7 +428,7 @@ function ChatPanel({
           </span>
         </div>
         <div className="chat-demo-powered-by">
-          <img src="/images/aurevia-logo-mark.png" alt="" />
+          <img src="/images/aurevia-logo-mark.webp" alt="" />
           <span>Powered by Aurevia.io</span>
         </div>
       </div>
@@ -443,7 +443,7 @@ function ChatPanel({
             </div>
             <div className="chat-demo-minicart-line">
               <div className="chat-demo-minicart-thumb">
-                <img src="/images/demo/lv/silk-blouse.webp" alt="" />
+                <img src="/images/demo/lv/silk-blouse.webp" alt="Silk Draped Blouse" />
               </div>
               <div className="chat-demo-minicart-main">
                 <span className="chat-demo-minicart-item-title">Silk Draped Blouse</span>

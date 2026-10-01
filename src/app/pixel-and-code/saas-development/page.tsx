@@ -4,6 +4,8 @@ import PxcNav from "../_components/PxcNav";
 import PxcFooter from "../_components/PxcFooter";
 import ChatWidget from "../_components/ChatWidget";
 import BodyBg from "../_components/BodyBg";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "SaaS Product Development for Founders — Pixel & Code",
@@ -22,6 +24,7 @@ export default function SaasDevelopmentPage() {
     <>
       <BodyBg mode="code" />
       <Chrome />
+      <JsonLd data={breadcrumbJsonLd([{ name: "Pixel & Code", path: "/pixel-and-code" }, { name: "SaaS product development", path: "/pixel-and-code/saas-development" }])} />
 
       <PxcNav
         logoHref="/pixel-and-code/"
@@ -125,7 +128,7 @@ export default function SaasDevelopmentPage() {
               <a href="/pixel-and-code/aurevia-io/" className="btn btn--ghost"><span>Read the Aurevia case study ↗</span></a>
             </div>
             <figure className="case-shot reveal-up" style={{ margin: 0 }}>
-              <img src="/images/home-dashboard.png" alt="Aurevia dashboard — chat widget branding and tone settings" loading="lazy" />
+              <img src="/images/home-dashboard.webp" alt="Aurevia dashboard — chat widget branding and tone settings" loading="lazy" />
             </figure>
           </div>
         </section>

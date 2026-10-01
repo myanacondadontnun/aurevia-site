@@ -126,7 +126,7 @@ export function AureviaMark({ size, animate = false }: { size: number; animate?:
       aria-hidden
     >
       <span className="chat-demo-mark-breathe">
-        <img src="/images/widget-mark-outer.png" alt="" className="chat-demo-mark-outer" />
+        <img src="/images/widget-mark-outer.webp" alt="" className="chat-demo-mark-outer" />
       </span>
     </span>
   );
@@ -142,7 +142,7 @@ function DemoProducts({ items, added }: { items: DemoProductItem[]; added: strin
               <div className="chat-demo-product-img-frame">
                 <img
                   src={DEMO_IMAGES[p.img] ?? p.img}
-                  alt=""
+                  alt={p.name}
                   className="chat-demo-product-img"
                   loading="lazy"
                 />
@@ -210,7 +210,7 @@ function DemoCompareCard({
         {[a, b].map((side) => (
           <div key={side.name} className="chat-demo-compare-product">
             <div className="chat-demo-compare-img">
-              <img src={DEMO_IMAGES[side.img] ?? side.img} alt="" loading="lazy" />
+              <img src={DEMO_IMAGES[side.img] ?? side.img} alt={side.name} loading="lazy" />
             </div>
             <span className="chat-demo-compare-name">{side.name}</span>
             <span className="chat-demo-compare-price">{side.price}</span>
@@ -244,7 +244,7 @@ function DemoMiniCart({ open, items, total }: { open: boolean; items: DemoCartLi
         {items.map((line) => (
           <div key={line.name} className="chat-demo-minicart-line">
             <div className="chat-demo-minicart-thumb">
-              <img src={DEMO_IMAGES[line.img] ?? line.img} alt="" />
+              <img src={DEMO_IMAGES[line.img] ?? line.img} alt={line.name} />
             </div>
             <div className="chat-demo-minicart-main">
               <span className="chat-demo-minicart-item-title">{line.name}</span>
@@ -515,7 +515,7 @@ export function FeatureChatDemo({
             </span>
           </div>
           <div className="chat-demo-powered-by">
-            <img src="/images/aurevia-logo-mark.png" alt="" />
+            <img src="/images/aurevia-logo-mark.webp" alt="" />
             <span>Powered by Aurevia.io</span>
           </div>
         </div>
@@ -691,7 +691,7 @@ export function FeatureMetricsDemo({
 
       <div className="px-4 pb-4 pt-3">
         <div className="chat-demo-powered-by" style={{ padding: 0 }}>
-          <img src="/images/aurevia-logo-mark.png" alt="" />
+          <img src="/images/aurevia-logo-mark.webp" alt="" />
           <span>Powered by Aurevia.io</span>
         </div>
       </div>

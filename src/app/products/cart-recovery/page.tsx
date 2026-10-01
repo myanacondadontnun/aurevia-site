@@ -26,6 +26,7 @@ const nudgeScript: ChatStep[] = [
 export default function CartRecoveryPage() {
   return (
     <FeatureSubpageLayout
+      path="/products/cart-recovery"
       backHref="/products"
       backLabel="← Back to Products"
       eyebrow="Cart recovery"
