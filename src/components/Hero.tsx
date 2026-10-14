@@ -38,7 +38,7 @@ export default function Hero() {
               <span className="green-highlight">Revenue on Autopilot</span>
             </h1>
 
-            <p className="text-sm sm:text-lg md:text-xl font-light text-muted-foreground mb-6 sm:mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-sm sm:text-lg md:text-xl font-normal text-muted-foreground mb-6 sm:mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
               Most chatbots just answer questions. Aurevia asks first, then sells —
               clarifying what each shopper actually wants, recommending what they're
               most likely to buy, and recovering carts before they're lost. That's the

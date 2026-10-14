@@ -184,7 +184,7 @@ export default function FAQ() {
             You&apos;ve Got Questions.{" "}
             <span className="green-highlight">We&apos;ve Already Answered Them</span>
           </h2>
-          <p className="text-sm sm:text-lg md:text-xl font-light text-muted-foreground">
+          <p className="text-sm sm:text-lg md:text-xl font-normal text-muted-foreground">
             Merchants ask us these all the time — scroll the conversation below, or open everything at once.
           </p>
           {showAllAtOnce ? (

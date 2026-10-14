@@ -13,7 +13,8 @@ const footerLinks = {
     { label: "Start free trial", href: "shopify", isAction: true },
   ],
   secondary: [
-    { label: "Channels (WhatsApp & Instagram)", href: "/channels/" },
+    { label: "Channels (WhatsApp, Instagram & email)", href: "/channels/" },
+    { label: "Partners", href: "/partners/" },
     { label: "Blogs", href: "/resources/blogs/" },
     { label: "Review My Shopify", href: "/resources/review-my-shopify/" },
     { label: "Help center", href: "/help/" },
@@ -68,7 +69,7 @@ export default function Footer() {
                   Aurevia.io
                 </h3>
               </Link>
-              <p className="text-sm sm:text-base font-light text-muted-foreground leading-relaxed mb-2">
+              <p className="text-sm sm:text-base font-normal text-muted-foreground leading-relaxed mb-2">
                 Shopify AI Sales Co-Pilot that recovers carts, upsells bundles, and sells 24/7.
                 GDPR-compliant & Shopify-Partner verified.
               </p>
@@ -79,7 +80,7 @@ export default function Footer() {
               <h4 className="text-base sm:text-lg font-inter font-normal text-foreground mb-4">
                 Get Started
               </h4>
-              <p className="text-xs sm:text-sm font-light text-muted-foreground mb-4">
+              <p className="text-xs sm:text-sm font-normal text-muted-foreground mb-4">
                 Install the app directly from the Shopify App Store.
               </p>
               {showHomeCtaSwarm ? (
@@ -111,7 +112,7 @@ export default function Footer() {
                   <button
                     key={link.label}
                     onClick={() => handleLinkClick(link.href, link.isAction)}
-                    className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light text-left"
+                    className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-normal text-left"
                   >
                     {link.label}
                   </button>
@@ -119,7 +120,7 @@ export default function Footer() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
+                    className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-normal"
                   >
                     {link.label}
                   </Link>
@@ -141,7 +142,7 @@ export default function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
+                    className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-normal"
                   >
                     {link.label}
                   </a>
@@ -149,7 +150,7 @@ export default function Footer() {
                   <a
                     key={link.label}
                     href={link.href}
-                    className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
+                    className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-normal"
                   >
                     {link.label}
                   </a>
@@ -173,7 +174,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Aurevia on ${social.label}`}
-                  className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-normal"
                 >
                   {social.label}
                 </a>
@@ -182,7 +183,7 @@ export default function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={`Aurevia on ${social.label}`}
-                  className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-light"
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-normal"
                 >
                   {social.label}
                 </a>
@@ -194,7 +195,7 @@ export default function Footer() {
               self-contained section whose vanilla script re-initialises on a real
               navigation, which a Next client-side transition would skip. */}
           <div className="flex flex-col items-center sm:items-end gap-1.5">
-            <p className="text-xs sm:text-sm font-light text-muted-foreground text-center sm:text-right">
+            <p className="text-xs sm:text-sm font-normal text-muted-foreground text-center sm:text-right">
               Built by{" "}
               <a
                 href="/pixel-and-code/"
@@ -203,13 +204,13 @@ export default function Footer() {
                 Pixel &amp; Code
               </a>
             </p>
-            <p className="text-xs sm:text-sm font-light text-muted-foreground text-center sm:text-right">
+            <p className="text-xs sm:text-sm font-normal text-muted-foreground text-center sm:text-right">
               © 2025 Aurevia Artificial Intelligence Ltd – All rights reserved.
             </p>
             {/* Company number and registered office: required by platform reviewers (Meta
                 access verification asks for "details of the business providing the service")
                 and by UK company disclosure rules. */}
-            <p className="text-xs font-light text-muted-foreground text-center sm:text-right">
+            <p className="text-xs font-normal text-muted-foreground text-center sm:text-right">
               Registered in England &amp; Wales, company no. 16622049 · 2 North Road, Cardiff, CF10 3DY
             </p>
           </div>

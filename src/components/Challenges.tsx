@@ -155,7 +155,7 @@ function ChallengeCard({
         </h3>
 
         <div className="flex-1">
-          <p className="text-sm sm:text-base font-light text-muted-foreground leading-relaxed">
+          <p className="text-sm sm:text-base font-normal text-muted-foreground leading-relaxed">
             {challenge.teaser}
             {expanded && (
               <span className="animate-fade-in">{challenge.full}</span>
@@ -200,7 +200,7 @@ export default function Challenges() {
             Sound Familiar? You&apos;re Not the{" "}
             <span className="green-highlight">Only One Struggling</span>
           </h2>
-          <p className="text-sm sm:text-xl font-light text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-sm sm:text-xl font-normal text-muted-foreground max-w-3xl mx-auto">
             You&apos;re not alone — and there&apos;s a way through.
           </p>
         </div>

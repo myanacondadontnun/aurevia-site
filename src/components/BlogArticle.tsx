@@ -76,7 +76,7 @@ function renderFormattedText(text: string) {
 
 function Paragraph({ text }: { text: string }) {
   return (
-    <p className="text-[15px] sm:text-base text-muted-foreground font-light leading-relaxed mb-4">
+    <p className="text-[15px] sm:text-base text-muted-foreground font-normal leading-relaxed mb-4">
       {renderFormattedText(text)}
     </p>
   );
@@ -88,7 +88,7 @@ function BulletList({ items }: { items: string[] }) {
       {items.map((item, i) => (
         <li
           key={i}
-          className="flex gap-3 text-[15px] sm:text-base text-muted-foreground font-light leading-relaxed"
+          className="flex gap-3 text-[15px] sm:text-base text-muted-foreground font-normal leading-relaxed"
         >
           <span className="text-[#00CC99] mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-[#00CC99]/60" />
           <span>{renderFormattedText(item)}</span>
@@ -104,7 +104,7 @@ function OrderedList({ items }: { items: string[] }) {
       {items.map((item, i) => (
         <li
           key={i}
-          className="flex gap-3 text-[15px] sm:text-base text-muted-foreground font-light leading-relaxed"
+          className="flex gap-3 text-[15px] sm:text-base text-muted-foreground font-normal leading-relaxed"
         >
           <span className="text-[#00CC99] font-medium text-sm mt-0.5 shrink-0 w-6 h-6 rounded-full border border-[#00CC99]/30 flex items-center justify-center">
             {i + 1}
@@ -208,7 +208,7 @@ function RelatedPosts({ slug }: { slug: string }) {
                 <h3 className="text-sm sm:text-base font-inter font-normal text-foreground mb-2 group-hover:text-[#00CC99] transition-colors duration-200 leading-snug">
                   {post.title}
                 </h3>
-                <p className="text-xs text-muted-foreground font-light line-clamp-2">
+                <p className="text-xs text-muted-foreground font-normal line-clamp-2">
                   {post.metaDescription}
                 </p>
               </CardContent>
@@ -252,7 +252,7 @@ function AuthorBox() {
         About the author
       </h2>
       <p className="text-base text-foreground font-medium mb-1">The Aurevia team</p>
-      <p className="text-sm text-muted-foreground font-light leading-relaxed mb-6">
+      <p className="text-sm text-muted-foreground font-normal leading-relaxed mb-6">
         Aurevia is an AI sales agent for Shopify stores, built and run by its two founders. We write about what
         we learn building it for Shopify merchants.
       </p>
@@ -270,7 +270,7 @@ function AuthorBox() {
             <div>
               <p className="text-sm font-medium text-foreground">{a.name}</p>
               <p className="text-xs text-muted-foreground mb-1">{a.role}</p>
-              <p className="text-xs text-muted-foreground font-light leading-relaxed">{a.bio}</p>
+              <p className="text-xs text-muted-foreground font-normal leading-relaxed">{a.bio}</p>
             </div>
           </li>
         ))}
@@ -411,7 +411,7 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
                     <AccordionTrigger className="text-left text-foreground hover:text-[#00CC99] hover:no-underline py-4 text-[15px] sm:text-base">
                       {faq.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground font-light text-[15px] sm:text-base leading-relaxed">
+                    <AccordionContent className="text-muted-foreground font-normal text-[15px] sm:text-base leading-relaxed">
                       {faq.answer}
                     </AccordionContent>
                   </AccordionItem>
@@ -453,7 +453,7 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
             <h3 className="text-lg sm:text-xl font-inter font-normal text-foreground mb-2">
               Ready to put this into practice?
             </h3>
-            <p className="text-sm sm:text-base text-muted-foreground font-light mb-5 max-w-lg">
+            <p className="text-sm sm:text-base text-muted-foreground font-normal mb-5 max-w-lg">
               Aurevia helps Shopify stores automate support, recover abandoned
               carts, and grow revenue with an AI sales co-pilot.
             </p>

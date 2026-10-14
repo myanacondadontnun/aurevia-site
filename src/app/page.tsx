@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import CustomerLogos from "@/components/CustomerLogos";
 import WidgetCapabilities from "@/components/WidgetCapabilities";
+import Channels from "@/components/Channels";
 import AppCapabilities from "@/components/AppCapabilities";
 import Industries from "@/components/Industries";
 import MerchantReviews from "@/components/MerchantReviews";
@@ -50,6 +51,7 @@ export default function HomePage() {
         </div>
         <CustomerLogos />
         <WidgetCapabilities />
+        <Channels />
         <Stats />
         <AppCapabilities />
         <MerchantReviews />

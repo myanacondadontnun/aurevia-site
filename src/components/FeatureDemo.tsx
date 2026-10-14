@@ -292,6 +292,7 @@ export function FeatureChatDemo({
   bare = false,
   loopPause = 6000,
   startOnView = false,
+  active,
   scale,
 }: {
   agentName?: string;
@@ -302,11 +303,14 @@ export function FeatureChatDemo({
   loopPause?: number;
   /** Start the script when the demo scrolls into view and reset when it leaves */
   startOnView?: boolean;
+  /** Controlled playback: plays from the top while true, resets while false. Overrides startOnView. */
+  active?: boolean;
   /** Override the built-in 0.85 scale (the container is 400×660 at scale 1) */
   scale?: number;
 }) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [armed, setArmed] = useState(!startOnView);
+  const [inView, setInView] = useState(!startOnView);
+  const armed = active ?? inView;
   const [visible, setVisible] = useState<number[]>([]);
   const [typingFrom, setTypingFrom] = useState<"none" | "bot" | "user">("none");
   const [cartBar, setCartBar] = useState<string | null>(null);
@@ -318,16 +322,16 @@ export function FeatureChatDemo({
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   useEffect(() => {
-    if (!startOnView) return;
+    if (!startOnView || active !== undefined) return;
     const el = rootRef.current;
     if (!el || typeof IntersectionObserver === "undefined") {
-      setArmed(true);
+      setInView(true);
       return;
     }
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setArmed(true);
+          setInView(true);
           io.disconnect();
         }
       },
@@ -337,7 +341,7 @@ export function FeatureChatDemo({
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [startOnView]);
+  }, [startOnView, active]);
 
   useEffect(() => {
     timersRef.current.forEach(clearTimeout);
@@ -581,7 +585,7 @@ export function FeatureMetricsDemo({
         <AureviaMark size={28} animate />
         <div className="min-w-0 flex-1">
           <p className="font-fraunces text-[15px] font-semibold text-[#2d3737] leading-tight">{title}</p>
-          <p className="text-[11px] font-light text-[#2d3737]/70 leading-tight mt-px">Aurevia dashboard</p>
+          <p className="text-[11px] font-normal text-[#2d3737]/70 leading-tight mt-px">Aurevia dashboard</p>
         </div>
         <span className="text-[10px] font-semibold uppercase tracking-wide text-[#00795c] bg-[#00CC99]/10 rounded-full px-2.5 py-1">
           Last 7 days

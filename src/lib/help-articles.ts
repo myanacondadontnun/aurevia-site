@@ -326,7 +326,6 @@ export const helpArticles: HelpArticle[] = [
       {
         heading: "What the agent does on messaging channels",
         paragraphs: [
-          "WhatsApp and Instagram are in early access. Connecting works as described below, but expect rough edges while we verify the channels with live traffic; tell us what you hit and we will fix it fast.",
           "On WhatsApp and Instagram the agent answers questions from your Knowledge Base, searches and recommends products, tracks orders and hands off to a human. It cannot add to a cart there, because the cart lives on your storefront; it sends product links instead.",
         ],
       },

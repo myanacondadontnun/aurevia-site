@@ -133,7 +133,7 @@ export default function AIComparisonListicleLayout({ children }: { children: Rea
                           "relative block rounded-lg py-2.5 pl-3 pr-2.5 text-[13px] leading-snug transition-all duration-300 ease-out",
                           isActive
                             ? "bg-white pl-3.5 font-medium text-foreground shadow-[0_2px_16px_-4px_rgba(0,0,0,0.45)] ring-1 ring-black/[0.08]"
-                            : "font-light text-muted-foreground hover:bg-white hover:text-foreground/95",
+                            : "font-normal text-muted-foreground hover:bg-white hover:text-foreground/95",
                         )}
                       >
                         {isActive && (
@@ -168,14 +168,14 @@ export default function AIComparisonListicleLayout({ children }: { children: Rea
                     height={24}
                     className="h-6 w-6 shrink-0 object-contain"
                   />
-                  <span className="font-montserrat text-xs font-thin tracking-[0.05em] text-foreground/90">
+                  <span className="font-montserrat text-xs font-normal tracking-[0.05em] text-foreground/90">
                     Aurevia.io
                   </span>
                 </div>
                 <h2 className="font-playfair text-lg font-normal leading-snug text-foreground sm:text-xl">
                   Hire your AI sales co-pilot
                 </h2>
-                <p className="mt-1.5 text-xs font-light leading-relaxed text-muted-foreground">
+                <p className="mt-1.5 text-xs font-normal leading-relaxed text-muted-foreground">
                   Install in minutes. Guided checkout, upsells, and attribution — tuned for Shopify.
                 </p>
                 <div className="mt-3.5 flex flex-col gap-2">
@@ -196,7 +196,7 @@ export default function AIComparisonListicleLayout({ children }: { children: Rea
                   </Link>
                   <Link
                     href="/resources/roi-calculator/"
-                    className="text-center text-[11px] font-light text-muted-foreground underline-offset-2 hover:text-[#00CC99] hover:underline"
+                    className="text-center text-[11px] font-normal text-muted-foreground underline-offset-2 hover:text-[#00CC99] hover:underline"
                   >
                     Model ROI with our calculator →
                   </Link>

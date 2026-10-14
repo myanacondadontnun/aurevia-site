@@ -17,7 +17,7 @@ export default function ROICalculatorPage() {
   return (
     <PageLayout>
       <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Resources", path: "/resources" }, { name: "ROI Calculator", path: "/resources/roi-calculator" }])} />
-      <div className="w-full overflow-x-hidden font-roi font-light antialiased px-6 sm:px-8 md:px-10 lg:px-16 xl:px-24">
+      <div className="w-full overflow-x-hidden font-roi font-normal antialiased px-6 sm:px-8 md:px-10 lg:px-16 xl:px-24">
         {/* Calculator hero - single headline, ROI highlighted */}
         <section className="w-full pt-6 pb-4 sm:pt-8 sm:pb-6">
           <div className="container mx-auto max-w-6xl">

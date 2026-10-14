@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
+import { Handshake,
   ArrowRight,
   Menu,
   X,
@@ -93,7 +93,7 @@ const platformPillars: {
   {
     icon: MessageSquare,
     title: "Channels",
-    desc: "The same agent on WhatsApp and Instagram DMs, with comment moderation built in.",
+    desc: "The same agent on your store, WhatsApp, Instagram and email, with one inbox for your team.",
     href: "/channels",
     badge: "New",
   },
@@ -105,6 +105,7 @@ const resourcesItems = [
   { icon: Calculator, label: "ROI Calculator", href: "/resources/roi-calculator", desc: "Calculate your potential return" },
   { icon: Store, label: "Review My Shopify", href: "/resources/review-my-shopify", desc: "Free professional store audit" },
   { icon: BookMarked, label: "Help center", href: "/help", desc: "Setup and how-to guides" },
+  { icon: Handshake, label: "Partners", href: "/partners", desc: "For agencies, referrers and apps" },
 ];
 
 const navigationLinks: { label: string; href: string }[] = [
@@ -237,7 +238,7 @@ export default function Navbar() {
                   aria-haspopup="true"
                   aria-expanded={openDropdown === "platform"}
                   onClick={() => handleDropdownEnter("platform")}
-                  className={`inline-flex items-center gap-1 text-sm xl:text-base whitespace-nowrap transition-colors duration-200 cursor-default ${openDropdown === "platform" ? "text-[#00CC99]" : "text-foreground hover:text-[#00CC99]"}`}
+                  className={`inline-flex items-center gap-1 text-sm xl:text-base font-medium whitespace-nowrap transition-colors duration-200 cursor-default ${openDropdown === "platform" ? "text-[#00CC99]" : "text-foreground hover:text-[#00CC99]"}`}
                 >
                   Platform
                   <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${openDropdown === "platform" ? "rotate-180" : ""}`} aria-hidden="true" />
@@ -267,7 +268,7 @@ export default function Navbar() {
                               )}
                               <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" aria-hidden="true" />
                             </span>
-                            <span className="mt-1 block text-sm font-light leading-relaxed text-muted-foreground">
+                            <span className="mt-1 block text-sm font-normal leading-relaxed text-muted-foreground">
                               {pillar.desc}
                             </span>
                           </span>
@@ -289,7 +290,7 @@ export default function Navbar() {
                   aria-haspopup="true"
                   aria-expanded={openDropdown === "solutions"}
                   onClick={() => handleDropdownEnter("solutions")}
-                  className={`inline-flex items-center gap-1 text-sm xl:text-base whitespace-nowrap transition-colors duration-200 cursor-default ${openDropdown === "solutions" ? "text-[#00CC99]" : "text-foreground hover:text-[#00CC99]"}`}
+                  className={`inline-flex items-center gap-1 text-sm xl:text-base font-medium whitespace-nowrap transition-colors duration-200 cursor-default ${openDropdown === "solutions" ? "text-[#00CC99]" : "text-foreground hover:text-[#00CC99]"}`}
                 >
                   Solutions
                   <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${openDropdown === "solutions" ? "rotate-180" : ""}`} aria-hidden="true" />
@@ -345,7 +346,7 @@ export default function Navbar() {
                   aria-haspopup="true"
                   aria-expanded={openDropdown === "resources"}
                   onClick={() => handleDropdownEnter("resources")}
-                  className={`inline-flex items-center gap-1 text-sm xl:text-base whitespace-nowrap transition-colors duration-200 cursor-default ${openDropdown === "resources" ? "text-[#00CC99]" : "text-foreground hover:text-[#00CC99]"}`}
+                  className={`inline-flex items-center gap-1 text-sm xl:text-base font-medium whitespace-nowrap transition-colors duration-200 cursor-default ${openDropdown === "resources" ? "text-[#00CC99]" : "text-foreground hover:text-[#00CC99]"}`}
                 >
                   Resources
                   <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${openDropdown === "resources" ? "rotate-180" : ""}`} aria-hidden="true" />
@@ -386,7 +387,7 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-foreground hover:text-[#00CC99] transition-all duration-300 text-sm xl:text-base whitespace-nowrap"
+                    className="text-foreground hover:text-[#00CC99] transition-all duration-300 text-sm xl:text-base font-medium whitespace-nowrap"
                   >
                     {item.label}
                 </Link>
@@ -458,7 +459,7 @@ export default function Navbar() {
                 <button
                   onClick={() => toggleMobileExpanded("platform")}
                   aria-expanded={mobileExpanded === "platform"}
-                  className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
+                  className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm font-medium"
                 >
                   <span className="flex-1 text-left">Platform</span>
                   <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileExpanded === "platform" ? "rotate-180" : ""}`} aria-hidden="true" />
@@ -471,7 +472,7 @@ export default function Navbar() {
                         href={pillar.href}
                         onClick={closeMobileMenu}
                         role="menuitem"
-                        className="flex items-start gap-3 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
+                        className="flex items-start gap-3 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm font-medium"
                       >
                         <pillar.icon className="w-4 h-4 mt-0.5 flex-shrink-0" aria-hidden="true" />
                         <span>
@@ -493,7 +494,7 @@ export default function Navbar() {
                 <button
                   onClick={() => toggleMobileExpanded("solutions")}
                   aria-expanded={mobileExpanded === "solutions"}
-                  className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
+                  className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm font-medium"
                 >
                   <span className="flex-1 text-left">Solutions</span>
                   <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileExpanded === "solutions" ? "rotate-180" : ""}`} aria-hidden="true" />
@@ -514,7 +515,7 @@ export default function Navbar() {
                             href={item.href}
                             onClick={closeMobileMenu}
                             role="menuitem"
-                            className="flex items-center gap-2.5 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
+                            className="flex items-center gap-2.5 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm font-medium"
                           >
                             <item.icon className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                             {item.label}
@@ -538,7 +539,7 @@ export default function Navbar() {
                 <button
                   onClick={() => toggleMobileExpanded("resources")}
                   aria-expanded={mobileExpanded === "resources"}
-                  className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
+                  className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm font-medium"
                 >
                   <span className="flex-1 text-left">Resources</span>
                   <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileExpanded === "resources" ? "rotate-180" : ""}`} aria-hidden="true" />
@@ -551,7 +552,7 @@ export default function Navbar() {
                         href={item.href}
                         onClick={closeMobileMenu}
                         role="menuitem"
-                        className="flex items-center gap-2.5 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
+                        className="flex items-center gap-2.5 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm font-medium"
                       >
                         <item.icon className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                         {item.label}
@@ -567,7 +568,7 @@ export default function Navbar() {
                     href={item.href}
                     onClick={closeMobileMenu}
                     role="menuitem"
-                    className="block w-full text-left px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm"
+                    className="block w-full text-left px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm font-medium"
                   >
                     {item.label}
                 </Link>

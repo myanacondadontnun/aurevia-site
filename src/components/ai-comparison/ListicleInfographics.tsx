@@ -30,12 +30,12 @@ export function ListicleHeroVisual() {
           <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-[#00CC99]/30 bg-[#00CC99]/10 shadow-[0_0_40px_-8px_rgba(0,204,153,0.5)]">
             <ShoppingCart className="h-10 w-10 text-[#00CC99]" strokeWidth={1.25} />
           </div>
-          <p className="max-w-sm text-center text-sm font-light text-muted-foreground">
+          <p className="max-w-sm text-center text-sm font-normal text-muted-foreground">
             AI connects catalog, orders, and checkout — not just a chat bubble on top of your theme.
           </p>
         </div>
       </div>
-      <figcaption className="mt-3 text-center text-xs font-light text-muted-foreground/90">
+      <figcaption className="mt-3 text-center text-xs font-normal text-muted-foreground/90">
         Concept diagram: conversational layer wired into Shopify data and the purchase path.
       </figcaption>
     </figure>
@@ -70,13 +70,13 @@ export function InfographicCapabilities() {
                 className="flex items-start gap-3 rounded-xl border border-black/8 bg-black/20 px-3 py-2.5"
               >
                 <Icon className="mt-0.5 h-4 w-4 shrink-0 text-[#00CC99]" />
-                <span className="text-sm font-light leading-snug text-muted-foreground">{label}</span>
+                <span className="text-sm font-normal leading-snug text-muted-foreground">{label}</span>
               </li>
             ))}
           </ul>
         </div>
       </div>
-      <figcaption className="mt-3 text-center text-xs font-light text-muted-foreground">
+      <figcaption className="mt-3 text-center text-xs font-normal text-muted-foreground">
         Infographic: a capable Shopify AI agent routes questions, catalog, and checkout momentum — not generic
         deflection only.
       </figcaption>
@@ -136,12 +136,12 @@ export function InfographicBenefits() {
             </div>
             <div>
               <h4 className="text-sm font-medium text-foreground">{title}</h4>
-              <p className="mt-1 text-sm font-light leading-relaxed text-muted-foreground">{body}</p>
+              <p className="mt-1 text-sm font-normal leading-relaxed text-muted-foreground">{body}</p>
             </div>
           </div>
         ))}
       </div>
-      <figcaption className="mt-3 text-center text-xs font-light text-muted-foreground">
+      <figcaption className="mt-3 text-center text-xs font-normal text-muted-foreground">
         Infographic-style summary: why revenue-focused stores add AI now — not only to answer FAQs faster.
       </figcaption>
     </figure>
@@ -199,12 +199,12 @@ export function InfographicMethodology() {
               </span>
               <Icon className="mb-2 h-5 w-5 text-violet-300" />
               <h4 className="text-xs font-medium text-foreground">{title}</h4>
-              <p className="mt-1 text-[11px] font-light leading-snug text-muted-foreground">{detail}</p>
+              <p className="mt-1 text-[11px] font-normal leading-snug text-muted-foreground">{detail}</p>
             </div>
           ))}
         </div>
       </div>
-      <figcaption className="mt-3 text-center text-xs font-light text-muted-foreground">
+      <figcaption className="mt-3 text-center text-xs font-normal text-muted-foreground">
         Flow-style infographic: five gates every vendor in this listicle was scored against.
       </figcaption>
     </figure>

@@ -29,48 +29,25 @@ interface Message {
 const svg = (raw: string) =>
   `data:image/svg+xml,${encodeURIComponent(raw.replace(/\n\s*/g, ""))}`;
 
+// One question, then the products: the look is on screen within ~5s.
 const salesConversation: Message[] = [
   {
     sender: "aurevia",
-    text: "Hey Camille 👋 Shopping for yourself today, or hunting for a gift?",
-    delay: 550,
-    typingDuration: 1000,
+    text: "Hey Camille 👋 What are you shopping for?",
+    delay: 450,
+    typingDuration: 650,
   },
   {
     sender: "customer",
-    text: "Me. Gallery opening on Friday.\nSharp, but I don't want to look like I'm going to a board meeting.",
-    delay: 2200,
-    typingDuration: 1200,
+    text: "Gallery opening Friday. Sharp, not corporate.",
+    delay: 1200,
+    typingDuration: 800,
   },
   {
     sender: "aurevia",
-    text: "Got it. Polished, not corporate.\nAre you thinking one statement piece, or a full look?",
-    delay: 1300,
-    typingDuration: 900,
-  },
-  {
-    sender: "customer",
-    text: "Full look ideally. And I run cold, galleries are always freezing.",
-    delay: 2400,
-    typingDuration: 1100,
-  },
-  {
-    sender: "aurevia",
-    text: "Then a layer that reads as elegant rather than warm.\n\nThe cashmere blazer does exactly that: satin lapel, cut close through the waist, and it's properly warm.\n\nUnder it, the silk draped blouse. Asymmetric hem, so it still shows when the blazer is open.",
-    delay: 1000,
-    typingDuration: 1500,
-  },
-  {
-    sender: "customer",
-    text: "Okay that sounds good. Shoes?",
-    delay: 2600,
-    typingDuration: 700,
-  },
-  {
-    sender: "aurevia",
-    text: "Patent ankle boots. Sculpted heel, mirror finish, and the height is an evening height without being a standing-for-three-hours problem.\n\nHere's the look:",
-    delay: 900,
-    typingDuration: 1400,
+    text: "Polished, not stiff. Here's the full look:",
+    delay: 700,
+    typingDuration: 800,
     products: [
       {
         id: "blazer",
@@ -99,14 +76,14 @@ const salesConversation: Message[] = [
   {
     sender: "customer",
     text: "Add the blouse in champagne.",
-    delay: 2800,
+    delay: 2200,
     typingDuration: 600,
   },
   {
     sender: "aurevia",
-    text: "Done ✔️ Silk Draped Blouse, champagne, is in your cart.\n\nYou're over $300, so shipping's on us. Want me to hold the blazer too?",
-    delay: 700,
-    typingDuration: 1000,
+    text: "Done ✔️ It's in your cart, and shipping's on us.",
+    delay: 650,
+    typingDuration: 750,
     triggerCheckoutDemo: true,
   },
 ];

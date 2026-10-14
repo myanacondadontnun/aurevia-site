@@ -86,7 +86,7 @@ export default function BookDemo() {
         </div>
         <div className="mt-12 max-w-md text-center lg:mt-10">
           <h2 className="font-fraunces text-3xl text-foreground sm:text-4xl">Your store&rsquo;s AI agent that sells</h2>
-          <p className="mt-3 text-base font-light text-muted-foreground">
+          <p className="mt-3 text-base font-normal text-muted-foreground">
             Recommends, adds to cart, answers from your policies, and hands off to your team when it should.
           </p>
         </div>
@@ -107,7 +107,7 @@ export default function BookDemo() {
           <h1 className="text-center font-fraunces text-4xl leading-tight text-foreground sm:text-5xl">
             Book a free <span className="green-highlight">30-minute demo</span>
           </h1>
-          <p className="mx-auto mt-4 max-w-md text-center text-base font-light text-muted-foreground sm:text-lg">
+          <p className="mx-auto mt-4 max-w-md text-center text-base font-normal text-muted-foreground sm:text-lg">
             See Aurevia running on a store like yours and get your questions answered by the people who built it.
           </p>
 

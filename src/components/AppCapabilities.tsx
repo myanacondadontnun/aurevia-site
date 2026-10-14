@@ -1,13 +1,13 @@
 "use client";
 
 /**
- * Home: "In your dashboard" — four rows, copy beside a dashboard screenshot in
- * a browser frame with a phone overlay of the same page at mobile width.
+ * Home: "In your dashboard" — four capabilities on one pinned stage, copy
+ * beside a dashboard screenshot in a browser frame with a phone overlay of the same page at mobile width.
  * Screenshots come from the Lucien Vallière demo store; a row with no capture
  * yet renders a labelled placeholder rather than a stand-in image.
  */
 
-import { useItemScrollFade } from "./ScrollAnimations";
+import PinnedShowcase from "./PinnedShowcase";
 import { BrowserFrame } from "./DeviceFrames";
 
 const rows: {
@@ -58,8 +58,6 @@ const rows: {
 ];
 
 export default function AppCapabilities() {
-  const fadeRef = useItemScrollFade(120);
-
   return (
     <section id="dashboard" className="py-14 sm:py-24 px-4 sm:px-6">
       <div className="container mx-auto">
@@ -68,48 +66,24 @@ export default function AppCapabilities() {
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-fraunces font-normal mb-3 sm:mb-4 text-foreground">
             Your side of <span className="green-highlight">Aurevia</span>
           </h2>
-          <p className="text-sm sm:text-xl font-light text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm sm:text-xl font-normal text-muted-foreground max-w-2xl mx-auto">
             Everything the agent does is visible, measurable and yours to step into.
           </p>
         </div>
 
-        <div ref={fadeRef as React.RefObject<HTMLDivElement>} className="max-w-6xl mx-auto space-y-20 sm:space-y-32">
-          {rows.map((row, index) => (
-            <div
-              key={row.eyebrow}
-              className={`scroll-fade-item grid items-center gap-10 sm:gap-12 md:grid-cols-5 ${
-                index % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
-              }`}
-            >
-              <div className="md:col-span-3 px-2 sm:px-4 pb-10 sm:pb-12">
-                <BrowserFrame
-                  desktop={row.desktop}
-                  mobile={row.mobile}
-                  url={row.url}
-                  alt={row.title}
-                  phoneSide={index % 2 === 1 ? "left" : "right"}
-                />
-              </div>
-              <div className="md:col-span-2 max-w-md mx-auto md:mx-0 text-center md:text-left">
-                <p className="text-xs font-semibold tracking-[0.16em] uppercase text-muted-foreground mb-3">{row.eyebrow}</p>
-                <h3 className="text-xl sm:text-3xl font-fraunces font-normal text-foreground leading-tight mb-3 sm:mb-4">
-                  {row.title}
-                </h3>
-                <p className="text-sm sm:text-base font-light text-muted-foreground leading-relaxed mb-5">{row.body}</p>
-                <ul className="flex flex-wrap justify-center md:justify-start gap-2">
-                  {row.points.map((pt) => (
-                    <li
-                      key={pt}
-                      className="text-xs sm:text-[13px] px-3 py-1.5 rounded-full border border-border/70 bg-card text-foreground/80"
-                    >
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
+        <PinnedShowcase
+          items={rows}
+          wideVisual
+          renderVisual={(index) => (
+            <BrowserFrame
+              desktop={rows[index].desktop}
+              mobile={rows[index].mobile}
+              url={rows[index].url}
+              alt={rows[index].title}
+              phoneSide="left"
+            />
+          )}
+        />
       </div>
     </section>
   );

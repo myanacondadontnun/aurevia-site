@@ -121,7 +121,7 @@ function SpiderBlock({
     <div className="rounded-2xl border border-border/50 bg-card/40 p-4 sm:p-6 backdrop-blur-sm">
       <div className="mb-4">
         <h3 className="text-lg font-normal text-foreground sm:text-xl">{title}</h3>
-        <p className="mt-1 text-sm font-light text-muted-foreground">{subtitle}</p>
+        <p className="mt-1 text-sm font-normal text-muted-foreground">{subtitle}</p>
       </div>
       <div className="h-[320px] w-full min-h-[280px] min-w-0 sm:h-[380px]">
         <ResponsiveContainer
@@ -192,7 +192,7 @@ export default function AIRadarChart() {
       <h2 id="radar-heading" className="mb-2 text-2xl font-normal text-foreground sm:text-3xl">
         Spider diagrams: capability profiles
       </h2>
-      <p className="mb-8 max-w-3xl text-base font-light text-muted-foreground">
+      <p className="mb-8 max-w-3xl text-base font-normal text-muted-foreground">
         Scores are editorial summaries based on architecture (proactive vs reactive), depth of Shopify
         integration, checkout orchestration, analytics, and total cost of ownership — not third-party
         benchmarks.

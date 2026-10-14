@@ -48,7 +48,7 @@ export default async function HelpArticlePage({ params }: Props) {
       <article className="max-w-3xl">
         <p className="text-xs font-semibold tracking-[0.16em] uppercase text-[#00795c] mb-3">{article.category}</p>
         <h1 className="text-3xl sm:text-4xl font-fraunces font-normal text-foreground leading-tight mb-3">{article.title}</h1>
-        <p className="text-base sm:text-lg font-light text-muted-foreground mb-2">{article.summary}</p>
+        <p className="text-base sm:text-lg font-normal text-muted-foreground mb-2">{article.summary}</p>
         <p className="text-xs text-muted-foreground mb-10">
           {article.minutes} min read · Updated {article.updated}
         </p>
@@ -58,7 +58,7 @@ export default async function HelpArticlePage({ params }: Props) {
             <section key={section.heading} id={sectionId(section.heading)} className="scroll-mt-28">
               <h2 className="text-xl sm:text-2xl font-fraunces font-normal text-foreground mb-3">{section.heading}</h2>
               {section.paragraphs?.map((p, i) => (
-                <p key={i} className="text-sm sm:text-base font-light text-muted-foreground leading-relaxed mb-3">
+                <p key={i} className="text-sm sm:text-base font-normal text-muted-foreground leading-relaxed mb-3">
                   {p}
                 </p>
               ))}

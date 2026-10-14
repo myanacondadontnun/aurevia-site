@@ -84,12 +84,12 @@ const products = [
       "A merchant view of what matters: conversations, revenue signals, and AI health at a glance—no vanity metrics.",
   },
   {
-    title: "Channels: WhatsApp & Instagram",
+    title: "Channels: WhatsApp, Instagram & Email",
     slug: "channels",
     href: "/channels",
     icon: MessageSquare,
     description:
-      "The same agent answering on WhatsApp and Instagram DMs, with comment moderation built in. Early access.",
+      "The same agent answering on your store, WhatsApp, Instagram and email, with comment moderation built in.",
   },
   {
     title: "ROI Tracking",

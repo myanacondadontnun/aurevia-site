@@ -167,10 +167,10 @@ export default function IndustriesEnhanced() {
       <section id="industries-enhanced" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6" aria-label="Industry impact carousel">
         <div className="container mx-auto">
           <div className="text-center mb-10 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-4 sm:mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal mb-4 sm:mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               See how Aurevia boosts revenue from fashion, food and beyond
             </h2>
-            <p className="text-base sm:text-lg md:text-xl font-light text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl font-normal text-muted-foreground max-w-3xl mx-auto">
               Real-time AI sales agent chat bot that adapts to any Shopify niche.
             </p>
           </div>
@@ -237,7 +237,7 @@ export default function IndustriesEnhanced() {
                                   {industry.impactPoints.map((point, idx) => (
                                     <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm">
                                       <span className="w-1.5 h-1.5 bg-white rounded-full mt-1.5 sm:mt-2 flex-shrink-0" aria-hidden="true" />
-                                      <span className="text-foreground/90 font-light">{point}</span>
+                                      <span className="text-foreground/90 font-normal">{point}</span>
                                     </li>
                                   ))}
                                 </ul>

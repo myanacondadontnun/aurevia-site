@@ -276,12 +276,12 @@ export default function Testimonials() {
                       <p className="text-sm sm:text-base font-inter font-medium text-foreground/70">
                         {t.name}
                       </p>
-                      <p className="text-xs sm:text-sm font-inter text-foreground/40 font-light">
+                      <p className="text-xs sm:text-sm font-inter text-foreground/40 font-normal">
                         {t.role}
                       </p>
                     </>
                   ) : (
-                    <p className="text-sm sm:text-base font-inter text-foreground/50 font-light">
+                    <p className="text-sm sm:text-base font-inter text-foreground/50 font-normal">
                       {t.role}
                     </p>
                   )}

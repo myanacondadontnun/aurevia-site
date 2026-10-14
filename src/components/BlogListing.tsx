@@ -56,7 +56,7 @@ function BlogCard({ post }: { post: (typeof blogPosts)[number] }) {
             {post.title}
           </h2>
 
-          <p className="text-sm text-muted-foreground font-light leading-relaxed mb-6 flex-1 line-clamp-3">
+          <p className="text-sm text-muted-foreground font-normal leading-relaxed mb-6 flex-1 line-clamp-3">
             {post.metaDescription}
           </p>
 
@@ -119,7 +119,7 @@ export default function BlogListing() {
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-fraunces font-normal text-foreground mb-4">
           Blog
         </h1>
-        <p className="text-base sm:text-lg text-muted-foreground font-light max-w-2xl">
+        <p className="text-base sm:text-lg text-muted-foreground font-normal max-w-2xl">
           Research-backed guides on AI sales, Shopify optimization, and
           e-commerce growth strategies.
         </p>

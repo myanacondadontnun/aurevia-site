@@ -46,7 +46,7 @@ export default function DashboardShowcase() {
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-fraunces font-normal mb-3 sm:mb-4 text-foreground">
             One Agent, <span className="green-highlight">Every Part of Your Store</span>
           </h2>
-          <p className="text-sm sm:text-xl font-light text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-sm sm:text-xl font-normal text-muted-foreground max-w-3xl mx-auto">
             From the storefront widget to the dashboard behind it — here's what running on Aurevia actually looks like.
           </p>
         </div>
@@ -80,7 +80,7 @@ export default function DashboardShowcase() {
                 <h3 className="text-xl sm:text-2xl font-inter font-normal text-foreground leading-tight mb-3 sm:mb-4">
                   {panel.title}
                 </h3>
-                <p className="text-sm sm:text-base font-light text-muted-foreground leading-relaxed">
+                <p className="text-sm sm:text-base font-normal text-muted-foreground leading-relaxed">
                   {panel.description}
                 </p>
               </div>

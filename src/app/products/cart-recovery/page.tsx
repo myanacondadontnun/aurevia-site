@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
-import { FeatureChatDemo, type ChatStep } from "@/components/FeatureDemo";
 import { getReview } from "@/lib/reviews";
 import AbandonedCartEmail from "@/components/AbandonedCartEmail";
+import WhatsAppNudge from "@/components/WhatsAppNudge";
 
 const title = "Cart Recovery for Shopify: In-Chat Nudges and Follow-Up Emails | Aurevia";
 const desc =
@@ -14,14 +14,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/products/cart-recovery" },
   openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/products/cart-recovery/" },
 };
-
-const nudgeScript: ChatStep[] = [
-  { type: "bot", text: "Still thinking about the Silk Draped Blouse? Happy to help if anything's holding you back — sizing, shipping, or the hem." },
-  { type: "user", text: "Honestly just wondering if it'll arrive before Friday.", delay: 1800 },
-  { type: "bot", text: "Order in the next 2 hours and it ships today. Express lands Wednesday, standard Thursday. Both before Friday." },
-  { type: "cartbar", summary: "1 item · $520.00 · Free shipping", delay: 600 },
-  { type: "user", text: "Okay, doing it.", delay: 1500 },
-];
 
 export default function CartRecoveryPage() {
   return (
@@ -41,7 +33,7 @@ export default function CartRecoveryPage() {
         "Follow-up emails written in your voice",
         "Quiet hours, frequency caps and a minimum cart value",
       ]}
-      demo={<FeatureChatDemo agentName="Lucien" script={nudgeScript} loopPause={5000} />}
+      demo={<AbandonedCartEmail />}
       proofStrip={[
         { label: "On the store", text: "If a shopper has items in the cart and the chat has been closed for a few minutes, the agent opens with a short, cart-aware nudge. Once per session, never nagging." },
         { label: "After they leave", text: "You choose the delay, from ten minutes to a day. The email shows the real line items and prices and links straight back to the cart." },
@@ -90,11 +82,11 @@ export default function CartRecoveryPage() {
         },
       ]}
       secondDemo={{
-        eyebrow: "After they leave",
-        title: "The email they actually get",
-        body: "Written in your store's voice, with the exact items and prices from the real cart, a one-click way back, and a reply address that lands in your Aurevia inbox. Sent under your store's name, outside quiet hours, never more often than your cap allows.",
-        demo: <AbandonedCartEmail />,
-        points: ["Real line items and total", "Your sender name", "Replies answered by the AI"],
+        eyebrow: "On WhatsApp",
+        title: "The same nudge, where they already chat",
+        body: "Shoppers who tick the WhatsApp box in the chat get one short message from your own number, sent with the first email: what they left and a link straight back to the cart. If they reply, the agent answers in the same WhatsApp thread, and your team can take over from the inbox.",
+        demo: <WhatsAppNudge />,
+        points: ["Opt-in only, STOP to end", "Your WhatsApp Business number", "Replies answered by the AI"],
       }}
       review={getReview("littleangel")}
       alsoSee={[

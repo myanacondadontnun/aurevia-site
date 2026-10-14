@@ -9,11 +9,11 @@ function ReviewVisual({ caption }: { caption: string }) {
         <div className="flex aspect-[16/9] max-h-[220px] items-center justify-center bg-[radial-gradient(ellipse_at_center,_rgba(0,204,153,0.12)_0%,_transparent_65%)] sm:max-h-[280px]">
           <div className="rounded-2xl border border-black/10 bg-black/30 px-8 py-6 text-center backdrop-blur-sm">
             <p className="text-xs font-medium uppercase tracking-widest text-[#00CC99]/90">Product preview</p>
-            <p className="mt-2 text-sm font-light text-muted-foreground">Interface mock · illustrative</p>
+            <p className="mt-2 text-sm font-normal text-muted-foreground">Interface mock · illustrative</p>
           </div>
         </div>
       </div>
-      <p className="text-xs font-light leading-relaxed text-muted-foreground/90">{caption}</p>
+      <p className="text-xs font-normal leading-relaxed text-muted-foreground/90">{caption}</p>
     </>
   );
 }
@@ -21,7 +21,7 @@ function ReviewVisual({ caption }: { caption: string }) {
 export default function DetailedReviews() {
   return (
     <div className="space-y-16">
-      <p className="text-base font-light leading-relaxed text-muted-foreground">
+      <p className="text-base font-normal leading-relaxed text-muted-foreground">
         Below we use the same structure as long-form listicles: a visual, a candid &quot;why it&apos;s
         here,&quot; pros, caveats, and pricing — then{" "}
         <Link href="#full-landscape" className={link}>
@@ -39,20 +39,20 @@ export default function DetailedReviews() {
           </Link>
         </h3>
         <ReviewVisual caption="Illustrative panel: Aurevia positions as a Shopify-native sales co-pilot with guided checkout and upsell surfaces." />
-        <p className="mt-6 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <p className="mt-6 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           Aurevia is built around one job: turn paid sessions into revenue. It combines proactive signals with
           catalog-aware answers and a guided path through checkout — not just hyperlinks to PDPs.
         </p>
         <p className="mt-4">
           <strong className="font-medium text-foreground">Why it&apos;s on the list:</strong>{" "}
-          <span className="font-light text-muted-foreground">
+          <span className="font-normal text-muted-foreground">
             It is the only entrant here pairing <strong className="text-foreground/90">behavioral engagement</strong>{" "}
             with <strong className="text-foreground/90">cart, checkout, and post-purchase upsells</strong> while keeping
             entry economics unusually accessible for SMBs.
           </span>
         </p>
         <p className="mt-4 font-medium text-foreground">What&apos;s great about it:</p>
-        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <li>
             <Link href="/products/recommendations/" className={link}>
               Product recommendations
@@ -81,13 +81,13 @@ export default function DetailedReviews() {
           </li>
         </ul>
         <p className="mt-4 font-medium text-foreground">What to keep in mind:</p>
-        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <li>Newer brand vs helpdesk giants — procurement may ask for logo comfort; win on proof and speed.</li>
           <li>
             You&apos;ll want clean catalog/variant hygiene — same requirement as any serious merchandising AI.
           </li>
         </ul>
-        <p className="mt-4 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <p className="mt-4 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <strong className="font-medium text-foreground">Pricing:</strong> Free pilot (200 AI messages/mo) and an
           aggressive Pro tier (~$9.99/mo) described in our research narrative — confirm current numbers on the{" "}
           <a href="https://apps.shopify.com/aurevia-io" className={link} target="_blank" rel="noopener noreferrer">
@@ -103,29 +103,29 @@ export default function DetailedReviews() {
           <span className="text-[#00CC99]">2.</span> Zipchat AI
         </h3>
         <ReviewVisual caption="Illustrative panel: Zipchat emphasizes proactive, revenue-focused messaging and strong merchant ratings." />
-        <p className="mt-6 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <p className="mt-6 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           Zipchat is the clearest &quot;sales agent&quot; peer: proactive triggers, solid catalog sync, and a
           narrative built around conversion — a strong benchmark for the category.
         </p>
         <p className="mt-4">
           <strong className="font-medium text-foreground">Why it&apos;s on the list:</strong>{" "}
-          <span className="font-light text-muted-foreground">
+          <span className="font-normal text-muted-foreground">
             It proved merchants will pay for autonomous, behavioral AI — and raised the bar for what
             &quot;proactive&quot; means in Shopify.
           </span>
         </p>
         <p className="mt-4 font-medium text-foreground">What&apos;s great about it:</p>
-        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <li>High marks publicly (~4.8/5) for turning sessions into sales — credible social proof.</li>
           <li>WhatsApp and cross-sell paths suit growth brands running aggressive paid acquisition.</li>
           <li>Strong fit if your bottleneck is engagement, not helpdesk ticket throughput.</li>
         </ul>
         <p className="mt-4 font-medium text-foreground">What to keep in mind:</p>
-        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <li>No permanent free tier and a $49/mo floor — harder for side projects to experiment.</li>
           <li>Checkout orchestration is lighter vs a guided handoff all the way through payment.</li>
         </ul>
-        <p className="mt-4 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <p className="mt-4 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <strong className="font-medium text-foreground">Pricing:</strong> From $49/mo — verify on Zipchat&apos;s site
           before budgeting; model payback with our{" "}
           <Link href="/resources/roi-calculator/" className={link}>
@@ -141,19 +141,19 @@ export default function DetailedReviews() {
           <span className="text-[#00CC99]">3.</span> Tidio (Lyro)
         </h3>
         <ReviewVisual caption="Illustrative panel: Tidio pairs live chat with Lyro AI for FAQs, policies, and operator handoff." />
-        <p className="mt-6 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <p className="mt-6 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           Tidio is the friendly default for SMBs: live chat, Lyro, and automation in one surface — great when you
           still have humans in the loop.
         </p>
         <p className="mt-4">
           <strong className="font-medium text-foreground">Why it&apos;s on the list:</strong>{" "}
-          <span className="font-light text-muted-foreground">
+          <span className="font-normal text-muted-foreground">
             Massive adoption, multilingual support, and a credible path to deflect repetitive questions — as long
             as you understand the reactive posture.
           </span>
         </p>
         <p className="mt-4 font-medium text-foreground">What&apos;s great about it:</p>
-        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <li>Lyro Guidance helps keep tone aligned with scraped help content.</li>
           <li>Flows and channels make it a capable CX hub for lean teams.</li>
           <li>
@@ -165,11 +165,11 @@ export default function DetailedReviews() {
           </li>
         </ul>
         <p className="mt-4 font-medium text-foreground">What to keep in mind:</p>
-        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <li>Per-conversation pricing can spike during BFCM — watch usage caps.</li>
           <li>Reactive design: shoppers who never open chat may still bounce silently.</li>
         </ul>
-        <p className="mt-4 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <p className="mt-4 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <strong className="font-medium text-foreground">Pricing:</strong> Starter around $24.17/mo with Lyro add-ons
           and per-conversation costs — confirm on Tidio pricing before you commit.
         </p>
@@ -181,19 +181,19 @@ export default function DetailedReviews() {
           <span className="text-[#00CC99]">4.</span> Gorgias
         </h3>
         <ReviewVisual caption="Illustrative panel: Gorgias shines when agents live inside tickets and Shopify order actions." />
-        <p className="mt-6 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <p className="mt-6 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           Gorgias is the operational backbone for many scaling brands — especially when post-purchase complexity is
           the daily reality.
         </p>
         <p className="mt-4">
           <strong className="font-medium text-foreground">Why it&apos;s on the list:</strong>{" "}
-          <span className="font-light text-muted-foreground">
+          <span className="font-normal text-muted-foreground">
             If you need deep order edits, refunds, and SLA-driven workflows, Gorgias remains a category anchor —
             even when front-end sales automation is not its hero story.
           </span>
         </p>
         <p className="mt-4 font-medium text-foreground">What&apos;s great about it:</p>
-        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <li>Agents resolve issues without tab-hopping — massive for high-volume teams.</li>
           <li>AI assists drafting and automation inside a mature ticketing model.</li>
           <li>
@@ -205,11 +205,11 @@ export default function DetailedReviews() {
           </li>
         </ul>
         <p className="mt-4 font-medium text-foreground">What to keep in mind:</p>
-        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <li>Learning curve and cost ramp as tickets and AI add-ons scale.</li>
           <li>Automation rates (~60% support) trail specialized conversational stacks per public comparisons.</li>
         </ul>
-        <p className="mt-4 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <p className="mt-4 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <strong className="font-medium text-foreground">Pricing:</strong> Entry marketing ~$10/mo but real stacks climb
           with volume — model fully loaded cost before you compare to sales-first tools.
         </p>
@@ -221,27 +221,27 @@ export default function DetailedReviews() {
           <span className="text-[#00CC99]">5.</span> Re:amaze
         </h3>
         <ReviewVisual caption="Illustrative panel: Re:amaze targets teams wanting a unified inbox without enterprise bloat." />
-        <p className="mt-6 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <p className="mt-6 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           Re:amaze sits in the pragmatic middle: chat, light bots, and Shopify context for teams that outgrew a
           bare widget but do not want Gorgias-scale ops.
         </p>
         <p className="mt-4">
           <strong className="font-medium text-foreground">Why it&apos;s on the list:</strong>{" "}
-          <span className="font-light text-muted-foreground">
+          <span className="font-normal text-muted-foreground">
             Strong ratings and a straightforward inbox story make it a credible stepping stone — especially for
             SMB multi-channel support.
           </span>
         </p>
         <p className="mt-4 font-medium text-foreground">What&apos;s great about it:</p>
-        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <li>Unified inbox with Shopify order sync keeps context tight.</li>
           <li>Automation templates help teams move faster without a full R&amp;D org.</li>
         </ul>
         <p className="mt-4 font-medium text-foreground">What to keep in mind:</p>
-        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <li>Still skews helpdesk over autonomous GMV — expect to add sales-specific tooling elsewhere.</li>
         </ul>
-        <p className="mt-4 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <p className="mt-4 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <strong className="font-medium text-foreground">Pricing:</strong> From ~$26.10/mo — confirm seats/channels on
           their pricing page.
         </p>
@@ -253,19 +253,19 @@ export default function DetailedReviews() {
           <span className="text-[#00CC99]">6.</span> VanChat
         </h3>
         <ReviewVisual caption="Illustrative panel: VanChat highlights buyer intent and AI-first shopping assistance." />
-        <p className="mt-6 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <p className="mt-6 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           VanChat represents the newer wave of AI shopping assistants: intent-aware, conversational, and aimed at
           closing without a human — a useful foil to legacy chat widgets.
         </p>
         <p className="mt-4">
           <strong className="font-medium text-foreground">Why it&apos;s on the list:</strong>{" "}
-          <span className="font-light text-muted-foreground">
+          <span className="font-normal text-muted-foreground">
             It signals where the market experiments beyond helpdesks — worth understanding alongside Zipchat and
             Aurevia.
           </span>
         </p>
         <p className="mt-4 font-medium text-foreground">What&apos;s great about it:</p>
-        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <li>Free tier lowers friction for stores testing AI shopping experiences.</li>
           <li>Buyer-intent framing can improve relevance vs generic scripts.</li>
           <li>
@@ -277,11 +277,11 @@ export default function DetailedReviews() {
           </li>
         </ul>
         <p className="mt-4 font-medium text-foreground">What to keep in mind:</p>
-        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <li>Upsell customization and stack consolidation may lag apex platforms.</li>
           <li>Always validate inventory grounding — hallucinated stock is a trust killer.</li>
         </ul>
-        <p className="mt-4 text-[15px] font-light leading-relaxed text-muted-foreground sm:text-base">
+        <p className="mt-4 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <strong className="font-medium text-foreground">Pricing:</strong> Free tier advertised — confirm feature gates
           and paid ladders on VanChat&apos;s site.
         </p>

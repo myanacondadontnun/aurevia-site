@@ -20,7 +20,7 @@ export default function HelpIndexPage() {
         <h1 className="text-3xl sm:text-5xl font-fraunces font-normal text-foreground mb-3">
           Set up and run <span className="green-highlight">Aurevia</span>
         </h1>
-        <p className="text-sm sm:text-lg font-light text-muted-foreground max-w-2xl">
+        <p className="text-sm sm:text-lg font-normal text-muted-foreground max-w-2xl">
           Short, step-by-step guides for everything in the merchant app. If something isn&rsquo;t covered,{" "}
           <Link href="/contact" className="text-[#00CC99] hover:underline">
             contact us
@@ -48,7 +48,7 @@ export default function HelpIndexPage() {
                       <h3 className="text-base sm:text-lg font-medium text-foreground leading-snug mb-1.5 group-hover:text-[#00795c]">
                         {a.title}
                       </h3>
-                      <p className="text-sm font-light text-muted-foreground leading-relaxed mb-3">{a.summary}</p>
+                      <p className="text-sm font-normal text-muted-foreground leading-relaxed mb-3">{a.summary}</p>
                       <span className="text-xs text-muted-foreground">{a.minutes} min read</span>
                     </Link>
                   </li>

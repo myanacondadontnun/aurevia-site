@@ -1,15 +1,16 @@
 "use client";
 
 /**
- * Home: "On your storefront" — five capability rows, copy on one side and an
- * animated widget mockup in a phone frame on the other. Scripts use the
+ * Home: "On your storefront" — five capabilities on one pinned stage, copy on
+ * the left and an animated widget mockup in a phone frame on the right. Scripts use the
  * Lucien Vallière demo catalog (USD) so every mockup tells one story.
  */
 
-import { useEffect, useRef } from "react";
+import type { ReactNode } from "react";
 import { FeatureChatDemo, type ChatStep } from "./FeatureDemo";
 import { PhoneFrame } from "./DeviceFrames";
-import AbandonedCartEmail from "./AbandonedCartEmail";
+import RecoveryNudges from "./RecoveryNudges";
+import PinnedShowcase, { type ShowcaseItem } from "./PinnedShowcase";
 
 const IMG = {
   blazer: "/images/demo/lv/cashmere-blazer.webp",
@@ -89,73 +90,62 @@ const handoffScript: ChatStep[] = [
   { type: "user", text: "That's it, thank you!", delay: 1400 },
 ];
 
-const rows = [
+// `demo` gets `active` only when the stage is pinned; unpinned, each demo starts itself on scroll.
+const rows: (ShowcaseItem & { demo: (active?: boolean) => ReactNode })[] = [
   {
     eyebrow: "01 · Recommendations",
     title: "Recommends what they'll actually buy",
     body: "Aurevia reads intent, not keywords. A vague ask becomes two or three products the shopper can act on, pulled live from your catalog with real prices and stock.",
     points: ["Product cards inside the chat", "Live catalog, live prices", "Curated sets, not a wall of results"],
-    demo: <FeatureChatDemo bare startOnView agentName="Lucien" script={recommendScript} />,
+    demo: (active) => (
+      <PhoneFrame>
+        <FeatureChatDemo bare startOnView active={active} agentName="Lucien" script={recommendScript} />
+      </PhoneFrame>
+    ),
   },
   {
     eyebrow: "02 · Cart",
     title: "Adds to cart and opens the drawer",
     body: "No links to click, no tabs to switch. The shopper says yes, the item lands in your real Shopify cart, and the drawer slides up with a checkout button.",
     points: ["Add, update, remove from chat", "Works with your theme's cart", "One-tap checkout"],
-    demo: <FeatureChatDemo bare startOnView agentName="Lucien" script={cartScript} loopPause={4500} />,
+    demo: (active) => (
+      <PhoneFrame>
+        <FeatureChatDemo bare startOnView active={active} agentName="Lucien" script={cartScript} loopPause={4500} />
+      </PhoneFrame>
+    ),
   },
   {
     eyebrow: "03 · Compare",
     title: "Compares products and gives a verdict",
     body: "When a shopper is stuck between two options, Aurevia lays them out side by side and says which one fits. That's the moment most carts are won or lost.",
     points: ["Two products, one card", "Winner highlighted per row", "A plain-English verdict"],
-    demo: <FeatureChatDemo bare startOnView agentName="Lucien" script={compareScript} loopPause={5000} />,
+    demo: (active) => (
+      <PhoneFrame>
+        <FeatureChatDemo bare startOnView active={active} agentName="Lucien" script={compareScript} loopPause={5000} />
+      </PhoneFrame>
+    ),
   },
   {
     eyebrow: "04 · Handoff",
     title: "Hands off to your team when it should",
     body: "Ask for a human and a ticket opens, your team gets pinged, and the same chat turns into a live conversation. The shopper never leaves the window.",
     points: ["Ticket with working-hours awareness", "Live takeover from the dashboard", "Hand back to AI when done"],
-    demo: <FeatureChatDemo bare startOnView agentName="Lucien" script={handoffScript} loopPause={5500} />,
+    demo: (active) => (
+      <PhoneFrame>
+        <FeatureChatDemo bare startOnView active={active} agentName="Lucien" script={handoffScript} loopPause={5500} />
+      </PhoneFrame>
+    ),
   },
   {
     eyebrow: "05 · Recovery",
     title: "Follows up when they leave",
-    body: "Abandon a cart and Aurevia writes the follow-up in your store's voice, with the exact items and a one-click way back. Replies come straight into your inbox.",
-    points: ["Sent under your store's name", "Quiet hours and frequency caps", "Replies answered by the AI"],
-    demo: <AbandonedCartEmail />,
-    plain: true,
+    body: "Abandon a cart and Aurevia writes the follow-up in your store's voice, by email or on WhatsApp, with the exact items and a one-click way back. Replies come straight into your inbox.",
+    points: ["Email and WhatsApp nudges", "Quiet hours and frequency caps", "Replies answered by the AI"],
+    demo: () => <RecoveryNudges />,
   },
 ];
 
 export default function WidgetCapabilities() {
-  const listRef = useRef<HTMLDivElement>(null);
-
-  // Reveal each row once, when a third of it is on screen. Rows are observed
-  // individually so they arrive one after another as you scroll, on any width.
-  useEffect(() => {
-    const root = listRef.current;
-    if (!root) return;
-    const rows = Array.from(root.querySelectorAll<HTMLElement>(".cap-row"));
-    if (typeof IntersectionObserver === "undefined") {
-      rows.forEach((r) => r.classList.add("is-visible"));
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-visible");
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.3, rootMargin: "0px 0px -8% 0px" }
-    );
-    rows.forEach((r) => io.observe(r));
-    return () => io.disconnect();
-  }, []);
-
   return (
     <section id="storefront" className="py-14 sm:py-24 px-4 sm:px-6">
       <div className="container mx-auto">
@@ -164,43 +154,13 @@ export default function WidgetCapabilities() {
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-fraunces font-normal mb-4 sm:mb-5 text-foreground">
             What is <span className="green-highlight">Aurevia</span>?
           </h2>
-          <p className="text-sm sm:text-xl font-light text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             The best store associate greets, asks, recommends and closes. Aurevia does that on every page of your
             Shopify store, in your brand&rsquo;s voice, and hands the conversation to your team when it should.
           </p>
         </div>
 
-        <div ref={listRef} className="max-w-6xl mx-auto space-y-16 sm:space-y-28">
-          {rows.map((row, index) => (
-            <div
-              key={row.eyebrow}
-              className={`cap-row grid items-center gap-8 sm:gap-12 md:grid-cols-2 ${
-                index % 2 === 1 ? "cap-row-reverse md:[&>*:first-child]:order-2" : ""
-              }`}
-            >
-              <div className="cap-row-visual flex justify-center">
-                {row.plain ? row.demo : <PhoneFrame>{row.demo}</PhoneFrame>}
-              </div>
-              <div className="cap-row-copy max-w-md mx-auto md:mx-0 text-center md:text-left">
-                <p className="text-xs font-semibold tracking-[0.16em] uppercase text-muted-foreground mb-3">{row.eyebrow}</p>
-                <h3 className="text-xl sm:text-3xl font-fraunces font-normal text-foreground leading-tight mb-3 sm:mb-4">
-                  {row.title}
-                </h3>
-                <p className="text-sm sm:text-base font-light text-muted-foreground leading-relaxed mb-5">{row.body}</p>
-                <ul className="flex flex-wrap justify-center md:justify-start gap-2">
-                  {row.points.map((pt) => (
-                    <li
-                      key={pt}
-                      className="text-xs sm:text-[13px] px-3 py-1.5 rounded-full border border-border/70 bg-card text-foreground/80"
-                    >
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
+        <PinnedShowcase items={rows} tallVisual renderVisual={(index, active) => rows[index].demo(active)} />
       </div>
     </section>
   );
