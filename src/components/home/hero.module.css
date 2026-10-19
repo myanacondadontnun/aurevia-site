@@ -1,0 +1,191 @@
+/* Hallmark · genre: atmospheric · macrostructure: Split Diptych (H2, 7/5, right = live product) · theme: custom (brand)
+ * vibe: "morning-light emerald, quiet, expensive" · paper oklch(97.5% 0.006 95) · accent oklch(52% 0.1 172) emerald
+ * display: Fraunces 400/600 (roman) · body: DM Sans · enrichment: Aurevia ring watermark, right edge, scroll-driven spin · nav: N5 floating pill
+ * axes: light / high-contrast-serif / chromatic-green · motion: fade-in + one slow spin (user override)
+ * user overrides: frosted-glass chat kept (genre bans glass) · emerald brand accent kept (genre prefers warm)
+ * pre-emit critique: P4 H5 E4 S4 R5 V4
+ */
+
+.hero {
+  /* ---- tokens: every colour, font and motion value below references these ---- */
+  --color-paper: oklch(97.5% 0.006 95);
+  --color-paper-deep: oklch(94% 0.014 165);
+  --color-ink: oklch(23% 0.02 170);
+  --color-ink-2: oklch(23% 0.02 170 / 0.72);
+  --color-accent: oklch(52% 0.1 172);
+  --color-bloom: oklch(75% 0.11 170 / 0.22);
+  --color-bloom-deep: oklch(85% 0.06 190 / 0.45);
+  --color-mark-a: oklch(55% 0.11 172 / 0.24);
+  --color-mark-b: oklch(70% 0.09 185 / 0.1);
+  --color-cta: oklch(51% 0.1 172);
+  --color-cta-hover: oklch(46% 0.09 172);
+  --color-cta-glow: oklch(52% 0.1 172 / 0.35);
+  --color-cta-ink: oklch(99% 0.005 95);
+  --color-ghost: oklch(100% 0 0 / 0.6);
+  --color-ghost-hover: oklch(100% 0 0 / 0.9);
+  --color-outline: oklch(56% 0.012 160);
+  --color-outline-hover: oklch(40% 0.012 160);
+  --color-focus: oklch(52% 0.1 172);
+  --color-rule: oklch(23% 0.02 170 / 0.14);
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-body: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --space-xs: 8px; --space-sm: 12px; --space-lg: 24px; --space-xl: 36px; --space-2xl: 56px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fade: 900ms;
+  --dur-short: 200ms;
+
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  /* Two still blooms (the genre's maximum): soft emerald behind the conversation, a pale teal low on the left. */
+  background:
+    radial-gradient(46% 58% at 76% 44%, var(--color-bloom), transparent 70%),
+    radial-gradient(40% 50% at 4% 100%, var(--color-bloom-deep), transparent 72%),
+    linear-gradient(180deg, var(--color-paper) 0%, var(--color-paper-deep) 100%);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+@media (max-width: 1023px) {
+  .hero {
+    background:
+      radial-gradient(90% 40% at 70% 78%, var(--color-bloom), transparent 72%),
+      radial-gradient(80% 40% at 0% 0%, var(--color-bloom-deep), transparent 72%),
+      linear-gradient(180deg, var(--color-paper) 0%, var(--color-paper-deep) 100%);
+  }
+}
+
+/* Fine film grain, so the blooms don't band and the canvas reads as a surface. */
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.08;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  pointer-events: none;
+}
+
+/* Bottom padding ≥ 1.3× top (gate 44a), so the hero sits into the next section instead of floating. */
+.inner { position: relative; display: grid; gap: var(--space-2xl); padding-top: 112px; padding-bottom: 148px; }
+@media (min-width: 1024px) {
+  .inner {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: center;
+    min-height: clamp(740px, 100svh, 920px);
+    padding-top: 104px;
+    padding-bottom: 136px;
+  }
+}
+
+/* ---------- Copy ---------- */
+.copy { min-width: 0; max-width: 680px; }
+.title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.75rem, 1.4rem + 5vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--color-ink);
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+/* globals.css puts the body font on every span; the headline's words keep Fraunces. */
+.word { display: inline-block; white-space: pre; font-family: var(--font-display); animation: fade var(--dur-fade) var(--ease-out) both; }
+.accent { font-weight: 600; color: var(--color-accent); }
+
+.lede { margin-top: var(--space-lg); max-width: 34rem; font-size: 1.125rem; line-height: 1.6; color: var(--color-ink-2); }
+@media (min-width: 1024px) { .lede { font-size: 1.1875rem; } }
+
+.fade { animation: fade var(--dur-fade) var(--ease-out) both; }
+.fadeLate { animation: fade 1400ms var(--ease-out) 300ms both; }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+.ctas { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-xl); }
+.primary, .secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+}
+.primary { background: var(--color-cta); color: var(--color-cta-ink); box-shadow: 0 12px 34px -14px var(--color-cta-glow); }
+.primary:hover { background: var(--color-cta-hover); }
+.primary:active, .secondary:active { transform: translateY(1px); }
+.primary svg { width: 17px; height: 17px; transition: transform var(--dur-short) var(--ease-out); }
+.primary:hover svg { transform: translateX(3px); }
+.secondary { border: 1px solid var(--color-outline); background: var(--color-ghost); color: var(--color-ink); }
+.secondary:hover { border-color: var(--color-outline-hover); background: var(--color-ghost-hover); }
+.primary:focus-visible, .secondary:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+
+/* Proof: three figures in Fraunces over short labels, split by hairline rules. */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, auto));
+  justify-content: start;
+  margin-top: var(--space-2xl);
+  padding: 0;
+  list-style: none;
+}
+.stat { display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 0 clamp(16px, 2.4vw, 32px); border-left: 1px solid var(--color-rule); }
+.stat:first-child { padding-left: 0; border-left: 0; }
+.statLink { display: flex; flex-direction: column; gap: 6px; color: inherit; }
+.statFig {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  font-family: var(--font-display);
+  font-size: clamp(1.625rem, 1.2rem + 1.2vw, 2.25rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+.stars { display: inline-flex; gap: 2px; }
+.stars svg { width: 13px; height: 13px; fill: var(--color-ink); color: var(--color-ink); }
+.statLabel { font-family: var(--font-body); font-size: 0.875rem; line-height: 1.35; color: var(--color-ink-2); }
+/* Phones: the link label stays on one line. */
+.wideOnly { font: inherit; }
+@media (max-width: 639px) { .wideOnly { display: none; } }
+.statLink:hover .statLabel { color: var(--color-ink); text-decoration: underline; text-underline-offset: 3px; }
+.statLink:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; border-radius: 6px; }
+
+/* ---------- Live conversation (frosted glass, as the user asked) ---------- */
+/* Fixed-height box: the glass stack grows upward from the input bar and fades out at its top. */
+.demo { position: relative; justify-self: center; width: 100%; max-width: 400px; height: 560px; }
+@media (min-width: 1024px) { .demo { justify-self: end; height: 620px; } }
+
+/* The focal artefact: the Aurevia ring (outer weave only, no A) as a watermark cropped by the right edge,
+   about 58% showing. One emerald tone via a mask, so it stays in the hero's single accent. JS turns it. */
+.watermark {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  right: 0;
+  /* Taller than the hero, so the ring runs off both its top and bottom edges. */
+  height: calc(100% + 360px);
+  aspect-ratio: 1;
+  transform: translate(42%, -50%);
+  pointer-events: none;
+}
+@media (max-width: 1023px) { .watermark { top: auto; bottom: 200px; height: 540px; transform: translateX(42%); } }
+.watermarkSpin {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--color-mark-a) 0%, var(--color-mark-b) 100%);
+  -webkit-mask: url("/images/site/mark-ring-watermark.webp") center / contain no-repeat;
+  mask: url("/images/site/mark-ring-watermark.webp") center / contain no-repeat;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word, .fade, .fadeLate { animation: none; }
+  .primary, .primary svg, .secondary { transition: none; }
+}

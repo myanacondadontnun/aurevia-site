@@ -150,7 +150,7 @@ export default function WidgetCapabilities() {
     <section id="storefront" className="py-14 sm:py-24 px-4 sm:px-6">
       <div className="container mx-auto">
         <div className="text-center mb-12 sm:mb-20 scroll-fade">
-          <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00795c] mb-3">The AI sales agent for Shopify</p>
+          <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00665A] mb-3">The AI sales agent for Shopify</p>
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-fraunces font-normal mb-4 sm:mb-5 text-foreground">
             What is <span className="green-highlight">Aurevia</span>?
           </h2>

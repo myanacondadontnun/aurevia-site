@@ -1,0 +1,332 @@
+/* Conversation laid over a dark photo (hero): light frosted glass with white text. The photo under the chat
+   must be dark and even; never place this on a light background. */
+
+.stage {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  aspect-ratio: 4 / 5;
+  background: #2b2a26;
+  box-shadow: 0 40px 80px -40px rgba(0, 61, 54, 0.55);
+}
+@media (min-width: 640px) and (max-width: 1023px) { .stage { aspect-ratio: 5 / 4; } }
+
+.photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(5px) saturate(110%); transform: scale(1.08); }
+.scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(14, 22, 20, 0.3) 0%, rgba(14, 22, 20, 0.45) 45%, rgba(14, 22, 20, 0.65) 100%);
+}
+
+.chat {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: calc(100% - 88px);
+  overflow: hidden;
+  justify-content: flex-end;
+  -webkit-mask-image: linear-gradient(transparent 0, #000 56px);
+  mask-image: linear-gradient(transparent 0, #000 56px);
+  color: #fff;
+}
+@media (min-width: 640px) { .chat { left: 28px; right: 28px; bottom: 28px; } }
+
+.glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.36) 0%, rgba(255, 255, 255, 0.2) 55%, rgba(255, 255, 255, 0.28) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-top-color: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(36px) saturate(170%);
+  backdrop-filter: blur(36px) saturate(170%);
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 10px 30px -12px rgba(0, 0, 0, 0.4);
+}
+
+.user {
+  align-self: flex-end;
+  max-width: 82%;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-size: 15px;
+  line-height: 1.35;
+}
+.agent { align-self: flex-start; width: min(100%, 420px); display: flex; align-items: flex-start; gap: 10px; }
+.agent > .glass { flex: 1; min-width: 0; }
+/* The mark sits in a small round bubble of the same frosted glass as the messages. */
+.mark {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  padding: 5px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.36) 0%, rgba(255, 255, 255, 0.2) 55%, rgba(255, 255, 255, 0.28) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-top-color: rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: blur(32px) saturate(170%);
+  backdrop-filter: blur(32px) saturate(170%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 10px 26px -14px rgba(0, 0, 0, 0.45);
+}
+.mark img { width: 100%; height: 100%; display: block; animation: spin 10s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+
+
+.enter { animation: enter 420ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 639px) {
+  .user, .aiBubble { font-size: 13.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enter { animation-duration: 1ms; }
+  .mark img { animation: none; }
+}
+
+/* The full-bleed photo is shown sharp; only the busy fallback photo gets blurred. */
+.photoSharp { filter: none; transform: none; }
+
+/* Chat floating directly over the full-bleed hero photo (desktop). The photo is light there,
+   so the glass is darker. */
+.free { left: 0; right: 0; bottom: 0; max-height: 100%; }
+/* The whole conversation grows upward from the bottom anchor inside a box that starts under the nav;
+   only the part that reaches the top of that box fades out. Zoomed down slightly so the photo gets more room. */
+.free {
+  zoom: 0.96;
+  /* Fill the whole box so the fade zone sits at its top (under the nav), not at the top of the messages. */
+  top: 0;
+  max-height: none;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(transparent 0, #000 110px);
+  mask-image: linear-gradient(transparent 0, #000 110px);
+}
+.free .glass { box-shadow: 0 16px 40px -14px rgba(0, 0, 0, 0.45); }
+
+/* Aurevia's replies: the same frosted glass, with a thin green glow so they're clearly the agent. */
+.aiBubble {
+  flex: 1;
+  min-width: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.36) 0%, rgba(255, 255, 255, 0.2) 55%, rgba(255, 255, 255, 0.28) 100%);
+  -webkit-backdrop-filter: blur(36px) saturate(170%);
+  backdrop-filter: blur(36px) saturate(170%);
+  color: #fff;
+  border: 1px solid rgba(0, 204, 153, 0.45);
+  border-top-color: rgba(0, 204, 153, 0.6);
+  border-radius: 20px;
+  padding: 13px 16px;
+  font-size: 15px;
+  line-height: 1.45;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 0 0 1px rgba(0, 204, 153, 0.12), 0 0 28px -6px rgba(0, 204, 153, 0.4), 0 14px 34px -16px rgba(0, 0, 0, 0.45);
+}
+
+
+
+
+
+/* Photo card (phones/tablets): grows to fit the latest messages instead of cropping them.
+   The min-height is the tallest state, so the page below never jumps as messages arrive. */
+.stageFlow {
+  aspect-ratio: auto;
+  height: 640px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+}
+@media (min-width: 640px) { .stageFlow { height: 600px; padding: 28px; } }
+.flow {
+  position: relative;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  /* Fill the card so the fade zone sits at the card's top edge, not at the top of the messages. */
+  flex: 1 1 0;
+  min-height: 0;
+  max-height: none;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(transparent 0, #000 90px);
+  mask-image: linear-gradient(transparent 0, #000 90px);
+}
+
+.inputRow { align-self: stretch; }
+
+.bubbleName {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #00cc99;
+}
+
+/* The widget's input pill in its own colours (white, muted placeholder, charcoal send circle),
+   kept slightly see-through over the photo. */
+.inputRow > div {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(15, 15, 15, 0.08);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  backdrop-filter: blur(24px) saturate(150%);
+  box-shadow: 0 12px 30px -16px rgba(0, 0, 0, 0.45);
+  color: rgba(45, 55, 55, 0.55);
+}
+
+/* The widget's product cards sit in their own row under the reply, lined up with the bubble. */
+.cardsGroup { display: flex; flex-direction: column; gap: 10px; }
+/* Same width as the reply bubble above, so the cards line up with both its edges. */
+.cardsRow { margin-left: 10px; width: calc(min(100%, 420px) - 10px); }
+
+/* Bubbles in the real widget's colours, kept slightly see-through so the photo still shows a little:
+   Aurevia replies white with charcoal text, shopper messages charcoal with white text. */
+.glass.user {
+  background: rgba(45, 55, 55, 0.88);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  text-shadow: none;
+  box-shadow: 0 16px 40px -14px rgba(0, 0, 0, 0.45);
+}
+.aiBubble {
+  background: rgba(255, 255, 255, 0.9);
+  color: #2d3737;
+  text-shadow: none;
+}
+.aiBubble .bubbleName { color: #00665a; }
+.mark {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Hero on the light canvas: frosted white glass with ink text; the shopper keeps the widget's charcoal bubble.
+   The rotating ring behind shows through softly. */
+.free .aiBubble,
+.free .mark,
+.free .inputRow > div {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.46) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-top-color: #fff;
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  backdrop-filter: blur(22px) saturate(160%);
+  color: #2d3737;
+  text-shadow: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 18px 40px -20px rgba(0, 60, 50, 0.28);
+}
+.free .aiBubble { border-color: rgba(0, 127, 104, 0.22); border-top-color: rgba(255, 255, 255, 0.95); }
+.free .aiBubble .bubbleName { color: #00665a; }
+.free .glass.user {
+  background: rgba(45, 55, 55, 0.86);
+  border-color: rgba(255, 255, 255, 0.14);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  backdrop-filter: blur(22px) saturate(160%);
+  color: #fff;
+  text-shadow: none;
+  box-shadow: 0 18px 40px -20px rgba(0, 40, 35, 0.45);
+}
+.free .inputRow > div { color: rgba(45, 55, 55, 0.55); }
+
+/* Cue: a small source card for what the agent just did (knowledge base, catalog search, cart).
+   Wide screens (1280+): outside the chat on its left, centred on the avatar's axis, joined to it by a hairline
+   that ends in a ringed node; the chat box widens leftward so the cards scroll and fade with the messages.
+   Narrower: the same card, inline under the message. */
+.cue {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 44px;
+  animation: enter 480ms cubic-bezier(0.22, 1, 0.36, 1) 450ms both;
+}
+.cueCard {
+  display: grid;
+  grid-template-columns: 30px auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px 10px 10px;
+  border-radius: 16px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.72) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 0 0 1px rgba(16, 40, 34, 0.05), 0 14px 30px -18px rgba(0, 60, 50, 0.4);
+}
+.cueIcon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background: linear-gradient(150deg, #0a8f76 0%, #006b58 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 4px 10px -4px rgba(0, 107, 88, 0.6);
+  color: #fff;
+}
+.cueIcon svg { width: 15px; height: 15px; }
+.cueText { display: grid; gap: 1px; min-width: 0; }
+.cueEyebrow { white-space: nowrap; font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #00665a; }
+.cueTitle { font-size: 12.5px; font-weight: 600; color: #1d2a27; white-space: nowrap; }
+/* Leader and node only show where the card sits beside the chat. */
+.cueLine, .cueNode { display: none; }
+
+.step { position: relative; }
+@media (min-width: 1280px) {
+  .free { left: -280px; padding-left: 280px; }
+  .cue {
+    position: absolute;
+    /* The avatar is 34px tall at the top of its row: centre on its axis. */
+    top: 17px;
+    right: 100%;
+    margin: 0;
+    /* Anchored to the chat's left edge it has no room of its own: size to the content, never wrap. */
+    width: max-content;
+    white-space: nowrap;
+    transform: translateY(-50%);
+    animation-name: cueIn;
+  }
+  /* One width for every card, so the column's left edge lines up as well as the right. */
+  /* Fits the longest line ("Summer wedding dress") with the same 18px to spare. */
+  .cueCard { width: 232px; }
+  .cueLine { display: block; width: 24px; height: 1px; background: linear-gradient(90deg, rgba(0, 127, 104, 0.15), rgba(0, 127, 104, 0.55)); }
+  .cueNode {
+    display: block;
+    width: 9px;
+    height: 9px;
+    margin-right: 12px;
+    border-radius: 50%;
+    background: #007f68;
+    box-shadow: 0 0 0 3px rgba(0, 127, 104, 0.14);
+  }
+}
+@keyframes cueIn {
+  from { opacity: 0; transform: translate(-8px, -50%); }
+  to { opacity: 1; transform: translate(0, -50%); }
+}
+
+
+/* The agent's markdown table, as the widget renders one: compact, hairline rows, the matching size marked. */
+.sizeTable {
+  width: 100%;
+  margin: 8px 0 6px;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+}
+.sizeTable th {
+  padding: 5px 8px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(45, 55, 55, 0.6);
+  border-bottom: 1px solid rgba(45, 55, 55, 0.14);
+}
+.sizeTable td { padding: 5px 8px; border-bottom: 1px solid rgba(45, 55, 55, 0.08); }
+.sizeTable tr:last-child td { border-bottom: 0; }
+.sizeTable th:first-child, .sizeTable td:first-child { padding-left: 0; }
+.sizeMatch td { font-weight: 700; color: #00665a; background: rgba(0, 127, 104, 0.08); }
+.sizeMatch td:first-child { padding-left: 6px; border-radius: 6px 0 0 6px; }
+.sizeMatch td:last-child { border-radius: 0 6px 6px 0; }
+.after { display: block; }
+
+@media (prefers-reduced-motion: reduce) { .cue { animation: none; } }

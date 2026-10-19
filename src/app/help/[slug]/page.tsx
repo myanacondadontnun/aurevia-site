@@ -46,7 +46,7 @@ export default async function HelpArticlePage({ params }: Props) {
         ])}
       />
       <article className="max-w-3xl">
-        <p className="text-xs font-semibold tracking-[0.16em] uppercase text-[#00795c] mb-3">{article.category}</p>
+        <p className="text-xs font-semibold tracking-[0.16em] uppercase text-[#00665A] mb-3">{article.category}</p>
         <h1 className="text-3xl sm:text-4xl font-fraunces font-normal text-foreground leading-tight mb-3">{article.title}</h1>
         <p className="text-base sm:text-lg font-normal text-muted-foreground mb-2">{article.summary}</p>
         <p className="text-xs text-muted-foreground mb-10">
@@ -67,7 +67,7 @@ export default async function HelpArticlePage({ params }: Props) {
                   {section.steps.map((step, i) => (
                     <li key={i} className="flex gap-3 text-sm sm:text-base text-foreground/90 leading-relaxed">
                       <span
-                        className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00795c]"
+                        className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00665A]"
                         aria-hidden="true"
                       >
                         {i + 1}
@@ -79,7 +79,7 @@ export default async function HelpArticlePage({ params }: Props) {
               )}
               {section.tips && (
                 <div className="mt-4 rounded-xl border border-[#00CC99]/30 bg-[#00CC99]/8 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-[#00795c] mb-2">Good to know</p>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[#00665A] mb-2">Good to know</p>
                   <ul className="space-y-1.5">
                     {section.tips.map((tip, i) => (
                       <li key={i} className="text-sm text-foreground/85 leading-relaxed">
@@ -99,7 +99,7 @@ export default async function HelpArticlePage({ params }: Props) {
               href={`/help/${prev.slug}/`}
               className="group flex items-center gap-3 rounded-xl border border-border/60 bg-card p-4 hover:border-[#00CC99]/60 transition-colors"
             >
-              <ArrowLeft className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-[#00795c]" aria-hidden="true" />
+              <ArrowLeft className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-[#00665A]" aria-hidden="true" />
               <span className="min-w-0">
                 <span className="block text-[11px] uppercase tracking-wide text-muted-foreground">Previous</span>
                 <span className="block text-sm font-medium text-foreground leading-snug">{prev.title}</span>
@@ -117,7 +117,7 @@ export default async function HelpArticlePage({ params }: Props) {
                 <span className="block text-[11px] uppercase tracking-wide text-muted-foreground">Next</span>
                 <span className="block text-sm font-medium text-foreground leading-snug">{next.title}</span>
               </span>
-              <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-[#00795c]" aria-hidden="true" />
+              <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-[#00665A]" aria-hidden="true" />
             </Link>
           ) : (
             <span />

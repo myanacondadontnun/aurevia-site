@@ -15,7 +15,7 @@ export default function ReviewQuote({ review, compact = false }: { review: Revie
     >
       <span
         aria-hidden="true"
-        className={`pointer-events-none absolute right-5 top-3 select-none font-fraunces leading-none text-[#009973]/15 ${compact ? "text-6xl" : "text-8xl"}`}
+        className={`pointer-events-none absolute right-5 top-3 select-none font-fraunces leading-none text-[#00665A]/15 ${compact ? "text-6xl" : "text-8xl"}`}
       >
         &rdquo;
       </span>
@@ -23,7 +23,7 @@ export default function ReviewQuote({ review, compact = false }: { review: Revie
       <div className="flex items-center gap-3">
         <span
           aria-hidden="true"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0f3d30] text-xs font-semibold tracking-wide text-white"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#00665A] text-xs font-semibold tracking-wide text-white"
         >
           {initials(review.store)}
         </span>
@@ -45,7 +45,7 @@ export default function ReviewQuote({ review, compact = false }: { review: Revie
 
       <figcaption className="mt-5 flex items-center justify-between gap-3 border-t border-border/60 pt-4 text-xs text-muted-foreground">
         <span className="inline-flex items-center gap-1.5">
-          <BadgeCheck className="h-4 w-4 text-[#009973]" aria-hidden="true" />
+          <BadgeCheck className="h-4 w-4 text-[#00665A]" aria-hidden="true" />
           Verified review
         </span>
         <a href={SHOPIFY_LISTING_URL} target="_blank" rel="noopener noreferrer" className="hover:text-foreground underline-offset-2 hover:underline">

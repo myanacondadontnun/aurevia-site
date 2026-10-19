@@ -19,7 +19,7 @@ import {
 export function ListicleHeroVisual() {
   return (
     <figure className="mx-auto mt-10 max-w-2xl">
-      <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-[#0b3c2f]/40 via-card to-background p-8 shadow-inner">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-[#00665A]/40 via-card to-background p-8 shadow-inner">
         <div className="pointer-events-none absolute inset-0 opacity-[0.15]">
           <svg className="h-full w-full" viewBox="0 0 400 250" fill="none" aria-hidden>
             <circle cx="200" cy="125" r="90" stroke="#00CC99" strokeWidth="1" strokeDasharray="6 8" />

@@ -39,7 +39,7 @@ export default function HelpToc({ items }: { items: TocItem[] }) {
               <a
                 href={`#${item.id}`}
                 className={`-ml-px block border-l-2 pl-3 py-1 leading-snug transition-colors ${
-                  isActive ? "border-[#00CC99] text-[#00795c] font-medium" : "border-transparent text-muted-foreground hover:text-foreground"
+                  isActive ? "border-[#00CC99] text-[#00665A] font-medium" : "border-transparent text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {item.label}

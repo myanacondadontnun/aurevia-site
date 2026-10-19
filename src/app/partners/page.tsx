@@ -52,7 +52,7 @@ export default function PartnersPage() {
       <section className="gradient-bg">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl py-10 sm:py-16">
           <div className="max-w-3xl mb-12 sm:mb-16">
-            <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00795c] mb-3">Partners</p>
+            <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00665A] mb-3">Partners</p>
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-fraunces font-normal text-foreground leading-[1.1] mb-5">
               Grow your clients&rsquo; stores. <span className="green-highlight">Grow with us.</span>
             </h1>
@@ -69,7 +69,7 @@ export default function PartnersPage() {
               </a>
               <a
                 href="#programs"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-xl border border-border bg-card px-7 text-sm sm:text-base font-semibold text-foreground transition-colors hover:border-[#0b3c2f]"
+                className="inline-flex min-h-[48px] items-center justify-center rounded-xl border border-border bg-card px-7 text-sm sm:text-base font-semibold text-foreground transition-colors hover:border-[#00665A]"
               >
                 See the programs
               </a>
@@ -84,7 +84,7 @@ export default function PartnersPage() {
             <ol className="grid gap-4 md:grid-cols-3">
               {steps.map((step, index) => (
                 <li key={step.title} className="rounded-2xl border border-border bg-card p-6">
-                  <span className="text-sm font-semibold text-[#00795c]">Step {index + 1}</span>
+                  <span className="text-sm font-semibold text-[#00665A]">Step {index + 1}</span>
                   <h3 className="mt-2 text-lg font-semibold text-foreground">{step.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{step.body}</p>
                 </li>

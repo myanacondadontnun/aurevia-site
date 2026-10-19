@@ -24,7 +24,7 @@ export default function Stats() {
         <ul className="mt-10 grid grid-cols-1 gap-4 sm:mt-14 sm:grid-cols-2 lg:grid-cols-4">
           {facts.map((f) => (
             <li key={f.value} className="rounded-2xl border border-border/60 bg-card p-6">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#009973]/10 text-[#00795c]" aria-hidden="true">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#00665A]/10 text-[#00665A]" aria-hidden="true">
                 <f.icon className="h-5 w-5" />
               </span>
               <p className="mt-4 font-fraunces text-3xl leading-none text-foreground sm:text-4xl">{f.value}</p>

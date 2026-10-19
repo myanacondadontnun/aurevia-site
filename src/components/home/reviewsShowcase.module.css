@@ -1,0 +1,109 @@
+/* Reviews as one editorial pull-quote: big Fraunces, a green phrase, the store names as tabs underneath.
+   Light band between two dark ones (pain points above, Ask Aurevia below). No cards. */
+
+.section {
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --ink: #17201e;
+  --muted: #5d6865;
+  --rule: rgb(23 32 30 / 0.12);
+  --accent: #00665a;
+  --star: #f5b301;
+  background: #f3f6f5;
+  color: var(--ink);
+  padding: 72px 0;
+}
+@media (min-width: 1024px) { .section { padding: 112px 0 104px; } }
+
+.top { display: flex; flex-direction: column; gap: 24px; }
+@media (min-width: 768px) { .top { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
+.title { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 1.3rem + 2.6vw, 3.25rem); line-height: 1.06; letter-spacing: -0.02em; }
+
+.rating { display: inline-flex; align-items: center; gap: 14px; align-self: flex-start; color: var(--ink); }
+@media (min-width: 768px) { .rating { align-self: auto; } }
+.score { font-family: var(--font-display); font-size: 3.5rem; line-height: 0.9; letter-spacing: -0.03em; }
+.ratingText { display: grid; gap: 6px; }
+.stars { display: inline-flex; gap: 2px; }
+.stars svg { width: 16px; height: 16px; fill: var(--star); color: var(--star); }
+.ratingLine { display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem; color: var(--muted); transition: color 200ms ease; }
+.ratingLine svg { width: 15px; height: 15px; transition: transform 200ms ease; }
+.rating:hover .ratingLine { color: var(--accent); }
+.rating:hover .ratingLine svg { transform: translateX(2px); }
+
+/* The quote stage: all quotes stacked in one cell, the active one fading up. */
+.stage { display: grid; margin-top: 48px; }
+@media (min-width: 1024px) { .stage { margin-top: 72px; } }
+.figure {
+  grid-area: 1 / 1;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  /* Leaving: a quick fade, so two quotes never overlap. */
+  transition: opacity 220ms ease, transform 220ms ease, visibility 0s linear 220ms;
+}
+/* Arriving: starts once the old quote has gone. */
+.on {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1) 220ms, transform 600ms cubic-bezier(0.22, 1, 0.36, 1) 220ms, visibility 0s;
+}
+
+.openMark { display: block; height: 0.5em; font-family: var(--font-display); font-size: 7rem; line-height: 1; color: var(--accent); }
+@media (min-width: 1024px) { .openMark { font-size: 9rem; } }
+.quote {
+  margin: 0;
+  max-width: 30ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.625rem, 1.1rem + 1.9vw, 2.75rem);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+@media (min-width: 1024px) { .quote { max-width: 34ch; } }
+.mark { color: var(--accent); background: linear-gradient(transparent 62%, rgb(0 204 153 / 0.18) 62%); }
+
+.by { display: flex; align-items: center; gap: 14px; margin-top: 36px; }
+/* The store's logo, bare, in the same ink as its name (a mask over the ink colour), then the name. */
+.logo {
+  --logo-h: 40px;
+  flex: none;
+  height: var(--logo-h);
+  background: var(--ink);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+.store { display: block; font-size: 1rem; font-weight: 600; color: var(--ink); }
+.where { display: block; margin-top: 2px; font-size: 0.8125rem; color: var(--muted); }
+
+/* Store names as tabs: they wrap on narrow screens, never scroll sideways. */
+.tabs { display: flex; flex-wrap: wrap; gap: 4px 28px; margin-top: 48px; border-top: 1px solid var(--rule); }
+@media (min-width: 1024px) { .tabs { margin-top: 64px; } }
+.tab {
+  position: relative;
+  padding: 16px 0 14px;
+  border: 0;
+  background: none;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+.tab:hover { color: var(--ink); }
+.tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+.tabOn { color: var(--ink); }
+.tabOn::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 2px; background: rgb(0 102 90 / 0.18); }
+.fill { position: absolute; left: 0; right: 0; top: -1px; height: 2px; background: var(--accent); transform-origin: left; animation: fill linear both; }
+.fillPaused { animation-play-state: paused; }
+@keyframes fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .figure, .ratingLine, .ratingLine svg, .tab { transition: none; }
+  .fill { display: none; }
+}

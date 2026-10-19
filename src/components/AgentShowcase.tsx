@@ -72,7 +72,7 @@ export default function AgentShowcase() {
 
             {/* Copy */}
             <div className="self-start lg:order-1 lg:self-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#009973]">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#00665A]">
                 How the agent sells
               </p>
               <h2

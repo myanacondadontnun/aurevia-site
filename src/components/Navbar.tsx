@@ -29,7 +29,7 @@ import { Handshake,
   Bot,
   LineChart,
 } from "lucide-react";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SHOPIFY_APP_URL } from "@/lib/utils";
@@ -112,6 +112,10 @@ const navigationLinks: { label: string; href: string }[] = [
   { label: "Pricing", href: "/pricing" },
 ];
 
+// Runs before paint in the browser (so the nav's over-hero colour is right on the first frame) and
+// falls back to useEffect during server rendering, where useLayoutEffect would warn.
+const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
 function isHomePath(pathname: string | null) {
   if (!pathname) return false;
   return pathname === "/home" || pathname === "/home/" || pathname === "/";
@@ -125,6 +129,15 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<"platform" | "solutions" | "resources" | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<"platform" | "solutions" | "resources" | null>(null);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // The grey capsule that glides under the hovered link.
+  const linksRef = useRef<HTMLDivElement>(null);
+  const [hover, setHover] = useState({ x: 0, w: 0, on: false });
+  const moveIndicator = (el: HTMLElement) => {
+    const box = linksRef.current?.getBoundingClientRect();
+    if (!box) return;
+    const r = el.getBoundingClientRect();
+    setHover({ x: r.left - box.left, w: r.width, on: true });
+  };
   const scrollYRef = useRef(0);
 
   const handleDropdownEnter = (name: "platform" | "solutions" | "resources") => {
@@ -157,11 +170,19 @@ export default function Navbar() {
     setMobileExpanded(prev => prev === name ? null : name);
   };
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 100);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+  useIsoLayoutEffect(() => {
+    const update = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
   }, []);
+
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -205,19 +226,19 @@ export default function Navbar() {
       aria-label="Main navigation"
     >
       <div
-        className="glass-nav shadow-lg transition-all duration-500 ease-in-out mx-auto relative"
+        className={`nav-pill transition-all duration-500 ease-in-out mx-auto relative`}
         style={{
           width: isScrolled ? "90%" : "100%",
           maxWidth: isScrolled ? "1200px" : "100%",
-          borderRadius: "1.5rem",
+          borderRadius: "9999px",
         }}
       >
-        <div className={`flex items-center justify-between w-full transition-all duration-500 ${isScrolled ? "px-2.5 py-2 sm:px-4 sm:py-3" : "px-3 py-2.5 sm:px-6 sm:py-4"}`}>
+        <div className={`flex items-center justify-between w-full transition-all duration-500 ${isScrolled ? "px-2 py-1.5 sm:pl-4 sm:pr-1.5" : "px-2.5 py-1.5 sm:pl-5 sm:pr-2"}`}>
           <Link href="/" className="flex items-center flex-shrink-0 lg:w-48" aria-label="Aurevia.io home">
             <img
               src="/images/aurevia-logo-mark.webp"
               alt="Aurevia Logo"
-              className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
+              className="h-6 w-6 sm:h-7 sm:w-7 object-contain"
             />
             <span className={`logo-text font-fraunces font-medium text-foreground text-lg sm:text-xl whitespace-nowrap overflow-hidden transition-all duration-500 ${isScrolled ? "lg:max-w-0 lg:ml-0 lg:opacity-0" : "lg:max-w-sm ml-2.5 lg:opacity-100"} hidden lg:block`}>
               Aurevia.io
@@ -226,7 +247,16 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center justify-center flex-1">
-            <div className="flex items-center space-x-4 xl:space-x-6">
+            <div
+              ref={linksRef}
+              className="nav-links"
+              onMouseLeave={() => setHover((h) => ({ ...h, on: false }))}
+            >
+              <span
+                className={`nav-indicator ${hover.on ? "nav-indicator-on" : ""}`}
+                style={{ width: hover.w, transform: `translateX(${hover.x}px)` }}
+                aria-hidden="true"
+              />
               {/* Platform with dropdown */}
               <div
                 className="relative"
@@ -238,14 +268,16 @@ export default function Navbar() {
                   aria-haspopup="true"
                   aria-expanded={openDropdown === "platform"}
                   onClick={() => handleDropdownEnter("platform")}
-                  className={`inline-flex items-center gap-1 text-sm xl:text-base font-medium whitespace-nowrap transition-colors duration-200 cursor-default ${openDropdown === "platform" ? "text-[#00CC99]" : "text-foreground hover:text-[#00CC99]"}`}
+                  onMouseEnter={(e) => moveIndicator(e.currentTarget)}
+                  onFocus={(e) => moveIndicator(e.currentTarget)}
+                  className="nav-link"
                 >
                   Platform
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${openDropdown === "platform" ? "rotate-180" : ""}`} aria-hidden="true" />
+                  <ChevronDown aria-hidden="true" />
                 </button>
                 {openDropdown === "platform" && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 -mt-px" role="menu" aria-label="Platform menu">
-                    <div className="bg-card border border-border rounded-2xl shadow-xl p-4 min-w-[720px] grid grid-cols-2 gap-3">
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3" role="menu" aria-label="Platform menu">
+                    <div className={`nav-panel p-4 min-w-[720px] grid grid-cols-2 gap-3`}>
                       {platformPillars.map((pillar) => (
                         <Link
                           key={pillar.title}
@@ -262,7 +294,7 @@ export default function Navbar() {
                                 {pillar.title}
                               </span>
                               {pillar.badge && (
-                                <span className="rounded-full bg-primary/12 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#00795c]">
+                                <span className="rounded-full bg-primary/12 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#00665A]">
                                   {pillar.badge}
                                 </span>
                               )}
@@ -290,14 +322,16 @@ export default function Navbar() {
                   aria-haspopup="true"
                   aria-expanded={openDropdown === "solutions"}
                   onClick={() => handleDropdownEnter("solutions")}
-                  className={`inline-flex items-center gap-1 text-sm xl:text-base font-medium whitespace-nowrap transition-colors duration-200 cursor-default ${openDropdown === "solutions" ? "text-[#00CC99]" : "text-foreground hover:text-[#00CC99]"}`}
+                  onMouseEnter={(e) => moveIndicator(e.currentTarget)}
+                  onFocus={(e) => moveIndicator(e.currentTarget)}
+                  className="nav-link"
                 >
                   Solutions
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${openDropdown === "solutions" ? "rotate-180" : ""}`} aria-hidden="true" />
+                  <ChevronDown aria-hidden="true" />
                 </button>
                 {openDropdown === "solutions" && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 -mt-px" role="menu" aria-label="Solutions menu">
-                    <div className="bg-card border border-border rounded-2xl shadow-xl p-8 min-w-[640px] grid grid-cols-2 gap-x-12 gap-y-6">
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3" role="menu" aria-label="Solutions menu">
+                    <div className={`nav-panel p-8 min-w-[640px] grid grid-cols-2 gap-x-12 gap-y-6`}>
                       {[
                         { heading: "By goal", items: solutionsByGoal, seeAll: { href: "/solutions", label: "See all use cases" } },
                         { heading: "By industry", items: solutionsByIndustry, seeAll: { href: "/solutions#industries", label: "View all industries" } },
@@ -346,14 +380,16 @@ export default function Navbar() {
                   aria-haspopup="true"
                   aria-expanded={openDropdown === "resources"}
                   onClick={() => handleDropdownEnter("resources")}
-                  className={`inline-flex items-center gap-1 text-sm xl:text-base font-medium whitespace-nowrap transition-colors duration-200 cursor-default ${openDropdown === "resources" ? "text-[#00CC99]" : "text-foreground hover:text-[#00CC99]"}`}
+                  onMouseEnter={(e) => moveIndicator(e.currentTarget)}
+                  onFocus={(e) => moveIndicator(e.currentTarget)}
+                  className="nav-link"
                 >
                   Resources
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${openDropdown === "resources" ? "rotate-180" : ""}`} aria-hidden="true" />
+                  <ChevronDown aria-hidden="true" />
                 </button>
                 {openDropdown === "resources" && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 -mt-px" role="menu" aria-label="Resources menu">
-                    <div className="bg-card border border-border rounded-xl shadow-xl p-8 min-w-[384px]">
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3" role="menu" aria-label="Resources menu">
+                    <div className={`nav-panel p-6 min-w-[384px]`}>
                       <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-5">
                         Resources
                       </h4>
@@ -387,7 +423,9 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-foreground hover:text-[#00CC99] transition-all duration-300 text-sm xl:text-base font-medium whitespace-nowrap"
+                    onMouseEnter={(e) => moveIndicator(e.currentTarget)}
+                    onFocus={(e) => moveIndicator(e.currentTarget)}
+                    className="nav-link"
                   >
                     {item.label}
                 </Link>
@@ -397,10 +435,14 @@ export default function Navbar() {
 
           {/* Desktop CTA + Mobile Menu */}
           <div className="flex items-center gap-2">
+            <a href="https://app.aurevia.io" className={`hidden lg:inline-flex nav-login`}>
+              Log in
+            </a>
+            <span className={`hidden lg:block nav-divider`} aria-hidden="true" />
             {showHomeCtaSwarm ? (
               <Button
                 asChild
-                className={`cta-button text-primary-foreground font-semibold rounded-lg transition-all duration-200 flex items-center justify-center gap-2 border-0 flex-shrink-0 ${isScrolled ? "px-3 py-1.5 sm:px-4 sm:py-2" : "px-4 py-2"} text-sm xl:text-base`}
+                className={`nav-cta bg-[#007F68] text-white hover:bg-[#00705c] font-semibold rounded-full transition-all duration-200 flex items-center justify-center gap-2 border-0 flex-shrink-0 h-[42px] ${isScrolled ? "px-4" : "px-5"} text-sm xl:text-[15px]`}
               >
                 <a
                   href={SHOPIFY_APP_URL}
@@ -419,7 +461,7 @@ export default function Navbar() {
             ) : (
               <Button
                 asChild
-                className={`cta-button text-primary-foreground font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 border-0 flex-shrink-0 ${isScrolled ? "px-3 py-1.5 sm:px-4 sm:py-2" : "px-4 py-2"} text-sm xl:text-base`}
+                className={`nav-cta bg-[#007F68] text-white hover:bg-[#00705c] font-semibold rounded-full transition-all duration-200 flex items-center gap-2 border-0 flex-shrink-0 h-[42px] ${isScrolled ? "px-4" : "px-5"} text-sm xl:text-[15px]`}
               >
                 <a
                   href={SHOPIFY_APP_URL}
@@ -451,7 +493,7 @@ export default function Navbar() {
           <div
             id="mobile-menu"
             role="menu"
-            className="lg:hidden border-t border-border/30 bg-background/95 backdrop-blur-md rounded-b-2xl max-h-[75vh] overflow-y-auto overscroll-contain"
+            className={`nav-mobile-menu lg:hidden border-t border-border/30 bg-white rounded-b-[28px] max-h-[75vh] overflow-y-auto overscroll-contain`}
           >
             <div className="px-4 py-4 space-y-1">
               {/* Platform expandable */}
@@ -478,7 +520,7 @@ export default function Navbar() {
                         <span>
                           <span className="font-medium text-foreground">{pillar.title}</span>
                           {pillar.badge && (
-                            <span className="ml-2 rounded-full bg-primary/12 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-[#00795c]">
+                            <span className="ml-2 rounded-full bg-primary/12 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-[#00665A]">
                               {pillar.badge}
                             </span>
                           )}
@@ -573,6 +615,14 @@ export default function Navbar() {
                     {item.label}
                 </Link>
               ))}
+              <a
+                href="https://app.aurevia.io"
+                onClick={closeMobileMenu}
+                role="menuitem"
+                className="block w-full text-left px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm font-medium"
+              >
+                Log in
+              </a>
             </div>
           </div>
         )}

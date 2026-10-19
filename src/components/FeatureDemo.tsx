@@ -587,7 +587,7 @@ export function FeatureMetricsDemo({
           <p className="font-fraunces text-[15px] font-semibold text-[#2d3737] leading-tight">{title}</p>
           <p className="text-[11px] font-normal text-[#2d3737]/70 leading-tight mt-px">Aurevia dashboard</p>
         </div>
-        <span className="text-[10px] font-semibold uppercase tracking-wide text-[#00795c] bg-[#00CC99]/10 rounded-full px-2.5 py-1">
+        <span className="text-[10px] font-semibold uppercase tracking-wide text-[#00665A] bg-[#00CC99]/10 rounded-full px-2.5 py-1">
           Last 7 days
         </span>
       </div>
@@ -608,7 +608,7 @@ export function FeatureMetricsDemo({
             </p>
             <p className="mt-1 text-[17px] font-semibold text-[#2d3737] leading-none">{s.value}</p>
             {s.delta ? (
-              <p className="mt-1.5 text-[10px] font-semibold text-[#00795c]">{s.delta}</p>
+              <p className="mt-1.5 text-[10px] font-semibold text-[#00665A]">{s.delta}</p>
             ) : null}
           </div>
         ))}
@@ -680,7 +680,7 @@ export function FeatureMetricsDemo({
                 </div>
                 <div className="mt-1 h-[4px] overflow-hidden rounded-full bg-[#2d3737]/8">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-[#00CC99] to-[#009973]"
+                    className="h-full rounded-full bg-gradient-to-r from-[#00CC99] to-[#00665A]"
                     style={{
                       width: entered ? `${r.pct}%` : "0%",
                       transition: `width 1s cubic-bezier(0.65,0,0.35,1) ${700 + i * 150}ms`,

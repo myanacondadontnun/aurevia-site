@@ -56,11 +56,11 @@ export default function ProductsPageCTACard({ installUrl }: ProductsPageCTACardP
           preserveAspectRatio="xMidYMid slice"
           aria-hidden
         >
-          <path d="M 60 0 Q 90 75 60 150 Q 30 225 60 300" stroke="#0b3c2f" strokeWidth="0.5" fill="none" />
-          <path d="M 120 0 Q 150 75 120 150 Q 90 225 120 300" stroke="#0b3c2f" strokeWidth="0.45" fill="none" />
-          <path d="M 200 0 Q 230 75 200 150 Q 170 225 200 300" stroke="#0b3c2f" strokeWidth="0.5" fill="none" />
-          <path d="M 280 0 Q 310 75 280 150 Q 250 225 280 300" stroke="#0b3c2f" strokeWidth="0.45" fill="none" />
-          <path d="M 340 0 Q 370 75 340 150 Q 310 225 340 300" stroke="#0b3c2f" strokeWidth="0.5" fill="none" />
+          <path d="M 60 0 Q 90 75 60 150 Q 30 225 60 300" stroke="#00665A" strokeWidth="0.5" fill="none" />
+          <path d="M 120 0 Q 150 75 120 150 Q 90 225 120 300" stroke="#00665A" strokeWidth="0.45" fill="none" />
+          <path d="M 200 0 Q 230 75 200 150 Q 170 225 200 300" stroke="#00665A" strokeWidth="0.5" fill="none" />
+          <path d="M 280 0 Q 310 75 280 150 Q 250 225 280 300" stroke="#00665A" strokeWidth="0.45" fill="none" />
+          <path d="M 340 0 Q 370 75 340 150 Q 310 225 340 300" stroke="#00665A" strokeWidth="0.5" fill="none" />
         </svg>
         <div className="relative z-10 flex flex-col justify-center items-center text-center h-full gap-6">
           <h2 className="font-roi text-xl font-medium text-foreground group-hover:text-[#00CC99] transition-colors">

@@ -1,218 +1,123 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { ArrowRight } from "lucide-react";
 import { openShopifyInstall } from "@/lib/utils";
+import { FacebookMark, InstagramMark, LinkedInMark } from "@/components/BrandLogos";
 
-const footerLinks = {
-  main: [
-    { label: "Home", href: "/" },
-    { label: "Pricing", href: "/pricing" },
-    { label: "Start free trial", href: "shopify", isAction: true },
-  ],
-  secondary: [
-    { label: "Channels (WhatsApp, Instagram & email)", href: "/channels/" },
-    { label: "Partners", href: "/partners/" },
-    { label: "Blogs", href: "/resources/blogs/" },
-    { label: "Review My Shopify", href: "/resources/review-my-shopify/" },
-    { label: "Help center", href: "/help/" },
-    { label: "Contact us", href: "/contact/" },
-    { label: "Privacy Policy", href: "/privacy-policy/" },
-    { label: "Terms and Conditions", href: "/terms/" },
-    { label: "GDPR Compliance", href: "/gdpr/" },
-  ],
-};
+/**
+ * Site footer: the hero's warm paper and emerald, with the Aurevia ring large and still in the bottom-right corner.
+ * Left, the brand, one line and the two pill buttons; right, four link columns; under a hairline, the legal line,
+ * the socials and the studio credit.
+ */
 
-const socialLinks = [
-  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61571429595824#" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/aurevia-ai/" },
-  { label: "X", href: "https://x.com/crazystupidceo" },
+type FooterLink = { label: string; href: string };
+
+const COLUMNS: { heading: string; links: FooterLink[] }[] = [
+  {
+    heading: "Product",
+    links: [
+      { label: "Home", href: "/" },
+      { label: "Pricing", href: "/pricing/" },
+      { label: "Channels", href: "/channels/" },
+      { label: "Book a demo", href: "/book-demo/" },
+    ],
+  },
+  {
+    heading: "Resources",
+    links: [
+      { label: "Blogs", href: "/resources/blogs/" },
+      { label: "Review My Shopify", href: "/resources/review-my-shopify/" },
+      { label: "Help center", href: "/help/" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      { label: "Partners", href: "/partners/" },
+      { label: "Contact us", href: "/contact/" },
+    ],
+  },
+  {
+    heading: "Legal",
+    links: [
+      { label: "Privacy Policy", href: "/privacy-policy/" },
+      { label: "Terms", href: "/terms/" },
+      { label: "GDPR", href: "/gdpr/" },
+    ],
+  },
 ];
 
-function isHomePath(pathname: string | null) {
-  if (!pathname) return false;
-  return pathname === "/home" || pathname === "/home/" || pathname === "/";
-}
+const SOCIALS: (FooterLink & { Mark: typeof InstagramMark })[] = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/aurevia-ai/", Mark: LinkedInMark },
+  { label: "Instagram", href: "https://www.instagram.com/aurevia_io", Mark: InstagramMark },
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61571429595824#", Mark: FacebookMark },
+];
 
 export default function Footer() {
-  const pathname = usePathname();
-  const showHomeCtaSwarm = isHomePath(pathname);
-
-  const handleLinkClick = (href: string, isAction?: boolean) => {
-    if (isAction || href === 'shopify') {
-      openShopifyInstall();
-      return;
-    }
-    if (href.startsWith('http')) {
-      window.open(href, '_blank', 'noopener,noreferrer');
-    }
-  };
-
   return (
-    <footer className="py-10 sm:py-20 md:py-24 px-4 sm:px-6 border-t border-border/50" aria-label="Footer navigation">
-      <div className="container mx-auto">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 md:gap-12 mb-8 sm:mb-16">
-          {/* Company Info & CTA */}
-          <div className="lg:col-span-1 space-y-6">
-            <div>
-              {/* Logo and Company Name */}
-              <Link href="/" className="flex items-center gap-2.5 mb-4">
-                <img 
-                  src="/images/aurevia-logo-mark.webp" 
-                  alt="Aurevia Logo" 
-                  className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
-                />
-                <h3 className="text-xl sm:text-2xl font-fraunces font-normal text-foreground logo-text">
-                  Aurevia.io
-                </h3>
-              </Link>
-              <p className="text-sm sm:text-base font-normal text-muted-foreground leading-relaxed mb-2">
-                Shopify AI Sales Co-Pilot that recovers carts, upsells bundles, and sells 24/7.
-                GDPR-compliant & Shopify-Partner verified.
-              </p>
-              <p className="text-xs text-primary">Now live on the Shopify App Store</p>
-            </div>
+    <footer className="ft-footer" aria-label="Footer navigation">
+      <span className="ft-watermark" aria-hidden="true" />
 
-            <div>
-              <h4 className="text-base sm:text-lg font-inter font-normal text-foreground mb-4">
-                Get Started
-              </h4>
-              <p className="text-xs sm:text-sm font-normal text-muted-foreground mb-4">
-                Install the app directly from the Shopify App Store.
-              </p>
-              {showHomeCtaSwarm ? (
-                <Button
-                  className="cta-button text-foreground font-medium px-4 sm:px-6 py-2 rounded-lg transition-all duration-200 border-0 text-sm sm:text-base w-full sm:w-auto"
-                  onClick={() => openShopifyInstall()}
-                >
-                  Start free trial
-                </Button>
-              ) : (
-                <Button
-                  className="cta-button text-foreground font-medium px-4 sm:px-6 py-2 rounded-lg transition-all duration-200 border-0 text-sm sm:text-base w-full sm:w-auto"
-                  onClick={() => openShopifyInstall()}
-                >
-                  Start free trial
-                </Button>
-              )}
+      <div className={`container mx-auto px-4 sm:px-6 ft-inner`}>
+        <div className="ft-top">
+          <div>
+            <Link href="/" className="ft-brand" aria-label="Aurevia.io home">
+              <img src="/images/aurevia-logo-mark.webp" alt="" />
+              <span className="ft-brand-name">Aurevia.io</span>
+            </Link>
+            <p className="ft-pitch">
+              The AI sales agent for <strong>Shopify</strong>.
+            </p>
+            <div className="ft-ctas">
+              <button type="button" onClick={() => openShopifyInstall()} className="ft-primary">
+                Start free trial
+                <ArrowRight aria-hidden="true" />
+              </button>
+              <a href="/book-demo/" className="ft-secondary">
+                Book a demo
+              </a>
             </div>
           </div>
 
-          {/* Main Links */}
-          <div className="lg:col-span-1">
-            <h4 className="text-base sm:text-lg font-inter font-normal text-foreground mb-4 sm:mb-6">
-              Quick Links
-            </h4>
-            <div className="space-y-2 sm:space-y-3">
-              {footerLinks.main.map((link) => (
-                link.href === "shopify" || link.isAction ? (
-                  <button
-                    key={link.label}
-                    onClick={() => handleLinkClick(link.href, link.isAction)}
-                    className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-normal text-left"
-                  >
-                    {link.label}
-                  </button>
-                ) : (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-normal"
-                  >
-                    {link.label}
-                  </Link>
-                )
-              ))}
-            </div>
-          </div>
-
-          {/* Secondary Links */}
-          <div className="lg:col-span-1">
-            <h4 className="text-base sm:text-lg font-inter font-normal text-foreground mb-4 sm:mb-6">
-              Resources
-            </h4>
-            <div className="space-y-2 sm:space-y-3">
-              {footerLinks.secondary.map((link) => (
-                link.href.startsWith('http') ? (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-normal"
-                  >
-                    {link.label}
-                  </a>
-                ) : (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-normal"
-                  >
-                    {link.label}
-                  </a>
-                )
-              ))}
-            </div>
-          </div>
+          <nav className="ft-cols" aria-label="Footer">
+            {COLUMNS.map((col) => (
+              <div key={col.heading}>
+                <h2 className="ft-col-head">{col.heading}</h2>
+                <ul className="ft-list">
+                  {col.links.map((link) => (
+                    <li key={link.href}>
+                      <a href={link.href} className="ft-link">
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
         </div>
 
-        <Separator className="bg-border/50 mb-6 sm:mb-8" />
-
-        {/* Bottom Footer */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
-          {/* Social Links */}
-          <div className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center sm:justify-start">
-            {socialLinks.map((social) => (
-              social.href.startsWith('http') ? (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Aurevia on ${social.label}`}
-                  className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-normal"
-                >
-                  {social.label}
-                </a>
-              ) : (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={`Aurevia on ${social.label}`}
-                  className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-normal"
-                >
-                  {social.label}
-                </a>
-              )
-            ))}
+        <div className="ft-bottom">
+          {/* Company number and registered office: required by platform reviewers (Meta access verification asks
+              for "details of the business providing the service") and by UK company disclosure rules. */}
+          <div className="ft-legal">
+            <p>© {new Date().getFullYear()} Aurevia Artificial Intelligence Ltd. All rights reserved.</p>
+            <p>Registered in England &amp; Wales, company no. 16622049 · 2 North Road, Cardiff, CF10 3DY</p>
           </div>
-
-          {/* Studio credit + copyright. Plain <a>, not <Link>: /pixel-and-code is a
-              self-contained section whose vanilla script re-initialises on a real
-              navigation, which a Next client-side transition would skip. */}
-          <div className="flex flex-col items-center sm:items-end gap-1.5">
-            <p className="text-xs sm:text-sm font-normal text-muted-foreground text-center sm:text-right">
-              Built by{" "}
-              <a
-                href="/pixel-and-code/"
-                className="font-fraunces underline underline-offset-2 hover:text-primary transition-colors duration-200"
-              >
-                Pixel &amp; Code
-              </a>
-            </p>
-            <p className="text-xs sm:text-sm font-normal text-muted-foreground text-center sm:text-right">
-              © 2025 Aurevia Artificial Intelligence Ltd – All rights reserved.
-            </p>
-            {/* Company number and registered office: required by platform reviewers (Meta
-                access verification asks for "details of the business providing the service")
-                and by UK company disclosure rules. */}
-            <p className="text-xs font-normal text-muted-foreground text-center sm:text-right">
-              Registered in England &amp; Wales, company no. 16622049 · 2 North Road, Cardiff, CF10 3DY
-            </p>
+          {/* Plain <a> for the studio credit, not <Link>: /pixel-and-code is a self-contained section whose vanilla
+              script re-initialises on a real navigation, which a Next client-side transition would skip. */}
+          <div className="ft-meta">
+            <span className="ft-socials">
+              {SOCIALS.map(({ label, href, Mark }) => (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={`Aurevia on ${label}`} className="ft-social">
+                  <Mark />
+                </a>
+              ))}
+            </span>
+            <span>
+              Built by <a href="/pixel-and-code/" className="ft-studio">Pixel &amp; Code</a>
+            </span>
           </div>
         </div>
       </div>

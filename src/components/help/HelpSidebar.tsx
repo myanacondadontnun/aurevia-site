@@ -17,7 +17,7 @@ export default function HelpSidebar() {
       <Link
         href="/help/"
         className={`block rounded-lg px-3 py-1.5 mb-3 font-medium transition-colors ${
-          activeSlug === "" ? "bg-primary/10 text-[#00795c]" : "text-foreground hover:bg-muted/60"
+          activeSlug === "" ? "bg-primary/10 text-[#00665A]" : "text-foreground hover:bg-muted/60"
         }`}
       >
         All guides
@@ -37,7 +37,7 @@ export default function HelpSidebar() {
                       href={`/help/${a.slug}/`}
                       aria-current={active ? "page" : undefined}
                       className={`block rounded-lg px-3 py-1.5 leading-snug transition-colors ${
-                        active ? "bg-primary/10 text-[#00795c] font-medium" : "text-foreground/80 hover:bg-muted/60 hover:text-foreground"
+                        active ? "bg-primary/10 text-[#00665A] font-medium" : "text-foreground/80 hover:bg-muted/60 hover:text-foreground"
                       }`}
                     >
                       {a.title}

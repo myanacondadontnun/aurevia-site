@@ -52,7 +52,7 @@ export const organizationJsonLd = {
   logo: `${SITE_URL}/android-chrome-512x512.png`,
   sameAs: [
     "https://www.linkedin.com/company/aurevia-ai/",
-    "https://x.com/crazystupidceo",
+    "https://www.instagram.com/aurevia_io",
     "https://www.facebook.com/profile.php?id=61571429595824",
   ],
 };

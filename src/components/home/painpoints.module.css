@@ -1,0 +1,84 @@
+/* Hallmark · component: pain points · genre: editorial · theme: project (Fraunces + DM Sans, dark ink band)
+ * Rows split by hairlines: the paraphrased complaint on the left in Fraunces, Aurevia's answer on the right.
+ * Each row fades in once on scroll and its complaint then dims, so the answer reads as the last word. */
+
+.section {
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --ink: #fff;
+  --muted: rgb(255 255 255 / 0.66);
+  --rule: rgb(255 255 255 / 0.12);
+  --amber: #e0a63a;
+  --accent: #00cc99;
+  background: #10201c;
+  color: var(--ink);
+  padding: 72px 0;
+}
+@media (min-width: 1024px) { .section { padding: 112px 0; } }
+
+.head { max-width: 720px; margin-bottom: 40px; }
+@media (min-width: 1024px) { .head { margin-bottom: 56px; } }
+.title { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 1.3rem + 2.6vw, 3.25rem); line-height: 1.06; letter-spacing: -0.02em; color: var(--ink); }
+.lede { margin-top: 16px; max-width: 54ch; font-size: 1.0625rem; line-height: 1.55; color: var(--muted); }
+
+/* Column heads, once. */
+.cols { display: none; }
+@media (min-width: 900px) {
+  .cols { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 56px; padding-bottom: 14px; }
+}
+.colHead { display: inline-flex; align-items: center; gap: 10px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgb(255 255 255 / 0.45); }
+.colHeadAccent { color: var(--accent); }
+
+.rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.row {
+  display: grid;
+  gap: 12px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--rule);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (min-width: 900px) { .row { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 56px; padding: 32px 0; align-items: center; } }
+.seen { opacity: 1; transform: none; }
+
+.stars { display: inline-flex; gap: 2px; }
+.starOn, .starOff { width: 13px; height: 13px; }
+.starOn { fill: var(--amber); color: var(--amber); }
+.starOff { color: rgb(255 255 255 / 0.22); }
+
+.quote { margin: 0; font-family: var(--font-display); font-size: clamp(1.375rem, 1.1rem + 0.9vw, 1.875rem); line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); }
+/* Once the row is in view, a green line is drawn through the complaint (wrapping across its lines), then the
+   complaint dims: each one visibly struck off. */
+.strike {
+  /* globals.css puts the body font on every span; keep the quote's Fraunces. */
+  font-family: var(--font-display);
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 58%;
+  background-size: 0% 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-size 900ms cubic-bezier(0.65, 0, 0.35, 1) 350ms, color 600ms ease 1150ms;
+}
+.seen .strike { background-size: 100% 2px; color: rgb(255 255 255 / 0.5); }
+.srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.answerText { margin: 0; max-width: 46ch; font-size: 1.0625rem; line-height: 1.55; color: var(--ink); }
+
+/* Both calls to action centred, the source note centred under them. */
+.foot { display: flex; flex-direction: column; align-items: center; gap: 20px; margin-top: 48px; text-align: center; }
+@media (min-width: 900px) { .foot { margin-top: 56px; } }
+.ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.cta, .ctaSecondary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 26px; border-radius: 999px; font-size: 0.9375rem; font-weight: 600; white-space: nowrap; transition: background-color 200ms ease, border-color 200ms ease; }
+.cta { background: #007f68; color: #fff; }
+.cta:hover { background: #00705c; }
+.cta svg { width: 16px; height: 16px; transition: transform 200ms ease; }
+.cta:hover svg { transform: translateX(2px); }
+.ctaSecondary { border: 1px solid #747d79; background: rgb(31 39 37 / 0.4); color: #f5f4f0; }
+.ctaSecondary:hover { border-color: #9aa39f; }
+.note { max-width: 60ch; font-size: 0.8125rem; line-height: 1.5; color: rgb(255 255 255 / 0.45); }
+
+@media (prefers-reduced-motion: reduce) {
+  .row, .strike, .cta, .ctaSecondary, .cta svg { transition: none; }
+  .row { opacity: 1; transform: none; }
+}

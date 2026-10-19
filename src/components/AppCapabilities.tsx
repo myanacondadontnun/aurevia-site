@@ -62,7 +62,7 @@ export default function AppCapabilities() {
     <section id="dashboard" className="py-14 sm:py-24 px-4 sm:px-6">
       <div className="container mx-auto">
         <div className="text-center mb-12 sm:mb-20 scroll-fade">
-          <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00795c] mb-3">In your dashboard</p>
+          <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00665A] mb-3">In your dashboard</p>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-fraunces font-normal mb-3 sm:mb-4 text-foreground">
             Your side of <span className="green-highlight">Aurevia</span>
           </h2>

@@ -1,0 +1,254 @@
+/* The three channel screens (Gmail, WhatsApp, Instagram) in each app's own light-mode colours, type and
+   spacing, so they read as the real apps at a glance. Each screen fills its column; the newest messages sit
+   at the bottom and older ones slide up under the header, as in the apps. Every element sets its own font
+   because globals.css assigns the site font to p/span/div directly. */
+
+.gm, .gm *, .wa, .wa *, .ig, .ig * {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: normal;
+  box-sizing: border-box;
+}
+.gm, .wa, .ig {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -28px rgb(20 26 25 / 0.5), 0 2px 8px rgb(20 26 25 / 0.1);
+  text-align: left;
+}
+.gm svg, .wa svg, .ig svg { width: 22px; height: 22px; flex: none; stroke-width: 1.75; }
+
+.mono {
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 500;
+  line-height: 1;
+}
+.ph { display: block; background: linear-gradient(135deg, #ece8e1, #d6cfc3); }
+
+.enter { animation: enter 320ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes enter { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .enter { animation: none; } }
+
+/* ---------------- Gmail ---------------- */
+.gm { background: #fff; color: #1f1f1f; }
+.gmBar { display: flex; align-items: center; justify-content: space-between; height: 52px; padding: 0 14px; color: #444746; flex: none; }
+.gmBarRight { display: flex; gap: 20px; }
+.gmSubject {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 2px 16px 12px;
+  font-size: 19px;
+  line-height: 26px;
+  font-weight: 400;
+  flex: none;
+}
+.gmLabel {
+  display: inline-block;
+  vertical-align: 3px;
+  margin-left: 4px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: #e1e3e1;
+  color: #444746;
+  font-size: 12px;
+  line-height: 16px;
+}
+.gmStar { color: #444746; margin-top: 2px; }
+.gmFrom { display: flex; align-items: center; gap: 12px; padding: 4px 12px 10px 16px; flex: none; }
+.gmAvatar { background: #5f6368; }
+.gmWho { display: grid; gap: 1px; flex: 1; min-width: 0; }
+.gmName { font-size: 14px; line-height: 20px; font-weight: 600; color: #1f1f1f; white-space: nowrap; }
+.gmTime { margin-left: 4px; font-size: 12px; font-weight: 400; color: #444746; }
+.gmTo { font-size: 12px; line-height: 16px; color: #444746; }
+.gmIcon { color: #444746; width: 20px !important; height: 20px !important; }
+
+.gmBody { flex: 1; min-height: 0; overflow: hidden; padding: 6px 16px 8px; display: flex; flex-direction: column; justify-content: center; }
+/* The store's own email as Gmail shows it inline. */
+.mailer { border: 1px solid #ececec; border-radius: 10px; padding: 18px 18px 16px; text-align: center; background: #fff; }
+.mailerBrand {
+  font-family: var(--font-fraunces), Georgia, serif !important;
+  font-size: 15px;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase;
+  color: #2d3737;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #efefef;
+}
+.mailerHead { margin-top: 14px; font-size: 18px; font-weight: 600; color: #1f1f1f; }
+.mailerText { margin-top: 4px; font-size: 13px; line-height: 18px; color: #5f6368; }
+.mailerItem { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; align-items: center; gap: 12px; margin-top: 14px; padding: 10px; border-radius: 8px; background: #f6f6f4; text-align: left; }
+.mailerImg { display: block; width: 52px; height: 52px; border-radius: 6px; object-fit: cover; }
+.mailerName { font-size: 13px; font-weight: 600; color: #1f1f1f; line-height: 1.3; }
+.mailerName small { display: block; font-size: 12px; font-weight: 400; color: #5f6368; }
+.mailerPrice { font-size: 13px; font-weight: 600; color: #1f1f1f; }
+.mailerBtn { display: block; margin-top: 14px; padding: 11px; border-radius: 6px; background: #2d3737; color: #fff; font-size: 13px; font-weight: 600; }
+.mailerNote { margin-top: 10px; font-size: 11px; color: #80868b; }
+
+.gmActions { display: flex; gap: 8px; padding: 8px 16px 16px; flex: none; }
+.gmAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 16px 0 12px;
+  border: 1px solid #747775;
+  border-radius: 18px;
+  color: #1f1f1f;
+  font-size: 14px;
+  font-weight: 500;
+}
+.gmAction svg { width: 18px; height: 18px; }
+
+/* ---------------- WhatsApp ---------------- */
+.wa { background: #efeae2; color: #111b21; }
+.waHead { display: flex; align-items: center; gap: 8px; height: 58px; padding: 0 12px 0 8px; background: #008069; color: #fff; flex: none; }
+.waHeadIcon { width: 22px !important; height: 22px !important; }
+.waAvatar { background: #2d3737; }
+.waWho { display: grid; flex: 1; min-width: 0; line-height: 1.2; }
+.waName { font-size: 16px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.waStatus { font-size: 12.5px; color: rgb(255 255 255 / 0.82); }
+.waHeadRight { display: flex; gap: 18px; }
+.waHeadRight svg { width: 21px; height: 21px; }
+
+.waBody {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 3px;
+  padding: 10px 14px 8px;
+  /* A quiet stand-in for the chat wallpaper's doodle texture. */
+  background-color: #efeae2;
+  background-image: radial-gradient(rgb(17 27 33 / 0.05) 1px, transparent 1.2px);
+  background-size: 14px 14px;
+}
+.waDay {
+  align-self: center;
+  margin-bottom: 8px;
+  padding: 5px 12px;
+  border-radius: 8px;
+  background: #fff;
+  color: #54656f;
+  font-size: 12px;
+  box-shadow: 0 1px 0.5px rgb(11 20 26 / 0.13);
+}
+.waMsg {
+  position: relative;
+  max-width: 84%;
+  padding: 6px 8px 8px 9px;
+  border-radius: 8px;
+  font-size: 14.2px;
+  line-height: 19px;
+  box-shadow: 0 1px 0.5px rgb(11 20 26 / 0.13);
+}
+.waIn { align-self: flex-start; background: #fff; }
+.waOut { align-self: flex-end; background: #d9fdd3; }
+.waTail { margin-top: 6px; }
+.waTail.waIn { border-top-left-radius: 0; }
+.waTail.waOut { border-top-right-radius: 0; }
+.waTail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 13px;
+}
+.waTail.waIn::before { left: -8px; background: #fff; clip-path: polygon(100% 0, 0 0, 100% 100%); }
+.waTail.waOut::before { right: -8px; background: #d9fdd3; clip-path: polygon(0 0, 100% 0, 0 100%); }
+.waMeta {
+  float: right;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin: 6px 0 -6px 10px;
+  font-size: 11px;
+  line-height: 15px;
+  color: #667781;
+}
+.waTicks { width: 16px !important; height: 16px !important; color: #53bdeb; stroke-width: 2.25 !important; }
+
+/* WhatsApp template link button: inside the bubble under a hairline, full width, blue, with the
+   open-link glyph, as business templates show them. */
+.waHasButton { min-width: 78%; padding-bottom: 0; }
+.waButton {
+  clear: both;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 8px -8px 0 -9px;
+  padding: 10px 0 11px;
+  border-top: 1px solid rgb(11 20 26 / 0.1);
+  color: #027eb5;
+  font-size: 14.2px;
+  font-weight: 500;
+}
+.waButton svg { width: 16px !important; height: 16px !important; stroke-width: 2 !important; }
+
+.waInput { display: flex; align-items: flex-end; gap: 6px; padding: 6px 8px 10px; background: #efeae2; flex: none; }
+.waField {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  height: 46px;
+  padding: 0 14px;
+  border-radius: 23px;
+  background: #fff;
+  color: #8696a0;
+  box-shadow: 0 1px 0.5px rgb(11 20 26 / 0.13);
+}
+.waPlaceholder { flex: 1; font-size: 16px; color: #8696a0; }
+.waField svg { width: 22px; height: 22px; }
+.waMic svg { width: 22px; height: 22px; stroke-width: 2; }
+.waMic { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: #00a884; color: #fff; flex: none; }
+
+/* ---------------- Instagram ---------------- */
+.ig { background: #fff; color: #000; }
+.igHead { display: flex; align-items: center; gap: 10px; height: 60px; padding: 0 14px 0 10px; border-bottom: 1px solid #efefef; flex: none; }
+.igHeadIcon { width: 24px !important; height: 24px !important; }
+.igAvatar { background: #2d3737; }
+.igWho { display: grid; flex: 1; min-width: 0; line-height: 1.25; }
+.igName { font-size: 15px; font-weight: 600; }
+.igHandle { font-size: 12px; color: #737373; }
+.igHeadRight { display: flex; gap: 18px; }
+.igHeadRight svg { width: 24px; height: 24px; }
+
+.igBody { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; padding: 12px 12px 8px; }
+.igBubble { display: inline-block; max-width: 78%; padding: 9px 13px; border-radius: 22px; font-size: 14.5px; line-height: 19px; }
+.igIn { background: #efefef; color: #000; }
+.igOut { background: #3797f0; color: #fff; }
+.igOutWrap { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; margin-top: 8px; }
+.igContext { font-size: 12px; color: #737373; }
+.igSeen { font-size: 12px; color: #737373; }
+.igInRow { display: flex; align-items: flex-end; gap: 8px; margin-top: 2px; }
+.igAvatarSm { background: #2d3737; }
+.igSpacer { width: 28px; flex: none; }
+/* Product carousel: cards scroll sideways, so the second one is cut off at the edge, as in the app. */
+.igCards { display: flex; gap: 8px; min-width: 0; overflow: hidden; }
+.igCard { flex: none; width: 140px; border: 1px solid #dbdbdb; border-radius: 18px; overflow: hidden; background: #fff; }
+.igCardImg { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+.igCardText { display: grid; gap: 1px; padding: 8px 10px 8px; }
+.igCardText strong { font-size: 13px; font-weight: 600; color: #000; }
+.igCardText small { font-size: 12px; color: #737373; }
+.igCardBtn { display: block; padding: 8px 0 9px; border-top: 1px solid #efefef; text-align: center; font-size: 13px; font-weight: 600; color: #0095f6; }
+
+.igInput { display: flex; align-items: center; gap: 10px; margin: 6px 12px 12px; height: 46px; padding: 0 14px 0 6px; border-radius: 23px; background: #efefef; flex: none; }
+.igCam { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #3797f0; color: #fff; flex: none; }
+.igCam svg { width: 19px; height: 19px; }
+.igPlaceholder { flex: 1; font-size: 15px; color: #737373; }
+.igInputRight { display: flex; gap: 16px; color: #000; }
+.igInputRight svg { width: 22px; height: 22px; stroke-width: 1.75; }
+.igCam svg { stroke-width: 2; }

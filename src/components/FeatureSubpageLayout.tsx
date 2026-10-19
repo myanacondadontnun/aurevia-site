@@ -159,7 +159,7 @@ export default function FeatureSubpageLayout({
           >
             <div className={cn(!hasHeroAside && "max-w-3xl")}>
               {eyebrow ? (
-                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#00795c]">
+                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#00665A]">
                   {eyebrow}
                 </p>
               ) : null}
@@ -305,7 +305,7 @@ export default function FeatureSubpageLayout({
             <div className="grid items-center gap-10 md:grid-cols-2">
               <div className="flex justify-center md:order-2">{secondDemo.demo}</div>
               <div className="max-w-md mx-auto md:mx-0 text-center md:text-left">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#00795c]">{secondDemo.eyebrow}</p>
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#00665A]">{secondDemo.eyebrow}</p>
                 <h2 className="text-2xl sm:text-3xl font-fraunces font-normal text-foreground leading-tight mb-3">{secondDemo.title}</h2>
                 <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{secondDemo.body}</p>
                 {secondDemo.points ? (
@@ -326,7 +326,7 @@ export default function FeatureSubpageLayout({
         {screenshot ? (
           <section className="pb-14 sm:pb-20">
             <div className="mx-auto max-w-2xl text-center mb-8">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#00795c]">In your dashboard</p>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#00665A]">In your dashboard</p>
               <h2 className="text-2xl sm:text-3xl font-fraunces font-normal text-foreground leading-tight mb-3">{screenshot.title}</h2>
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{screenshot.caption}</p>
             </div>
@@ -351,7 +351,7 @@ export default function FeatureSubpageLayout({
                     )}
                   </div>
                   <div className="p-5">
-                    <p className="text-xs font-semibold text-[#00795c] mb-1">Step {i + 1}</p>
+                    <p className="text-xs font-semibold text-[#00665A] mb-1">Step {i + 1}</p>
                     <h3 className="font-medium text-foreground mb-1.5">{st.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">{st.body}</p>
                   </div>
@@ -407,8 +407,8 @@ export default function FeatureSubpageLayout({
             <ul className="grid gap-4 md:grid-cols-3">
               {alsoSee.map((a) => (
                 <li key={a.href}>
-                  <Link href={a.href} className="group block h-full rounded-2xl border border-border/60 bg-card p-5 hover:border-[#009973]/60 transition-colors">
-                    <h3 className="font-medium text-foreground group-hover:text-[#00795c] mb-1.5">{a.title}</h3>
+                  <Link href={a.href} className="group block h-full rounded-2xl border border-border/60 bg-card p-5 hover:border-[#00665A]/60 transition-colors">
+                    <h3 className="font-medium text-foreground group-hover:text-[#00665A] mb-1.5">{a.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">{a.body}</p>
                   </Link>
                 </li>
@@ -440,7 +440,7 @@ export default function FeatureSubpageLayout({
 
         {/* ─── CTA banner ─── */}
         <section className="pb-6" id="get-started">
-          <div className="relative overflow-hidden rounded-3xl border border-[#00CC99]/15 bg-gradient-to-br from-[#00CC99]/[0.08] via-[#089357]/[0.05] to-[#0b3c2f]/[0.1] px-6 py-14 text-center sm:px-12 sm:py-16">
+          <div className="relative overflow-hidden rounded-3xl border border-[#00CC99]/15 bg-gradient-to-br from-[#00CC99]/[0.08] via-[#089357]/[0.05] to-[#00665A]/[0.1] px-6 py-14 text-center sm:px-12 sm:py-16">
             <div
               className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(ellipse_at_center,rgba(0,204,153,0.06)_0%,transparent_70%)]"
               aria-hidden

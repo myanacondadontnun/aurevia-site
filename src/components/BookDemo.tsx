@@ -30,7 +30,7 @@ const script: ChatStep[] = [
 ];
 
 const INPUT =
-  "w-full rounded-xl border border-border/70 bg-card px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-[#009973]/40 focus:border-[#009973] transition-shadow";
+  "w-full rounded-xl border border-border/70 bg-card px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-[#00665A]/40 focus:border-[#00665A] transition-shadow";
 
 export default function BookDemo() {
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", storeUrl: "" });

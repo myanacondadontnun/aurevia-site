@@ -25,7 +25,7 @@ export function InstagramGlyph({ className }: { className?: string }) {
 }
 
 const BADGE_STYLE: Record<ChannelKind, CSSProperties> = {
-  store: { backgroundColor: "#0b3c2f" },
+  store: { backgroundColor: "#00665A" },
   whatsapp: { backgroundColor: "#25d366" },
   instagram: {
     backgroundImage:

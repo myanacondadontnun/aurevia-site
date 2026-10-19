@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
 import CustomerLogos from "@/components/CustomerLogos";
-import WidgetCapabilities from "@/components/WidgetCapabilities";
 import Channels from "@/components/Channels";
-import AppCapabilities from "@/components/AppCapabilities";
-import Industries from "@/components/Industries";
-import MerchantReviews from "@/components/MerchantReviews";
-import Stats from "@/components/Stats";
-import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import ScrollAnimationsInit from "@/components/ScrollAnimationsInit";
+import HomeHero from "@/components/home/HomeHero";
+import { sitePhoto } from "@/lib/sitePhoto";
+import Scenarios from "@/components/home/Scenarios";
+import PainPoints from "@/components/home/PainPoints";
+import ReviewsShowcase from "@/components/home/ReviewsShowcase";
+import Platforms from "@/components/home/Platforms";
+import AskAureviaShowcase from "@/components/home/AskAureviaShowcase";
+import { SCENARIO_PHOTO_NAMES, type ScenarioPhotos } from "@/components/home/scenarioPhotoNames";
+import SetupSteps from "@/components/home/SetupSteps";
+import {
+  FinalCTA,
+  HomeFAQ,
+} from "@/components/home/HomeSections";
 
 export const metadata: Metadata = {
   alternates: {
@@ -26,37 +32,20 @@ export default function HomePage() {
     <div className="min-h-screen bg-background">
       <ScrollAnimationsInit />
       <Navbar />
-      <main id="main-content" className="home-seasons">
-        <Hero />
-        <div className="flex flex-wrap items-center justify-center gap-4 py-6 sm:py-8">
-          <a href="https://fazier.com" target="_blank" rel="noopener noreferrer">
-            <img
-              src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=neutral"
-              width={120}
-              alt="Fazier badge"
-            />
-          </a>
-          <a
-            href="https://launchigniter.com/product/aurevia?ref=badge-aurevia"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src="https://launchigniter.com/api/badge/aurevia?theme=neutral"
-              alt="Featured on LaunchIgniter"
-              width={212}
-              height={55}
-            />
-          </a>
-        </div>
+      <main id="main-content">
+        <HomeHero photos={{ dress: sitePhoto("fashion-linen-dress"), silk: sitePhoto("fashion-silk-dress") }} />
         <CustomerLogos />
-        <WidgetCapabilities />
+        <Scenarios
+          photos={Object.fromEntries(SCENARIO_PHOTO_NAMES.map((name) => [name, sitePhoto(name)])) as ScenarioPhotos}
+        />
         <Channels />
-        <Stats />
-        <AppCapabilities />
-        <MerchantReviews />
-        <Industries />
-        <FAQ />
+        <PainPoints />
+        <ReviewsShowcase />
+        <AskAureviaShowcase />
+        <SetupSteps />
+        <Platforms />
+        <HomeFAQ />
+        <FinalCTA />
       </main>
       <Footer />
     </div>

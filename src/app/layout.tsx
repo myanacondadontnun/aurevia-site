@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Montserrat } from "next/font/google";
+import { DM_Sans, Fraunces, Geist } from "next/font/google";
 import "./globals.css";
 import ClientBody from "./ClientBody";
 import Script from "next/script";
@@ -7,15 +7,25 @@ import AureviaWidgetLoader from "@/components/AureviaWidgetLoader";
 import JsonLd from "@/components/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/schema";
 
-// Site-wide type system is two families — Fraunces (display) and Montserrat
+// Site-wide type system is two families — Fraunces (display) and DM Sans
 // (everything else). Both are self-hosted by next/font: downloaded at build time
 // and served from /_next/static, so there is no render-blocking request to
 // fonts.googleapis.com, and the size-adjusted fallbacks keep text from shifting
 // when the web fonts swap in. Exposed as CSS variables for Tailwind and globals.css.
-const montserrat = Montserrat({
+const sans = DM_Sans({
+  subsets: ["latin"],
+  axes: ["opsz"],
+  display: "swap",
+  variable: "--font-sans",
+});
+
+// Geist is the merchant dashboard's own UI font. Only the home page's dashboard replicas use it,
+// so it isn't preloaded on every page.
+const geist = Geist({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-montserrat",
+  preload: false,
+  variable: "--font-geist",
 });
 
 const fraunces = Fraunces({
@@ -102,7 +112,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${fraunces.variable}`}>
+    <html lang="en" className={`${sans.variable} ${fraunces.variable} ${geist.variable}`}>
       <head>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/x-icon" sizes="any" href="/favicon.ico" />

@@ -13,7 +13,7 @@ export default function MerchantReviews() {
     <section className="py-14 sm:py-24 px-4 sm:px-6">
       <div ref={ref as React.RefObject<HTMLDivElement>} className="container mx-auto max-w-6xl scroll-fade">
         <div className="text-center mb-10">
-          <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00795c] mb-3">From the App Store</p>
+          <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00665A] mb-3">From the App Store</p>
           <h2 className="text-2xl sm:text-4xl font-fraunces font-normal text-foreground mb-4">
             What merchants <span className="green-highlight">say</span>
           </h2>

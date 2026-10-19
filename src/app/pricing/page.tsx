@@ -187,7 +187,7 @@ export default function PricingPage() {
       <main id="main-content" className="pt-24 sm:pt-32 pb-16">
         {/* Hero */}
         <section className="px-4 sm:px-6 text-center max-w-3xl mx-auto">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#00CC99]/25 bg-[#00CC99]/10 px-3 py-1 text-xs font-medium text-[#00795c] mb-5">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#00CC99]/25 bg-[#00CC99]/10 px-3 py-1 text-xs font-medium text-[#00665A] mb-5">
             <Sparkles className="h-3.5 w-3.5" /> Simple, usage-based pricing
           </span>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-fraunces font-normal text-foreground leading-[1.1] mb-4">
@@ -251,8 +251,8 @@ export default function PricingPage() {
                   onClick={() => setTraffic(i)}
                   className={`rounded-full border px-5 py-2.5 text-sm sm:text-base transition-colors ${
                     traffic === i
-                      ? "border-[#0f3d30] bg-[#0f3d30] text-white"
-                      : "border-border bg-card text-foreground hover:border-[#009973]/60"
+                      ? "border-[#00665A] bg-[#00665A] text-white"
+                      : "border-border bg-card text-foreground hover:border-[#00665A]/60"
                   }`}
                 >
                   {label}
@@ -274,14 +274,14 @@ export default function PricingPage() {
                   key={plan.id}
                   className={`relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 ${
                     recommended
-                      ? "border-2 border-[#0f3d30] bg-card shadow-[0_18px_50px_-16px_rgba(15,61,48,0.35)]"
-                      : "border border-border bg-card hover:border-[#009973]/40 hover:shadow-lg"
+                      ? "border-2 border-[#00665A] bg-card shadow-[0_18px_50px_-16px_rgba(15,61,48,0.35)]"
+                      : "border border-border bg-card hover:border-[#00665A]/40 hover:shadow-lg"
                   }`}
                 >
                   <div className="flex items-center gap-2.5">
                     <h3 className="text-lg font-semibold text-foreground">{plan.name}</h3>
                     {recommended && (
-                      <span className="rounded-full bg-[#0f3d30] px-2.5 py-1 text-[11px] font-semibold text-white">Recommended</span>
+                      <span className="rounded-full bg-[#00665A] px-2.5 py-1 text-[11px] font-semibold text-white">Recommended</span>
                     )}
                   </div>
 
@@ -289,7 +289,7 @@ export default function PricingPage() {
                     <span className="text-4xl font-fraunces font-normal leading-none text-foreground">{price.perMonth}</span>
                     <span className="mb-0.5 text-sm text-foreground/75">per month</span>
                   </div>
-                  <span className="mt-3 inline-flex w-fit rounded-md bg-[#009973]/12 px-2.5 py-1 text-sm font-semibold text-[#00795c]">
+                  <span className="mt-3 inline-flex w-fit rounded-md bg-[#00665A]/12 px-2.5 py-1 text-sm font-semibold text-[#00665A]">
                     {price.billed}
                   </span>
                   <p className="mt-2 text-sm text-foreground/75">with a 14-day free trial, no card</p>
@@ -301,7 +301,7 @@ export default function PricingPage() {
                     className={`mt-5 flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold transition-all min-h-[44px] no-underline ${
                       recommended
                         ? "cta-button"
-                        : "border border-border text-foreground hover:border-[#009973] hover:text-[#00795c]"
+                        : "border border-border text-foreground hover:border-[#00665A] hover:text-[#00665A]"
                     }`}
                   >
                     {plan.cta}
@@ -338,7 +338,7 @@ export default function PricingPage() {
             </div>
             <Link
               href="/contact"
-              className="shrink-0 rounded-xl border border-border px-6 py-2.5 text-sm font-semibold text-foreground hover:border-[#00CC99] hover:text-[#00795c] transition-all text-center no-underline"
+              className="shrink-0 rounded-xl border border-border px-6 py-2.5 text-sm font-semibold text-foreground hover:border-[#00CC99] hover:text-[#00665A] transition-all text-center no-underline"
             >
               Contact sales
             </Link>
@@ -407,9 +407,9 @@ export default function PricingPage() {
               </svg>
             </div>
             <blockquote className="text-lg sm:text-2xl font-playfair italic text-foreground leading-snug max-w-2xl mx-auto">
-              &ldquo;We installed <span className="text-[#00795c]">Aurevia</span> on a Friday and by Monday our
+              &ldquo;We installed <span className="text-[#00665A]">Aurevia</span> on a Friday and by Monday our
               support tickets had dropped noticeably. The AI doesn&apos;t just answer questions—it actually{" "}
-              <span className="text-[#00795c]">sells</span>.&rdquo;
+              <span className="text-[#00665A]">sells</span>.&rdquo;
             </blockquote>
             <div className="mt-6">
               <p className="text-sm font-medium text-foreground">Sophie Marchand</p>

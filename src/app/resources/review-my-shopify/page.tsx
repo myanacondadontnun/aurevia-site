@@ -387,7 +387,7 @@ export default function ReviewMyShopifyPage() {
             </p>
             <div className="flex items-center gap-3">
               <span
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00795c]"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00665A]"
                 aria-hidden="true"
               >
                 MK
@@ -417,7 +417,7 @@ export default function ReviewMyShopifyPage() {
 
       {/* ─── Final CTA ─── */}
       <section className="py-16 sm:py-24 px-4 sm:px-6">
-        <div className="container mx-auto max-w-4xl rounded-3xl bg-gradient-to-br from-[#00CC99]/[0.08] via-[#089357]/[0.05] to-[#0b3c2f]/[0.1] border border-[#00CC99]/15 py-16 sm:py-20 px-6 sm:px-12 text-center relative overflow-hidden">
+        <div className="container mx-auto max-w-4xl rounded-3xl bg-gradient-to-br from-[#00CC99]/[0.08] via-[#089357]/[0.05] to-[#00665A]/[0.1] border border-[#00CC99]/15 py-16 sm:py-20 px-6 sm:px-12 text-center relative overflow-hidden">
           <div className="absolute inset-0 z-0 rounded-3xl bg-[radial-gradient(ellipse_at_center,rgba(0,204,153,0.06)_0%,transparent_70%)] pointer-events-none" />
           <CTASwarmParticles />
           <div className="relative z-10">

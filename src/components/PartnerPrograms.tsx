@@ -56,7 +56,7 @@ const PROGRAMS: {
 const STORE_COUNTS = ["None yet", "1 – 5", "6 – 20", "More than 20"];
 
 const INPUT =
-  "w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm font-medium text-foreground placeholder:font-normal placeholder:text-muted-foreground/70 focus:border-[#00805f] focus:outline-none focus:ring-1 focus:ring-[#00805f]/40";
+  "w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm font-medium text-foreground placeholder:font-normal placeholder:text-muted-foreground/70 focus:border-[#00665A] focus:outline-none focus:ring-1 focus:ring-[#00665A]/40";
 const LABEL = "mb-2 block text-sm font-semibold text-foreground";
 
 const emptyForm = { name: "", email: "", company: "", website: "", stores: "", notes: "" };
@@ -127,20 +127,20 @@ export default function PartnerPrograms() {
             <div
               key={p.id}
               className={`flex flex-col rounded-2xl border bg-card p-6 sm:p-7 transition-colors ${
-                on ? "border-[#0b3c2f]" : "border-border"
+                on ? "border-[#00665A]" : "border-border"
               }`}
             >
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0b3c2f] text-white">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#00665A] text-white">
                 <p.icon className="h-5 w-5" strokeWidth={2} />
               </span>
               <h3 className="mt-5 text-xl font-fraunces font-medium text-foreground">{p.name}</h3>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-[#00795c]">{p.who}</p>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-[#00665A]">{p.who}</p>
               {p.terms ? <p className="mt-4 text-base font-semibold text-foreground">{p.terms}</p> : null}
               <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{p.body}</p>
               <ul className="mt-5 space-y-2 mb-6">
                 {p.points.map((pt) => (
                   <li key={pt} className="flex items-start gap-2 text-sm font-medium text-foreground">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#00805f]" strokeWidth={2.5} />
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#00665A]" strokeWidth={2.5} />
                     {pt}
                   </li>
                 ))}
@@ -151,7 +151,7 @@ export default function PartnerPrograms() {
                 className={`mt-auto inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl px-5 text-sm font-semibold transition-colors ${
                   on
                     ? "cta-button"
-                    : "border border-border bg-background text-foreground hover:border-[#0b3c2f]"
+                    : "border border-border bg-background text-foreground hover:border-[#00665A]"
                 }`}
               >
                 Apply as {p.name.toLowerCase()} <ArrowRight className="h-4 w-4" />
@@ -163,7 +163,7 @@ export default function PartnerPrograms() {
 
       <div ref={formRef} id="apply" className="scroll-mt-28 mt-16 sm:mt-24 grid gap-10 lg:grid-cols-5">
         <div className="lg:col-span-2">
-          <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00795c] mb-3">Apply</p>
+          <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00665A] mb-3">Apply</p>
           <h2 className="text-2xl sm:text-4xl font-fraunces font-normal text-foreground leading-tight mb-4">
             Tell us how you work with Shopify stores
           </h2>
@@ -176,7 +176,7 @@ export default function PartnerPrograms() {
         <div className="lg:col-span-3">
           {status === "sent" ? (
             <div className="rounded-2xl border border-border bg-card p-8 text-center" role="status">
-              <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#e6eeea] text-[#00805f]">
+              <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#e6eeea] text-[#00665A]">
                 <Check className="h-6 w-6" strokeWidth={2.5} />
               </span>
               <h3 className="mt-5 text-xl font-fraunces font-medium text-foreground">Application received</h3>
@@ -201,8 +201,8 @@ export default function PartnerPrograms() {
                       key={p.id}
                       className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2.5 text-sm font-semibold transition-colors ${
                         p.id === program
-                          ? "border-[#0b3c2f] bg-[#0b3c2f] text-white"
-                          : "border-border bg-background text-foreground hover:border-[#0b3c2f]"
+                          ? "border-[#00665A] bg-[#00665A] text-white"
+                          : "border-border bg-background text-foreground hover:border-[#00665A]"
                       }`}
                     >
                       <input

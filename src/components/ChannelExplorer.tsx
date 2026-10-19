@@ -120,7 +120,7 @@ export default function ChannelExplorer() {
               aria-controls={`panel-${channel.kind}`}
               onClick={() => select(channel.kind)}
               className={`flex items-center gap-3 rounded-2xl border p-3 sm:p-4 text-left transition-colors ${
-                on ? "border-[#0b3c2f] bg-card shadow-sm" : "border-border bg-transparent hover:bg-card"
+                on ? "border-[#00665A] bg-card shadow-sm" : "border-border bg-transparent hover:bg-card"
               }`}
             >
               <ChannelBadge kind={channel.kind} className="h-9 w-9 rounded-[10px]" />
@@ -144,7 +144,7 @@ export default function ChannelExplorer() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <h2 className="text-2xl sm:text-3xl font-fraunces font-normal text-foreground">{channel.name}</h2>
-                  <span className="rounded-full bg-[#e6eeea] px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#00795c]">
+                  <span className="rounded-full bg-[#e6eeea] px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#00665A]">
                     Live
                   </span>
                 </div>
@@ -152,7 +152,7 @@ export default function ChannelExplorer() {
                 <ul className="space-y-2.5">
                   {detail.can.map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm sm:text-base font-medium text-foreground">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#00805f]" strokeWidth={2.5} />
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#00665A]" strokeWidth={2.5} />
                       {item}
                     </li>
                   ))}

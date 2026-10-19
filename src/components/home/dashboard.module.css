@@ -1,0 +1,256 @@
+/* Dashboard Home replica. Every value is app-frontend's Tailwind (v4) class translated 1:1, with the app's light
+   --brand-* tokens. The app is drawn at its real size and the frame zooms it, so these are true app pixels. */
+
+.app {
+  --bg: #f3f6f5;
+  --surface: #ffffff;
+  --hover: #e7ece9;
+  --border: #e5e9e6;
+  --border-60: rgb(229 233 230 / 0.6);
+  --ink: #2d3737;
+  --muted: #6b7573;
+  --accent: #009973;
+  --wash: rgb(0 204 153 / 0.08);
+  --sidebar-ink: #000000;
+  --good: #059669;
+  --display: var(--font-fraunces), "Fraunces Variable", ui-serif, serif;
+  --ui: var(--font-geist), "Geist", ui-sans-serif, system-ui, sans-serif;
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+  position: relative;
+  display: flex;
+  width: 1024px;
+  height: 760px;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+}
+.appMobile { width: 390px; }
+/* globals.css puts the site font on p/span/div directly; the app's own font wins inside the replica. */
+.app, .app * { font-family: var(--ui); letter-spacing: normal; box-sizing: border-box; }
+.app p, .app h1 { margin: 0; }
+.app svg { flex: none; }
+
+/* ---------- AureviaArc ---------- */
+.arc { position: relative; display: inline-flex; flex-shrink: 0; align-items: center; justify-content: center; }
+.arcBreathe { position: absolute; inset: 0; }
+.arcOuter { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; }
+.arcAnimated { filter: drop-shadow(0 0 3px rgb(139 92 246 / 0.45)) drop-shadow(0 0 6px rgb(56 189 248 / 0.25)); }
+.arcAnimated .arcBreathe { animation: breathe 4s ease-in-out infinite; }
+.arcAnimated .arcOuter { animation: spin 12s linear infinite; }
+.arcBusy .arcOuter { animation: spin 1.4s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+
+/* ---------- Sidebar ---------- */
+.sidebar { display: flex; flex-direction: column; flex: none; width: 72px; height: 100%; background: var(--bg); border-right: 1px solid var(--border-60); }
+.brand { display: flex; align-items: center; justify-content: center; padding: 16px 0; }
+.brandLogo { height: 32px; width: auto; flex-shrink: 0; }
+.brandText { min-width: 0; flex: 1; }
+.app .brandName { font-family: var(--display); font-size: 16px; line-height: 24px; font-weight: 500; letter-spacing: -0.025em; color: var(--sidebar-ink); }
+.brandStore { display: flex; align-items: center; gap: 4px; font-size: 11px; line-height: 16.5px; color: var(--muted); }
+.brandStoreIcon { width: 12px; height: 12px; }
+.nav { margin-top: 8px; flex: 1; min-height: 0; overflow: hidden; }
+.navGroup { list-style: none; margin: 0; padding: 0 10px; display: grid; gap: 2px; }
+.navGroupGap { margin-top: 12px; }
+.navCaption { padding: 0 16px 2px; font-size: 11px; line-height: 16.5px; color: var(--muted); }
+.navRow { position: relative; display: flex; align-items: center; justify-content: center; height: 36px; padding: 8px 0; border-radius: 8px; font-size: 13px; line-height: 19.5px; color: var(--sidebar-ink); }
+.navRowActive { background: var(--wash); color: var(--accent); font-weight: 500; }
+.navLabel { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.navIcon { width: 18px; height: 18px; }
+.navIconActive { color: var(--accent); }
+.kbd { border-radius: 4px; border: 1px solid var(--border); padding: 1px 4px; font-size: 10px; line-height: 15px; color: var(--muted); }
+.sideFoot { margin-top: auto; padding-top: 4px; }
+.sideFoot .navGroup { padding-top: 4px; padding-bottom: 4px; }
+.account { display: flex; align-items: center; justify-content: center; width: 100%; margin: 0 0 4px; padding: 10px 0; border-radius: 8px; }
+.accountLeft { display: flex; align-items: center; min-width: 0; }
+.avatar { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%; background: var(--accent); color: #fff; font-size: 14px; font-weight: 600; }
+.accountText { display: grid; margin-left: 10px; min-width: 0; }
+.accountName { font-size: 12px; line-height: 16px; font-weight: 500; color: var(--sidebar-ink); }
+.accountMail { font-size: 10px; line-height: 15px; color: var(--muted); }
+.accountMore { width: 16px; height: 16px; color: var(--muted); }
+
+/* ---------- Main ---------- */
+.main { position: relative; display: flex; flex: 1; flex-direction: column; min-width: 0; padding: 24px 32px; overflow: hidden; }
+.appMobile .main { padding: 16px 16px 24px; }
+.menuBtn { position: absolute; left: 16px; top: 16px; z-index: 2; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--surface); color: var(--ink); box-shadow: var(--shadow-md); }
+.menuBtn svg { width: 20px; height: 20px; }
+.page { display: flex; flex-direction: column; width: 100%; max-width: 1400px; height: 100%; min-height: 0; margin: 0 auto; }
+
+.topNav { position: relative; display: flex; flex-shrink: 0; justify-content: center; padding-bottom: 24px; }
+.appMobile .topNav { min-height: 40px; align-items: center; }
+.toolbarSlot { position: absolute; left: 0; right: 0; top: 0; margin: 0 auto; display: flex; align-items: center; height: 40px; max-width: 672px; }
+.toolbarSlot .toolbar { margin-left: -8px; }
+.toolbar { position: relative; display: flex; align-items: center; gap: 4px; }
+.toolBtn { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; color: var(--muted); }
+.toolBtn svg { width: 18px; height: 18px; }
+
+.modeTabs { display: inline-flex; align-items: center; padding: 4px; border-radius: 999px; background: var(--hover); }
+.modeTab { padding: 6px 16px; border-radius: 999px; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--muted); }
+.modeTabOn { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-sm); }
+
+.chatTab { display: flex; flex: 1; flex-direction: column; gap: 24px; min-height: 0; justify-content: safe center; }
+.chatTabActive { justify-content: flex-start; }
+.appMobile .chatTab { justify-content: flex-start; }
+
+.analytics { width: 100%; max-width: 768px; margin: 0 auto; flex-shrink: 0; }
+.rangeRow { position: relative; display: flex; align-items: center; justify-content: center; }
+.appMobile .rangeRow { min-height: 40px; }
+.rangeRowGap { margin-bottom: 20px; }
+.mobileToolbar { position: absolute; left: 0; display: flex; align-items: center; height: 40px; margin-left: -8px; }
+.range { display: inline-flex; align-items: center; padding: 2px; border-radius: 7px; border: 1px solid var(--border); }
+.rangeTab { padding: 4px 12px; border-radius: 5px; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--muted); }
+.rangeTabOn { background: var(--hover); color: var(--ink); }
+
+.statGrid { display: grid; gap: 12px; }
+.cols3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cols2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.stat { border-radius: 12px; background: var(--surface); padding: 12px 16px; }
+.statLabel { display: flex; align-items: center; gap: 6px; font-size: 11px; line-height: 1.25; color: var(--muted); }
+.liveDot { position: relative; display: flex; width: 6px; height: 6px; flex-shrink: 0; }
+.livePing { position: absolute; display: inline-flex; width: 100%; height: 100%; border-radius: 50%; background: var(--accent); opacity: 0.75; animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite; }
+.liveCore { position: relative; display: inline-flex; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+@keyframes ping { 75%, 100% { transform: scale(2); opacity: 0; } }
+.statValueRow { display: flex; align-items: baseline; gap: 6px; margin-top: 2px; }
+.statValue { font-size: 18px; line-height: 28px; font-weight: 600; letter-spacing: -0.025em !important; font-variant-numeric: tabular-nums; color: var(--ink); }
+.statSub { font-size: 10px; line-height: 15px; color: var(--muted); }
+
+/* ---------- AskAureviaBar ---------- */
+.bar { padding: 16px 0; text-align: center; }
+.app .greeting { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 20px; font-size: 28px; line-height: 36px; font-weight: 500; color: var(--ink); }
+.app .greeting, .app .greeting * { font-family: var(--display); }
+.app .greetingSm { font-size: 24px; line-height: 32px; }
+.accentText { color: var(--accent); }
+.barInner { max-width: 768px; margin: 0 auto; }
+.inputForm { display: flex; align-items: center; gap: 4px; padding: 6px 8px 6px 6px; border-radius: 999px; background: var(--surface); margin: 0; }
+.inputSlot { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%; }
+.inputPlus { color: var(--muted); }
+.inputPlus svg { width: 18px; height: 18px; }
+.inputText { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 14px; line-height: 20px; color: var(--ink); text-align: left; }
+.inputPlaceholder { color: var(--muted); }
+.inputDisabled { opacity: 0.6; }
+.caret { display: inline-block; width: 1px; height: 16px; margin-left: 1px; vertical-align: -3px; background: var(--ink); animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.send { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%; background: var(--accent); color: #fff; transition: transform 140ms ease, opacity 140ms ease; }
+.send svg { width: 16px; height: 16px; }
+.app .stopIcon { width: 14px; height: 14px; }
+.sendDisabled { opacity: 0.6; }
+.pressed { transform: scale(0.94); }
+.suggestions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; max-width: 768px; margin: 16px auto 0; }
+.suggestion { display: flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: var(--surface); font-size: 12px; line-height: 16px; color: var(--muted); }
+.suggestion svg { width: 14px; height: 14px; }
+
+/* ---------- ConversationHeatmap ---------- */
+.heatmap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.weeks { display: flex; gap: 4px; }
+.week { display: flex; flex-direction: column; gap: 4px; }
+.cell, .cellBlank { display: block; width: 13px; height: 13px; border-radius: 3px; }
+.h1 { background: rgb(0 153 115 / 0.25); }
+.h2 { background: rgb(0 153 115 / 0.45); }
+.h3 { background: rgb(0 153 115 / 0.7); }
+.h4 { background: var(--accent); }
+.heatCaption { font-size: 11px; line-height: 16.5px; color: var(--muted); }
+
+/* ---------- Thread (AskAureviaChat) ---------- */
+.threadWrap { display: flex; flex: 1; flex-direction: column; min-height: 0; animation: fade 200ms ease both; }
+.threadScroll {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 0;
+  margin: 0 -8px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 1.5rem, #000 calc(100% - 1rem), transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 1.5rem, #000 calc(100% - 1rem), transparent);
+}
+.threadCol { display: grid; gap: 16px; width: 100%; max-width: 688px; margin: 0 auto; padding: 24px 8px 16px; }
+.userRow { display: flex; justify-content: flex-end; }
+.userBubble { max-width: 80%; padding: 10px 16px; border-radius: 16px 16px 4px 16px; background: var(--hover); font-size: 14px; line-height: 20px; color: var(--ink); overflow-wrap: break-word; }
+.thinking { display: flex; align-items: center; gap: 8px; margin: -4px; padding: 4px; font-size: 14px; line-height: 20px; color: var(--muted); }
+.fadeIn { animation: fade 500ms ease both; }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+.md { font-size: 14px; line-height: 1.625; color: var(--ink); }
+.md p { margin: 0 0 10px; }
+.md p:last-child { margin-bottom: 0; }
+.md strong { font-weight: 600; }
+.msgTools { display: flex; align-items: center; gap: 4px; margin: 2px -4px -4px; padding: 4px; }
+.copyBtn { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 6px; color: var(--muted); }
+.copyBtn svg { width: 14px; height: 14px; }
+
+.compactBar { width: 100%; max-width: 672px; margin: 0 auto; flex-shrink: 0; }
+.barCompact { padding: 16px 0; }
+
+/* HtmlChart: the app's caption row, then the analytics skill's "Bare" chart (system font, as in its frame). */
+.figure { margin: 12px 0; }
+.figcaption { margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border-60); font-size: 12px; line-height: 16px; color: var(--muted); }
+.app .chart, .app .chart * { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+.chart { display: flex; align-items: flex-end; gap: 28px; height: 190px; padding: 0 4px; }
+.barCol { display: flex; flex: 1; flex-direction: column; align-items: center; gap: 6px; height: 100%; }
+.barValue { font-size: 12px; line-height: 1.45; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+.barTrack { position: relative; display: flex; align-items: flex-end; flex: 1; width: 100%; }
+.barFill { display: block; width: 100%; border-radius: 4px 4px 0 0; background: var(--accent); transform-origin: bottom; animation: grow 700ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.barCol:not(:last-child) .barFill { background: rgb(0 153 115 / 0.55); }
+@keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.barLabel { font-size: 11px; line-height: 1.45; color: var(--muted); }
+
+/* ActionCardShell + ProductActionCard */
+.card { width: 100%; margin: 8px 0; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); animation: fade 240ms ease both; }
+.cardEntity { font-size: 12px; line-height: 16px; font-weight: 500; color: var(--muted); }
+.cardHeading { margin-top: 2px; font-size: 15px; line-height: 1.375; font-weight: 600; color: var(--ink); }
+.cardDetails { margin-top: 12px; }
+.fieldHead { display: flex; align-items: center; gap: 6px; }
+.fieldLabel { font-size: 12px; line-height: 16px; color: var(--muted); }
+.chip { padding: 1px 6px; border-radius: 999px; background: var(--hover); font-size: 10px; line-height: 15px; font-weight: 500; color: var(--muted); }
+.fieldValue { margin-top: 2px; white-space: pre-line; font-size: 14px; line-height: 1.625; color: var(--ink); }
+.fieldPrev { margin-top: 4px; font-size: 12px; line-height: 16px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.cardActions { display: flex; gap: 8px; margin-top: 14px; }
+.confirm, .cancel { display: inline-flex; align-items: center; height: 32px; padding: 0 14px; border-radius: 8px; font-size: 12px; line-height: 16px; font-weight: 500; transition: transform 140ms ease; }
+.confirm { background: var(--accent); color: #fff; }
+.cancel { border: 1px solid var(--border); background: var(--surface); color: var(--ink); }
+.applying { display: flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 12px; line-height: 16px; color: var(--muted); }
+.applying svg { width: 14px; height: 14px; }
+.done { display: flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--good); }
+.done svg { width: 14px; height: 14px; }
+.spin { animation: spin 1s linear infinite; }
+
+/* ImageGeneratingCard + GeneratedImageCard (square: max-w-sm) */
+.square { aspect-ratio: 1 / 1; }
+.imgGenerating { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; width: 100%; max-width: 384px; margin: 8px 0; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.imgGenerating svg { width: 20px; height: 20px; color: var(--muted); }
+@keyframes pulse { 50% { opacity: 0.5; } }
+.genTitle { font-size: 14px; line-height: 20px; color: var(--muted); }
+.genSub { font-size: 12px; line-height: 16px; color: var(--muted); }
+.genWrap { width: 100%; max-width: 384px; margin: 8px 0; animation: fade 300ms ease both; }
+.genFrame { width: 100%; margin-bottom: 8px; overflow: hidden; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); }
+.genImg { display: block; width: 100%; height: 100%; object-fit: cover; }
+.genButtons { display: flex; align-items: center; gap: 8px; }
+.addBtn, .downloadBtn { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px 0 12px; border-radius: 8px; font-size: 14px; line-height: 20px; font-weight: 500; transition: transform 140ms ease; }
+.addBtn { min-width: 0; background: var(--ink); color: var(--surface); box-shadow: var(--shadow-sm); }
+.downloadBtn { flex-shrink: 0; border: 1px solid var(--border); background: var(--surface); color: var(--ink); }
+.addBtn svg, .downloadBtn svg { width: 16px; height: 16px; }
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.genCaption { margin-top: 8px !important; font-size: 12px; line-height: 16px; color: var(--muted); }
+.genCheck { display: inline; width: 14px; height: 14px; margin-right: 4px; vertical-align: -2px; color: var(--good); }
+
+/* ---------- Frame (site side) ---------- */
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1024 / 760;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #f3f6f5;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.1), 0 40px 80px -36px rgb(0 0 0 / 0.65);
+}
+.frameMobile { aspect-ratio: 390 / 760; border-radius: 22px; }
+.zoom { width: max-content; transform-origin: top left; }
+
+@media (prefers-reduced-motion: reduce) {
+  .app * { animation: none !important; transition: none !important; }
+}

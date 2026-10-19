@@ -1,0 +1,69 @@
+/* "Built on the best": a dark band, four tall cards in a 2×2 grid. Each card: the brand mark and name top left,
+   a large faint copy of the mark in the corner, a Fraunces title and one line at the bottom. */
+
+.section {
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  background: #10201c;
+  color: #fff;
+  padding: 72px 0;
+}
+@media (min-width: 1024px) { .section { padding: 112px 0; } }
+
+.head { max-width: 720px; margin: 0 auto 40px; text-align: center; }
+@media (min-width: 1024px) { .head { margin-bottom: 56px; } }
+.title { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 1.3rem + 2.6vw, 3.5rem); line-height: 1.05; letter-spacing: -0.02em; }
+.lede { margin-top: 16px; font-size: 1.0625rem; line-height: 1.55; color: rgb(255 255 255 / 0.72); }
+
+.grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+@media (min-width: 768px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } }
+
+.card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 48px;
+  min-height: 280px;
+  padding: 28px;
+  border-radius: 24px;
+  background: rgb(255 255 255 / 0.05);
+  border: 1px solid rgb(255 255 255 / 0.08);
+  transition: background-color 300ms ease, border-color 300ms ease;
+}
+@media (min-width: 1024px) { .card { min-height: 340px; padding: 36px; } }
+.card:hover { background: rgb(255 255 255 / 0.07); border-color: rgb(255 255 255 / 0.14); }
+
+/* Large faint mark in the top-right corner, partly cropped by the card edge. */
+.watermark {
+  position: absolute;
+  top: -28px;
+  right: -28px;
+  width: 210px;
+  height: 210px;
+  color: rgb(255 255 255 / 0.05);
+  pointer-events: none;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1), color 300ms ease;
+}
+@media (min-width: 1024px) { .watermark { width: 260px; height: 260px; } }
+.card:hover .watermark { transform: rotate(-6deg) scale(1.04); color: rgb(255 255 255 / 0.07); }
+
+.brand { position: relative; display: inline-flex; align-items: center; gap: 12px; }
+.brandMark { width: 30px; height: 30px; color: #fff; }
+.brandName { font-size: 1.375rem; font-weight: 600; letter-spacing: -0.01em; color: #fff; }
+
+.cardText { position: relative; display: grid; gap: 10px; }
+.cardTitle { font-family: var(--font-display); font-size: clamp(1.625rem, 1.2rem + 1.2vw, 2.25rem); line-height: 1.1; letter-spacing: -0.015em; color: #fff; }
+.cardBody { max-width: 46ch; font-size: 1rem; line-height: 1.55; color: rgb(255 255 255 / 0.72); }
+
+.foot { display: flex; flex-direction: column; gap: 18px; margin-top: 32px; padding-top: 24px; border-top: 1px solid rgb(255 255 255 / 0.12); }
+@media (min-width: 1024px) { .foot { flex-direction: row; align-items: center; justify-content: space-between; gap: 40px; } }
+.note { max-width: 70ch; font-size: 0.8125rem; line-height: 1.55; color: rgb(255 255 255 / 0.5); }
+.links { display: flex; flex-shrink: 0; flex-wrap: wrap; gap: 12px 24px; }
+.link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem; font-weight: 600; color: #fff; white-space: nowrap; }
+.link svg { width: 15px; height: 15px; transition: transform 200ms ease; }
+.link:hover svg { transform: translateX(2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .watermark, .link svg { transition: none; }
+}

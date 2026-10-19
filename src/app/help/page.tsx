@@ -16,7 +16,7 @@ export default function HelpIndexPage() {
     <HelpShell>
       <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Help center", path: "/help" }])} />
       <header className="mb-10">
-        <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00795c] mb-3">Help center</p>
+        <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00665A] mb-3">Help center</p>
         <h1 className="text-3xl sm:text-5xl font-fraunces font-normal text-foreground mb-3">
           Set up and run <span className="green-highlight">Aurevia</span>
         </h1>
@@ -45,7 +45,7 @@ export default function HelpIndexPage() {
                       href={`/help/${a.slug}/`}
                       className="group block h-full rounded-2xl border border-border/60 bg-card p-5 transition-colors hover:border-[#00CC99]/60"
                     >
-                      <h3 className="text-base sm:text-lg font-medium text-foreground leading-snug mb-1.5 group-hover:text-[#00795c]">
+                      <h3 className="text-base sm:text-lg font-medium text-foreground leading-snug mb-1.5 group-hover:text-[#00665A]">
                         {a.title}
                       </h3>
                       <p className="text-sm font-normal text-muted-foreground leading-relaxed mb-3">{a.summary}</p>

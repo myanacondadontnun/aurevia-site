@@ -5,7 +5,7 @@
 
 export const SHOPIFY_LISTING_URL = "https://apps.shopify.com/aurevia-io";
 export const SHOPIFY_RATING = 5.0;
-export const SHOPIFY_REVIEW_COUNT = 6;
+export const SHOPIFY_REVIEW_COUNT = 8;
 
 export interface Review {
   id: string;
@@ -63,6 +63,22 @@ export const reviews: Review[] = [
     date: "2026-08-25",
     quote:
       "Aurevia has been a nice time-saver for my store. Having an AI agent handle routine questions means I can spend more time focusing on other parts of the business.",
+  },
+  {
+    id: "lotus-beauty",
+    store: "lotus beauty it",
+    country: "Italy",
+    date: "2026-05-13",
+    quote:
+      "One thing I noticed is that it suggests related products naturally during conversations. We’ve had a few orders with extra items added, which is a nice bonus. Aurevia help increasing order value.",
+  },
+  {
+    id: "pippi-ceramics",
+    store: "Pippi Ceramics",
+    country: "Australia",
+    date: "2026-08-25",
+    quote:
+      "Aurevia has been a useful adidtion to my shopify store. The combination of AI chat, product recommendations and customer assistance makes it a promising tool for improving the shopping experience.",
   },
 ];
 

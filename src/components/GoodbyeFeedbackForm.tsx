@@ -147,7 +147,7 @@ export default function GoodbyeFeedbackForm() {
       <button
         type="submit"
         disabled={!reason || isSubmitting}
-        className="mt-7 flex w-full items-center justify-center gap-2 rounded-xl border border-border/60 px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-[#00CC99]/40 hover:text-[#00795c] disabled:cursor-not-allowed disabled:opacity-50"
+        className="mt-7 flex w-full items-center justify-center gap-2 rounded-xl border border-border/60 px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-[#00CC99]/40 hover:text-[#00665A] disabled:cursor-not-allowed disabled:opacity-50"
       >
         {isSubmitting ? (
           <>

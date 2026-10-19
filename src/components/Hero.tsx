@@ -59,7 +59,7 @@ export default function Hero() {
               <a
                 href="/book-demo/"
                 onClick={() => trackButtonClick("Book a demo", "hero_section")}
-                className="inline-flex min-h-[48px] items-center justify-center whitespace-nowrap rounded-xl border border-border/70 bg-card px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:border-[#00CC99]/60 hover:text-[#00795c] sm:px-8 sm:py-3.5 sm:text-base"
+                className="inline-flex min-h-[48px] items-center justify-center whitespace-nowrap rounded-xl border border-border/70 bg-card px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:border-[#00CC99]/60 hover:text-[#00665A] sm:px-8 sm:py-3.5 sm:text-base"
               >
                 Book a demo
               </a>

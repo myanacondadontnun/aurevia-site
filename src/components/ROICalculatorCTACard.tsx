@@ -86,13 +86,13 @@ export default function ROICalculatorCTACard() {
             preserveAspectRatio="xMidYMid slice"
             aria-hidden
           >
-            <path d="M0 120 Q200 80 400 120 T800 120" stroke="#0b3c2f" strokeWidth="0.6" fill="none" />
-            <path d="M0 200 Q250 160 500 200 T800 200" stroke="#0b3c2f" strokeWidth="0.5" fill="none" />
-            <path d="M0 280 Q150 240 400 280 T800 280" stroke="#0b3c2f" strokeWidth="0.5" fill="none" />
-            <path d="M-50 60 Q100 30 300 60 Q500 90 850 60" stroke="#0b3c2f" strokeWidth="0.4" fill="none" />
-            <path d="M-30 340 Q200 300 450 340 Q650 380 830 340" stroke="#0b3c2f" strokeWidth="0.4" fill="none" />
-            <line x1="0" y1="50" x2="800" y2="50" stroke="#0b3c2f" strokeWidth="0.35" opacity="0.8" />
-            <line x1="0" y1="350" x2="800" y2="350" stroke="#0b3c2f" strokeWidth="0.35" opacity="0.8" />
+            <path d="M0 120 Q200 80 400 120 T800 120" stroke="#00665A" strokeWidth="0.6" fill="none" />
+            <path d="M0 200 Q250 160 500 200 T800 200" stroke="#00665A" strokeWidth="0.5" fill="none" />
+            <path d="M0 280 Q150 240 400 280 T800 280" stroke="#00665A" strokeWidth="0.5" fill="none" />
+            <path d="M-50 60 Q100 30 300 60 Q500 90 850 60" stroke="#00665A" strokeWidth="0.4" fill="none" />
+            <path d="M-30 340 Q200 300 450 340 Q650 380 830 340" stroke="#00665A" strokeWidth="0.4" fill="none" />
+            <line x1="0" y1="50" x2="800" y2="50" stroke="#00665A" strokeWidth="0.35" opacity="0.8" />
+            <line x1="0" y1="350" x2="800" y2="350" stroke="#00665A" strokeWidth="0.35" opacity="0.8" />
           </svg>
           <div className="relative z-10">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-foreground mb-6 sm:mb-8 tracking-tight font-roi">

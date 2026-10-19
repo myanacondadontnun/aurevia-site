@@ -1,0 +1,178 @@
+/* Inbox showcase. Colours are the merchant app's light theme (app-frontend index.css --brand-*), so the replica
+   reads as the real dashboard: bg #f3f6f5, white surfaces, accent #009973, human purple #6d28d9, amber waiting. */
+
+.section {
+  --bg: #f3f6f5;
+  --surface: #ffffff;
+  --hover: #e7ece9;
+  --border: #e5e9e6;
+  --ink: #2d3737;
+  --muted: #6b7573;
+  --accent: #009973;
+  --wash: rgb(0 204 153 / 0.08);
+  --human: #6d28d9;
+  --amber: #d97706;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  background: #fff;
+  padding: 72px 0;
+  color: var(--ink);
+}
+@media (min-width: 1024px) { .section { padding: 112px 0; } }
+
+.head { max-width: 720px; margin: 0 auto 40px; text-align: center; }
+.title { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 1.3rem + 2.6vw, 3.25rem); line-height: 1.06; letter-spacing: -0.02em; }
+.lede { margin: 16px auto 0; max-width: 54ch; font-size: 1.0625rem; line-height: 1.55; color: var(--muted); }
+
+/* ---------- Stage ---------- */
+.stage {
+  position: relative;
+  border-radius: 28px;
+  padding: 16px 12px 12px;
+  background:
+    radial-gradient(90% 70% at 100% 0%, rgb(15 61 48 / 0.12), transparent 60%),
+    var(--bg);
+  border: 1px solid var(--border);
+}
+/* Desktop: the inbox and a phone-sized copy side by side, same height, nothing overlapping. */
+@media (min-width: 1024px) {
+  .stage { display: grid; grid-template-columns: minmax(0, 1fr) 236px; column-gap: 24px; padding: 24px 28px 28px; }
+  .topRow { grid-column: 1 / -1; }
+}
+
+.topRow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; margin-bottom: 14px; }
+.tabs { display: inline-flex; flex-wrap: wrap; gap: 2px; padding: 4px; border-radius: 999px; background: rgb(255 255 255 / 0.6); border: 1px solid var(--border); }
+.tab, .tabOn { padding: 6px 14px; border-radius: 999px; font-size: 0.8125rem; font-weight: 500; color: var(--muted); }
+.tabOn { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgb(15 15 15 / 0.08); }
+.liveLine { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8125rem; color: var(--muted); }
+.liveDot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgb(0 153 115 / 0.15); }
+
+/* The Live tab: session list + thread. */
+.app {
+  display: grid;
+  height: 470px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 30px 60px -36px rgb(15 61 48 / 0.35);
+}
+@media (min-width: 768px) { .app { grid-template-columns: 300px minmax(0, 1fr); } }
+
+.list { display: none; border-right: 1px solid var(--border); overflow: hidden; }
+@media (min-width: 768px) { .list { display: block; } }
+.filters { display: flex; gap: 2px; margin: 12px; padding: 3px; border-radius: 999px; background: var(--bg); }
+.filter, .filterOn { flex: 1; text-align: center; padding: 5px 0; border-radius: 999px; font-size: 0.6875rem; font-weight: 500; color: var(--muted); }
+.filterOn { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgb(15 15 15 / 0.08); }
+
+.row { position: relative; display: flex; align-items: center; gap: 12px; padding: 11px 16px; }
+.rowOn { background: linear-gradient(90deg, var(--wash), transparent); }
+.rowBar { position: absolute; top: 8px; bottom: 8px; left: 0; width: 3px; border-radius: 0 3px 3px 0; background: var(--accent); }
+.rowEnded { opacity: 0.55; }
+.rowText { display: grid; gap: 2px; flex: 1; min-width: 0; }
+.rowTop { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.rowName { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.875rem; font-weight: 500; color: var(--ink); }
+.rowLine { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.6875rem; color: var(--muted); }
+.rowWhen { align-self: flex-start; font-size: 0.625rem; color: var(--muted); }
+.amber { color: var(--amber) !important; }
+
+.avatar { display: grid; place-items: center; border-radius: 50%; color: #fff; font-weight: 600; flex: none; }
+.ring { flex: none; display: inline-flex; border-radius: 50%; transition: box-shadow 300ms ease; }
+.ring_ai { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent); }
+.ring_human { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--human); }
+.ring_waiting { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px #fbbf24, 0 0 14px rgb(251 191 36 / 0.55); }
+.ring_ended { box-shadow: none; }
+
+.tag {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: var(--bg);
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+.tagGlyph { width: 12px; height: 12px; }
+
+/* Thread */
+.thread { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.threadHead { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.threadWho { display: grid; gap: 2px; flex: 1; min-width: 0; }
+.threadName { font-size: 0.875rem; font-weight: 600; color: var(--ink); }
+.state { font-size: 0.6875rem; transition: color 300ms ease; }
+.state_waiting { color: var(--amber); }
+.state_ai { color: var(--accent); }
+.state_human { color: var(--human); }
+
+.take, .back {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+.take svg, .back svg { width: 14px; height: 14px; }
+.take { background: var(--accent); color: #fff; box-shadow: 0 0 0 1px rgb(0 204 153 / 0.35), 0 6px 18px rgb(0 204 153 / 0.3); }
+.back { background: var(--surface); color: var(--ink); border: 1px solid var(--border); }
+.pressed { transform: scale(0.94); opacity: 0.85; }
+
+.messages { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; padding: 16px; }
+.msgRow { display: flex; flex-direction: column; gap: 3px; }
+.left { align-items: flex-start; }
+.right { align-items: flex-end; }
+.bubble { max-width: 78%; padding: 8px 14px; border-radius: 16px; font-size: 0.8125rem; line-height: 1.5; color: var(--ink); }
+@media (min-width: 1024px) { .bubble { max-width: 62%; } }
+.shopper { border: 1px solid var(--border); background: var(--surface); border-bottom-left-radius: 4px; }
+.ai { border: 1px solid rgb(0 153 115 / 0.25); background: var(--wash); border-bottom-right-radius: 4px; }
+.human { border: 1px solid rgb(109 40 217 / 0.25); background: rgb(109 40 217 / 0.1); border-bottom-right-radius: 4px; }
+.by { font-size: 0.625rem; color: var(--muted); }
+.noteRow { display: flex; justify-content: center; }
+.note { padding: 4px 12px; border-radius: 999px; border: 1px dashed var(--border); font-size: 0.625rem; color: var(--muted); }
+.reply { margin: 0 16px 16px; padding: 11px 16px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg); font-size: 0.8125rem; color: var(--muted); }
+
+/* The phone-sized copy of the same chat, in its own column on desktop. */
+.phone { display: none; }
+@media (min-width: 1024px) {
+  .phone {
+    display: flex;
+    flex-direction: column;
+    height: 470px;
+    overflow: hidden;
+    border-radius: 30px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 30px 60px -36px rgb(15 61 48 / 0.35);
+  }
+}
+.phoneHead { display: flex; align-items: center; gap: 10px; padding: 14px 14px 12px; border-bottom: 1px solid var(--border); }
+.phoneName { font-size: 0.8125rem; font-weight: 600; color: var(--ink); }
+.phoneBody { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 12px; }
+.phoneBody .bubble { max-width: 90%; font-size: 0.75rem; }
+.phoneFoot { padding: 0 12px 14px; }
+.phoneFoot .take, .phoneFoot .back { width: 100%; justify-content: center; padding: 10px 14px; }
+
+/* Points */
+/* Four points as an editorial row: a hairline rule over each column, a small number, a Fraunces title and
+   one line under it. No icon tiles. */
+.points { list-style: none; margin: 48px 0 0; padding: 0; display: grid; gap: 28px; }
+@media (min-width: 640px) { .points { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; } }
+@media (min-width: 1024px) { .points { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 72px; } }
+.point { display: grid; gap: 8px; align-content: start; padding-top: 18px; border-top: 1px solid var(--border); }
+.pointNum { font-size: 0.75rem; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: 0.04em; color: var(--accent); }
+.pointTitle { margin-top: 6px; font-family: var(--font-display); font-size: 1.375rem; line-height: 1.22; font-weight: 400; letter-spacing: -0.01em; color: var(--ink); }
+.pointBody { font-size: 0.9375rem; line-height: 1.55; color: var(--muted); }
+
+.enter { animation: enter 320ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes enter { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .enter { animation: none; }
+  .ring, .state, .take, .back { transition: none; }
+}

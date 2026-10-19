@@ -8,7 +8,7 @@
   :root {
     /* Light theme — mirrors the Aurevia app-frontend brand palette
        (bg #f3f6f5 · surface #fff · ink #2d3737 · accent #00cc99). */
-    --background: 160 15% 96%;
+    --background: 160 14% 96%;
     --foreground: 170 22% 10%;
     --card: 0 0% 100%;
     --card-foreground: 170 22% 10%;
@@ -82,7 +82,7 @@
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #0b3c2f 0%, #00CC99 100%);
+    background: linear-gradient(135deg, #00665A 0%, #00CC99 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -93,7 +93,7 @@
   }
 
   .group:hover .group-hover\:gradient-text {
-    background: linear-gradient(135deg, #0b3c2f 0%, #00CC99 100%);
+    background: linear-gradient(135deg, #00665A 0%, #00CC99 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -113,7 +113,7 @@
 
 @layer utilities {
   .text-gradient {
-    background: linear-gradient(135deg, #0b3c2f 0%, #00CC99 100%);
+    background: linear-gradient(135deg, #00665A 0%, #00CC99 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -128,7 +128,7 @@
 
   .green-highlight {
     color: #00CC99;
-    background: linear-gradient(135deg, #00CC99 0%, #009973 100%);
+    background: linear-gradient(135deg, #00CC99 0%, #00665A 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -141,7 +141,7 @@
   .home-seasons .gradient-text,
   .home-seasons .text-gradient,
   .home-seasons [class~='text-[#00CC99]'],
-  .home-seasons [class~='text-[#009973]'] {
+  .home-seasons [class~='text-[#00665A]'] {
     font-family: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
     font-style: italic;
     font-weight: 500;
@@ -325,7 +325,7 @@
   }
 
   .cta-button {
-    background: #00805f !important; /* a step deeper than the app's --brand-accent-strong so white 600 text clears AA */
+    background: #00665A !important; /* brand dark green; white 600 text on it clears AA (about 6.9:1) */
     color: #ffffff !important;
     font-weight: 600;
     position: relative;
@@ -337,7 +337,7 @@
   }
 
   .cta-button:hover {
-    background: #007f60 !important;
+    background: #00574D !important;
     transform: translateY(-1px);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 10px 22px -10px rgba(0, 121, 92, 0.6);
   }
@@ -348,7 +348,7 @@
   }
 
   .cta-button.cta-button--has-swarm:hover {
-    background: linear-gradient(135deg, #00cc99 0%, #00b386 45%, #008566 100%);
+    background: linear-gradient(135deg, #00cc99 0%, #00665A 45%, #00665A 100%);
   }
 
   .cta-button.cta-button--has-swarm::after {
@@ -828,7 +828,7 @@
     position: absolute;
     inset: 0;
     width: 50%;
-    background: linear-gradient(90deg, #0b3c2f, #00CC99);
+    background: linear-gradient(90deg, #00665A, #00CC99);
     border-radius: 2px;
   }
 
@@ -839,7 +839,7 @@
     height: 9px;
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    background: #0b3c2f;
+    background: #00665A;
     box-shadow: 0 0 0 4px hsl(var(--muted));
   }
 
@@ -856,7 +856,7 @@
     height: 32px;
     margin: -16px 0 0 -16px;
     border-radius: 50%;
-    background: #0b3c2f;
+    background: #00665A;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -937,7 +937,7 @@
     width: 48px;
     height: 32px;
     border-radius: 14px 14px 4px 14px;
-    background: #0b3c2f;
+    background: #00665A;
     box-shadow: 0 8px 18px rgba(11, 60, 47, 0.28), 0 2px 5px rgba(15, 15, 15, 0.1);
   }
 
@@ -1235,7 +1235,7 @@
 .chat-demo-switch-active,
 .chat-demo-switch-active:hover {
   color: #ffffff;
-  background: #0b3c2f;
+  background: #00665A;
 }
 
 /* Exact replica of #aurevia-chat-container (400×660, 12px radius, shadow-lg,
@@ -1561,7 +1561,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(160deg, #2D3737 0%, #0F3D30 100%);
+  background-image: linear-gradient(160deg, #2D3737 0%, #00665A 100%);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
@@ -1652,7 +1652,7 @@
   font-weight: 600;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #00795c;
+  color: #00665A;
   background: rgba(0,204,153, 0.1);
   border-bottom: 1px solid rgba(45, 55, 55, 0.06);
 }
@@ -1711,7 +1711,7 @@
   height: 100%;
   width: 72%;
   border-radius: 99px;
-  background: linear-gradient(90deg, #00CC99, #009973);
+  background: linear-gradient(90deg, #00CC99, #00665A);
   animation: chatTrackPulse 2.4s ease-in-out infinite;
 }
 
@@ -2183,7 +2183,7 @@
 .chat-demo-product-added .chat-demo-product-cta {
   background-color: #00cc99;
   border-color: #00cc99;
-  color: #0f3d30;
+  color: #00665A;
   animation: chatPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -2202,7 +2202,7 @@
   font-weight: 600;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #00795c;
+  color: #00665A;
   background: rgba(0, 204, 153, 0.1);
   border-bottom: 1px solid rgba(45, 55, 55, 0.06);
 }
@@ -2243,7 +2243,7 @@
 .chat-demo-compare-price {
   font-size: 12px;
   font-weight: 700;
-  color: #0f3d30;
+  color: #00665A;
 }
 .chat-demo-compare-row {
   display: contents;
@@ -2266,7 +2266,7 @@
   color: #2d3737;
 }
 .chat-demo-compare-win {
-  color: #00795c;
+  color: #00665A;
   font-weight: 700;
   background: rgba(0, 204, 153, 0.08);
   border-radius: 6px;
@@ -2285,7 +2285,7 @@
   flex-shrink: 0;
   padding: 2px 7px;
   border-radius: 999px;
-  background: #0f3d30;
+  background: #00665A;
   color: #fff;
   font-size: 10px;
   font-weight: 700;
@@ -2640,7 +2640,7 @@
   background: rgba(0, 204, 153, 0.08);
   border: 1px solid rgba(0, 204, 153, 0.25);
   font-size: 11.5px;
-  color: #0f3d30;
+  color: #00665A;
   display: flex;
   gap: 8px;
   align-items: flex-start;
@@ -2703,7 +2703,7 @@
   width: 44px;
 }
 .pin-ticks button.is-active::before {
-  background: #00805f;
+  background: #00665A;
 }
 /* Phone mockups are 620px tall; shrink them on short laptop screens so the
    pinned stage never clips. */
@@ -2769,7 +2769,7 @@
   width: 34px;
   height: 34px;
   border-radius: 999px;
-  background: #0b3c2f;
+  background: #00665A;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2975,4 +2975,236 @@
   .demo-msgr-typing span {
     animation: none;
   }
+}
+
+/* ---------- Navbar (components/Navbar.tsx) ----------
+   Floating pill nav. Frosted glass with a soft, deep shadow; one quiet grey capsule glides
+   under whichever link the pointer is on (and stays under an open menu's trigger). Menus rise in softly. */
+
+/* Frosted glass: a light white veil with a strong blur, no edge line; only a soft shadow lifts it. */
+.nav-pill {
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+  box-shadow: 0 14px 36px -18px rgba(16, 40, 34, 0.3);
+}
+
+.nav-links { position: relative; display: flex; align-items: center; gap: 2px; }
+
+.nav-indicator {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 38px;
+  margin-top: -19px;
+  border-radius: 999px;
+  background: rgba(16, 40, 34, 0.06);
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 180ms ease;
+}
+.nav-indicator-on { opacity: 1; }
+
+.nav-link {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: #1d2a27;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.nav-link svg { width: 14px; height: 14px; color: #6b7672; transition: transform 200ms ease; }
+.nav-link[aria-expanded="true"] svg { transform: rotate(180deg); }
+.nav-link:focus-visible { outline: 2px solid #007f68; outline-offset: 2px; }
+
+/* No display here: the markup's hidden / lg:inline-flex decides it. */
+.nav-login {
+  align-items: center;
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1d2a27;
+  white-space: nowrap;
+  transition: background-color 200ms ease;
+}
+.nav-login:hover { background: rgba(16, 40, 34, 0.06); }
+
+.nav-divider { width: 1px; height: 20px; margin: 0 4px; background: rgba(16, 40, 34, 0.12); }
+
+.nav-cta {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 8px 20px -10px rgba(0, 127, 104, 0.7);
+}
+.nav-cta svg { transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1); }
+.nav-cta:hover svg { transform: translateX(3px); }
+
+/* Dropdown panels: float a little under the pill and rise in. */
+.nav-panel {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow:
+    0 0 0 1px rgba(16, 40, 34, 0.06),
+    0 24px 60px -24px rgba(16, 40, 34, 0.3),
+    0 8px 20px -12px rgba(16, 40, 34, 0.12);
+  transform-origin: top center;
+  animation: nav-panel-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes nav-panel-in {
+  from { opacity: 0; transform: translateY(6px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+
+.nav-mobile-menu { animation: nav-panel-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-indicator, .nav-link svg, .nav-cta svg, .nav-login { transition: none; }
+  .nav-panel, .nav-mobile-menu { animation: none; }
+}
+
+/* ---------- Footer (components/Footer.tsx) ----------
+   The hero's warm paper and emerald, bookending the page. The Aurevia ring sits large and still in the
+   bottom-right corner, cropped by both edges. */
+
+.ft-footer {
+  --ft-paper: oklch(97.5% 0.006 95);
+  --ft-paper-deep: oklch(94% 0.014 165);
+  --ft-ink: oklch(23% 0.02 170);
+  --ft-ink-2: oklch(23% 0.02 170 / 0.68);
+  --ft-ink-3: oklch(23% 0.02 170 / 0.5);
+  --ft-rule: oklch(23% 0.02 170 / 0.12);
+  --ft-accent: oklch(52% 0.1 172);
+  --ft-cta: oklch(51% 0.1 172);
+  --ft-cta-hover: oklch(46% 0.09 172);
+  --ft-mark-a: oklch(55% 0.11 172 / 0.22);
+  --ft-mark-b: oklch(70% 0.09 185 / 0.08);
+  --ft-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(180deg, var(--ft-paper) 0%, var(--ft-paper-deep) 100%);
+  color: var(--ft-ink);
+  border-top: 1px solid var(--ft-rule);
+}
+
+.ft-watermark {
+  position: absolute;
+  z-index: -1;
+  right: -240px;
+  bottom: -320px;
+  width: 860px;
+  height: 860px;
+  background: linear-gradient(135deg, var(--ft-mark-a) 0%, var(--ft-mark-b) 100%);
+  -webkit-mask: url("/images/site/mark-ring-watermark.webp") center / contain no-repeat;
+  mask: url("/images/site/mark-ring-watermark.webp") center / contain no-repeat;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+@media (max-width: 767px) { .ft-watermark { width: 520px; height: 520px; right: -200px; bottom: -180px; } }
+
+/* Extra room at the bottom so the last row sits above the floating Ask Aurevia pill (fixed, bottom right). */
+.ft-inner { position: relative; padding-top: 72px; padding-bottom: 104px; }
+@media (min-width: 1024px) { .ft-inner { padding-top: 104px; padding-bottom: 112px; } }
+
+.ft-top { display: grid; gap: 56px; }
+@media (min-width: 1024px) { .ft-top { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; } }
+
+.ft-brand { display: inline-flex; align-items: center; gap: 10px; }
+.ft-brand img { width: 30px; height: 30px; object-fit: contain; }
+.ft-brand-name { font-family: var(--ft-display); font-size: 1.5rem; font-weight: 500; letter-spacing: -0.01em; color: var(--ft-ink); }
+
+.ft-pitch {
+  margin-top: 24px;
+  max-width: 22ch;
+  font-family: var(--ft-display);
+  font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ft-ink);
+}
+.ft-pitch strong { font-weight: 600; color: var(--ft-accent); }
+
+.ft-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.ft-primary, .ft-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+.ft-primary { background: var(--ft-cta); color: #fff; }
+.ft-primary:hover { background: var(--ft-cta-hover); }
+.ft-primary svg { width: 16px; height: 16px; transition: transform 200ms ease; }
+.ft-primary:hover svg { transform: translateX(3px); }
+.ft-secondary { border: 1px solid oklch(56% 0.012 160); color: var(--ft-ink); background: oklch(100% 0 0 / 0.6); }
+.ft-secondary:hover { border-color: oklch(40% 0.012 160); background: #fff; }
+.ft-primary:focus-visible, .ft-secondary:focus-visible, .ft-link:focus-visible { outline: 2px solid var(--ft-accent); outline-offset: 3px; }
+
+.ft-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 24px; }
+@media (min-width: 768px) { .ft-cols { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.ft-col-head { margin-bottom: 16px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ft-ink-3); }
+.ft-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.ft-link {
+  display: inline-block;
+  font-size: 0.9375rem;
+  color: var(--ft-ink-2);
+  text-align: left;
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+.ft-link:hover { color: var(--ft-ink); }
+
+.ft-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 72px;
+  padding-top: 24px;
+  border-top: 1px solid var(--ft-rule);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ft-ink-3);
+}
+@media (min-width: 1024px) { .ft-bottom { flex-direction: row; align-items: flex-end; justify-content: space-between; margin-top: 104px; } }
+.ft-legal { display: grid; gap: 4px; }
+.ft-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; }
+.ft-meta a { color: var(--ft-ink-2); transition: color 200ms ease; }
+.ft-meta a:hover { color: var(--ft-ink); }
+.ft-socials { display: inline-flex; gap: 8px; }
+.ft-meta a.ft-social {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--ft-rule);
+  background: oklch(100% 0 0 / 0.55);
+  color: var(--ft-ink-2);
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.ft-meta a.ft-social:hover { background: #fff; color: var(--ft-ink); border-color: oklch(23% 0.02 170 / 0.22); }
+.ft-meta a.ft-social:focus-visible { outline: 2px solid var(--ft-accent); outline-offset: 2px; }
+.ft-social svg { width: 16px; height: 16px; }
+.ft-studio { font-family: var(--ft-display); text-decoration: underline; text-underline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ft-primary, .ft-primary svg, .ft-secondary, .ft-link, .ft-meta a { transition: none; }
 }

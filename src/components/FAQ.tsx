@@ -193,7 +193,7 @@ export default function FAQ() {
             <button
               type="button"
               onClick={() => setShowAllAtOnce(true)}
-              className="mt-5 text-sm font-medium text-[#00795c] underline-offset-4 hover:text-[#00CC99] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-400"
+              className="mt-5 text-sm font-medium text-[#00665A] underline-offset-4 hover:text-[#00CC99] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-400"
             >
               Show all questions and answers at once
             </button>

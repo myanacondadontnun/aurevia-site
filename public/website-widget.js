@@ -145,8 +145,8 @@
         '  position: fixed; bottom: calc(20px + env(safe-area-inset-bottom, 0px));\n' +
         '  right: calc(20px + env(safe-area-inset-right, 0px));\n' +
         '  height: 52px; max-width: min(280px, calc(100vw - 40px));\n' +
-        '  border-radius: 999px; padding: 0 18px 0 6px;\n' +
-        '  display: inline-flex; align-items: center; gap: 4px;\n' +
+        '  border-radius: 999px; padding: 0 20px 0 7px;\n' +
+        '  display: inline-flex; align-items: center; gap: 6px;\n' +
         '  background-color: #FFFFFF;\n' +
         '  background-image: linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 80%, #DFFBF0 100%);\n' +
         '  border: none; cursor: pointer; z-index: 2147483000;\n' +
@@ -164,7 +164,8 @@
         '  animation: aureviaSiteBubblePulse 3.2s var(--aurevia-ease-in-out) infinite;\n' +
         '}\n' +
         '@keyframes aureviaSiteBubblePulse { 0%,100% { transform: scale(0.85); opacity: 0; } 35% { opacity: 0.6; } 70% { transform: scale(1.65); opacity: 0; } }\n' +
-        '.aurevia-site-bubble-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }\n' +
+        /* Icon sits on its own white disc, same as the Shopify widget's labelled pill launcher */
+        '.aurevia-site-bubble-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 50%; background: #FFFFFF; border: 1px solid rgba(15,15,15,0.06); box-shadow: 0 2px 4px rgba(15,15,15,0.08), 0 6px 12px rgba(15,15,15,0.10); }\n' +
         '.aurevia-site-bubble-label { font-size: 12.5px; font-weight: 300; color: rgba(45,55,55,0.5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; font-family: inherit; }\n' +
 
         /* Two-layer mark: spinning/breathing outer ring, static glyph */
@@ -375,7 +376,7 @@
         bubble.type = 'button';
         bubble.setAttribute('aria-label', 'Open Aurevia chat');
         bubble.innerHTML =
-            '<span class="aurevia-site-bubble-icon">' + this.markHtml(32, true) + '</span>' +
+            '<span class="aurevia-site-bubble-icon">' + this.markHtml(26, true) + '</span>' +
             '<span class="aurevia-site-bubble-label">Ask Aurevia anything…</span>';
         document.body.appendChild(bubble);
         this.bubble = bubble;
