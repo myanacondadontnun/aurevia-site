@@ -82,7 +82,7 @@
 .title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(2.75rem, 1.4rem + 5vw, 6rem);
+  font-size: clamp(2.5rem, 1.3rem + 4vw, 4.75rem);
   line-height: 1;
   letter-spacing: -0.035em;
   color: var(--color-ink);
@@ -91,7 +91,58 @@
 }
 /* globals.css puts the body font on every span; the headline's words keep Fraunces. */
 .word { display: inline-block; white-space: pre; font-family: var(--font-display); animation: fade var(--dur-fade) var(--ease-out) both; }
-.accent { font-weight: 600; color: var(--color-accent); }
+.accent { color: var(--color-accent); }
+.accentLine { display: block; }
+
+/* Eyebrow: a frosted pill with a hairline emerald edge that a soft sheen crosses once. Inside: the Aurevia ring
+   turning slowly in its own white disc, "AI sales agent", a small dot, then Shopify's bag and "for Shopify stores". */
+.eyebrow {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: var(--space-lg);
+  padding: 5px 16px 5px 5px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(oklch(100% 0 0 / 0.78), oklch(100% 0 0 / 0.78)) padding-box,
+    linear-gradient(120deg, oklch(64% 0.13 170 / 0.55), oklch(64% 0.13 170 / 0.08) 45%, oklch(64% 0.13 170 / 0.35)) border-box;
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: 0 12px 30px -18px oklch(40% 0.09 172 / 0.55);
+  overflow: hidden;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.eyebrow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, oklch(100% 0 0 / 0.75) 50%, transparent 70%);
+  transform: translateX(-120%);
+  animation: sheen 1600ms var(--ease-out) 900ms both;
+  pointer-events: none;
+}
+@keyframes sheen { to { transform: translateX(120%); } }
+.eyebrowMark {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 1px oklch(23% 0.02 170 / 0.06), 0 4px 10px -4px oklch(40% 0.09 172 / 0.45);
+}
+.eyebrowMark img { width: 18px; height: 18px; animation: eyebrowSpin 14s linear infinite; }
+@keyframes eyebrowSpin { to { transform: rotate(360deg); } }
+.eyebrowLead { font-family: var(--font-body); font-weight: 600; color: var(--color-ink); }
+.eyebrowRule { width: 4px; height: 4px; border-radius: 50%; background: oklch(23% 0.02 170 / 0.35); }
+.eyebrowTail { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-body); font-weight: 500; color: var(--color-ink-2); }
+.eyebrowShopifyWrap { display: inline-flex; }
+.eyebrowShopify { width: 13px; height: 13px; }
 
 .lede { margin-top: var(--space-lg); max-width: 34rem; font-size: 1.125rem; line-height: 1.6; color: var(--color-ink-2); }
 @media (min-width: 1024px) { .lede { font-size: 1.1875rem; } }
@@ -186,6 +237,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .word, .fade, .fadeLate { animation: none; }
+  .word, .fade, .fadeLate, .eyebrow::after, .eyebrowMark img { animation: none; }
   .primary, .primary svg, .secondary { transition: none; }
 }

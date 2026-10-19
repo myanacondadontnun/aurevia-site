@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BookOpen, Search, ShoppingBag, Star, type LucideIcon } from "lucide-react";
+import { ShopifyLogo } from "@/components/BrandLogos";
 import { SHOPIFY_LISTING_URL, SHOPIFY_RATING, SHOPIFY_REVIEW_COUNT } from "@/lib/reviews";
 import { trackButtonClick } from "@/lib/analytics";
 import { SHOPIFY_APP_URL } from "@/lib/utils";
@@ -273,7 +274,8 @@ function useSpin<T extends HTMLElement>() {
   return ref;
 }
 
-const HEADLINE = ["Turn", "more", "shoppers", "into"];
+const HEADLINE = ["One", "AI", "sales", "agent."];
+const ACCENT = ["Every", "channel."];
 
 export default function HomeHero({ photos }: { photos: HeroPhotos }) {
   const { shown, cart, added } = useConversation();
@@ -288,20 +290,39 @@ export default function HomeHero({ photos }: { photos: HeroPhotos }) {
 
       <div className={`container mx-auto px-4 sm:px-6 ${h.inner}`}>
         <div className={h.copy}>
+          <p className={`${h.eyebrow} ${h.fade}`}>
+            <span className={h.eyebrowMark} aria-hidden="true"><img src="/images/site/mark-ring.webp" alt="" /></span>
+            <span className={h.eyebrowLead}>AI sales agent</span>
+            <span className={h.eyebrowRule} aria-hidden="true" />
+            <span className={h.eyebrowTail}>
+              <span aria-hidden="true" className={h.eyebrowShopifyWrap}><ShopifyLogo className={h.eyebrowShopify} /></span>
+              for Shopify stores
+            </span>
+          </p>
+
           <h1 className={h.title}>
             {HEADLINE.map((w, i) => (
               <span key={w} className={h.word} style={{ animationDelay: `${120 + i * 70}ms` }}>
                 {w}{" "}
               </span>
             ))}
-            <span className={`${h.word} ${h.accent}`} style={{ animationDelay: `${120 + HEADLINE.length * 70}ms` }}>
-              customers.
+            {/* The accent line always starts on its own line. */}
+            <span className={h.accentLine}>
+              {ACCENT.map((w, i) => (
+                <span
+                  key={w}
+                  className={`${h.word} ${h.accent}`}
+                  style={{ animationDelay: `${120 + (HEADLINE.length + i) * 70}ms` }}
+                >
+                  {w}{i < ACCENT.length - 1 ? " " : ""}
+                </span>
+              ))}
             </span>
           </h1>
 
           <p className={`${h.lede} ${h.fade}`} style={{ animationDelay: "560ms" }}>
-            Your AI sales agent helps shoppers discover the right products, answers their buying questions and guides
-            them to checkout. 24/7.
+            Store chat, WhatsApp, Instagram DMs and email. It finds shoppers the right products, answers their buying
+            questions and guides them to checkout, 24/7.
           </p>
 
           <div className={`${h.ctas} ${h.fade}`} style={{ animationDelay: "680ms" }}>
