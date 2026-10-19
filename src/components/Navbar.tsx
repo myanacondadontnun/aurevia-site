@@ -285,16 +285,16 @@ export default function Navbar() {
                           role="menuitem"
                           className="group flex items-start gap-4 rounded-xl p-4 hover:bg-muted/60 transition-colors"
                         >
-                          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-muted group-hover:bg-primary/10 transition-colors" aria-hidden="true">
-                            <pillar.icon className="h-5 w-5 text-foreground group-hover:text-[#00CC99] transition-colors" />
+                          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-muted group-hover:bg-[rgb(0_127_104/0.08)] transition-colors" aria-hidden="true">
+                            <pillar.icon className="h-5 w-5 text-foreground group-hover:text-[#00665A] transition-colors" />
                           </span>
                           <span className="min-w-0">
                             <span className="flex items-center gap-2">
-                              <span className="text-base font-medium text-foreground group-hover:text-[#00CC99] transition-colors">
+                              <span className="text-base font-medium text-foreground group-hover:text-[#00665A] transition-colors">
                                 {pillar.title}
                               </span>
                               {pillar.badge && (
-                                <span className="rounded-full bg-primary/12 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#00665A]">
+                                <span className="rounded-full bg-[rgb(0_127_104/0.1)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#00665A]">
                                   {pillar.badge}
                                 </span>
                               )}
@@ -346,10 +346,10 @@ export default function Navbar() {
                                 <Link
                                   href={item.href}
                                   role="menuitem"
-                                  className="flex items-center gap-2.5 text-sm font-medium text-foreground hover:text-[#00CC99] transition-colors group"
+                                  className="flex items-center gap-2.5 text-sm font-medium text-foreground hover:text-[#00665A] transition-colors group"
                                 >
-                                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-muted group-hover:bg-primary/10 transition-colors" aria-hidden="true">
-                                    <item.icon className="h-4 w-4 text-muted-foreground group-hover:text-[#00CC99] transition-colors" />
+                                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-muted group-hover:bg-[rgb(0_127_104/0.08)] transition-colors" aria-hidden="true">
+                                    <item.icon className="h-4 w-4 text-muted-foreground group-hover:text-[#00665A] transition-colors" />
                                   </span>
                                   {item.label}
                                 </Link>
@@ -358,7 +358,7 @@ export default function Navbar() {
                           </ul>
                           <Link
                             href={col.seeAll.href}
-                            className="mt-4 inline-block text-xs font-medium text-[#00CC99] underline underline-offset-4 hover:no-underline"
+                            className="mt-4 inline-block text-xs font-medium text-[#00665A] underline underline-offset-4 hover:no-underline"
                           >
                             {col.seeAll.label} →
                           </Link>
@@ -402,10 +402,10 @@ export default function Navbar() {
                               className="flex items-center gap-3.5 p-3 rounded-lg group hover:bg-muted/50 transition-colors"
                             >
                               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted" aria-hidden="true">
-                                <item.icon className="h-4 w-4 text-muted-foreground group-hover:text-[#00CC99] transition-colors" />
+                                <item.icon className="h-4 w-4 text-muted-foreground group-hover:text-[#00665A] transition-colors" />
                               </span>
                               <div>
-                                <span className="block text-sm font-medium text-foreground group-hover:text-[#00CC99] transition-colors">
+                                <span className="block text-sm font-medium text-foreground group-hover:text-[#00665A] transition-colors">
                                   {item.label}
                                 </span>
                                 <span className="block text-xs text-muted-foreground">{item.desc}</span>
@@ -442,7 +442,7 @@ export default function Navbar() {
             {showHomeCtaSwarm ? (
               <Button
                 asChild
-                className={`nav-cta bg-[#007F68] text-white hover:bg-[#00705c] font-semibold rounded-full transition-all duration-200 flex items-center justify-center gap-2 border-0 flex-shrink-0 h-[42px] ${isScrolled ? "px-4" : "px-5"} text-sm xl:text-[15px]`}
+                className={`nav-cta bg-[var(--au-green)] text-white hover:bg-[var(--au-green-hover)] font-semibold rounded-full transition-all duration-200 flex items-center justify-center gap-2 border-0 flex-shrink-0 h-[42px] ${isScrolled ? "px-4" : "px-5"} text-sm xl:text-[15px]`}
               >
                 <a
                   href={SHOPIFY_APP_URL}
@@ -461,7 +461,7 @@ export default function Navbar() {
             ) : (
               <Button
                 asChild
-                className={`nav-cta bg-[#007F68] text-white hover:bg-[#00705c] font-semibold rounded-full transition-all duration-200 flex items-center gap-2 border-0 flex-shrink-0 h-[42px] ${isScrolled ? "px-4" : "px-5"} text-sm xl:text-[15px]`}
+                className={`nav-cta bg-[var(--au-green)] text-white hover:bg-[var(--au-green-hover)] font-semibold rounded-full transition-all duration-200 flex items-center gap-2 border-0 flex-shrink-0 h-[42px] ${isScrolled ? "px-4" : "px-5"} text-sm xl:text-[15px]`}
               >
                 <a
                   href={SHOPIFY_APP_URL}
@@ -481,7 +481,7 @@ export default function Navbar() {
               aria-label="Toggle menu"
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
-              className="lg:hidden text-foreground hover:text-[#00CC99] transition-colors duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="lg:hidden text-foreground hover:text-[#00665A] transition-colors duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -501,7 +501,7 @@ export default function Navbar() {
                 <button
                   onClick={() => toggleMobileExpanded("platform")}
                   aria-expanded={mobileExpanded === "platform"}
-                  className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm font-medium"
+                  className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#00665A] hover:bg-[rgb(0_127_104/0.08)] transition-all duration-200 rounded-lg text-sm font-medium"
                 >
                   <span className="flex-1 text-left">Platform</span>
                   <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileExpanded === "platform" ? "rotate-180" : ""}`} aria-hidden="true" />
@@ -514,13 +514,13 @@ export default function Navbar() {
                         href={pillar.href}
                         onClick={closeMobileMenu}
                         role="menuitem"
-                        className="flex items-start gap-3 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm font-medium"
+                        className="flex items-start gap-3 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#00665A] hover:bg-[rgb(0_127_104/0.08)] transition-all duration-200 rounded-lg text-sm font-medium"
                       >
                         <pillar.icon className="w-4 h-4 mt-0.5 flex-shrink-0" aria-hidden="true" />
                         <span>
                           <span className="font-medium text-foreground">{pillar.title}</span>
                           {pillar.badge && (
-                            <span className="ml-2 rounded-full bg-primary/12 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-[#00665A]">
+                            <span className="ml-2 rounded-full bg-[rgb(0_127_104/0.1)] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-[#00665A]">
                               {pillar.badge}
                             </span>
                           )}
@@ -536,7 +536,7 @@ export default function Navbar() {
                 <button
                   onClick={() => toggleMobileExpanded("solutions")}
                   aria-expanded={mobileExpanded === "solutions"}
-                  className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm font-medium"
+                  className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#00665A] hover:bg-[rgb(0_127_104/0.08)] transition-all duration-200 rounded-lg text-sm font-medium"
                 >
                   <span className="flex-1 text-left">Solutions</span>
                   <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileExpanded === "solutions" ? "rotate-180" : ""}`} aria-hidden="true" />
@@ -557,7 +557,7 @@ export default function Navbar() {
                             href={item.href}
                             onClick={closeMobileMenu}
                             role="menuitem"
-                            className="flex items-center gap-2.5 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm font-medium"
+                            className="flex items-center gap-2.5 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#00665A] hover:bg-[rgb(0_127_104/0.08)] transition-all duration-200 rounded-lg text-sm font-medium"
                           >
                             <item.icon className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                             {item.label}
@@ -566,7 +566,7 @@ export default function Navbar() {
                         <Link
                           href={col.seeAll.href}
                           onClick={closeMobileMenu}
-                          className="block pl-6 pr-3 py-2 text-sm font-medium text-[#00CC99] hover:underline"
+                          className="block pl-6 pr-3 py-2 text-sm font-medium text-[#00665A] hover:underline"
                         >
                           {col.seeAll.label} →
                         </Link>
@@ -581,7 +581,7 @@ export default function Navbar() {
                 <button
                   onClick={() => toggleMobileExpanded("resources")}
                   aria-expanded={mobileExpanded === "resources"}
-                  className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm font-medium"
+                  className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#00665A] hover:bg-[rgb(0_127_104/0.08)] transition-all duration-200 rounded-lg text-sm font-medium"
                 >
                   <span className="flex-1 text-left">Resources</span>
                   <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileExpanded === "resources" ? "rotate-180" : ""}`} aria-hidden="true" />
@@ -594,7 +594,7 @@ export default function Navbar() {
                         href={item.href}
                         onClick={closeMobileMenu}
                         role="menuitem"
-                        className="flex items-center gap-2.5 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm font-medium"
+                        className="flex items-center gap-2.5 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#00665A] hover:bg-[rgb(0_127_104/0.08)] transition-all duration-200 rounded-lg text-sm font-medium"
                       >
                         <item.icon className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                         {item.label}
@@ -610,7 +610,7 @@ export default function Navbar() {
                     href={item.href}
                     onClick={closeMobileMenu}
                     role="menuitem"
-                    className="block w-full text-left px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm font-medium"
+                    className="block w-full text-left px-3 py-2.5 text-foreground hover:text-[#00665A] hover:bg-[rgb(0_127_104/0.08)] transition-all duration-200 rounded-lg text-sm font-medium"
                   >
                     {item.label}
                 </Link>
@@ -619,7 +619,7 @@ export default function Navbar() {
                 href="https://app.aurevia.io"
                 onClick={closeMobileMenu}
                 role="menuitem"
-                className="block w-full text-left px-3 py-2.5 text-foreground hover:text-[#00CC99] hover:bg-primary/10 transition-all duration-200 rounded-lg text-sm font-medium"
+                className="block w-full text-left px-3 py-2.5 text-foreground hover:text-[#00665A] hover:bg-[rgb(0_127_104/0.08)] transition-all duration-200 rounded-lg text-sm font-medium"
               >
                 Log in
               </a>

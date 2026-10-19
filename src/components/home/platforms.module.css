@@ -2,16 +2,16 @@
    a large faint copy of the mark in the corner, a Fraunces title and one line at the bottom. */
 
 .section {
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
-  background: #10201c;
+  --font-display: var(--au-display);
+  background: var(--au-night);
   color: #fff;
-  padding: 72px 0;
+  padding: var(--au-section-y) 0;
 }
-@media (min-width: 1024px) { .section { padding: 112px 0; } }
+
 
 .head { max-width: 720px; margin: 0 auto 40px; text-align: center; }
 @media (min-width: 1024px) { .head { margin-bottom: 56px; } }
-.title { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 1.3rem + 2.6vw, 3.5rem); line-height: 1.05; letter-spacing: -0.02em; }
+.title { font-family: var(--font-display); font-weight: 400; font-size: var(--au-h2); line-height: 1.05; letter-spacing: -0.02em; }
 .lede { margin-top: 16px; font-size: 1.0625rem; line-height: 1.55; color: rgb(255 255 255 / 0.72); }
 
 .grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
@@ -26,7 +26,7 @@
   gap: 48px;
   min-height: 280px;
   padding: 28px;
-  border-radius: 24px;
+  border-radius: var(--au-r-lg);
   background: rgb(255 255 255 / 0.05);
   border: 1px solid rgb(255 255 255 / 0.08);
   transition: background-color 300ms ease, border-color 300ms ease;

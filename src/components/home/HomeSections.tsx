@@ -10,8 +10,8 @@ import { Bot, Cards, User, WidgetWindow } from "./Widget";
 function SectionHead({ title, lede, center = false, dark = false }: { title: ReactNode; lede?: ReactNode; center?: boolean; dark?: boolean }) {
   return (
     <div className={`max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
-      <h2 className={`font-fraunces font-normal text-3xl sm:text-5xl leading-[1.1] ${dark ? "text-white" : "text-foreground"}`}>{title}</h2>
-      {lede && <p className={`mt-4 text-base sm:text-lg leading-relaxed ${dark ? "text-white/70" : "text-muted-foreground"}`}>{lede}</p>}
+      <h2 className={`au-h2 ${dark ? "text-white" : "text-[color:var(--au-ink)]"}`}>{title}</h2>
+      {lede && <p className={`mt-4 text-base sm:text-lg leading-relaxed ${dark ? "text-white/70" : "text-[color:var(--au-ink-2)]"}`}>{lede}</p>}
     </div>
   );
 }
@@ -404,14 +404,14 @@ const FAQS = [
 
 export function HomeFAQ() {
   return (
-    <section className="bg-white py-20 sm:py-28 px-4 sm:px-6">
+    <section className="bg-[var(--au-white)] py-[var(--au-section-y)] px-4 sm:px-6">
       <JsonLd data={faqJsonLd(FAQS)} />
       <div className="container mx-auto max-w-6xl grid gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:gap-16">
         <div>
           <SectionHead title="Questions merchants ask us" />
           <p className="mt-4 text-muted-foreground">
             Something else?{" "}
-            <a href="/contact/" className="font-semibold text-[#00665A] hover:text-foreground">Talk to us</a>
+            <a href="/contact/" className="font-semibold text-[color:var(--au-green-ink)] hover:text-[color:var(--au-ink)]">Talk to us</a>
           </p>
         </div>
         <div className="border-t border-border">
@@ -436,8 +436,8 @@ export function FinalCTA() {
   // A laptop on a desk showing a store with the Aurevia widget open: the product working while you're away.
   // On desktop the copy sits on the dark green wall to the left; on phones the photo leads and the copy follows.
   return (
-    <section className="px-4 sm:px-6 pb-20 sm:pb-28">
-      <div className="container mx-auto max-w-6xl overflow-hidden rounded-[32px] bg-[#17241f] !p-0 relative lg:h-[560px]">
+    <section className="px-4 sm:px-6 pb-[var(--au-section-y)]">
+      <div className="container mx-auto max-w-6xl overflow-hidden rounded-[var(--au-r-xl)] bg-[#17241f] !p-0 relative lg:h-[560px]">
         <img
           src="/images/site/final-cta-bg.webp"
           alt="A laptop on a desk showing a store with the Aurevia chat open"
@@ -453,7 +453,7 @@ export function FinalCTA() {
           aria-hidden="true"
         />
         <div className="relative px-6 pb-12 pt-9 sm:px-12 sm:pb-16 lg:flex lg:h-full lg:max-w-[560px] lg:flex-col lg:justify-center lg:px-16 lg:py-0">
-          <h2 className="font-fraunces font-normal text-white text-4xl sm:text-6xl leading-[1.05]">
+          <h2 className="au-h2 text-white">
             Put a salesperson on every page
           </h2>
           <p className="mt-5 max-w-md text-base sm:text-lg text-white">
@@ -464,7 +464,7 @@ export function FinalCTA() {
               href={SHOPIFY_APP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[48px] items-center justify-center whitespace-nowrap rounded-full bg-[#007F68] px-7 text-sm sm:text-base font-semibold text-white transition-colors hover:bg-[#00705c]"
+              className="inline-flex min-h-[48px] items-center justify-center whitespace-nowrap rounded-full bg-[var(--au-green)] px-7 text-sm sm:text-base font-semibold text-white transition-colors hover:bg-[var(--au-green-hover)]"
             >
               Start free trial
             </a>

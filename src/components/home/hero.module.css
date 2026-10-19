@@ -10,25 +10,25 @@
   /* ---- tokens: every colour, font and motion value below references these ---- */
   --color-paper: oklch(97.5% 0.006 95);
   --color-paper-deep: oklch(94% 0.014 165);
-  --color-ink: oklch(23% 0.02 170);
-  --color-ink-2: oklch(23% 0.02 170 / 0.72);
-  --color-accent: oklch(52% 0.1 172);
+  --color-ink: var(--au-ink);
+  --color-ink-2: var(--au-ink-2);
+  --color-accent: var(--au-green);
   --color-bloom: oklch(75% 0.11 170 / 0.22);
   --color-bloom-deep: oklch(85% 0.06 190 / 0.45);
   --color-mark-a: oklch(55% 0.11 172 / 0.24);
   --color-mark-b: oklch(70% 0.09 185 / 0.1);
-  --color-cta: oklch(51% 0.1 172);
-  --color-cta-hover: oklch(46% 0.09 172);
+  --color-cta: var(--au-green);
+  --color-cta-hover: var(--au-green-hover);
   --color-cta-glow: oklch(52% 0.1 172 / 0.35);
   --color-cta-ink: oklch(99% 0.005 95);
   --color-ghost: oklch(100% 0 0 / 0.6);
   --color-ghost-hover: oklch(100% 0 0 / 0.9);
   --color-outline: oklch(56% 0.012 160);
   --color-outline-hover: oklch(40% 0.012 160);
-  --color-focus: oklch(52% 0.1 172);
-  --color-rule: oklch(23% 0.02 170 / 0.14);
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
-  --font-body: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --color-focus: var(--au-green);
+  --color-rule: var(--au-rule);
+  --font-display: var(--au-display);
+  --font-body: var(--au-body);
   --space-xs: 8px; --space-sm: 12px; --space-lg: 24px; --space-xl: 36px; --space-2xl: 56px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fade: 900ms;
@@ -82,7 +82,7 @@
 .title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(2.5rem, 1.3rem + 4vw, 4.75rem);
+  font-size: var(--au-h1);
   line-height: 1;
   letter-spacing: -0.035em;
   color: var(--color-ink);

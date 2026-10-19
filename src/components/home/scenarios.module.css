@@ -4,28 +4,28 @@
  * behind it and the full-size Aurevia widget (or the channel threads) as the subject. No redrawn storefront UI. */
 
 .section {
-  --paper: oklch(96.8% 0.006 95);
-  --surface: oklch(93.6% 0.009 95);
-  --white: oklch(99.4% 0.002 95);
-  --ink: oklch(30% 0.013 190);
-  --ink-2: oklch(48% 0.012 190);
-  --ink-3: oklch(62% 0.01 190);
-  --rule: oklch(88% 0.007 95);
-  --accent: oklch(52% 0.1 170);
-  --accent-soft: oklch(52% 0.1 170 / 0.12);
+  --paper: var(--au-paper);
+  --surface: var(--au-paper-2);
+  --white: var(--au-white);
+  --ink: var(--au-ink);
+  --ink-2: var(--au-ink-2);
+  --ink-3: var(--au-ink-3);
+  --rule: var(--au-rule);
+  --accent: var(--au-green);
+  --accent-soft: var(--au-green-wash);
   --shade: oklch(18% 0.012 190);
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
-  --font-body: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--au-display);
+  --font-body: var(--au-body);
   --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 32px; --space-2xl: 48px; --space-3xl: 72px;
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: var(--au-ease);
   --dur: 320ms;
 
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
-  padding: var(--space-3xl) 0;
+  padding: var(--au-section-y) 0;
 }
-@media (min-width: 1024px) { .section { padding: 104px 0 112px; } }
+
 
 /* One section headline above both columns. */
 .head { display: grid; gap: var(--space-md); max-width: 720px; margin-bottom: var(--space-2xl); }
@@ -33,7 +33,7 @@
 .title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(2rem, 1.3rem + 2.6vw, 3.5rem);
+  font-size: var(--au-h2);
   line-height: 1.04;
   letter-spacing: -0.025em;
   overflow-wrap: anywhere;
@@ -139,7 +139,7 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  border-radius: 28px;
+  border-radius: var(--au-r-xl);
   background:
     radial-gradient(120% 90% at 18% 22%, rgb(255 255 255 / 0.38), transparent 60%),
     linear-gradient(135deg, var(--tint-a), var(--tint-b));

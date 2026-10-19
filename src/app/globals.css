@@ -3078,18 +3078,18 @@
    bottom-right corner, cropped by both edges. */
 
 .ft-footer {
-  --ft-paper: oklch(97.5% 0.006 95);
-  --ft-paper-deep: oklch(94% 0.014 165);
-  --ft-ink: oklch(23% 0.02 170);
-  --ft-ink-2: oklch(23% 0.02 170 / 0.68);
-  --ft-ink-3: oklch(23% 0.02 170 / 0.5);
-  --ft-rule: oklch(23% 0.02 170 / 0.12);
-  --ft-accent: oklch(52% 0.1 172);
-  --ft-cta: oklch(51% 0.1 172);
-  --ft-cta-hover: oklch(46% 0.09 172);
+  --ft-paper: var(--au-paper);
+  --ft-paper-deep: var(--au-paper-2);
+  --ft-ink: var(--au-ink);
+  --ft-ink-2: var(--au-ink-2);
+  --ft-ink-3: var(--au-ink-3);
+  --ft-rule: var(--au-rule);
+  --ft-accent: var(--au-green-ink);
+  --ft-cta: var(--au-green);
+  --ft-cta-hover: var(--au-green-hover);
   --ft-mark-a: oklch(55% 0.11 172 / 0.22);
   --ft-mark-b: oklch(70% 0.09 185 / 0.08);
-  --ft-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --ft-display: var(--au-display);
 
   position: relative;
   overflow: hidden;
@@ -3207,4 +3207,60 @@
 
 @media (prefers-reduced-motion: reduce) {
   .ft-primary, .ft-primary svg, .ft-secondary, .ft-link, .ft-meta a { transition: none; }
+}
+
+/* ---------- Aurevia site tokens (design.md) ----------
+   The one source for colour, type, space, shape, elevation and motion. Section modules map to these. */
+:root {
+  --au-paper: #f7f6f2;
+  --au-paper-2: #eef3f0;
+  --au-white: #ffffff;
+  --au-night: #10201c;
+  --au-ink: #17201e;
+  --au-ink-2: rgb(23 32 30 / 0.68);
+  --au-ink-3: rgb(23 32 30 / 0.46);
+  --au-rule: rgb(23 32 30 / 0.12);
+  --au-green: #007f68;
+  --au-green-hover: #006b58;
+  --au-green-ink: #00665a;
+  --au-green-bright: #00a888;
+  --au-green-wash: rgb(0 127 104 / 0.08);
+  --au-on-night: #ffffff;
+  --au-on-night-2: rgb(255 255 255 / 0.68);
+  --au-on-night-rule: rgb(255 255 255 / 0.12);
+  --au-star: #f5b301;
+
+  --au-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --au-body: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --au-h1: clamp(2.5rem, 1.3rem + 4vw, 4.75rem);
+  --au-h2: clamp(2rem, 1.3rem + 2.6vw, 3.25rem);
+  --au-h3: clamp(1.375rem, 1.15rem + 0.8vw, 1.75rem);
+
+  --au-section-y: 72px;
+  --au-head-gap: 40px;
+
+  --au-r-sm: 10px;
+  --au-r-md: 16px;
+  --au-r-lg: 24px;
+  --au-r-xl: 32px;
+  --au-r-pill: 999px;
+
+  --au-shadow-1: 0 0 0 1px rgb(16 40 34 / 0.05), 0 18px 40px -26px rgb(16 40 34 / 0.35);
+  --au-shadow-2: 0 0 0 1px rgb(16 40 34 / 0.05), 0 40px 80px -40px rgb(16 40 34 / 0.4);
+
+  --au-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --au-dur-hover: 200ms;
+  --au-dur-enter: 420ms;
+}
+@media (min-width: 1024px) {
+  :root { --au-section-y: 112px; --au-head-gap: 56px; }
+}
+
+/* The one section heading style (Tailwind sections use this class; modules use the tokens directly). */
+.au-h2 {
+  font-family: var(--au-display);
+  font-weight: 400;
+  font-size: var(--au-h2);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
 }

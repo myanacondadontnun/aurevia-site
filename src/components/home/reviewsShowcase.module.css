@@ -2,21 +2,21 @@
    Light band between two dark ones (pain points above, Ask Aurevia below). No cards. */
 
 .section {
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
-  --ink: #17201e;
-  --muted: #5d6865;
-  --rule: rgb(23 32 30 / 0.12);
-  --accent: #00665a;
-  --star: #f5b301;
-  background: #f3f6f5;
+  --font-display: var(--au-display);
+  --ink: var(--au-ink);
+  --muted: var(--au-ink-2);
+  --rule: var(--au-rule);
+  --accent: var(--au-green-ink);
+  --star: var(--au-star);
+  background: var(--au-paper);
   color: var(--ink);
-  padding: 72px 0;
+  padding: var(--au-section-y) 0;
 }
-@media (min-width: 1024px) { .section { padding: 112px 0 104px; } }
+
 
 .top { display: flex; flex-direction: column; gap: 24px; }
 @media (min-width: 768px) { .top { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
-.title { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 1.3rem + 2.6vw, 3.25rem); line-height: 1.06; letter-spacing: -0.02em; }
+.title { font-family: var(--font-display); font-weight: 400; font-size: var(--au-h2); line-height: 1.05; letter-spacing: -0.02em; }
 
 .rating { display: inline-flex; align-items: center; gap: 14px; align-self: flex-start; color: var(--ink); }
 @media (min-width: 768px) { .rating { align-self: auto; } }

@@ -3,21 +3,21 @@
  * Each row fades in once on scroll and its complaint then dims, so the answer reads as the last word. */
 
 .section {
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
-  --ink: #fff;
-  --muted: rgb(255 255 255 / 0.66);
-  --rule: rgb(255 255 255 / 0.12);
+  --font-display: var(--au-display);
+  --ink: var(--au-on-night);
+  --muted: var(--au-on-night-2);
+  --rule: var(--au-on-night-rule);
   --amber: #e0a63a;
-  --accent: #00cc99;
-  background: #10201c;
+  --accent: var(--au-green-bright);
+  background: var(--au-night);
   color: var(--ink);
-  padding: 72px 0;
+  padding: var(--au-section-y) 0;
 }
-@media (min-width: 1024px) { .section { padding: 112px 0; } }
+
 
 .head { max-width: 720px; margin-bottom: 40px; }
 @media (min-width: 1024px) { .head { margin-bottom: 56px; } }
-.title { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 1.3rem + 2.6vw, 3.25rem); line-height: 1.06; letter-spacing: -0.02em; color: var(--ink); }
+.title { font-family: var(--font-display); font-weight: 400; font-size: var(--au-h2); line-height: 1.05; letter-spacing: -0.02em; color: var(--ink); }
 .lede { margin-top: 16px; max-width: 54ch; font-size: 1.0625rem; line-height: 1.55; color: var(--muted); }
 
 /* Column heads, once. */

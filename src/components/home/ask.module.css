@@ -2,16 +2,16 @@
    right (stacked above the replica on phones). */
 
 .section {
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
-  background: #10201c;
+  --font-display: var(--au-display);
+  background: var(--au-night);
   color: #fff;
-  padding: 72px 0;
+  padding: var(--au-section-y) 0;
 }
-@media (min-width: 1024px) { .section { padding: 112px 0; } }
+
 
 .head { max-width: 920px; margin: 0 auto 40px; text-align: center; }
 @media (min-width: 1024px) { .head { margin-bottom: 56px; } }
-.title { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 1.3rem + 2.6vw, 3.25rem); line-height: 1.06; letter-spacing: -0.02em; color: #fff; }
+.title { font-family: var(--font-display); font-weight: 400; font-size: var(--au-h2); line-height: 1.05; letter-spacing: -0.02em; color: var(--au-on-night); }
 .lede { margin: 16px auto 0; max-width: 60ch; font-size: 1.0625rem; line-height: 1.55; color: rgb(255 255 255 / 0.72); }
 
 .grid { display: grid; gap: 20px; }

@@ -47,7 +47,7 @@ export default function Channels() {
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
         <div className="text-center mb-10 sm:mb-14">
           <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00665A] mb-3">Channels</p>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-fraunces font-normal mb-3 sm:mb-4 text-foreground">
+          <h2 className="au-h2 mb-3 sm:mb-4 text-[color:var(--au-ink)]">
             One agent, <span className="green-highlight font-fraunces font-normal">wherever they message</span>
           </h2>
           <p className="text-sm sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
