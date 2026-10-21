@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import HelpShell from "@/components/help/HelpShell";
 import { HELP_CATEGORIES, helpArticles } from "@/lib/help-articles";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/schema";
+import d from "@/components/help/docs.module.css";
 
 export const metadata: Metadata = {
-  title: "Help Centre | Aurevia",
+  title: "Documentation | Aurevia",
   description: "Setup and how-to guides for Aurevia: install the widget, train the AI, take over chats, cart recovery, channels, team and billing.",
   alternates: { canonical: "/help" },
 };
@@ -14,42 +16,37 @@ export const metadata: Metadata = {
 export default function HelpIndexPage() {
   return (
     <HelpShell>
-      <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Help center", path: "/help" }])} />
-      <header className="mb-10">
-        <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00665A] mb-3">Help centre</p>
-        <h1 className="text-3xl sm:text-5xl font-fraunces font-normal text-foreground mb-3">
-          Set up and run <span className="green-highlight">Aurevia</span>
-        </h1>
-        <p className="text-sm sm:text-lg font-normal text-muted-foreground max-w-2xl">
+      <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Documentation", path: "/help" }])} />
+      <header className={d.head}>
+        <h1 className={d.title}>Documentation</h1>
+        <p className={d.lede}>
           Short, step-by-step guides for everything in the merchant app. If something isn&rsquo;t covered,{" "}
-          <Link href="/contact" className="text-[#00CC99] hover:underline">
-            contact us
+          <Link href="/contact/" className={d.inlineLink}>
+            tell us
           </Link>{" "}
           and we&rsquo;ll answer and add it here.
         </p>
       </header>
 
-      <div className="space-y-12">
+      <div className={d.groups}>
         {HELP_CATEGORIES.map((category) => {
           const articles = helpArticles.filter((a) => a.category === category);
           if (articles.length === 0) return null;
           return (
             <section key={category} aria-labelledby={`help-${category}`}>
-              <h2 id={`help-${category}`} className="text-xs font-semibold tracking-[0.16em] uppercase text-muted-foreground mb-4">
+              <h2 id={`help-${category}`} className={d.eyebrow}>
                 {category}
               </h2>
-              <ul className="grid gap-3 sm:grid-cols-2">
+              <ul className={d.cards}>
                 {articles.map((a) => (
                   <li key={a.slug}>
-                    <Link
-                      href={`/help/${a.slug}/`}
-                      className="group block h-full rounded-2xl border border-border/60 bg-card p-5 transition-colors hover:border-[#00CC99]/60"
-                    >
-                      <h3 className="text-base sm:text-lg font-medium text-foreground leading-snug mb-1.5 group-hover:text-[#00665A]">
-                        {a.title}
+                    <Link href={`/help/${a.slug}/`} className={d.card}>
+                      <h3 className={d.cardTitle}>
+                        <span>{a.title}</span>
+                        <ArrowRight aria-hidden="true" />
                       </h3>
-                      <p className="text-sm font-normal text-muted-foreground leading-relaxed mb-3">{a.summary}</p>
-                      <span className="text-xs text-muted-foreground">{a.minutes} min read</span>
+                      <p className={d.cardSummary}>{a.summary}</p>
+                      <span className={d.cardMeta}>{a.minutes} min read</span>
                     </Link>
                   </li>
                 ))}

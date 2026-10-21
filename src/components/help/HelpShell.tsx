@@ -1,18 +1,24 @@
 import type { ReactNode } from "react";
-import PageLayout from "@/components/PageLayout";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import HelpSidebar from "./HelpSidebar";
+import d from "./docs.module.css";
 
-/** Three-column docs frame: contents rail, document, optional on-this-page rail. */
+/** Documentation frame: contents rail, the guide, and an optional "On this page" rail, on paper. */
 export default function HelpShell({ children, aside }: { children: ReactNode; aside?: ReactNode }) {
   return (
-    <PageLayout>
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="lg:grid lg:grid-cols-[240px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)_200px] lg:gap-10 xl:gap-12">
-          <HelpSidebar />
-          <div className="min-w-0">{children}</div>
-          {aside ? <div className="min-w-0">{aside}</div> : <div className="hidden xl:block" />}
+    <div className={d.page}>
+      <Navbar />
+      <main id="main-content" className={d.main}>
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+          <div className={d.frame}>
+            <HelpSidebar />
+            <div className={d.body}>{children}</div>
+            {aside ?? <div />}
+          </div>
         </div>
-      </div>
-    </PageLayout>
+      </main>
+      <Footer />
+    </div>
   );
 }

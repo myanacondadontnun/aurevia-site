@@ -14,6 +14,10 @@
 /resources/docs /help/ 301
 /resources/docs/* /help/ 301
 
+# AI agent comparisons page removed (2026-10-22).
+/resources/ai-comparisons /why-aurevia/ 301
+/resources/ai-comparisons/* /why-aurevia/ 301
+
 # Consolidated / retired pages (site audit 2026-09-26).
 /products/analytics /products/roi-tracking/ 301
 /products/analytics/* /products/roi-tracking/ 301

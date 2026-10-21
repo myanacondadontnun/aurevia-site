@@ -1,4 +1,5 @@
-import type { CSSProperties } from "react";
+import { useId, type CSSProperties } from "react";
+import { GmailLogo, ShopifyMark } from "@/components/BrandLogos";
 import { Mail, Store } from "lucide-react";
 
 /* Channel marks, matching the merchant app's Settings → Channels badges. lucide
@@ -47,5 +48,30 @@ export function ChannelBadge({ kind, className = "h-11 w-11 rounded-xl" }: { kin
       {kind === "email" && <Mail className="h-1/2 w-1/2" strokeWidth={2} />}
       {kind === "store" && <Store className="h-1/2 w-1/2" strokeWidth={2} />}
     </span>
+  );
+}
+
+/** A channel's own mark, flat and in its brand colours, with no tile: Shopify's bag for the store, WhatsApp's glyph,
+    Instagram's glyph in its gradient, and Gmail's logo for email. */
+export function ChannelMark({ kind, className }: { kind: ChannelKind; className?: string }) {
+  const id = useId();
+  if (kind === "store") return <ShopifyMark className={className} />;
+  if (kind === "email") return <GmailLogo className={className} />;
+  if (kind === "whatsapp") return <WhatsAppGlyph className={className} />;
+  return (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="2.1" aria-hidden="true" className={className} stroke={`url(#${id})`}>
+      <defs>
+        <linearGradient id={id} x1="2" y1="22" x2="22" y2="2" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#feda75" />
+          <stop offset="0.3" stopColor="#fa7e1e" />
+          <stop offset="0.55" stopColor="#d62976" />
+          <stop offset="0.8" stopColor="#962fbf" />
+          <stop offset="1" stopColor="#4f5bd5" />
+        </linearGradient>
+      </defs>
+      <rect x="2.75" y="2.75" width="18.5" height="18.5" rx="5.25" />
+      <circle cx="12" cy="12" r="4.25" />
+      <circle cx="17.4" cy="6.6" r="1.2" fill={`url(#${id})`} stroke="none" />
+    </svg>
   );
 }

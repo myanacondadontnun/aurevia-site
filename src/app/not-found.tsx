@@ -1,66 +1,76 @@
 import Link from "next/link";
-import { ArrowRight, Search } from "lucide-react";
-import PageLayout from "@/components/PageLayout";
-import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import HeroWatermark from "@/components/home/HeroWatermark";
+import h from "@/components/home/hero.module.css";
+import n from "./notFound.module.css";
 
-const helpfulLinks = [
-  { href: "/why-aurevia", label: "See why Aurevia" },
-  { href: "/solutions", label: "Browse solutions" },
-  { href: "/pricing", label: "See pricing" },
-  { href: "/resources/blogs", label: "Read the blog" },
-  { href: "/contact", label: "Talk to us" },
+/**
+ * 404, on the home hero's canvas: the headline and the two pill buttons on the left; on the right the agent, as a
+ * small glass conversation, answers "where did this page go?" with real pages to try.
+ */
+
+const PAGES = [
+  { href: "/why-aurevia/", label: "Why Aurevia" },
+  { href: "/pricing/", label: "Pricing" },
+  { href: "/channels/store/", label: "Channels" },
+  { href: "/help/", label: "Documentation" },
+  { href: "/resources/blogs/", label: "Blog" },
 ];
 
 export default function NotFound() {
   return (
-    <PageLayout>
-      <section className="gradient-bg">
-        <div className="container mx-auto px-4 sm:px-6 max-w-3xl py-16 sm:py-24 text-center">
-          <p className="font-fraunces italic text-7xl sm:text-8xl text-primary/20 mb-4 select-none" aria-hidden="true">
-            404
-          </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-fraunces font-normal text-foreground mb-4 leading-tight">
-            Even our AI can&apos;t <span className="green-highlight">find this one</span>
-          </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto mb-10">
-            The page you&apos;re looking for doesn&apos;t exist, moved, or never did. Let&apos;s get you back on
-            track.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-14">
-            <Button asChild className="cta-button rounded-xl px-6 py-3 h-auto text-base border-0">
-              <Link href="/">
-                Back to home
-                <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" className="rounded-xl px-6 py-3 h-auto text-base border-border/60">
-              <Link href="/contact">
-                <Search className="w-4 h-4 mr-2" aria-hidden="true" />
-                Talk to a human
-              </Link>
-            </Button>
-          </div>
-
-          <div className="rounded-2xl border border-border/30 bg-card/20 p-6 sm:p-8">
-            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-4">
-              Or try one of these
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              {helpfulLinks.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-border/50 bg-card/30 px-4 py-2 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-[#00CC99]"
-                >
-                  {l.label}
-                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+    <div className={n.page}>
+      <Navbar />
+      <main id="main-content">
+        <section className={h.hero}>
+          <div className={h.grain} aria-hidden="true" />
+          <HeroWatermark />
+          <div className={`container mx-auto max-w-6xl px-4 sm:px-6 ${h.inner} ${n.inner}`}>
+            <div className={h.copy}>
+              <p className={`${n.code} ${h.fade}`}>Error 404</p>
+              <h1 className={`${h.title} ${h.fade} ${n.title}`}>
+                This page doesn&rsquo;t exist.
+                <span className={`${h.accentLine} ${h.accent}`}>Let&rsquo;s get you back.</span>
+              </h1>
+              <p className={`${h.lede} ${h.fade}`} style={{ animationDelay: "120ms" }}>
+                It may have moved, or the link has a typo.
+              </p>
+              <div className={`${h.ctas} ${h.fade}`} style={{ animationDelay: "180ms" }}>
+                <Link href="/" className={h.primary}>
+                  Back to home <ArrowRight aria-hidden="true" />
                 </Link>
-              ))}
+                <Link href="/contact/" className={h.secondary}>
+                  Talk to us
+                </Link>
+              </div>
+            </div>
+
+            <div className={`${h.demo} ${h.fadeLate}`}>
+              <div className={n.chat}>
+                <p className={n.me}>Where did this page go?</p>
+                <div className={n.agentRow}>
+                  <img src="/images/site/mark-ring.webp" alt="" className={n.mark} />
+                  <div className={n.agent}>
+                    <p>I couldn&rsquo;t find it. These pages are all live:</p>
+                    <ul className={n.links}>
+                      {PAGES.map((p) => (
+                        <li key={p.href}>
+                          <Link href={p.href} className={n.link}>
+                            {p.label} <ArrowRight aria-hidden="true" />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </PageLayout>
+        </section>
+      </main>
+      <Footer />
+    </div>
   );
 }

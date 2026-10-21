@@ -14,7 +14,7 @@ const LINKS: FooterLink[] = [
   { label: "Why Aurevia", href: "/why-aurevia/" },
   { label: "Pricing", href: "/pricing/" },
   { label: "Channels", href: "/channels/store/" },
-  { label: "Help centre", href: "/help/" },
+  { label: "Documentation", href: "/help/" },
   { label: "Blogs", href: "/resources/blogs/" },
   { label: "Review My Shopify", href: "/resources/review-my-shopify/" },
   { label: "Partners", href: "/partners/" },

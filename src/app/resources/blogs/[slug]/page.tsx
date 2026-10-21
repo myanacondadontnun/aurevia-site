@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import PageLayout from "@/components/PageLayout";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import BlogArticle from "@/components/BlogArticle";
 import { getAllSlugs, getBlogBySlug } from "@/lib/blog-data";
 import { getBlogPostJsonLd } from "@/lib/blog-schema";
+import b from "@/components/blog/blog.module.css";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -63,7 +65,8 @@ export default async function BlogPostPage({ params }: Props) {
   const jsonLdSchemas = getBlogPostJsonLd(post);
 
   return (
-    <PageLayout>
+    <div className={b.page}>
+      <Navbar />
       {jsonLdSchemas.map((schema, index) => (
         <script
           key={index}
@@ -71,7 +74,10 @@ export default async function BlogPostPage({ params }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
-      <BlogArticle post={post} />
-    </PageLayout>
+      <main id="main-content" className={b.main}>
+        <BlogArticle post={post} />
+      </main>
+      <Footer />
+    </div>
   );
 }

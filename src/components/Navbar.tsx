@@ -3,29 +3,14 @@
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
-  BarChart3,
-  BookOpen,
-  Calculator,
   Check,
   ChevronDown,
-  Handshake,
-  Headset,
-  LifeBuoy,
   Mail,
   Menu,
-  MessageCircle,
-  MessagesSquare,
-  PackagePlus,
-  PieChart,
-  Scale,
-  ShoppingBag,
-  ShoppingCart,
   Store,
-  TrendingUp,
-  UserCheck,
   X,
 } from "lucide-react";
-import { ShopifyMark } from "@/components/BrandLogos";
+import { GmailLogo, ShopifyMark } from "@/components/BrandLogos";
 import { ChannelBadge, InstagramGlyph, WhatsAppGlyph, type ChannelKind } from "@/components/ChannelIcons";
 import { CHANNELS } from "@/lib/channels";
 import { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react";
@@ -35,12 +20,12 @@ import { SHOPIFY_APP_URL } from "@/lib/utils";
 
 // One consolidated Solutions mega-menu: By goal · By industry. (Capabilities live under Platform.)
 const solutionsByGoal = [
-  { label: "Increase sales", href: "/solutions/conversion", desc: "Turn browsing into orders." , Icon: TrendingUp },
-  { label: "Reduce cart abandonment", href: "/products/cart-recovery", desc: "Win carts back in the chat and by email." , Icon: ShoppingCart },
-  { label: "Automate support", href: "/solutions/support", desc: "Answer the routine, hand over the rest." , Icon: MessagesSquare },
-  { label: "Increase AOV", href: "/products/recommendations", desc: "Add-ons and bundles that fit the cart." , Icon: PackagePlus },
-  { label: "Customer insights", href: "/products/roi-tracking", desc: "See what shoppers ask and what sells." , Icon: PieChart },
-  { label: "Qualify leads", href: "/products/lead-qualification", desc: "Capture buying intent from every chat." , Icon: UserCheck },
+  { label: "Increase sales", href: "/solutions/conversion", desc: "Turn browsing into orders." },
+  { label: "Reduce cart abandonment", href: "/products/cart-recovery", desc: "Win carts back in the chat and by email." },
+  { label: "Automate support", href: "/solutions/support", desc: "Answer the routine, hand over the rest." },
+  { label: "Increase AOV", href: "/products/recommendations", desc: "Add-ons and bundles that fit the cart." },
+  { label: "Customer insights", href: "/products/roi-tracking", desc: "See what shoppers ask and what sells." },
+  { label: "Qualify leads", href: "/products/lead-qualification", desc: "Capture buying intent from every chat." },
 ];
 
 const solutionsByIndustry = [
@@ -57,32 +42,31 @@ const platformPillars: {
   desc: string;
   href: string;
   badge?: string;
-  Icon: typeof Store;
 }[] = [
-  { title: "AI sales agent", desc: "Finds the right products and adds them to the cart in the chat.", href: "/products/recommendations" , Icon: ShoppingBag },
-  { title: "Support answers", desc: "Shipping, returns and product questions, answered from your policies.", href: "/products/automated-responses" , Icon: MessageCircle },
-  { title: "Cart recovery", desc: "A nudge in the chat, then a follow-up email once they leave.", href: "/products/cart-recovery" , Icon: ShoppingCart },
-  { title: "Live takeover & tickets", desc: "Step into any chat. Handoffs arrive as tickets with the cart attached.", href: "/products/ticket-management" , Icon: Headset },
-  { title: "Dashboard & ROI", desc: "Revenue the agent influenced, and Ask Aurevia for everything else.", href: "/products/roi-tracking" , Icon: BarChart3 },
+  { title: "AI sales agent", desc: "Finds the right products and adds them to the cart in the chat.", href: "/products/recommendations" },
+  { title: "Support answers", desc: "Shipping, returns and product questions, answered from your policies.", href: "/products/automated-responses" },
+  { title: "Cart recovery", desc: "A nudge in the chat, then a follow-up email once they leave.", href: "/products/cart-recovery" },
+  { title: "Live takeover & tickets", desc: "Step into any chat. Handoffs arrive as tickets with the cart attached.", href: "/products/ticket-management" },
+  { title: "Dashboard & ROI", desc: "Revenue the agent influenced, and Ask Aurevia for everything else.", href: "/products/roi-tracking" },
 ];
 
 const resourcesItems = [
-  { label: "Blogs", href: "/resources/blogs", desc: "Guides on selling more on Shopify.", Icon: BookOpen },
-  { label: "AI agent comparisons", href: "/resources/ai-comparisons", desc: "How AI chat tools for stores compare.", Icon: Scale },
-  { label: "ROI calculator", href: "/resources/roi-calculator", desc: "Estimate what the agent could earn you.", Icon: Calculator },
-  { label: "Help centre", href: "/help", desc: "Setup and how-to guides.", Icon: LifeBuoy },
-  { label: "Partners", href: "/partners", desc: "For agencies, referrers and apps.", Icon: Handshake },
+  { label: "Blogs", href: "/resources/blogs", desc: "Guides on selling more on Shopify." },
+  { label: "ROI calculator", href: "/resources/roi-calculator", desc: "Estimate what the agent could earn you." },
+  { label: "Documentation", href: "/help", desc: "Setup and how-to guides." },
+  { label: "Partners", href: "/partners", desc: "For agencies and referrers." },
 ];
 
 const navigationLinks: { label: string; href: string }[] = [
   { label: "Pricing", href: "/pricing" },
 ];
 
-/** A channel's logo on a small white app tile, in the channel's own colour. */
+/** A channel as a small flat app icon: the brand's own fill and glyph (Shopify's bag for the store, Gmail's logo on
+    white for email). */
 function ChannelTile({ kind, small = false }: { kind: ChannelKind; small?: boolean }) {
   return (
     <span className={`nav-channel-tile nav-channel-tile-${kind} ${small ? "nav-channel-tile-sm" : ""}`} aria-hidden="true">
-      {kind === "whatsapp" ? <WhatsAppGlyph /> : kind === "instagram" ? <InstagramGlyph /> : kind === "email" ? <Mail /> : <Store />}
+      {kind === "whatsapp" ? <WhatsAppGlyph /> : kind === "instagram" ? <InstagramGlyph /> : kind === "email" ? <GmailLogo /> : <ShopifyMark />}
     </span>
   );
 }
@@ -263,9 +247,8 @@ export default function Navbar() {
                     <div className="nav-panel nav-menu nav-platform">
                       <div className="nav-platform-main">
                         <div className="nav-platform-list">
-                          {platformPillars.map(({ title, desc, href, badge, Icon }) => (
-                            <Link key={title} href={href} role="menuitem" className="nav-item nav-channel">
-                              <span className="nav-icon" aria-hidden="true"><Icon /></span>
+                          {platformPillars.map(({ title, desc, href, badge }) => (
+                            <Link key={title} href={href} role="menuitem" className="nav-item nav-plain">
                               <span className="nav-channel-text">
                                 <span className="nav-item-title">
                                   {title}
@@ -399,9 +382,8 @@ export default function Navbar() {
                     <div className="nav-panel nav-menu nav-solutions">
                       <div className="nav-solutions-col">
                         <p className="nav-menu-head">By goal</p>
-                        {solutionsByGoal.map(({ label, href, desc, Icon }) => (
-                          <Link key={label} href={href} role="menuitem" className="nav-item nav-channel">
-                            <span className="nav-icon" aria-hidden="true"><Icon /></span>
+                        {solutionsByGoal.map(({ label, href, desc }) => (
+                          <Link key={label} href={href} role="menuitem" className="nav-item nav-plain">
                             <span className="nav-channel-text">
                               <span className="nav-item-title">{label}</span>
                               <span className="nav-item-desc">{desc}</span>
@@ -456,9 +438,8 @@ export default function Navbar() {
                   <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3" role="menu" aria-label="Resources menu">
                     <div className="nav-panel nav-menu nav-resources">
                       <div className="nav-resources-list">
-                        {resourcesItems.map(({ label, href, desc, Icon }) => (
-                          <Link key={label} href={href} role="menuitem" className="nav-item nav-channel">
-                            <span className="nav-icon" aria-hidden="true"><Icon /></span>
+                        {resourcesItems.map(({ label, href, desc }) => (
+                          <Link key={label} href={href} role="menuitem" className="nav-item nav-plain">
                             <span className="nav-channel-text">
                               <span className="nav-item-title">{label}</span>
                               <span className="nav-item-desc">{desc}</span>

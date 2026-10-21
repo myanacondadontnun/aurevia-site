@@ -232,6 +232,9 @@
   }
 }
 
+/* The WhatsApp thread with the checkout and confirmation played over it, clipped to the app's corners. */
+.payFrame { position: relative; display: flex; min-width: 0; overflow: hidden; border-radius: 22px; }
+
 .agentAvatar {
   flex: none;
   width: 30px;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import d from "./docs.module.css";
 
 export interface TocItem {
   id: string;
@@ -29,24 +30,16 @@ export default function HelpToc({ items }: { items: TocItem[] }) {
   if (items.length === 0) return null;
 
   return (
-    <nav aria-label="On this page" className="hidden xl:block sticky top-28 text-sm">
-      <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">On this page</p>
-      <ul className="space-y-1 border-l border-border/70">
-        {items.map((item) => {
-          const isActive = item.id === active;
-          return (
-            <li key={item.id}>
-              <a
-                href={`#${item.id}`}
-                className={`-ml-px block border-l-2 pl-3 py-1 leading-snug transition-colors ${
-                  isActive ? "border-[#00CC99] text-[#00665A] font-medium" : "border-transparent text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {item.label}
-              </a>
-            </li>
-          );
-        })}
+    <nav aria-label="On this page" className={d.toc}>
+      <span className={d.eyebrow}>On this page</span>
+      <ul className={d.tocList}>
+        {items.map((item) => (
+          <li key={item.id}>
+            <a href={`#${item.id}`} className={item.id === active ? d.tocOn : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
   );

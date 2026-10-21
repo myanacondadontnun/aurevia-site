@@ -4,11 +4,12 @@
  * Cart recovery, played end to end on the Lucien Vallière demo store: the recovery message arrives, the shopper
  * opens it, taps back to the cart and pays. InboxRecoveryDemo is the email in Gmail (a notification, the inbox, then
  * the thread with the real template's copy, as in AbandonedCartEmail); WhatsAppRecoveryDemo is the WhatsApp nudge (the real template from WhatsAppNudge). A pointer
- * shows each tap. Loops while on screen; reduced motion shows the confirmed order.
+ * shows each tap. Loops while on screen; reduced motion shows the confirmed order. The pointer, checkout and
+ * confirmation are exported for the home hero, whose store chat ends in the same checkout.
  */
 
-import { useLayoutEffect, useRef, useState } from "react";
-import { Archive, ArrowLeft, Check, ChevronDown, EyeOff, Heart, Lock, Mail, Menu, MoreVertical, Pencil, Reply, Star, Trash2 } from "lucide-react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Archive, ArrowLeft, Camera, Check, ChevronDown, EyeOff, Heart, Image as ImageIcon, Lock, Mail, Menu, Mic, MoreVertical, Paperclip, Pencil, Reply, Smile, Star, Trash2 } from "lucide-react";
 import { GmailLogo } from "@/components/BrandLogos";
 import { WA_NUDGE } from "@/components/WhatsAppNudge";
 import { InstagramGlyph, WhatsAppGlyph } from "@/components/ChannelIcons";
@@ -17,7 +18,7 @@ import r from "./recoveryDemos.module.css";
 
 const cx = (...names: (string | false | undefined)[]) => names.filter(Boolean).join(" ");
 
-type Line = { name: string; price: string; img: string };
+export type Line = { name: string; price: string; img: string };
 const CART: Line[] = [
   { name: "Silk Draped Blouse", price: "$520.00", img: "/images/demo/lv/silk-blouse.webp" },
   { name: "Gilded Statement Necklace", price: "$780.00", img: "/images/demo/lv/gilded-necklace.webp" },
@@ -25,7 +26,7 @@ const CART: Line[] = [
 ];
 
 /** Moves the pointer to the target's sweet spot whenever the step changes; parks it bottom right with no target. */
-function usePointer(frame: React.RefObject<HTMLDivElement>, step: string, target: () => Element | null | undefined) {
+export function usePointer(frame: React.RefObject<HTMLDivElement>, step: string, target: () => Element | null | undefined) {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   useLayoutEffect(() => {
     const f = frame.current;
@@ -44,7 +45,7 @@ function usePointer(frame: React.RefObject<HTMLDivElement>, step: string, target
   return pos;
 }
 
-function Pointer({ pos, ms, clicks, hidden }: { pos: { x: number; y: number }; ms: number; clicks: number[]; hidden: boolean }) {
+export function Pointer({ pos, ms, clicks, hidden }: { pos: { x: number; y: number }; ms: number; clicks: number[]; hidden: boolean }) {
   const click = clicks.find((t) => ms >= t && ms < t + 520);
   return (
     <span className={r.cursor} style={{ transform: `translate(${pos.x}px, ${pos.y}px)`, opacity: hidden ? 0 : 1 }} aria-hidden="true">
@@ -57,7 +58,8 @@ function Pointer({ pos, ms, clicks, hidden }: { pos: { x: number; y: number }; m
 }
 
 /** The store's checkout, opened from the message with the cart restored (Shopify one-page layout). */
-function Checkout({
+export function Checkout({
+  store = "Lucien Vallière",
   open,
   lines,
   total,
@@ -65,6 +67,7 @@ function Checkout({
   pressed,
   payRef,
 }: {
+  store?: string;
   open: boolean;
   lines: Line[];
   total: string;
@@ -74,7 +77,7 @@ function Checkout({
 }) {
   return (
     <div className={cx(r.sheet, r.fromBottom, open && r.sheetOn)}>
-      <div className={r.coHead}>Lucien Vallière</div>
+      <div className={r.coHead}>{store}</div>
       <div className={r.coSummary}>
         <span className={r.coSummaryLabel}>Order summary <ChevronDown aria-hidden="true" /></span>
         <span className={r.coThumbs}>
@@ -109,7 +112,7 @@ function Checkout({
   );
 }
 
-function Confirmed({ on, order, total, how }: { on: boolean; order: string; total: string; how: string }) {
+export function Confirmed({ on, order, total, how }: { on: boolean; order: string; total: string; how: string }) {
   return (
     <div className={cx(r.done, on && r.doneOn)}>
       <span className={r.tick}><Check aria-hidden="true" /></span>
@@ -236,12 +239,49 @@ export function InboxRecoveryDemo() {
   );
 }
 
+/* ═════════════════════════ Message bars ═════════════════════════ */
+
+/** WhatsApp's compose bar: the rounded field with emoji, attach and camera, and the green mic. */
+function WaInputBar() {
+  return (
+    <div className={r.waInputBar} aria-hidden="true">
+      <span className={r.waField}>
+        <Smile />
+        <span className={r.waPlaceholder}>Message</span>
+        <Paperclip />
+        <Camera />
+      </span>
+      <span className={r.waMic}><Mic /></span>
+    </div>
+  );
+}
+
+/** Instagram's compose bar: the blue camera, "Message...", then mic and gallery. */
+function IgInputBar() {
+  return (
+    <div className={r.igInputBar} aria-hidden="true">
+      <span className={r.igField}>
+        <span className={r.igCam}><Camera /></span>
+        <span className={r.igPlaceholder}>Message...</span>
+        <Mic />
+        <ImageIcon />
+      </span>
+    </div>
+  );
+}
+
 /* ═════════════════════════ WhatsApp ═════════════════════════ */
 
-const W = { nudge: 600, ask: 1700, typing: 2500, answer: 3300, toCta: 4200, clickCta: 4900, checkout: 5100, toPay: 5900, clickPay: 6600, done: 7200 };
+export const W = { nudge: 600, ask: 1700, typing: 2500, answer: 3300, toCta: 4200, clickCta: 4900, checkout: 5100, toPay: 5900, clickPay: 6600, done: 7200 };
 
-export function WhatsAppRecoveryDemo() {
+/** Reports the scene's clock to a parent that times things around the demo (the home hero's margin cues). */
+function useReportMs(ms: number, onMs?: (ms: number) => void) {
+  useEffect(() => onMs?.(ms), [ms, onMs]);
+}
+
+export function WhatsAppRecoveryDemo({ onMs }: { onMs?: (ms: number) => void } = {}) {
   const { ref, ms } = useScene(W.done + 200, { fromStart: true });
+  useReportMs(ms, onMs);
   const ctaRef = useRef<HTMLSpanElement>(null);
   const payRef = useRef<HTMLSpanElement>(null);
   const step = ms < W.toCta ? "rest" : ms < W.toPay ? "cta" : "pay";
@@ -250,7 +290,7 @@ export function WhatsAppRecoveryDemo() {
 
   return (
     <div ref={ref} className={cx(r.frame, r.frameWa)} role="img" aria-label="A cart recovery message arrives on WhatsApp; the agent answers a question, then the shopper returns to the cart and pays">
-      <div className="demo-wa" style={{ maxWidth: "none", height: "100%", border: 0, borderRadius: 0, boxShadow: "none" }}>
+      <div className="demo-wa" style={{ display: "flex", flexDirection: "column", maxWidth: "none", height: "100%", border: 0, borderRadius: 0, boxShadow: "none" }}>
         <div className="demo-wa-head">
           <span className="demo-wa-avatar">LV</span>
           <span className="demo-wa-head-text">
@@ -282,6 +322,7 @@ export function WhatsAppRecoveryDemo() {
             </div>
           )}
         </div>
+        <WaInputBar />
       </div>
 
       <Checkout open={ms >= W.checkout} lines={CART.slice(0, 1)} total="$520.00" paying={ms >= W.clickPay} pressed={ms >= W.clickPay && ms < W.clickPay + 200} payRef={payRef} />
@@ -295,12 +336,13 @@ export function WhatsAppRecoveryDemo() {
 
 const JACKET: Line = { name: "Pop Pink Zip-Up Jacket", price: "$148.00", img: "/images/demo/lv/pop-pink-jacket.webp" };
 
-const S = { ask: 500, typing: 1300, product: 2100, yes: 3200, typing2: 3700, link: 4300, toLink: 5000, clickLink: 5700, checkout: 5900, toPay: 6700, clickPay: 7400, done: 8000 };
+export const S = { ask: 500, typing: 1300, product: 2100, yes: 3200, typing2: 3700, link: 4300, toLink: 5000, clickLink: 5700, checkout: 5900, toPay: 6700, clickPay: 7400, done: 8000 };
 
 /** A shopper buying inside WhatsApp or Instagram, seen on their phone: a question (on Instagram, a reply to a
     story), the product, a cart the agent builds, then the checkout link, checkout and the order. */
-export function ShopChatDemo({ theme }: { theme: "whatsapp" | "instagram" }) {
+export function ShopChatDemo({ theme, onMs }: { theme: "whatsapp" | "instagram"; onMs?: (ms: number) => void }) {
   const { ref, ms } = useScene(S.done + 200, { fromStart: true });
+  useReportMs(ms, onMs);
   const linkRef = useRef<HTMLSpanElement>(null);
   const payRef = useRef<HTMLSpanElement>(null);
   const step = ms < S.toLink ? "rest" : ms < S.toPay ? "link" : "pay";
@@ -364,6 +406,7 @@ export function ShopChatDemo({ theme }: { theme: "whatsapp" | "instagram" }) {
           </>
         )}
       </div>
+      {wa ? <WaInputBar /> : <IgInputBar />}
       <Checkout open={ms >= S.checkout} lines={[{ ...item, name: `${item.name} · ${size}` }]} total={item.price} paying={ms >= S.clickPay} pressed={ms >= S.clickPay && ms < S.clickPay + 200} payRef={payRef} />
       <Confirmed on={ms >= S.done} order={wa ? "#1045" : "#1046"} total={item.price} how={wa ? "Sold on WhatsApp" : "Sold from a story reply"} />
       <Pointer pos={pos} ms={ms} clicks={[S.clickLink, S.clickPay]} hidden={ms >= S.done} />
@@ -495,6 +538,70 @@ export function EmailReplyDemo() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+/* ═════════════════════════ Email: a question answered, then the sale ═════════════════════════ */
+
+export const M = { ask: 600, answer: 2000, btn: 3000, toBtn: 3700, clickBtn: 4400, checkout: 4600, toPay: 5400, clickPay: 6100, done: 6700 };
+const BOOTS: Line = { name: "Patent Leather Ankle Boots · 38", price: "$970.00", img: "/images/demo/lv/patent-boots.webp" };
+
+/** The shopper emails a sizing question; the agent answers in the same Gmail thread with the cart one tap away, and
+    the shopper goes straight to checkout and pays. */
+export function EmailSaleDemo({ onMs }: { onMs?: (ms: number) => void } = {}) {
+  const { ref, ms } = useScene(M.done + 200, { fromStart: true });
+  useReportMs(ms, onMs);
+  const at = (t: number) => ms >= t;
+  const btnRef = useRef<HTMLSpanElement>(null);
+  const payRef = useRef<HTMLSpanElement>(null);
+  const step = ms < M.toBtn ? "rest" : ms < M.toPay ? "btn" : "pay";
+  const pos = usePointer(ref, step, () => (step === "btn" ? btnRef.current : step === "pay" ? payRef.current : null));
+  return (
+    <div ref={ref} className={cx(r.frame, r.gmail)} role="img" aria-label="A shopper emails a sizing question, the agent answers in the Gmail thread with a link to the cart, and the shopper pays at checkout">
+      <div className={r.gmBar}>
+        <ArrowLeft aria-hidden="true" />
+        <span className={r.gmBarIcons}><Archive aria-hidden="true" /><Trash2 aria-hidden="true" /><Mail aria-hidden="true" /><MoreVertical aria-hidden="true" /></span>
+      </div>
+      <div className={r.gmThreadSubject}>Patent ankle boots, sizing <span className={r.gmChip}>Inbox</span></div>
+      <div className={r.thread}>
+        <div className={cx(r.arrive, at(M.ask) && r.arriveOn)}>
+          <div>
+            <div className={r.message}>
+              <div className={r.gmSender}>
+                <span className={r.gmAvatar} style={{ background: "#0b8043" }}>C</span>
+                <span className={r.gmMain}>
+                  <span className={r.gmLine}><b>Camille Martin</b><span className={r.gmTime}>10:14</span></span>
+                  <span className={r.gmTo}>to Lucien <ChevronDown aria-hidden="true" /></span>
+                </span>
+                <span />
+              </div>
+              <p className={r.messageText}>Hi! Do the patent ankle boots run small? I&rsquo;m usually a 38.</p>
+            </div>
+          </div>
+        </div>
+        <div className={cx(r.arrive, at(M.answer) && r.arriveOn)}>
+          <div>
+            <div className={r.message}>
+              <div className={r.gmSender}>
+                <span className={r.gmAvatar} style={{ background: "#17201e" }}>L</span>
+                <span className={r.gmMain}>
+                  <span className={r.gmLine}><b>Lucien Vallière</b><span className={r.gmTime}>10:15</span></span>
+                  <span className={r.gmTo}>to me <ChevronDown aria-hidden="true" /></span>
+                </span>
+                <span className={r.answered}><img src="/images/site/mark-ring.webp" alt="" /> Aurevia</span>
+              </div>
+              <p className={r.messageText}>
+                Hi Camille, they run true to size, so a 38 is right. I&rsquo;ve put a pair in your cart, ready when you are.
+              </p>
+              <span ref={btnRef} className={cx(r.mailBtn, r.threadBtn, at(M.btn) && r.threadBtnOn, at(M.clickBtn) && !at(M.checkout + 200) && r.press)}>Check out · {BOOTS.price}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Checkout open={at(M.checkout)} lines={[BOOTS]} total={BOOTS.price} paying={at(M.clickPay)} pressed={at(M.clickPay) && !at(M.clickPay + 200)} payRef={payRef} />
+      <Confirmed on={at(M.done)} order="#1048" total={BOOTS.price} how="Sold over email" />
+      <Pointer pos={pos} ms={ms} clicks={[M.clickBtn, M.clickPay]} hidden={!at(M.toBtn) || at(M.done)} />
     </div>
   );
 }

@@ -1,261 +1,25 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { ArrowRight, BookOpen, Search, ShoppingBag, Star, type LucideIcon } from "lucide-react";
-import { ShopifyLogo } from "@/components/BrandLogos";
+import { ArrowRight, Star } from "lucide-react";
 import { SHOPIFY_LISTING_URL, SHOPIFY_RATING, SHOPIFY_REVIEW_COUNT } from "@/lib/reviews";
 import { trackButtonClick } from "@/lib/analytics";
 import { SHOPIFY_APP_URL } from "@/lib/utils";
-import g from "./glass.module.css";
 import h from "./hero.module.css";
-import { Cards, InputPill } from "./Widget";
+import HeroChannels from "./HeroChannels";
 import HeroWatermark from "./HeroWatermark";
 
 /**
  * Home hero, no photo (Hallmark redesign, atmospheric): a warm paper canvas with two soft emerald blooms and fine grain;
  * the Aurevia ring (outer weave only) sits cropped by the right edge as a watermark, turning very slowly, a little
- * faster while the page scrolls, with a light parallax. Left, the Fraunces headline fades
- * in word by word, then the line, the two pill buttons and the proof row.
- * Right, a Linden & Wren (fictional fashion store) chat as free-floating frosted white glass: a size question answered
- * with the size guide as a table, two dresses, then the Add to cart press, each agent step tagged with a small cue
- * (knowledge base, product discovery, added to cart).
+ * faster while the page scrolls, with a light parallax. Left, the Fraunces headline fades in word by word, then the
+ * line, the two pill buttons and the proof row. Right, HeroChannels: four channel tabs, each playing one sale on the
+ * Lucien Vallière demo store, starting with the store chat widget.
  */
-
-export type HeroPhotos = {
-  dress: string | null;
-  silk: string | null;
-};
-
-/** A small source card beside an Aurevia message: what it drew on, and the specifics. */
-type Cue = { icon: LucideIcon; eyebrow: string; title: string };
-
-type Step =
-  | { who: "user"; text: string }
-  | { who: "agent"; text: string; after?: string; table?: boolean; products?: boolean; system?: boolean; cue?: Cue };
-
-// The demo store is Linden & Wren (fictional, as in the scenarios section); same dresses and prices.
-const SCRIPT: Step[] = [
-  { who: "user", text: "Do your linen dresses run small? I'm usually a UK 10." },
-  {
-    who: "agent",
-    text: "Here's our size guide:",
-    table: true,
-    after: "They run true to size, so a UK 10 is right.",
-    cue: { icon: BookOpen, eyebrow: "Knowledge base", title: "From the size guide" },
-  },
-  { who: "user", text: "Perfect. Something for a summer wedding?" },
-  {
-    who: "agent",
-    text: "The linen midi is light for an outdoor day; the silk slip is dressier.",
-    products: true,
-    cue: { icon: Search, eyebrow: "Product discovery", title: "“Summer wedding dress”" },
-  },
-  // What the real widget posts after the card's own button adds the item.
-  {
-    who: "agent",
-    text: "Successfully added Linen Midi Dress, UK 10.",
-    system: true,
-    cue: { icon: ShoppingBag, eyebrow: "Added to cart", title: "Linen Midi Dress · UK 10" },
-  },
-];
-
-/** The size guide the agent quotes, in cm (the widget renders the agent's markdown tables like this). */
-const SIZE_ROWS = [
-  { size: "UK 8", bust: 84, waist: 66, hip: 91 },
-  { size: "UK 10", bust: 89, waist: 71, hip: 96 },
-  { size: "UK 12", bust: 94, waist: 76, hip: 101 },
-];
-
-/** The card's Add to cart button: idle → pressed (the click) → "Adding…" → added (badge + cart strip). */
-type CartPhase = "idle" | "pressed" | "adding" | "added";
-
-function useConversation() {
-  // Opens on the shopper's first line so the widget is never empty; the rest plays at a real chat's pace.
-  const [shown, setShown] = useState(1);
-  const [cart, setCart] = useState<CartPhase>("idle");
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setShown(SCRIPT.length);
-      setCart("added");
-      return;
-    }
-    let cancelled = false;
-    const timers: number[] = [];
-    const wait = (ms: number) => new Promise<void>((r) => timers.push(window.setTimeout(r, ms)));
-
-    (async () => {
-      await wait(900);
-      while (!cancelled) {
-        for (let i = 1; i < SCRIPT.length - 1 && !cancelled; i++) {
-          await wait(2400);
-          setShown(i + 1);
-        }
-        // The shopper reads the recommendation, then taps Add to cart on the serving set.
-        await wait(2400);
-        if (cancelled) break;
-        setCart("pressed");
-        await wait(180);
-        setCart("adding");
-        await wait(900);
-        setCart("added");
-        setShown(SCRIPT.length);
-        await wait(7000);
-        if (!cancelled) {
-          setCart("idle");
-          setShown(1);
-          await wait(900);
-        }
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-      timers.forEach(clearTimeout);
-    };
-  }, []);
-
-  return { shown, cart, added: cart === "added" };
-}
-
-function AgentMark() {
-  return (
-    <span className={g.mark} aria-hidden="true">
-      <img src="/images/site/mark-ring.webp" alt="" />
-    </span>
-  );
-}
-
-/** Small name line at the top of each Aurevia reply, so it's clear whose message it is. */
-function BubbleName() {
-  return <span className={g.bubbleName}>Aurevia · AI sales agent</span>;
-}
-
-function CueChip({ cue }: { cue: Cue }) {
-  const Icon = cue.icon;
-  return (
-    <span className={g.cue}>
-      <span className={g.cueCard}>
-        <span className={g.cueIcon}><Icon aria-hidden="true" /></span>
-        <span className={g.cueText}>
-          <span className={g.cueEyebrow}>{cue.eyebrow}</span>
-          <span className={g.cueTitle}>{cue.title}</span>
-        </span>
-      </span>
-      <span className={g.cueLine} />
-      <span className={g.cueNode} />
-    </span>
-  );
-}
-
-function SizeTable() {
-  return (
-    <table className={g.sizeTable}>
-      <thead>
-        <tr><th>Size</th><th>Bust</th><th>Waist</th><th>Hip</th></tr>
-      </thead>
-      <tbody>
-        {SIZE_ROWS.map((r) => (
-          <tr key={r.size} className={r.size === "UK 10" ? g.sizeMatch : undefined}>
-            <td>{r.size}</td><td>{r.bust}</td><td>{r.waist}</td><td>{r.hip}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-}
-
-/** The conversation as free-floating glass: grows upward from the input bar; only what reaches the top fades. */
-function ChatStack({
-  photos,
-  shown,
-  cart,
-  added,
-}: {
-  photos: HeroPhotos;
-  shown: number;
-  cart: CartPhase;
-  added: boolean;
-}) {
-  // When a message arrives the list grows at the bottom, which would shove everything above it up in one frame.
-  // Instead, start the list where it was and let it glide up (the new message slides in from behind the input).
-  const listRef = useRef<HTMLDivElement>(null);
-  const lastHeight = useRef(0);
-  useLayoutEffect(() => {
-    const el = listRef.current;
-    if (!el) return;
-    const height = el.offsetHeight;
-    const grew = height - lastHeight.current;
-    lastHeight.current = height;
-    if (grew <= 0 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    el.style.transition = "none";
-    el.style.transform = `translateY(${grew}px)`;
-    void el.offsetHeight; // commit the start position before animating
-    el.style.transition = "transform 620ms cubic-bezier(0.22, 1, 0.36, 1)";
-    el.style.transform = "translateY(0)";
-  }, [shown]);
-
-  return (
-    <div className={`${g.chat} ${g.free}`} aria-hidden="true">
-      <div ref={listRef} className={g.list}>
-      {SCRIPT.slice(0, shown).map((step, i) =>
-        step.who === "agent" && step.products ? (
-          <div key={i} className={`${g.enter} ${g.cardsGroup} ${g.step}`}>
-            <div className={g.agent}>
-              <AgentMark />
-              <div className={g.aiBubble}><BubbleName />{step.text}</div>
-            </div>
-            <div className={g.cardsRow}>
-              <Cards
-                glass
-                fill
-                eager
-                products={[
-                  {
-                    title: "Linen Midi Dress",
-                    price: "$168.00",
-                    image: photos.dress,
-                    badge: added ? "In Cart: 1" : undefined,
-                    cta: cart === "adding" ? "Adding…" : "Add to cart",
-                    ctaState: cart === "pressed" ? "pressed" : cart === "adding" ? "busy" : undefined,
-                  },
-                  { title: "Silk Slip Dress", price: "$189.00", image: photos.silk },
-                ]}
-              />
-            </div>
-            {step.cue && <CueChip cue={step.cue} />}
-          </div>
-        ) : step.who === "user" ? (
-          <div key={i} className={`${g.glass} ${g.user} ${g.enter}`}>{step.text}</div>
-        ) : (
-          <div key={i} className={`${g.cardsGroup} ${g.enter} ${g.step}`}>
-            <div className={g.agent}>
-              <AgentMark />
-              <div className={g.aiBubble}>
-                {!step.system && <BubbleName />}
-                {step.text}
-                {step.table && <SizeTable />}
-                {step.after && <span className={g.after}>{step.after}</span>}
-              </div>
-            </div>
-            {step.cue && <CueChip cue={step.cue} />}
-          </div>
-        ),
-      )}
-      </div>
-      <div className={g.inputRow}>
-        <InputPill />
-      </div>
-    </div>
-  );
-}
 
 const HEADLINE = ["One", "AI", "sales", "agent."];
 const ACCENT = ["Every", "channel."];
 
-export default function HomeHero({ photos }: { photos: HeroPhotos }) {
-  const { shown, cart, added } = useConversation();
-
+export default function HomeHero() {
   return (
     <section id="hero" className={h.hero}>
       <div className={h.grain} aria-hidden="true" />
@@ -263,15 +27,6 @@ export default function HomeHero({ photos }: { photos: HeroPhotos }) {
 
       <div className={`container mx-auto px-4 sm:px-6 ${h.inner}`}>
         <div className={h.copy}>
-          <p className={`${h.eyebrow} ${h.fade}`}>
-            <span className={h.eyebrowMark} aria-hidden="true"><img src="/images/site/mark-ring.webp" alt="" /></span>
-            <span className={h.eyebrowLead}>AI sales agent</span>
-            <span className={h.eyebrowTail}>
-              <span aria-hidden="true" className={h.eyebrowShopifyWrap}><ShopifyLogo className={h.eyebrowShopify} /></span>
-              for Shopify stores
-            </span>
-          </p>
-
           <h1 className={h.title}>
             {HEADLINE.map((w, i) => (
               <span key={w} className={h.word} style={{ animationDelay: `${40 + i * 25}ms` }}>
@@ -347,7 +102,7 @@ export default function HomeHero({ photos }: { photos: HeroPhotos }) {
         </div>
 
         <div className={`${h.demo} ${h.fadeLate}`}>
-          <ChatStack photos={photos} shown={shown} cart={cart} added={added} />
+          <HeroChannels />
         </div>
       </div>
     </section>

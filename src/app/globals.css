@@ -81,23 +81,16 @@
     touch-action: manipulation;
   }
 
+  /* Accent words are solid brand green everywhere; no gradient text (the user ruled it out, Oct 2026). */
   .gradient-text {
-    background: linear-gradient(135deg, #00665A 0%, #00CC99 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 200%;
+    color: var(--au-green);
     line-height: 1.2;
     padding: 0.1em 0;
     display: inline-block;
   }
 
   .group:hover .group-hover\:gradient-text {
-    background: linear-gradient(135deg, #00665A 0%, #00CC99 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 200%;
+    color: var(--au-green);
     line-height: 1.2;
     padding: 0.1em 0;
     display: inline-block;
@@ -113,10 +106,7 @@
 
 @layer utilities {
   .text-gradient {
-    background: linear-gradient(135deg, #00665A 0%, #00CC99 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--au-green);
   }
 
   /* Accent copy font (used for green/gradient text across the site). */
@@ -127,11 +117,7 @@
   }
 
   .green-highlight {
-    color: #00CC99;
-    background: linear-gradient(135deg, #00CC99 0%, #00665A 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--au-green);
     display: inline-block;
     line-height: 1.2;
   }
@@ -151,43 +137,6 @@
     font-family: var(--font-fraunces), ui-serif, Georgia, serif;
     font-weight: 500;
     letter-spacing: -0.01em;
-  }
-
-  /* Blog post readability mode (only applied when `BlogArticle` adds `.blog-light`). */
-  .blog-light {
-    background: #ffffff;
-    border-radius: 1.25rem;
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.22);
-  }
-
-  .blog-light :where(.text-white) {
-    color: rgba(10, 10, 10, 0.95) !important;
-  }
-
-  .blog-light :where(.text-muted-foreground) {
-    color: rgba(40, 40, 40, 0.72) !important;
-  }
-
-  .blog-light :where(.border-border\/30) {
-    border-color: rgba(0, 0, 0, 0.12) !important;
-  }
-
-  .blog-light :where(.border-border\/50) {
-    border-color: rgba(0, 0, 0, 0.18) !important;
-  }
-
-  .blog-light :where(.bg-background\/40) {
-    background-color: rgba(255, 255, 255, 0.8) !important;
-  }
-
-  .blog-light :where(a:hover) {
-    color: rgba(2, 160, 120, 1) !important;
-  }
-
-  .blog-light :where(.bg-transparent) {
-    background-color: transparent !important;
   }
 
   .touch-friendly {
@@ -3171,29 +3120,32 @@
 /* Channels: one column of channels (each logo on a white app tile in its own colour), and a still inbox card. */
 .nav-channels { display: grid; grid-template-columns: minmax(0, 1fr) 272px; gap: 10px; width: 700px; }
 .nav-channels-list { display: grid; gap: 2px; align-content: start; }
-.nav-item.nav-channel { grid-template-columns: 36px minmax(0, 1fr); align-items: start; gap: 0 16px; }
+.nav-item.nav-channel { grid-template-columns: 38px minmax(0, 1fr); align-items: start; gap: 0 14px; }
 .nav-channel-text { display: grid; gap: 2px; min-width: 0; padding-top: 1px; }
-/* Menu icons: flat, a soft tint of the item's colour behind a line icon. No border, no raised shadow. */
-.nav-icon, .nav-channel-tile {
+/* Platform, Solutions and Resources items are text only; the Channels tiles keep each channel's logo. */
+.nav-item.nav-plain { align-items: start; }
+/* Channel app icons, flat: each brand's own fill with a white glyph (Gmail's logo on white). No sheen, no inner
+   highlight, no shadow, no lift. */
+.nav-channel-tile {
   display: grid;
+  flex: none;
   place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: var(--au-green-wash);
-  color: var(--au-green-ink);
-  transition: background-color var(--au-dur-hover) var(--au-ease);
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: var(--au-green);
+  color: #fff;
 }
-.nav-icon svg, .nav-channel-tile svg { width: 18px; height: 18px; stroke-width: 1.75; }
-.nav-item:hover .nav-icon, .nav-item:hover .nav-channel-tile { background: rgb(0 127 104 / 0.14); }
+.nav-channel-tile svg { width: 20px; height: 20px; stroke-width: 2; }
+.nav-channel-tile-store { background: #95bf47; }
+.nav-channel-tile-whatsapp { background: #25d366; }
+.nav-channel-tile-whatsapp svg { width: 21px; height: 21px; }
+.nav-channel-tile-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+.nav-channel-tile-email { background: #fff; box-shadow: inset 0 0 0 1px rgb(23 32 30 / 0.1); }
+.nav-channel-tile-email svg { width: 20px; height: 15px; }
 .nav-channel-tile-sm { width: 24px; height: 24px; border-radius: 7px; }
 .nav-channel-tile-sm svg { width: 13px; height: 13px; }
-.nav-channel-tile-whatsapp { background: rgb(37 211 102 / 0.12); color: #1faa52; }
-.nav-channel-tile-instagram { background: rgb(225 48 108 / 0.1); color: #d62e6a; }
-.nav-channel-tile-email { background: rgb(232 113 10 / 0.11); color: #d0650a; }
-.nav-item:hover .nav-channel-tile-whatsapp { background: rgb(37 211 102 / 0.2); }
-.nav-item:hover .nav-channel-tile-instagram { background: rgb(225 48 108 / 0.16); }
-.nav-item:hover .nav-channel-tile-email { background: rgb(232 113 10 / 0.18); }
+.nav-channel-tile-sm.nav-channel-tile-email svg { width: 14px; height: 11px; }
 .nav-new { padding: 1px 7px; border-radius: var(--au-r-pill); background: var(--au-green-wash); font-size: 0.625rem; font-weight: 600; letter-spacing: 0.02em; line-height: 16px; color: var(--au-green-ink); }
 .nav-channels-card {
   display: flex;

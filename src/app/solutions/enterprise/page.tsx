@@ -41,7 +41,7 @@ export default function EnterprisePage() {
         { href: "/contact", label: "Talk to us" },
         { href: "/pricing", label: "Plans and pricing" },
         { href: "/gdpr", label: "GDPR and data handling" },
-        { href: "/help", label: "Help centre" },
+        { href: "/help", label: "Documentation" },
       ]}
       faqs={[
         { q: "Is there an API or a way to pull data into our warehouse?", a: "Not yet. Today the dashboard is the reporting surface, and leads export as CSV. If you need a specific feed, tell us what for and we'll be straight about timing." },

@@ -7,6 +7,7 @@ import HelpToc from "@/components/help/HelpToc";
 import { getAdjacentArticles, getHelpArticle, getHelpSlugs, helpArticles, sectionId } from "@/lib/help-articles";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/schema";
+import d from "@/components/help/docs.module.css";
 
 export function generateStaticParams() {
   return getHelpSlugs().map((slug) => ({ slug }));
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = getHelpArticle(slug);
   if (!article) return {};
   return {
-    title: `${article.title} | Aurevia Help Centre`,
+    title: `${article.title} | Aurevia Documentation`,
     description: article.summary,
     alternates: { canonical: `/help/${article.slug}` },
   };
@@ -41,35 +42,32 @@ export default async function HelpArticlePage({ params }: Props) {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },
-          { name: "Help center", path: "/help" },
+          { name: "Documentation", path: "/help" },
           { name: article.title, path: `/help/${article.slug}` },
         ])}
       />
-      <article className="max-w-3xl">
-        <p className="text-xs font-semibold tracking-[0.16em] uppercase text-[#00665A] mb-3">{article.category}</p>
-        <h1 className="text-3xl sm:text-4xl font-fraunces font-normal text-foreground leading-tight mb-3">{article.title}</h1>
-        <p className="text-base sm:text-lg font-normal text-muted-foreground mb-2">{article.summary}</p>
-        <p className="text-xs text-muted-foreground mb-10">
+      <article className={d.article}>
+        <span className={d.eyebrow}>{article.category}</span>
+        <h1 className={d.articleTitle}>{article.title}</h1>
+        <p className={d.articleSummary}>{article.summary}</p>
+        <p className={d.articleMeta}>
           {article.minutes} min read · Updated {article.updated}
         </p>
 
-        <div className="space-y-10">
+        <div className={d.sections}>
           {article.sections.map((section) => (
-            <section key={section.heading} id={sectionId(section.heading)} className="scroll-mt-28">
-              <h2 className="text-xl sm:text-2xl font-fraunces font-normal text-foreground mb-3">{section.heading}</h2>
+            <section key={section.heading} id={sectionId(section.heading)} className={d.section}>
+              <h2 className={d.h2}>{section.heading}</h2>
               {section.paragraphs?.map((p, i) => (
-                <p key={i} className="text-sm sm:text-base font-normal text-muted-foreground leading-relaxed mb-3">
+                <p key={i} className={d.para}>
                   {p}
                 </p>
               ))}
               {section.steps && (
-                <ol className="mt-2 space-y-2.5">
+                <ol className={d.steps}>
                   {section.steps.map((step, i) => (
-                    <li key={i} className="flex gap-3 text-sm sm:text-base text-foreground/90 leading-relaxed">
-                      <span
-                        className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00665A]"
-                        aria-hidden="true"
-                      >
+                    <li key={i}>
+                      <span className={d.stepNo} aria-hidden="true">
                         {i + 1}
                       </span>
                       <span>{step}</span>
@@ -78,13 +76,11 @@ export default async function HelpArticlePage({ params }: Props) {
                 </ol>
               )}
               {section.tips && (
-                <div className="mt-4 rounded-xl border border-[#00CC99]/30 bg-[#00CC99]/8 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-[#00665A] mb-2">Good to know</p>
-                  <ul className="space-y-1.5">
+                <div className={d.tips}>
+                  <span className={d.eyebrow}>Good to know</span>
+                  <ul>
                     {section.tips.map((tip, i) => (
-                      <li key={i} className="text-sm text-foreground/85 leading-relaxed">
-                        {tip}
-                      </li>
+                      <li key={i}>{tip}</li>
                     ))}
                   </ul>
                 </div>
@@ -93,31 +89,25 @@ export default async function HelpArticlePage({ params }: Props) {
           ))}
         </div>
 
-        <nav aria-label="Previous and next guides" className="mt-14 grid gap-3 sm:grid-cols-2 border-t border-border/60 pt-8">
+        <nav aria-label="Previous and next guides" className={d.pager}>
           {prev ? (
-            <Link
-              href={`/help/${prev.slug}/`}
-              className="group flex items-center gap-3 rounded-xl border border-border/60 bg-card p-4 hover:border-[#00CC99]/60 transition-colors"
-            >
-              <ArrowLeft className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-[#00665A]" aria-hidden="true" />
-              <span className="min-w-0">
-                <span className="block text-[11px] uppercase tracking-wide text-muted-foreground">Previous</span>
-                <span className="block text-sm font-medium text-foreground leading-snug">{prev.title}</span>
+            <Link href={`/help/${prev.slug}/`} className={d.pageLink}>
+              <ArrowLeft aria-hidden="true" />
+              <span className={d.pageText}>
+                <small>Previous</small>
+                <b>{prev.title}</b>
               </span>
             </Link>
           ) : (
             <span />
           )}
           {next ? (
-            <Link
-              href={`/help/${next.slug}/`}
-              className="group flex items-center justify-end gap-3 rounded-xl border border-border/60 bg-card p-4 text-right hover:border-[#00CC99]/60 transition-colors"
-            >
-              <span className="min-w-0">
-                <span className="block text-[11px] uppercase tracking-wide text-muted-foreground">Next</span>
-                <span className="block text-sm font-medium text-foreground leading-snug">{next.title}</span>
+            <Link href={`/help/${next.slug}/`} className={`${d.pageLink} ${d.pageNext}`}>
+              <span className={d.pageText}>
+                <small>Next</small>
+                <b>{next.title}</b>
               </span>
-              <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-[#00665A]" aria-hidden="true" />
+              <ArrowRight aria-hidden="true" />
             </Link>
           ) : (
             <span />
@@ -125,15 +115,12 @@ export default async function HelpArticlePage({ params }: Props) {
         </nav>
 
         {related.length > 0 && (
-          <aside className="mt-10">
-            <h2 className="text-xs font-semibold tracking-[0.16em] uppercase text-muted-foreground mb-3">Related guides</h2>
-            <ul className="flex flex-wrap gap-2">
+          <aside className={d.related}>
+            <h2 className={d.eyebrow}>Related guides</h2>
+            <ul className={d.pills}>
               {related.map((a) => (
                 <li key={a.slug}>
-                  <Link
-                    href={`/help/${a.slug}/`}
-                    className="inline-block rounded-full border border-border/70 bg-card px-3 py-1.5 text-xs sm:text-[13px] text-foreground/80 hover:border-[#00CC99]/60 hover:text-foreground transition-colors"
-                  >
+                  <Link href={`/help/${a.slug}/`} className={d.pill}>
                     {a.title}
                   </Link>
                 </li>

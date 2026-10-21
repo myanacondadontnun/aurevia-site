@@ -10,7 +10,7 @@
 .eyebrow + .h2 { margin-top: 14px; }
 .eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--au-green-ink); }
 
-/* The green words in a heading: solid green Fraunces (globals.css paints .green-highlight as a mint gradient and puts
+/* The green words in a heading: solid green Fraunces (globals.css paints .green-highlight solid green and puts
    the body font on every span). */
 .h1 :global(.green-highlight), .h2 :global(.green-highlight), .ctaTitle :global(.green-highlight) {
   display: inline;

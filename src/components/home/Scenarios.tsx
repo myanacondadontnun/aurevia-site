@@ -19,6 +19,8 @@ import {
 import { Agent, Bot, Cards, Divider, Tracking, User, WidgetWindow } from "./Widget";
 import s from "./scenarios.module.css";
 import { GmailMessage, InstagramChat, WhatsAppChat, type ThreadMessage } from "./ChannelThreads";
+import ch from "./channels.module.css";
+import { Checkout, Confirmed, Pointer, usePointer } from "@/components/RecoveryDemos";
 import type { ScenarioPhotoName, ScenarioPhotos } from "./scenarioPhotoNames";
 
 /**
@@ -65,6 +67,8 @@ type Step = (
   | { kind: "cards"; items: CardItem[] }
   | { kind: "cartbar"; count: number }
   | { kind: "tracking"; order: string; status: string; carrier: string; eta: string }
+  /** Not a message: the shopper pays at checkout (the cart recovery page's checkout, played over the thread). */
+  | { kind: "paid" }
 ) & { lane?: Lane; time?: string; /** Link button under a channel message (WhatsApp template). */ button?: string };
 
 /** What the agent did at a step, shown outside the chat as a small source card once that step has played. */
@@ -165,16 +169,18 @@ const SCENARIOS: Scenario[] = [
     short: "Recovery",
     store: "home",
     problem: "A shopper left with the serving set still in their cart.",
-    outcome: "Cart saved with free gift wrap, ready to check out",
+    outcome: "Cart recovered: order #2187 paid, $68.00 with free gift wrap",
     view: "recovery",
     steps: [
       { kind: "bot", time: "10:42", text: "Hi Camille, your Ceramic Serving Set is still in your cart. Want me to hold it for you?", button: "Checkout Now" },
       { kind: "user", time: "10:47", text: "Yes please! Can you gift-wrap it? It's for my sister." },
-      { kind: "bot", time: "10:47", text: "Of course. Gift wrap is free and we'll leave the price off the slip. Your cart is saved, check out whenever you're ready." },
+      { kind: "bot", time: "10:47", text: "Of course. Gift wrap is free and I've added it, with the price left off the slip. Here's your cart:", button: "Check out · $68.00" },
+      { kind: "paid" },
     ],
     cues: [
-      { at: 0, icon: Mail, eyebrow: "Cart recovery", title: "Email, then WhatsApp" },
-      { at: 2, icon: Gift, eyebrow: "Cart saved", title: "Free gift wrap noted" },
+      { at: 0, icon: Mail, eyebrow: "Cart recovery", title: "Email, WhatsApp" },
+      { at: 2, icon: Gift, eyebrow: "Checkout link", title: "Gift wrap added" },
+      { at: 3, icon: ShoppingBag, eyebrow: "Sale recovered", title: "#2187 · $68.00" },
     ],
   },
   {
@@ -239,6 +245,8 @@ const STEP_DELAY: Record<Step["kind"], number> = {
   cards: 500,
   cartbar: 500,
   tracking: 600,
+  // The checkout plays over the thread first (see WaCheckout), so the sale lands just after it.
+  paid: 3800,
 };
 
 function useReveal(active: number) {
@@ -312,6 +320,53 @@ function useCueSpots(stage: React.RefObject<HTMLDivElement | null>, sc: Scenario
   return spots;
 }
 
+/* ---------- the pay step on the recovery thread ---------- */
+
+// Timeline (ms) from the checkout message appearing: tap the link, the store's checkout slides up, tap Pay now.
+const PAY = { toBtn: 500, clickBtn: 1200, checkout: 1400, toPay: 2200, clickPay: 2900, done: 3500 };
+
+/** The cart recovery page's checkout, played over the WhatsApp thread: a pointer taps the checkout link, the store's
+    checkout slides up with the cart restored, the pointer taps Pay now and the order is confirmed. */
+function WaCheckout({ start, photo, children }: { start: boolean; photo: string | null; children: ReactNode }) {
+  const frame = useRef<HTMLDivElement>(null);
+  const payRef = useRef<HTMLSpanElement>(null);
+  const [ms, setMs] = useState(0);
+  useEffect(() => {
+    if (!start) return setMs(0);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return setMs(PAY.done);
+    const t0 = performance.now();
+    const id = window.setInterval(() => {
+      const e = performance.now() - t0;
+      setMs(Math.min(e, PAY.done));
+      if (e >= PAY.done) window.clearInterval(id);
+    }, 80);
+    return () => window.clearInterval(id);
+  }, [start]);
+  const at = (t: number) => start && ms >= t;
+  const step = !at(PAY.toBtn) ? "rest" : !at(PAY.toPay) ? "btn" : "pay";
+  const pos = usePointer(frame as React.RefObject<HTMLDivElement>, step, () => {
+    if (step === "btn") return Array.from(frame.current?.querySelectorAll(`.${ch.waButton}`) ?? []).pop();
+    if (step === "pay") return payRef.current;
+    return null;
+  });
+  return (
+    <div ref={frame} className={s.payFrame}>
+      {children}
+      <Checkout
+        store="Hearth & Clay"
+        open={at(PAY.checkout)}
+        lines={[{ name: "Ceramic Serving Set · Gift-wrapped", price: "$68.00", img: photo ?? "" }]}
+        total="$68.00"
+        paying={at(PAY.clickPay)}
+        pressed={at(PAY.clickPay) && !at(PAY.clickPay + 200)}
+        payRef={payRef as React.RefObject<HTMLSpanElement>}
+      />
+      <Confirmed on={at(PAY.done)} order="#2187" total="$68.00" how="Recovered on WhatsApp" />
+      <Pointer pos={pos} ms={ms} clicks={[PAY.clickBtn, PAY.clickPay]} hidden={!at(PAY.toBtn) || at(PAY.done)} />
+    </div>
+  );
+}
+
 function CueCard({ cue }: { cue: Cue }) {
   const Icon = cue.icon;
   return (
@@ -345,6 +400,8 @@ function renderStep(step: Step, i: number, photos: ScenarioPhotos): ReactNode {
       );
     case "cartbar":
       // Not a message: the count drives the cart strip docked on the widget's input.
+      return null;
+    case "paid":
       return null;
     case "tracking":
       return <Tracking key={i} order={step.order} status={step.status} carrier={step.carrier} eta={step.eta} step={3} />;
@@ -526,7 +583,9 @@ export default function Scenarios({ photos }: { photos: ScenarioPhotos }) {
                     product="Ceramic Serving Set"
                     price="$68.00"
                   />
-                  <WhatsAppChat business={store.name} status="Business account" messages={thread()} />
+                  <WaCheckout start={shown >= 3} photo={photos["product-main"]}>
+                    <WhatsAppChat business={store.name} status="Business account" messages={thread()} />
+                  </WaCheckout>
                 </div>
               )}
 

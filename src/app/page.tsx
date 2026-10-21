@@ -33,7 +33,7 @@ export default function HomePage() {
       <ScrollAnimationsInit />
       <Navbar />
       <main id="main-content">
-        <HomeHero photos={{ dress: sitePhoto("fashion-linen-dress"), silk: sitePhoto("fashion-silk-dress") }} />
+        <HomeHero />
         <CustomerLogos />
         <Scenarios
           photos={Object.fromEntries(SCENARIO_PHOTO_NAMES.map((name) => [name, sitePhoto(name)])) as ScenarioPhotos}

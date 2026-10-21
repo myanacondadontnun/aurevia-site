@@ -222,7 +222,7 @@ export function InstagramChat({
               {lastOfGroup ? <Monogram name={name} size={28} className={c.igAvatarSm} /> : <span className={c.igSpacer} />}
               {"text" in m ? (
                 <span className={`${c.igBubble} ${c.igIn}`}>{m.text}</span>
-              ) : (
+              ) : "cards" in m ? (
                 <div className={c.igCards}>
                   {m.cards.map((card) => (
                     <div key={card.title} className={c.igCard}>
@@ -235,7 +235,7 @@ export function InstagramChat({
                     </div>
                   ))}
                 </div>
-              )}
+              ) : null}
             </div>
           );
         })}

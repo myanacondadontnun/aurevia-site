@@ -339,7 +339,7 @@ export const shopifyCustomerPsychologyPost: BlogPost = {
       paragraphs: [
         "Do not judge these tactics only by immediate revenue. Track conversion rate, average order value, cart abandonment rate, checkout abandonment rate, upsell acceptance rate, cross-sell attach rate, bundle conversion rate, discount usage rate, repeat purchase rate, refund rate, customer lifetime value, review volume, and support tickets after purchase.",
         "A tactic can increase AOV today and increase refunds tomorrow. A discount can increase orders this week and train customers to wait next month. A bundle can increase revenue but confuse shoppers if the offer is unclear.",
-        "To compare AI tools before choosing one, Aurevia's AI agent comparisons page is useful for understanding how different AI approaches support ecommerce sales and support use cases.",
+        "To compare AI tools before choosing one, Aurevia's Why Aurevia page sets out how an AI sales agent differs from a generic chatbot.",
       ],
     },
     {

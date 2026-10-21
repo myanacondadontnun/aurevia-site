@@ -1,149 +1,63 @@
-"use client";
+/**
+ * One blog post: a back link to the blog, the category, title and byline, then the article in a readable column
+ * (~44rem) with an on-this-page rail on wide screens, the questions, the author card, one call to action and related
+ * posts (design.md type, cards and pills).
+ */
 
 import { Fragment } from "react";
 import Link from "next/link";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Separator } from "@/components/ui/separator";
-import {
-  Clock,
-  Calendar,
-  Tag,
-  ArrowRight,
-  ArrowLeft,
-  ChevronRight,
-  Lightbulb,
-} from "lucide-react";
-import { useEffect, useState } from "react";
-import {
-  type BlogPost,
-  type BlogSection,
-  type SubSection,
-  getRelatedPosts,
-} from "@/lib/blog-data";
+import { ArrowLeft, ArrowRight, Calendar, Clock } from "lucide-react";
+import { type BlogPost, type BlogSection, type SubSection, getRelatedPosts } from "@/lib/blog-data";
 import { SHOPIFY_APP_URL } from "@/lib/utils";
-
-const articleTestimonials = [
-  {
-    quote:
-      "This is the article I wish someone had sent me before we spent a month evaluating chatbot vendors. We picked Aurevia the same week we read it.",
-    name: "Freya Sundqvist",
-    role: "Marketing Director",
-    company: "Birchwood Trading",
-    initials: "FS",
-  },
-  {
-    quote:
-      "I forwarded this to my whole team before we'd even signed up. It matched almost exactly what we were seeing in our own support queue.",
-    name: "Malik Osei",
-    role: "Head of Support",
-    company: "Driftwood Supply Co.",
-    initials: "MO",
-  },
-  {
-    quote:
-      "Most vendor blogs are thinly veiled ads. This one actually changed how we thought about the problem, which is rarer than it should be.",
-    name: "Charlotte Ibbotson",
-    role: "Ecommerce Manager",
-    company: "Pennywise & Kane",
-    initials: "CI",
-  },
-];
-
-function pickTestimonial(slug: string) {
-  const sum = slug.split("").reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
-  return articleTestimonials[sum % articleTestimonials.length];
-}
+import b from "@/components/blog/blog.module.css";
 
 function renderFormattedText(text: string) {
   const parts = text.split(/(\*\*[^*]+\*\*)/g);
-  return parts.map((part, i) => {
-    if (part.startsWith("**") && part.endsWith("**")) {
-      return (
-        <strong key={i} className="font-semibold text-foreground">
-          {part.slice(2, -2)}
-        </strong>
-      );
-    }
-    return <Fragment key={i}>{part}</Fragment>;
-  });
-}
-
-function Paragraph({ text }: { text: string }) {
-  return (
-    <p className="text-[15px] sm:text-base text-muted-foreground font-normal leading-relaxed mb-4">
-      {renderFormattedText(text)}
-    </p>
+  return parts.map((part, i) =>
+    part.startsWith("**") && part.endsWith("**") ? <strong key={i}>{part.slice(2, -2)}</strong> : <Fragment key={i}>{part}</Fragment>
   );
 }
 
-function BulletList({ items }: { items: string[] }) {
+function Body({ paragraphs, list, orderedList }: { paragraphs: string[]; list?: string[]; orderedList?: string[] }) {
   return (
-    <ul className="space-y-2 mb-5 ml-1">
-      {items.map((item, i) => (
-        <li
-          key={i}
-          className="flex gap-3 text-[15px] sm:text-base text-muted-foreground font-normal leading-relaxed"
-        >
-          <span className="text-[#00CC99] mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-[#00CC99]/60" />
-          <span>{renderFormattedText(item)}</span>
-        </li>
+    <>
+      {paragraphs.map((p, i) => (
+        <p key={i} className={b.para}>
+          {renderFormattedText(p)}
+        </p>
       ))}
-    </ul>
-  );
-}
-
-function OrderedList({ items }: { items: string[] }) {
-  return (
-    <ol className="space-y-3 mb-5 ml-1">
-      {items.map((item, i) => (
-        <li
-          key={i}
-          className="flex gap-3 text-[15px] sm:text-base text-muted-foreground font-normal leading-relaxed"
-        >
-          <span className="text-[#00CC99] font-medium text-sm mt-0.5 shrink-0 w-6 h-6 rounded-full border border-[#00CC99]/30 flex items-center justify-center">
-            {i + 1}
-          </span>
-          <span className="flex-1">{renderFormattedText(item)}</span>
-        </li>
-      ))}
-    </ol>
+      {list && (
+        <ul className={b.list}>
+          {list.map((item, i) => (
+            <li key={i}>{renderFormattedText(item)}</li>
+          ))}
+        </ul>
+      )}
+      {orderedList && (
+        <ol className={b.olist}>
+          {orderedList.map((item, i) => (
+            <li key={i}>{renderFormattedText(item)}</li>
+          ))}
+        </ol>
+      )}
+    </>
   );
 }
 
 function SubSectionBlock({ sub }: { sub: SubSection }) {
   return (
-    <div className="mb-6">
-      <h4 className="text-base sm:text-lg font-inter font-normal text-foreground mb-3">
-        {sub.title}
-      </h4>
-      {sub.paragraphs.map((p, i) => (
-        <Paragraph key={i} text={p} />
-      ))}
-      {sub.list && <BulletList items={sub.list} />}
-      {sub.orderedList && <OrderedList items={sub.orderedList} />}
-    </div>
+    <>
+      <h3 className={b.subTitle}>{sub.title}</h3>
+      <Body paragraphs={sub.paragraphs} list={sub.list} orderedList={sub.orderedList} />
+    </>
   );
 }
 
 function SectionBlock({ section }: { section: BlogSection }) {
   return (
-    <section id={section.id} className="mb-10 scroll-mt-24">
-      {section.title && (
-        <h2 className="text-xl sm:text-2xl font-fraunces font-normal text-foreground mb-4 pb-2 border-b border-border/30">
-          {section.title}
-        </h2>
-      )}
-      {section.paragraphs.map((p, i) => (
-        <Paragraph key={i} text={p} />
-      ))}
-      {section.list && <BulletList items={section.list} />}
-      {section.orderedList && <OrderedList items={section.orderedList} />}
+    <section id={section.id} className={b.section}>
+      {section.title && <h2 className={b.sectionTitle}>{section.title}</h2>}
+      <Body paragraphs={section.paragraphs} list={section.list} orderedList={section.orderedList} />
       {section.subsections?.map((sub, i) => (
         <SubSectionBlock key={i} sub={sub} />
       ))}
@@ -151,34 +65,23 @@ function SectionBlock({ section }: { section: BlogSection }) {
   );
 }
 
-function TableOfContents({ sections }: { sections: BlogSection[] }) {
+function TableOfContents({ sections, hasFaqs }: { sections: BlogSection[]; hasFaqs: boolean }) {
   const tocSections = sections.filter((s) => s.title);
   if (tocSections.length === 0) return null;
-
   return (
-    <nav className="hidden xl:block sticky top-28 w-56 shrink-0 self-start">
-      <p className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider mb-3">
-        On this page
-      </p>
-      <ul className="space-y-1.5 border-l border-border/30 pl-3">
+    <nav aria-label="On this page" className={b.toc}>
+      <span className={b.label}>On this page</span>
+      <ul className={b.tocList}>
         {tocSections.map((s) => (
           <li key={s.id}>
-            <a
-              href={`#${s.id}`}
-              className="text-sm text-muted-foreground/70 hover:text-[#00CC99] transition-colors duration-200 block py-0.5 leading-snug"
-            >
-              {s.title}
-            </a>
+            <a href={`#${s.id}`}>{s.title}</a>
           </li>
         ))}
-        <li>
-          <a
-            href="#faqs"
-            className="text-sm text-muted-foreground/70 hover:text-[#00CC99] transition-colors duration-200 block py-0.5 leading-snug"
-          >
-            FAQs
-          </a>
-        </li>
+        {hasFaqs && (
+          <li>
+            <a href="#faqs">Questions</a>
+          </li>
+        )}
       </ul>
     </nav>
   );
@@ -187,32 +90,24 @@ function TableOfContents({ sections }: { sections: BlogSection[] }) {
 function RelatedPosts({ slug }: { slug: string }) {
   const related = getRelatedPosts(slug);
   if (related.length === 0) return null;
-
   return (
-    <section className="mt-14">
-      <h2 className="text-xl sm:text-2xl font-fraunces font-normal text-foreground mb-6">
-        Related Articles
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <section className={b.related} aria-labelledby="related-heading">
+      <h2 id="related-heading" className={b.h2}>Related articles</h2>
+      <div className={b.grid} style={{ marginTop: "var(--au-head-gap)" }}>
         {related.map((post) => (
-          <Link
-            key={post.slug}
-            href={`/resources/blogs/${post.slug}/`}
-            className="group block"
-          >
-            <Card className="h-full bg-transparent border border-border/50 hover:border-[#00CC99]/30 transition-all duration-300">
-              <CardContent className="p-5">
-                <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#00CC99]/10 text-[#00CC99] border border-[#00CC99]/20 mb-3">
-                  {post.category}
-                </span>
-                <h3 className="text-sm sm:text-base font-inter font-normal text-foreground mb-2 group-hover:text-[#00CC99] transition-colors duration-200 leading-snug">
-                  {post.title}
-                </h3>
-                <p className="text-xs text-muted-foreground font-normal line-clamp-2">
-                  {post.metaDescription}
-                </p>
-              </CardContent>
-            </Card>
+          <Link key={post.slug} href={`/resources/blogs/${post.slug}/`} className={b.card}>
+            <span className={b.tag}>{post.category}</span>
+            <h3 className={b.cardTitle}>{post.title}</h3>
+            <p className={b.cardText}>{post.metaDescription}</p>
+            <span className={b.meta}>
+              <span className={b.metaItem}>
+                <Clock aria-hidden="true" />
+                {post.readingTime}
+              </span>
+              <span className={b.read}>
+                Read <ArrowRight aria-hidden="true" />
+              </span>
+            </span>
           </Link>
         ))}
       </div>
@@ -240,248 +135,104 @@ const AUTHORS = [
 
 function AuthorBox() {
   return (
-    <section
-      id="about-the-author"
-      aria-labelledby="about-the-author-heading"
-      className="mt-12 scroll-mt-24 rounded-xl border border-border/30 bg-card/20 p-6 sm:p-8"
-    >
-      <h2
-        id="about-the-author-heading"
-        className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground mb-3"
-      >
-        About the author
-      </h2>
-      <p className="text-base text-foreground font-medium mb-1">The Aurevia team</p>
-      <p className="text-sm text-muted-foreground font-normal leading-relaxed mb-6">
-        Aurevia is an AI sales agent for Shopify stores, built and run by its two founders. We write about what
-        we learn building it for Shopify merchants.
+    <section id="about-the-author" aria-labelledby="about-the-author-heading" className={b.author}>
+      <h2 id="about-the-author-heading" className={b.label}>About the author</h2>
+      <p className={b.authorName}>The Aurevia team</p>
+      <p className={b.authorText}>
+        Aurevia is an AI sales agent for Shopify stores, built and run by its two founders. We write about what we
+        learn building it for Shopify merchants.
       </p>
-      <ul className="grid gap-5 sm:grid-cols-2">
+      <ul className={b.people}>
         {AUTHORS.map((a) => (
-          <li key={a.name} className="flex gap-3">
-            <img
-              src={a.photo}
-              alt={a.name}
-              width={44}
-              height={44}
-              loading="lazy"
-              className="h-11 w-11 shrink-0 rounded-full object-cover"
-            />
+          <li key={a.name} className={b.person}>
+            <img src={a.photo} alt={a.name} width={44} height={44} loading="lazy" />
             <div>
-              <p className="text-sm font-medium text-foreground">{a.name}</p>
-              <p className="text-xs text-muted-foreground mb-1">{a.role}</p>
-              <p className="text-xs text-muted-foreground font-normal leading-relaxed">{a.bio}</p>
+              <p className={b.personName}>{a.name}</p>
+              <p className={b.personRole}>{a.role}</p>
+              <p className={b.personBio}>{a.bio}</p>
             </div>
           </li>
         ))}
       </ul>
       {/* Plain <a>: /pixel-and-code is a self-contained section that needs a full page load. */}
-      <a
-        href="/pixel-and-code/about/"
-        className="mt-5 inline-flex items-center gap-1.5 text-sm text-[#00CC99] hover:underline"
-      >
-        Meet the team
-        <ArrowRight className="w-3.5 h-3.5" />
+      <a href="/pixel-and-code/about/" className={b.link}>
+        Meet the team <ArrowRight aria-hidden="true" />
       </a>
     </section>
   );
 }
 
 export default function BlogArticle({ post }: { post: BlogPost }) {
-  const [isLightMode, setIsLightMode] = useState(false);
-
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("aurevia_blog_theme");
-      if (saved === "light") setIsLightMode(true);
-    } catch {
-      // ignore
-    }
-  }, []);
-
-  const formattedDate = new Date(post.publishDate).toLocaleDateString(
-    "en-US",
-    { year: "numeric", month: "long", day: "numeric" }
-  );
+  const formattedDate = new Date(post.publishDate).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
-    <div
-      className={`container mx-auto px-4 sm:px-6 max-w-6xl ${isLightMode ? "blog-light" : ""}`}
-      data-blog-theme={isLightMode ? "light" : "dark"}
-    >
-      {/* Breadcrumbs */}
-      <nav className="flex items-center gap-1.5 text-xs text-muted-foreground/60 mb-8 flex-wrap">
-        <Link
-          href="/"
-          className="hover:text-[#00CC99] transition-colors"
-        >
-          Home
-        </Link>
-        <ChevronRight className="w-3 h-3" />
-        <Link
-          href="/resources/"
-          className="hover:text-[#00CC99] transition-colors"
-        >
-          Resources
-        </Link>
-        <ChevronRight className="w-3 h-3" />
-        <Link
-          href="/resources/blogs/"
-          className="hover:text-[#00CC99] transition-colors"
-        >
-          Blog
-        </Link>
-        <ChevronRight className="w-3 h-3" />
-        <span className="text-muted-foreground/40 truncate max-w-[200px]">
-          {post.title}
-        </span>
-      </nav>
+    <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+      <Link href="/resources/blogs/" className={b.back}>
+        <ArrowLeft aria-hidden="true" /> Blog
+      </Link>
 
-      {/* Article Header */}
-      <header className="max-w-3xl mb-10">
-        <div className="flex items-center justify-between gap-4 mb-4">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#00CC99]/10 text-[#00CC99] border border-[#00CC99]/20">
-            <Tag className="w-3 h-3" />
-            {post.category}
-          </span>
-
-          <button
-            type="button"
-            onClick={() => {
-              setIsLightMode((prev) => {
-                const next = !prev;
-                try {
-                  localStorage.setItem("aurevia_blog_theme", next ? "light" : "dark");
-                } catch {
-                  // ignore
-                }
-                return next;
-              });
-            }}
-            aria-pressed={isLightMode}
-            className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-background/40 px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:border-[#00CC99]/30 transition-colors"
-            title={isLightMode ? "Switch to dark mode" : "Switch to light mode"}
-          >
-            <Lightbulb className={`h-4 w-4 ${isLightMode ? "text-[#00CC99]" : "text-muted-foreground"}`} />
-            {isLightMode ? "Light" : "Dark"}
-          </button>
-        </div>
-
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-fraunces font-normal text-foreground mb-5 leading-tight">
-          {post.title}
-        </h1>
-
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-muted-foreground">
-          <a href="#about-the-author" className="hover:text-[#00CC99] transition-colors">
-            By the Aurevia team
-          </a>
-          <span className="flex items-center gap-1.5">
-            <Calendar className="w-3.5 h-3.5" />
+      <header className={b.postHead}>
+        <span className={b.tag}>{post.category}</span>
+        <h1 className={b.postTitle}>{post.title}</h1>
+        <div className={b.byline}>
+          <a href="#about-the-author">By the Aurevia team</a>
+          <span className={b.metaItem}>
+            <Calendar aria-hidden="true" />
             {formattedDate}
           </span>
-          <span className="flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5" />
+          <span className={b.metaItem}>
+            <Clock aria-hidden="true" />
             {post.readingTime}
           </span>
         </div>
       </header>
 
-      <Separator className="mb-10 bg-border/30" />
-
-      {/* Article Body + TOC */}
-      <div className="flex gap-12 items-start">
-        <article className="flex-1 min-w-0 max-w-3xl">
+      <div className={b.layout}>
+        <article className={b.article}>
           {post.sections.map((section) => (
             <SectionBlock key={section.id} section={section} />
           ))}
 
-          {/* FAQs */}
           {post.faqs.length > 0 && (
-            <section id="faqs" className="mb-10 scroll-mt-24">
-              <h2 className="text-xl sm:text-2xl font-fraunces font-normal text-foreground mb-4 pb-2 border-b border-border/30">
-                Frequently Asked Questions
-              </h2>
-              <Accordion type="single" collapsible className="w-full">
-                {post.faqs.map((faq, i) => (
-                  <AccordionItem
-                    key={i}
-                    value={`faq-${i}`}
-                    className="border-border/30"
-                  >
-                    <AccordionTrigger className="text-left text-foreground hover:text-[#00CC99] hover:no-underline py-4 text-[15px] sm:text-base">
+            <section id="faqs" className={b.faqs}>
+              <h2 className={b.sectionTitle}>Frequently asked questions</h2>
+              <div className={b.faqList}>
+                {post.faqs.map((faq) => (
+                  <details key={faq.question} className={b.faqItem}>
+                    <summary className={b.faqQ}>
                       {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground font-normal text-[15px] sm:text-base leading-relaxed">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
+                      <span className={b.faqIcon} aria-hidden="true" />
+                    </summary>
+                    <p className={b.faqA}>{faq.answer}</p>
+                  </details>
                 ))}
-              </Accordion>
+              </div>
             </section>
           )}
 
           <AuthorBox />
 
-          {/* Testimonial */}
-          {(() => {
-            const testimonial = pickTestimonial(post.slug);
-            return (
-              <div className="mt-12 rounded-xl border border-border/30 bg-card/20 p-6 sm:p-8">
-                <p className="font-fraunces italic text-lg text-foreground leading-relaxed mb-5">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </p>
-                <div className="flex items-center gap-3">
-                  <span
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00665A]"
-                    aria-hidden="true"
-                  >
-                    {testimonial.initials}
-                  </span>
-                  <div>
-                    <p className="text-sm font-medium text-foreground">{testimonial.name}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {testimonial.role}, {testimonial.company}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })()}
-
-          {/* CTA */}
-          <div className="mt-8 mb-8 rounded-xl border border-[#00CC99]/20 bg-gradient-to-br from-[#00CC99]/5 to-transparent p-6 sm:p-8">
-            <h3 className="text-lg sm:text-xl font-inter font-normal text-foreground mb-2">
-              Ready to put this into practice?
-            </h3>
-            <p className="text-sm sm:text-base text-muted-foreground font-normal mb-5 max-w-lg">
-              Aurevia helps Shopify stores automate support, recover abandoned
-              carts, and grow revenue with an AI sales co-pilot.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href={SHOPIFY_APP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#00cc99] text-black text-sm font-medium hover:bg-[#00cc99]/90 transition-colors duration-200"
-              >
-                Try Aurevia Free
-                <ArrowRight className="w-4 h-4" />
+          <div className={b.cta} style={{ marginTop: 32 }}>
+            <div>
+              <h2 className={b.ctaTitle}>Put this into practice</h2>
+              <p className={b.ctaText}>
+                Aurevia answers shoppers, recommends products and recovers carts on your Shopify store, 24/7.
+              </p>
+            </div>
+            <div className={b.ctaButtons}>
+              <a href={SHOPIFY_APP_URL} target="_blank" rel="noopener noreferrer" className={b.primary}>
+                Start free trial <ArrowRight aria-hidden="true" />
               </a>
-              <Link
-                href="/resources/blogs/"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border/50 text-muted-foreground text-sm font-medium hover:border-[#00CC99]/30 hover:text-foreground transition-all duration-200"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                All Articles
-              </Link>
             </div>
           </div>
         </article>
 
-        <TableOfContents sections={post.sections} />
+        <TableOfContents sections={post.sections} hasFaqs={post.faqs.length > 0} />
       </div>
-
-      <Separator className="mt-4 mb-10 bg-border/30" />
 
       <RelatedPosts slug={post.slug} />
     </div>

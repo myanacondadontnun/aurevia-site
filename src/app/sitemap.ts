@@ -59,7 +59,6 @@ const staticRoutes: {
   { path: "/resources/review-my-shopify/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/help/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/book-demo/", priority: 0.8, changeFrequency: "monthly" },
-  { path: "/resources/ai-comparisons/", priority: 0.7, changeFrequency: "monthly" },
 
   // Pixel & Code (dev studio site, merged in at /pixel-and-code)
   { path: "/pixel-and-code/", priority: 0.5, changeFrequency: "monthly" },

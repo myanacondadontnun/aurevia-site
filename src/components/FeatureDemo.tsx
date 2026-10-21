@@ -118,7 +118,7 @@ export function AureviaMark({ size, animate = false }: { size: number; animate?:
   );
 }
 
-function DemoProducts({ items, added }: { items: DemoProductItem[]; added: string[] }) {
+export function DemoProducts({ items, added }: { items: DemoProductItem[]; added: string[] }) {
   return (
     <div className="chat-demo-carousel-wrap chat-demo-pop">
       <div className="chat-demo-carousel-strip" style={{ padding: "4px 2px 5px" }}>

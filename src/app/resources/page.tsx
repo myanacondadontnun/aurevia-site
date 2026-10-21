@@ -9,7 +9,7 @@ import { breadcrumbJsonLd } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Resources | Aurevia - Shopify AI Sales Co-Pilot",
   description:
-    "Blogs, Review My Shopify, AI comparisons, ROI calculator, and documentation for Aurevia.",
+    "Blogs, Review My Shopify, the ROI calculator and documentation for Aurevia.",
   alternates: { canonical: "/resources" },
 };
 
@@ -23,7 +23,7 @@ export default function ResourcesPage() {
           Resources
         </h1>
         <p className="text-lg text-muted-foreground mb-8">
-          Learn more about AI sales co-pilots, get a Shopify store review, compare options, calculate ROI, and explore our docs.
+          Learn more about AI sales co-pilots, get a Shopify store review, calculate ROI and explore our documentation.
         </p>
         <div className="space-y-4 mb-12">
           <Link href="/resources/blogs/" className="block text-[#00CC99] hover:underline">
@@ -35,14 +35,11 @@ export default function ResourcesPage() {
           >
             → Review My Shopify
           </Link>
-          <Link href="/resources/ai-comparisons/" className="block text-[#00CC99] hover:underline">
-            → AI Agent Comparisons
-          </Link>
           <Link href="/resources/roi-calculator/" className="block text-[#00CC99] hover:underline">
             → ROI Calculator
           </Link>
           <Link href="/help/" className="block text-[#00CC99] hover:underline">
-            → Help centre
+            → Documentation
           </Link>
         </div>
 

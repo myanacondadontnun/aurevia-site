@@ -88,7 +88,7 @@ export interface FeatureSubpageLayoutProps {
 }
 
 function kindOf(href: string) {
-  if (href.startsWith("/help")) return "Help centre";
+  if (href.startsWith("/help")) return "Documentation";
   if (href.startsWith("/products")) return "Product";
   if (href.startsWith("/solutions")) return "Solution";
   if (href.startsWith("/channels")) return "Channel";

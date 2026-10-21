@@ -243,7 +243,7 @@ export const aiAgentsForShopifyPost: BlogPost = {
       paragraphs: [
         "Aurevia is built around the storefront AI sales agent layer: engaging shoppers in real time, understanding what they are looking for, recommending products, letting visitors add items to cart, sending them to checkout from chat, handling post-sale support, supporting upsells, and capturing leads.",
         "External AI shopping agents may help customers discover products in AI chats. Back-office agents may help teams operate more efficiently. But the storefront still needs a sales layer that can turn shopper intent into product recommendations, cart movement, and checkout progress. That is the space Aurevia is focused on.",
-        "Request a free Shopify store audit to see where shoppers may be dropping off before checkout, or explore our AI agent comparisons to evaluate different approaches.",
+        "Request a free Shopify store audit to see where shoppers may be dropping off before checkout, or see why Aurevia is built differently from a generic chatbot.",
       ],
     },
     {

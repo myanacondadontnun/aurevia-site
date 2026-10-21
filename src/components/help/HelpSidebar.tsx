@@ -2,56 +2,44 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ChevronDown } from "lucide-react";
 import { HELP_CATEGORIES, helpArticles, sectionId } from "@/lib/help-articles";
+import d from "./docs.module.css";
+
+const cx = (...names: (string | false | undefined)[]) => names.filter(Boolean).join(" ");
 
 /**
- * Left rail: every category, every article, and the active article's sections
- * nested under it. Collapses into a <details> on phones.
+ * Left rail: every category, every guide, and the open guide's sections nested under it. On phones it folds into a
+ * "Browse the docs" panel above the guide.
  */
 export default function HelpSidebar() {
   const pathname = usePathname() ?? "";
   const activeSlug = pathname.replace(/^\/help\/?/, "").replace(/\/$/, "");
 
   const nav = (
-    <nav aria-label="Help centre contents" className="text-sm">
-      <Link
-        href="/help/"
-        className={`block rounded-lg px-3 py-1.5 mb-3 font-medium transition-colors ${
-          activeSlug === "" ? "bg-primary/10 text-[#00665A]" : "text-foreground hover:bg-muted/60"
-        }`}
-      >
+    <nav aria-label="Documentation contents" className={d.nav}>
+      <Link href="/help/" className={cx(d.navAll, activeSlug === "" && d.navOn)} aria-current={activeSlug === "" ? "page" : undefined}>
         All guides
       </Link>
       {HELP_CATEGORIES.map((category) => {
         const articles = helpArticles.filter((a) => a.category === category);
         if (articles.length === 0) return null;
         return (
-          <div key={category} className="mb-5">
-            <p className="px-3 mb-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{category}</p>
-            <ul className="space-y-0.5">
+          <div key={category} className={d.navGroup}>
+            <span className={d.eyebrow}>{category}</span>
+            <ul className={d.navList}>
               {articles.map((a) => {
                 const active = a.slug === activeSlug;
                 return (
                   <li key={a.slug}>
-                    <Link
-                      href={`/help/${a.slug}/`}
-                      aria-current={active ? "page" : undefined}
-                      className={`block rounded-lg px-3 py-1.5 leading-snug transition-colors ${
-                        active ? "bg-primary/10 text-[#00665A] font-medium" : "text-foreground/80 hover:bg-muted/60 hover:text-foreground"
-                      }`}
-                    >
+                    <Link href={`/help/${a.slug}/`} aria-current={active ? "page" : undefined} className={cx(d.navLink, active && d.navOn)}>
                       {a.title}
                     </Link>
                     {active && (
-                      <ul className="mt-1 mb-2 ml-3 border-l border-border/70 pl-3 space-y-0.5">
+                      <ul className={d.navSections}>
                         {a.sections.map((s) => (
                           <li key={s.heading}>
-                            <a
-                              href={`#${sectionId(s.heading)}`}
-                              className="block rounded-md px-2 py-1 text-[13px] text-muted-foreground hover:text-foreground transition-colors"
-                            >
-                              {s.heading}
-                            </a>
+                            <a href={`#${sectionId(s.heading)}`}>{s.heading}</a>
                           </li>
                         ))}
                       </ul>
@@ -68,11 +56,13 @@ export default function HelpSidebar() {
 
   return (
     <>
-      <details className="lg:hidden mb-6 rounded-xl border border-border/60 bg-card">
-        <summary className="cursor-pointer select-none px-4 py-3 text-sm font-medium text-foreground">Browse guides</summary>
-        <div className="border-t border-border/60 px-2 py-3">{nav}</div>
+      <details className={d.railMobile}>
+        <summary>
+          Browse the docs <ChevronDown width={18} height={18} aria-hidden="true" />
+        </summary>
+        <div className={d.railMobileBody}>{nav}</div>
       </details>
-      <div className="hidden lg:block sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto pr-3">{nav}</div>
+      <div className={d.rail}>{nav}</div>
     </>
   );
 }

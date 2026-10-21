@@ -1,0 +1,72 @@
+/* Home hero demo: four channel tabs over one sale per channel. The widget is the product-page widget as light glass
+   (design.md: glass in the hero conversation), so the ring and the blooms show through it. Tabs are a frosted pill of
+   four round, icon-only buttons; the active one is white, with a thin green ring that fills while it plays. */
+
+/* Sized to the widget, so the tabs sit centred over it. */
+.root { display: grid; justify-items: center; gap: 16px; width: max-content; max-width: 100%; margin: 0 auto; }
+@media (min-width: 1024px) { .root { margin-right: 0; } }
+
+.tabs {
+  display: inline-flex;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid rgb(255 255 255 / 0.9);
+  border-radius: var(--au-r-pill);
+  background: rgb(255 255 255 / 0.42);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
+  box-shadow: inset 0 1px 0 #fff, 0 18px 40px -28px rgb(16 40 34 / 0.45);
+}
+/* Icon-only: each channel's own mark, flat, on a clear disc that turns white when it's the one playing. */
+.tab {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  transition: background-color var(--au-dur-hover) var(--au-ease), box-shadow var(--au-dur-hover) var(--au-ease);
+}
+.mark { width: 22px; height: 22px; opacity: 0.8; transition: opacity var(--au-dur-hover) var(--au-ease), transform var(--au-dur-hover) var(--au-ease); }
+.tab:nth-child(1) .mark { color: #95bf47; }
+.tab:nth-child(2) .mark { color: #25d366; }
+.tab:hover { background: rgb(255 255 255 / 0.6); }
+.tab:hover .mark { opacity: 1; }
+.tab:focus-visible { outline: 2px solid var(--au-green); outline-offset: 2px; }
+.tabOn, .tabOn:hover { background: var(--au-white); box-shadow: 0 1px 2px rgb(16 40 34 / 0.08), 0 8px 20px -10px rgb(16 40 34 / 0.4); }
+.tabOn .mark { opacity: 1; transform: scale(1.1); }
+/* Progress ring round the active disc, filled from the scene clock up to the confirmed order. */
+.ring { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); pointer-events: none; }
+.ring circle { fill: none; stroke: var(--au-green); stroke-width: 1.5; stroke-linecap: round; stroke-dasharray: 100; transition: stroke-dashoffset 120ms linear; }
+
+.panel { display: flex; justify-content: center; }
+.stage { position: relative; max-width: 100%; }
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgb(255 255 255 / 0.9);
+  border-radius: 18px;
+  background-image: linear-gradient(160deg, rgb(255 255 255 / 0.74) 0%, rgb(255 255 255 / 0.46) 100%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
+  box-shadow: inset 0 1px 0 #fff, 0 40px 80px -40px rgb(16 40 34 / 0.45);
+  text-align: left;
+}
+/* The widget draws its own surface; on the glass frame it stays clear. */
+.frame :global(.chat-demo-container) { position: absolute; top: 0; left: 0; border: 0; background: transparent; box-shadow: none; }
+.cards :global(.chat-demo-product-cta) { transition: transform 160ms var(--au-ease); }
+.pressSecond :global(.chat-demo-product-card:nth-child(2) .chat-demo-product-cta) { transform: scale(0.95); }
+.pressed { display: inline-block; transform: scale(0.94); transition: transform 160ms var(--au-ease); }
+/* Where the sale cue points: the middle of the confirmation screen. */
+.doneAnchor { position: absolute; top: 46%; left: 0; width: 1px; height: 1px; pointer-events: none; }
+
+/* The cart recovery demos (WhatsApp, Instagram, Gmail) at the same size and corner as the store widget. */
+.appFrame { position: relative; }
+.appFrame > [role="img"] { width: 100%; max-width: none; height: 100%; border-radius: 18px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tab, .mark, .cards :global(.chat-demo-product-cta) { transition: none; }
+  .ring { display: none; }
+}

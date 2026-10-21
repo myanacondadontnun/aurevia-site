@@ -49,6 +49,12 @@
   to = "/help/"
   status = 301
   force = true
+# AI agent comparisons page removed (2026-10-22).
+[[redirects]]
+  from = "/resources/ai-comparisons/*"
+  to = "/why-aurevia/"
+  status = 301
+  force = true
 
 # Consolidated / retired pages (site audit 2026-09-26).
 [[redirects]]

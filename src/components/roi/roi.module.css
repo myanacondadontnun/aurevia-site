@@ -1,0 +1,142 @@
+/* ROI calculator (design.md): the head and the calculator board sit on the home hero's canvas (blooms, grain,
+   turning ring), like pricing; inputs on the left of one white board, results on the right; how the estimate works;
+   then a night call to action with the still ring. Every value comes from the --au-* tokens. */
+
+.page { background: var(--au-paper); color: var(--au-ink); font-family: var(--au-body); }
+
+/* ---------- Head ---------- */
+.top { padding-bottom: 72px; }
+/* The hero canvas fades into the paper below, so it has no hard bottom edge. */
+.top::after { content: ""; position: absolute; z-index: -1; inset: auto 0 0 0; height: 220px; background: linear-gradient(180deg, transparent, var(--au-paper)); pointer-events: none; }
+.head { position: relative; padding-top: calc(var(--au-section-y) + 56px); }
+.title {
+  font-family: var(--au-display);
+  font-weight: 400;
+  font-size: var(--au-h1);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+/* globals.css puts the body font on every span; the headline's green line keeps Fraunces. */
+.title span { font-family: var(--au-display); }
+.accentLine { display: block; color: var(--au-green); }
+.lede { max-width: 40rem; margin-top: 20px; font-size: 1.125rem; line-height: 1.55; color: var(--au-ink-2); }
+
+/* ---------- The board: inputs left, results right ---------- */
+.boardWrap { position: relative; padding-top: 48px; }
+.board {
+  display: grid;
+  overflow: hidden;
+  border-radius: var(--au-r-xl);
+  background: var(--au-white);
+  box-shadow: var(--au-shadow-2);
+}
+@media (min-width: 900px) { .board { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+
+.inputs { display: grid; align-content: start; gap: 22px; min-width: 0; padding: 32px 24px; }
+@media (min-width: 640px) { .inputs { padding: 40px; } }
+.boardHead { font-family: var(--au-display); font-weight: 400; font-size: var(--au-h3); line-height: 1.15; }
+.field { display: grid; gap: 8px; min-width: 0; }
+.label { font-size: 0.875rem; font-weight: 600; color: var(--au-ink); }
+.hint { font-size: 0.8125rem; line-height: 1.45; color: var(--au-ink-3); }
+.inputWrap { position: relative; display: flex; align-items: center; }
+.prefix { position: absolute; left: 14px; font-size: 0.9375rem; font-weight: 600; color: var(--au-ink-3); pointer-events: none; }
+.input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--au-rule);
+  border-radius: var(--au-r-sm);
+  background: var(--au-white);
+  font-family: var(--au-body);
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--au-ink);
+  transition: border-color var(--au-dur-hover) var(--au-ease), box-shadow var(--au-dur-hover) var(--au-ease);
+  -moz-appearance: textfield;
+}
+.input::-webkit-outer-spin-button, .input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.withPrefix { padding-left: 30px; }
+.input::placeholder { color: var(--au-ink-3); }
+.input:hover { border-color: var(--au-ink-3); }
+.input:focus { border-color: var(--au-green); box-shadow: 0 0 0 3px var(--au-green-wash); outline: none; }
+
+/* Results: the paper-2 side of the board, the ROI as the one big figure. */
+.results { display: grid; align-content: start; gap: 24px; min-width: 0; padding: 32px 24px; background: var(--au-paper-2); }
+@media (min-width: 640px) { .results { padding: 40px; } }
+.eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--au-green-ink); }
+.roi { display: grid; gap: 6px; }
+.roiFig { font-family: var(--au-display); font-weight: 400; font-size: clamp(2.75rem, 2rem + 2.6vw, 4rem); line-height: 1; letter-spacing: -0.03em; color: var(--au-ink); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.roiFigOn { color: var(--au-green); }
+.roiNote { font-size: 0.875rem; line-height: 1.45; color: var(--au-ink-2); }
+.rows { display: grid; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--au-rule); }
+.rows li { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--au-rule); font-size: 0.9375rem; color: var(--au-ink-2); }
+.rows b { flex: none; font-family: var(--au-display); font-weight: 400; font-size: 1.25rem; color: var(--au-ink); font-variant-numeric: tabular-nums; }
+.plan { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; padding: 14px 16px; border-radius: var(--au-r-md); background: var(--au-white); box-shadow: var(--au-shadow-1); font-size: 0.875rem; color: var(--au-ink-2); }
+.plan b { font-weight: 600; color: var(--au-ink); }
+
+/* ---------- How the estimate works ---------- */
+.method { padding-top: var(--au-section-y); }
+.h2 { font-family: var(--au-display); font-weight: 400; font-size: var(--au-h2); line-height: 1.05; letter-spacing: -0.02em; }
+.methodGrid { display: grid; gap: 32px; }
+@media (min-width: 1024px) { .methodGrid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 64px; } }
+.methodAside { margin-top: 16px; max-width: 28rem; line-height: 1.55; color: var(--au-ink-2); }
+.steps { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--au-rule); counter-reset: step; }
+.steps li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; padding: 18px 0; border-bottom: 1px solid var(--au-rule); line-height: 1.55; color: var(--au-ink-2); counter-increment: step; }
+.steps li::before { content: counter(step, decimal-leading-zero); font-family: var(--au-display); font-size: 1.0625rem; color: var(--au-green-ink); font-variant-numeric: tabular-nums; }
+.steps b { font-weight: 600; color: var(--au-ink); }
+
+/* ---------- Call to action (night, still ring), as on pricing ---------- */
+.ctaSection { padding: var(--au-section-y) 0; }
+.cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 56px 28px;
+  border-radius: var(--au-r-xl);
+  background: var(--au-night);
+  color: var(--au-on-night);
+  text-align: left;
+}
+@media (min-width: 768px) { .cta { padding: 80px 64px; } }
+.ctaMark {
+  position: absolute;
+  z-index: -1;
+  right: -180px;
+  bottom: -220px;
+  width: 560px;
+  height: 560px;
+  background: linear-gradient(135deg, rgb(0 168 136 / 0.24), rgb(0 168 136 / 0.06));
+  -webkit-mask: url("/images/site/mark-ring-watermark.webp") center / contain no-repeat;
+  mask: url("/images/site/mark-ring-watermark.webp") center / contain no-repeat;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+.ctaTitle { max-width: 18ch; font-family: var(--au-display); font-weight: 400; font-size: var(--au-h2); line-height: 1.05; letter-spacing: -0.02em; color: var(--au-on-night); }
+.ctaLede { margin-top: 16px; max-width: 32rem; font-size: 1.0625rem; line-height: 1.55; color: var(--au-on-night-2); }
+.ctaButtons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.primary, .ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 24px;
+  border-radius: var(--au-r-pill);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color var(--au-dur-hover) var(--au-ease), border-color var(--au-dur-hover) var(--au-ease);
+}
+.primary { background: var(--au-green); color: var(--au-white); }
+.primary:hover { background: var(--au-green-hover); }
+.primary svg { width: 16px; height: 16px; transition: transform var(--au-dur-hover) var(--au-ease); }
+.primary:hover svg { transform: translateX(3px); }
+.ctaSecondary { border: 1px solid var(--au-on-night-rule); color: var(--au-on-night); }
+.ctaSecondary:hover { border-color: var(--au-on-night-2); }
+.primary:focus-visible, .ctaSecondary:focus-visible { outline: 2px solid var(--au-green-bright); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .input, .primary, .primary svg, .ctaSecondary { transition: none; }
+}

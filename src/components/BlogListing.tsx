@@ -1,102 +1,64 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import Link from "next/link";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Search, Clock, ArrowRight, Tag } from "lucide-react";
-import { buildShopifyInstallUrl } from "@/lib/utils";
-import {
-  blogPosts,
-  getAllCategories,
-  type BlogCategory,
-} from "@/lib/blog-data";
+/**
+ * /resources/blogs: a plain head, search and category pills, the newest post as a wide featured card, then the rest
+ * as a grid of white cards (design.md cards and pills), and one closing call to action.
+ */
 
-function CategoryPill({
-  category,
-  isActive,
-  onClick,
-}: {
-  category: string;
-  isActive: boolean;
-  onClick: () => void;
-}) {
+import { useMemo, useState } from "react";
+import Link from "next/link";
+import { ArrowRight, Clock, Search } from "lucide-react";
+import { SHOPIFY_APP_URL } from "@/lib/utils";
+import { blogPosts, getAllCategories, type BlogCategory, type BlogPost } from "@/lib/blog-data";
+import b from "@/components/blog/blog.module.css";
+
+const cx = (...names: (string | false | undefined)[]) => names.filter(Boolean).join(" ");
+
+const formatDate = (iso: string) =>
+  new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+
+function Meta({ post }: { post: BlogPost }) {
   return (
-    <button
-      onClick={onClick}
-      className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 border ${
-        isActive
-          ? "bg-[#00CC99]/15 border-[#00CC99]/40 text-[#00CC99]"
-          : "bg-transparent border-border/50 text-muted-foreground hover:border-[#00CC99]/30 hover:text-foreground"
-      }`}
-    >
-      {category}
-    </button>
+    <span className={b.meta}>
+      <span>{formatDate(post.publishDate)}</span>
+      <span className={b.metaItem}>
+        <Clock aria-hidden="true" />
+        {post.readingTime}
+      </span>
+      <span className={b.read}>
+        Read <ArrowRight aria-hidden="true" />
+      </span>
+    </span>
   );
 }
 
-function BlogCard({ post }: { post: (typeof blogPosts)[number] }) {
-  const formattedDate = new Date(post.publishDate).toLocaleDateString(
-    "en-US",
-    { year: "numeric", month: "long", day: "numeric" }
-  );
-
+function BlogCard({ post }: { post: BlogPost }) {
   return (
-    <Link href={`/resources/blogs/${post.slug}/`} className="group block h-full">
-      <Card className="h-full bg-transparent border border-border/50 hover:border-[#00CC99]/30 transition-all duration-300 overflow-hidden">
-        <CardContent className="p-6 sm:p-8 h-full flex flex-col">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#00CC99]/10 text-[#00CC99] border border-[#00CC99]/20">
-              <Tag className="w-3 h-3" />
-              {post.category}
-            </span>
-          </div>
-
-          <h2 className="text-lg sm:text-xl font-inter font-normal text-foreground mb-3 group-hover:text-[#00CC99] transition-colors duration-300 leading-snug">
-            {post.title}
-          </h2>
-
-          <p className="text-sm text-muted-foreground font-normal leading-relaxed mb-6 flex-1 line-clamp-3">
-            {post.metaDescription}
-          </p>
-
-          <div className="flex items-center justify-between mt-auto pt-4 border-t border-border/30">
-            <div className="flex items-center gap-4 text-xs text-muted-foreground">
-              <span>{formattedDate}</span>
-              <span className="flex items-center gap-1">
-                <Clock className="w-3 h-3" />
-                {post.readingTime}
-              </span>
-            </div>
-            <span className="inline-flex items-center gap-1 text-xs text-[#00CC99]/70 group-hover:text-[#00CC99] transition-colors duration-200 font-medium">
-              Read
-              <ArrowRight className="w-3 h-3 transform group-hover:translate-x-0.5 transition-transform duration-200" />
-            </span>
-          </div>
-        </CardContent>
-      </Card>
+    <Link href={`/resources/blogs/${post.slug}/`} className={b.card}>
+      <span className={b.tag}>{post.category}</span>
+      <h2 className={b.cardTitle}>{post.title}</h2>
+      <p className={b.cardText}>{post.metaDescription}</p>
+      <Meta post={post} />
     </Link>
   );
 }
 
 export default function BlogListing() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState<
-    BlogCategory | "All"
-  >("All");
-
+  const [activeCategory, setActiveCategory] = useState<BlogCategory | "All">("All");
   const categories = getAllCategories();
 
+  // Newest first.
+  const posts = useMemo(
+    () => [...blogPosts].sort((x, y) => new Date(y.publishDate).getTime() - new Date(x.publishDate).getTime()),
+    []
+  );
+
   const filteredPosts = useMemo(() => {
-    return blogPosts.filter((post) => {
-      const matchesCategory =
-        activeCategory === "All" || post.category === activeCategory;
-
-      if (!matchesCategory) return false;
-
-      if (!searchQuery.trim()) return true;
-
-      const query = searchQuery.toLowerCase();
+    const query = searchQuery.trim().toLowerCase();
+    return posts.filter((post) => {
+      if (activeCategory !== "All" && post.category !== activeCategory) return false;
+      if (!query) return true;
       return (
         post.title.toLowerCase().includes(query) ||
         post.metaDescription.toLowerCase().includes(query) ||
@@ -104,106 +66,81 @@ export default function BlogListing() {
         post.category.toLowerCase().includes(query)
       );
     });
-  }, [searchQuery, activeCategory]);
+  }, [posts, searchQuery, activeCategory]);
+
+  // The newest post leads, as a wide card, only on the unfiltered list.
+  const browsing = activeCategory === "All" && !searchQuery.trim();
+  const featured = browsing ? filteredPosts[0] : undefined;
+  const rest = featured ? filteredPosts.slice(1) : filteredPosts;
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
-      <Link
-        href="/resources/"
-        className="text-muted-foreground hover:text-[#00CC99] text-sm mb-6 inline-flex items-center gap-1 transition-colors duration-200"
-      >
-        ← Back to Resources
-      </Link>
+    <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+      <h1 className={b.title}>Blog</h1>
+      <p className={b.lede}>Guides on AI sales, Shopify conversion and support, from what we learn building Aurevia.</p>
 
-      <div className="mb-10 sm:mb-14">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-fraunces font-normal text-foreground mb-4">
-          Blog
-        </h1>
-        <p className="text-base sm:text-lg text-muted-foreground font-normal max-w-2xl">
-          Research-backed guides on AI sales, Shopify optimisation, and
-          e-commerce growth strategies.
-        </p>
-      </div>
-
-      {/* Search + Filters */}
-      <div className="mb-8 sm:mb-10 space-y-4">
-        <div className="relative max-w-md">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+      <div className={b.tools}>
+        <label className={b.search}>
+          <span className="sr-only">Search articles</span>
+          <Search aria-hidden="true" />
           <input
-            type="text"
-            placeholder="Search articles..."
+            type="search"
+            placeholder="Search articles"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-white border border-border/50 text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:border-[#00CC99]/40 focus:ring-1 focus:ring-[#00CC99]/20 transition-all duration-200"
+            className={b.searchInput}
           />
-        </div>
-
-        <div className="flex flex-wrap gap-2">
-          <CategoryPill
-            category="All"
-            isActive={activeCategory === "All"}
-            onClick={() => setActiveCategory("All")}
-          />
-          {categories.map((cat) => (
-            <CategoryPill
+        </label>
+        <div className={b.pills} role="group" aria-label="Filter by category">
+          {(["All", ...categories] as (BlogCategory | "All")[]).map((cat) => (
+            <button
               key={cat}
-              category={cat}
-              isActive={activeCategory === cat}
+              type="button"
+              aria-pressed={activeCategory === cat}
               onClick={() => setActiveCategory(cat)}
-            />
+              className={cx(b.pill, activeCategory === cat && b.pillOn)}
+            >
+              {cat}
+            </button>
           ))}
         </div>
       </div>
 
-      {/* Blog Grid */}
-      {filteredPosts.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPosts.map((post) => (
+      {featured ? (
+        <Link href={`/resources/blogs/${featured.slug}/`} className={b.featured}>
+          <div>
+            <span className={b.tag}>{featured.category}</span>
+            <h2 className={b.featuredTitle} style={{ marginTop: 16 }}>{featured.title}</h2>
+          </div>
+          <div className={b.featuredSide}>
+            <p>{featured.metaDescription}</p>
+            <Meta post={featured} />
+          </div>
+        </Link>
+      ) : null}
+
+      {rest.length > 0 ? (
+        <div className={b.grid}>
+          {rest.map((post) => (
             <BlogCard key={post.slug} post={post} />
           ))}
         </div>
-      ) : (
-        <div className="text-center py-20">
-          <p className="text-muted-foreground text-lg mb-2">
-            No articles found
-          </p>
-          <p className="text-muted-foreground/60 text-sm">
-            Try adjusting your search or filter criteria.
-          </p>
-        </div>
-      )}
-
-      <div className="mt-14 sm:mt-16 rounded-2xl border border-border/30 bg-card/20 p-6 sm:p-8">
-        <p className="font-fraunces italic text-lg sm:text-xl text-foreground leading-relaxed mb-5">
-          &ldquo;Half of what I know about running the store better came from this blog before I ever installed the
-          app. It's the rare vendor content that's actually useful instead of just a sales pitch.&rdquo;
+      ) : !featured ? (
+        <p className={b.empty} role="status">
+          <b>No articles found</b>
+          Try another search or category.
         </p>
-        <div className="flex items-center gap-3">
-          <span
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/12 text-xs font-semibold text-[#00665A]"
-            aria-hidden="true"
-          >
-            LN
-          </span>
-          <div>
-            <p className="text-sm font-medium text-foreground">Lena Novak</p>
-            <p className="text-xs text-muted-foreground">Owner, Novak & Sons</p>
-          </div>
-        </div>
-      </div>
+      ) : null}
 
-      <div className="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-2xl border border-primary/20 bg-primary/[0.06] p-6 sm:p-8">
+      <div className={b.cta}>
         <div>
-          <p className="text-foreground font-medium">Ready to see it on your store?</p>
-          <p className="text-sm text-muted-foreground mt-1">
-            Install from the Shopify App Store and go live in minutes.
-          </p>
+          <h2 className={b.ctaTitle}>See it on your store</h2>
+          <p className={b.ctaText}>Install from the Shopify App Store and try any paid plan free for 14 days.</p>
         </div>
-        <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl w-full sm:w-auto">
-          <a href={buildShopifyInstallUrl()} target="_blank" rel="noopener noreferrer">
-            Start free on Shopify
+        <div className={b.ctaButtons}>
+          <a href={SHOPIFY_APP_URL} target="_blank" rel="noopener noreferrer" className={b.primary}>
+            Start free trial <ArrowRight aria-hidden="true" />
           </a>
-        </Button>
+        </div>
       </div>
     </div>
   );

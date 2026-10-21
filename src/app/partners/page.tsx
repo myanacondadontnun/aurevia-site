@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
-import PageLayout from "@/components/PageLayout";
+import { ArrowRight } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import CustomerLogos from "@/components/CustomerLogos";
 import PartnerPrograms from "@/components/PartnerPrograms";
-import TrustStrip from "@/components/TrustStrip";
+import PartnerEarnings from "@/components/partners/PartnerEarnings";
+import HeroWatermark from "@/components/home/HeroWatermark";
 import JsonLd from "@/components/JsonLd";
 import { faqJsonLd } from "@/lib/schema";
+import h from "@/components/home/hero.module.css";
+import p from "@/components/partners/partners.module.css";
 
-const title = "Partner Program for Shopify Agencies, Referrers & Apps | Aurevia";
+const title = "Partner Program for Shopify Agencies & Referrers | Aurevia";
 const desc =
-  "Partner with Aurevia, the AI sales agent for Shopify. Three programs: agency partners earn up to 30% recurring commission on client stores, referral partners earn 20% for 18 months, and tech partners co-market with us.";
+  "Partner with Aurevia, the AI sales agent for Shopify. Agency partners earn up to 30% recurring commission on client stores; referral partners earn 20% for 18 months.";
 
 export const metadata: Metadata = {
   title,
@@ -25,11 +31,11 @@ const steps = [
 const faqs = [
   {
     q: "Which program is right for me?",
-    a: "If you set up or manage Shopify stores for clients, apply as an agency partner. If you recommend tools to merchants but don't run their stores, apply as a referral partner. If you run an app or platform for Shopify brands, apply as a tech partner.",
+    a: "If you set up or manage Shopify stores for clients, apply as an agency partner. If you recommend tools to merchants but don't run their stores, apply as a referral partner.",
   },
   {
     q: "What do partners earn?",
-    a: "Agency partners earn up to 30% recurring commission on the subscriptions of the client stores they bring, for as long as the store stays a customer. Referral partners earn 20% of the monthly subscription of each store they refer, for 18 months, with no cap on referrals. Tech partnerships are co-marketing rather than commission.",
+    a: "Agency partners earn up to 30% recurring commission on the subscriptions of the client stores they bring, for as long as the store stays a customer. Referral partners earn 20% of the monthly subscription of each store they refer, for 18 months, with no cap on referrals.",
   },
   {
     q: "Do my clients need to be on Shopify?",
@@ -47,69 +53,100 @@ const faqs = [
 
 export default function PartnersPage() {
   return (
-    <PageLayout>
+    <div className={p.page}>
+      <Navbar />
       <JsonLd data={faqJsonLd(faqs.map((f) => ({ question: f.q, answer: f.a })))} />
-      <section className="gradient-bg">
-        <div className="container mx-auto px-4 sm:px-6 max-w-6xl py-10 sm:py-16">
-          <div className="max-w-3xl mb-12 sm:mb-16">
-            <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00665A] mb-3">Partners</p>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-fraunces font-normal text-foreground leading-[1.1] mb-5">
-              Grow your clients&rsquo; stores. <span className="green-highlight">Grow with us.</span>
-            </h1>
-            <p className="text-base sm:text-xl text-muted-foreground leading-relaxed mb-7">
-              Aurevia is the AI sales agent for Shopify. If you build stores, advise merchants or run an app they
-              rely on, there are three ways to work with us.
-            </p>
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-              <a
-                href="#apply"
-                className="cta-button inline-flex min-h-[48px] items-center justify-center rounded-xl px-7 text-sm sm:text-base"
-              >
-                Apply to partner
-              </a>
-              <a
-                href="#programs"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-xl border border-border bg-card px-7 text-sm sm:text-base font-semibold text-foreground transition-colors hover:border-[#00665A]"
-              >
-                See the programs
-              </a>
-              <TrustStrip />
+      <main id="main-content">
+        {/* ─── Hero: the home hero's canvas and proof row, with what one client store earns on the right ─── */}
+        <section className={h.hero}>
+          <div className={h.grain} aria-hidden="true" />
+          <HeroWatermark />
+          <div className={`container mx-auto max-w-6xl px-4 sm:px-6 ${h.inner} ${p.heroInner}`}>
+            <div className={h.copy}>
+              <h1 className={`${h.title} ${h.fade} ${p.heroTitle}`}>
+                Grow your clients&rsquo; stores.
+                <span className={`${h.accentLine} ${h.accent}`}>Earn as they grow.</span>
+              </h1>
+              <p className={`${h.lede} ${h.fade}`} style={{ animationDelay: "120ms" }}>
+                Bring Aurevia, the AI sales agent for Shopify, to the stores you build or advise, and earn on every one.
+              </p>
+              <div className={`${h.ctas} ${h.fade}`} style={{ animationDelay: "180ms" }}>
+                <a href="#apply" className={h.primary}>
+                  Apply to partner <ArrowRight aria-hidden="true" />
+                </a>
+                <a href="#programs" className={h.secondary}>
+                  See the programs
+                </a>
+              </div>
+              {/* The program terms, and the live install count (Oct 2026). */}
+              <ul className={`${h.stats} ${h.fade}`} style={{ animationDelay: "220ms" }}>
+                <li className={h.stat}>
+                  <span className={h.statFig}>30%</span>
+                  <span className={h.statLabel}>Up to, recurring</span>
+                </li>
+                <li className={h.stat}>
+                  <span className={h.statFig}>20%</span>
+                  <span className={h.statLabel}>On referrals</span>
+                </li>
+                <li className={h.stat}>
+                  <span className={h.statFig}>50+</span>
+                  <span className={h.statLabel}>Shopify stores</span>
+                </li>
+              </ul>
+            </div>
+            <div className={`${h.demo} ${h.fadeLate}`}>
+              <PartnerEarnings />
             </div>
           </div>
+        </section>
 
-          <PartnerPrograms />
+        <CustomerLogos />
 
-          <div className="mt-16 sm:mt-24">
-            <h2 className="text-2xl sm:text-4xl font-fraunces font-normal text-foreground mb-8">How it works</h2>
-            <ol className="grid gap-4 md:grid-cols-3">
-              {steps.map((step, index) => (
-                <li key={step.title} className="rounded-2xl border border-border bg-card p-6">
-                  <span className="text-sm font-semibold text-[#00665A]">Step {index + 1}</span>
-                  <h3 className="mt-2 text-lg font-semibold text-foreground">{step.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{step.body}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
+        <PartnerPrograms
+          between={
+            // ─── How it works (night): three steps as a ledger ───
+            <section className={p.night}>
+              <span className={p.nightRing} aria-hidden="true" />
+              <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+                <h2 className={p.h2}>How it works</h2>
+                <ol className={p.steps}>
+                  {steps.map((s, i) => (
+                    <li key={s.title} className={p.step}>
+                      <span className={p.stepNo}>{String(i + 1).padStart(2, "0")}</span>
+                      <h3 className={p.stepTitle}>{s.title}</h3>
+                      <p className={p.stepBody}>{s.body}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </section>
+          }
+        />
 
-          <div className="mt-16 sm:mt-24 max-w-3xl">
-            <h2 className="text-2xl sm:text-4xl font-fraunces font-normal text-foreground mb-6">Common questions</h2>
-            <div className="divide-y divide-border border-y border-border">
-              {faqs.map((faq) => (
-                <details key={faq.q} className="group py-4">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base sm:text-lg font-semibold text-foreground">
-                    {faq.q}
-                    <span className="text-xl font-normal text-muted-foreground transition-transform group-open:rotate-45" aria-hidden>
-                      +
-                    </span>
+        {/* ─── Questions ─── */}
+        <section className={p.section}>
+          <div className={`container mx-auto max-w-6xl px-4 sm:px-6 ${p.faqGrid}`}>
+            <div>
+              <h2 className={p.h2}>Partner questions</h2>
+              <p className={p.faqAside}>
+                Something else? <a href="/contact/" className={p.inlineLink}>Talk to us</a>
+              </p>
+            </div>
+            <div className={p.faqList}>
+              {faqs.map((f) => (
+                <details key={f.q} className={p.faqItem}>
+                  <summary className={p.faqQ}>
+                    {f.q}
+                    <span className={p.faqIcon} aria-hidden="true" />
                   </summary>
-                  <p className="mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed">{faq.a}</p>
+                  <p className={p.faqA}>{f.a}</p>
                 </details>
               ))}
             </div>
           </div>
-        </div>
-      </section>
-    </PageLayout>
+        </section>
+      </main>
+      <Footer />
+    </div>
   );
 }
