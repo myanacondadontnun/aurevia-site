@@ -66,9 +66,21 @@ local names to these and never define their own colours, radii, shadows or type 
   shows what the agent just did.
 - **Pills and chips:** white, `--au-r-pill`, 0.8125rem DM Sans 600.
 
+## Hero
+
+One hero pattern, shared by the home page and every product and solution page (`components/home/hero.module.css`,
+`HeroWatermark`): paper with two still blooms and fine grain, the turning ring cropped by the right edge, the H1
+with its green words on their own line, the lede, the two pill buttons, then the three proof figures (rating,
+stores, free trial) split by hairlines. The page's live demo sits on the right. No breadcrumbs, eyebrows or check
+lists in a hero; product headlines are one type step smaller than the home one because they run longer.
+From 1280px, cue cards sit in the margin left of the demo, level with the message they describe (home:
+`HomeHero`; product pages: the `cue` field on a `FeatureChatDemo` step). Below 1280 the product cues are hidden.
+
 ## Surfaces and glass
 
-- Glass (backdrop blur) only in two places: the nav pill and the hero conversation. Everywhere else is solid.
+- Glass (backdrop blur) only in three places: the nav pill and its dropdowns, the hero demo (the home conversation,
+  the widget on product and solution heroes), and the photo bands (home channels, industry "What you get"), where
+  frosted cards sit across a wide photo. Everywhere else is solid.
 
 ## Motion
 
@@ -91,6 +103,8 @@ mask over a green gradient. It is the one decorative element the site owns.
 ## Imagery
 
 - Real Aurevia screenshots first, real merchant logos in the logo strip and the reviews (washed to one ink tone).
+- Product and solution pages show the dashboard as small animated scenes (`components/products/ProductScenes.tsx`),
+  redrawn from the real screens in the site tokens, in place of static screenshots. No browser or phone chrome.
 - Demo stores are fictional (Linden & Wren, Dewlight, Halden Audio, Hearth & Clay, Solenne, Stride Studio).
 - No generated people, no fake credentials or passwords visible on screens, no stock "laptop on desk" clichés.
 
@@ -99,6 +113,8 @@ mask over a green gradient. It is the one decorative element the site owns.
 - Plain and specific: what it does, for whom, in the merchant's words.
 - One two-beat slogan per page at most (the hero). Section titles say what the section shows.
 - No invented numbers. Every figure comes from real data (reviews, installs) or is cut.
+- No em dashes, anywhere: use a comma, colon, full stop or parentheses. Hero intros stay to one or two sentences.
+- No sparkle icons for "AI". Agent cues use the Aurevia ring mark.
 
 ## Known deviations (to fix next)
 
@@ -107,4 +123,4 @@ mask over a green gradient. It is the one decorative element the site owns.
 - The dashboard in Ask Aurevia and the widget windows are drawn replicas, not screenshots.
 - Frosted glass outside the hero and nav: the channels band cards, the scenario store chip and cue cards.
 - Eleven sections on the home page; the target is six or seven.
-- Other pages (pricing, help, solutions, products) still use the older Tailwind styles and mint accents.
+- Help pages still use the older Tailwind styles and mint accents.

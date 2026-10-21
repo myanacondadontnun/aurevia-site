@@ -157,7 +157,7 @@ type ChatMode = "sales" | "support";
 type TypingFrom = "none" | "aurevia" | "customer";
 
 /* Aurevia mark, same as the real website widget: the spinning/breathing knot ring
-   alone — no inner glyph. */
+   alone, no inner glyph. */
 function AureviaMark({ size, animate = false }: { size: number; animate?: boolean }) {
   return (
     <span

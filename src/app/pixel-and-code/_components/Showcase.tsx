@@ -1,6 +1,6 @@
-// "The bar we build to" — the work we've shipped and the sites we point clients
+// "The bar we build to": the work we've shipped and the sites we point clients
 // at when we say "custom", in one collage, grouped by what kind of thing it is:
-// Shopify stores, websites, web apps. No "our build" / "inspiration" stickers —
+// Shopify stores, websites, web apps. No "our build" / "inspiration" stickers;
 // the closing note carries the honesty line instead.
 //
 // Screenshots are each site's own public homepage, captured 2026-09, and every
@@ -27,7 +27,7 @@ const picks: Pick[] = [
     img: "/pixel-and-code/assets/screenshots/shopify/sreya-creates-home.webp",
     why: "Handmade jewellery, Kolkata. Brand and custom storefront: one-of-a-kind stock, Pujo drops, gift-wrap at checkout." },
   { slug: "astrid-miyu", name: "Astrid & Miyu", url: "https://www.astridandmiyu.com/", group: "Shopify stores",
-    why: "Ear-stacking as a navigation idea — the store is organised the way people actually buy." },
+    why: "Ear-stacking as a navigation idea: the store is organised the way people actually buy." },
   { slug: "completedworks", name: "Completedworks", url: "https://completedworks.com/", group: "Shopify stores",
     why: "Jewellery photographed like sculpture. The store gets out of the way and lets the pieces argue." },
   { slug: "graza", name: "Graza", url: "https://www.graza.co/", group: "Shopify stores",
@@ -40,7 +40,7 @@ const picks: Pick[] = [
   // Websites
   { slug: "aurevia", name: "Aurevia", url: "/pixel-and-code/aurevia-io/", group: "Websites", external: false, tag: "aurevia.io",
     render: "/",
-    why: "AI sales agent for Shopify — named, branded, built and run in-house. This is the live site, not a screenshot." },
+    why: "AI sales agent for Shopify: named, branded, built and run in-house. This is the live site, not a screenshot." },
   { slug: "mim", name: "Masters in Minds", url: "https://www.mastersinminds.com/", group: "Websites", tag: "'24",
     img: "/pixel-and-code/assets/work/mim.webp",
     why: "Business consulting. A marketing site designed and built end to end, from copy structure to launch." },
@@ -74,7 +74,7 @@ function Card({ p }: { p: Pick }) {
             <iframe
               className="showcase__frame"
               src={p.render}
-              title={`${p.name} — live site`}
+              title={`${p.name}: live site`}
               loading="lazy"
               tabIndex={-1}
               aria-hidden="true"

@@ -13,7 +13,7 @@ export default function HelpSidebar() {
   const activeSlug = pathname.replace(/^\/help\/?/, "").replace(/\/$/, "");
 
   const nav = (
-    <nav aria-label="Help center contents" className="text-sm">
+    <nav aria-label="Help centre contents" className="text-sm">
       <Link
         href="/help/"
         className={`block rounded-lg px-3 py-1.5 mb-3 font-medium transition-colors ${

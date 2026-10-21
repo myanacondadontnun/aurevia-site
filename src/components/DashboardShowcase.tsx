@@ -6,19 +6,19 @@ const panels = [
   {
     title: "Every metric, one glance",
     description:
-      "Active chats, resolution rate, revenue sold by AI — your entire operation surfaces the moment you log in.",
+      "Active chats, resolution rate, revenue sold by AI: your entire operation surfaces the moment you log in.",
     image: "/images/home-dashboard.webp",
   },
   {
     title: "Live on your storefront, selling in real time",
     description:
-      "Aurevia chats with shoppers on your live store, recommending products and closing sales — this is the widget actually running, not a mockup.",
+      "Aurevia chats with shoppers on your live store, recommending products and closing sales. This is the widget actually running, not a mockup.",
     image: "/images/widget-storefront-demo.webp",
   },
   {
     title: "Feed it your docs, watch it get sharper",
     description:
-      "Drop in return policies, size guides, and FAQs — Aurevia stays on-brand and stops guessing on technical questions.",
+      "Drop in return policies, size guides, and FAQs. Aurevia stays on-brand and stops guessing on technical questions.",
     image: "/images/ai-training-dashboard.webp",
   },
   {
@@ -28,9 +28,9 @@ const panels = [
     image: "/images/lead-management-dashboard.webp",
   },
   {
-    title: "Your whole catalog, always in sync",
+    title: "Your whole catalogue, always in sync",
     description:
-      "Products, pricing, and stock sync straight from Shopify — no manual uploads, no stale listings.",
+      "Products, pricing, and stock sync straight from Shopify. No manual uploads, no stale listings.",
     image: "/images/product-management-dashboard.webp",
   },
 ];
@@ -47,7 +47,7 @@ export default function DashboardShowcase() {
             One Agent, <span className="green-highlight">Every Part of Your Store</span>
           </h2>
           <p className="text-sm sm:text-xl font-normal text-muted-foreground max-w-3xl mx-auto">
-            From the storefront widget to the dashboard behind it — here's what running on Aurevia actually looks like.
+            From the storefront widget to the dashboard behind it, here's what running on Aurevia actually looks like.
           </p>
         </div>
 

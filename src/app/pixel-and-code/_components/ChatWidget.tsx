@@ -1,6 +1,6 @@
 import PcMark from "./PcMark";
 
-// Lead-capture chat assistant — byte-identical markup on every page.
+// Lead-capture chat assistant: byte-identical markup on every page.
 // Wired up client-side by script.js (initChat), which posts to
 // /pixel-and-code/api/chat (proxied to the pixel-chat Netlify Function).
 export default function ChatWidget() {

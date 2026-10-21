@@ -65,6 +65,10 @@
 
 .logo { display: flex; align-items: center; height: 40px; }
 .name {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
   margin-top: 18px;
   font-family: var(--font-fraunces), ui-serif, Georgia, serif;
   font-size: 1.5rem;
@@ -92,4 +96,17 @@
 
 @media (prefers-reduced-motion: reduce) {
   .card, .link svg { transition: none; }
+}
+
+/* Small "New" tag after the channel name (WhatsApp, Instagram). */
+.early {
+  padding: 3px 9px;
+  border-radius: var(--au-r-pill);
+  background: var(--au-green-wash);
+  font-family: var(--au-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--au-green-ink);
+  white-space: nowrap;
 }

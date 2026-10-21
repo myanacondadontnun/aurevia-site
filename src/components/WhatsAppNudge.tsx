@@ -6,6 +6,13 @@
 
 import { WhatsAppGlyph } from "./ChannelIcons";
 
+/** The nudge template as the backend sends it (recovery/whatsapp_nudge.py). */
+export const WA_NUDGE = {
+  text: "Hi Camille, you left Silk Draped Blouse in your cart at Lucien Vallière. It is still waiting for you. Any questions before you decide? Just reply here.",
+  footer: "Reply STOP to opt out",
+  button: "Return to your cart",
+};
+
 export default function WhatsAppNudge() {
   return (
     <div className="demo-wa" aria-label="Example cart recovery message on WhatsApp">
@@ -20,13 +27,10 @@ export default function WhatsAppNudge() {
       <div className="demo-wa-body">
         <span className="demo-wa-day">Today</span>
         <div className="demo-wa-msg demo-wa-in">
-          <p>
-            Hi Camille, you left Silk Draped Blouse in your cart at Lucien Vallière. It is still waiting for you. Any
-            questions before you decide? Just reply here.
-          </p>
-          <span className="demo-wa-foot">Reply STOP to opt out</span>
+          <p>{WA_NUDGE.text}</p>
+          <span className="demo-wa-foot">{WA_NUDGE.footer}</span>
           <span className="demo-wa-time">10:42</span>
-          <span className="demo-wa-cta">Return to your cart</span>
+          <span className="demo-wa-cta">{WA_NUDGE.button}</span>
         </div>
         <div className="demo-wa-msg demo-wa-out">
           <p>Will it arrive before Friday?</p>

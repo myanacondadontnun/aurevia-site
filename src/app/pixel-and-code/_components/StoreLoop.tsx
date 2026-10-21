@@ -1,9 +1,9 @@
-// Hero visual: a blank wireframe storefront that becomes a branded one — mark
-// drops in, palette washes, type swaps, products fill, "Live" — then resets and
+// Hero visual: a blank wireframe storefront that becomes a branded one: mark
+// drops in, palette washes, type swaps, products fill, "Live", then resets and
 // does it again with the next specimen. Three specimens, all fictional and
 // labelled as such on the panel; nothing here is or resembles a client.
 // script.js (initLoop) drives the phases by toggling classes; every phase is a
-// CSS transition on colour, transform or opacity. No browser chrome is drawn —
+// CSS transition on colour, transform or opacity. No browser chrome is drawn;
 // it's a page, not a window.
 export interface LoopPin { key: string; phase: string; label: string; x: string; y: string; }
 

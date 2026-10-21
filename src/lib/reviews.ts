@@ -82,6 +82,12 @@ export const reviews: Review[] = [
   },
 ];
 
+/** Store logos the site has for a review, drawn in one ink tone. ratio = width / height. */
+export const REVIEW_LOGOS: Record<string, { src: string; ratio: number }> = {
+  "masks-capes": { src: "/logos/customer-masks.webp", ratio: 127 / 65 },
+  purebronze: { src: "/logos/customer-purebronze.webp", ratio: 190 / 243 },
+};
+
 export function getReview(id: string): Review {
   const r = reviews.find((x) => x.id === id);
   if (!r) throw new Error(`Unknown review id: ${id}`);

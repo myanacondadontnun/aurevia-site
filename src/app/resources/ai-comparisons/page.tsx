@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/resources/ai-comparisons" },
   title: "Shopify AI Sales Agents Compared (2026) | Aurevia",
   description:
-    "Listicle-style comparison of Shopify AI chatbots: helpdesk titans, chat hybrids, niche tools, and proactive sales agents — with spider diagrams, tables, and internal guides.",
+    "Listicle-style comparison of Shopify AI chatbots: helpdesk titans, chat hybrids, niche tools, and proactive sales agents, with spider diagrams, tables, and internal guides.",
 };
 
 const articleLink =
@@ -315,7 +315,7 @@ export default function AIComparisonsPage() {
 
         <AIComparisonListicleLayout>
           <Fragment>
-            {/* Hero: no framed box — sits in article column so TOC + CTA stay sticky for full scroll */}
+            {/* Hero: no framed box; sits in article column so TOC + CTA stay sticky for full scroll */}
             <header className="mb-10 sm:mb-12">
               <div className="mb-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
                 <span className="inline-flex items-center gap-1.5 text-foreground/90">
@@ -335,7 +335,7 @@ export default function AIComparisonsPage() {
               <p className="mt-5 max-w-3xl text-base font-normal leading-relaxed text-muted-foreground sm:text-lg">
                 If your inbox is mostly WISMO tickets, a helpdesk-first bot can help. But if your problem is{" "}
                 <strong className="font-medium text-foreground/90">paid traffic that does not convert</strong>, you need a
-                different species of AI — one that closes the{" "}
+                different species of AI: one that closes the{" "}
                 <Link href="/resources/blogs/reduce-checkout-abandonment-shopify/" className={articleLink}>
                   hesitation window
                 </Link>{" "}
@@ -368,7 +368,7 @@ export default function AIComparisonsPage() {
             </h2>
             <p className="mt-4 text-base font-normal leading-relaxed text-muted-foreground">
               A modern Shopify AI is not a floating script. It should read store context, respect inventory, and
-              advance the purchase — the same bar we use when evaluating{" "}
+              advance the purchase, the same bar we use when evaluating{" "}
               <Link href="/products/automated-responses/" className={articleLink}>
                 automated responses
               </Link>{" "}
@@ -379,15 +379,15 @@ export default function AIComparisonsPage() {
               products inside Aurevia.
             </p>
             <ul className="mt-5 list-disc space-y-2 pl-5 text-base font-normal leading-relaxed text-muted-foreground">
-              <li>Answer product, policy, and compatibility questions with catalog-grounded specificity.</li>
+              <li>Answer product, policy, and compatibility questions with catalogue-grounded specificity.</li>
               <li>Recommend bundles and upsells that respect price rules and stock.</li>
-              <li>Detect hesitation and respond in-session — not only after someone opens chat.</li>
+              <li>Detect hesitation and respond in-session, not only after someone opens chat.</li>
               <li>Hand off cleanly to humans when the ticket needs empathy or policy exceptions.</li>
             </ul>
             <InfographicCapabilities />
             <h3 className="mt-12 text-lg font-normal text-foreground sm:text-xl">Three architectures you will see</h3>
             <p className="mt-2 max-w-3xl text-sm font-normal text-muted-foreground">
-              Almost every vendor file into one of these buckets — use it as a shorthand while you scan the tables
+              Almost every vendor file into one of these buckets; use it as a shorthand while you scan the tables
               below.
             </p>
             <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -398,7 +398,7 @@ export default function AIComparisonsPage() {
                   </div>
                   <h4 className="text-base font-normal text-foreground">Support-centric</h4>
                   <p className="mt-2 text-sm font-normal leading-relaxed text-muted-foreground">
-                    Tickets, SLAs, refunds — brilliant ops, limited proactive GMV.
+                    Tickets, SLAs, refunds: brilliant ops, limited proactive GMV.
                   </p>
                 </CardContent>
               </Card>
@@ -409,7 +409,7 @@ export default function AIComparisonsPage() {
                   </div>
                   <h4 className="text-base font-normal text-foreground">Chat hybrids</h4>
                   <p className="mt-2 text-sm font-normal leading-relaxed text-muted-foreground">
-                    Live chat + AI modules — fast deploys, often reactive or operator-heavy.
+                    Live chat + AI modules: fast deploys, often reactive or operator-heavy.
                   </p>
                 </CardContent>
               </Card>
@@ -420,7 +420,7 @@ export default function AIComparisonsPage() {
                   </div>
                   <h4 className="text-base font-normal text-foreground">Proactive sales agents</h4>
                   <p className="mt-2 text-sm font-normal leading-relaxed text-muted-foreground">
-                    Behavioral triggers + autonomous threads — built for conversion and AOV.
+                    Behavioural triggers + autonomous threads: built for conversion and AOV.
                   </p>
                 </CardContent>
               </Card>
@@ -445,12 +445,12 @@ export default function AIComparisonsPage() {
             <InfographicBenefits />
             <ul className="mt-6 list-disc space-y-3 pl-5 text-base font-normal leading-relaxed text-muted-foreground">
               <li>
-                <strong className="font-medium text-foreground">Always-on revenue defense:</strong> shoppers on mobile,
+                <strong className="font-medium text-foreground">Always-on revenue defence:</strong> shoppers on mobile,
                 international time zones, and promo spikes still get guided answers.
               </li>
               <li>
                 <strong className="font-medium text-foreground">Higher conversion without more headcount:</strong>{" "}
-                compress the gap between intent and checkout — related reading:{" "}
+                compress the gap between intent and checkout. Related reading:{" "}
                 <Link href="/solutions/conversion/" className={articleLink}>
                   conversion solutions
                 </Link>
@@ -470,7 +470,7 @@ export default function AIComparisonsPage() {
             <h2 className="text-2xl font-normal text-foreground sm:text-3xl">How we compared these tools</h2>
             <p className="mt-4 text-base font-normal leading-relaxed text-muted-foreground">
               We merged editorial research (pricing models, architecture, merchant sentiment) with product
-              mechanics from our own Shopify-native stack. No paid placement —{" "}
+              mechanics from our own Shopify-native stack. No paid placement;{" "}
               <Link href="/resources/blogs/" className={articleLink}>
                 browse all research posts
               </Link>
@@ -504,7 +504,7 @@ export default function AIComparisonsPage() {
               <QuickComparisonTable />
             </div>
             <p className="mt-3 text-center text-xs font-normal text-muted-foreground">
-              Rows summarize positioning; confirm live pricing on each vendor&apos;s site before purchase.
+              Rows summarise positioning; confirm live pricing on each vendor&apos;s site before purchase.
             </p>
           </section>
 
@@ -536,8 +536,8 @@ export default function AIComparisonsPage() {
           <section id="full-landscape" className="scroll-mt-28">
             <h2 className="text-2xl font-normal text-foreground sm:text-3xl">The full vendor landscape (all tiers)</h2>
             <p className="mt-4 max-w-3xl text-base font-normal leading-relaxed text-muted-foreground">
-              Power readers: here is every platform from our research memo — helpdesk titans, hybrids, niche tools,
-              and proactive sales vanguards — with the same score bars for quick scanning.
+              Power readers: here is every platform from our research memo (helpdesk titans, hybrids, niche tools,
+              and proactive sales vanguards), with the same score bars for quick scanning.
             </p>
             <div className="mt-10 space-y-16">
               {TIER_SECTIONS.map((tier) => (
@@ -564,24 +564,24 @@ export default function AIComparisonsPage() {
           <section id="deep-tables" className="scroll-mt-28 space-y-14">
             <h2 className="text-2xl font-normal text-foreground sm:text-3xl">Category deep-dives (tabular)</h2>
             <p className="max-w-3xl text-base font-normal text-muted-foreground">
-              Same data as our research tables — useful when you are comparing apples-to-apples inside a single
+              Same data as our research tables, useful when you are comparing apples-to-apples inside a single
               segment.
             </p>
             <ComparisonTable
               title="Omnichannel helpdesk titans"
-              caption="Consolidated inbox power — AI is mostly augmentation, not autonomous GMV."
+              caption="Consolidated inbox power. AI is mostly augmentation, not autonomous GMV."
               headers={TABLE_HELPDESK.headers}
               rows={TABLE_HELPDESK.rows}
             />
             <ComparisonTable
               title="Mass-market chat hybrids"
-              caption="Broad adoption and accessible pricing — watch for reactive UX and usage-based billing."
+              caption="Broad adoption and accessible pricing. Watch for reactive UX and usage-based billing."
               headers={TABLE_HYBRIDS.headers}
               rows={TABLE_HYBRIDS.rows}
             />
             <ComparisonTable
               title="Proactive & niche spectrum"
-              caption="From recommendation engines to behavioral sales AI — same columns, sharper tradeoffs."
+              caption="From recommendation engines to behavioral sales AI: same columns, sharper tradeoffs."
               headers={TABLE_VANGUARD.headers}
               rows={TABLE_VANGUARD.rows}
             />
@@ -616,7 +616,7 @@ export default function AIComparisonsPage() {
                   <Zap className="mb-3 h-8 w-8 text-[#00CC99]" />
                   <h3 className="text-lg font-normal text-foreground">Guided checkout flow</h3>
                   <p className="mt-2 text-sm font-normal text-muted-foreground">
-                    Maintain momentum through offers, bundles, and payment — not just PDP links.
+                    Maintain momentum through offers, bundles, and payment, not just PDP links.
                   </p>
                 </CardContent>
               </Card>
@@ -640,9 +640,9 @@ export default function AIComparisonsPage() {
               </Card>
             </div>
             <blockquote className="mt-8 border-l-2 border-[#00CC99] pl-5 text-base font-normal italic leading-relaxed text-muted-foreground sm:text-lg">
-              Helpdesk AI minimizes complaints. Sales AI maximizes yield from the traffic you already bought. Pick
-              the toolchain that matches your bottleneck — and if the bottleneck is checkout hesitation, bias
-              toward agents that own the full funnel.
+              Helpdesk AI minimises complaints. Sales AI maximises yield from the traffic you already bought. Pick
+              the toolchain that matches your bottleneck, and if the bottleneck is checkout hesitation, bias
+              towards agents that own the full funnel.
             </blockquote>
           </section>
 
@@ -650,7 +650,7 @@ export default function AIComparisonsPage() {
           <div className="mt-8 rounded-xl border border-[#00CC99]/20 bg-gradient-to-br from-[#00CC99]/5 to-transparent p-6 sm:p-8">
             <h3 className="text-lg font-normal text-foreground sm:text-xl">Ready to ship your AI sales co-pilot?</h3>
             <p className="mb-5 mt-2 max-w-lg text-sm font-normal text-muted-foreground sm:text-base">
-              Install Aurevia on Shopify in minutes — guided checkout, upsells, and revenue reporting without wiring
+              Install Aurevia on Shopify in minutes: guided checkout, upsells, and revenue reporting without wiring
               a dozen point solutions.
             </p>
             <div className="flex flex-wrap gap-3">

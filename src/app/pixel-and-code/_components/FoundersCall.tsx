@@ -4,7 +4,7 @@ import { useState } from "react";
 
 // The one place on the page that books a call with Ritwik. A three-field lead
 // form (name, email, store website) that, once sent, opens Ritwik's Calendly
-// inline — embedded right here, prefilled with what they typed — instead of
+// inline (embedded right here, prefilled with what they typed) instead of
 // bouncing them to calendly.com. The lead is emailed via /pixel-and-code/api/lead
 // (same pipeline as the brief form) before the calendar appears, so a booking
 // that never completes still lands in the inbox.

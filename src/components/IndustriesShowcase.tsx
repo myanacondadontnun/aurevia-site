@@ -139,7 +139,7 @@ export default function IndustriesShowcase({ industries }: IndustriesShowcasePro
                   />
                 ) : (
                   <span className="absolute inset-0 flex items-center justify-center text-foreground/60 text-sm font-medium">
-                    {industry.title} — Image placeholder
+                    {industry.title}: Image placeholder
                   </span>
                 )}
               </div>

@@ -7,13 +7,13 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Aurevia — Shopify AI Sales Agent | Pixel & Code",
+  title: "Aurevia: Shopify AI Sales Agent | Pixel & Code",
   description:
     "How Pixel & Code built Aurevia, a Django-powered AI sales and support agent for Shopify merchants, over a year-long engagement, from cart recovery to live takeover and a merchant copilot.",
   alternates: { canonical: "https://aurevia.io/pixel-and-code/aurevia-io/" },
   openGraph: {
     type: "article",
-    title: "Aurevia — Shopify AI Sales Agent | Pixel & Code",
+    title: "Aurevia: Shopify AI Sales Agent | Pixel & Code",
     description: "A year-long build: the Django-powered AI sales agent helping Shopify merchants convert visitors 24/7.",
     images: ["https://aurevia.io/pixel-and-code/assets/logos/aurevia.png"],
   },
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 const JSON_LD = {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  name: "Aurevia — Shopify AI Sales Agent",
+  name: "Aurevia: Shopify AI Sales Agent",
   creator: { "@type": "Organization", name: "Pixel & Code" },
   about: "AI sales and support agent for Shopify merchants",
   url: "https://aurevia.io/pixel-and-code/aurevia-io/",
@@ -62,7 +62,7 @@ export default function AureviaCaseStudyPage() {
             <h1 className="case-title reveal-up">Aurevia</h1>
             <p className="case-summary reveal-up">
               Shopify merchants lose sales every day to abandoned carts, off-brand chatbots, and support
-              queues no one has time for. Aurevia is the AI sales &amp; support agent that fixes that —
+              queues no one has time for. Aurevia is the AI sales &amp; support agent that fixes that:
               a merchant installs it in one click and it starts selling, answering, and recovering revenue
               around the clock. We built the entire product, end to end, on Django.
             </p>
@@ -97,7 +97,7 @@ export default function AureviaCaseStudyPage() {
 
         <div className="case-shot-full">
           <figure className="case-shot reveal-up">
-            <img src="/images/home-dashboard.webp" alt="Aurevia dashboard — home" loading="eager" />
+            <img src="/images/home-dashboard.webp" alt="Aurevia dashboard: home" loading="eager" />
           </figure>
         </div>
 
@@ -108,7 +108,7 @@ export default function AureviaCaseStudyPage() {
             <h2 className="section__title" data-split>Great traffic. Leaky funnel.</h2>
           </div>
           <p className="case-summary reveal-up" style={{ maxWidth: 760, fontSize: "1.1rem" }}>
-            Shopify stores were doing the hard part — getting people to the site — and losing them at the
+            Shopify stores were doing the hard part (getting people to the site) and losing them at the
             easiest part: the conversation. Shoppers left carts at checkout over last-minute questions.
             Support teams answered the same &quot;where&apos;s my order?&quot; dozens of times a day. Off-the-shelf
             chatbots sounded nothing like the brand they represented. And merchants had no visibility into
@@ -123,7 +123,7 @@ export default function AureviaCaseStudyPage() {
             <h2 className="section__title" data-split>A sales rep that never clocks out.</h2>
           </div>
           <p className="case-summary reveal-up" style={{ maxWidth: 760, marginBottom: "2.5rem" }}>
-            We built Aurevia as a native Shopify App on Django — install is one click, and the app
+            We built Aurevia as a native Shopify App on Django. Install is one click, and the app
             auto-syncs the store&apos;s products, discounts, and branding immediately. From there, merchants
             set the agent&apos;s tone of voice, colours and business rules, and feed it FAQs and product docs
             so its answers stay on-brand. Every capability below shipped because a merchant asked for it.
@@ -137,7 +137,7 @@ export default function AureviaCaseStudyPage() {
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Pre &amp; post-sale</span>
               <h3>Automated Support</h3>
-              <p>Instant, context-aware answers 24/7 — no more waiting on support hours for a simple question.</p>
+              <p>Instant, context-aware answers 24/7. No more waiting on support hours for a simple question.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Pre-sale</span>
@@ -162,14 +162,14 @@ export default function AureviaCaseStudyPage() {
           </div>
 
           <div className="case-shot-grid">
-            <figure className="case-shot reveal-up"><img src="/images/product-management-dashboard.webp" alt="Aurevia dashboard — product catalog and AI readiness" loading="lazy" /></figure>
-            <figure className="case-shot reveal-up"><img src="/images/ai-training-dashboard.webp" alt="Aurevia dashboard — AI training and knowledge base" loading="lazy" /></figure>
+            <figure className="case-shot reveal-up"><img src="/images/product-management-dashboard.webp" alt="Aurevia dashboard: product catalogue and AI readiness" loading="lazy" /></figure>
+            <figure className="case-shot reveal-up"><img src="/images/ai-training-dashboard.webp" alt="Aurevia dashboard: AI training and knowledge base" loading="lazy" /></figure>
           </div>
         </section>
 
         <div className="case-shot-full">
           <figure className="case-shot reveal-up">
-            <img src="/images/lead-management-dashboard.webp" alt="Aurevia dashboard — leads and live conversations" loading="lazy" />
+            <img src="/images/lead-management-dashboard.webp" alt="Aurevia dashboard: leads and live conversations" loading="lazy" />
           </figure>
         </div>
 

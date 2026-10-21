@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ArrowRight, BookOpen, Search, ShoppingBag, Star, type LucideIcon } from "lucide-react";
 import { ShopifyLogo } from "@/components/BrandLogos";
 import { SHOPIFY_LISTING_URL, SHOPIFY_RATING, SHOPIFY_REVIEW_COUNT } from "@/lib/reviews";
@@ -9,6 +9,7 @@ import { SHOPIFY_APP_URL } from "@/lib/utils";
 import g from "./glass.module.css";
 import h from "./hero.module.css";
 import { Cards, InputPill } from "./Widget";
+import HeroWatermark from "./HeroWatermark";
 
 /**
  * Home hero, no photo (Hallmark redesign, atmospheric): a warm paper canvas with two soft emerald blooms and fine grain;
@@ -176,8 +177,27 @@ function ChatStack({
   cart: CartPhase;
   added: boolean;
 }) {
+  // When a message arrives the list grows at the bottom, which would shove everything above it up in one frame.
+  // Instead, start the list where it was and let it glide up (the new message slides in from behind the input).
+  const listRef = useRef<HTMLDivElement>(null);
+  const lastHeight = useRef(0);
+  useLayoutEffect(() => {
+    const el = listRef.current;
+    if (!el) return;
+    const height = el.offsetHeight;
+    const grew = height - lastHeight.current;
+    lastHeight.current = height;
+    if (grew <= 0 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    el.style.transition = "none";
+    el.style.transform = `translateY(${grew}px)`;
+    void el.offsetHeight; // commit the start position before animating
+    el.style.transition = "transform 620ms cubic-bezier(0.22, 1, 0.36, 1)";
+    el.style.transform = "translateY(0)";
+  }, [shown]);
+
   return (
     <div className={`${g.chat} ${g.free}`} aria-hidden="true">
+      <div ref={listRef} className={g.list}>
       {SCRIPT.slice(0, shown).map((step, i) =>
         step.who === "agent" && step.products ? (
           <div key={i} className={`${g.enter} ${g.cardsGroup} ${g.step}`}>
@@ -222,6 +242,7 @@ function ChatStack({
           </div>
         ),
       )}
+      </div>
       <div className={g.inputRow}>
         <InputPill />
       </div>
@@ -229,71 +250,22 @@ function ChatStack({
   );
 }
 
-/** Turns the watermark very slowly, a little faster while the page scrolls (easing back after), and lets it
-    drift with a light parallax: it moves up at a quarter of the scroll speed, so it reads as further back.
-    Paused while the hero is off screen; still under reduced motion. */
-function useSpin<T extends HTMLElement>() {
-  const ref = useRef<T>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const BASE = 3; // degrees per second: one turn every two minutes
-    const MAX_BOOST = 9; // scrolling at most quadruples it
-    const PARALLAX = 0.25;
-    let angle = 0;
-    let boost = 0;
-    let lastY = window.scrollY;
-    let last = 0;
-    let raf = 0;
-    const onScroll = () => {
-      const y = window.scrollY;
-      boost = Math.min(boost + Math.abs(y - lastY) * 0.05, MAX_BOOST);
-      lastY = y;
-    };
-    const tick = (t: number) => {
-      const dt = last ? Math.min(t - last, 64) / 1000 : 0;
-      last = t;
-      angle = (angle + (BASE + boost) * dt) % 360;
-      boost *= Math.exp(-1.6 * dt);
-      el.style.transform = `translateY(${-window.scrollY * PARALLAX}px) rotate(${angle}deg)`;
-      raf = requestAnimationFrame(tick);
-    };
-    const io = new IntersectionObserver(([entry]) => {
-      cancelAnimationFrame(raf);
-      last = 0;
-      if (entry.isIntersecting) raf = requestAnimationFrame(tick);
-    });
-    io.observe(el);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      io.disconnect();
-      cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
-  return ref;
-}
-
 const HEADLINE = ["One", "AI", "sales", "agent."];
 const ACCENT = ["Every", "channel."];
 
 export default function HomeHero({ photos }: { photos: HeroPhotos }) {
   const { shown, cart, added } = useConversation();
-  const spinRef = useSpin<HTMLSpanElement>();
 
   return (
     <section id="hero" className={h.hero}>
       <div className={h.grain} aria-hidden="true" />
-      <span className={h.watermark} aria-hidden="true">
-        <span ref={spinRef} className={h.watermarkSpin} />
-      </span>
+      <HeroWatermark />
 
       <div className={`container mx-auto px-4 sm:px-6 ${h.inner}`}>
         <div className={h.copy}>
           <p className={`${h.eyebrow} ${h.fade}`}>
             <span className={h.eyebrowMark} aria-hidden="true"><img src="/images/site/mark-ring.webp" alt="" /></span>
             <span className={h.eyebrowLead}>AI sales agent</span>
-            <span className={h.eyebrowRule} aria-hidden="true" />
             <span className={h.eyebrowTail}>
               <span aria-hidden="true" className={h.eyebrowShopifyWrap}><ShopifyLogo className={h.eyebrowShopify} /></span>
               for Shopify stores
@@ -302,7 +274,7 @@ export default function HomeHero({ photos }: { photos: HeroPhotos }) {
 
           <h1 className={h.title}>
             {HEADLINE.map((w, i) => (
-              <span key={w} className={h.word} style={{ animationDelay: `${120 + i * 70}ms` }}>
+              <span key={w} className={h.word} style={{ animationDelay: `${40 + i * 25}ms` }}>
                 {w}{" "}
               </span>
             ))}
@@ -312,7 +284,7 @@ export default function HomeHero({ photos }: { photos: HeroPhotos }) {
                 <span
                   key={w}
                   className={`${h.word} ${h.accent}`}
-                  style={{ animationDelay: `${120 + (HEADLINE.length + i) * 70}ms` }}
+                  style={{ animationDelay: `${40 + (HEADLINE.length + i) * 25}ms` }}
                 >
                   {w}{i < ACCENT.length - 1 ? " " : ""}
                 </span>
@@ -320,12 +292,12 @@ export default function HomeHero({ photos }: { photos: HeroPhotos }) {
             </span>
           </h1>
 
-          <p className={`${h.lede} ${h.fade}`} style={{ animationDelay: "560ms" }}>
-            Store chat, WhatsApp, Instagram DMs and email. It finds shoppers the right products, answers their buying
-            questions and guides them to checkout, 24/7.
+          <p className={`${h.lede} ${h.fade}`} style={{ animationDelay: "190ms" }}>
+            Store chat, email, WhatsApp and Instagram DMs. It finds shoppers the right
+            products, answers their buying questions and guides them to checkout, 24/7.
           </p>
 
-          <div className={`${h.ctas} ${h.fade}`} style={{ animationDelay: "680ms" }}>
+          <div className={`${h.ctas} ${h.fade}`} style={{ animationDelay: "230ms" }}>
             <a
               href={SHOPIFY_APP_URL}
               target="_blank"
@@ -343,7 +315,7 @@ export default function HomeHero({ photos }: { photos: HeroPhotos }) {
 
           {/* Proof as three set figures with hairline rules between them. 50+ is the live install count from the
               stores table (Oct 2026). */}
-          <ul className={`${h.stats} ${h.fade}`} style={{ animationDelay: "800ms" }}>
+          <ul className={`${h.stats} ${h.fade}`} style={{ animationDelay: "270ms" }}>
             <li className={h.stat}>
               <a
                 href={SHOPIFY_LISTING_URL}

@@ -1,6 +1,6 @@
 // "How we work", shown as the four things that actually land in a client's
-// inbox rather than four steps. Each is a drawn artefact — a quote sheet, a
-// brand board, a Friday preview card, a handover folder — stacked like a hand
+// inbox rather than four steps. Each is a drawn artefact (a quote sheet, a
+// brand board, a Friday preview card, a handover folder), stacked like a hand
 // of cards until the section scrolls in, then fanned out with its week.
 // script.js (initHand) adds .is-on via IntersectionObserver.
 const items = [
@@ -10,7 +10,7 @@ const items = [
   },
   {
     kind: "board", week: "Wk 2", title: "Brand board",
-    cap: "Mark, palette and type, agreed before the storefront is drawn — so the store expresses the brand instead of containing it.",
+    cap: "Mark, palette and type, agreed before the storefront is drawn, so the store expresses the brand instead of containing it.",
   },
   {
     kind: "preview", week: "Wk 3–5", title: "Friday preview link",

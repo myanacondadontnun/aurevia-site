@@ -6,7 +6,7 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Help Center | Aurevia",
+  title: "Help Centre | Aurevia",
   description: "Setup and how-to guides for Aurevia: install the widget, train the AI, take over chats, cart recovery, channels, team and billing.",
   alternates: { canonical: "/help" },
 };
@@ -16,7 +16,7 @@ export default function HelpIndexPage() {
     <HelpShell>
       <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Help center", path: "/help" }])} />
       <header className="mb-10">
-        <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00665A] mb-3">Help center</p>
+        <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#00665A] mb-3">Help centre</p>
         <h1 className="text-3xl sm:text-5xl font-fraunces font-normal text-foreground mb-3">
           Set up and run <span className="green-highlight">Aurevia</span>
         </h1>

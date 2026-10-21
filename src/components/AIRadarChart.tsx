@@ -14,7 +14,7 @@ import {
 const TOOLTIP_LABELS: Record<string, string> = {
   proactive: "Proactive engagement",
   autonomous: "Autonomous sales resolution",
-  catalog: "Catalog & Shopify depth",
+  catalog: "Catalogue & Shopify depth",
   pricing: "Pricing value / predictability",
   analytics: "Revenue analytics & attribution",
   checkout: "Guided checkout & funnel",
@@ -194,19 +194,19 @@ export default function AIRadarChart() {
       </h2>
       <p className="mb-8 max-w-3xl text-base font-normal text-muted-foreground">
         Scores are editorial summaries based on architecture (proactive vs reactive), depth of Shopify
-        integration, checkout orchestration, analytics, and total cost of ownership — not third-party
+        integration, checkout orchestration, analytics, and total cost of ownership, not third-party
         benchmarks.
       </p>
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <SpiderBlock
           title="Top contenders"
-          subtitle="Aurevia vs Zipchat vs Tidio (Lyro) vs Gorgias — where each wins on paper."
+          subtitle="Aurevia vs Zipchat vs Tidio (Lyro) vs Gorgias: where each wins on paper."
           data={TOP_FOUR_DATA}
           keys={topKeys}
         />
         <SpiderBlock
           title="Full market spectrum"
-          subtitle="From helpdesk titan to niche recommendation engine to sales vanguard — same six axes."
+          subtitle="From helpdesk titan to niche recommendation engine to sales vanguard: same six axes."
           data={BROAD_MARKET_DATA}
           keys={broadKeys}
         />

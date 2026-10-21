@@ -55,9 +55,9 @@ export default function ContactSalesForm() {
     setIsSubmitting(true);
 
     const message = [
-      `Shopify store URL: ${form.storeUrl || "—"}`,
-      `Monthly order volume: ${form.volume || "—"}`,
-      `Main goal: ${form.goal || "—"}`,
+      `Shopify store URL: ${form.storeUrl || "None"}`,
+      `Monthly order volume: ${form.volume || "None"}`,
+      `Main goal: ${form.goal || "None"}`,
       form.notes ? `Notes: ${form.notes}` : null,
     ]
       .filter(Boolean)
@@ -68,7 +68,7 @@ export default function ContactSalesForm() {
       body.append("name", form.name);
       body.append("email", form.email);
       body.append("company", form.company);
-      body.append("subject", "Sales inquiry");
+      body.append("subject", "Sales enquiry");
       body.append("message", message);
 
       const response = await fetch(
@@ -100,7 +100,7 @@ export default function ContactSalesForm() {
         error_message: err instanceof Error ? err.message : "Unknown error",
       });
       setError(
-        `Couldn't send that — ${err instanceof Error ? err.message : "please try again"}. You can also email sales@aurevia.io directly.`
+        `Couldn't send that: ${err instanceof Error ? err.message : "please try again"}. You can also email sales@aurevia.io directly.`
       );
     } finally {
       setIsSubmitting(false);
@@ -314,7 +314,7 @@ export default function ContactSalesForm() {
             </button>
             <span className="inline-flex items-center gap-1.5 text-sm text-[#00CC99]">
               <CalendarCheck className="h-4 w-4" aria-hidden="true" />
-              Thanks, {form.name.split(" ")[0] || "there"} — pick a time below
+              Thanks, {form.name.split(" ")[0] || "there"}. Pick a time below
             </span>
           </div>
           <div className="overflow-hidden rounded-2xl border border-border/40 bg-card/20">

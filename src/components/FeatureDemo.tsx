@@ -1,69 +1,33 @@
 "use client";
 
 /**
- * Feature-page product demos — the same widget chrome as the hero ChatDemo
+ * Feature-page product demos: the same widget chrome as the hero ChatDemo
  * (chat-demo-* classes in globals.css), driven by a per-page script so every
  * Platform page shows the AI doing that page's exact job. Two extra variants
  * cover the non-chat products: an animated dashboard panel (metrics) and a
  * webhook/terminal panel (code).
  */
 
-import { useState, useEffect, useRef } from "react";
-import { ArrowUp, Image as ImageIcon, SquarePen } from "lucide-react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
+import {
+  ArrowUp,
+  BookOpen,
+  Check,
+  Image as ImageIcon,
+  Mail,
+  MessageCircle,
+  RefreshCw,
+  Search,
+  ShoppingBag,
+  SquarePen,
+  Ticket,
+  UserRound,
+  type LucideIcon,
+} from "lucide-react";
+import cueStyles from "./featureCues.module.css";
 
-/* ---------- shared product art (inline SVG data URIs, no assets) ---------- */
+import { DEMO_ART as DEMO_IMAGES } from "@/lib/demoArt";
 
-const svg = (raw: string) =>
-  `data:image/svg+xml,${encodeURIComponent(raw.replace(/\n\s*/g, ""))}`;
-
-const DEMO_IMAGES: Record<string, string> = {
-  serum: svg(`
-<svg xmlns="http://www.w3.org/2000/svg" width="280" height="280" viewBox="0 0 280 280">
-  <defs>
-    <linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#eef1f0"/><stop offset="100%" stop-color="#dde2e0"/></linearGradient>
-    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d8ede7"/><stop offset="100%" stop-color="#a8d5c8"/></linearGradient>
-  </defs>
-  <rect width="280" height="280" fill="url(#b)"/>
-  <rect x="118" y="52" width="44" height="26" rx="5" fill="#2d3737"/>
-  <rect x="126" y="40" width="28" height="16" rx="4" fill="#4a5552"/>
-  <rect x="104" y="78" width="72" height="140" rx="14" fill="url(#g)"/>
-  <rect x="104" y="78" width="72" height="140" rx="14" fill="none" stroke="#8fbfb2" stroke-width="1.5"/>
-  <rect x="116" y="118" width="48" height="52" rx="4" fill="#ffffff" opacity="0.85"/>
-  <rect x="122" y="128" width="36" height="5" rx="2.5" fill="#2d3737" opacity="0.7"/>
-  <rect x="122" y="140" width="26" height="4" rx="2" fill="#2d3737" opacity="0.4"/>
-  <rect x="100" y="222" width="80" height="6" rx="3" fill="rgba(0,0,0,0.07)"/>
-</svg>`),
-  cream: svg(`
-<svg xmlns="http://www.w3.org/2000/svg" width="280" height="280" viewBox="0 0 280 280">
-  <defs>
-    <linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#eef1f0"/><stop offset="100%" stop-color="#dde2e0"/></linearGradient>
-    <linearGradient id="j" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fdfdfc"/><stop offset="100%" stop-color="#e4e2da"/></linearGradient>
-  </defs>
-  <rect width="280" height="280" fill="url(#b)"/>
-  <rect x="88" y="108" width="104" height="86" rx="18" fill="url(#j)" stroke="#cfccc2" stroke-width="1.5"/>
-  <rect x="82" y="86" width="116" height="30" rx="10" fill="#c9b896"/>
-  <rect x="82" y="86" width="116" height="12" rx="6" fill="#d8caac"/>
-  <rect x="106" y="138" width="68" height="30" rx="4" fill="#ffffff" opacity="0.9"/>
-  <rect x="114" y="147" width="52" height="5" rx="2.5" fill="#2d3737" opacity="0.65"/>
-  <rect x="114" y="157" width="34" height="4" rx="2" fill="#2d3737" opacity="0.35"/>
-  <rect x="84" y="198" width="112" height="6" rx="3" fill="rgba(0,0,0,0.07)"/>
-</svg>`),
-  spf: svg(`
-<svg xmlns="http://www.w3.org/2000/svg" width="280" height="280" viewBox="0 0 280 280">
-  <defs>
-    <linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#eef1f0"/><stop offset="100%" stop-color="#dde2e0"/></linearGradient>
-    <linearGradient id="t" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff4d6"/><stop offset="100%" stop-color="#f5d98b"/></linearGradient>
-  </defs>
-  <rect width="280" height="280" fill="url(#b)"/>
-  <rect x="112" y="60" width="56" height="18" rx="6" fill="#2d3737"/>
-  <path d="M108 84 h64 l6 118 a12 12 0 0 1 -12 12 h-52 a12 12 0 0 1 -12 -12 Z" fill="url(#t)" stroke="#e2c46e" stroke-width="1.5"/>
-  <rect x="118" y="122" width="44" height="56" rx="5" fill="#ffffff" opacity="0.9"/>
-  <rect x="124" y="132" width="32" height="6" rx="3" fill="#2d3737" opacity="0.75"/>
-  <rect x="124" y="144" width="22" height="4" rx="2" fill="#2d3737" opacity="0.4"/>
-  <circle cx="140" cy="164" r="8" fill="#f0b429" opacity="0.8"/>
-  <rect x="104" y="216" width="72" height="6" rx="3" fill="rgba(0,0,0,0.07)"/>
-</svg>`),
-};
 
 /* ---------- chat variant ---------- */
 
@@ -74,7 +38,28 @@ export interface DemoProductItem {
   img: keyof typeof DEMO_IMAGES | string;
 }
 
-export type ChatStep =
+/** A margin cue: what the agent just did, shown beside its message on wide screens. The icon is a key, not a
+    component, so server pages can pass it. */
+export type DemoCueIcon = "book" | "search" | "cart" | "user" | "mail" | "sync" | "chat" | "ticket" | "check";
+export interface DemoCue {
+  icon: DemoCueIcon;
+  eyebrow: string;
+  title: string;
+}
+
+const CUE_ICONS: Record<DemoCueIcon, LucideIcon> = {
+  book: BookOpen,
+  search: Search,
+  cart: ShoppingBag,
+  user: UserRound,
+  mail: Mail,
+  sync: RefreshCw,
+  chat: MessageCircle,
+  ticket: Ticket,
+  check: Check,
+};
+
+export type ChatStep = { cue?: DemoCue } & (
   | { type: "bot"; text: string; typing?: number; delay?: number }
   | { type: "user"; text: string; typing?: number; delay?: number }
   | { type: "products"; items: DemoProductItem[]; delay?: number }
@@ -94,7 +79,8 @@ export type ChatStep =
   /** Two-product comparison card with a verdict */
   | { type: "compare"; a: DemoCompareSide; b: DemoCompareSide; rows: DemoCompareRow[]; verdict: string; delay?: number }
   /** Human agent joins: header flips to the agent, later bot messages render as the agent */
-  | { type: "agent"; name: string; role?: string; delay?: number };
+  | { type: "agent"; name: string; role?: string; delay?: number }
+);
 
 export interface DemoCartLine {
   name: string;
@@ -406,6 +392,101 @@ export function FeatureChatDemo({
     }
   }, [visible, typingFrom, cartBar]);
 
+  // Margin cues (wide screens): one per step that has played and carries a cue, placed level with its message.
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const firedCues = script.flatMap((st, i) =>
+    st.cue && (visible.includes(i) || (st.type === "cartbar" && cartBar !== null)) ? [i] : []
+  );
+  const firedKey = firedCues.join(",");
+  const [cueSpots, setCueSpots] = useState<Record<number, { top: number; visible: boolean }>>({});
+  useLayoutEffect(() => {
+    const wrap = wrapRef.current;
+    const list = scrollRef.current;
+    if (!wrap || !list || !firedKey) return setCueSpots({});
+    const ids = firedKey.split(",").map(Number);
+    const measure = () => {
+      if (!window.matchMedia("(min-width: 1280px)").matches) return setCueSpots({});
+      const wr = wrap.getBoundingClientRect();
+      const lr = list.getBoundingClientRect();
+      const next: Record<number, { top: number; visible: boolean }> = {};
+      let lastTop = -Infinity;
+      for (const i of ids) {
+        const isCart = script[i].type === "cartbar";
+        const anchor = isCart
+          ? wrap.querySelector<HTMLElement>(".chat-demo-cart-sticky")
+          : (wrap.querySelector<HTMLElement>(`[data-step="${i}"]`)?.firstElementChild as HTMLElement | null);
+        if (!anchor) continue;
+        const r = anchor.getBoundingClientRect();
+        // Keep cards from overlapping when two messages sit close together.
+        const top = Math.max(r.top - wr.top + Math.min(r.height / 2, 16), lastTop + 58);
+        const visible = isCart || (r.top + 6 >= lr.top && r.top <= lr.bottom);
+        if (visible) lastTop = top;
+        next[i] = { top, visible };
+      }
+      setCueSpots(next);
+    };
+    measure();
+    const timers = [window.setTimeout(measure, 320), window.setTimeout(measure, 700)];
+    list.addEventListener("scroll", measure, { passive: true });
+    window.addEventListener("resize", measure);
+    return () => {
+      timers.forEach(clearTimeout);
+      list.removeEventListener("scroll", measure);
+      window.removeEventListener("resize", measure);
+    };
+  }, [firedKey, script]);
+
+  const renderMessage = (i: number) => {
+        const step = script[i];
+        if (step.type === "products") {
+          return <DemoProducts key={i} items={step.items} added={added} />;
+        }
+        if (step.type === "compare") {
+          return <DemoCompareCard key={i} a={step.a} b={step.b} rows={step.rows} verdict={step.verdict} />;
+        }
+        if (step.type === "agent") {
+          return (
+            <div key={i} className="chat-demo-system-line chat-demo-pop">
+              <AgentAvatar name={step.name} size={18} />
+              <span>
+                <strong>{step.name}</strong> joined the chat
+              </span>
+            </div>
+          );
+        }
+        if (step.type === "addcart" || step.type === "minicart") return null;
+        if (step.type === "card") {
+          return (
+            <DemoStatusCard
+              key={i}
+              head={step.head}
+              title={step.title}
+              note={step.note}
+              progress={step.progress}
+            />
+          );
+        }
+        if (step.type === "cartbar") return null;
+        const lines = step.text.split("\n");
+        const bubble = lines.map((line, li) => (
+          <span key={li}>
+            {line}
+            {li < lines.length - 1 && <br />}
+          </span>
+        ));
+        const fromAgent = agent !== null && i > agent.at;
+        return step.type === "bot" ? (
+          <div key={i} className="chat-demo-bot-row">
+            {fromAgent ? <AgentAvatar name={agent.name} size={26} /> : <AureviaMark size={26} />}
+            <div className={`chat-demo-bubble chat-demo-left chat-demo-pop ${fromAgent ? "chat-demo-left-agent" : ""}`}>{bubble}</div>
+          </div>
+        ) : (
+          <div key={i} className="chat-demo-bubble chat-demo-right chat-demo-pop">
+            {bubble}
+          </div>
+        );
+  };
+
   const container = (
       <div
         ref={rootRef}
@@ -429,56 +510,12 @@ export function FeatureChatDemo({
         </div>
 
         <div className="chat-demo-messages" ref={scrollRef}>
-          {visible.map((i) => {
-            const step = script[i];
-            if (step.type === "products") {
-              return <DemoProducts key={i} items={step.items} added={added} />;
-            }
-            if (step.type === "compare") {
-              return <DemoCompareCard key={i} a={step.a} b={step.b} rows={step.rows} verdict={step.verdict} />;
-            }
-            if (step.type === "agent") {
-              return (
-                <div key={i} className="chat-demo-system-line chat-demo-pop">
-                  <AgentAvatar name={step.name} size={18} />
-                  <span>
-                    <strong>{step.name}</strong> joined the chat
-                  </span>
-                </div>
-              );
-            }
-            if (step.type === "addcart" || step.type === "minicart") return null;
-            if (step.type === "card") {
-              return (
-                <DemoStatusCard
-                  key={i}
-                  head={step.head}
-                  title={step.title}
-                  note={step.note}
-                  progress={step.progress}
-                />
-              );
-            }
-            if (step.type === "cartbar") return null;
-            const lines = step.text.split("\n");
-            const bubble = lines.map((line, li) => (
-              <span key={li}>
-                {line}
-                {li < lines.length - 1 && <br />}
-              </span>
-            ));
-            const fromAgent = agent !== null && i > agent.at;
-            return step.type === "bot" ? (
-              <div key={i} className="chat-demo-bot-row">
-                {fromAgent ? <AgentAvatar name={agent.name} size={26} /> : <AureviaMark size={26} />}
-                <div className={`chat-demo-bubble chat-demo-left chat-demo-pop ${fromAgent ? "chat-demo-left-agent" : ""}`}>{bubble}</div>
-              </div>
-            ) : (
-              <div key={i} className="chat-demo-bubble chat-demo-right chat-demo-pop">
-                {bubble}
-              </div>
-            );
-          })}
+          {visible.map((i) => (
+            // display: contents keeps the chat's layout; the cue layer measures the first child.
+            <div key={i} data-step={i} style={{ display: "contents" }}>
+              {renderMessage(i)}
+            </div>
+          ))}
 
           {typingFrom === "bot" && (
             <div className="chat-demo-bot-row">
@@ -530,8 +567,35 @@ export function FeatureChatDemo({
 
   if (bare) return container;
   return (
-    <div className="chat-demo-scale-wrap" style={scale !== undefined ? { width: 400 * scale, height: 660 * scale } : undefined}>
+    <div
+      ref={wrapRef}
+      className="chat-demo-scale-wrap"
+      style={{ position: "relative", ...(scale !== undefined ? { width: 400 * scale, height: 660 * scale } : {}) }}
+    >
       {container}
+      {firedCues.length > 0 ? (
+        <div className={cueStyles.layer} aria-hidden="true">
+          {firedCues.map((i) => {
+            const spot = cueSpots[i];
+            const cue = script[i].cue;
+            if (!spot || !cue) return null;
+            const Icon = CUE_ICONS[cue.icon];
+            return (
+              <span key={`${cycle}-${i}`} className={`${cueStyles.cue} ${spot.visible ? "" : cueStyles.gone}`} style={{ top: spot.top }}>
+                <span className={cueStyles.card}>
+                  <span className={cueStyles.icon}><Icon aria-hidden="true" /></span>
+                  <span className={cueStyles.text}>
+                    <span className={cueStyles.eyebrow}>{cue.eyebrow}</span>
+                    <span className={cueStyles.title}>{cue.title}</span>
+                  </span>
+                </span>
+                <span className={cueStyles.line} />
+                <span className={cueStyles.node} />
+              </span>
+            );
+          })}
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -584,10 +648,10 @@ export function FeatureMetricsDemo({
       <div className="flex items-center gap-2.5 px-5 pt-4 pb-3">
         <AureviaMark size={28} animate />
         <div className="min-w-0 flex-1">
-          <p className="font-fraunces text-[15px] font-semibold text-[#2d3737] leading-tight">{title}</p>
+          <p className="font-fraunces text-[15px] font-normal text-[#2d3737] leading-tight">{title}</p>
           <p className="text-[11px] font-normal text-[#2d3737]/70 leading-tight mt-px">Aurevia dashboard</p>
         </div>
-        <span className="text-[10px] font-semibold uppercase tracking-wide text-[#00665A] bg-[#00CC99]/10 rounded-full px-2.5 py-1">
+        <span className="text-[10px] font-semibold uppercase tracking-wide text-[#00665a] bg-[#007f68]/[0.08] rounded-full px-2.5 py-1">
           Last 7 days
         </span>
       </div>
@@ -622,8 +686,8 @@ export function FeatureMetricsDemo({
           <svg viewBox="0 0 320 84" className="w-full" aria-hidden>
             <defs>
               <linearGradient id="fmArea" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#00CC99" stopOpacity="0.28" />
-                <stop offset="100%" stopColor="#00CC99" stopOpacity="0" />
+                <stop offset="0%" stopColor="#007f68" stopOpacity="0.28" />
+                <stop offset="100%" stopColor="#007f68" stopOpacity="0" />
               </linearGradient>
             </defs>
             {[21, 42, 63].map((y) => (
@@ -640,7 +704,7 @@ export function FeatureMetricsDemo({
             <path
               d="M8 64 C48 60 72 52 104 50 C140 48 156 40 196 34 C232 29 264 24 312 14"
               fill="none"
-              stroke="#00CC99"
+              stroke="#007f68"
               strokeWidth="2.5"
               strokeLinecap="round"
               pathLength={100}
@@ -654,7 +718,7 @@ export function FeatureMetricsDemo({
               cx="312"
               cy="14"
               r="4"
-              fill="#00CC99"
+              fill="#007f68"
               style={{ opacity: entered ? 1 : 0, transition: "opacity 0.4s ease 1.9s" }}
             />
           </svg>
@@ -680,7 +744,7 @@ export function FeatureMetricsDemo({
                 </div>
                 <div className="mt-1 h-[4px] overflow-hidden rounded-full bg-[#2d3737]/8">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-[#00CC99] to-[#00665A]"
+                    className="h-full rounded-full bg-[#007f68]"
                     style={{
                       width: entered ? `${r.pct}%` : "0%",
                       transition: `width 1s cubic-bezier(0.65,0,0.35,1) ${700 + i * 150}ms`,
@@ -759,8 +823,8 @@ export function FeatureCodeDemo({
           </div>
         ))}
         {showChip && (
-          <div className="chat-demo-pop mt-3 inline-flex items-center gap-2 rounded-full border border-[#00CC99]/35 bg-[#00CC99]/10 px-3 py-1.5 text-[11px] font-semibold text-[#00CC99]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#00CC99]" />
+          <div className="chat-demo-pop mt-3 inline-flex items-center gap-2 rounded-full border border-[#00a888]/35 bg-[#00a888]/10 px-3 py-1.5 text-[11px] font-semibold text-[#00a888]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#00a888]" />
             {responseChip}
           </div>
         )}

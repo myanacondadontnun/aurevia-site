@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Home: "In your dashboard" — four capabilities on one pinned stage, copy
+ * Home: "In your dashboard". Four capabilities on one pinned stage, copy
  * beside a dashboard screenshot in a browser frame with a phone overlay of the same page at mobile width.
  * Screenshots come from the Lucien Vallière demo store; a row with no capture
  * yet renders a labelled placeholder rather than a stand-in image.
@@ -22,7 +22,7 @@ const rows: {
   {
     eyebrow: "01 · Dashboard",
     title: "Every dollar the AI touched, on one screen",
-    body: "Sold by AI, resolution rate, escalations, and what shoppers ask most. Not vanity counts — the numbers that tell you whether the agent is paying for itself, plus a copilot to ask about any of them.",
+    body: "Sold by AI, resolution rate, escalations, and what shoppers ask most. Not vanity counts, but the numbers that tell you whether the agent is paying for itself, plus a copilot to ask about any of them.",
     points: ["Revenue sold by AI", "Resolution and escalation rates", "Most asked questions, clustered"],
     url: "app.aurevia.io/dashboard",
     desktop: "/images/app/dashboard-desktop.webp",
@@ -39,7 +39,7 @@ const rows: {
   },
   {
     eyebrow: "03 · Ask Aurevia",
-    title: "A copilot that fixes your catalog, with your say-so",
+    title: "A copilot that fixes your catalogue, with your say-so",
     body: "Ask it what sold this week or which listings are hurting conversion. It answers with charts and citations, then proposes the edit. Nothing changes until you confirm.",
     points: ["Answers with charts and sources", "Proposes product and collection edits", "You confirm, it writes to Shopify"],
     url: "app.aurevia.io/product-management",

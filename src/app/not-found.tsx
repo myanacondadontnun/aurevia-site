@@ -4,7 +4,7 @@ import PageLayout from "@/components/PageLayout";
 import { Button } from "@/components/ui/button";
 
 const helpfulLinks = [
-  { href: "/products", label: "Explore the platform" },
+  { href: "/why-aurevia", label: "See why Aurevia" },
   { href: "/solutions", label: "Browse solutions" },
   { href: "/pricing", label: "See pricing" },
   { href: "/resources/blogs", label: "Read the blog" },

@@ -20,11 +20,14 @@ const staticRoutes: {
   // Core pages
   { path: "/", priority: 1.0, changeFrequency: "weekly" },
   { path: "/pricing/", priority: 0.9, changeFrequency: "weekly" },
-  { path: "/channels/", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/channels/store/", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/channels/email/", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/channels/whatsapp/", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/channels/instagram/", priority: 0.8, changeFrequency: "monthly" },
   { path: "/partners/", priority: 0.7, changeFrequency: "monthly" },
 
   // Products
-  { path: "/products/", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/why-aurevia/", priority: 0.8, changeFrequency: "monthly" },
   { path: "/products/shopify/", priority: 0.9, changeFrequency: "weekly" },
   { path: "/products/automated-responses/", priority: 0.8, changeFrequency: "monthly" },
   { path: "/products/recommendations/", priority: 0.8, changeFrequency: "monthly" },

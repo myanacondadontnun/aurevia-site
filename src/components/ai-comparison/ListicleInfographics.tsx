@@ -10,12 +10,11 @@ import {
   Package,
   RefreshCw,
   ShoppingCart,
-  Sparkles,
   UserRound,
   Wallet,
 } from "lucide-react";
 
-/** Hero-style illustration: Shopify bag + orbit — no external image */
+/** Hero-style illustration: Shopify bag + orbit (no external image) */
 export function ListicleHeroVisual() {
   return (
     <figure className="mx-auto mt-10 max-w-2xl">
@@ -31,7 +30,7 @@ export function ListicleHeroVisual() {
             <ShoppingCart className="h-10 w-10 text-[#00CC99]" strokeWidth={1.25} />
           </div>
           <p className="max-w-sm text-center text-sm font-normal text-muted-foreground">
-            AI connects catalog, orders, and checkout — not just a chat bubble on top of your theme.
+            AI connects catalogue, orders, and checkout, not just a chat bubble on top of your theme.
           </p>
         </div>
       </div>
@@ -42,10 +41,15 @@ export function ListicleHeroVisual() {
   );
 }
 
+/** The Aurevia mark, in place of a generic "AI" sparkle. */
+function AureviaMark({ className }: { className?: string }) {
+  return <img src="/images/site/mark-ring.webp" alt="" aria-hidden="true" className={className} />;
+}
+
 const capabilityNodes = [
   { label: "Answer product & policy questions", Icon: MessageCircle },
   { label: "Recommend & bundle with live inventory", Icon: Package },
-  { label: "Collapse cart hesitation in-session", Icon: Sparkles },
+  { label: "Collapse cart hesitation in-session", Icon: AureviaMark },
   { label: "Track orders & surface shipping context", Icon: RefreshCw },
   { label: "Capture leads without killing conversion", Icon: UserRound },
 ];
@@ -77,7 +81,7 @@ export function InfographicCapabilities() {
         </div>
       </div>
       <figcaption className="mt-3 text-center text-xs font-normal text-muted-foreground">
-        Infographic: a capable Shopify AI agent routes questions, catalog, and checkout momentum — not generic
+        Infographic: a capable Shopify AI agent routes questions, catalogue, and checkout momentum, not generic
         deflection only.
       </figcaption>
     </figure>
@@ -87,18 +91,18 @@ export function InfographicCapabilities() {
 const benefits: {
   title: string;
   body: ReactNode;
-  Icon: typeof Clock;
+  Icon: React.ComponentType<{ className?: string }>;
 }[] = [
   {
     title: "24/7 coverage without payroll creep",
-    body: "Paid traffic and international shoppers meet the same assistant at 2am as at 2pm — critical when CAC is high.",
+    body: "Paid traffic and international shoppers meet the same assistant at 2am as at 2pm, which is critical when CAC is high.",
     Icon: Clock,
   },
   {
     title: "Lift conversion & AOV",
     body: (
       <>
-        Proactive nudges, bundles, and threshold messaging turn hesitation into completed orders — see our{" "}
+        Proactive nudges, bundles, and threshold messaging turn hesitation into completed orders; see our{" "}
         <Link
           href="/resources/blogs/increase-aov-shopify-without-discounts/"
           className="text-sky-400 underline decoration-sky-400/40 underline-offset-2 hover:text-[#00CC99] hover:decoration-[#00CC99]"
@@ -116,9 +120,9 @@ const benefits: {
     Icon: UserRound,
   },
   {
-    title: "Personalized discovery at scale",
-    body: "Signals like dwell, scroll depth, and cart value inform what the assistant says next — not one script for everyone.",
-    Icon: Sparkles,
+    title: "Personalised discovery at scale",
+    body: "Signals like dwell, scroll depth, and cart value inform what the assistant says next, not one script for everyone.",
+    Icon: AureviaMark,
   },
 ];
 
@@ -142,7 +146,7 @@ export function InfographicBenefits() {
         ))}
       </div>
       <figcaption className="mt-3 text-center text-xs font-normal text-muted-foreground">
-        Infographic-style summary: why revenue-focused stores add AI now — not only to answer FAQs faster.
+        Infographic-style summary: why revenue-focused stores add AI now, not only to answer FAQs faster.
       </figcaption>
     </figure>
   );
@@ -152,7 +156,7 @@ const methodologySteps = [
   {
     step: "1",
     title: "Shopify depth",
-    detail: "Catalog, orders, inventory, and price rules — not a pasted FAQ.",
+    detail: "Catalogue, orders, inventory, and price rules, not a pasted FAQ.",
     Icon: ShoppingCart,
   },
   {

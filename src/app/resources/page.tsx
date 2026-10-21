@@ -42,7 +42,7 @@ export default function ResourcesPage() {
             → ROI Calculator
           </Link>
           <Link href="/help/" className="block text-[#00CC99] hover:underline">
-            → Help center
+            → Help centre
           </Link>
         </div>
 

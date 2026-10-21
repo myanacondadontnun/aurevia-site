@@ -10,7 +10,7 @@ const challenges = [
   {
     problem: "You Watch Sales Slip Away at Checkout",
     teaser:
-      "You did everything right — the ad worked, they browsed, they added to cart. Then they left...",
+      "You did everything right: the ad worked, they browsed, they added to cart. Then they left...",
     full:
       " No reason. No goodbye. Just another abandoned cart notification you've learned to ignore. It stings every time, because you know that was a real person ready to buy.",
     visual: "cart" as const,
@@ -30,13 +30,13 @@ const challenges = [
     teaser:
       "Someone in Tokyo loved your product at 3am your time. They had a question. Nobody answered...",
     full:
-      " They moved on. You'll never know they existed. Multiply that by every timezone, every language you don't speak — that's revenue you're silently leaving behind.",
+      " They moved on. You'll never know they existed. Multiply that by every timezone, every language you don't speak. That's revenue you're silently leaving behind.",
     visual: "reach" as const,
     link: "/resources/blogs/24-7-ai-support-after-hours-sales/",
   },
 ];
 
-/* Scene 1 — a checkout stepper that reaches Cart, then stalls one step short of
+/* Scene 1: a checkout stepper that reaches Cart, then stalls one step short of
    Checkout and drifts back. Two steps already done (dark), the last still open. */
 function CartVisual() {
   return (
@@ -61,7 +61,7 @@ function CartVisual() {
   );
 }
 
-/* Scene 2 — an area chart that redraws itself on loop, always landing in the
+/* Scene 2: an area chart that redraws itself on loop, always landing in the
    same low, flat band well under the dashed "target" line above it. */
 function AOVVisual() {
   return (
@@ -97,9 +97,9 @@ function AOVVisual() {
   );
 }
 
-/* Scene 3 — an outgoing message that never gets a reply: typing dots settle
+/* Scene 3: an outgoing message that never gets a reply: typing dots settle
    into a single "sent" checkmark, while a row of timezone chips takes turns
-   lighting up — nobody's actually awake to answer. */
+   lighting up; nobody's actually awake to answer. */
 function ReachVisual() {
   return (
     <div className="absolute inset-0 flex items-center justify-between px-7 sm:px-8">
@@ -201,7 +201,7 @@ export default function Challenges() {
             <span className="green-highlight">Only One Struggling</span>
           </h2>
           <p className="text-sm sm:text-xl font-normal text-muted-foreground max-w-3xl mx-auto">
-            You&apos;re not alone — and there&apos;s a way through.
+            You&apos;re not alone, and there&apos;s a way through.
           </p>
         </div>
 

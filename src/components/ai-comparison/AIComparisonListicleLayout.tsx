@@ -112,11 +112,11 @@ export default function AIComparisonListicleLayout({ children }: { children: Rea
         ))}
       </nav>
 
-      {/* align-items stretch (default) so side columns are as tall as the article — required for position:sticky */}
+      {/* align-items stretch (default) so side columns are as tall as the article (required for position:sticky) */}
       <div className="grid grid-cols-1 gap-10 xl:grid-cols-[minmax(0,210px)_minmax(0,1fr)_minmax(0,201px)] xl:gap-12 xl:overflow-visible">
         {/* Left: TOC rail spans full row height; inner nav sticks while that rail scrolls through viewport */}
         <aside className="relative hidden min-h-0 xl:block xl:overflow-visible" aria-label="Table of contents">
-          {/* Sticky must NOT share a node with overflow:auto — that breaks viewport stickiness */}
+          {/* Sticky must NOT share a node with overflow:auto; that breaks viewport stickiness */}
           <div className="sticky top-28 z-20 w-full pb-10">
             <nav className="max-h-[calc(100dvh-7.5rem)] overflow-y-auto overflow-x-visible overscroll-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               <p className="mb-3 text-[11px] font-medium uppercase tracking-wider text-muted-foreground/70">
@@ -176,7 +176,7 @@ export default function AIComparisonListicleLayout({ children }: { children: Rea
                   Hire your AI sales co-pilot
                 </h2>
                 <p className="mt-1.5 text-xs font-normal leading-relaxed text-muted-foreground">
-                  Install in minutes. Guided checkout, upsells, and attribution — tuned for Shopify.
+                  Install in minutes. Guided checkout, upsells, and attribution. Tuned for Shopify.
                 </p>
                 <div className="mt-3.5 flex flex-col gap-2">
                   <a

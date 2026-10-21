@@ -2637,8 +2637,8 @@
   margin: 12px 18px 16px;
   padding: 10px 12px;
   border-radius: 10px;
-  background: rgba(0, 204, 153, 0.08);
-  border: 1px solid rgba(0, 204, 153, 0.25);
+  background: var(--au-green-wash);
+  border: 1px solid rgb(0 127 104 / 0.2);
   font-size: 11.5px;
   color: #00665A;
   display: flex;
@@ -2982,11 +2982,33 @@
    under whichever link the pointer is on (and stays under an open menu's trigger). Menus rise in softly. */
 
 /* Frosted glass: a light white veil with a strong blur, no edge line; only a soft shadow lifts it. */
+/* The pill's glass lives on a layer behind it, not on the pill itself: an element with backdrop-filter becomes a
+   backdrop root, and the dropdowns inside it could then only blur the pill. This way they frost the page too. */
 .nav-pill {
+  isolation: isolate;
+  box-shadow: 0 14px 36px -18px rgba(16, 40, 34, 0.3);
+}
+.nav-pill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
   background: rgba(255, 255, 255, 0.6);
   -webkit-backdrop-filter: blur(22px) saturate(180%);
   backdrop-filter: blur(22px) saturate(180%);
-  box-shadow: 0 14px 36px -18px rgba(16, 40, 34, 0.3);
+  pointer-events: none;
+}
+
+/* Mobile menu open: one solid white panel (the drawer is white), no glass. */
+.nav-pill-open {
+  background: var(--au-white);
+  overflow: hidden;
+}
+.nav-pill-open::before {
+  background: var(--au-white);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .nav-links { position: relative; display: flex; align-items: center; gap: 2px; }
@@ -3051,16 +3073,209 @@
 .nav-cta:hover svg { transform: translateX(3px); }
 
 /* Dropdown panels: float a little under the pill and rise in. */
+/* Dropdowns: the same frosted glass as the bar, a touch more opaque so the text stays crisp. */
 .nav-panel {
-  background: #fff;
-  border-radius: 22px;
-  box-shadow:
-    0 0 0 1px rgba(16, 40, 34, 0.06),
-    0 24px 60px -24px rgba(16, 40, 34, 0.3),
-    0 8px 20px -12px rgba(16, 40, 34, 0.12);
+  background: rgba(255, 255, 255, 0.74);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  border-radius: var(--au-r-lg);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7), var(--au-shadow-2);
   transform-origin: top center;
-  animation: nav-panel-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: nav-panel-in 220ms var(--au-ease) both;
 }
+
+/* Dropdown menus: text rows (a bold title, a quiet line under it), a soft green tint on hover. No icon tiles,
+   no uppercase labels. Platform adds a real dashboard screenshot; Solutions is two plain columns. */
+.nav-menu { padding: 10px; color: var(--au-ink); }
+/* Platform: one column of rows with two links under them, a trial card on the right, and a "works with" strip
+   across the foot. */
+.nav-platform { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 10px; width: 840px; padding-bottom: 0; }
+.nav-platform-main { display: flex; flex-direction: column; min-width: 0; }
+.nav-platform-list { display: grid; gap: 2px; }
+.nav-platform-links { display: flex; gap: 4px; margin: 6px 4px 6px; padding-top: 6px; border-top: 1px solid var(--au-rule); }
+.nav-platform-links .nav-more { margin-top: 0; }
+.nav-promo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow: hidden;
+  padding: 24px 24px 200px;
+  border-radius: var(--au-r-md);
+  background:
+    radial-gradient(90% 70% at 100% 100%, rgb(0 127 104 / 0.16), transparent 70%),
+    rgb(238 243 240 / 0.62);
+  transition: background-color var(--au-dur-hover) var(--au-ease);
+}
+.nav-promo-eyebrow { font-size: 0.8125rem; font-weight: 600; color: var(--au-green-ink); }
+.nav-promo-title { margin-top: 8px; font-family: var(--au-display); font-size: 1.625rem; line-height: 1.12; letter-spacing: -0.015em; color: var(--au-ink); }
+.nav-promo-text { margin-top: 10px; font-size: 0.875rem; line-height: 1.5; color: var(--au-ink-2); }
+.nav-promo-cta {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: var(--au-r-pill);
+  background: var(--au-green);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--au-white);
+  transition: background-color var(--au-dur-hover) var(--au-ease);
+}
+.nav-promo-cta svg { width: 15px; height: 15px; transition: transform var(--au-dur-hover) var(--au-ease); }
+.nav-promo:hover .nav-promo-cta { background: var(--au-green-hover); }
+.nav-promo:hover .nav-promo-cta svg { transform: translateX(3px); }
+.nav-promo:focus-visible { outline: 2px solid var(--au-green); outline-offset: 2px; }
+.nav-promo-shot {
+  position: absolute;
+  left: 24px;
+  bottom: -14px;
+  width: 340px;
+  max-width: none;
+  border-radius: 10px;
+  box-shadow: var(--au-shadow-2);
+  transform: rotate(-3deg);
+  transform-origin: left bottom;
+}
+.nav-platform-strip {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  margin: 0 -10px;
+  padding: 14px 24px;
+  border-top: 1px solid var(--au-rule);
+  font-size: 0.8125rem;
+}
+.nav-strip-label { color: var(--au-ink-3); }
+.nav-strip-item { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--au-ink); }
+.nav-strip-item svg { width: 15px; height: 15px; }
+.nav-strip-rule { width: 1px; height: 16px; background: var(--au-rule); }
+/* Solutions: goals as text rows, industries with a photo, and the two "see all" links along the foot. */
+.nav-solutions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 10px; width: 720px; padding-bottom: 0; }
+.nav-solutions-col { display: grid; gap: 2px; align-content: start; min-width: 0; }
+.nav-item.nav-industry { grid-template-columns: 40px minmax(0, 1fr); align-items: center; gap: 0 14px; }
+.nav-industry-img { width: 40px; height: 40px; border-radius: 10px; object-fit: cover; box-shadow: 0 0 0 1px var(--au-rule); }
+.nav-menu-foot { grid-column: 1 / -1; display: flex; gap: 16px; margin: 6px -10px 0; padding: 4px 14px 6px; border-top: 1px solid var(--au-rule); }
+.nav-menu-foot .nav-more { padding-left: 10px; padding-right: 10px; }
+
+/* Resources: rows with a small icon tile, and the free audit as a card. */
+.nav-resources { display: grid; grid-template-columns: minmax(0, 1fr) 272px; gap: 10px; width: 660px; }
+.nav-resources-list { display: grid; gap: 2px; align-content: start; }
+.nav-audit-list { display: grid; gap: 6px; margin-top: 14px; }
+
+/* Channels: one column of channels (each logo on a white app tile in its own colour), and a still inbox card. */
+.nav-channels { display: grid; grid-template-columns: minmax(0, 1fr) 272px; gap: 10px; width: 700px; }
+.nav-channels-list { display: grid; gap: 2px; align-content: start; }
+.nav-item.nav-channel { grid-template-columns: 36px minmax(0, 1fr); align-items: start; gap: 0 16px; }
+.nav-channel-text { display: grid; gap: 2px; min-width: 0; padding-top: 1px; }
+/* Menu icons: flat, a soft tint of the item's colour behind a line icon. No border, no raised shadow. */
+.nav-icon, .nav-channel-tile {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--au-green-wash);
+  color: var(--au-green-ink);
+  transition: background-color var(--au-dur-hover) var(--au-ease);
+}
+.nav-icon svg, .nav-channel-tile svg { width: 18px; height: 18px; stroke-width: 1.75; }
+.nav-item:hover .nav-icon, .nav-item:hover .nav-channel-tile { background: rgb(0 127 104 / 0.14); }
+.nav-channel-tile-sm { width: 24px; height: 24px; border-radius: 7px; }
+.nav-channel-tile-sm svg { width: 13px; height: 13px; }
+.nav-channel-tile-whatsapp { background: rgb(37 211 102 / 0.12); color: #1faa52; }
+.nav-channel-tile-instagram { background: rgb(225 48 108 / 0.1); color: #d62e6a; }
+.nav-channel-tile-email { background: rgb(232 113 10 / 0.11); color: #d0650a; }
+.nav-item:hover .nav-channel-tile-whatsapp { background: rgb(37 211 102 / 0.2); }
+.nav-item:hover .nav-channel-tile-instagram { background: rgb(225 48 108 / 0.16); }
+.nav-item:hover .nav-channel-tile-email { background: rgb(232 113 10 / 0.18); }
+.nav-new { padding: 1px 7px; border-radius: var(--au-r-pill); background: var(--au-green-wash); font-size: 0.625rem; font-weight: 600; letter-spacing: 0.02em; line-height: 16px; color: var(--au-green-ink); }
+.nav-channels-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 18px 16px;
+  border-radius: var(--au-r-md);
+  background: radial-gradient(90% 70% at 100% 100%, rgb(0 127 104 / 0.14), transparent 70%), rgb(238 243 240 / 0.62);
+}
+.nav-channels-card .nav-promo-title { font-size: 1.25rem; }
+.nav-mini-inbox { display: grid; gap: 6px; margin-top: 14px; }
+.nav-mini-row { display: flex; align-items: center; gap: 8px; padding: 7px 9px; border-radius: 10px; background: var(--au-white); box-shadow: var(--au-shadow-1); }
+.nav-mini-text { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 0.75rem; color: var(--au-ink); }
+.nav-mini-tick { display: grid; flex: none; place-items: center; width: 16px; height: 16px; border-radius: 50%; background: var(--au-green); color: var(--au-white); }
+.nav-mini-tick svg { width: 10px; height: 10px; }
+.nav-channels-more { margin-top: auto; padding: 14px 0 0; }
+.nav-menu-solutions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; width: 520px; }
+.nav-menu-resources { display: grid; gap: 2px; width: 360px; }
+.nav-menu-col { display: grid; gap: 2px; align-content: start; }
+.nav-menu-head { padding: 10px 14px 6px; font-size: 0.8125rem; font-weight: 600; color: var(--au-ink-3); }
+
+.nav-item {
+  display: grid;
+  gap: 3px;
+  padding: 12px 14px;
+  border-radius: var(--au-r-md);
+  transition: background-color var(--au-dur-hover) var(--au-ease);
+}
+.nav-item-compact { padding-top: 9px; padding-bottom: 9px; }
+.nav-item:hover, .nav-item:focus-visible { background: var(--au-green-wash); outline: none; }
+.nav-item-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--au-ink);
+  transition: color var(--au-dur-hover) var(--au-ease);
+}
+.nav-item:hover .nav-item-title, .nav-feature:hover .nav-item-title { color: var(--au-green-ink); }
+.nav-item-desc { font-size: 0.8125rem; line-height: 1.45; color: var(--au-ink-2); }
+.nav-badge {
+  padding: 2px 8px;
+  border-radius: var(--au-r-pill);
+  background: var(--au-green-wash);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--au-green-ink);
+}
+
+.nav-feature {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 12px;
+  border-radius: var(--au-r-md);
+  background: var(--au-paper-2);
+  transition: background-color var(--au-dur-hover) var(--au-ease);
+}
+.nav-feature:hover, .nav-feature:focus-visible { background: rgb(0 127 104 / 0.1); outline: none; }
+.nav-feature img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  margin-bottom: 10px;
+  object-fit: cover;
+  object-position: left top;
+  border-radius: var(--au-r-sm);
+  box-shadow: var(--au-shadow-1);
+}
+
+.nav-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  padding: 8px 14px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--au-green-ink);
+}
+.nav-more svg { width: 14px; height: 14px; transition: transform var(--au-dur-hover) var(--au-ease); }
+.nav-more:hover svg { transform: translateX(2px); }
 @keyframes nav-panel-in {
   from { opacity: 0; transform: translateY(6px) scale(0.985); }
   to { opacity: 1; transform: none; }
@@ -3071,142 +3286,132 @@
 @media (prefers-reduced-motion: reduce) {
   .nav-indicator, .nav-link svg, .nav-cta svg, .nav-login { transition: none; }
   .nav-panel, .nav-mobile-menu { animation: none; }
+  .nav-item, .nav-item-title, .nav-feature, .nav-more svg, .nav-promo, .nav-promo-cta, .nav-promo-cta svg { transition: none; }
 }
 
 /* ---------- Footer (components/Footer.tsx) ----------
-   The hero's warm paper and emerald, bookending the page. The Aurevia ring sits large and still in the
-   bottom-right corner, cropped by both edges. */
-
+   A statement footer (design.md): one Fraunces line offering a person to talk to (pages above already end on
+   the trial), a single row of links, and one quiet legal line. The still Aurevia ring sits in the corner. */
 .ft-footer {
-  --ft-paper: var(--au-paper);
-  --ft-paper-deep: var(--au-paper-2);
-  --ft-ink: var(--au-ink);
-  --ft-ink-2: var(--au-ink-2);
-  --ft-ink-3: var(--au-ink-3);
-  --ft-rule: var(--au-rule);
-  --ft-accent: var(--au-green-ink);
-  --ft-cta: var(--au-green);
-  --ft-cta-hover: var(--au-green-hover);
-  --ft-mark-a: oklch(55% 0.11 172 / 0.22);
-  --ft-mark-b: oklch(70% 0.09 185 / 0.08);
-  --ft-display: var(--au-display);
-
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  background: linear-gradient(180deg, var(--ft-paper) 0%, var(--ft-paper-deep) 100%);
-  color: var(--ft-ink);
-  border-top: 1px solid var(--ft-rule);
+  background: linear-gradient(180deg, var(--au-paper) 0%, var(--au-paper-2) 100%);
+  color: var(--au-ink);
+  border-top: 1px solid var(--au-rule);
 }
-
 .ft-watermark {
   position: absolute;
   z-index: -1;
-  right: -240px;
-  bottom: -320px;
-  width: 860px;
-  height: 860px;
-  background: linear-gradient(135deg, var(--ft-mark-a) 0%, var(--ft-mark-b) 100%);
+  right: -220px;
+  bottom: -300px;
+  width: 820px;
+  height: 820px;
+  background: linear-gradient(135deg, rgb(0 127 104 / 0.18), rgb(0 127 104 / 0.05));
   -webkit-mask: url("/images/site/mark-ring-watermark.webp") center / contain no-repeat;
   mask: url("/images/site/mark-ring-watermark.webp") center / contain no-repeat;
   transform: rotate(-12deg);
   pointer-events: none;
 }
-@media (max-width: 767px) { .ft-watermark { width: 520px; height: 520px; right: -200px; bottom: -180px; } }
+@media (max-width: 767px) { .ft-watermark { width: 480px; height: 480px; right: -190px; bottom: -170px; } }
 
-/* Extra room at the bottom so the last row sits above the floating Ask Aurevia pill (fixed, bottom right). */
-.ft-inner { position: relative; padding-top: 72px; padding-bottom: 104px; }
-@media (min-width: 1024px) { .ft-inner { padding-top: 104px; padding-bottom: 112px; } }
+/* Room at the bottom so the last line sits above the floating Ask Aurevia pill. */
+.ft-inner { position: relative; padding-top: var(--au-section-y); padding-bottom: 104px; }
+@media (min-width: 1024px) { .ft-inner { padding-bottom: 112px; } }
 
-.ft-top { display: grid; gap: 56px; }
-@media (min-width: 1024px) { .ft-top { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; } }
-
-.ft-brand { display: inline-flex; align-items: center; gap: 10px; }
-.ft-brand img { width: 30px; height: 30px; object-fit: contain; }
-.ft-brand-name { font-family: var(--ft-display); font-size: 1.5rem; font-weight: 500; letter-spacing: -0.01em; color: var(--ft-ink); }
-
-.ft-pitch {
-  margin-top: 24px;
-  max-width: 22ch;
-  font-family: var(--ft-display);
-  font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.5rem);
+.ft-statement { display: grid; gap: 28px; }
+@media (min-width: 1024px) { .ft-statement { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); align-items: end; gap: 64px; } }
+.ft-line {
+  max-width: 16ch;
+  font-family: var(--au-display);
   font-weight: 400;
-  line-height: 1.1;
+  font-size: var(--au-h2);
+  line-height: 1.05;
   letter-spacing: -0.02em;
-  color: var(--ft-ink);
+  overflow-wrap: anywhere;
 }
-.ft-pitch strong { font-weight: 600; color: var(--ft-accent); }
-
-.ft-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
-.ft-primary, .ft-secondary {
+.ft-actions { display: grid; gap: 14px; justify-items: start; }
+@media (min-width: 1024px) { .ft-actions { justify-items: end; } }
+.ft-email {
+  font-family: var(--au-display);
+  font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem);
+  letter-spacing: -0.01em;
+  color: var(--au-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  text-decoration-color: var(--au-rule);
+  transition: text-decoration-color var(--au-dur-hover) var(--au-ease), color var(--au-dur-hover) var(--au-ease);
+  white-space: nowrap;
+}
+.ft-email:hover { color: var(--au-green-ink); text-decoration-color: currentColor; }
+.ft-demo {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   min-height: 46px;
   padding: 0 22px;
-  border-radius: 999px;
+  border-radius: var(--au-r-pill);
+  background: var(--au-green);
+  color: var(--au-white);
   font-size: 0.9375rem;
   font-weight: 600;
   white-space: nowrap;
-  transition: background-color 200ms ease, border-color 200ms ease;
+  transition: background-color var(--au-dur-hover) var(--au-ease);
 }
-.ft-primary { background: var(--ft-cta); color: #fff; }
-.ft-primary:hover { background: var(--ft-cta-hover); }
-.ft-primary svg { width: 16px; height: 16px; transition: transform 200ms ease; }
-.ft-primary:hover svg { transform: translateX(3px); }
-.ft-secondary { border: 1px solid oklch(56% 0.012 160); color: var(--ft-ink); background: oklch(100% 0 0 / 0.6); }
-.ft-secondary:hover { border-color: oklch(40% 0.012 160); background: #fff; }
-.ft-primary:focus-visible, .ft-secondary:focus-visible, .ft-link:focus-visible { outline: 2px solid var(--ft-accent); outline-offset: 3px; }
+.ft-demo:hover { background: var(--au-green-hover); }
+.ft-demo svg { width: 16px; height: 16px; transition: transform var(--au-dur-hover) var(--au-ease); }
+.ft-demo:hover svg { transform: translateX(3px); }
 
-.ft-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 24px; }
-@media (min-width: 768px) { .ft-cols { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.ft-col-head { margin-bottom: 16px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ft-ink-3); }
-.ft-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
-.ft-link {
-  display: inline-block;
-  font-size: 0.9375rem;
-  color: var(--ft-ink-2);
-  text-align: left;
-  white-space: nowrap;
-  transition: color 200ms ease;
+/* One row of links; wraps on narrow screens, never scrolls sideways. */
+.ft-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  margin-top: 56px;
+  padding: 24px 0;
+  border-top: 1px solid var(--au-rule);
+  border-bottom: 1px solid var(--au-rule);
 }
-.ft-link:hover { color: var(--ft-ink); }
+.ft-link { font-size: 0.9375rem; font-weight: 500; color: var(--au-ink-2); white-space: nowrap; transition: color var(--au-dur-hover) var(--au-ease); }
+.ft-link:hover { color: var(--au-ink); }
 
-.ft-bottom {
+.ft-base {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-top: 72px;
-  padding-top: 24px;
-  border-top: 1px solid var(--ft-rule);
+  margin-top: 24px;
   font-size: 0.8125rem;
   line-height: 1.5;
-  color: var(--ft-ink-3);
+  color: var(--au-ink-3);
 }
-@media (min-width: 1024px) { .ft-bottom { flex-direction: row; align-items: flex-end; justify-content: space-between; margin-top: 104px; } }
-.ft-legal { display: grid; gap: 4px; }
+@media (min-width: 1024px) { .ft-base { flex-direction: row; align-items: center; justify-content: space-between; } }
+.ft-legal { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; min-width: 0; }
+@media (min-width: 1024px) { .ft-legal { flex: 1; } .ft-meta { flex: none; flex-wrap: nowrap; } }
+.ft-brand { display: inline-flex; align-items: center; gap: 8px; font-family: var(--au-display); font-size: 1rem; color: var(--au-ink); }
+.ft-brand img { width: 20px; height: 20px; object-fit: contain; }
+.ft-legal a { color: var(--au-ink-2); transition: color var(--au-dur-hover) var(--au-ease); }
+.ft-legal a:hover { color: var(--au-ink); }
 .ft-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; }
-.ft-meta a { color: var(--ft-ink-2); transition: color 200ms ease; }
-.ft-meta a:hover { color: var(--ft-ink); }
 .ft-socials { display: inline-flex; gap: 8px; }
 .ft-meta a.ft-social {
   display: inline-grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
-  border: 1px solid var(--ft-rule);
-  background: oklch(100% 0 0 / 0.55);
-  color: var(--ft-ink-2);
-  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--au-r-pill);
+  color: var(--au-ink-2);
+  transition: background-color var(--au-dur-hover) var(--au-ease), color var(--au-dur-hover) var(--au-ease);
 }
-.ft-meta a.ft-social:hover { background: #fff; color: var(--ft-ink); border-color: oklch(23% 0.02 170 / 0.22); }
-.ft-meta a.ft-social:focus-visible { outline: 2px solid var(--ft-accent); outline-offset: 2px; }
+.ft-meta a.ft-social:hover { background: var(--au-white); color: var(--au-ink); }
 .ft-social svg { width: 16px; height: 16px; }
-.ft-studio { font-family: var(--ft-display); text-decoration: underline; text-underline-offset: 3px; }
+.ft-studio { color: var(--au-ink-2); font-family: var(--au-display); text-decoration: underline; text-underline-offset: 3px; }
+.ft-studio:hover { color: var(--au-ink); }
+.ft-email:focus-visible, .ft-demo:focus-visible, .ft-link:focus-visible, .ft-legal a:focus-visible,
+.ft-meta a:focus-visible { outline: 2px solid var(--au-green); outline-offset: 3px; border-radius: 4px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .ft-primary, .ft-primary svg, .ft-secondary, .ft-link, .ft-meta a { transition: none; }
+  .ft-email, .ft-demo, .ft-demo svg, .ft-link, .ft-legal a, .ft-meta a.ft-social { transition: none; }
 }
 
 /* ---------- Aurevia site tokens (design.md) ----------

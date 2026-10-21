@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { AppHeroDemo, LiveActivityMini, NotTrackedMini, OrderMatchMini, ProductAttributionScene } from "@/components/products/ProductScenes";
 import { getReview } from "@/lib/reviews";
-import { FeatureMetricsDemo } from "@/components/FeatureDemo";
 
 const title = "Ecommerce AI Revenue & ROI Tracking | Aurevia";
 const desc =
-  "Attribute sales to AI: assisted purchases, recommendations, upsells, and recovery. Prove conversational commerce in dollars, not just chat volume for Shopify.";
+  "See which sales came from the agent: assisted purchases, recommendations, upsells and recovered carts. Report on your Shopify store's chat in revenue, as well as message counts.";
 
 export const metadata: Metadata = {
   title,
@@ -23,59 +23,42 @@ export default function RoiTrackingPage() {
       eyebrow="ROI tracking"
       headline={
         <>
-          Prove it in <span className="green-highlight">dollars, not messages</span>
+          See what the agent <span className="green-highlight">actually sold</span>
         </>
       }
-      subtitle="Most chatbots report “messages handled” and hope you don't ask about money. Aurevia attributes real orders to real conversations — recommendations, upsells, and rescued carts — so finance signs off without squinting."
+      subtitle="Aurevia links real Shopify orders to the conversations behind them, so you can see exactly what the agent sold."
       heroBullets={[
-        "Revenue attributed per conversation",
-        "Feature-level breakdown: recs, rescues, upsells",
-        "Attribution tied to real Shopify orders",
+        "Revenue linked to each conversation",
+        "Split by feature: recommendations, recovered carts, upsells",
+        "Based on real Shopify orders",
       ]}
-      demo={
-        <FeatureMetricsDemo
-          title="Revenue attribution"
-          stats={[
-            { label: "AI-attributed revenue", value: "$23.9k", delta: "▲ 32%" },
-            { label: "Assisted AOV", value: "$64", delta: "▲ 12%" },
-            { label: "Return on spend", value: "11×" },
-          ]}
-          rows={[
-            { label: "Product recommendations", value: "$11.2k", pct: 88 },
-            { label: "Cart rescues", value: "$7.4k", pct: 58 },
-            { label: "Bundles & upsells", value: "$5.3k", pct: 42 },
-          ]}
-          rowsHeading="Revenue by feature"
-          chart
-        />
-      }
-      proofStrip={[
-        { label: "Dollar-linked, defensible", text: "Outcomes tied to the AI with a definition you can stand behind in a finance review." },
-        { label: "Know what to double down on", text: "See which behaviors move revenue — recs, bundles, nudges — feature by feature." },
-        { label: "Real orders, not estimates", text: "A card that says Not tracked means exactly that. Every number ties back to an order Shopify sent us." },
-      ]}
+      demo={<AppHeroDemo variant="revenue" />}
       featureBlocks={[
         {
-          title: "Influenced revenue, defined clearly",
-          body: "Understand what “assisted by Aurevia” means in your report so you can stand behind the number internally.",
+          visual: { kind: "kpis" },
+          title: "Influenced revenue, clearly defined",
+          body: "Know exactly what “assisted by Aurevia” means in your report, so you can stand behind the number with your team.",
         },
         {
-          title: "Not just the last click",
-          body: "Capture how discovery and nudges participate in a journey where chat was the trusted guide.",
+          visual: { kind: "attribution" },
+          title: "More than the last click",
+          body: "Count the part that product suggestions and nudges played in a purchase where the chat helped the shopper decide.",
         },
         {
-          title: "AOV and conversion, side by side",
-          body: "When the story is bigger baskets and higher CVR, show both; some brands win on rate, some on size of order.",
+          visual: { kind: "kpis", stats: [["Revenue / conversation", "$14"], ["AI-assisted conversion", "16.6%"], ["Rec. conversion", "23.7%"]] },
+          title: "Order value and conversion together",
+          body: "If the gain is bigger baskets or a higher conversion rate, you'll see both. Some stores improve on one, some on the other.",
         },
         {
-          title: "Built for the Shopify stack",
-          body: "Stay aligned with how your store already records orders, discounts, and returns—so attribution maps to how you run finance.",
+          visual: { kind: "install" },
+          title: "Built around Shopify",
+          body: "Attribution follows how your store already records orders, discounts and returns, so it lines up with your accounts.",
         },
       ]}
       howItWorks={[
-        { title: "Connect store data", body: "Shopify remains the system of record; Aurevia links outcomes to the conversations that mattered." },
-        { title: "Choose a reporting window", body: "Weekly for ops, monthly for board prep—trends beat one-day spikes." },
-        { title: "Tie to campaigns", body: "See whether paid traffic, launches, and sales events scale with the AI, not in spite of it." },
+        { title: "Connect store data", body: "Shopify stays the record of every order. Aurevia links orders to the conversations behind them." },
+        { title: "Choose a reporting window", body: "Weekly for running the store, monthly for bigger decisions. Trends tell you more than a single busy day." },
+        { title: "Compare with campaigns", body: "See how the agent performs alongside paid traffic, launches and sales events." },
       ]}
       relatedLinks={[
         { href: "/resources/roi-calculator", label: "ROI calculator" },
@@ -83,29 +66,28 @@ export default function RoiTrackingPage() {
       faqs={[
         {
           q: "Is this the same as Google Analytics revenue?",
-          a: "Complementary. GA often misses the full role of a conversation; this ties orders to the AI’s participation in a way a funnel tool alone will not show.",
+          a: "It works alongside it. GA often misses the part a conversation played. This links orders to the agent's involvement in a way a funnel tool can't show on its own.",
         },
         {
-          q: "What if our sales cycle is long or B2B-leaning?",
-          a: "Use assisted pipeline metrics together with your CRM; the point is a rigorous story, not a single formula for every brand.",
+          q: "What if our sales cycle is long or mostly B2B?",
+          a: "Use the assisted sales figures alongside your CRM. Stores measure success differently, so there's no single formula that fits everyone.",
         },
         {
           q: "How often should we review?",
-          a: "Weekly for operators, monthly for executive decisions—enough to see signal without chasing noise.",
+          a: "Weekly for day-to-day decisions and monthly for bigger ones. That's often enough to spot real changes without reacting to every blip.",
         },
       ]}
       screenshot={{
-        src: "/images/app/dashboard-mode-desktop.webp",
-        url: "app.aurevia.io/dashboard",
-        title: "Influenced revenue, per product",
-        caption: "Revenue Influenced and Orders Influenced total the orders where the agent recommended, added to cart or generated the checkout. Below it, every recommended product with shown, added, bought and revenue.",
+        scene: <ProductAttributionScene />,
+        title: "See which products the agent sold",
+        caption: "Revenue Influenced counts the orders where the agent recommended a product, added it to the cart or created the checkout. Under it, each recommended product shows how often the agent showed it, how often it was added and bought, and the revenue it brought in.",
       }}
       setup={{
         title: "How attribution works",
         steps: [
-          { src: "/images/app/live-activity-desktop.webp", title: "The chat adds to cart", body: "When the agent adds an item or creates a checkout, the cart is tagged with the chat session." },
-          { src: "/images/app/dashboard-mode-desktop.webp", title: "Shopify sends the order", body: "The order webhook carries the tag. Aurevia matches it to the session and credits that conversation." },
-          { src: "/images/app/dashboard-desktop.webp", title: "You read real numbers", body: "Orders placed without a chat are never credited. A card that says Not tracked means exactly that." },
+          { scene: <LiveActivityMini tagged />, title: "The chat adds to cart", body: "When the agent adds an item or creates a checkout, the cart is tagged with the chat session." },
+          { scene: <OrderMatchMini />, title: "Shopify sends the order", body: "The order webhook carries the tag. Aurevia matches it to the session and credits that conversation." },
+          { scene: <NotTrackedMini />, title: "You read real numbers", body: "Orders placed without a chat are never credited. A card that says Not tracked means exactly that." },
         ],
       }}
       review={getReview("l1nk")}

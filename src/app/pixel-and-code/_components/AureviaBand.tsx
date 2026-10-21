@@ -1,7 +1,7 @@
-// The studio's own product as a section — the Charle "we built CSignal" move.
+// The studio's own product as a section: the Charle "we built CSignal" move.
 // Left: the claim and two pills. Right: what Aurevia does to a visitor, as a
 // four-step rail that script.js (initAurevia) advances on a timer, and a "live"
-// card that quotes the actual prompt the widget shows on sreyacreates.com — a
+// card that quotes the actual prompt the widget shows on sreyacreates.com, a
 // real string, not an invented metric.
 const SHOPIFY_APP_URL = "https://apps.shopify.com/aurevia-io";
 

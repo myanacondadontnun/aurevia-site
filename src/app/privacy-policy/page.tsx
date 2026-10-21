@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage() {
     <LegalPageLayout
       title="Privacy Policy"
       lastUpdated="20 August 2026"
-      intro="Aurevia Artificial Intelligence Ltd (“Aurevia”, “we”, “us”) builds an AI sales and support assistant for Shopify merchants. This policy explains what we collect, why, and the choices you have — whether you're a merchant using Aurevia or a shopper chatting with it on a merchant's storefront."
+      intro="Aurevia Artificial Intelligence Ltd (“Aurevia”, “we”, “us”) builds an AI sales and support assistant for Shopify merchants. This policy explains what we collect, why, and the choices you have, whether you're a merchant using Aurevia or a shopper chatting with it on a merchant's storefront."
       relatedLinks={[
         { href: "/terms", label: "Terms & Conditions" },
         { href: "/gdpr", label: "GDPR Compliance" },
@@ -39,7 +39,7 @@ export default function PrivacyPolicyPage() {
             <>
               <p>
                 <strong>From merchants:</strong> account and billing details provided through the Shopify App
-                Store, store and product data synced via the Shopify API (catalog, collections, discounts,
+                Store, store and product data synced via the Shopify API (catalogue, collections, discounts,
                 policies, order and customer records needed to answer shopper questions), and configuration you
                 set (tone of voice, business rules, knowledge base content).
               </p>
@@ -61,7 +61,7 @@ export default function PrivacyPolicyPage() {
           heading: "3. How we use it",
           body: (
             <ul>
-              <li>To operate the chat widget: answering questions, recommending products, and assisting checkout using the merchant&apos;s live catalog and policies.</li>
+              <li>To operate the chat widget: answering questions, recommending products, and assisting checkout using the merchant&apos;s live catalogue and policies.</li>
               <li>To generate the analytics, ROI attribution, and dashboard views merchants see for their own store.</li>
               <li>To secure the service, prevent abuse, and debug issues when something breaks.</li>
               <li>To communicate with merchants about their account, billing, and material changes to the service.</li>
@@ -78,7 +78,7 @@ export default function PrivacyPolicyPage() {
               their own models outside that agreement. We also rely on infrastructure and analytics
               subprocessors (cloud hosting, database, and email delivery providers) strictly to run the service.
               A current subprocessor list is available on request at{" "}
-              <a href="mailto:privacy@aurevia.io">privacy@aurevia.io</a>.
+              <a href="mailto:sales@aurevia.io">sales@aurevia.io</a>.
             </p>
           ),
         },
@@ -111,7 +111,7 @@ export default function PrivacyPolicyPage() {
               delete your personal data, and to object to or restrict certain processing. See{" "}
               <a href="/gdpr/">GDPR Compliance</a> for the full list and how to exercise them. Shoppers who want
               their chat data removed should contact the merchant&apos;s store directly, or reach us at{" "}
-              <a href="mailto:privacy@aurevia.io">privacy@aurevia.io</a> and we&apos;ll route the request.
+              <a href="mailto:sales@aurevia.io">sales@aurevia.io</a> and we&apos;ll route the request.
             </p>
           ),
         },
@@ -147,7 +147,7 @@ export default function PrivacyPolicyPage() {
           heading: "11. Contact",
           body: (
             <p>
-              Questions or requests: <a href="mailto:privacy@aurevia.io">privacy@aurevia.io</a>, or use our{" "}
+              Questions or requests: <a href="mailto:sales@aurevia.io">sales@aurevia.io</a>, or use our{" "}
               <a href="/contact/">contact form</a>. Aurevia Artificial Intelligence Ltd.
             </p>
           ),

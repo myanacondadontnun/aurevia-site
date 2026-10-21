@@ -76,7 +76,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Customer service used to be about answering questions. Now it\u2019s about managing automation to create extraordinary experiences. And the best part? Customers will actually prefer using automation. Faster, more accurate, more tailored experiences\u2014this isn\u2019t just about efficiency. It\u2019s about a better way to serve customers.",
+      "Customer service used to be about answering questions. Now it\u2019s about managing automation to create extraordinary experiences. And the best part? Customers will actually prefer using automation. Faster, more accurate, more tailored experiences. This isn\u2019t just about efficiency. It\u2019s about a better way to serve customers.",
     name: "Milan Vanmarcke",
     role: "Customer Happiness Manager",
     company: "Loop Earplugs",

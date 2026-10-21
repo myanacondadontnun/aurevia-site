@@ -1,0 +1,177 @@
+/* Book a demo (design.md): two columns, each exactly one viewport tall on desktop so nothing drops below the fold.
+   Left: warm paper, a soft emerald bloom, the still ring and a rotating real review. Right: the form. */
+
+.page { position: relative; min-height: 100dvh; background: var(--au-paper); color: var(--au-ink); font-family: var(--au-body); }
+@media (min-width: 1024px) { .page { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+
+/* ---------- Left: the product ---------- */
+.aside {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 88px 24px 40px;
+  background:
+    radial-gradient(60% 46% at 72% 38%, rgb(0 127 104 / 0.14), transparent 70%),
+    linear-gradient(180deg, var(--au-paper) 0%, var(--au-paper-2) 100%);
+}
+@media (min-width: 1024px) { .aside { height: 100dvh; padding: 96px 64px 64px; } }
+
+.topBar { position: absolute; top: 24px; left: 24px; display: flex; align-items: center; }
+@media (min-width: 1024px) { .topBar { top: 32px; left: 48px; } }
+/* Close (×), top right of the page: the booking reads as a sheet you can dismiss. A fine cross in ink that turns
+   a quarter on hover; the hit area is 40px. */
+.close {
+  position: absolute;
+  z-index: 2;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--au-r-pill);
+  color: var(--au-ink);
+  transition: background-color var(--au-dur-hover) var(--au-ease);
+}
+@media (min-width: 1024px) { .close { top: 24px; right: 32px; } }
+.close:hover { background: rgb(23 32 30 / 0.05); }
+.close:focus-visible { outline: 2px solid var(--au-green); outline-offset: 2px; }
+.close svg { display: block; width: 18px; height: 18px; transition: transform 300ms var(--au-ease); }
+.close:hover svg { transform: rotate(90deg); }
+.brand { display: inline-flex; align-items: center; gap: 8px; }
+.brand img { height: 28px; width: auto; }
+.brandName { font-family: var(--au-display); font-size: 1.125rem; color: var(--au-ink); }
+
+/* The signature ring, still, cropped by the left edge. */
+.ring {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 0;
+  height: 118%;
+  aspect-ratio: 1;
+  transform: translate(-46%, -50%) rotate(-10deg);
+  background: linear-gradient(135deg, rgb(0 127 104 / 0.2), rgb(0 127 104 / 0.06));
+  -webkit-mask: url("/images/site/mark-ring-watermark.webp") center / contain no-repeat;
+  mask: url("/images/site/mark-ring-watermark.webp") center / contain no-repeat;
+  pointer-events: none;
+}
+
+/* Real reviews, one at a time, crossfading in the same cell so the height never changes: a large Fraunces quote,
+   the store's logo (in ink) and name, and a thin progress row. */
+.reviews { position: relative; display: grid; width: 100%; max-width: 34rem; margin: auto; }
+/* Phones: the left column is just the logo bar, so the form starts at the top. */
+@media (max-width: 1023px) {
+  .reviews { display: none; }
+  .aside { min-height: 72px; padding: 0; }
+  .ring { display: none; }
+}
+.review { grid-area: 1 / 1; margin: 0; opacity: 0; transition: opacity 600ms var(--au-ease); }
+.reviewOn { opacity: 1; }
+.openMark { display: block; height: 0.5em; font-family: var(--au-display); font-size: 4rem; line-height: 1; color: var(--au-green); }
+.quote {
+  margin-top: 16px;
+  font-family: var(--au-display);
+  font-size: clamp(1.375rem, 1.05rem + 1vw, 2rem);
+  line-height: 1.28;
+  letter-spacing: -0.015em;
+  color: var(--au-ink);
+}
+.by { display: flex; align-items: center; gap: 12px; margin-top: 28px; font-size: 0.875rem; color: var(--au-ink-3); }
+.byLogo {
+  flex: none;
+  height: 32px;
+  background: var(--au-ink);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+.byStore { font-weight: 600; color: var(--au-ink); }
+.dots { display: flex; gap: 6px; margin-top: 32px; }
+.dot { width: 22px; height: 3px; border-radius: 2px; background: var(--au-rule); transition: background-color 300ms var(--au-ease); }
+.dotOn { background: var(--au-green); }
+
+/* ---------- Right: the booking ---------- */
+.main { display: flex; align-items: center; justify-content: center; padding: 24px 24px 56px; background: var(--au-paper); }
+@media (min-width: 1024px) { .main { height: 100dvh; padding: 48px 56px; } }
+.panel { width: 100%; max-width: 30rem; }
+
+/* Rating and data line. line-height 1 so each icon centres on the text itself, not on a taller line box. */
+.trust { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; font-size: 0.875rem; line-height: 1; color: var(--au-ink-2); }
+.trustItem { display: inline-flex; align-items: center; gap: 8px; }
+.trustItem > :global(a) { display: inline-flex; align-items: center; gap: 8px; line-height: 1; }
+.trust :global(svg) { display: block; flex: none; width: 16px; height: 16px; }
+.trust :global(a), .trust :global(span) { color: var(--au-ink-2); }
+/* The star keeps its amber (ratings are the one non-green colour); only the lock is green. */
+.lock { color: var(--au-green); }
+
+.title {
+  margin-top: 24px;
+  font-family: var(--au-display);
+  font-weight: 400;
+  font-size: var(--au-h2);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+/* globals.css puts the body font on every span; the green words keep Fraunces, and "30-minute demo" never splits. */
+.accent { font-family: var(--au-display); color: var(--au-green); white-space: nowrap; }
+.lede { margin-top: 14px; font-size: 1.0625rem; line-height: 1.55; color: var(--au-ink-2); }
+
+.form { display: grid; gap: 14px; margin-top: 28px; }
+.row { display: grid; gap: 14px; }
+@media (min-width: 640px) { .row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 16px;
+  border: 1px solid var(--au-rule);
+  border-radius: var(--au-r-md);
+  background: var(--au-white);
+  font-size: 1rem;
+  color: var(--au-ink);
+  transition: border-color var(--au-dur-hover) var(--au-ease), box-shadow var(--au-dur-hover) var(--au-ease);
+}
+.input::placeholder { color: var(--au-ink-3); }
+.input:hover { border-color: rgb(23 32 30 / 0.24); }
+.input:focus { outline: none; border-color: var(--au-green); box-shadow: 0 0 0 3px var(--au-green-wash); }
+
+/* Store check line under the fields; its height is reserved so the form doesn't jump when it appears. */
+.storeCheck { min-height: 20px; margin-top: -4px; font-size: 0.8125rem; line-height: 1.5; }
+.storeCheck svg { display: block; flex: none; width: 15px; height: 15px; }
+.checking { color: var(--au-ink-3); }
+.found, .unknown { display: inline-flex; align-items: center; gap: 6px; }
+.found { color: var(--au-green-ink); font-weight: 600; }
+.unknown { color: var(--au-ink-2); }
+.small { font-size: 0.8125rem; line-height: 1.55; color: var(--au-ink-3); }
+.small a { color: var(--au-ink-2); text-decoration: underline; text-underline-offset: 3px; }
+.small a:hover { color: var(--au-ink); }
+
+.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 52px;
+  border-radius: var(--au-r-pill);
+  background: var(--au-green);
+  color: var(--au-white);
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 14px 30px -16px rgb(0 127 104 / 0.6);
+  transition: background-color var(--au-dur-hover) var(--au-ease);
+}
+.submit:hover { background: var(--au-green-hover); }
+.submit:disabled { opacity: 0.6; }
+.submit:focus-visible { outline: 2px solid var(--au-green); outline-offset: 3px; }
+.submit svg { width: 18px; height: 18px; }
+.after { margin-top: 18px; text-align: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .review, .dot, .input, .submit, .close, .close svg { transition: none; }
+}

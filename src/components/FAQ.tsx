@@ -14,7 +14,7 @@ const faqs = [
   {
     question: "How do I add an AI chatbot to my Shopify store?",
     answer:
-      "Installing Aurevia is simple - just one click from the Shopify App Store. No coding, no theme modifications required. The chatbot automatically syncs with your products, discounts, and branding, and you can customize the tone, colors, and business rules through our intuitive interface.",
+      "Installing Aurevia is simple - just one click from the Shopify App Store. No coding, no theme modifications required. The chatbot automatically syncs with your products, discounts, and branding, and you can customise the tone, colours, and business rules through our intuitive interface.",
   },
   {
     question: "Can a chatbot help reduce abandoned carts on Shopify?",
@@ -24,22 +24,22 @@ const faqs = [
   {
     question: "How can I use an AI chatbot to upsell and cross-sell on Shopify?",
     answer:
-      "Aurevia analyzes live shopper context and your entire product catalog to suggest perfect complementary products. It creates personalized bundles and recommendations in real-time conversations, significantly boosting average order value without relying on discounts.",
+      "Aurevia analyses live shopper context and your entire product catalogue to suggest perfect complementary products. It creates personalised bundles and recommendations in real-time conversations, significantly boosting average order value without relying on discounts.",
   },
   {
     question: "How do I install Aurevia's AI chatbot on my Shopify store?",
     answer:
-      "Installation takes just one click from the Shopify App Store. Once installed, Aurevia automatically integrates with your store, syncing products, discounts, and branding. You can then customize settings, upload brand guidelines, and set your preferred tone of voice through our dashboard.",
+      "Installation takes just one click from the Shopify App Store. Once installed, Aurevia automatically integrates with your store, syncing products, discounts, and branding. You can then customise settings, upload brand guidelines, and set your preferred tone of voice through our dashboard.",
   },
   {
     question: "How much does Aurevia's AI sales co-pilot cost?",
     // Plain-text copy of the answer below, for the FAQ schema. Keep the two in step.
     answerText:
-      "Every plan starts with a 14-day free trial, no credit card required. After that, plans start at $19/month based on your traffic — see our Pricing page for full details.",
+      "Every plan starts with a 14-day free trial, no credit card required. After that, plans start at $19/month based on your traffic; see our Pricing page for full details.",
     answer: (
       <>
         Every plan starts with a 14-day free trial, no credit card required.
-        After that, plans start at $19/month based on your traffic — see our{" "}
+        After that, plans start at $19/month based on your traffic; see our{" "}
         <Link
           href="/pricing"
           className="font-medium underline underline-offset-2 hover:text-[#00CC99]"
@@ -58,7 +58,7 @@ const faqs = [
   {
     question: "Can a live agent take over a conversation from Aurevia's chatbot?",
     answer:
-      "Absolutely! Aurevia seamlessly hands off conversations to live agents when needed. The AI recognizes when human intervention is required and notifies your team, providing full conversation context so agents can continue naturally without repeating information.",
+      "Absolutely! Aurevia seamlessly hands off conversations to live agents when needed. The AI recognises when human intervention is required and notifies your team, providing full conversation context so agents can continue naturally without repeating information.",
   },
   {
     question: "What sets Aurevia's Shopify chatbot apart from other chatbots?",
@@ -185,10 +185,10 @@ export default function FAQ() {
             <span className="green-highlight">We&apos;ve Already Answered Them</span>
           </h2>
           <p className="text-sm sm:text-lg md:text-xl font-normal text-muted-foreground">
-            Merchants ask us these all the time — scroll the conversation below, or open everything at once.
+            Merchants ask us these all the time. Scroll the conversation below, or open everything at once.
           </p>
           {showAllAtOnce ? (
-            <p className="mt-5 text-sm text-muted-foreground">All answers are visible — you can still scroll the transcript.</p>
+            <p className="mt-5 text-sm text-muted-foreground">All answers are visible; you can still scroll the transcript.</p>
           ) : (
             <button
               type="button"

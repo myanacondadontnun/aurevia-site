@@ -2,7 +2,7 @@ import type { BlogPost } from "@/lib/blog-data";
 
 export const aiChatbotVsAiSalesAgentPost: BlogPost = {
   slug: "ai-chatbot-vs-ai-sales-agent-shopify",
-  title: "Most Stores Have Chat — Few Have a Real Sales Layer",
+  title: "Most Stores Have Chat, but Few Have a Real Sales Layer",
   seoTitle: "AI Chatbot vs AI Sales Agent: What Shopify Stores Need to Know",
   metaDescription:
     "Compare AI chatbots and AI sales agents for Shopify. Learn how guided selling improves product discovery, recommendations, cart support, and checkout confidence.",
@@ -29,10 +29,10 @@ export const aiChatbotVsAiSalesAgentPost: BlogPost = {
       id: "intro",
       title: "",
       paragraphs: [
-        "**Quick answer:** An AI chatbot is best for FAQs and simple support. An AI sales agent is better for Shopify stores when shoppers need help finding products, comparing options, asking pre-purchase questions, adding items to cart, and moving toward checkout.",
+        "**Quick answer:** An AI chatbot is best for FAQs and simple support. An AI sales agent is better for Shopify stores when shoppers need help finding products, comparing options, asking pre-purchase questions, adding items to cart, and moving towards checkout.",
         "Most Shopify stores already understand the value of chat. A visitor lands on your site, has a question, and wants a quick answer. A chat widget can help with that.",
         "But there is a big difference between a chatbot that answers questions and an **AI sales agent** that actively helps shoppers make better buying decisions.",
-        "That difference matters because ecommerce customers do not always leave because they dislike your product. Many leave because they are **unsure** — unsure which product fits them, about size, compatibility, ingredients, delivery, returns, or value, or whether they should buy now or keep looking.",
+        "That difference matters because ecommerce customers do not always leave because they dislike your product. Many leave because they are **unsure**: unsure which product fits them, about size, compatibility, ingredients, delivery, returns, or value, or whether they should buy now or keep looking.",
         "For Shopify stores, this is where the gap appears. A basic AI chatbot can answer simple questions. An AI sales agent can guide the shopper from uncertainty to a more confident purchase decision.",
       ],
     },
@@ -41,7 +41,7 @@ export const aiChatbotVsAiSalesAgentPost: BlogPost = {
       title: "What Is an AI Chatbot?",
       paragraphs: [
         "An AI chatbot is a conversational tool that responds to customer questions. For Shopify stores, a chatbot usually helps with tasks like answering FAQs, sharing shipping information, explaining returns, collecting customer details, directing users to product pages, handling basic support questions, and passing complex issues to a human.",
-        "This can be useful, especially for reducing repetitive customer support work — a topic we cover in depth in our guide on reducing repetitive support questions on Shopify.",
+        "This can be useful, especially for reducing repetitive customer support work, a topic we cover in depth in our guide on reducing repetitive support questions on Shopify.",
       ],
       subsections: [
         {
@@ -57,14 +57,14 @@ export const aiChatbotVsAiSalesAgentPost: BlogPost = {
       id: "what-is-ai-sales-agent",
       title: "What Is an AI Sales Agent?",
       paragraphs: [
-        "An AI sales agent is designed to support the **buying journey**. It does more than answer questions. It helps shoppers understand their own needs, discover relevant products, compare options, and move toward cart or checkout.",
+        "An AI sales agent is designed to support the **buying journey**. It does more than answer questions. It helps shoppers understand their own needs, discover relevant products, compare options, and move towards cart or checkout.",
       ],
       subsections: [
         {
           title: "A practical example",
           paragraphs: [
             'A shopper may type: "I need a gift for my girlfriend, something under £50."',
-            "A basic chatbot may send them to a gift collection. An AI sales agent can respond more like a trained store assistant — ask what kind of gift they want, understand the budget, recommend suitable products, explain why each option fits, and help the shopper choose.",
+            "A basic chatbot may send them to a gift collection. An AI sales agent can respond more like a trained store assistant: ask what kind of gift they want, understand the budget, recommend suitable products, explain why each option fits, and help the shopper choose.",
             "For Shopify stores, this matters because many customers do not arrive knowing exactly what to buy. They need guidance.",
           ],
         },
@@ -109,7 +109,7 @@ export const aiChatbotVsAiSalesAgentPost: BlogPost = {
         {
           title: "These are buying signals, not just support tickets",
           paragraphs: [
-            "These are not only support questions. They are buying signals. An AI sales agent can treat them as opportunities to guide the customer toward the right product — similar to how AI shopping assistants are reshaping product discovery in 2026.",
+            "These are not only support questions. They are buying signals. An AI sales agent can treat them as opportunities to guide the customer towards the right product, similar to how AI shopping assistants are reshaping product discovery in 2026.",
           ],
         },
       ],
@@ -131,7 +131,7 @@ export const aiChatbotVsAiSalesAgentPost: BlogPost = {
         {
           title: "Context beats one-off answers",
           paragraphs: [
-            "A basic chatbot may answer these questions one by one. An AI sales agent can understand the broader buying context and guide the shopper accordingly — a pattern we explore further in our practical guide to AI agents for Shopify stores.",
+            "A basic chatbot may answer these questions one by one. An AI sales agent can understand the broader buying context and guide the shopper accordingly, a pattern we explore further in our practical guide to AI agents for Shopify stores.",
           ],
         },
       ],
@@ -174,7 +174,7 @@ export const aiChatbotVsAiSalesAgentPost: BlogPost = {
         {
           title: "Faster decisions, fewer abandoned carts",
           paragraphs: [
-            "This kind of comparison helps customers make decisions faster. For Shopify stores, that can reduce hesitation and improve checkout confidence — a direct lever against checkout abandonment.",
+            "This kind of comparison helps customers make decisions faster. For Shopify stores, that can reduce hesitation and improve checkout confidence, a direct lever against checkout abandonment.",
           ],
         },
       ],
@@ -212,7 +212,7 @@ export const aiChatbotVsAiSalesAgentPost: BlogPost = {
           title: "Context-driven add-ons",
           paragraphs: [
             "If someone buys a camera, a useful add-on might be a memory card, camera case, lens cleaner, or tripod. If someone buys a dress, useful add-ons might be matching earrings, a clutch bag, or styling accessories.",
-            "The key is context. An AI sales agent can suggest complementary products based on what the shopper is buying and why they are buying it. That makes cross-selling feel like service rather than pressure — a principle we break down in our Shopify customer psychology guide.",
+            "The key is context. An AI sales agent can suggest complementary products based on what the shopper is buying and why they are buying it. That makes cross-selling feel like service rather than pressure, a principle we break down in our Shopify customer psychology guide.",
           ],
         },
       ],
@@ -269,7 +269,7 @@ export const aiChatbotVsAiSalesAgentPost: BlogPost = {
       id: "how-aurevia-fits",
       title: "How Aurevia Fits This Category",
       paragraphs: [
-        "Aurevia is built for Shopify stores that want guided selling on their website. It helps shoppers explain what they are looking for, find relevant products, ask pre-purchase questions, compare options, get product recommendations, add products to cart, and move toward checkout with more confidence.",
+        "Aurevia is built for Shopify stores that want guided selling on their website. It helps shoppers explain what they are looking for, find relevant products, ask pre-purchase questions, compare options, get product recommendations, add products to cart, and move towards checkout with more confidence.",
         "This makes Aurevia different from a basic chatbot that only answers FAQs. The goal is to help Shopify stores convert more visitors by supporting the buying decision while the shopper is still active on the site.",
         "Not sure where your store is leaking revenue today? Start with a free Shopify store audit before choosing the right AI layer for your funnel.",
       ],
@@ -288,7 +288,7 @@ export const aiChatbotVsAiSalesAgentPost: BlogPost = {
       id: "conclusion",
       title: "Conclusion",
       paragraphs: [
-        "Want to help more Shopify visitors choose the right products and move toward checkout? Aurevia gives your store a 24/7 AI sales agent that guides shoppers through product discovery, recommendations, buying questions, cart support, and checkout confidence.",
+        "Want to help more Shopify visitors choose the right products and move towards checkout? Aurevia gives your store a 24/7 AI sales agent that guides shoppers through product discovery, recommendations, buying questions, cart support, and checkout confidence.",
       ],
     },
   ],
@@ -297,7 +297,7 @@ export const aiChatbotVsAiSalesAgentPost: BlogPost = {
       question:
         "What is the difference between an AI chatbot and an AI sales agent?",
       answer:
-        "An AI chatbot mainly answers customer questions. An AI sales agent helps shoppers make buying decisions — finding products, comparing options, asking pre-purchase questions, adding items to cart, and moving toward checkout.",
+        "An AI chatbot mainly answers customer questions. An AI sales agent helps shoppers make buying decisions: finding products, comparing options, asking pre-purchase questions, adding items to cart, and moving towards checkout.",
     },
     {
       question: "Is an AI sales agent the same as a Shopify chatbot?",
@@ -317,12 +317,12 @@ export const aiChatbotVsAiSalesAgentPost: BlogPost = {
     {
       question: "Can an AI sales agent help increase Shopify conversion rate?",
       answer:
-        "Yes. It can improve conversion by reducing uncertainty during the buying journey — answering pre-purchase questions, recommending relevant products, comparing options, and helping shoppers move toward checkout with more confidence.",
+        "Yes. It can improve conversion by reducing uncertainty during the buying journey: answering pre-purchase questions, recommending relevant products, comparing options, and helping shoppers move towards checkout with more confidence.",
     },
     {
       question: "Can an AI sales agent increase average order value?",
       answer:
-        "Yes, if the recommendations are relevant. An AI sales agent can suggest useful add-ons, bundles, or complementary products based on what the shopper is buying and why — as long as the suggestion feels helpful, not pushy.",
+        "Yes, if the recommendations are relevant. An AI sales agent can suggest useful add-ons, bundles, or complementary products based on what the shopper is buying and why, as long as the suggestion feels helpful, not pushy.",
     },
     {
       question: "Can an AI sales agent help with Shopify product discovery?",
@@ -332,7 +332,7 @@ export const aiChatbotVsAiSalesAgentPost: BlogPost = {
     {
       question: "Can an AI sales agent help shoppers compare products?",
       answer:
-        "Yes. An AI sales agent can explain the difference between products based on the shopper's needs, budget, use case, or preferences — helping shoppers make faster and more confident decisions.",
+        "Yes. An AI sales agent can explain the difference between products based on the shopper's needs, budget, use case, or preferences, helping shoppers make faster and more confident decisions.",
     },
     {
       question: "Does an AI sales agent replace human support?",

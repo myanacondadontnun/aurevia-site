@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { Shirt, Sparkles, Dumbbell, Smartphone, Home } from "lucide-react";
+import { Shirt, Droplet, Dumbbell, Smartphone, Home } from "lucide-react";
 import { useScrollFade } from "./ScrollAnimations";
 
 const industries = [
   { icon: Shirt, label: "Fashion & apparel", href: "/solutions/fashion" },
-  { icon: Sparkles, label: "Health & beauty", href: "/solutions/beauty" },
+  { icon: Droplet, label: "Health & beauty", href: "/solutions/beauty" },
   { icon: Dumbbell, label: "Fitness & supplements", href: "/solutions/fitness" },
   { icon: Smartphone, label: "Electronics", href: "/solutions/electronics" },
   { icon: Home, label: "Home & garden", href: "/solutions/home-garden" },

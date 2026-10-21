@@ -99,9 +99,9 @@ export const blogPosts: BlogPost[] = [
         id: "intro",
         title: "",
         paragraphs: [
-          'You did everything "right." The ads worked. People browsed. They added items to cart. Then, right at checkout — where intent is highest — your sales slip away. That\'s not bad luck. It\'s usually a solvable mismatch between **what the customer needs to feel confident** and **what the checkout experience gives them in that moment**.',
+          'You did everything "right." The ads worked. People browsed. They added items to cart. Then, right at checkout, where intent is highest, your sales slip away. That\'s not bad luck. It\'s usually a solvable mismatch between **what the customer needs to feel confident** and **what the checkout experience gives them in that moment**.',
           "Industry-wide, cart abandonment averages around **70%** (Baymard's roll-up of dozens of studies). More importantly, the reasons are repeatable: customers leave when extra costs feel too high (39%), delivery feels too slow (21%), trust feels shaky (19%), they're forced to create an account (19%), checkout is too long or complicated (18%), or policies and reliability aren't clear.",
-          "This guide focuses on Shopify-specific fixes that reduce friction, increase perceived fairness, and add in-the-moment support — without discounting your way into lower margins.",
+          "This guide focuses on Shopify-specific fixes that reduce friction, increase perceived fairness, and add in-the-moment support, without discounting your way into lower margins.",
         ],
       },
       {
@@ -133,7 +133,7 @@ export const blogPosts: BlogPost[] = [
           {
             title: "Delivery uncertainty",
             paragraphs: [
-              "Slow delivery — or unclear delivery timing — drives abandonment. The bigger issue is uncertainty: if customers can't tell whether it arrives before a trip, event, or deadline, they bounce.",
+              "Slow delivery (or unclear delivery timing) drives abandonment. The bigger issue is uncertainty: if customers can't tell whether it arrives before a trip, event, or deadline, they bounce.",
             ],
           },
           {
@@ -168,7 +168,7 @@ export const blogPosts: BlogPost[] = [
         paragraphs: ["Checkout abandonment hurts more than conversion rate:"],
         list: [
           "It **raises your effective CAC** because you paid to acquire traffic that got stuck at the last mile.",
-          "It **distorts merchandising signals** — your top-of-funnel and PDP performance looks fine, but revenue doesn't match.",
+          "It **distorts merchandising signals**: your top-of-funnel and PDP performance looks fine, but revenue doesn't match.",
           'It **trains your team to over-discount**, because discounts feel like the fastest lever when the real issue is friction and trust.',
           "It **worsens support load**, because unclear shipping and returns triggers pre-purchase and post-purchase tickets.",
         ],
@@ -199,7 +199,7 @@ export const blogPosts: BlogPost[] = [
           {
             title: "Reduce checkout effort: fewer fields, fewer chances to fail",
             paragraphs: [
-              "Reducing form fields reduces perceived complexity and improves checkout UX. Avoid splitting name fields unnecessarily, minimize optional inputs, and ensure error messages are precise — especially on mobile.",
+              "Reducing form fields reduces perceived complexity and improves checkout UX. Avoid splitting name fields unnecessarily, minimise optional inputs, and ensure error messages are precise, especially on mobile.",
             ],
           },
           {
@@ -225,7 +225,7 @@ export const blogPosts: BlogPost[] = [
           {
             title: "Automate recovery for shoppers who leave",
             paragraphs: [
-              "Send recovery messages that resolve the most common blockers — cost clarity, delivery date, returns policy, alternative payment. Personalize based on cart contents (sizing, compatibility, replenishment cadence).",
+              "Send recovery messages that resolve the most common blockers: cost clarity, delivery date, returns policy, alternative payment. Personalise based on cart contents (sizing, compatibility, replenishment cadence).",
             ],
           },
         ],
@@ -235,15 +235,15 @@ export const blogPosts: BlogPost[] = [
         title: "Implementation Steps",
         paragraphs: ["Use this as a practical two-week rollout."],
         orderedList: [
-          "**Baseline your funnel** — use the Shopify conversion rate breakdown funnel to understand sessions, cart additions, reached checkout, and completed checkout.",
-          "**Tag the top abandonment reasons** — create a simple internal taxonomy (shipping cost, delivery speed, payment trust, account, complexity, payment method).",
-          "**Fix pricing surprise first** — add shipping threshold messaging and a clear returns promise on PDP and cart.",
-          "**Enable accelerated checkout + Shop Pay** — turn on Shop Pay and configure accelerated checkout buttons for your catalog.",
-          "**Switch to one-page checkout if appropriate** — it collects the same information while keeping it on one page.",
-          "**Reduce checkout input friction** — audit field count and identify which fields are truly required.",
-          "**Add real-time assistance at checkout and cart** — deploy an AI assistant trained on shipping policy, returns policy, delivery estimates, payment troubleshooting, and product selection.",
-          "**Turn on abandoned checkout automation** — enable automated abandoned checkout emails and adjust send timing, branding, and message content.",
-          "**Create a repeatable weekly checkout review** — one dashboard, one owner, one weekly 30-minute review: funnel, drop-off step, top chat intents, top recovery outcomes.",
+          "**Baseline your funnel**: use the Shopify conversion rate breakdown funnel to understand sessions, cart additions, reached checkout, and completed checkout.",
+          "**Tag the top abandonment reasons**: create a simple internal taxonomy (shipping cost, delivery speed, payment trust, account, complexity, payment method).",
+          "**Fix pricing surprise first**: add shipping threshold messaging and a clear returns promise on PDP and cart.",
+          "**Enable accelerated checkout + Shop Pay**: turn on Shop Pay and configure accelerated checkout buttons for your catalogue.",
+          "**Switch to one-page checkout if appropriate**: it collects the same information while keeping it on one page.",
+          "**Reduce checkout input friction**: audit field count and identify which fields are truly required.",
+          "**Add real-time assistance at checkout and cart**: deploy an AI assistant trained on shipping policy, returns policy, delivery estimates, payment troubleshooting, and product selection.",
+          "**Turn on abandoned checkout automation**: enable automated abandoned checkout emails and adjust send timing, branding, and message content.",
+          "**Create a repeatable weekly checkout review**: one dashboard, one owner, one weekly 30-minute review: funnel, drop-off step, top chat intents, top recovery outcomes.",
         ],
       },
       {
@@ -251,10 +251,10 @@ export const blogPosts: BlogPost[] = [
         title: "Metrics",
         paragraphs: ["Track metrics that map to each fix:"],
         list: [
-          "**Checkout abandonment drivers** — reason codes from chat, support tickets, and customer feedback.",
-          "**Funnel step conversion** — Shopify's conversion rate breakdown gives step-level conversion (cart → checkout → purchase).",
-          "**Recovered checkout rate** — abandoned checkout email reporting and recovered status tracking.",
-          "**Payment mix and accelerated checkout adoption** — percentage of orders using Shop Pay or other wallets.",
+          "**Checkout abandonment drivers**: reason codes from chat, support tickets, and customer feedback.",
+          "**Funnel step conversion**: Shopify's conversion rate breakdown gives step-level conversion (cart → checkout → purchase).",
+          "**Recovered checkout rate**: abandoned checkout email reporting and recovered status tracking.",
+          "**Payment mix and accelerated checkout adoption**: percentage of orders using Shop Pay or other wallets.",
         ],
       },
       {
@@ -272,7 +272,7 @@ export const blogPosts: BlogPost[] = [
         title: "Conclusion",
         paragraphs: [
           "If sales slip away at checkout, treat it like a **systems problem**, not a traffic problem. Start with transparency and certainty (total cost + delivery), remove field effort, add accelerated checkout, then layer real-time help and recovery automation.",
-          "Baymard's benchmarks show most checkouts still perform mediocre or worse — so improving yours is a real competitive advantage.",
+          "Baymard's benchmarks show most checkouts still perform mediocre or worse, so improving yours is a real competitive advantage.",
         ],
       },
     ],
@@ -285,12 +285,12 @@ export const blogPosts: BlogPost[] = [
       {
         question: "Should I use one-page checkout?",
         answer:
-          "If you're on Shopify, one-page checkout is supported and can reduce perceived friction. Test carefully if you rely heavily on checkout customizations.",
+          "If you're on Shopify, one-page checkout is supported and can reduce perceived friction. Test carefully if you rely heavily on checkout customisations.",
       },
       {
         question: "Do accelerated checkouts help?",
         answer:
-          "Yes — they reduce typing and speed up payment. Shop Pay lifts conversion by up to 50% vs guest checkout and shows a 1.72× higher checkout-to-order rate.",
+          "Yes. They reduce typing and speed up payment. Shop Pay lifts conversion by up to 50% vs guest checkout and shows a 1.72× higher checkout-to-order rate.",
       },
       {
         question: "What's the fastest win?",
@@ -330,7 +330,7 @@ export const blogPosts: BlogPost[] = [
         id: "intro",
         title: "",
         paragraphs: [
-          "You spent years building a brand voice customers recognize. Then your chatbot shows up and sounds like every other bot: overly formal, overly enthusiastic, or weirdly apologetic. That mismatch doesn't just feel off — it reduces the sense that your site is cohesive and trustworthy.",
+          "You spent years building a brand voice customers recognise. Then your chatbot shows up and sounds like every other bot: overly formal, overly enthusiastic, or weirdly apologetic. That mismatch doesn't just feel off; it reduces the sense that your site is cohesive and trustworthy.",
           "This matters because customers increasingly expect fast, always-available help, but they won't tolerate low-quality interactions. Research shows **over two-thirds of customers won't use a company's chatbot again after just one negative experience**. Voice mismatch is one of the fastest ways to create that negative experience, even if the answer is technically correct.",
           "The goal of this post: help you implement a chatbot that stays **accurate**, stays **on-brand**, and stays **safe**.",
         ],
@@ -343,8 +343,8 @@ export const blogPosts: BlogPost[] = [
         ],
         list: [
           'A different "personality" from the rest of your site',
-          'A reliability risk — "If the bot is sloppy, is fulfillment sloppy?"',
-          "A support dead end — it doesn't understand them and doesn't sound like you",
+          'A reliability risk: "If the bot is sloppy, is fulfilment sloppy?"',
+          "A support dead end: it doesn't understand them and doesn't sound like you",
         ],
       },
       {
@@ -407,11 +407,11 @@ export const blogPosts: BlogPost[] = [
               "Write a 1–2 page doc that includes:",
             ],
             list: [
-              '**Voice positioning:** "We are practical, calm, and slightly witty — not goofy."',
+              '**Voice positioning:** "We are practical, calm, and slightly witty, not goofy."',
               '**Vocabulary rules:** words you use and avoid (e.g., "ship" vs "dispatch," "returns" vs "refund policy").',
               "**Response length rules:** short for simple questions, structured for comparisons.",
               "**Confidence rules:** when to be definitive vs when to ask a clarifying question.",
-              "**Empathy rules:** how to apologize and how not to over-apologize.",
+              "**Empathy rules:** how to apologise and how not to over-apologise.",
               "**Compliance rules:** no medical claims, no guarantees, no inventing stock or delivery info.",
             ],
           },
@@ -430,7 +430,7 @@ export const blogPosts: BlogPost[] = [
           {
             title: "Choose the right persona style for the context",
             paragraphs: [
-              "Research suggests purchase outcomes can vary by behavioral realism (warmth vs competence) and how human-like the bot feels. You can intentionally shift tone by funnel stage:",
+              "Research suggests purchase outcomes can vary by behavioural realism (warmth vs competence) and how human-like the bot feels. You can intentionally shift tone by funnel stage:",
             ],
             list: [
               "**Exploration:** competence-forward, concise, high signal",
@@ -441,7 +441,7 @@ export const blogPosts: BlogPost[] = [
           {
             title: "Connect voice to truth via knowledge retrieval",
             paragraphs: [
-              "A great-sounding bot that's wrong is worse than a bland bot that's right. Your setup should pull answers from approved sources — shipping policy, returns policy, product catalog, sizing charts, compatibility tables.",
+              "A great-sounding bot that's wrong is worse than a bland bot that's right. Your setup should pull answers from approved sources: shipping policy, returns policy, product catalogue, sizing charts, compatibility tables.",
             ],
           },
           {
@@ -450,7 +450,7 @@ export const blogPosts: BlogPost[] = [
               "Given customer trust concerns, incorporate:",
             ],
             list: [
-              '"I\'m an AI assistant" disclosure — light but clear.',
+              '"I\'m an AI assistant" disclosure, light but clear.',
               '"Talk to a human" option that doesn\'t punish the user.',
               "Structured capture: if escalation happens, pass context (question, product, constraints).",
             ],
@@ -462,13 +462,13 @@ export const blogPosts: BlogPost[] = [
         title: "Implementation Steps",
         paragraphs: [],
         orderedList: [
-          "**Audit your current brand voice** — collect homepage copy, PDP sections, email templates, and top-performing ads. Identify patterns (sentence length, slang level, confidence).",
-          "**Write the voice spec + examples** — use your own top copy as the primary training input.",
-          "**Design conversation templates for the top intents** — start with: shipping times, returns, sizing/fit, product comparison, order tracking, \"what should I buy?\"",
-          "**Add safety and trust guardrails** — include disclosure and set rules for uncertain cases.",
-          "**Run a voice QA pass before launch** — test 50 real customer questions; score responses on accuracy, voice match, clarity, and safety.",
-          "**Launch in a controlled way** — start with PDP + cart. Expand coverage later.",
-          "**Iterate weekly** — add examples from real conversations; remove failure patterns.",
+          "**Audit your current brand voice**: collect homepage copy, PDP sections, email templates, and top-performing ads. Identify patterns (sentence length, slang level, confidence).",
+          "**Write the voice spec + examples**: use your own top copy as the primary training input.",
+          "**Design conversation templates for the top intents**: start with: shipping times, returns, sizing/fit, product comparison, order tracking, \"what should I buy?\"",
+          "**Add safety and trust guardrails**: include disclosure and set rules for uncertain cases.",
+          "**Run a voice QA pass before launch**: test 50 real customer questions; score responses on accuracy, voice match, clarity, and safety.",
+          "**Launch in a controlled way**: start with PDP + cart. Expand coverage later.",
+          "**Iterate weekly**: add examples from real conversations; remove failure patterns.",
         ],
       },
       {
@@ -478,12 +478,12 @@ export const blogPosts: BlogPost[] = [
           "Track metrics that reflect both brand and business impact:",
         ],
         list: [
-          "**Voice adherence score (internal)** — % of replies that match your voice rubric",
+          "**Voice adherence score (internal)**: % of replies that match your voice rubric",
           "**CSAT / thumbs rating** per conversation",
-          "**Containment rate** — % of conversations resolved without human escalation",
+          "**Containment rate**: % of conversations resolved without human escalation",
           "**Conversion rate** for chat-engaged sessions",
-          '**Escalation reasons** — what triggers "human needed" most often',
-          "**Repeat usage** — does a customer use chat again (critical given the one-bad-experience risk)",
+          '**Escalation reasons**: what triggers "human needed" most often',
+          "**Repeat usage**: does a customer use chat again (critical given the one-bad-experience risk)",
         ],
       },
       {
@@ -492,7 +492,7 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [],
         list: [
           '**Using only "tone adjectives."** Models can exaggerate tone words; examples perform better.',
-          "**Optimizing for personality over accuracy.** Trust collapses when the bot is confidently wrong.",
+          "**Optimising for personality over accuracy.** Trust collapses when the bot is confidently wrong.",
           "**No disclosure and no human handoff.** Customers want to know when they're talking to AI and want easy human access when needed.",
         ],
       },
@@ -500,7 +500,7 @@ export const blogPosts: BlogPost[] = [
         id: "conclusion",
         title: "Conclusion",
         paragraphs: [
-          "Your chatbot is not a side tool — it's copywriting, UX, support, and sales in one place. Build a voice system, ground it in approved knowledge, disclose AI use, and measure voice adherence over time.",
+          "Your chatbot is not a side tool; it's copywriting, UX, support, and sales in one place. Build a voice system, ground it in approved knowledge, disclose AI use, and measure voice adherence over time.",
           "That's how you get the speed benefits customers want without sacrificing the brand trust you've earned.",
         ],
       },
@@ -509,7 +509,7 @@ export const blogPosts: BlogPost[] = [
       {
         question: "Can an AI chatbot really sound like my brand?",
         answer:
-          "Yes — if you give it a voice system (rules + examples) and enforce QA. Research finds examples from existing copy improve tone matching significantly.",
+          "Yes, if you give it a voice system (rules + examples) and enforce QA. Research finds examples from existing copy improve tone matching significantly.",
       },
       {
         question: "What's the fastest way to fix a generic chatbot voice?",
@@ -533,7 +533,7 @@ export const blogPosts: BlogPost[] = [
     title: "Your Average Order Won't Budge",
     seoTitle: "Increase AOV on Shopify Without Constant Discounts",
     metaDescription:
-      "Grow Shopify AOV with bundles, better-bests, add-ons, and smart upsells. Includes step-by-step setup, tests, metrics, and AI personalization tips.",
+      "Grow Shopify AOV with bundles, better-bests, add-ons, and smart upsells. Includes step-by-step setup, tests, metrics, and AI personalisation tips.",
     category: "Revenue & Growth",
     tags: [
       "increase AOV",
@@ -542,7 +542,7 @@ export const blogPosts: BlogPost[] = [
       "upsell vs cross-sell",
       "post-purchase upsells",
       "free shipping threshold",
-      "personalized recommendations",
+      "personalised recommendations",
     ],
     publishDate: "2026-03-24",
     readingTime: "9 min read",
@@ -556,8 +556,8 @@ export const blogPosts: BlogPost[] = [
         id: "intro",
         title: "",
         paragraphs: [
-          "If AOV is stuck, the usual reaction is: run promos, slash prices, and hope customers add \"just one more item.\" That can work short term — but it often trades margin for temporary volume. A stronger approach is to build an AOV system: offer more value, more guidance, and better timing.",
-          "**Average order value** is total revenue divided by number of orders. The implication is simple: if you can increase what customers add per order — without tanking conversion — you grow revenue without buying more traffic.",
+          "If AOV is stuck, the usual reaction is: run promos, slash prices, and hope customers add \"just one more item.\" That can work short term, but it often trades margin for temporary volume. A stronger approach is to build an AOV system: offer more value, more guidance, and better timing.",
+          "**Average order value** is total revenue divided by number of orders. The implication is simple: if you can increase what customers add per order (without tanking conversion), you grow revenue without buying more traffic.",
         ],
       },
       {
@@ -582,7 +582,7 @@ export const blogPosts: BlogPost[] = [
           {
             title: "Weak merchandising paths",
             paragraphs: [
-              "Your catalog might be fine, but the store isn't guiding customers toward a complete solution.",
+              "Your catalogue might be fine, but the store isn't guiding customers towards a complete solution.",
             ],
           },
           {
@@ -604,9 +604,9 @@ export const blogPosts: BlogPost[] = [
             ],
           },
           {
-            title: "Personalization is missing or misused",
+            title: "Personalisation is missing or misused",
             paragraphs: [
-              "Personalization can reduce acquisition costs, lift revenue, and increase marketing ROI — but it must create customer value, not creepy overreach.",
+              "Personalisation can reduce acquisition costs, lift revenue, and increase marketing ROI, but it must create customer value, not creepy overreach.",
             ],
           },
         ],
@@ -695,11 +695,11 @@ export const blogPosts: BlogPost[] = [
         ],
         orderedList: [
           "**Baseline AOV and revenue per visitor** for two weeks.",
-          "**Pick one AOV lever** — bundle, tiering, threshold, or post-purchase.",
+          "**Pick one AOV lever**: bundle, tiering, threshold, or post-purchase.",
           "**Design one primary offer** that genuinely improves the customer outcome.",
-          "**Instrument measurement** — attach rate, acceptance rate, margin.",
+          "**Instrument measurement**: attach rate, acceptance rate, margin.",
           "**A/B test** against control for at least two weeks where possible.",
-          "**Segment results** — mobile vs desktop, new vs returning.",
+          "**Segment results**: mobile vs desktop, new vs returning.",
           "**Roll out winners** and retire losers.",
         ],
       },
@@ -708,9 +708,9 @@ export const blogPosts: BlogPost[] = [
         title: "Metrics",
         paragraphs: [],
         list: [
-          "**AOV** — revenue ÷ orders.",
-          '**Revenue per visitor** — protects against "AOV up but conversion down."',
-          "**Bundle attach rate** — orders containing bundle / eligible sessions.",
+          "**AOV**: revenue ÷ orders.",
+          '**Revenue per visitor**: protects against "AOV up but conversion down."',
+          "**Bundle attach rate**: orders containing bundle / eligible sessions.",
           "**Upsell acceptance rate** and incremental margin.",
           "**Return rate** for bundles and upsells (quality control).",
         ],
@@ -748,7 +748,7 @@ export const blogPosts: BlogPost[] = [
       {
         question: "Can AI increase AOV?",
         answer:
-          "Yes — by guiding product discovery and presenting relevant bundles and upsells, especially when the customer has a specific intent.",
+          "Yes, by guiding product discovery and presenting relevant bundles and upsells, especially when the customer has a specific intent.",
       },
     ],
   },
@@ -797,7 +797,7 @@ export const blogPosts: BlogPost[] = [
         list: [
           "You can't pinpoint **where** customers drop (PDP, cart, checkout, payment).",
           "You can't map **which** campaigns and audiences drive profitable orders.",
-          "You don't know **what** questions customers had before buying — or leaving.",
+          "You don't know **what** questions customers had before buying (or leaving).",
         ],
       },
       {
@@ -820,13 +820,13 @@ export const blogPosts: BlogPost[] = [
           {
             title: "Privacy changes reduced performance visibility",
             paragraphs: [
-              "Apple's App Tracking Transparency and similar privacy changes have had measurable effects on ecommerce — one study found conversion-optimized ads on a major platform saw a **37%** reduction in click-through rates. Measurement environments change, and models optimize poorly on incomplete signals.",
+              "Apple's App Tracking Transparency and similar privacy changes have had measurable effects on ecommerce: one study found conversion-optimised ads on a major platform saw a **37%** reduction in click-through rates. Measurement environments change, and models optimise poorly on incomplete signals.",
             ],
           },
           {
             title: "Intent data isn't captured",
             paragraphs: [
-              'The "why" behind drop-off often lives in chat transcripts, customer emails, support tickets, and onsite search terms. If those aren\'t categorized and tied to outcomes, you\'re blind to the real blockers.',
+              'The "why" behind drop-off often lives in chat transcripts, customer emails, support tickets, and onsite search terms. If those aren\'t categorised and tied to outcomes, you\'re blind to the real blockers.',
             ],
           },
         ],
@@ -846,19 +846,19 @@ export const blogPosts: BlogPost[] = [
         id: "solutions",
         title: "Detailed Solutions",
         paragraphs: [
-          "Build an analytics system that connects **behavior + intent + outcome**.",
+          "Build an analytics system that connects **behaviour + intent + outcome**.",
         ],
         subsections: [
           {
             title: "Use Shopify's funnel reporting as your foundation",
             paragraphs: [
-              "Shopify's conversion rate breakdown report visualizes the path through store and checkout — sessions, cart additions, reached checkout, and completed checkout. This tells you where your biggest leakage is.",
+              "Shopify's conversion rate breakdown report visualises the path through store and checkout: sessions, cart additions, reached checkout, and completed checkout. This tells you where your biggest leakage is.",
             ],
           },
           {
             title: "Add funnel exploration in Google Analytics",
             paragraphs: [
-              "Google Analytics funnel exploration is designed to visualize the steps users take and identify inefficient or abandoned journeys. Use the ecommerce funnel pattern (begin checkout, add shipping info, add payment info, purchase) for deeper path diagnosis and segmentation.",
+              "Google Analytics funnel exploration is designed to visualise the steps users take and identify inefficient or abandoned journeys. Use the ecommerce funnel pattern (begin checkout, add shipping info, add payment info, purchase) for deeper path diagnosis and segmentation.",
             ],
           },
           {
@@ -873,7 +873,7 @@ export const blogPosts: BlogPost[] = [
               "If you use an AI assistant, treat it as an analytics sensor:",
             ],
             list: [
-              "Categorize each conversation by intent (shipping, returns, sizing, comparison, payment issue)",
+              "Categorise each conversation by intent (shipping, returns, sizing, comparison, payment issue)",
               "Record whether it led to add-to-cart, checkout, or purchase",
               "Measure which intents correlate with drop-off",
             ],
@@ -885,12 +885,12 @@ export const blogPosts: BlogPost[] = [
         title: "Implementation Steps",
         paragraphs: [],
         orderedList: [
-          "**Create a measurement map** — list your funnel stages and required events (view content, add to cart, begin checkout, purchase).",
-          "**Turn on and review Shopify funnel reporting weekly** — use conversion rate breakdown as a standing metric review.",
-          "**Build a checkout funnel exploration in Google Analytics** — model your checkout steps and segment by device and source.",
-          "**Harden your tracking with server-side signals** — configure data sharing settings for Meta and implement server-to-server tracking.",
-          "**Create an intent taxonomy and tag conversations** — start with 8–12 tags. Review weekly. Merge or split as you learn.",
-          "**Close the loop** — create a monthly fix list driven by data: top funnel leak, top conversation blocker, top policy confusion, top operational friction.",
+          "**Create a measurement map**: list your funnel stages and required events (view content, add to cart, begin checkout, purchase).",
+          "**Turn on and review Shopify funnel reporting weekly**: use conversion rate breakdown as a standing metric review.",
+          "**Build a checkout funnel exploration in Google Analytics**: model your checkout steps and segment by device and source.",
+          "**Harden your tracking with server-side signals**: configure data sharing settings for Meta and implement server-to-server tracking.",
+          "**Create an intent taxonomy and tag conversations**: start with 8–12 tags. Review weekly. Merge or split as you learn.",
+          "**Close the loop**: create a monthly fix list driven by data: top funnel leak, top conversation blocker, top policy confusion, top operational friction.",
         ],
       },
       {
@@ -910,7 +910,7 @@ export const blogPosts: BlogPost[] = [
         title: "Mistakes to Avoid",
         paragraphs: [],
         list: [
-          "**Optimizing only on ROAS while blind to funnel quality.**",
+          "**Optimising only on ROAS while blind to funnel quality.**",
           "**Over-collecting data without governance.** Customers care about transparency and the value exchange for their data.",
           "**Treating tracking as set and forget.** Privacy and platform changes can materially shift performance and measurement.",
         ],
@@ -932,7 +932,7 @@ export const blogPosts: BlogPost[] = [
           "The conversion rate breakdown report shows funnel steps from sessions to checkout completion.",
       },
       {
-        question: "How do I analyze checkout steps in Google Analytics?",
+        question: "How do I analyse checkout steps in Google Analytics?",
         answer:
           "Use funnel exploration and define checkout step events (begin checkout, add shipping info, add payment info, purchase).",
       },
@@ -975,7 +975,7 @@ export const blogPosts: BlogPost[] = [
         id: "intro",
         title: "",
         paragraphs: [
-          "Someone in another time zone lands on your product page at 3 a.m. They're interested. They have one question: \"Will this arrive by Friday?\" Nobody answers. They leave — and you never even know they existed.",
+          "Someone in another time zone lands on your product page at 3 a.m. They're interested. They have one question: \"Will this arrive by Friday?\" Nobody answers. They leave, and you never even know they existed.",
           "This is a modern ecommerce problem: demand is continuous, but human availability isn't. **74%** of consumers now expect customer service to be available 24/7, and **77%** expect to interact with someone immediately when they contact a company.",
         ],
       },
@@ -1045,19 +1045,19 @@ export const blogPosts: BlogPost[] = [
           {
             title: "Make instant response real by integrating order tracking",
             paragraphs: [
-              "For post-purchase questions, the order status page lets customers track shipments and view shipping updates — reducing the need to contact support.",
+              "For post-purchase questions, the order status page lets customers track shipments and view shipping updates, reducing the need to contact support.",
             ],
           },
           {
             title: "Create a clean escalation path for hard cases",
             paragraphs: [
-              "Humans remain a differentiator. Your AI layer should solve what it can, collect structured details for what it can't, and route to human with context — not a blank ticket.",
+              "Humans remain a differentiator. Your AI layer should solve what it can, collect structured details for what it can't, and route to human with context, not a blank ticket.",
             ],
           },
           {
             title: "Use proactive engagement where it helps",
             paragraphs: [
-              "Trigger proactive chat only on high-intent behaviors:",
+              "Trigger proactive chat only on high-intent behaviours:",
             ],
             list: [
               "Long dwell on PDP + scrolling shipping/returns",
@@ -1072,13 +1072,13 @@ export const blogPosts: BlogPost[] = [
         title: "Implementation Steps",
         paragraphs: [],
         orderedList: [
-          "**Identify when customers arrive** — analyze sessions and conversion by hour and day.",
-          "**List your top after-hours intents** — use chat logs, email subjects, and onsite search.",
-          "**Deploy AI on the highest-value pages first** — PDPs and cart/checkout, then help center.",
-          "**Integrate logistics knowledge** — shipping rules, cutoff times, delivery estimate logic.",
-          "**Integrate order tracking** — direct customers to the order status page and tracking experience.",
-          "**Define escalation rules** — payment failures, fraud checks, address changes, damaged items.",
-          "**QA and safety** — include disclosure and ensure sensitive requests go to humans.",
+          "**Identify when customers arrive**: analyse sessions and conversion by hour and day.",
+          "**List your top after-hours intents**: use chat logs, email subjects, and onsite search.",
+          "**Deploy AI on the highest-value pages first**: PDPs and cart/checkout, then help centre.",
+          "**Integrate logistics knowledge**: shipping rules, cutoff times, delivery estimate logic.",
+          "**Integrate order tracking**: direct customers to the order status page and tracking experience.",
+          "**Define escalation rules**: payment failures, fraud checks, address changes, damaged items.",
+          "**QA and safety**: include disclosure and ensure sensitive requests go to humans.",
         ],
       },
       {
@@ -1087,7 +1087,7 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [],
         list: [
           "After-hours conversion rate (and change after AI rollout)",
-          "First response time (AI should move this toward instant)",
+          "First response time (AI should move this towards instant)",
           "Assisted revenue (orders with chat involvement)",
           "Containment rate (resolved without human)",
           "Escalation quality (did humans get enough context?)",
@@ -1116,7 +1116,7 @@ export const blogPosts: BlogPost[] = [
       {
         question: "Do customers really expect 24/7 support?",
         answer:
-          "Yes — 74% of consumers expect 24/7 availability according to recent research.",
+          "Yes: 74% of consumers expect 24/7 availability according to recent research.",
       },
       {
         question: "How fast do customers want responses?",
@@ -1139,7 +1139,7 @@ export const blogPosts: BlogPost[] = [
     title: "You're Drowning in the Same Questions",
     seoTitle: "Reduce Repetitive Support Questions in Shopify Stores",
     metaDescription:
-      "Cut repetitive ecommerce tickets with Shopify order tracking, clearer policies, AI self-service, and smart routing — without hurting customer experience.",
+      "Cut repetitive ecommerce tickets with Shopify order tracking, clearer policies, AI self-service, and smart routing, without hurting customer experience.",
     category: "Customer Support",
     tags: [
       "reduce support tickets",
@@ -1162,7 +1162,7 @@ export const blogPosts: BlogPost[] = [
         id: "intro",
         title: "",
         paragraphs: [
-          "If you're answering \"Where's my order?\" for the 47th time today, the issue isn't your team — it's your system. Repetitive questions drain time, slow response to truly urgent issues, and block growth work.",
+          "If you're answering \"Where's my order?\" for the 47th time today, the issue isn't your team; it's your system. Repetitive questions drain time, slow response to truly urgent issues, and block growth work.",
           "The fix is not \"work faster.\" The fix is to make answers easy to find, proactively deliver updates, use AI to resolve predictable questions instantly, and keep humans for emotionally or operationally complex cases.",
         ],
       },
@@ -1197,7 +1197,7 @@ export const blogPosts: BlogPost[] = [
           {
             title: "Customers prefer self-service for simple issues",
             paragraphs: [
-              "Many customers have used self-service portals and prefer them for simple tasks — when they actually work.",
+              "Many customers have used self-service portals and prefer them for simple tasks, when they actually work.",
             ],
           },
           {
@@ -1230,9 +1230,9 @@ export const blogPosts: BlogPost[] = [
               "Start with the easiest, highest-impact items:",
             ],
             orderedList: [
-              "**Proactive updates** — shipping and delivery notifications",
-              "**Self-service tracking** — order status page + Shop app",
-              "**Help center content** — policy clarity + product FAQs",
+              "**Proactive updates**: shipping and delivery notifications",
+              "**Self-service tracking**: order status page + Shop app",
+              "**Help centre content**: policy clarity + product FAQs",
               "**AI automation** for the repetitive intents",
               "**Human escalation** for exceptions",
             ],
@@ -1241,11 +1241,11 @@ export const blogPosts: BlogPost[] = [
             title: "Make order tracking frictionless",
             paragraphs: [
               "The order status page is the final page of checkout for tracking and shipping updates. After adding a tracking number, Shopify sends shipment updates; customers can track via the order status page, emails, and the Shop app.",
-              'Your "WISMO" volume is partly a fulfillment hygiene issue: tracking numbers, carrier recognition, and consistent notifications.',
+              'Your "WISMO" volume is partly a fulfilment hygiene issue: tracking numbers, carrier recognition, and consistent notifications.',
             ],
           },
           {
-            title: "Use AI for repetitive questions — but ground it in real data",
+            title: "Use AI for repetitive questions, but ground it in real data",
             paragraphs: [
               "Your AI assistant should answer:",
             ],
@@ -1263,12 +1263,12 @@ export const blogPosts: BlogPost[] = [
         title: "Implementation Steps",
         paragraphs: [],
         orderedList: [
-          "**Categorize the top intents** — export ticket categories and chat topics weekly. Track ticket volume by category.",
-          "**Fix tracking consistency first** — ensure tracking numbers are consistently included at fulfillment.",
-          "**Upgrade the order status page experience** — add clear CTAs: track order, contact support, return policy, delivery FAQ.",
-          "**Promote Shop app tracking** — let customers install the Shop app from the order status page to reduce inquiries.",
-          "**Deploy AI self-service on top intents** — start with order status, shipping timelines, returns basics, product comparison.",
-          "**Establish escalation rules** — for lost packages, fraud flags, chargebacks, and emotionally charged cases.",
+          "**Categorise the top intents**: export ticket categories and chat topics weekly. Track ticket volume by category.",
+          "**Fix tracking consistency first**: ensure tracking numbers are consistently included at fulfilment.",
+          "**Upgrade the order status page experience**: add clear CTAs: track order, contact support, return policy, delivery FAQ.",
+          "**Promote Shop app tracking**: let customers install the Shop app from the order status page to reduce enquiries.",
+          "**Deploy AI self-service on top intents**: start with order status, shipping timelines, returns basics, product comparison.",
+          "**Establish escalation rules**: for lost packages, fraud flags, chargebacks, and emotionally charged cases.",
         ],
       },
       {
@@ -1312,12 +1312,12 @@ export const blogPosts: BlogPost[] = [
       {
         question: "Can chatbots reduce repetitive questions?",
         answer:
-          "Yes — if they answer accurately and don't create negative experiences that stop reuse.",
+          "Yes, if they answer accurately and don't create negative experiences that stop reuse.",
       },
       {
         question: "What should I automate first?",
         answer:
-          "Order status, shipping timelines, and returns basics — then product comparison.",
+          "Order status, shipping timelines, and returns basics, then product comparison.",
       },
     ],
   },
@@ -1332,7 +1332,7 @@ export const blogPosts: BlogPost[] = [
     seoTitle:
       "E‑Commerce in 2026: AI Shopping Assistants vs Traditional Search",
     metaDescription:
-      "Why AI shopping assistants are replacing keyword search in 2026: Amazon AI (Rufus, COSMO), Claude for catalog intelligence, conversion and cart recovery, and how purpose-built platforms compete.",
+      "Why AI shopping assistants are replacing keyword search in 2026: Amazon AI (Rufus, COSMO), Claude for catalogue intelligence, conversion and cart recovery, and how purpose-built platforms compete.",
     category: "AI & Chatbots",
     tags: [
       "AI shopping assistant",
@@ -1358,16 +1358,16 @@ export const blogPosts: BlogPost[] = [
         id: "intro",
         title: "",
         paragraphs: [
-          "The e‑commerce landscape is undergoing a profound shift in 2026. For over two decades, online shopping followed a familiar script: shoppers typed disjointed keywords into a search bar, scrolled through fragmented results, filtered by price or review score, and hoped to find the right product. That model is breaking down. As patience thins and demand for **hyper‑personalized, instant curation** grows, **keyword‑first search** is giving way to a more capable interface: the **AI shopping assistant**.",
-          "While interest in legacy search tools and general‑purpose AI has plateaued or drifted down in some segments, queries for **dedicated AI shopping assistants** have spiked by roughly **300%**—an unusually sharp swing. Analysts now project the global AI shopping assistant market to reach about **$46.76 billion by 2035**, growing near **27%** compound annual growth—signals that retailers are betting on assistants, not bigger catalog pages alone.",
-          "We are moving from a **transactional web** to a **conversational web**. From marketplace giants rolling proprietary models to brands using frontier models like **Claude** to structure catalog and policy data, the race is on to build the ultimate digital concierge. This guide explains why AI shopping assistants are dominating 2026, how **Amazon AI** and **Anthropic (Claude)** shape the landscape, and how advanced platforms address stubborn retail problems: **abandoned carts**, **flat conversion**, and **global support gaps**.",
+          "The e‑commerce landscape is undergoing a profound shift in 2026. For over two decades, online shopping followed a familiar script: shoppers typed disjointed keywords into a search bar, scrolled through fragmented results, filtered by price or review score, and hoped to find the right product. That model is breaking down. As patience thins and demand for **hyper‑personalised, instant curation** grows, **keyword‑first search** is giving way to a more capable interface: the **AI shopping assistant**.",
+          "While interest in legacy search tools and general‑purpose AI has plateaued or drifted down in some segments, queries for **dedicated AI shopping assistants** have spiked by roughly **300%**, an unusually sharp swing. Analysts now project the global AI shopping assistant market to reach about **$46.76 billion by 2035**, growing near **27%** compound annual growth: signals that retailers are betting on assistants, not bigger catalogue pages alone.",
+          "We are moving from a **transactional web** to a **conversational web**. From marketplace giants rolling proprietary models to brands using frontier models like **Claude** to structure catalogue and policy data, the race is on to build the ultimate digital concierge. This guide explains why AI shopping assistants are dominating 2026, how **Amazon AI** and **Anthropic (Claude)** shape the landscape, and how advanced platforms address stubborn retail problems: **abandoned carts**, **flat conversion**, and **global support gaps**.",
         ],
       },
       {
         id: "beyond-keyword-search",
         title: "The State of Online Retail: Moving Beyond Keyword Search",
         paragraphs: [
-          "Legacy stores behave like **digital catalogs**. Search relied on rigid keyword overlap: if a shopper searched for \"dark green velvet mid‑century modern sofa\" but the merchant titled the listing \"emerald retro couch,\" the product could stay **invisible**—even when it was a perfect match.",
+          "Legacy stores behave like **digital catalogues**. Search relied on rigid keyword overlap: if a shopper searched for \"dark green velvet mid‑century modern sofa\" but the merchant titled the listing \"emerald retro couch,\" the product could stay **invisible**, even when it was a perfect match.",
         ],
         list: [
           "**Search fatigue:** too many irrelevant options, noisy ads, and choice overload that stalls decisions.",
@@ -1378,8 +1378,8 @@ export const blogPosts: BlogPost[] = [
             title: "How an AI shopping assistant changes discovery",
             paragraphs: [
               "Instead of exact token overlap, assistants lean on **Natural Language Processing (NLP)**, **intent recognition**, and **machine learning** to interpret what the shopper actually means.",
-              "The experience parallels a boutique associate: when someone says they need a **warm jacket for hiking in the Pacific Northwest in November**, the assistant reasons about weather, exertion, and layering—then returns **waterproof, breathable** options that map to intent, not literal keywords.",
-              "That shift **shortens the path from intent to purchase** because the system bridges language gaps between how customers describe needs and how products are labeled.",
+              "The experience parallels a boutique associate: when someone says they need a **warm jacket for hiking in the Pacific Northwest in November**, the assistant reasons about weather, exertion, and layering, then returns **waterproof, breathable** options that map to intent, not literal keywords.",
+              "That shift **shortens the path from intent to purchase** because the system bridges language gaps between how customers describe needs and how products are labelled.",
             ],
           },
         ],
@@ -1388,22 +1388,22 @@ export const blogPosts: BlogPost[] = [
         id: "amazon-ai-rufus-cosmo",
         title: "Amazon AI: Rufus, COSMO, and the E‑Commerce Paradigm Shift",
         paragraphs: [
-          "Marketplace scale makes Amazon a forcing function for how millions of people discover products. By early 2026, Amazon had pushed its proprietary assistant **Rufus** into the core shopping journey—not a thin chat layer, but a **new discovery engine** sitting on top of the catalog.",
+          "Marketplace scale makes Amazon a forcing function for how millions of people discover products. By early 2026, Amazon had pushed its proprietary assistant **Rufus** into the core shopping journey: not a thin chat layer, but a **new discovery engine** sitting on top of the catalogue.",
         ],
         subsections: [
           {
             title: "Rufus, COSMO, and what changed for sellers",
             paragraphs: [
-              "By early 2026, Amazon had rolled **Rufus** broadly as a proprietary **Amazon AI shopping assistant**—not a thin chatbot on top of search, but a new engine for product discovery. As of March 2026, **Rufus** reportedly processes **more than 13%** of Amazon search queries, a share that keeps climbing.",
-              "Amazon also replaced much of the classic keyword‑matching posture with **COSMO (Customer Obsession Shaping Model)**, an **intent** system built to infer the **why** behind a query—not only the literal tokens. For brands, visibility is less about **keyword stuffing** product titles and more about **contextual data** an assistant can use to recommend the right SKU.",
-              "Monetization followed the behavior: in late **Q1 2026**, Amazon introduced **billable AI Shopping Prompts**, meaning clicks from **Rufus**‑style curated recommendations became a first‑class part of the **advertising** stack—not an experimental sidebar.",
+              "By early 2026, Amazon had rolled **Rufus** broadly as a proprietary **Amazon AI shopping assistant**: not a thin chatbot on top of search, but a new engine for product discovery. As of March 2026, **Rufus** reportedly processes **more than 13%** of Amazon search queries, a share that keeps climbing.",
+              "Amazon also replaced much of the classic keyword‑matching posture with **COSMO (Customer Obsession Shaping Model)**, an **intent** system built to infer the **why** behind a query, not only the literal tokens. For brands, visibility is less about **keyword stuffing** product titles and more about **contextual data** an assistant can use to recommend the right SKU.",
+              "Monetisation followed the behaviour: in late **Q1 2026**, Amazon introduced **billable AI Shopping Prompts**, meaning clicks from **Rufus**‑style curated recommendations became a first‑class part of the **advertising** stack, not an experimental sidebar.",
             ],
           },
           {
             title: "The walled‑garden tradeoff for DTC brands",
             paragraphs: [
-              "Amazon's assistant is optimized to keep shoppers **on Amazon**. For independent and DTC merchants, that means **less control** of the journey, **less ownership** of first‑party narrative, and **limited portability** of behavioral insight.",
-              "That tension helps explain why many brands now prioritize a **native storefront assistant**: Amazon‑grade convenience without surrendering brand, data, and merchandising autonomy.",
+              "Amazon's assistant is optimised to keep shoppers **on Amazon**. For independent and DTC merchants, that means **less control** of the journey, **less ownership** of first‑party narrative, and **limited portability** of behavioural insight.",
+              "That tension helps explain why many brands now prioritise a **native storefront assistant**: Amazon‑grade convenience without surrendering brand, data, and merchandising autonomy.",
             ],
           },
         ],
@@ -1412,11 +1412,11 @@ export const blogPosts: BlogPost[] = [
         id: "claude-ai-retail",
         title: "General Intelligence Meets Retail: The Role of Claude AI in E‑Commerce",
         paragraphs: [
-          "While marketplaces enclose their ecosystems, the open web needs engines that can **reason over messy retail data**—spec sheets, reviews, sizing notes, policy PDFs, and seasonal collections.",
+          "While marketplaces enclose their ecosystems, the open web needs engines that can **reason over messy retail data**: spec sheets, reviews, sizing notes, policy PDFs, and seasonal collections.",
         ],
         subsections: [
           {
-            title: "Why frontier models matter for catalogs",
+            title: "Why frontier models matter for catalogues",
             paragraphs: [
               "Early retail chatbots often collapsed into brittle trees or generic answers. Modern assistants need **precision**: correct policy, correct compatibility, correct inventory language.",
               "**Claude**‑class models are attractive for commerce backends because they handle **large context windows** (on the order of hundreds of thousands of tokens in top tiers) and map **structured attributes** to customer‑ready explanations.",
@@ -1425,8 +1425,8 @@ export const blogPosts: BlogPost[] = [
           {
             title: "From manufacturer specs to conversational benefits",
             paragraphs: [
-              "Teams increasingly feed **catalogs**, **brand voice guidelines**, **reviews**, and **technical specifications** into models that reorganize raw data into **intent‑driven attributes**—the same attributes a shopper‑facing assistant needs mid‑conversation.",
-              "Anthropic's **Constitutional AI** framing also pushes teams toward **safer defaults**: fewer invented policies, fewer fabricated discounts, and clearer uncertainty handling—table stakes when an assistant touches revenue.",
+              "Teams increasingly feed **catalogues**, **brand voice guidelines**, **reviews**, and **technical specifications** into models that reorganize raw data into **intent‑driven attributes**, the same attributes a shopper‑facing assistant needs mid‑conversation.",
+              "Anthropic's **Constitutional AI** framing also pushes teams towards **safer defaults**: fewer invented policies, fewer fabricated discounts, and clearer uncertainty handling. These are table stakes when an assistant touches revenue.",
             ],
           },
         ],
@@ -1435,14 +1435,14 @@ export const blogPosts: BlogPost[] = [
         id: "core-capabilities",
         title: "Core Capabilities of a True AI Shopping Assistant",
         paragraphs: [
-          "Technology names are interesting only insofar as they change outcomes. A production‑grade AI shopping assistant should measurably move **conversion**, **cart completion**, **service coverage**, and **AOV**—the persistent levers that separate profitable stores from expensive traffic funnels.",
+          "Technology names are interesting only insofar as they change outcomes. A production‑grade AI shopping assistant should measurably move **conversion**, **cart completion**, **service coverage**, and **AOV**, the persistent levers that separate profitable stores from expensive traffic funnels.",
         ],
         subsections: [
           {
             title: "Overcoming conversion rate issues",
             paragraphs: [
               "E‑commerce conversion often clusters in the **low single digits** not because traffic is \"bad,\" but because shoppers cannot get **the exact reassurance** they need at the moment of evaluation.",
-              "An assistant that engages in natural language, surfaces the right SKU, and answers objections removes navigation friction—functionally acting as a **digital salesperson** that scales across sessions.",
+              "An assistant that engages in natural language, surfaces the right SKU, and answers objections removes navigation friction, functionally acting as a **digital salesperson** that scales across sessions.",
             ],
           },
           {
@@ -1455,14 +1455,14 @@ export const blogPosts: BlogPost[] = [
             title: "The 24/7 global concierge",
             paragraphs: [
               "Shopping hours are no longer bounded by support shifts. A shopper in Tokyo on a London storefront at 3:00 a.m. still expects answers about materials, duties, or delivery cutoffs.",
-              "Platforms like **Aurevia.io** address this by pairing **autonomous storefront assistance** with brand‑specific training—so the site is never \"closed\" for high‑intent questions, including multilingual coverage when configured.",
+              "Platforms like **Aurevia.io** address this by pairing **autonomous storefront assistance** with brand‑specific training, so the site is never \"closed\" for high‑intent questions, including multilingual coverage when configured.",
             ],
           },
           {
             title: "Driving higher AOV through better recommendations",
             paragraphs: [
-              "Generic \"customers also bought\" strips often underperform because they ignore **context**. A premium espresso purchase is not an excuse to pitch random beans—it is an opening to ask about **roast preference**, then recommend **grinders**, **knock boxes**, and **cleaning kits** that complete the ritual.",
-              "Assistants that understand **use case and quality tier** produce recommendations that feel curated rather than spammy—lifting **average order value** without constant discounting.",
+              "Generic \"customers also bought\" strips often underperform because they ignore **context**. A premium espresso purchase is not an excuse to pitch random beans; it is an opening to ask about **roast preference**, then recommend **grinders**, **knock boxes**, and **cleaning kits** that complete the ritual.",
+              "Assistants that understand **use case and quality tier** produce recommendations that feel curated rather than spammy, lifting **average order value** without constant discounting.",
             ],
           },
         ],
@@ -1478,7 +1478,7 @@ export const blogPosts: BlogPost[] = [
             title: "Why \"DIY chatbot\" is not the same as commerce AI",
             paragraphs: [
               "A general chat widget bolted onto a theme rarely inherits **returns logic**, **shipping matrices**, **bundle rules**, or **inventory nuance**. Purpose‑built commerce assistants start from **checkout reality**: what blocks purchase, what increases trust, what increases basket quality.",
-              "Solutions like **Aurevia.io** focus on **Shopify‑native workflows**—recovering carts, answering policy and product questions in brand voice, and escalating cleanly—so teams avoid stitching together brittle chains of tools.",
+              "Solutions like **Aurevia.io** focus on **Shopify‑native workflows**: recovering carts, answering policy and product questions in brand voice, and escalating cleanly, so teams avoid stitching together brittle chains of tools.",
             ],
           },
         ],
@@ -1489,8 +1489,8 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           "Much of the urgency behind the **~300%** spike in **AI shopping assistant** search interest is economic: **CAC** has climbed across social and search, and brands cannot afford paid traffic that immediately leaks to **bad discovery** or **unanswered questions**.",
           "Rising **CAC** across paid social and search makes \"buy traffic and hope\" economically fragile. If visitors bounce because the site cannot answer basic objections, the business pays twice: once for the click, once for the lost order.",
-          "Investing in an AI shopping assistant reframes the website from a passive brochure into an **active sales channel**—maximizing value per visitor through better discovery, fewer abandoned carts, and smarter upsell timing.",
-          "As shoppers grow accustomed to **intent‑driven** experiences in large marketplaces, tolerance for clunky navigation falls. In that environment, a capable assistant shifts from **nice‑to‑have** toward **baseline operational hygiene**.",
+          "Investing in an AI shopping assistant reframes the website from a passive brochure into an **active sales channel**, maximising value per visitor through better discovery, fewer abandoned carts, and smarter upsell timing.",
+          "As shoppers grow accustomed to **intent‑driven** experiences in large marketplaces, tolerance for clunky navigation falls. In that environment, a capable assistant shifts from **nice‑to‑have** towards **baseline operational hygiene**.",
         ],
       },
       {
@@ -1498,8 +1498,8 @@ export const blogPosts: BlogPost[] = [
         title: "Conclusion",
         paragraphs: [
           "We are witnessing one of the largest shifts in digital commerce since the early catalog era: consumers want **curation**, not endless scrolling; **answers**, not keyword puzzles.",
-          "From **Amazon AI** reshaping marketplace discovery to **Claude**‑class models structuring complex catalogs, the tooling is mature enough to deploy responsibly—provided brands pair models with **grounded knowledge**, **clear policies**, and **human escalation** where stakes are high.",
-          "For independent merchants, the mandate is practical: adopt infrastructure that solves conversion, abandonment, global coverage, and AOV as a system. The next decade favors retailers who deliver the **right option instantly**—not the most options possible.",
+          "From **Amazon AI** reshaping marketplace discovery to **Claude**‑class models structuring complex catalogues, the tooling is mature enough to deploy responsibly, provided brands pair models with **grounded knowledge**, **clear policies**, and **human escalation** where stakes are high.",
+          "For independent merchants, the mandate is practical: adopt infrastructure that solves conversion, abandonment, global coverage, and AOV as a system. The next decade favors retailers who deliver the **right option instantly**, not the most options possible.",
         ],
       },
     ],
@@ -1507,7 +1507,7 @@ export const blogPosts: BlogPost[] = [
       {
         question: "What is an AI shopping assistant in e‑commerce?",
         answer:
-          "It is a conversational layer that uses NLP and intent understanding to help shoppers discover products, compare options, and resolve purchase questions—often integrated directly into a storefront.",
+          "It is a conversational layer that uses NLP and intent understanding to help shoppers discover products, compare options, and resolve purchase questions, often integrated directly into a storefront.",
       },
       {
         question: "Is an AI shopping assistant the same as legacy site search?",
@@ -1517,12 +1517,12 @@ export const blogPosts: BlogPost[] = [
       {
         question: "Why are brands adding assistants to their own sites instead of relying on marketplaces?",
         answer:
-          "Marketplace assistants optimize for time-on-platform. DTC brands want control of brand story, customer data, merchandising, and margins—so they deploy assistants on owned channels.",
+          "Marketplace assistants optimise for time-on-platform. DTC brands want control of brand story, customer data, merchandising, and margins, so they deploy assistants on owned channels.",
       },
       {
         question: "How should a Shopify brand evaluate a commerce AI platform?",
         answer:
-          "Look for grounded answers tied to real policies and catalog data, measurable funnel impact (conversion, AOV, recovery), multilingual coverage if you sell internationally, and clear human handoff for edge cases.",
+          "Look for grounded answers tied to real policies and catalogue data, measurable funnel impact (conversion, AOV, recovery), multilingual coverage if you sell internationally, and clear human handoff for edge cases.",
       },
     ],
   },

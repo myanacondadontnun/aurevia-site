@@ -7,14 +7,14 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "About — Pixel & Code",
+  title: "About | Pixel & Code",
   description:
-    "Pixel & Code is a small product studio — the people who scope your project are the same people who design and build it.",
+    "Pixel & Code is a small product studio: the people who scope your project are the same people who design and build it.",
   alternates: { canonical: "https://aurevia.io/pixel-and-code/about/" },
   openGraph: {
     type: "website",
-    title: "About — Pixel & Code",
-    description: "A small studio that designs, builds, and ships every product itself — no handoffs between agencies.",
+    title: "About | Pixel & Code",
+    description: "A small studio that designs, builds, and ships every product itself: no handoffs between agencies.",
   },
 };
 
@@ -44,7 +44,7 @@ export default function AboutPage() {
           <h1 className="case-title reveal-up" data-split>A small studio. A lot of ownership.</h1>
           <p className="case-summary reveal-up">
             Pixel &amp; Code is run by a small team that designs, builds, and ships every product
-            itself — no account managers, no handoffs between agencies. The people who scope your
+            itself: no account managers, no handoffs between agencies. The people who scope your
             project are the same people who write the code.
           </p>
           <div className="page-hero__scroll reveal-up">
@@ -68,12 +68,12 @@ export default function AboutPage() {
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Momentum</span>
               <h3>Ship weekly</h3>
-              <p>You see real, working progress every week — not a single big reveal months into the build.</p>
+              <p>You see real, working progress every week, not a single big reveal months into the build.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Craft</span>
               <h3>Built by builders</h3>
-              <p>Every stack decision — Django, React, whatever the problem calls for — is made by the person who&apos;ll maintain it.</p>
+              <p>Every stack decision (Django, React, whatever the problem calls for) is made by the person who&apos;ll maintain it.</p>
             </article>
           </div>
         </section>
@@ -90,7 +90,7 @@ export default function AboutPage() {
               <h3>Kishal Mandal</h3>
               <span className="team-card__role">Co-founder · CTO</span>
               <p>
-                Builds production AI systems that actually ship — 5+ years across the full AI and
+                Builds production AI systems that actually ship: 5+ years across the full AI and
                 full-stack spectrum. Currently architects multi-agent systems and LLM-powered sales
                 automation at Expedite Commerce; freelances end-to-end app builds on the side. Kaggle
                 Notebooks Master (top 0.1% globally) and a published AI researcher when he&apos;s not shipping code.
@@ -103,7 +103,7 @@ export default function AboutPage() {
               <p>
                 Works as a Digital Skills Consultant at Aspire 2Be, helping close the UK&apos;s digital
                 skills gap across Data Science, AI, and Cyber Security. Also co-founded an AI sales
-                agent for Shopify merchants — the kind of product that sounds simple until you&apos;re
+                agent for Shopify merchants, the kind of product that sounds simple until you&apos;re
                 building it. MSc in Operations, Project &amp; Supply Chain Management, University of
                 Manchester, First Class with Distinction.
               </p>
@@ -117,11 +117,11 @@ export default function AboutPage() {
             <span className="section__label reveal-up">Let&apos;s talk</span>
             <h2 className="contact__title" data-split>Want to work with us directly?</h2>
             <p className="contact__sub reveal-up">
-              Chat with our AI to scope your project — it captures the details and a human follows up
+              Chat with our AI to scope your project. It captures the details and a human follows up
               within one business day.
             </p>
             <form className="contact__ai reveal-up" data-contact-ai>
-              <input type="text" data-contact-input placeholder="Describe your project — our AI takes it from here…" autoComplete="off" aria-label="Describe your project" />
+              <input type="text" data-contact-input placeholder="Describe your project. Our AI takes it from here…" autoComplete="off" aria-label="Describe your project" />
               <button type="submit" aria-label="Start the conversation">
                 <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>

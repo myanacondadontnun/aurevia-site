@@ -10,7 +10,7 @@ interface NavLink {
 
 // Nav chrome is shared, but the exact link targets differ between the home page
 // (in-page anchors like #services) and every other page (absolute anchors back to
-// home, like /pixel-and-code/#services) — callers pass their own exact set rather
+// home, like /pixel-and-code/#services); callers pass their own exact set rather
 // than this component guessing a "home vs. sub" variant.
 export default function PxcNav({
   logoHref,
@@ -28,7 +28,7 @@ export default function PxcNav({
   return (
     <>
       {/* One-line banner above the nav, Charle-style: the studio's own product
-          is the credential. Plain <a> — the Aurevia homepage is outside this section. */}
+          is the credential. Plain <a>: the Aurevia homepage is outside this section. */}
       <div className="topbar">
         <span className="topbar__by">Powered by</span>
         <a href="/" className="topbar__brand" aria-label="Aurevia.io">
@@ -39,7 +39,7 @@ export default function PxcNav({
       </div>
     <header className="nav" data-nav>
       <div className="nav__brand">
-        <a href={logoHref} className="nav__logo" aria-label="Pixel & Code — home">
+        <a href={logoHref} className="nav__logo" aria-label="Pixel & Code home">
           <PcMark />
           <span className="nav__wordmark">
             <span className="logo-pixel">Pixel</span><span className="logo-amp">&amp;</span><span className="logo-code">Code</span>

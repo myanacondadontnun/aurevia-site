@@ -93,8 +93,8 @@ export default function PartnerPrograms() {
         "message",
         [
           `Program: ${programName}`,
-          `Website: ${form.website || "—"}`,
-          `Shopify stores they work with: ${form.stores || "—"}`,
+          `Website: ${form.website || "None"}`,
+          `Shopify stores they work with: ${form.stores || "None"}`,
           form.notes ? `Notes: ${form.notes}` : null,
         ]
           .filter(Boolean)
@@ -113,7 +113,7 @@ export default function PartnerPrograms() {
         form_name: "partners",
         error_message: err instanceof Error ? err.message : "Unknown error",
       });
-      setError("That didn't send. Please try again, or email hello@aurevia.io.");
+      setError("That didn't send. Please try again, or email sales@aurevia.io.");
       setStatus("idle");
     }
   };

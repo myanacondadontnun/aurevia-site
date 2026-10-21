@@ -27,8 +27,8 @@ export default function GdprPage() {
           body: (
             <p>
               For a merchant&apos;s own account and billing data, Aurevia acts as a <strong>data controller</strong>.
-              For the shopper and store data a merchant syncs to run the AI widget — catalog, order details,
-              conversation content — Aurevia acts as a <strong>data processor</strong>, and the merchant is the
+              For the shopper and store data a merchant syncs to run the AI widget (catalogue, order details,
+              conversation content), Aurevia acts as a <strong>data processor</strong>, and the merchant is the
               controller responsible for their own customers&apos; data.
             </p>
           ),
@@ -48,13 +48,13 @@ export default function GdprPage() {
           heading: "3. Your rights under GDPR",
           body: (
             <ul>
-              <li><strong>Access</strong> — request a copy of the personal data we hold about you.</li>
-              <li><strong>Rectification</strong> — correct inaccurate or incomplete data.</li>
-              <li><strong>Erasure</strong> — request deletion, subject to legal or contractual retention needs.</li>
-              <li><strong>Portability</strong> — receive your data in a portable format, where technically feasible.</li>
-              <li><strong>Restriction</strong> — limit how we process your data in certain circumstances.</li>
-              <li><strong>Objection</strong> — object to processing based on legitimate interests.</li>
-              <li><strong>Withdraw consent</strong> — where processing relies on consent, at any time.</li>
+              <li><strong>Access</strong>: request a copy of the personal data we hold about you.</li>
+              <li><strong>Rectification</strong>: correct inaccurate or incomplete data.</li>
+              <li><strong>Erasure</strong>: request deletion, subject to legal or contractual retention needs.</li>
+              <li><strong>Portability</strong>: receive your data in a portable format, where technically feasible.</li>
+              <li><strong>Restriction</strong>: limit how we process your data in certain circumstances.</li>
+              <li><strong>Objection</strong>: object to processing based on legitimate interests.</li>
+              <li><strong>Withdraw consent</strong>: where processing relies on consent, at any time.</li>
             </ul>
           ),
         },
@@ -63,9 +63,9 @@ export default function GdprPage() {
           body: (
             <p>
               Merchants can request account data changes or deletion directly from their dashboard, or by
-              emailing <a href="mailto:privacy@aurevia.io">privacy@aurevia.io</a>. Shoppers who chatted with
+              emailing <a href="mailto:sales@aurevia.io">sales@aurevia.io</a>. Shoppers who chatted with
               Aurevia on a merchant&apos;s store should first contact that merchant, since they control the
-              underlying customer relationship — but you can also reach us directly and we&apos;ll forward the
+              underlying customer relationship, but you can also reach us directly and we&apos;ll forward the
               request. We respond within one month, as required by law.
             </p>
           ),
@@ -76,7 +76,7 @@ export default function GdprPage() {
             <p>
               Merchants who need a signed Data Processing Agreement (DPA) for their own compliance review can
               request one through our <a href="/contact/">contact form</a> or by emailing{" "}
-              <a href="mailto:privacy@aurevia.io">privacy@aurevia.io</a>.
+              <a href="mailto:sales@aurevia.io">sales@aurevia.io</a>.
             </p>
           ),
         },
@@ -94,8 +94,8 @@ export default function GdprPage() {
           heading: "7. International transfers",
           body: (
             <p>
-              Where personal data is transferred outside the UK or EEA — for example to a hosting or AI
-              provider — we use Standard Contractual Clauses or an equivalent legally recognized safeguard.
+              Where personal data is transferred outside the UK or EEA (for example to a hosting or AI
+              provider), we use Standard Contractual Clauses or an equivalent legally recognised safeguard.
             </p>
           ),
         },
@@ -114,7 +114,7 @@ export default function GdprPage() {
           body: (
             <p>
               If you&apos;re unhappy with how we&apos;ve handled your data, you can lodge a complaint with your
-              local data protection authority — in the UK, the{" "}
+              local data protection authority: in the UK, the{" "}
               <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">
                 Information Commissioner&apos;s Office (ICO)
               </a>
@@ -126,7 +126,7 @@ export default function GdprPage() {
           heading: "10. Contact our data protection contact",
           body: (
             <p>
-              <a href="mailto:privacy@aurevia.io">privacy@aurevia.io</a> — Aurevia Artificial Intelligence Ltd.
+              <a href="mailto:sales@aurevia.io">sales@aurevia.io</a> (Aurevia Artificial Intelligence Ltd.)
             </p>
           ),
         },

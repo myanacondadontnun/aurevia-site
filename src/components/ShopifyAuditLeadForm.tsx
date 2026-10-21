@@ -45,7 +45,7 @@ export default function ShopifyAuditLeadForm() {
       body.append("name", formData.firstName.trim());
       body.append("email", formData.email.trim());
       body.append("company", formData.storeUrl.trim());
-      body.append("subject", "Free Shopify store audit — Review My Shopify");
+      body.append("subject", "Free Shopify store audit (Review My Shopify)");
       body.append("message", message);
 
       const response = await fetch(FORM_ENDPOINT, {
@@ -127,7 +127,7 @@ export default function ShopifyAuditLeadForm() {
                   You&apos;re on the list
                 </h3>
                 <p className="text-muted-foreground text-sm">
-                  Check your inbox soon—we&apos;ll send your 5-point audit from
+                  Check your inbox soon. We&apos;ll send your 5-point audit from
                   the Aurevia team.
                 </p>
               </div>

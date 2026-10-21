@@ -1,0 +1,423 @@
+/* Product and solution pages (design.md): paper page, left-aligned Fraunces heads, white boards split by hairlines,
+   real screenshots in plain white frames, one real review, a hairline FAQ, and the night call to action with the
+   still ring. Every value comes from the --au-* tokens. The products index reuses the board and the call to action. */
+
+.page { min-height: 100vh; background: var(--au-paper); color: var(--au-ink); font-family: var(--au-body); }
+
+.section { padding-top: var(--au-section-y); }
+.h2 { max-width: 22ch; font-family: var(--au-display); font-weight: 400; font-size: var(--au-h2); line-height: 1.05; letter-spacing: -0.02em; }
+.sectionLede { max-width: 40rem; margin-top: 16px; font-size: 1.0625rem; line-height: 1.55; color: var(--au-ink-2); }
+.eyebrow + .h2 { margin-top: 14px; }
+.eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--au-green-ink); }
+
+/* The green words in a heading: solid green Fraunces (globals.css paints .green-highlight as a mint gradient and puts
+   the body font on every span). */
+.h1 :global(.green-highlight), .h2 :global(.green-highlight), .ctaTitle :global(.green-highlight) {
+  display: inline;
+  font-family: var(--au-display);
+  line-height: inherit;
+  color: var(--au-green);
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+/* ---------- Hero ---------- */
+.hero { padding-top: calc(var(--au-section-y) + 40px); }
+.lede { max-width: 38rem; margin-top: 20px; font-size: 1.125rem; line-height: 1.55; color: var(--au-ink-2); }
+.ledeMore { max-width: 34rem; margin-top: 14px; line-height: 1.6; color: var(--au-ink-2); }
+.h1 {
+  margin-top: 16px;
+  font-family: var(--au-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 1.6rem + 2.8vw, 4rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  overflow-wrap: anywhere;
+}
+
+.primary, .ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 22px;
+  border-radius: var(--au-r-pill);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color var(--au-dur-hover) var(--au-ease), border-color var(--au-dur-hover) var(--au-ease);
+}
+.primary { background: var(--au-green); color: var(--au-white); box-shadow: 0 14px 30px -16px rgb(0 127 104 / 0.6); }
+.primary:hover { background: var(--au-green-hover); }
+.primary svg { width: 16px; height: 16px; transition: transform var(--au-dur-hover) var(--au-ease); }
+.primary:hover svg { transform: translateX(3px); }
+.primary:focus-visible, .ctaSecondary:focus-visible, .card:focus-visible, .pill:focus-visible, .cell:focus-visible,
+.faqQ:focus-visible {
+  outline: 2px solid var(--au-green);
+  outline-offset: 3px;
+}
+
+/* Product heroes use the home hero's styles (home/hero.module.css); these are the few differences. Headlines run
+   longer than the home one, so the type is a step smaller, and the green words take their own line. */
+.heroInner { min-width: 0; }
+h1.heroTitle { font-size: clamp(2.5rem, 1.35rem + 3.3vw, 4.25rem); line-height: 1.02; }
+.heroTitle :global(.green-highlight) {
+  display: block;
+  font-family: var(--au-display);
+  line-height: inherit;
+  color: var(--au-green);
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+.heroDemo { display: flex; justify-content: center; min-width: 0; }
+/* Wide screens: equal columns, so the widget's margin cues have room on its left without touching the copy. */
+@media (min-width: 1280px) {
+  div.heroInner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  h1.heroTitle { font-size: 3.75rem; }
+  /* Keeps the copy clear of the cue column. */
+  .heroInner p { max-width: 31rem; }
+}
+@media (min-width: 1024px) { .heroDemo { justify-content: flex-end; } }
+/* The widget sits on the hero as light glass (design.md: glass in the hero conversation), so the ring and the
+   blooms show through it. */
+.heroDemo :global(.chat-demo-container) {
+  border: 1px solid rgb(255 255 255 / 0.9);
+  border-radius: 20px;
+  background-color: transparent;
+  background-image: linear-gradient(160deg, rgb(255 255 255 / 0.74) 0%, rgb(255 255 255 / 0.46) 100%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
+  box-shadow: inset 0 1px 0 #fff, 0 40px 80px -40px rgb(16 40 34 / 0.45);
+}
+.heroImage { overflow: hidden; border-radius: var(--au-r-xl); background: var(--au-white); box-shadow: var(--au-shadow-2); }
+.heroImage > img { display: block; width: 100%; height: auto; }
+/* With a glass conversation over it: a tall frame the photo fills. */
+.heroImageChat { position: relative; aspect-ratio: 4 / 5; }
+.heroImageChat > img { height: 100%; object-fit: cover; }
+
+/* ---------- Boards: white, split by hairlines ----------
+   Each cell draws its own right and bottom hairline; the grid hangs 1px past the board so the outer ones are clipped. */
+.board { overflow: hidden; border-radius: var(--au-r-xl); background: var(--au-white); box-shadow: var(--au-shadow-2); }
+.boardGrid { display: grid; margin: 0 -1px -1px 0; padding: 0; list-style: none; }
+.boardGrid > * { min-width: 0; box-shadow: inset -1px 0 0 var(--au-rule), inset 0 -1px 0 var(--au-rule); }
+.cols3, .cols2 { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 768px) { .cols3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 768px) { .cols2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.cellBody { padding: 32px 28px 36px; }
+@media (min-width: 1024px) { .cellBody { padding: 36px 36px 40px; } }
+.boardTop { padding-top: 48px; }
+.cellTitle { font-family: var(--au-display); font-weight: 400; font-size: var(--au-h3); line-height: 1.15; letter-spacing: -0.01em; }
+.cellText { margin-top: 12px; font-size: 0.9375rem; line-height: 1.55; color: var(--au-ink-2); }
+
+/* Index board: every cell is a link. */
+.cell { display: flex; flex-direction: column; height: 100%; transition: background-color var(--au-dur-hover) var(--au-ease); }
+.cell:hover { background: rgb(0 127 104 / 0.03); }
+.cell .cellText { flex: 1; }
+.more { display: inline-flex; align-items: center; gap: 6px; margin-top: 24px; font-size: 0.9375rem; font-weight: 600; color: var(--au-green-ink); }
+.more svg { width: 15px; height: 15px; transition: transform var(--au-dur-hover) var(--au-ease); }
+.cell:hover .more svg, .card:hover .more svg, .pill:hover svg { transform: translateX(3px); }
+
+/* ---------- Head on the left, content on the right (FAQ) ---------- */
+.split { display: grid; gap: 32px; }
+@media (min-width: 1024px) { .split { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 64px; } }
+.list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--au-rule); }
+
+/* ---------- What you get: cards with a still picture on top ---------- */
+.featGrid { display: grid; gap: 20px; margin: var(--au-head-gap) 0 0; padding: 0; list-style: none; }
+@media (min-width: 640px) { .featGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .featGrid3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.featCard { display: flex; flex-direction: column; min-width: 0; overflow: hidden; border-radius: var(--au-r-lg); background: var(--au-white); box-shadow: var(--au-shadow-1); }
+.featMedia {
+  display: grid;
+  place-items: center;
+  min-height: 188px;
+  padding: 22px 20px;
+  background: radial-gradient(80% 70% at 85% 0%, rgb(0 127 104 / 0.1), transparent 70%), var(--au-paper-2);
+}
+.featBody { padding: 22px 26px 26px; }
+.featTitle { font-family: var(--au-display); font-weight: 400; font-size: 1.375rem; line-height: 1.2; }
+.featText { margin-top: 8px; font-size: 0.9375rem; line-height: 1.55; color: var(--au-ink-2); }
+
+/* What you get as a band (industry pages): a wide photo with the cards frosted across its top on desktop, like the
+   home channels band; on phones the photo comes first and the cards stack under it as plain white cards. */
+.band { position: relative; margin-top: var(--au-head-gap); }
+.bandPhoto { overflow: hidden; border-radius: var(--au-r-xl); background: var(--au-paper-2); }
+.bandPhoto img { display: block; width: 100%; height: 300px; object-fit: cover; }
+@media (min-width: 640px) { .bandPhoto img { height: 380px; } }
+@media (min-width: 1024px) {
+  .bandPhoto { height: 620px; }
+  .bandPhoto img { height: 100%; }
+}
+.bandCards { display: grid; gap: 12px; margin: 12px 0 0; padding: 0; list-style: none; }
+@media (min-width: 640px) { .bandCards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) {
+  .bandCards { position: absolute; top: 20px; left: 20px; right: 20px; margin: 0; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+}
+.bandCard { display: flex; flex-direction: column; min-width: 0; overflow: hidden; border-radius: 20px; background: var(--au-white); box-shadow: var(--au-shadow-1); }
+.bandMedia { display: grid; place-items: center; min-height: 172px; padding: 18px 14px; background: radial-gradient(80% 70% at 85% 0%, rgb(0 127 104 / 0.1), transparent 70%), var(--au-paper-2); }
+.bandBody { padding: 18px 20px 22px; }
+@media (min-width: 1024px) {
+  .bandMedia { background: rgb(255 255 255 / 0.35); }
+  .bandCard {
+    border: 1px solid rgb(255 255 255 / 0.6);
+    background: rgb(255 255 255 / 0.66);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: 0 12px 32px -20px rgb(20 26 25 / 0.45);
+  }
+}
+
+/* ---------- Common problems (night band): three columns split by hairlines, read like a ledger. The problem is
+   muted sans; a hairline carries the Aurevia mark; the fix sits under it in white serif. No cards, no glow.
+   The logo strip above fills the paper between the hero and the band. ---------- */
+.nightBand { position: relative; isolation: isolate; overflow: hidden; margin-top: 48px; padding: var(--au-section-y) 0; background: var(--au-night); color: var(--au-on-night); }
+.nightBand .h2 { color: var(--au-on-night); }
+.nightRing {
+  position: absolute;
+  z-index: -1;
+  top: -240px;
+  right: -220px;
+  width: 640px;
+  height: 640px;
+  background: linear-gradient(135deg, rgb(0 168 136 / 0.22), rgb(0 168 136 / 0.05));
+  -webkit-mask: url("/images/site/mark-ring-watermark.webp") center / contain no-repeat;
+  mask: url("/images/site/mark-ring-watermark.webp") center / contain no-repeat;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+.problems { display: grid; gap: 40px; margin: var(--au-head-gap) 0 0; padding: 0; list-style: none; }
+@media (min-width: 900px) { .problems { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; } }
+.problem { display: flex; flex-direction: column; min-width: 0; }
+@media (min-width: 900px) {
+  .problem { padding: 0 36px; border-left: 1px solid var(--au-on-night-rule); }
+  .problem:first-child { padding-left: 0; border-left: 0; }
+  .problem:last-child { padding-right: 0; }
+}
+.problemNo { font-family: var(--au-display); font-size: 1.125rem; line-height: 1; color: var(--au-green-bright); font-variant-numeric: tabular-nums; }
+.problemTitle { margin-top: 16px; font-family: var(--au-display); font-weight: 400; font-size: var(--au-h3); line-height: 1.15; color: var(--au-on-night); }
+.problemWithout { margin-top: 14px; font-size: 0.9375rem; line-height: 1.55; color: rgb(255 255 255 / 0.5); }
+.problemRule { display: flex; align-items: center; gap: 10px; margin-top: 28px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--au-green-bright); }
+.problemRule img { flex: none; width: 22px; height: 22px; padding: 3px; border-radius: 50%; background: rgb(255 255 255 / 0.92); }
+.problemRule::after { content: ""; flex: 1; height: 1px; background: var(--au-on-night-rule); }
+.problemWith { margin-top: 16px; font-family: var(--au-display); font-size: 1.3125rem; line-height: 1.32; letter-spacing: -0.005em; color: var(--au-on-night); }
+
+/* ---------- Without / with: a flat, muted panel and the Aurevia card raised over its edge ---------- */
+.vs { display: grid; margin-top: var(--au-head-gap); }
+@media (min-width: 768px) { .vs { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; } }
+.vsCard { padding: 32px 30px; border-radius: var(--au-r-xl); }
+.vsCard:first-child { background: rgb(23 32 30 / 0.035); box-shadow: inset 0 0 0 1px var(--au-rule); }
+@media (min-width: 768px) { .vsCard:first-child { padding: 40px 72px 40px 40px; } }
+.vsUs {
+  position: relative;
+  z-index: 1;
+  margin-top: -14px;
+  background: radial-gradient(90% 70% at 100% 0%, rgb(255 255 255 / 0.14), transparent 60%), var(--au-green);
+  color: var(--au-white);
+  box-shadow: 0 50px 90px -36px rgb(0 127 104 / 0.7), 0 18px 40px -24px rgb(16 40 34 / 0.35);
+}
+@media (min-width: 768px) { .vsUs { margin: -28px 0 -28px -40px; padding: 52px 44px; } }
+.vsTitle { display: flex; align-items: center; gap: 10px; font-family: var(--au-display); font-weight: 400; font-size: var(--au-h3); line-height: 1.15; color: var(--au-ink-3); }
+.vsUs .vsTitle { color: var(--au-white); }
+.vsUs .vsTitle img { padding: 3px; border-radius: 50%; background: var(--au-white); }
+.vsTitle img { width: 24px; height: 24px; }
+.vsList { margin: 22px 0 0; padding: 0; list-style: none; }
+.vsList li { display: flex; align-items: center; gap: 14px; min-height: 54px; padding: 10px 0; border-top: 1px solid var(--au-rule); font-size: 1rem; line-height: 1.45; color: var(--au-ink-3); }
+.vsUs .vsList li { border-top-color: rgb(255 255 255 / 0.22); color: var(--au-white); font-weight: 500; }
+.vsDot { flex: none; width: 7px; height: 7px; margin: 0 7px; border-radius: 50%; background: rgb(23 32 30 / 0.22); }
+.vsTick { display: grid; flex: none; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--au-white); color: var(--au-green); }
+.vsTick svg { width: 12px; height: 12px; }
+
+/* ---------- Is it a fit? ---------- */
+.markNo, .markYes { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; }
+.markNo { background: rgb(23 32 30 / 0.07); color: var(--au-ink-3); }
+.markYes { background: var(--au-green); color: var(--au-white); }
+.markNo svg, .markYes svg { width: 12px; height: 12px; }
+.fit { display: grid; gap: 20px; margin-top: var(--au-head-gap); }
+@media (min-width: 768px) { .fit { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.fitCol { padding: 28px 30px 30px; border-radius: var(--au-r-lg); background: var(--au-white); box-shadow: var(--au-shadow-1); }
+.fitColMuted { background: rgb(255 255 255 / 0.5); box-shadow: inset 0 0 0 1px var(--au-rule); }
+.fitTitle { font-family: var(--au-display); font-weight: 400; font-size: var(--au-h3); line-height: 1.15; }
+.fitCol ul { display: grid; gap: 14px; margin: 20px 0 0; padding: 0; list-style: none; }
+.fitCol li { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 12px; align-items: start; line-height: 1.5; color: var(--au-ink); }
+.fitColMuted li { color: var(--au-ink-2); }
+
+/* ---------- How it works ---------- */
+.steps { display: grid; gap: 32px; margin: var(--au-head-gap) 0 0; padding: 0; list-style: none; }
+@media (min-width: 768px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; } }
+.step { padding-top: 24px; border-top: 1px solid var(--au-rule); }
+.stepNo { font-family: var(--au-display); font-size: 1.25rem; line-height: 1; color: var(--au-green-ink); font-variant-numeric: tabular-nums; }
+.stepTitle { margin-top: 18px; font-family: var(--au-display); font-weight: 400; font-size: var(--au-h3); line-height: 1.15; }
+.stepText { margin-top: 10px; line-height: 1.55; color: var(--au-ink-2); }
+
+/* ---------- Second scene ---------- */
+.scene { display: grid; gap: 48px; align-items: center; }
+@media (min-width: 1024px) { .scene { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; } }
+.sceneCopy { min-width: 0; }
+.sceneDemo { display: flex; justify-content: center; min-width: 0; }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; padding: 0; list-style: none; }
+.pills li, .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: var(--au-r-pill);
+  background: var(--au-white);
+  box-shadow: var(--au-shadow-1);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--au-ink);
+}
+
+/* ---------- Real screenshot in a plain white frame ---------- */
+.shot { position: relative; margin: var(--au-head-gap) 0 0; }
+.shotFrame { padding: 8px; border-radius: var(--au-r-xl); background: var(--au-white); box-shadow: var(--au-shadow-2); }
+.shotFrame img { display: block; width: 100%; height: auto; border-radius: var(--au-r-lg); }
+.shotPending { display: grid; place-items: center; aspect-ratio: 16 / 10; border-radius: var(--au-r-lg); background: var(--au-paper-2); font-size: 0.875rem; color: var(--au-ink-3); }
+/* The phone capture hangs off the bottom-right corner from tablets up; phones show the desktop capture only. */
+.shotPhone { display: none; }
+@media (min-width: 768px) {
+  .shot { margin-bottom: 48px; }
+  .shotHasPhone { padding-right: 72px; }
+  .shotPhone {
+    position: absolute;
+    right: 0;
+    bottom: -48px;
+    display: block;
+    width: 168px;
+    padding: 6px;
+    border-radius: var(--au-r-lg);
+    background: var(--au-white);
+    box-shadow: var(--au-shadow-2);
+  }
+  .shotPhone img { display: block; width: 100%; height: auto; border-radius: 18px; }
+}
+
+/* ---------- Cards (setup steps, also see) ---------- */
+.cards { display: grid; gap: 20px; margin: var(--au-head-gap) 0 0; padding: 0; list-style: none; }
+@media (min-width: 768px) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--au-r-lg);
+  background: var(--au-white);
+  box-shadow: var(--au-shadow-1);
+}
+.cardMedia { aspect-ratio: 16 / 10; overflow: hidden; background: var(--au-paper-2); }
+/* An animated scene gets a fixed height so every card in the row lines up and nothing is cropped. */
+.cardMediaScene { aspect-ratio: auto; height: 288px; }
+.cardMedia img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.cardBody { display: flex; flex: 1; flex-direction: column; padding: 24px 28px 28px; }
+.cardLabel { font-size: 0.8125rem; font-weight: 600; color: var(--au-green-ink); }
+.cardTitle { margin-top: 6px; font-family: var(--au-display); font-weight: 400; font-size: 1.375rem; line-height: 1.2; }
+.cardText { flex: 1; margin-top: 10px; font-size: 0.9375rem; line-height: 1.55; color: var(--au-ink-2); }
+a.card .cardTitle { transition: color var(--au-dur-hover) var(--au-ease); }
+a.card:hover .cardTitle { color: var(--au-green-ink); }
+
+/* ---------- Review ---------- */
+.review { max-width: 52rem; margin: 0; }
+.quote { font-family: var(--au-display); font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem); line-height: 1.25; letter-spacing: -0.015em; color: var(--au-ink); }
+.by { display: flex; align-items: center; gap: 14px; margin-top: 28px; }
+.byLogo {
+  flex: none;
+  height: 36px;
+  background: var(--au-ink);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+.byStore { display: block; font-weight: 600; color: var(--au-ink); }
+.byWhere { display: block; margin-top: 2px; font-size: 0.8125rem; color: var(--au-ink-3); }
+.byWhere a { text-decoration: underline; text-underline-offset: 3px; }
+.byWhere a:hover { color: var(--au-ink); }
+
+/* ---------- FAQ ---------- */
+.faqItem { border-bottom: 1px solid var(--au-rule); }
+.faqQ {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 0;
+  list-style: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--au-ink);
+}
+.faqQ::-webkit-details-marker { display: none; }
+/* A plus that turns into a cross when open. */
+.faqIcon { position: relative; flex: none; width: 14px; height: 14px; transition: transform var(--au-dur-hover) var(--au-ease); }
+.faqIcon::before, .faqIcon::after { content: ""; position: absolute; left: 0; top: 6px; width: 14px; height: 2px; border-radius: 1px; background: var(--au-ink-3); }
+.faqIcon::after { transform: rotate(90deg); }
+.faqItem[open] .faqIcon { transform: rotate(45deg); }
+.faqA { padding: 0 32px 22px 0; line-height: 1.6; color: var(--au-ink-2); }
+
+/* ---------- Keep exploring: the links side by side, each a column under a hairline. On hover the hairline fills
+   green from the left and the title turns green. ---------- */
+.explore { display: grid; gap: 8px 32px; margin: var(--au-head-gap) 0 0; padding: 0; list-style: none; }
+@media (min-width: 768px) { .explore { grid-template-columns: repeat(var(--explore-cols, 3), minmax(0, 1fr)); } }
+.explore > li { min-width: 0; }
+.exploreLink { position: relative; display: flex; flex-direction: column; height: 100%; padding: 26px 0 28px; border-top: 1px solid var(--au-rule); }
+.exploreLink::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--au-green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 520ms var(--au-ease);
+}
+.exploreKind { font-size: 0.8125rem; font-weight: 600; color: var(--au-green-ink); }
+.exploreText { display: grid; gap: 8px; margin-top: 14px; min-width: 0; }
+.exploreTitle { font-family: var(--au-display); font-size: var(--au-h3); line-height: 1.15; letter-spacing: -0.01em; color: var(--au-ink); transition: color var(--au-dur-hover) var(--au-ease); }
+.exploreBody { max-width: 30ch; line-height: 1.55; color: var(--au-ink-2); }
+.exploreLink:hover::before { transform: scaleX(1); }
+.exploreLink:hover .exploreTitle { color: var(--au-green-ink); }
+.exploreLink:focus-visible { outline: 2px solid var(--au-green); outline-offset: 4px; border-radius: 4px; }
+
+/* ---------- Call to action ---------- */
+.ctaSection { padding: var(--au-section-y) 0; }
+.cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 56px 28px;
+  border-radius: var(--au-r-xl);
+  background: var(--au-night);
+  color: var(--au-on-night);
+}
+@media (min-width: 768px) { .cta { padding: 80px 64px; } }
+.ctaMark {
+  position: absolute;
+  z-index: -1;
+  right: -180px;
+  bottom: -220px;
+  width: 560px;
+  height: 560px;
+  background: linear-gradient(135deg, rgb(0 168 136 / 0.24), rgb(0 168 136 / 0.06));
+  -webkit-mask: url("/images/site/mark-ring-watermark.webp") center / contain no-repeat;
+  mask: url("/images/site/mark-ring-watermark.webp") center / contain no-repeat;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+.ctaTitle { max-width: 18ch; font-family: var(--au-display); font-weight: 400; font-size: var(--au-h2); line-height: 1.05; letter-spacing: -0.02em; }
+.ctaTitle :global(.green-highlight) { color: var(--au-green-bright); }
+.ctaLede { max-width: 32rem; margin-top: 16px; font-size: 1.0625rem; line-height: 1.55; color: var(--au-on-night-2); }
+.ctaButtons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.ctaSecondary { border: 1px solid var(--au-on-night-rule); color: var(--au-on-night); }
+.ctaSecondary:hover { border-color: var(--au-on-night-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  .primary, .primary svg, .ctaSecondary, .cell, .more svg, .faqIcon, .exploreLink::before, .exploreTitle,
+  a.card .cardTitle { transition: none; }
+}

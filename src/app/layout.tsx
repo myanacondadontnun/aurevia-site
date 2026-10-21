@@ -7,7 +7,7 @@ import AureviaWidgetLoader from "@/components/AureviaWidgetLoader";
 import JsonLd from "@/components/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/schema";
 
-// Site-wide type system is two families — Fraunces (display) and DM Sans
+// Site-wide type system is two families: Fraunces (display) and DM Sans
 // (everything else). Both are self-hosted by next/font: downloaded at build time
 // and served from /_next/static, so there is no render-blocking request to
 // fonts.googleapis.com, and the size-adjusted fallbacks keep text from shifting
@@ -43,9 +43,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Aurevia | Shopify AI Sales Agent — Convert Visitors 24/7",
+  title: "Aurevia | Shopify AI Sales Agent: Convert Visitors 24/7",
   description:
-    "Aurevia is an official Shopify Partner AI sales agent: instant shopper answers, on-brand product recommendations, and 24/7 abandoned-cart recovery—no scripts or coding required.",
+    "Aurevia is an AI sales agent for Shopify stores: instant shopper answers, on-brand product recommendations, and 24/7 abandoned-cart recovery, with no scripts or coding required.",
   keywords: [
     "Shopify AI sales agent",
     "Shopify chatbot",
@@ -55,7 +55,6 @@ export const metadata: Metadata = {
     "Shopify product recommendations",
     "24/7 sales assistant",
     "Shopify automation",
-    "official Shopify Partner",
     "AI customer support Shopify",
   ],
   authors: [{ name: "Aurevia", url: "https://aurevia.io" }],
@@ -71,26 +70,25 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://aurevia.io",
-    title: "Aurevia | Shopify AI Sales Agent — Convert Visitors 24/7",
+    title: "Aurevia | Shopify AI Sales Agent: Convert Visitors 24/7",
     description:
-      "Turn traffic into revenue with an official Shopify Partner AI that sells like your best associate: Q&A, guided buying, and always-on cart recovery trained on your brand.",
+      "Turn traffic into revenue with an AI sales agent for Shopify that sells like your best associate: Q&A, guided buying, and always-on cart recovery trained on your brand.",
     siteName: "Aurevia",
     images: [
       {
         url: "/images/twitter_card.png",
         width: 1200,
         height: 600,
-        alt: "Aurevia — AI sales agent for Shopify stores, official Shopify Partner",
+        alt: "Aurevia, the AI sales agent for Shopify stores",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aurevia | Shopify AI Sales Agent — Convert Visitors 24/7",
+    title: "Aurevia | Shopify AI Sales Agent: Convert Visitors 24/7",
     description:
-      "Official Shopify Partner AI: answer shoppers, recommend products, and recover carts 24/7—trained on your store without code.",
-    site: "@crazystupidceo",
+      "An AI sales agent for Shopify: answers shoppers, recommends products, and recovers carts 24/7, trained on your store without code.",
     images: ["/images/twitter_card.png"],
   },
   robots: {

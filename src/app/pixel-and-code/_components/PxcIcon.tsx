@@ -1,4 +1,4 @@
-// Hand-drawn line vectors for the feature cards — one shared 24-grid, 1.4 stroke,
+// Hand-drawn line vectors for the feature cards: one shared 24-grid, 1.4 stroke,
 // round caps, no fills. Deliberately not an icon library: fifteen glyphs isn't
 // worth a dependency, and drawing them keeps the weight consistent with the
 // brand's own pixel/mono language.

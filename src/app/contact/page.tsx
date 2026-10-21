@@ -31,7 +31,7 @@ export default function ContactPage() {
               Let&apos;s talk about <span className="green-highlight">your store</span>
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              A couple of quick questions, then grab 30 minutes with Ritwik on our team — no scripted demo,
+              A couple of quick questions, then grab 30 minutes with Ritwik on our team: no scripted demo,
               just a straight answer on whether Aurevia fits.
             </p>
           </div>

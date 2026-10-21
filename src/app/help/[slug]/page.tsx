@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = getHelpArticle(slug);
   if (!article) return {};
   return {
-    title: `${article.title} | Aurevia Help Center`,
+    title: `${article.title} | Aurevia Help Centre`,
     description: article.summary,
     alternates: { canonical: `/help/${article.slug}` },
   };

@@ -30,7 +30,7 @@ export const TIER_SECTIONS: TierSection[] = [
     tierLabel: "Tier 1",
     title: "Omnichannel helpdesk titans",
     blurb:
-      "Enterprise-grade inboxes built for tickets, SLAs, and post-purchase logistics — AI skews toward drafting and deflection, not closing carts.",
+      "Enterprise-grade inboxes built for tickets, SLAs, and post-purchase logistics; AI skews towards drafting and deflection, not closing carts.",
     agents: [
       {
         rank: 1,
@@ -75,7 +75,7 @@ export const TIER_SECTIONS: TierSection[] = [
     tierLabel: "Tier 2",
     title: "Mass-market chat hybrids",
     blurb:
-      "Friendly UIs and quick deploys — but many lean reactive, scripted, or pay-per-conversation as you scale.",
+      "Friendly UIs and quick deploys, but many lean reactive, scripted, or pay-per-conversation as you scale.",
     agents: [
       {
         rank: 5,
@@ -91,7 +91,7 @@ export const TIER_SECTIONS: TierSection[] = [
         name: "Formilla",
         philosophy: "Live chat + light AI for small stores.",
         strength: "Free tier; visitor monitoring; simple setup.",
-        limitation: "No deep catalog ingestion for autonomous selling.",
+        limitation: "No deep catalogue ingestion for autonomous selling.",
         price: "From $13.99/mo",
         metrics: { proactive: 25, autonomous: 28, salesFocus: 30 },
       },
@@ -127,9 +127,9 @@ export const TIER_SECTIONS: TierSection[] = [
   {
     id: "tier-niche",
     tierLabel: "Tier 3",
-    title: "Specialized niche & emerging tools",
+    title: "Specialised niche & emerging tools",
     blurb:
-      "Useful wedges — quizzes, social commerce, GPT wrappers — rarely one autonomous revenue stack end-to-end.",
+      "Useful wedges (quizzes, social commerce, GPT wrappers) but rarely one autonomous revenue stack end-to-end.",
     agents: [
       {
         rank: 10,
@@ -153,7 +153,7 @@ export const TIER_SECTIONS: TierSection[] = [
         rank: 12,
         name: "Zowie",
         philosophy: "Enterprise deflection from store data.",
-        strength: "Instant answers at scale for support centers.",
+        strength: "Instant answers at scale for support centres.",
         limitation: "Quote-based; overkill for typical Shopify SMBs.",
         price: "Custom quote",
         metrics: { proactive: 38, autonomous: 55, salesFocus: 40 },
@@ -161,7 +161,7 @@ export const TIER_SECTIONS: TierSection[] = [
       {
         rank: 13,
         name: "Jasper Chat",
-        philosophy: "Content & workflow AI — not a storefront bot.",
+        philosophy: "Content & workflow AI, not a storefront bot.",
         strength: "Marketing copy and ops automation.",
         limitation: "No native real-time inventory / cart orchestration.",
         price: "From $59/mo",
@@ -179,9 +179,9 @@ export const TIER_SECTIONS: TierSection[] = [
       {
         rank: 15,
         name: "SmartBot",
-        philosophy: "GPT support trained on catalog + order tracking.",
+        philosophy: "GPT support trained on catalogue + order tracking.",
         strength: "24/7 assistance; personalized picks.",
-        limitation: "Reported stock hallucinations — trust risk at checkout.",
+        limitation: "Reported stock hallucinations: trust risk at checkout.",
         price: "Free tier available",
         metrics: { proactive: 42, autonomous: 62, salesFocus: 50 },
       },
@@ -190,7 +190,7 @@ export const TIER_SECTIONS: TierSection[] = [
         name: "VanChat",
         philosophy: "AI shopping assistant around buyer intent.",
         strength: "Intent-aware suggestions; pushes toward unassisted closes.",
-        limitation: "Weaker vs leaders on upsell customization / omnichannel.",
+        limitation: "Weaker vs leaders on upsell customisation / omnichannel.",
         price: "Free tier available",
         metrics: { proactive: 55, autonomous: 70, salesFocus: 62 },
       },
@@ -206,7 +206,7 @@ export const TIER_SECTIONS: TierSection[] = [
       {
         rank: 18,
         name: "Willdesk",
-        philosophy: "Budget AI + live chat for small catalogs.",
+        philosophy: "Budget AI + live chat for small catalogues.",
         strength: "Low cost; simple AI assist.",
         limitation: "Heavy catalogs = long training; occasional overage fees.",
         price: "Budget tiers",
@@ -237,12 +237,12 @@ export const TIER_SECTIONS: TierSection[] = [
     tierLabel: "Tier 4",
     title: "Proactive sales vanguard",
     blurb:
-      "Built to turn traffic into revenue — behavioral triggers, autonomous threads, and fewer human bottlenecks.",
+      "Built to turn traffic into revenue: behavioural triggers, autonomous threads, and fewer human bottlenecks.",
     agents: [
       {
         rank: 21,
         name: "Zipchat AI",
-        philosophy: "Dedicated revenue AI — proactive nudges on hesitation signals.",
+        philosophy: "Dedicated revenue AI: proactive nudges on hesitation signals.",
         strength: "4.8/5 buzz; behavioral triggers; WhatsApp; catalog sync.",
         limitation: "$49/mo floor, no permanent free tier; 'final mile' checkout gap vs guided flow.",
         price: "From $49/mo",
@@ -251,10 +251,10 @@ export const TIER_SECTIONS: TierSection[] = [
       {
         rank: 22,
         name: "Aurevia.io",
-        philosophy: "24/7 AI sales co-pilot — flip paid traffic into measurable revenue.",
+        philosophy: "24/7 AI sales co-pilot: flip paid traffic into measurable revenue.",
         strength:
           "Guided checkout flow, cart/checkout/thank-you upsells, attribution + A/B, aggressive flat/free entry.",
-        limitation: "Newer brand vs incumbents — win on product, not legacy logo.",
+        limitation: "Newer brand vs incumbents: win on product, not legacy logo.",
         price: "Free pilot (200 msgs) · Pro ~$9.99/mo",
         metrics: { proactive: 98, autonomous: 96, salesFocus: 98 },
         winner: true,
@@ -263,7 +263,7 @@ export const TIER_SECTIONS: TierSection[] = [
   },
 ];
 
-/** Table 1 — Helpdesk titans */
+/** Table 1: Helpdesk titans */
 export const TABLE_HELPDESK = {
   headers: ["Platform", "Primary architecture", "Core strength", "Key limitation", "Starting price"],
   rows: [
@@ -274,19 +274,19 @@ export const TABLE_HELPDESK = {
   ],
 };
 
-/** Table 2 — Chat hybrids */
+/** Table 2: Chat hybrids */
 export const TABLE_HYBRIDS = {
   headers: ["Platform", "AI application", "Engagement style", "Key limitation", "Starting price"],
   rows: [
     ["Tidio (Lyro)", "Generative support", "Reactive", "Pay-per-conversation; reactive", "$24.17/mo"],
-    ["Formilla", "Basic automation", "Reactive", "Shallow catalog ingestion", "$13.99/mo"],
+    ["Formilla", "Basic automation", "Reactive", "Shallow catalogue ingestion", "$13.99/mo"],
     ["ChatBot.com", "Decision trees", "Reactive / scripted", "Manual flow building", "$52/mo"],
     ["Chatra", "Live chat focus", "Reactive", "Minimal AI", "$25/mo"],
     ["ProProfs", "Knowledge-base sync", "Reactive", "No sales features; very high cost", "$499/mo"],
   ],
 };
 
-/** Table 3 — Proactive tier */
+/** Table 3: Proactive tier */
 export const TABLE_VANGUARD = {
   headers: [
     "Platform",
@@ -299,8 +299,8 @@ export const TABLE_VANGUARD = {
   rows: [
     ["Meetanshi", "Recommendation engine", "Low", "Partial", "Varies", "Lacks advanced analytics"],
     ["SmartBot", "24/7 AI support", "Moderate", "High", "Free tier", "Stock hallucinations reported"],
-    ["VanChat", "Buyer intent analysis", "Moderate", "High", "Free tier", "Limited upsell customization"],
-    ["Zipchat AI", "Revenue generation", "High (behavioral)", "Full", "$49/mo", "No free tier; high base cost"],
+    ["VanChat", "Buyer intent analysis", "Moderate", "High", "Free tier", "Limited upsell customisation"],
+    ["Zipchat AI", "Revenue generation", "High (behavioural)", "Full", "$49/mo", "No free tier; high base cost"],
   ],
 };
 
@@ -312,7 +312,7 @@ export type FeatureMatrixRow = {
   gorgias: string | boolean;
 };
 
-/** eesel-style “at a glance” table — six tools readers care about first */
+/** eesel-style “at a glance” table: six tools readers care about first */
 export const QUICK_COMPARISON = {
   headers: ["Tool", "Best for", "Starting price", "Key differentiator"],
   rows: [
@@ -324,7 +324,7 @@ export const QUICK_COMPARISON = {
     ],
     [
       "Zipchat AI",
-      "Stores that want proactive behavioral nudges without a helpdesk migration",
+      "Stores that want proactive behavioural nudges without a helpdesk migration",
       "From $49/mo (no permanent free tier)",
       "Strong behavioral triggers + WhatsApp; conversation-first, lighter on checkout orchestration",
     ],
@@ -336,9 +336,9 @@ export const QUICK_COMPARISON = {
     ],
     [
       "Gorgias",
-      "High-volume brands optimizing tickets, SLAs, and order edits",
+      "High-volume brands optimising tickets, SLAs, and order edits",
       "From $10/mo (ramps quickly with tickets/AI add-ons)",
-      "Best-in-class helpdesk + deep Shopify order actions — not a native front-end sales engine",
+      "Best-in-class helpdesk + deep Shopify order actions, not a native front-end sales engine",
     ],
     [
       "Re:amaze",
@@ -364,9 +364,9 @@ export const FEATURE_MATRIX: FeatureMatrixRow[] = [
     gorgias: "High-volume helpdesk",
   },
   {
-    feature: "Catalog digestion",
+    feature: "Catalogue digestion",
     aurevia: "Full, automated in minutes",
-    zipchat: "Real-time catalog sync",
+    zipchat: "Real-time catalogue sync",
     tidio: "Manual training required",
     gorgias: "Limited / rule-based",
   },

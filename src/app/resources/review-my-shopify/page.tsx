@@ -22,15 +22,15 @@ import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title:
-    "Review My Shopify Store — Free Professional Store Audit | Aurevia",
+    "Review My Shopify Store: Free Professional Store Audit | Aurevia",
   description:
-    "Get a free, professional Shopify store review. We audit your UI/UX, trust signals, checkout flow, and conversion psychology — the same analysis CRO agencies charge $1,200+ for.",
+    "Get a free, professional Shopify store review. We audit your UI/UX, trust signals, checkout flow, and conversion psychology, the same analysis CRO agencies charge $1,200+ for.",
   keywords: [
     "review my shopify",
     "shopify store review",
     "shopify store audit",
     "free shopify review",
-    "shopify conversion rate optimization",
+    "shopify conversion rate optimisation",
     "shopify CRO audit",
     "shopify store feedback",
     "shopify store critique",
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "Review My Shopify Store — Free Professional Audit | Aurevia",
+      "Review My Shopify Store: Free Professional Audit | Aurevia",
     description:
-      "Stop guessing why your store isn't converting. Get a free comprehensive audit covering homepage, product pages, UX, trust signals, SEO, mobile experience, and a prioritized action plan.",
+      "Stop guessing why your store isn't converting. Get a free comprehensive audit covering homepage, product pages, UX, trust signals, SEO, mobile experience, and a prioritised action plan.",
     url: "https://aurevia.io/resources/review-my-shopify",
     type: "website",
     siteName: "Aurevia.io",
@@ -60,9 +60,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Review My Shopify Store — Free Professional Audit | Aurevia",
+      "Review My Shopify Store: Free Professional Audit | Aurevia",
     description:
-      "Get a free professional Shopify store review. UI/UX, trust signals, checkout flow, and a custom action plan — no agency price tag.",
+      "Get a free professional Shopify store review. UI/UX, trust signals, checkout flow, and a custom action plan, no agency price tag.",
     images: ["/images/twitter_card.png"],
   },
 };
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Review My Shopify Store — Free Professional Audit",
+  name: "Review My Shopify Store: Free Professional Audit",
   description:
     "Get a free, professional Shopify store review covering UI/UX, trust signals, checkout flow, and conversion psychology.",
   url: "https://aurevia.io/resources/review-my-shopify",
@@ -84,7 +84,7 @@ const jsonLd = {
     price: "0",
     priceCurrency: "USD",
     description:
-      "Free professional Shopify store audit — equivalent to a $1,200 CRO agency review",
+      "Free professional Shopify store audit, equivalent to a $1,200 CRO agency review",
     availability: "https://schema.org/InStock",
   },
 };
@@ -94,7 +94,7 @@ const auditItems = [
     icon: LayoutDashboard,
     title: "Homepage & Customer Journey",
     description:
-      "We walk your store as a first-time visitor would — from the moment they land to the moment they leave. We map every drop-off point in the journey and tell you exactly where people are getting lost or losing interest.",
+      "We walk your store as a first-time visitor would, from the moment they land to the moment they leave. We map every drop-off point in the journey and tell you exactly where people are getting lost or losing interest.",
   },
   {
     icon: ShoppingCart,
@@ -112,17 +112,17 @@ const auditItems = [
     icon: ShieldCheck,
     title: "Trust & Credibility Analysis",
     description:
-      "Missing trust badges? Buried return policy? No reviews above the fold? We check every element that makes hesitant buyers feel safe — or makes them close the tab.",
+      "Missing trust badges? Buried return policy? No reviews above the fold? We check every element that makes hesitant buyers feel safe, or makes them close the tab.",
   },
   {
     icon: Search,
     title: "SEO & Mobile Experience",
     description:
-      "We audit your meta titles, descriptions, page speed, and how your store actually looks on a phone. Over 70% of Shopify traffic is mobile — if it's broken there, nothing else matters.",
+      "We audit your meta titles, descriptions, page speed, and how your store actually looks on a phone. Over 70% of Shopify traffic is mobile. If it's broken there, nothing else matters.",
   },
   {
     icon: ClipboardCheck,
-    title: "Prioritized Action Plan",
+    title: "Prioritised Action Plan",
     description:
       "No fluff, no vague advice. You get a ranked list of exactly what to fix first, ordered by impact. The changes that move the needle most go to the top.",
   },
@@ -139,7 +139,7 @@ const painPoints = [
     icon: DollarSign,
     label: "The Expensive Route",
     description:
-      "Booking a specialized UX consultant or CRO agency that charges $1,200+ just to look at your site — before they even suggest a single fix.",
+      "Booking a specialised UX consultant or CRO agency that charges $1,200+ just to look at your site, before they even suggest a single fix.",
   },
   {
     icon: MessageSquareWarning,
@@ -192,7 +192,7 @@ export default function ReviewMyShopifyPage() {
               <span className="text-foreground font-normal">$1,200</span>.
             </p>
             <p className="text-lg sm:text-xl text-[#00CC99] font-normal leading-relaxed">
-              Our team will tell you exactly where your funnel is leaking — for
+              Our team will tell you exactly where your funnel is leaking, for
               free.
             </p>
           </div>
@@ -241,7 +241,7 @@ export default function ReviewMyShopifyPage() {
             <p className="text-base sm:text-lg text-foreground leading-relaxed">
               At <span className="text-[#00CC99] font-normal">Aurevia</span>,
               our team bridges that gap. We don&apos;t just look at
-              aesthetics — we look at{" "}
+              aesthetics; we look at{" "}
               <span className="text-foreground font-normal">friction</span>,{" "}
               <span className="text-foreground font-normal">trust signals</span>,
               and{" "}
@@ -260,14 +260,14 @@ export default function ReviewMyShopifyPage() {
         <div className="container mx-auto px-4 sm:px-6 max-w-5xl relative z-10">
           <div className="mb-12">
             <p className="text-sm text-[#00CC99] font-medium tracking-wide uppercase mb-3">
-              The $1,200 audit — on us
+              The $1,200 audit, on us
             </p>
             <h2 className="text-3xl sm:text-4xl font-fraunces font-normal text-foreground mb-4">
               What&apos;s included in your free store audit?
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
               Every audit is a comprehensive, multi-section analysis done by
-              our team — the same framework CRO consultants use, covering
+              our team. It follows the same framework CRO consultants use, covering
               everything from first impression to checkout. Here are some of
               the key areas we dig into:
             </p>
@@ -318,7 +318,7 @@ export default function ReviewMyShopifyPage() {
               <p className="text-muted-foreground leading-relaxed">
                 Yes, 100% free. We build tools for Shopify merchants and
                 when our team audits your store, we sometimes spot places
-                where our product could help — but there&apos;s zero
+                where our product could help, but there&apos;s zero
                 obligation. The audit stands on its own regardless of
                 whether you ever use Aurevia.
               </p>
@@ -330,10 +330,10 @@ export default function ReviewMyShopifyPage() {
               </h3>
               <p className="text-muted-foreground leading-relaxed">
                 Reddit feedback is well-intentioned but subjective. You&apos;ll
-                get opinions on your color scheme from people who aren&apos;t
+                get opinions on your colour scheme from people who aren&apos;t
                 your customers. Our team uses a structured CRO framework that
-                looks at data-backed conversion principles — friction points,
-                trust psychology, checkout UX, and mobile responsiveness — not
+                looks at data-backed conversion principles (friction points,
+                trust psychology, checkout UX, and mobile responsiveness), not
                 personal taste.
               </p>
             </div>
@@ -356,14 +356,14 @@ export default function ReviewMyShopifyPage() {
               <p className="text-muted-foreground leading-relaxed">
                 Our team typically delivers within 24 hours. You&apos;ll receive
                 a comprehensive, multi-section report via email covering
-                everything from your homepage to checkout — with specific,
+                everything from your homepage to checkout, with specific,
                 actionable recommendations you can start implementing the same day.
               </p>
             </div>
 
             <div className="border-t border-black/10 pt-8">
               <h3 className="text-lg font-inter font-normal text-foreground mb-2">
-                My store is brand new — is it too early for an audit?
+                My store is brand new. Is it too early for an audit?
               </h3>
               <p className="text-muted-foreground leading-relaxed">
                 It&apos;s actually the best time. Fixing conversion issues
@@ -422,7 +422,7 @@ export default function ReviewMyShopifyPage() {
           <CTASwarmParticles />
           <div className="relative z-10">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-fraunces font-normal text-foreground mb-5 leading-[1.15] tracking-tight">
-              Your competitors are optimizing.
+              Your competitors are optimising.
               <br />
               <span className="green-highlight">Are you?</span>
             </h2>

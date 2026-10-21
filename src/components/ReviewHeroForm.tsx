@@ -122,7 +122,7 @@ function SuccessModal({ email, onClose }: { email: string; onClose: () => void }
           <div className={`text-center transition-all duration-500 delay-[1800ms] ${visibleSteps >= steps.length ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
             <p className="text-xs text-foreground/30 leading-relaxed">
               Your report will cover homepage, product pages, UX, trust signals,
-              SEO, mobile, and a prioritized action plan — typically 15+ pages.
+              SEO, mobile, and a prioritised action plan (typically 15+ pages).
             </p>
           </div>
         </div>
@@ -163,7 +163,7 @@ export default function ReviewHeroForm() {
       body.append("name", "(from hero form)");
       body.append("email", formData.email.trim());
       body.append("company", formData.storeUrl.trim());
-      body.append("subject", "Free Shopify store audit — Review My Shopify");
+      body.append("subject", "Free Shopify store audit (Review My Shopify)");
       body.append("message", message);
 
       const response = await fetch(FORM_ENDPOINT, {
@@ -220,7 +220,7 @@ export default function ReviewHeroForm() {
           aria-busy={isSubmitting}
           aria-label="Request free Shopify store audit"
         >
-          {/* Unified search bar — bright ring + orbiting light blob on outline only */}
+          {/* Unified search bar: bright ring + orbiting light blob on outline only */}
           <div className="review-form-border-wrap max-w-2xl group/form">
             <div className="review-form-border-inner flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-0 p-1.5 sm:p-2 transition-[border-color] duration-300 group-focus-within/form:border-[#00CC99]/64">
               {/* Email input */}

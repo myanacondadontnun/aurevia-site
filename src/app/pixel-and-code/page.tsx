@@ -18,9 +18,9 @@ import FoundersCall from "./_components/FoundersCall";
 // other CTA points at the brief form (#contact) or at that section (#book).
 
 export const metadata: Metadata = {
-  title: "Pixel & Code — Shopify brand building: identity, product design and custom storefronts",
+  title: "Pixel & Code | Shopify brand building: identity, product design and custom storefronts",
   description:
-    "Pixel & Code builds Shopify brands from scratch — logo, colour, packaging and product design, and a custom storefront that isn't a recycled theme. We also build websites, web apps and AI automations. First launch in about six weeks.",
+    "Pixel & Code builds Shopify brands from scratch: logo, colour, packaging and product design, and a custom storefront that isn't a recycled theme. We also build websites, web apps and AI automations. First launch in about six weeks.",
   alternates: { canonical: "https://aurevia.io/pixel-and-code/" },
 };
 
@@ -28,8 +28,8 @@ const Arrow = () => (
   <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
 );
 
-// Repositioned 2026-09 around Shopify brand building — identity, product design and
-// custom storefronts — as the headline offer. Websites/web apps (JCR Pharma, Masters
+// Repositioned 2026-09 around Shopify brand building (identity, product design and
+// custom storefronts) as the headline offer. Websites/web apps (JCR Pharma, Masters
 // in Minds) sit second; AI automation is kept deliberately short and third. The page
 // furniture (hero form, weeks graphic, process, models, FAQ) is unchanged.
 export default function PixelAndCodeHome() {
@@ -61,7 +61,7 @@ export default function PixelAndCodeHome() {
                 <span className="line"><span>built <em data-swap data-words="from scratch|to sell|in six weeks|for phones">from scratch</em>.</span></span>
               </h1>
               <p className="hero__sub reveal-up">
-                Pixel &amp; Code builds Shopify brands end to end — the logo, the colours, the
+                Pixel &amp; Code builds Shopify brands end to end: the logo, the colours, the
                 packaging and product design, and a custom storefront that isn&rsquo;t the same theme
                 every other store is running. Already have a brand? We&rsquo;ll build the store around it.
               </p>
@@ -98,10 +98,10 @@ export default function PixelAndCodeHome() {
           <ServiceGrounds />
         </section>
 
-        {/* AUREVIA — our own product, as a section (see AureviaBand.tsx) */}
+        {/* AUREVIA: our own product, as a section (see AureviaBand.tsx) */}
         <AureviaBand />
 
-        {/* SHOWCASE — what we've shipped and the sites we rate, grouped by kind (Showcase.tsx) */}
+        {/* SHOWCASE: what we've shipped and the sites we rate, grouped by kind (Showcase.tsx) */}
         <section className="section" id="work" data-wm="Work">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> Our work &amp; what we rate</span>
@@ -112,7 +112,7 @@ export default function PixelAndCodeHome() {
 
         <MarkRow />
 
-        {/* SHOPIFY — the headline offer, given its own section above everything else */}
+        {/* SHOPIFY: the headline offer, given its own section above everything else */}
         <section className="section band band--raise" id="shopify" data-wm="Brand">
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> What we&rsquo;re known for</span>
@@ -121,7 +121,7 @@ export default function PixelAndCodeHome() {
           <p className="case-summary reveal-up" style={{ maxWidth: 760, marginBottom: "2.5rem" }}>
             Most Shopify stores look like the next one because they start with a bought theme and a
             logo from a marketplace. We start at the other end: what the brand is, what it looks
-            like, how the products are presented — then build the storefront to match.
+            like, how the products are presented. Then we build the storefront to match.
           </p>
           <div className="pinned" data-loop-scope>
             <StoreLoop
@@ -136,9 +136,9 @@ export default function PixelAndCodeHome() {
               ]}
             />
             <ol className="pinned__list">
-              <li data-pin-item="mark"><b>Logo &amp; wordmark</b><span>A real mark, in every format you&rsquo;ll need — store, packaging, socials, print.</span></li>
+              <li data-pin-item="mark"><b>Logo &amp; wordmark</b><span>A real mark, in every format you&rsquo;ll need: store, packaging, socials, print.</span></li>
               <li data-pin-item="colour"><b>Colour &amp; type system</b><span>A palette and pairing that holds across storefront, ads and packaging, written down.</span></li>
-              <li data-pin-item="storefront"><b>Custom Shopify storefront</b><span>Your own theme on your own store — sections, layouts, checkout — fast on a phone.</span></li>
+              <li data-pin-item="storefront"><b>Custom Shopify storefront</b><span>Your own theme on your own store (sections, layouts, checkout), fast on a phone.</span></li>
               <li data-pin-item="packaging"><b>Product &amp; packaging design</b><span>Labels, boxes, inserts and imagery designed with the brand, not bolted on after.</span></li>
               <li data-pin-item="products"><b>Product pages that sell</b><span>Collection and product pages built around how people decide: imagery, copy, bundles.</span></li>
               <li data-pin-item="apps"><b>Apps, integrations &amp; handover</b><span>Reviews, email, analytics and shipping wired up, then the whole store handed to you.</span></li>
@@ -154,7 +154,7 @@ export default function PixelAndCodeHome() {
           </div>
         </section>
 
-        {/* PROCESS — four hand-over artefacts, fanned on scroll (Deliverables.tsx) */}
+        {/* PROCESS: four hand-over artefacts, fanned on scroll (Deliverables.tsx) */}
         <section className="process section band band--raise" id="process" data-wm="Process">
           <div className="section__head process__head">
             <div>
@@ -242,7 +242,7 @@ export default function PixelAndCodeHome() {
               </div>
             </article>
           </div>
-          <p className="quotes__note">Shopify is where we spend most of our time: Aurevia, the AI sales agent above, is our own product, live on the Shopify App Store. We built it, we run it, and we sit inside the same admin your store does &mdash; so we don&rsquo;t quote ourselves, <a href="/pixel-and-code/aurevia-io/">read how it was built</a> instead.</p>
+          <p className="quotes__note">Shopify is where we spend most of our time: Aurevia, the AI sales agent above, is our own product, live on the Shopify App Store. We built it, we run it, and we sit inside the same admin your store does, so we don&rsquo;t quote ourselves, <a href="/pixel-and-code/aurevia-io/">read how it was built</a> instead.</p>
           <div className="logo-strip">
             <span className="logo-strip__label">Worked with</span>
             <div className="logo-marquee" aria-label="Sreya Creates, Aurevia, JCR Pharma, Masters in Minds, Expedite Commerce">
@@ -281,7 +281,7 @@ export default function PixelAndCodeHome() {
               <span className="section__label"><span className="px"></span> Who you work with</span>
               <h2 className="section__title" style={{ marginBottom: "1.2rem" }}>Run by the two people who design and build it.</h2>
               <p><strong>There is no sales layer.</strong> The people on the scoping call are the people who draw your logo, design your store and write the code, and the people you email when something needs changing.</p>
-              <p>We also build and run our own Shopify app, Aurevia, so we live inside the same admin, the same theme editor and the same checkout your store does &mdash; and with the same decisions: what to launch with, what to leave out, what breaks on a Friday.</p>
+              <p>We also build and run our own Shopify app, Aurevia, so we live inside the same admin, the same theme editor and the same checkout your store does, and with the same decisions: what to launch with, what to leave out, what breaks on a Friday.</p>
               <a href="/pixel-and-code/about/" className="btn btn--ghost"><span>More about us</span></a>
             </div>
           </div>
@@ -297,11 +297,11 @@ export default function PixelAndCodeHome() {
           <div className="faq">
             <details className="faq__item"><summary>Do you use a Shopify theme or build it custom?</summary><p>Custom. We build the storefront as your own theme so the layouts, sections and product pages are designed for your brand, not adapted from someone else&rsquo;s. It still lives in your Shopify admin, so your team edits content the normal way.</p></details>
             <details className="faq__item"><summary>Can you do just the branding, or just the store?</summary><p>Yes, either. Plenty of merchants come to us with a brand they already like and want the store rebuilt around it, and some want the identity, logo and packaging only. The full build is simply the two together.</p></details>
-            <details className="faq__item"><summary>We already sell on Shopify. Can you rebuild what we have?</summary><p>Yes. We work on your existing store, keep your products, orders and apps in place, and launch the new storefront when it&rsquo;s ready — not by starting a new store from scratch.</p></details>
-            <details className="faq__item"><summary>How much does a project cost?</summary><p>Every package has a &ldquo;from&rdquo; price on this page &mdash; a brand and custom Shopify store starts at &pound;4,900, occasion pages that keep it changing with the calendar are &pound;290 a month, a marketing site starts at &pound;2,400, a web app MVP at &pound;7,900, an automation audit is &pound;490. After a free 30-minute call you get a written scope and a fixed number within one business day. No retainers.</p></details>
+            <details className="faq__item"><summary>We already sell on Shopify. Can you rebuild what we have?</summary><p>Yes. We work on your existing store, keep your products, orders and apps in place, and launch the new storefront when it&rsquo;s ready, not by starting a new store from scratch.</p></details>
+            <details className="faq__item"><summary>How much does a project cost?</summary><p>Every package has a &ldquo;from&rdquo; price on this page: a brand and custom Shopify store starts at &pound;4,900, occasion pages that keep it changing with the calendar are &pound;290 a month, a marketing site starts at &pound;2,400, a web app MVP at &pound;7,900, an automation audit is &pound;490. After a free 30-minute call you get a written scope and a fixed number within one business day. No retainers.</p></details>
             <details className="faq__item"><summary>How long does it take?</summary><p>A brand and store build typically launches in about six weeks. Brand-only work is faster; larger platforms are phased so something real is live early and grows from there.</p></details>
             <details className="faq__item"><summary>What do we own at the end?</summary><p>Everything. The Shopify store is in your name from week one, and at launch you get the editable brand source files, the theme code, the documentation and a recorded walkthrough.</p></details>
-            <details className="faq__item"><summary>Do you only work on Shopify?</summary><p>No — it&rsquo;s what we&rsquo;re known for, but we also build websites, web apps and internal platforms (JCR Pharma, Masters in Minds), and AI automations that plug into systems a business already runs.</p></details>
+            <details className="faq__item"><summary>Do you only work on Shopify?</summary><p>No. It&rsquo;s what we&rsquo;re known for, but we also build websites, web apps and internal platforms (JCR Pharma, Masters in Minds), and AI automations that plug into systems a business already runs.</p></details>
             <details className="faq__item"><summary>Do you work with agencies?</summary><p>Yes, as a white-label design and development partner for agencies that sell the project and need a team to build it. <a href="/pixel-and-code/development-partners/">See how that works</a>.</p></details>
           </div>
         </section>

@@ -7,14 +7,14 @@ import { breadcrumbJsonLd } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Blog | Aurevia Resources",
   description:
-    "Research-backed guides on AI sales, Shopify optimization, checkout abandonment, and e-commerce growth strategies.",
+    "Research-backed guides on AI sales, Shopify optimisation, checkout abandonment, and e-commerce growth strategies.",
   alternates: {
     canonical: "/resources/blogs",
   },
   openGraph: {
     title: "Blog | Aurevia",
     description:
-      "Research-backed guides on AI sales, Shopify optimization, and e-commerce growth.",
+      "Research-backed guides on AI sales, Shopify optimisation, and e-commerce growth.",
     url: "https://aurevia.io/resources/blogs",
   },
 };

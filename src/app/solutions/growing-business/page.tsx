@@ -3,7 +3,7 @@ import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
 
 const title = "AI Chat for Growing Shopify Brands | Rules & Scale | Aurevia";
 const desc =
-  "More SKUs, more traffic, more channels—without losing your voice. Custom selling rules, brand governance, and revenue attribution for fast-scaling ecommerce teams.";
+  "More products, more traffic, more channels, without losing your voice. Custom selling rules, brand governance, and revenue attribution for fast-scaling ecommerce teams.";
 
 export const metadata: Metadata = {
   title,
@@ -24,18 +24,13 @@ export default function GrowingBusinessPage() {
           Scale the strategy, <span className="green-highlight">not the chaos</span>
         </>
       }
-      subtitle="The growing stage is when ‘we will fix that later’ becomes expensive: inconsistent answers, ad spend without feedback loops, and a team that is half in spreadsheets. Aurevia gives you governance in plain English—how hard to upsell, when to bundle, which topics route to people—and the analytics to prove it so marketing can keep buying traffic with a straight face."
+      subtitle="The growing stage is when ‘we will fix that later’ becomes expensive: inconsistent answers, ad spend without feedback loops, and a team that is half in spreadsheets. Aurevia gives you rules in plain English (how hard to upsell, when to bundle, which topics go to people) and the analytics to prove it so marketing can keep buying traffic with a straight face."
       lede="This is for mid-market and ramping brands: enough monthly sessions that 1 point of CVR is real money, and enough people that the AI has to be coachable, not a black box."
-      proofStrip={[
-        { label: "Rules you can read", text: "Merchant instructions that match how your head of ecommerce actually runs promos and positioning." },
-        { label: "Revenue, not noise", text: "ROI and analytics tie AI behavior to what finance cares about so budget conversations get easier." },
-        { label: "Channel coordination", text: "Support the same product story you run on email and paid social—on-site." },
-      ]}
       featureBlocks={[
-        { title: "Custom selling playbooks", body: "Bundle logic, add-on rules, and ‘never lead with X’ policies without shipping new code for every test." },
-        { title: "Attribution for grown-up budgets", body: "See revenue and orders the agent influenced, per product, so budget follows what actually converts." },
-        { title: "Multi-team alignment", body: "Give growth, product, and CX a shared read on intents and frictions from real chats." },
-        { title: "Scale headcount with leverage", body: "Let humans do judgment calls; let the AI do volume that does not need a person." },
+        { visual: { kind: "guardrail", rule: "Offer a discount before the shopper asks" }, title: "Custom selling playbooks", body: "Bundle logic, add-on rules, and ‘never lead with X’ policies without shipping new code for every test." },
+        { visual: { kind: "attribution" }, title: "Attribution for grown-up budgets", body: "See revenue and orders the agent influenced, per product, so budget follows what actually converts." },
+        { visual: { kind: "team" }, title: "Multi-team alignment", body: "Give growth, product, and CX a shared read on intents and frictions from real chats." },
+        { visual: { kind: "inbox" }, title: "Scale headcount with leverage", body: "Let humans do judgment calls; let the AI do volume that does not need a person." },
       ]}
       howItWorks={[
         { title: "Document what ‘good’ looks like", body: "Turn your best rep’s talk track into written rules the model can follow." },

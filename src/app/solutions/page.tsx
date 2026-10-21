@@ -5,7 +5,7 @@ import ROICalculatorCTACard from "@/components/ROICalculatorCTACard";
 import Link from "next/link";
 import {
   Shirt,
-  Sparkles,
+  Droplet,
   Dumbbell,
   Monitor,
   Leaf,
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/solutions" },
   title: "Solutions | Aurevia - Shopify AI Sales Co-Pilot",
   description:
-    "Industry playbooks, conversion and support use cases, and business-size programs—Shopify AI that sells, deflects tickets, and proves ROI.",
+    "Industry playbooks, conversion and support use cases, and plans for every business size: Shopify AI that sells, deflects tickets and proves ROI.",
   openGraph: {
     title: "Solutions | Aurevia - Shopify AI Sales Co-Pilot",
     description: "Ecommerce AI for fashion, beauty, fitness, and more. Match your ICP in minutes.",
@@ -80,8 +80,8 @@ const industries = [
     slug: "fashion",
     href: "/solutions/fashion",
     icon: Shirt,
-    description: "Recognize your visitors' style and preferences to recommend the latest trends and outfits that fit their fashion sense, while helping them choose the right size.",
-    subheader: "Shoppers bounce when they can't find their style or size. Recommend trends and fits they'll love, cut returns, and turn browsers into buyers—without the guesswork.",
+    description: "Recognise your visitors' style and preferences to recommend the latest trends and outfits that fit their fashion sense, while helping them choose the right size.",
+    subheader: "Shoppers bounce when they can't find their style or size. Recommend trends and fits they'll love, cut returns and turn browsers into buyers, without the guesswork.",
     image: "/images/fashion-apparel.webp",
     titleHighlight: "Apparel",
   },
@@ -89,7 +89,7 @@ const industries = [
     title: "Health & Beauty",
     slug: "beauty",
     href: "/solutions/beauty",
-    icon: Sparkles,
+    icon: Droplet,
     description: "Chat about your visitors' skincare concerns to suggest the best beauty products that enhance their natural glow.",
     subheader: "Beauty and skincare shoppers are overwhelmed by choice. Help them find the right products for their concerns and skin type so they buy with confidence and come back.",
     image: "/images/health-beauty.webp",
@@ -100,8 +100,8 @@ const industries = [
     slug: "fitness",
     href: "/solutions/fitness",
     icon: Dumbbell,
-    description: "Recognize your visitors' health goals to recommend supplements and wellness products that support their well-being.",
-    subheader: "Your visitors have goals—build muscle, lose weight, stay energized. Recommend the supplements and gear that match their journey so every click leads closer to a sale.",
+    description: "Recognise your visitors' health goals to recommend supplements and wellness products that support their well-being.",
+    subheader: "Your visitors have goals: build muscle, lose weight, stay energised. Recommend the supplements and gear that match their journey so every click leads closer to a sale.",
     image: "/images/fitness.webp",
     titleHighlight: "Supplements",
   },
@@ -138,7 +138,7 @@ export default function SolutionsPage() {
               All <span className="green-highlight">solutions</span>
             </h1>
             <p className="text-lg text-muted-foreground text-center max-w-2xl mx-auto page-subheader">
-              Pick a use case, your stage, or your vertical—Aurevia maps consultative sales to the way you already run
+              Pick a use case, your stage or your industry. Aurevia maps consultative sales to the way you already run
               the store. Same Shopify-native AI, tuned to the outcome you care about first.
             </p>
           </header>

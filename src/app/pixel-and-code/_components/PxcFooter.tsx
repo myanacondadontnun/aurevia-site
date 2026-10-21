@@ -15,7 +15,7 @@ interface FooterLink {
 //  - Aurevia column: back-links into the parent site, which is the studio's
 //    own credential and the domain this section lives under
 //  - bottom bar: copyright, legal, and the one-line positioning
-// Plain <a> tags throughout — see layout.tsx for why.
+// Plain <a> tags throughout; see layout.tsx for why.
 const services: FooterLink[] = [
   { href: "/pixel-and-code/", label: "Shopify brand building" },
   { href: "/pixel-and-code/how-we-work/", label: "How we work" },
@@ -28,15 +28,15 @@ const services: FooterLink[] = [
 
 const work: (FooterLink & { external?: boolean })[] = [
   { href: "https://sreyacreates.com/", label: "Sreya Creates", external: true },
-  { href: "/pixel-and-code/aurevia-io/", label: "Aurevia — how we built it" },
-  { href: "/pixel-and-code/jcrpharma-co-uk/", label: "JCR Pharma — case study" },
+  { href: "/pixel-and-code/aurevia-io/", label: "Aurevia: how we built it" },
+  { href: "/pixel-and-code/jcrpharma-co-uk/", label: "JCR Pharma: case study" },
   { href: "https://www.mastersinminds.com/", label: "Masters in Minds", external: true },
   { href: "https://www.expeditecommerce.com/cpq-software/", label: "AI CPQ Agent", external: true },
 ];
 
 const aurevia: (FooterLink & { external?: boolean })[] = [
   { href: "/", label: "Aurevia.io" },
-  { href: "/products/", label: "AI sales agent for Shopify" },
+  { href: "/why-aurevia/", label: "AI sales agent for Shopify" },
   { href: "/solutions/", label: "Solutions" },
   { href: "/pricing/", label: "Aurevia pricing" },
   { href: "/resources/", label: "Resources & blog" },

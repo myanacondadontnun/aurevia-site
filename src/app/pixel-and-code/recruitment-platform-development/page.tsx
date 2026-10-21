@@ -8,14 +8,14 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Recruitment Platform Development — Pixel & Code",
+  title: "Recruitment Platform Development | Pixel & Code",
   description:
-    "A platform built around how your recruiters actually work — candidate portal, employer portal, admin dashboard, automated communication. Built on JCR Pharma's real results.",
+    "A platform built around how your recruiters actually work: candidate portal, employer portal, admin dashboard, automated communication. Built on JCR Pharma's real results.",
   alternates: { canonical: "https://aurevia.io/pixel-and-code/recruitment-platform-development/" },
   openGraph: {
     type: "website",
-    title: "Recruitment Platform Development — Pixel & Code",
-    description: "A recruitment platform built around candidate, employer and admin workflows — cut JCR Pharma's time-to-hire by roughly 50%.",
+    title: "Recruitment Platform Development | Pixel & Code",
+    description: "A recruitment platform built around candidate, employer and admin workflows. It cut JCR Pharma's time-to-hire by roughly 50%.",
   },
 };
 
@@ -45,7 +45,7 @@ export default function RecruitmentPlatformDevelopmentPage() {
           <span className="case-eyebrow reveal-up"><span className="px"></span> For recruitment &amp; staffing businesses</span>
           <h1 className="case-title reveal-up" data-split>A platform built around how your recruiters actually work.</h1>
           <p className="case-summary reveal-up">
-            Candidate intake, employer communication, screening, reporting — all the parts of
+            Candidate intake, employer communication, screening, reporting: all the parts of
             recruitment that still run on email and spreadsheets, built into one platform instead.
           </p>
           <div className="case-actions reveal-up">
@@ -76,13 +76,13 @@ export default function RecruitmentPlatformDevelopmentPage() {
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">No self-service</span>
               <h3>Employers wait on you for updates</h3>
-              <p>Without a portal, every status check is a phone call or an email — for you and for
+              <p>Without a portal, every status check is a phone call or an email, for you and for
                  them.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Slow time-to-hire</span>
               <h3>Coordination eats the timeline</h3>
-              <p>The actual matching is quick — it&apos;s the manual back-and-forth between candidate,
+              <p>The actual matching is quick; it&apos;s the manual back-and-forth between candidate,
                  employer, and your team that stretches a hire from days into weeks.</p>
             </article>
           </div>
@@ -95,7 +95,7 @@ export default function RecruitmentPlatformDevelopmentPage() {
             <h2 className="section__title" data-split>One platform, every side of the hire.</h2>
           </div>
           <p className="case-summary reveal-up" style={{ maxWidth: 760, marginBottom: "2.5rem" }}>
-            We&apos;ve built exactly this before — a two-sided platform covering candidates, employers, and
+            We&apos;ve built exactly this before: a two-sided platform covering candidates, employers, and
             your own team&apos;s admin, deployed to run lean.
           </p>
           <div className="feature-grid">
@@ -117,8 +117,8 @@ export default function RecruitmentPlatformDevelopmentPage() {
           <div className="lp-proof">
             <div className="lp-proof__text reveal-up">
               <p>
-                JCR Pharma recruits for one of the narrowest, most technical corners of hiring —
-                biostatistics, clinical data, bioinformatics — where a precise match matters more than
+                JCR Pharma recruits for one of the narrowest, most technical corners of hiring
+                (biostatistics, clinical data, bioinformatics), where a precise match matters more than
                 volume. We built the full platform running that process on React and Vite, in about
                 six weeks.
               </p>
@@ -139,14 +139,14 @@ export default function RecruitmentPlatformDevelopmentPage() {
           <div className="lp-split">
             <div className="reveal-up">
               <h3>Timeline</h3>
-              <p>JCR Pharma&apos;s full platform — candidate portal, employer portal, admin dashboard and
-                 automated email — took about six weeks from kickoff to live. A platform with a
+              <p>JCR Pharma&apos;s full platform (candidate portal, employer portal, admin dashboard and
+                 automated email) took about six weeks from kickoff to live. A platform with a
                  narrower first scope can move faster still.</p>
             </div>
             <div className="reveal-up">
               <h3>Investment</h3>
               <p>Investment scales with scope. JCR Pharma&apos;s build shows what a focused, six-week
-                 platform costs to run lean — we&apos;ll give you a precise, fixed-scope number after a
+                 platform costs to run lean. We&apos;ll give you a precise, fixed-scope number after a
                  short discovery call.</p>
             </div>
           </div>
@@ -160,19 +160,19 @@ export default function RecruitmentPlatformDevelopmentPage() {
           </div>
           <div className="faq">
             <details className="faq__item reveal-up">
-              <summary>We already use an ATS or CRM — can you integrate with it?</summary>
-              <p>Usually, yes — a custom platform can sit alongside or pull from what you already
+              <summary>We already use an ATS or CRM. Can you integrate with it?</summary>
+              <p>Usually, yes. A custom platform can sit alongside or pull from what you already
                  use rather than forcing a full switch. We&apos;ll confirm feasibility during discovery.</p>
             </details>
             <details className="faq__item reveal-up">
               <summary>Can candidates and employers have separate logins?</summary>
-              <p>Yes — that&apos;s exactly how JCR Pharma&apos;s platform is built, with each side seeing only
+              <p>Yes. That&apos;s exactly how JCR Pharma&apos;s platform is built, with each side seeing only
                  what&apos;s relevant to them.</p>
             </details>
             <details className="faq__item reveal-up">
               <summary>How fast can this go live?</summary>
-              <p>JCR Pharma&apos;s full platform took about six weeks. A narrower first version — just the
-                 candidate portal, say — can move faster.</p>
+              <p>JCR Pharma&apos;s full platform took about six weeks. A narrower first version (just the
+                 candidate portal, say) can move faster.</p>
             </details>
             <details className="faq__item reveal-up">
               <summary>How do you handle candidate data and compliance?</summary>
@@ -187,10 +187,10 @@ export default function RecruitmentPlatformDevelopmentPage() {
           <div className="contact__inner">
             <span className="section__label reveal-up">Let&apos;s talk</span>
             <h2 className="contact__title" data-split>Ready to build your platform?</h2>
-            <p className="contact__sub reveal-up">Chat with our AI to scope your project — it captures the
+            <p className="contact__sub reveal-up">Chat with our AI to scope your project. It captures the
                details and a human follows up within one business day.</p>
             <form className="contact__ai reveal-up" data-contact-ai>
-              <input type="text" data-contact-input placeholder="Describe your project — our AI takes it from here…" autoComplete="off" aria-label="Describe your project" />
+              <input type="text" data-contact-input placeholder="Describe your project. Our AI takes it from here…" autoComplete="off" aria-label="Describe your project" />
               <button type="submit" aria-label="Start the conversation">
                 <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>

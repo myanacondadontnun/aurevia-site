@@ -1,0 +1,52 @@
+/* Margin cues for the product hero widgets (design.md cue card): what the agent just did, as a small white card
+   outside the chat on its left, joined to its message by a hairline ending in a ringed node, as in the home hero.
+   Wide screens only (1280+), where the hero has room on the widget's left. */
+
+.layer { display: none; }
+@media (min-width: 1280px) {
+  .layer { position: absolute; inset: 0; display: block; pointer-events: none; }
+}
+
+.cue {
+  position: absolute;
+  right: 100%;
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  transform: translateY(-50%);
+  transition: top 420ms var(--au-ease), opacity 300ms var(--au-ease);
+  animation: rise 480ms var(--au-ease) both;
+}
+.gone { opacity: 0; }
+@keyframes rise { from { opacity: 0; transform: translate(-8px, -50%); } to { opacity: 1; transform: translateY(-50%); } }
+
+.card {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  width: 212px;
+  padding: 10px 16px 10px 10px;
+  border-radius: var(--au-r-md);
+  background: var(--au-white);
+  box-shadow: var(--au-shadow-1);
+}
+.icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--au-r-sm);
+  background: var(--au-green);
+  color: var(--au-white);
+}
+.icon svg { width: 15px; height: 15px; }
+.text { display: grid; gap: 1px; min-width: 0; }
+.eyebrow { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.625rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--au-green-ink); }
+.title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.8125rem; font-weight: 600; color: var(--au-ink); }
+.line { width: 18px; height: 1px; background: linear-gradient(90deg, rgb(0 127 104 / 0.15), rgb(0 127 104 / 0.55)); }
+.node { width: 9px; height: 9px; margin-right: 10px; border-radius: 50%; background: var(--au-green); box-shadow: 0 0 0 3px rgb(0 127 104 / 0.14); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cue { transition: none; animation: none; }
+}

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { AppHeroDemo, AskEditScene, ChatHomeMini, DashboardMini, LiveActivityMini } from "@/components/products/ProductScenes";
 import { getReview } from "@/lib/reviews";
-import { FeatureMetricsDemo } from "@/components/FeatureDemo";
 
 const title = "Dashboard & Ask Aurevia Copilot | Aurevia";
 const desc =
-  "A merchant home for what matters: conversations, revenue-leaning signals, and how your AI is performing. Shopify AI analytics without vanity charts.";
+  "One place to see your store's conversations, the sales they led to and how the agent is doing. AI analytics for Shopify, with only the charts you'll actually use.";
 
 export const metadata: Metadata = {
   title,
@@ -23,96 +23,77 @@ export default function DashboardPage() {
       eyebrow="Dashboard & Ask Aurevia"
       headline={
         <>
-          Monday morning, <span className="green-highlight">answered in one screen</span>
+          Check your week <span className="green-highlight">on one screen</span>
         </>
       }
-      subtitle="Open the dashboard and know in ten seconds whether the AI earned its keep this week: revenue assisted, conversations handled, and where humans had to step in. Signal for operators — not a firehose of chat logs."
+      subtitle="Open the dashboard and see at a glance whether the agent paid for itself this week: the revenue it helped with, the conversations it handled and where your team had to step in. You get the numbers that matter without reading through chat logs."
       heroBullets={[
-        "Revenue and conversations, one view",
-        "AI health: coverage & deflection",
-        "Built for a weekly operator check-in",
+        "Revenue and conversations in one view",
+        "How the agent is doing: coverage and deflection",
+        "Made for a weekly check-in",
       ]}
-      demo={
-        <FeatureMetricsDemo
-          title="Performance"
-          stats={[
-            { label: "Revenue assisted", value: "£12,480", delta: "▲ 18%" },
-            { label: "Conversations", value: "1,284", delta: "▲ 9%" },
-            { label: "Resolved by AI", value: "82%", delta: "▲ 4pts" },
-          ]}
-          rows={[
-            { label: "Recommendation → checkout", value: "212", pct: 86 },
-            { label: "Question → add to cart", value: "147", pct: 60 },
-            { label: "Cart rescue → paid", value: "58", pct: 24 },
-          ]}
-          rowsHeading="Top converting flows"
-          chart
-        />
-      }
-      proofStrip={[
-        { label: "Signal, not noise", text: "KPIs that connect chat activity to the business — no wall of unlabeled widgets." },
-        { label: "One truth for the team", text: "Leadership and operators read the same numbers, so plans stop being debated from different spreadsheets." },
-        { label: "Points at the next fix", text: "Spot what to test next — prompts, products, or regions — without hiring a BI analyst." },
-      ]}
+      demo={<AppHeroDemo />}
       featureBlocks={[
         {
-          title: "Conversation and revenue in one place",
-          body: "See volume alongside the outcomes you care about so you are not overfitting to “chats per day.”",
+          visual: { kind: "kpis" },
+          title: "Conversations and revenue together",
+          body: "See chat volume next to the results you care about, so you don't end up chasing chats per day.",
         },
         {
-          title: "Health of the AI, not a mystery",
-          body: "Understand coverage, deflection, and where humans take over, so you can coach both the model and the team.",
+          visual: { kind: "kpis", stats: [["Resolution rate", "93.9%"], ["Human escalations", "10"], ["AI messages", "486"]] },
+          title: "See how the agent is doing",
+          body: "Check coverage, deflection and where your team takes over, so you know what to improve in the agent and in your team.",
         },
         {
-          title: "Fits the Shopify operator’s day",
-          body: "Short, focused check-ins: what changed this week, what to fix next, what to keep.",
+          visual: { kind: "live" },
+          title: "Fits a store owner's day",
+          body: "Short check-ins: what changed this week, what to fix next and what to keep.",
         },
         {
-          title: "Grounded in your go-to-market",
-          body: "Tie what you see to campaigns, launches, and support spikes—context matters when numbers move.",
+          visual: { kind: "context" },
+          title: "Context for the numbers",
+          body: "Read the numbers against your campaigns, launches and busy support days. When a figure moves, that context matters.",
         },
       ]}
       howItWorks={[
-        { title: "Connect and install", body: "Shopify data and your KB feed the first baseline view." },
-        { title: "Run your week", body: "Check the headline metrics and the exceptions that need attention." },
-        { title: "Iterate in place", body: "Adjust rules, copy, and priorities from the same home base." },
+        { title: "Connect and install", body: "Your Shopify data and knowledge base give you the first baseline." },
+        { title: "Check in each week", body: "Look at the headline numbers and anything that needs attention." },
+        { title: "Make changes in the same place", body: "Adjust rules, wording and priorities without leaving the dashboard." },
       ]}
       relatedLinks={[
         { href: "/products/roi-tracking", label: "ROI tracking" },
       ]}
       faqs={[
         {
-          q: "How is this different from Google Analytics alone?",
-          a: "This ties buyer questions, AI performance, and revenue-leaning outcomes together—so you are not inferring everything from pageviews.",
+          q: "How is this different from Google Analytics?",
+          a: "It links shopper questions, how the agent performed and the sales that followed, so you aren't guessing everything from pageviews.",
         },
         {
           q: "Can I share access with my agency?",
-          a: "Use your org’s process for logins; the goal is one honest view of performance for brand and partners alike.",
+          a: "Follow your own process for sharing logins. The aim is that you and your partners look at the same honest view of performance.",
         },
         {
           q: "Can I ask the dashboard questions instead of reading charts?",
-          a: "Yes. Ask Aurevia is built into the dashboard: press ⌘K and ask in plain English. It answers with charts and sources, and can propose catalog fixes that you confirm before anything is written to Shopify.",
+          a: "Yes. Ask Aurevia is built into the dashboard. Press ⌘K and ask in plain English. It answers with charts and sources, and can suggest catalogue fixes that you confirm before anything changes in Shopify.",
         },
       ]}
       screenshot={{
-        src: "/images/app/ask-aurevia-desktop.webp",
-        mobile: "/images/app/ask-aurevia-mobile.webp",
-        url: "app.aurevia.io/product-management",
+        scene: <AskEditScene />,
         title: "Ask it to fix something, then confirm",
-        caption: "Ask Aurevia proposes the edit as a card: the product, the new title and description. Nothing is written to Shopify until you click Confirm.",
+        caption: "Ask Aurevia shows the edit as a card with the product, the new title and the new description. Nothing changes in Shopify until you click Confirm.",
       }}
       setup={{
         title: "What you'll actually look at",
         steps: [
-          { src: "/images/app/dashboard-desktop.webp", title: "Home, in chat view", body: "Active chats, resolution rate, sold by AI, and a copilot box in the middle of the page." },
-          { src: "/images/app/dashboard-mode-desktop.webp", title: "Home, in dashboard view", body: "Revenue and orders influenced, the recommendation funnel and the questions shoppers ask most." },
-          { src: "/images/app/live-activity-desktop.webp", title: "Live Activity", body: "Every open conversation with the shopper's cart beside it, refreshing as it happens." },
+          { scene: <ChatHomeMini />, title: "Home, in chat view", body: "Active chats, resolution rate, sales made by the agent, and an Ask Aurevia box in the middle of the page." },
+          { scene: <DashboardMini />, title: "Home, in dashboard view", body: "Revenue and orders the agent influenced, the recommendation funnel and the questions shoppers ask most." },
+          { scene: <LiveActivityMini />, title: "Live Activity", body: "Every open conversation with the shopper's cart beside it, updating as it happens." },
         ],
       }}
       review={getReview("l1nk")}
       alsoSee={[
-        { href: "/products/roi-tracking", title: "Insights & ROI", body: "How attribution works, number by number." },
-        { href: "/help/use-ask-aurevia", title: "Help: Ask Aurevia", body: "Prompts that work and what the copilot can change." },
+        { href: "/products/roi-tracking", title: "Insights & ROI", body: "How attribution works, one number at a time." },
+        { href: "/help/use-ask-aurevia", title: "Help: Ask Aurevia", body: "Questions that work well and what it can change." },
         { href: "/help/read-the-dashboard-metrics", title: "Help: reading the metrics", body: "What every card means." },
       ]}
     />

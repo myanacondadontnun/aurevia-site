@@ -30,7 +30,7 @@ const tabs: Tab[] = [
     ],
   },
   {
-    key: "webapp", label: "Web app", intro: "Software built around your operation — dashboards, portals, marketplaces, job boards. Milestone payments, weekly demos, your repos from day one.",
+    key: "webapp", label: "Web app", intro: "Software built around your operation: dashboards, portals, marketplaces, job boards. Milestone payments, weekly demos, your repos from day one.",
     pkgs: [
       { name: "MVP", who: "A first product real users can sign up for", price: "from £7,900", time: "6 weeks", lead: true,
         inc: ["Scope and clickable prototype in week one", "Auth, roles, payments and admin", "A working demo link every Friday", "Deployed to your cloud, code in your repos"] },

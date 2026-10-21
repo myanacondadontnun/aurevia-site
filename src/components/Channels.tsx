@@ -10,7 +10,8 @@ import s from "./channelsBand.module.css";
  * channel across its top (stacked under the photo on phones). Each card opens that channel on /channels.
  */
 
-const CARDS: { kind: ChannelKind; name: string; line: string; link: string; logo: ReactNode }[] = [
+// WhatsApp and Instagram carry a "New" tag.
+const CARDS: { kind: ChannelKind; name: string; line: string; link: string; logo: ReactNode; isNew?: boolean }[] = [
   {
     kind: "store",
     name: "Storefront",
@@ -23,6 +24,7 @@ const CARDS: { kind: ChannelKind; name: string; line: string; link: string; logo
     name: "WhatsApp",
     line: "Answers on your own business number.",
     link: "See a WhatsApp chat",
+    isNew: true,
     logo: <ChannelBadge kind="whatsapp" className="h-10 w-10 rounded-xl" />,
   },
   {
@@ -37,6 +39,7 @@ const CARDS: { kind: ChannelKind; name: string; line: string; link: string; logo
     name: "Instagram",
     line: "Replies to DMs with products to tap.",
     link: "See an Instagram DM",
+    isNew: true,
     logo: <ChannelBadge kind="instagram" className="h-10 w-10 rounded-xl" />,
   },
 ];
@@ -69,9 +72,12 @@ export default function Channels() {
           <ul className={s.cards}>
             {CARDS.map((card) => (
               <li key={card.kind}>
-                <Link href={`/channels#${card.kind}`} className={s.card}>
+                <Link href={`/channels/${card.kind}`} className={s.card}>
                   <span className={s.logo}>{card.logo}</span>
-                  <span className={s.name}>{card.name}</span>
+                  <span className={s.name}>
+                    {card.name}
+                    {card.isNew && <span className={s.early}>New</span>}
+                  </span>
                   <span className={s.line}>{card.line}</span>
                   <span className={s.link}>
                     {card.link}

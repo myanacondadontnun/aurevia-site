@@ -1,34 +1,33 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Handshake,
+import {
   ArrowRight,
-  Menu,
-  X,
-  ShoppingCart,
-  Headphones,
   BarChart3,
+  BookOpen,
+  Calculator,
+  Check,
+  ChevronDown,
+  Handshake,
+  Headset,
+  LifeBuoy,
+  Mail,
+  Menu,
+  MessageCircle,
+  MessagesSquare,
+  PackagePlus,
+  PieChart,
+  Scale,
+  ShoppingBag,
+  ShoppingCart,
   Store,
   TrendingUp,
-  FileText,
-  MessageSquare,
-  Globe,
-  Package,
-  Filter,
-  BookOpen,
-  GitCompare,
-  Calculator,
-  BookMarked,
-  ChevronDown,
-  Shirt,
-  Sparkles,
-  Dumbbell,
-  Smartphone,
-  Home,
-  DollarSign,
-  Bot,
-  LineChart,
+  UserCheck,
+  X,
 } from "lucide-react";
+import { ShopifyMark } from "@/components/BrandLogos";
+import { ChannelBadge, InstagramGlyph, WhatsAppGlyph, type ChannelKind } from "@/components/ChannelIcons";
+import { CHANNELS } from "@/lib/channels";
 import { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -36,81 +35,57 @@ import { SHOPIFY_APP_URL } from "@/lib/utils";
 
 // One consolidated Solutions mega-menu: By goal · By industry. (Capabilities live under Platform.)
 const solutionsByGoal = [
-  { icon: TrendingUp, label: "Increase sales", href: "/solutions/conversion" },
-  { icon: ShoppingCart, label: "Reduce cart abandonment", href: "/products/cart-recovery" },
-  { icon: Headphones, label: "Automate support", href: "/solutions/support" },
-  { icon: DollarSign, label: "Increase AOV", href: "/products/recommendations" },
-  { icon: BarChart3, label: "Customer insights", href: "/products/roi-tracking" },
-  { icon: Filter, label: "Qualify leads", href: "/products/lead-qualification" },
+  { label: "Increase sales", href: "/solutions/conversion", desc: "Turn browsing into orders." , Icon: TrendingUp },
+  { label: "Reduce cart abandonment", href: "/products/cart-recovery", desc: "Win carts back in the chat and by email." , Icon: ShoppingCart },
+  { label: "Automate support", href: "/solutions/support", desc: "Answer the routine, hand over the rest." , Icon: MessagesSquare },
+  { label: "Increase AOV", href: "/products/recommendations", desc: "Add-ons and bundles that fit the cart." , Icon: PackagePlus },
+  { label: "Customer insights", href: "/products/roi-tracking", desc: "See what shoppers ask and what sells." , Icon: PieChart },
+  { label: "Qualify leads", href: "/products/lead-qualification", desc: "Capture buying intent from every chat." , Icon: UserCheck },
 ];
 
 const solutionsByIndustry = [
-  { icon: Shirt, label: "Fashion & apparel", href: "/solutions/fashion" },
-  { icon: Sparkles, label: "Health & beauty", href: "/solutions/beauty" },
-  { icon: Dumbbell, label: "Fitness & supplements", href: "/solutions/fitness" },
-  { icon: Smartphone, label: "Electronics", href: "/solutions/electronics" },
-  { icon: Home, label: "Home & garden", href: "/solutions/home-garden" },
+  { label: "Fashion & apparel", href: "/solutions/fashion", img: "/images/fashion-apparel.webp", desc: "Fit and style before the return label." },
+  { label: "Health & beauty", href: "/solutions/beauty", img: "/images/health-beauty.webp", desc: "Skin type and routine first." },
+  { label: "Fitness & supplements", href: "/solutions/fitness", img: "/images/fitness.webp", desc: "Goals, sizing and the right stack." },
+  { label: "Electronics", href: "/solutions/electronics", img: "/images/electronics.webp", desc: "Specs in plain words, no wrong ports." },
+  { label: "Home & garden", href: "/solutions/home-garden", img: "/images/home-garden.webp", desc: "Size, space and style in one answer." },
 ];
 
-// Platform overview — the product's core pillars, shown as a card grid.
+// Platform: what the agent does, one plain line each (the mobile menu lists the same rows).
 const platformPillars: {
-  icon: typeof Bot;
   title: string;
   desc: string;
   href: string;
   badge?: string;
+  Icon: typeof Store;
 }[] = [
-  {
-    icon: Bot,
-    title: "AI Sales Agent",
-    desc: "A consultative agent that runs discovery, recommends products, and closes in the chat.",
-    href: "/products/recommendations",
-  },
-  {
-    icon: Headphones,
-    title: "AI Support Agent",
-    desc: "Catalog-grounded answers and smart escalation—support that never stalls a sale.",
-    href: "/products/automated-responses",
-  },
-  {
-    icon: ShoppingCart,
-    title: "Cart Recovery",
-    desc: "Live, in-session rescue with checkout links the moment a shopper hesitates.",
-    href: "/products/cart-recovery",
-  },
-  {
-    icon: LineChart,
-    title: "Insights & ROI",
-    desc: "Attribute revenue to the AI: assisted sales, AOV lift, and conversation intelligence.",
-    href: "/products/roi-tracking",
-  },
-  {
-    icon: FileText,
-    title: "Live Takeover & Tickets",
-    desc: "Watch every chat, step in from your phone, and run support tickets from one inbox.",
-    href: "/products/ticket-management",
-  },
-  {
-    icon: MessageSquare,
-    title: "Channels",
-    desc: "The same agent on your store, WhatsApp, Instagram and email, with one inbox for your team.",
-    href: "/channels",
-    badge: "New",
-  },
+  { title: "AI sales agent", desc: "Finds the right products and adds them to the cart in the chat.", href: "/products/recommendations" , Icon: ShoppingBag },
+  { title: "Support answers", desc: "Shipping, returns and product questions, answered from your policies.", href: "/products/automated-responses" , Icon: MessageCircle },
+  { title: "Cart recovery", desc: "A nudge in the chat, then a follow-up email once they leave.", href: "/products/cart-recovery" , Icon: ShoppingCart },
+  { title: "Live takeover & tickets", desc: "Step into any chat. Handoffs arrive as tickets with the cart attached.", href: "/products/ticket-management" , Icon: Headset },
+  { title: "Dashboard & ROI", desc: "Revenue the agent influenced, and Ask Aurevia for everything else.", href: "/products/roi-tracking" , Icon: BarChart3 },
 ];
 
 const resourcesItems = [
-  { icon: BookOpen, label: "Blogs", href: "/resources/blogs", desc: "Latest insights and tips" },
-  { icon: GitCompare, label: "AI Agent Comparisons", href: "/resources/ai-comparisons", desc: "Compare AI chatbots for e-commerce" },
-  { icon: Calculator, label: "ROI Calculator", href: "/resources/roi-calculator", desc: "Calculate your potential return" },
-  { icon: Store, label: "Review My Shopify", href: "/resources/review-my-shopify", desc: "Free professional store audit" },
-  { icon: BookMarked, label: "Help center", href: "/help", desc: "Setup and how-to guides" },
-  { icon: Handshake, label: "Partners", href: "/partners", desc: "For agencies, referrers and apps" },
+  { label: "Blogs", href: "/resources/blogs", desc: "Guides on selling more on Shopify.", Icon: BookOpen },
+  { label: "AI agent comparisons", href: "/resources/ai-comparisons", desc: "How AI chat tools for stores compare.", Icon: Scale },
+  { label: "ROI calculator", href: "/resources/roi-calculator", desc: "Estimate what the agent could earn you.", Icon: Calculator },
+  { label: "Help centre", href: "/help", desc: "Setup and how-to guides.", Icon: LifeBuoy },
+  { label: "Partners", href: "/partners", desc: "For agencies, referrers and apps.", Icon: Handshake },
 ];
 
 const navigationLinks: { label: string; href: string }[] = [
   { label: "Pricing", href: "/pricing" },
 ];
+
+/** A channel's logo on a small white app tile, in the channel's own colour. */
+function ChannelTile({ kind, small = false }: { kind: ChannelKind; small?: boolean }) {
+  return (
+    <span className={`nav-channel-tile nav-channel-tile-${kind} ${small ? "nav-channel-tile-sm" : ""}`} aria-hidden="true">
+      {kind === "whatsapp" ? <WhatsAppGlyph /> : kind === "instagram" ? <InstagramGlyph /> : kind === "email" ? <Mail /> : <Store />}
+    </span>
+  );
+}
 
 // Runs before paint in the browser (so the nav's over-hero colour is right on the first frame) and
 // falls back to useEffect during server rendering, where useLayoutEffect would warn.
@@ -126,8 +101,8 @@ export default function Navbar() {
   const showHomeCtaSwarm = isHomePath(pathname);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<"platform" | "solutions" | "resources" | null>(null);
-  const [mobileExpanded, setMobileExpanded] = useState<"platform" | "solutions" | "resources" | null>(null);
+  const [openDropdown, setOpenDropdown] = useState<"platform" | "channels" | "solutions" | "resources" | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<"platform" | "channels" | "solutions" | "resources" | null>(null);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   // The grey capsule that glides under the hovered link.
   const linksRef = useRef<HTMLDivElement>(null);
@@ -139,8 +114,9 @@ export default function Navbar() {
     setHover({ x: r.left - box.left, w: r.width, on: true });
   };
   const scrollYRef = useRef(0);
+  const wasMenuOpenRef = useRef(false);
 
-  const handleDropdownEnter = (name: "platform" | "solutions" | "resources") => {
+  const handleDropdownEnter = (name: "platform" | "channels" | "solutions" | "resources") => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
@@ -166,7 +142,7 @@ export default function Navbar() {
     }
   }, [isMobileMenuOpen]);
 
-  const toggleMobileExpanded = (name: "platform" | "solutions" | "resources") => {
+  const toggleMobileExpanded = (name: "platform" | "channels" | "solutions" | "resources") => {
     setMobileExpanded(prev => prev === name ? null : name);
   };
 
@@ -186,6 +162,7 @@ export default function Navbar() {
 
   useEffect(() => {
     if (isMobileMenuOpen) {
+      wasMenuOpenRef.current = true;
       scrollYRef.current = window.scrollY;
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
@@ -196,7 +173,12 @@ export default function Navbar() {
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
-      window.scrollTo(0, scrollYRef.current);
+      // Only after the menu was open (not on first load). Instant, not smooth: html has
+      // scroll-behavior: smooth, which made closing the menu visibly scroll the page back from the top.
+      if (wasMenuOpenRef.current) {
+        wasMenuOpenRef.current = false;
+        window.scrollTo({ top: scrollYRef.current, behavior: "instant" });
+      }
     }
     return () => {
       document.body.style.overflow = '';
@@ -226,11 +208,12 @@ export default function Navbar() {
       aria-label="Main navigation"
     >
       <div
-        className={`nav-pill transition-all duration-500 ease-in-out mx-auto relative`}
+        className={`nav-pill ${isMobileMenuOpen ? "nav-pill-open" : ""} transition-all duration-500 ease-in-out mx-auto relative`}
         style={{
           width: isScrolled ? "90%" : "100%",
           maxWidth: isScrolled ? "1200px" : "100%",
-          borderRadius: "9999px",
+          // Open, the pill becomes a solid panel holding the menu, so header and drawer read as one surface.
+          borderRadius: isMobileMenuOpen ? "28px" : "9999px",
         }}
       >
         <div className={`flex items-center justify-between w-full transition-all duration-500 ${isScrolled ? "px-2 py-1.5 sm:pl-4 sm:pr-1.5" : "px-2.5 py-1.5 sm:pl-5 sm:pr-2"}`}>
@@ -277,35 +260,117 @@ export default function Navbar() {
                 </button>
                 {openDropdown === "platform" && (
                   <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3" role="menu" aria-label="Platform menu">
-                    <div className={`nav-panel p-4 min-w-[720px] grid grid-cols-2 gap-3`}>
-                      {platformPillars.map((pillar) => (
-                        <Link
-                          key={pillar.title}
-                          href={pillar.href}
-                          role="menuitem"
-                          className="group flex items-start gap-4 rounded-xl p-4 hover:bg-muted/60 transition-colors"
-                        >
-                          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-muted group-hover:bg-[rgb(0_127_104/0.08)] transition-colors" aria-hidden="true">
-                            <pillar.icon className="h-5 w-5 text-foreground group-hover:text-[#00665A] transition-colors" />
-                          </span>
-                          <span className="min-w-0">
-                            <span className="flex items-center gap-2">
-                              <span className="text-base font-medium text-foreground group-hover:text-[#00665A] transition-colors">
-                                {pillar.title}
-                              </span>
-                              {pillar.badge && (
-                                <span className="rounded-full bg-[rgb(0_127_104/0.1)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#00665A]">
-                                  {pillar.badge}
+                    <div className="nav-panel nav-menu nav-platform">
+                      <div className="nav-platform-main">
+                        <div className="nav-platform-list">
+                          {platformPillars.map(({ title, desc, href, badge, Icon }) => (
+                            <Link key={title} href={href} role="menuitem" className="nav-item nav-channel">
+                              <span className="nav-icon" aria-hidden="true"><Icon /></span>
+                              <span className="nav-channel-text">
+                                <span className="nav-item-title">
+                                  {title}
+                                  {badge && <span className="nav-new">{badge}</span>}
                                 </span>
-                              )}
-                              <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" aria-hidden="true" />
+                                <span className="nav-item-desc">{desc}</span>
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                        <div className="nav-platform-links">
+                          <Link href="/why-aurevia" role="menuitem" className="nav-more">
+                            Why Aurevia <ArrowRight aria-hidden="true" />
+                          </Link>
+                          <Link href="/pricing" role="menuitem" className="nav-more">
+                            Pricing <ArrowRight aria-hidden="true" />
+                          </Link>
+                        </div>
+                      </div>
+
+                      {/* Trial card with a real dashboard capture bleeding off its corner. */}
+                      <a href={SHOPIFY_APP_URL} target="_blank" rel="noopener noreferrer" role="menuitem" className="nav-promo">
+                        <span className="nav-promo-eyebrow">Free for 14 days</span>
+                        <span className="nav-promo-title">See Aurevia on your own store</span>
+                        <span className="nav-promo-text">Install from the Shopify App Store, sync your catalogue and watch the first chats come in.</span>
+                        <span className="nav-promo-cta">
+                          Start free trial <ArrowRight aria-hidden="true" />
+                        </span>
+                        <img src="/images/app/dashboard-desktop.webp" alt="" className="nav-promo-shot" />
+                      </a>
+
+                      <div className="nav-platform-strip">
+                        <span className="nav-strip-label">Works with</span>
+                        <span className="nav-strip-item"><ShopifyMark /> Shopify</span>
+                        <span className="nav-strip-rule" aria-hidden="true" />
+                        <span className="nav-strip-label">Answers on</span>
+                        <span className="nav-strip-item"><Store aria-hidden="true" /> Store chat</span>
+                        <span className="nav-strip-item"><Mail aria-hidden="true" /> Email</span>
+                        <span className="nav-strip-item"><WhatsAppGlyph /> WhatsApp</span>
+                        <span className="nav-strip-item"><InstagramGlyph /> Instagram</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Channels with dropdown: each channel has its own page */}
+              <div
+                className="relative"
+                onMouseEnter={() => handleDropdownEnter("channels")}
+                onMouseLeave={handleDropdownLeave}
+              >
+                <button
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded={openDropdown === "channels"}
+                  onClick={() => handleDropdownEnter("channels")}
+                  onMouseEnter={(e) => moveIndicator(e.currentTarget)}
+                  onFocus={(e) => moveIndicator(e.currentTarget)}
+                  className="nav-link"
+                >
+                  Channels
+                  <ChevronDown aria-hidden="true" />
+                </button>
+                {openDropdown === "channels" && (
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3" role="menu" aria-label="Channels menu">
+                    <div className="nav-panel nav-menu nav-channels">
+                      <div className="nav-channels-list">
+                        {CHANNELS.map((ch) => (
+                          <Link key={ch.kind} href={ch.href} role="menuitem" className="nav-item nav-channel">
+                            <ChannelTile kind={ch.kind} />
+                            <span className="nav-channel-text">
+                              <span className="nav-item-title">
+                                {ch.name}
+                                {ch.isNew && <span className="nav-new">New</span>}
+                              </span>
+                              <span className="nav-item-desc">{ch.menu}</span>
                             </span>
-                            <span className="mt-1 block text-sm font-normal leading-relaxed text-muted-foreground">
-                              {pillar.desc}
+                          </Link>
+                        ))}
+                      </div>
+
+                      {/* One agent across all four: a still inbox with a message from each channel. */}
+                      <Link href="/why-aurevia" role="menuitem" className="nav-channels-card">
+                        <span className="nav-promo-eyebrow">One agent, every channel</span>
+                        <span className="nav-promo-title">Same answers wherever they ask</span>
+                        <span className="nav-mini-inbox" aria-hidden="true">
+                          {(
+                            [
+                              ["whatsapp", "Where's my order #1042?"],
+                              ["instagram", "Is this available in M?"],
+                              ["email", "Do the boots run small?"],
+                            ] as const
+                          ).map(([kind, text]) => (
+                            <span key={kind} className="nav-mini-row">
+                              <ChannelTile kind={kind} small />
+                              <span className="nav-mini-text">{text}</span>
+                              <span className="nav-mini-tick"><Check /></span>
                             </span>
-                          </span>
-                        </Link>
-                      ))}
+                          ))}
+                        </span>
+                        <span className="nav-more nav-channels-more">
+                          See why Aurevia <ArrowRight aria-hidden="true" />
+                        </span>
+                      </Link>
                     </div>
                   </div>
                 )}
@@ -331,39 +396,39 @@ export default function Navbar() {
                 </button>
                 {openDropdown === "solutions" && (
                   <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3" role="menu" aria-label="Solutions menu">
-                    <div className={`nav-panel p-8 min-w-[640px] grid grid-cols-2 gap-x-12 gap-y-6`}>
-                      {[
-                        { heading: "By goal", items: solutionsByGoal, seeAll: { href: "/solutions", label: "See all use cases" } },
-                        { heading: "By industry", items: solutionsByIndustry, seeAll: { href: "/solutions#industries", label: "View all industries" } },
-                      ].map((col) => (
-                        <div key={col.heading} className="flex flex-col">
-                          <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-4">
-                            {col.heading}
-                          </h4>
-                          <ul className="space-y-2.5">
-                            {col.items.map((item) => (
-                              <li key={item.label}>
-                                <Link
-                                  href={item.href}
-                                  role="menuitem"
-                                  className="flex items-center gap-2.5 text-sm font-medium text-foreground hover:text-[#00665A] transition-colors group"
-                                >
-                                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-muted group-hover:bg-[rgb(0_127_104/0.08)] transition-colors" aria-hidden="true">
-                                    <item.icon className="h-4 w-4 text-muted-foreground group-hover:text-[#00665A] transition-colors" />
-                                  </span>
-                                  {item.label}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                          <Link
-                            href={col.seeAll.href}
-                            className="mt-4 inline-block text-xs font-medium text-[#00665A] underline underline-offset-4 hover:no-underline"
-                          >
-                            {col.seeAll.label} →
+                    <div className="nav-panel nav-menu nav-solutions">
+                      <div className="nav-solutions-col">
+                        <p className="nav-menu-head">By goal</p>
+                        {solutionsByGoal.map(({ label, href, desc, Icon }) => (
+                          <Link key={label} href={href} role="menuitem" className="nav-item nav-channel">
+                            <span className="nav-icon" aria-hidden="true"><Icon /></span>
+                            <span className="nav-channel-text">
+                              <span className="nav-item-title">{label}</span>
+                              <span className="nav-item-desc">{desc}</span>
+                            </span>
                           </Link>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
+                      <div className="nav-solutions-col">
+                        <p className="nav-menu-head">By industry</p>
+                        {solutionsByIndustry.map((item) => (
+                          <Link key={item.label} href={item.href} role="menuitem" className="nav-item nav-industry">
+                            <img src={item.img} alt="" className="nav-industry-img" />
+                            <span className="nav-channel-text">
+                              <span className="nav-item-title">{item.label}</span>
+                              <span className="nav-item-desc">{item.desc}</span>
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                      <div className="nav-menu-foot">
+                        <Link href="/solutions" role="menuitem" className="nav-more">
+                          See all use cases <ArrowRight aria-hidden="true" />
+                        </Link>
+                        <Link href="/solutions#industries" role="menuitem" className="nav-more">
+                          See all industries <ArrowRight aria-hidden="true" />
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -389,31 +454,36 @@ export default function Navbar() {
                 </button>
                 {openDropdown === "resources" && (
                   <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3" role="menu" aria-label="Resources menu">
-                    <div className={`nav-panel p-6 min-w-[384px]`}>
-                      <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-5">
-                        Resources
-                      </h4>
-                      <ul className="space-y-2">
-                        {resourcesItems.map((item) => (
-                          <li key={item.label}>
-                            <Link
-                              href={item.href}
-                              role="menuitem"
-                              className="flex items-center gap-3.5 p-3 rounded-lg group hover:bg-muted/50 transition-colors"
-                            >
-                              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted" aria-hidden="true">
-                                <item.icon className="h-4 w-4 text-muted-foreground group-hover:text-[#00665A] transition-colors" />
-                              </span>
-                              <div>
-                                <span className="block text-sm font-medium text-foreground group-hover:text-[#00665A] transition-colors">
-                                  {item.label}
-                                </span>
-                                <span className="block text-xs text-muted-foreground">{item.desc}</span>
-                              </div>
-                            </Link>
-                          </li>
+                    <div className="nav-panel nav-menu nav-resources">
+                      <div className="nav-resources-list">
+                        {resourcesItems.map(({ label, href, desc, Icon }) => (
+                          <Link key={label} href={href} role="menuitem" className="nav-item nav-channel">
+                            <span className="nav-icon" aria-hidden="true"><Icon /></span>
+                            <span className="nav-channel-text">
+                              <span className="nav-item-title">{label}</span>
+                              <span className="nav-item-desc">{desc}</span>
+                            </span>
+                          </Link>
                         ))}
-                      </ul>
+                      </div>
+
+                      {/* The free store audit, the one resource with a person behind it. */}
+                      <Link href="/resources/review-my-shopify" role="menuitem" className="nav-channels-card nav-audit">
+                        <span className="nav-promo-eyebrow">Free store audit</span>
+                        <span className="nav-promo-title">Review My Shopify</span>
+                        <span className="nav-promo-text">Send us your store and get a prioritised action plan from our team within 24 hours.</span>
+                        <span className="nav-audit-list" aria-hidden="true">
+                          {["Product pages and collections", "Trust and credibility", "SEO and mobile"].map((t) => (
+                            <span key={t} className="nav-mini-row">
+                              <span className="nav-mini-tick"><Check /></span>
+                              <span className="nav-mini-text">{t}</span>
+                            </span>
+                          ))}
+                        </span>
+                        <span className="nav-more nav-channels-more">
+                          Get my audit <ArrowRight aria-hidden="true" />
+                        </span>
+                      </Link>
                     </div>
                   </div>
                 )}
@@ -516,15 +586,43 @@ export default function Navbar() {
                         role="menuitem"
                         className="flex items-start gap-3 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#00665A] hover:bg-[rgb(0_127_104/0.08)] transition-all duration-200 rounded-lg text-sm font-medium"
                       >
-                        <pillar.icon className="w-4 h-4 mt-0.5 flex-shrink-0" aria-hidden="true" />
                         <span>
                           <span className="font-medium text-foreground">{pillar.title}</span>
                           {pillar.badge && (
-                            <span className="ml-2 rounded-full bg-[rgb(0_127_104/0.1)] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-[#00665A]">
+                            <span className="nav-badge ml-2">
                               {pillar.badge}
                             </span>
                           )}
                         </span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Channels expandable */}
+              <div>
+                <button
+                  onClick={() => toggleMobileExpanded("channels")}
+                  aria-expanded={mobileExpanded === "channels"}
+                  className="flex w-full items-center justify-between px-3 py-2.5 text-foreground hover:text-[#00665A] hover:bg-[rgb(0_127_104/0.08)] transition-all duration-200 rounded-lg text-sm font-medium"
+                >
+                  <span className="flex-1 text-left">Channels</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileExpanded === "channels" ? "rotate-180" : ""}`} aria-hidden="true" />
+                </button>
+                {mobileExpanded === "channels" && (
+                  <div className="pl-4 pb-2 space-y-1">
+                    {CHANNELS.map((ch) => (
+                      <Link
+                        key={ch.kind}
+                        href={ch.href}
+                        onClick={closeMobileMenu}
+                        role="menuitem"
+                        className="flex items-center gap-3 w-full text-left pl-3 pr-3 py-2 hover:bg-[rgb(0_127_104/0.08)] transition-all duration-200 rounded-lg text-sm font-medium"
+                      >
+                        <ChannelBadge kind={ch.kind} className="h-7 w-7 rounded-[9px]" />
+                        <span className="font-medium text-foreground">{ch.name}</span>
+                        {ch.isNew && <span className="nav-badge">New</span>}
                       </Link>
                     ))}
                   </div>
@@ -548,7 +646,7 @@ export default function Navbar() {
                       { heading: "By industry", items: solutionsByIndustry, seeAll: { href: "/solutions#industries", label: "View all industries" } },
                     ].map((col) => (
                       <div key={col.heading} className="py-1">
-                        <span className="block px-3 py-1 text-[11px] font-medium text-muted-foreground uppercase tracking-wider">
+                        <span className="block px-3 py-1 text-[13px] font-semibold text-[color:var(--au-ink-3)]">
                           {col.heading}
                         </span>
                         {col.items.map((item) => (
@@ -559,7 +657,6 @@ export default function Navbar() {
                             role="menuitem"
                             className="flex items-center gap-2.5 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#00665A] hover:bg-[rgb(0_127_104/0.08)] transition-all duration-200 rounded-lg text-sm font-medium"
                           >
-                            <item.icon className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                             {item.label}
                           </Link>
                         ))}
@@ -568,7 +665,7 @@ export default function Navbar() {
                           onClick={closeMobileMenu}
                           className="block pl-6 pr-3 py-2 text-sm font-medium text-[#00665A] hover:underline"
                         >
-                          {col.seeAll.label} →
+                          {col.seeAll.label}
                         </Link>
                       </div>
                     ))}
@@ -596,7 +693,6 @@ export default function Navbar() {
                         role="menuitem"
                         className="flex items-center gap-2.5 w-full text-left pl-6 pr-3 py-2 text-muted-foreground hover:text-[#00665A] hover:bg-[rgb(0_127_104/0.08)] transition-all duration-200 rounded-lg text-sm font-medium"
                       >
-                        <item.icon className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                         {item.label}
                       </Link>
                     ))}

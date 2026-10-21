@@ -36,7 +36,7 @@ export default function TermsPage() {
           heading: "2. Eligibility and accounts",
           body: (
             <p>
-              You must be an authorized representative of a Shopify store to install Aurevia. You&apos;re
+              You must be an authorised representative of a Shopify store to install Aurevia. You&apos;re
               responsible for keeping your account credentials secure and for all activity under your account,
               including configuration choices that affect what the AI says to your customers.
             </p>
@@ -68,7 +68,7 @@ export default function TermsPage() {
           heading: "5. AI-generated responses",
           body: (
             <p>
-              Aurevia&apos;s AI answers are generated based on the catalog, policies, and rules a merchant
+              Aurevia&apos;s AI answers are generated based on the catalogue, policies, and rules a merchant
               provides. We work to keep responses accurate and grounded in that data, but AI systems can make
               mistakes. Merchants are responsible for reviewing their configuration and knowledge base, and for
               how the AI represents their brand, pricing, and policies to customers.
@@ -80,7 +80,7 @@ export default function TermsPage() {
           body: (
             <p>
               Aurevia and its underlying technology remain our property. Merchants retain ownership of their own
-              store data, catalog, and brand content, and grant us a license to process it solely to provide the
+              store data, catalogue, and brand content, and grant us a license to process it solely to provide the
               service.
             </p>
           ),
@@ -102,8 +102,8 @@ export default function TermsPage() {
               Aurevia is provided “as is.” To the extent permitted by law, we disclaim implied warranties of
               merchantability or fitness for a particular purpose, and our aggregate liability for any claim is
               limited to the amount you paid us in the 12 months before the claim arose. Nothing here limits
-              liability where the law doesn&apos;t allow it — for example, for fraud or death or personal injury
-              caused by negligence.
+              liability where the law doesn&apos;t allow it (for example, for fraud or death or personal injury
+              caused by negligence).
             </p>
           ),
         },

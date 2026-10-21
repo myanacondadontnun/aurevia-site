@@ -44,7 +44,7 @@ export default function ROICalculator() {
 
   const monthlyROIDisplay =
     result === null
-      ? "—"
+      ? "·"
       : result.monthlyROIPercent !== null
         ? `${result.monthlyROIPercent.toLocaleString("en-US", {
             minimumFractionDigits: 2,
@@ -52,7 +52,7 @@ export default function ROICalculator() {
           })}%`
         : result.subscriptionCost === 0
           ? "N/A"
-          : "—";
+          : "·";
   const monthlyROISubtext =
     result === null
       ? "Fill in all fields and click Calculate"
@@ -195,7 +195,7 @@ export default function ROICalculator() {
                   </span>
                   <span className="text-lg font-normal text-foreground tabular-nums">
                     {result === null
-                      ? "—"
+                      ? "·"
                       : formatNumber(result.conversationsPerMonth)}
                   </span>
                 </li>
@@ -205,7 +205,7 @@ export default function ROICalculator() {
                     Potential additional sales:
                   </span>
                   <span className="text-lg font-normal text-foreground tabular-nums">
-                    {result === null ? "—" : result.potentialAdditionalSales}
+                    {result === null ? "·" : result.potentialAdditionalSales}
                   </span>
                 </li>
                 <li className="flex flex-wrap items-center justify-between gap-2">
@@ -215,7 +215,7 @@ export default function ROICalculator() {
                   </span>
                   <span className="text-lg font-normal text-foreground tabular-nums">
                     {result === null
-                      ? "—"
+                      ? "·"
                       : `$${result.potentialAOVFromAurevia.toFixed(2)}`}
                   </span>
                 </li>
@@ -226,7 +226,7 @@ export default function ROICalculator() {
                   </span>
                   <span className="text-lg font-normal text-foreground tabular-nums">
                     {result === null
-                      ? "—"
+                      ? "·"
                       : `$${result.additionalUnlockSales.toLocaleString("en-US", {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
@@ -240,7 +240,7 @@ export default function ROICalculator() {
                   </span>
                   <span className="text-lg font-normal text-primary tabular-nums">
                     {result === null
-                      ? "—"
+                      ? "·"
                       : result.subscriptionCost !== null
                         ? `$${result.subscriptionCost.toFixed(2)}`
                         : "Contact us"}

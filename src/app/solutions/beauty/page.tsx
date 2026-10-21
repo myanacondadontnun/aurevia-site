@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { getReview } from "@/lib/reviews";
+import { DEMO_ART } from "@/lib/demoArt";
 
 const title = "AI Sales Chat for Health & Beauty on Shopify | Aurevia";
 const desc =
-  "Skincare and cosmetics shoppers need trust. Ask skin type, goals, and routine—then recommend with upsells that feel like care, not pressure. Ecommerce AI for beauty brands.";
+  "Skincare and beauty shoppers need trust. Aurevia asks about skin type and routine, then recommends products and refills that feel like care, not pressure.";
 
 export const metadata: Metadata = {
   title,
@@ -11,6 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/solutions/beauty" },
   openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/solutions/beauty/" },
 };
+
 
 export default function BeautyPage() {
   return (
@@ -22,29 +25,43 @@ export default function BeautyPage() {
       heroVisual={{
         src: "/images/health-beauty.webp",
         alt: "Skincare and beauty products representing health and beauty ecommerce",
+        chat: { ask: "Something for dry, sensitive skin?", question: "Happy to help. Is it for your morning or evening routine?", answer: "Evening, fragrance-free.", pitch: "This one is fragrance-free and made for overnight repair:", product: { name: "Barrier Night Cream", price: "$42.00", img: DEMO_ART.cream } },
       }}
       headline={
         <>
           Recommend like a <span className="green-highlight">real specialist</span>
         </>
       }
-      subtitle="Skincare and cosmetics are a trust game. Aurevia can ask the sensitive, practical questions a counter associate would: skin type, sensitivities, goals, and budget—then recommend a small regimen from your catalog, not an overwhelming grid. The win is a confident first purchase and a reason to come back, not a one-off discounter race."
-      lede="Use structured discovery to reduce bad-fit buys that become chargebacks and one-star reviews, while still nudging routine upsells and refills that increase LTV the way your best educators do in-store."
-      proofStrip={[
-        { label: "Discovery-first", text: "Dry vs oily, AM vs PM, and concerns before SKUs, so the match makes sense to the customer." },
-        { label: "AOV and LTV", text: "Serum + SPF + refills, when your rules allow—without sounding like a pushy script." },
-        { label: "Deflection with care", text: "Ingredients and usage questions get answered in brand voice, with escalation when a medical claim is out of scope." },
+      subtitle="Beauty is a trust game. Aurevia asks about skin type, sensitivities and goals, then recommends a small routine from your catalogue, not an overwhelming grid."
+      challenges={[
+        { title: "Choice overload", problem: "Shoppers face dozens of serums and don't know where to start.", fix: "The agent asks about skin type and goals, then suggests a short routine." },
+        { title: "Ingredient worries", problem: "Sensitive-skin shoppers hesitate over what's inside.", fix: "Ingredients and usage come from your product pages, within your approved claims." },
+        { title: "No repeat purchase", problem: "Customers run out and buy somewhere else.", fix: "Refills and the next step in the routine, suggested at the right moment." },
       ]}
+      beforeAfter={[
+        { without: "Shoppers scroll every product", with: "A routine built for their skin" },
+        { without: "Ingredient questions go to email", with: "Answers from your product pages, at any hour" },
+        { without: "Claims depend on who replies", with: "Answers stay within your approved claims" },
+        { without: "One product per order", with: "The next step in the routine, suggested" },
+        { without: "Abandoned carts go quiet", with: "A nudge in the chat, then a follow-up email" },
+        { without: "Shade and skin questions pile up", with: "The tricky ones go to your team" },
+      ]}
+      fit={{
+        good: ["Sell skincare, haircare or cosmetics on Shopify", "Have ingredient lists and usage notes for your products", "Want routines and refills, not one-off orders"],
+        notYet: ["Need medical or prescription advice given in the chat", "Haven't written your product details down yet"],
+      }}
+      review={getReview("lotus-beauty")}
+      featureBand={{ src: "/images/site/store-skincare.webp", alt: "Skincare bottles on a stone shelf", position: "30% 80%" }}
       featureBlocks={[
-        { title: "How it asks", body: "Short chips and follow-ups to capture routine, time available, and concerns without a twenty-field form." },
-        { title: "How it recommends", body: "1–3 hero products with clear ‘why for you’ copy grounded in your claims and product pages, not the open web." },
-        { title: "Upsell and cross-sell", body: "Regimen builders, minis, and travel sets when they fit; hold back on bundles until intent is clear, per your rules." },
-        { title: "Support and compliance", body: "Route sensitive topics to your team, with transcripts so you stay consistent with your regulatory story." },
+        { visual: { kind: "ask", q: "Something for dry, sensitive skin?", a: "Happy to help. Is it for day or night?" }, title: "How it asks", body: "Skin type, concerns and routine, asked gently." },
+        { visual: { kind: "products", items: [{ name: "Hydrating Serum", price: "$38", img: DEMO_ART.serum }, { name: "Barrier Cream", price: "$42", img: DEMO_ART.cream }] }, title: "How it recommends", body: "A short routine from your range, with a reason for each step." },
+        { visual: { kind: "upsell", items: [{ name: "Hydrating Serum", price: "$38", img: DEMO_ART.serum }, { name: "Mineral SPF 50", price: "$29", img: DEMO_ART.spf }] }, title: "Upsell and cross-sell", body: "Refills and the next step in the routine, never random extras." },
+        { visual: { kind: "guardrail", rule: "Give medical advice" }, title: "Support and compliance", body: "Stays within your approved claims and hands sensitive questions to your team." },
       ]}
       howItWorks={[
-        { title: "Qualify without friction", body: "Turn ingredient anxiety into a confident pick from what you already sell." },
-        { title: "Educate, then add to cart", body: "Micro-explainers in chat, not a wall of long-form blog links." },
-        { title: "Nudge subscription where it helps", body: "Refill prompts that match the routine you just built, not a generic banner." },
+        { title: "Understand the skin", body: "A few questions turn ingredient worry into a confident pick." },
+        { title: "Explain, then add to cart", body: "Short answers in the chat, not a pile of blog links." },
+        { title: "Bring them back", body: "Refill nudges that match the routine they bought." },
       ]}
       relatedLinks={[
         { href: "/solutions/conversion", label: "Conversion" },
@@ -52,9 +69,11 @@ export default function BeautyPage() {
         { href: "/solutions/small-business", label: "Small business" },
       ]}
       faqs={[
-        { q: "How do you avoid over-claiming?", a: "You define allowed claims, tone, and when to hand off. The model stays inside your published reality." },
-        { q: "What about shade matching?", a: "Use the assets and text you provide; complex shade journeys may blend AI triage with human review where you set it." },
-        { q: "Can it sell bundles without confusing compliance?", a: "Yes, when you encode rules: only suggest bundles you merchandize, with clear per-step usage." },
+        { q: "How do you avoid over-claiming?", a: "You set the allowed claims and the tone. It stays inside what you publish." },
+        { q: "What about shade matching?", a: "It uses your shade guides, and passes tricky matches to your team." },
+        { q: "Can it suggest bundles?", a: "Yes, only the bundles you sell, with clear usage for each step." },
+        { q: "Can it recommend a full routine?", a: "Yes. It builds a short routine from your range, in the right order." },
+        { q: "Will it make medical claims?", a: "No. It stays within the claims you approve and passes medical questions to your team." },
       ]}
     />
   );

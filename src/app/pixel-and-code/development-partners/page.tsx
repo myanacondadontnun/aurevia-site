@@ -8,14 +8,14 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Technical Delivery Partner for Agencies — Pixel & Code",
+  title: "Technical Delivery Partner for Agencies | Pixel & Code",
   description:
-    "Technical delivery for agencies that need more than a marketing website — SaaS applications, internal platforms, and AI integrations, white-label or disclosed.",
+    "Technical delivery for agencies that need more than a marketing website: SaaS applications, internal platforms, and AI integrations, white-label or disclosed.",
   alternates: { canonical: "https://aurevia.io/pixel-and-code/development-partners/" },
   openGraph: {
     type: "website",
-    title: "Technical Delivery Partner for Agencies — Pixel & Code",
-    description: "Technical delivery for agencies that need more than a marketing website — white-label or disclosed.",
+    title: "Technical Delivery Partner for Agencies | Pixel & Code",
+    description: "Technical delivery for agencies that need more than a marketing website, white-label or disclosed.",
   },
 };
 
@@ -46,8 +46,8 @@ export default function DevelopmentPartnersPage() {
           <h1 className="case-title reveal-up" data-split>Technical delivery for agencies that need more than a marketing website.</h1>
           <p className="case-summary reveal-up">
             Your team is strong on brand, design and acquisition. We handle the projects that sit
-            beyond a standard website — SaaS applications, internal platforms, AI integrations and
-            complex web apps — either collaboratively or behind the scenes.
+            beyond a standard website (SaaS applications, internal platforms, AI integrations and
+            complex web apps), either collaboratively or behind the scenes.
           </p>
           <div className="case-actions reveal-up">
             <a href="/pixel-and-code/#contact" className="btn btn--primary">
@@ -71,13 +71,13 @@ export default function DevelopmentPartnersPage() {
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Scope creep</span>
               <h3>A client asks for something beyond a website</h3>
-              <p>A custom app, a client portal, an AI feature — outside what your team ships day to
+              <p>A custom app, a client portal, an AI feature: outside what your team ships day to
                  day, but too good a client relationship to turn away.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Hiring risk</span>
               <h3>You don&apos;t want to hire full-time engineers</h3>
-              <p>Technical projects come in unevenly — hard to justify a permanent engineering team
+              <p>Technical projects come in unevenly: hard to justify a permanent engineering team
                  for work that isn&apos;t your core offering.</p>
             </article>
             <article className="feature-card reveal-up">
@@ -93,18 +93,18 @@ export default function DevelopmentPartnersPage() {
         <section className="section" style={{ paddingTop: 0 }}>
           <div className="section__head">
             <span className="section__label reveal-up"><span className="px"></span> How we work with agencies</span>
-            <h2 className="section__title" data-split>Collaborative, or invisible — your call.</h2>
+            <h2 className="section__title" data-split>Collaborative, or invisible. Your call.</h2>
           </div>
           <p className="case-summary reveal-up" style={{ maxWidth: 760, marginBottom: "2.5rem" }}>
             We can sit behind your brand as pure technical delivery, or work alongside your team as a
-            disclosed partner — whichever your client relationship calls for.
+            disclosed partner, whichever your client relationship calls for.
           </p>
           <div className="feature-grid">
             <article className="feature-card reveal-up"><h3>White-label or disclosed delivery</h3><p>You choose how visible we are to your client.</p></article>
             <article className="feature-card reveal-up"><h3>Apps &amp; platform development</h3><p>SaaS products, internal tools, and AI integrations beyond a standard website build.</p></article>
             <article className="feature-card reveal-up"><h3>Technical discovery support</h3><p>Feasibility and scoping help before you commit a client to a build.</p></article>
             <article className="feature-card reveal-up"><h3>Fixed scope, fully handed over</h3><p>One project, one price, and your studio owns everything at the end.</p></article>
-            <article className="feature-card reveal-up"><h3>NDA availability</h3><p>Happy to sign one — just ask as part of getting started.</p></article>
+            <article className="feature-card reveal-up"><h3>NDA availability</h3><p>Happy to sign one. Just ask as part of getting started.</p></article>
             <article className="feature-card reveal-up"><h3>Direct or behind-the-scenes communication</h3><p>We fit into however you run the client relationship.</p></article>
           </div>
         </section>
@@ -119,15 +119,15 @@ export default function DevelopmentPartnersPage() {
             <div className="lp-proof__text reveal-up">
               <p>
                 Aurevia is a production Shopify SaaS product we designed and built end to end on
-                Django — AI product recommendations, cart recovery, billing, and a live App Store
+                Django: AI product recommendations, cart recovery, billing, and a live App Store
                 listing merchants use today. We&apos;ve also delivered JCR Pharma&apos;s full recruitment
-                platform on React and Vite in about six weeks — real range across SaaS and platform
+                platform on React and Vite in about six weeks: real range across SaaS and platform
                 work, not a single template applied twice.
               </p>
               <a href="/pixel-and-code/aurevia-io/" className="btn btn--ghost"><span>Read the Aurevia case study ↗</span></a>
             </div>
             <figure className="case-shot reveal-up" style={{ margin: 0 }}>
-              <img src="/pixel-and-code/assets/screenshots/aurevia/ai_training.webp" alt="Aurevia dashboard — AI training and knowledge base" loading="lazy" />
+              <img src="/pixel-and-code/assets/screenshots/aurevia/ai_training.webp" alt="Aurevia dashboard: AI training and knowledge base" loading="lazy" />
             </figure>
           </div>
         </section>
@@ -138,13 +138,13 @@ export default function DevelopmentPartnersPage() {
             <div className="reveal-up">
               <h3>Capacity &amp; timelines</h3>
               <p>Project timelines have ranged from six weeks (JCR Pharma&apos;s full platform) to a
-                 year of iterative releases (Aurevia&apos;s SaaS build) — we&apos;ll be upfront about capacity
+                 year of iterative releases (Aurevia&apos;s SaaS build). We&apos;ll be upfront about capacity
                  and realistic delivery dates before you commit a client to one.</p>
             </div>
             <div className="reveal-up">
               <h3>Investment</h3>
               <p>Investment scales with scope, and we&apos;re happy to structure it however works for your
-                 studio — fixed-scope per project, or a retained arrangement. We&apos;ll walk through
+                 studio: fixed-scope per project, or a retained arrangement. We&apos;ll walk through
                  options on a call.</p>
             </div>
           </div>
@@ -159,21 +159,21 @@ export default function DevelopmentPartnersPage() {
           <div className="faq">
             <details className="faq__item reveal-up">
               <summary>Can we stay the primary point of contact for our client?</summary>
-              <p>Yes — white-label delivery means your client only ever hears from you; we work
+              <p>Yes. White-label delivery means your client only ever hears from you; we work
                  entirely behind the scenes if that&apos;s what the relationship needs.</p>
             </details>
             <details className="faq__item reveal-up">
               <summary>Do you sign NDAs with our clients?</summary>
-              <p>Yes, happy to — just raise it as part of getting started.</p>
+              <p>Yes, happy to. Just raise it as part of getting started.</p>
             </details>
             <details className="faq__item reveal-up">
               <summary>Can we start with just a technical feasibility check, not a full build?</summary>
-              <p>Yes — a smaller discovery engagement before committing to a full build is a
+              <p>Yes. A smaller discovery engagement before committing to a full build is a
                  reasonable first step, and often the right one.</p>
             </details>
             <details className="faq__item reveal-up">
               <summary>Do you offer referral arrangements?</summary>
-              <p>Worth discussing directly on a call — depends on the shape of the ongoing
+              <p>Worth discussing directly on a call; it depends on the shape of the ongoing
                  relationship.</p>
             </details>
           </div>
@@ -184,10 +184,10 @@ export default function DevelopmentPartnersPage() {
           <div className="contact__inner">
             <span className="section__label reveal-up">Let&apos;s talk</span>
             <h2 className="contact__title" data-split>Ready to talk about a partnership?</h2>
-            <p className="contact__sub reveal-up">Chat with our AI to scope your project — it captures the
+            <p className="contact__sub reveal-up">Chat with our AI to scope your project. It captures the
                details and a human follows up within one business day.</p>
             <form className="contact__ai reveal-up" data-contact-ai>
-              <input type="text" data-contact-input placeholder="Describe your project — our AI takes it from here…" autoComplete="off" aria-label="Describe your project" />
+              <input type="text" data-contact-input placeholder="Describe your project. Our AI takes it from here…" autoComplete="off" aria-label="Describe your project" />
               <button type="submit" aria-label="Start the conversation">
                 <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>

@@ -359,9 +359,16 @@ export default function Scenarios({ photos }: { photos: ScenarioPhotos }) {
   const shown = useReveal(active);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  // Advance on its own, one scenario at a time, until the visitor takes control.
+  // Advance on its own, one scenario at a time, until the visitor takes control. Desktop only: on phones and
+  // tablets the scenes differ in height, so advancing by itself would shift everything below while nobody
+  // touches the page (and iOS Safari doesn't compensate the scroll position).
   useEffect(() => {
-    if (interacted || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (
+      interacted ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !window.matchMedia("(min-width: 1024px)").matches
+    )
+      return;
     setAutoplay(true);
     const id = window.setTimeout(() => setActive((a) => (a + 1) % SCENARIOS.length), ADVANCE_MS);
     return () => window.clearTimeout(id);
@@ -396,9 +403,15 @@ export default function Scenarios({ photos }: { photos: ScenarioPhotos }) {
   const bg = photos[store.bg];
   const cues = sc.cues.filter((c) => c.at < shown);
   const spots = useCueSpots(stageRef, sc, shown);
+  // Every cue of the scene is laid out from the start and only revealed as its step plays, so the row's height
+  // never changes mid-scene and nothing below it moves.
   const cueList = (className: string) => (
     <div className={className} aria-hidden="true">
-      {cues.map((c) => <CueCard key={`${sc.id}-${c.at}`} cue={c} />)}
+      {sc.cues.map((c) => (
+        <span key={`${sc.id}-${c.at}`} className={c.at < shown ? s.cueShown : s.cueWaiting}>
+          <CueCard cue={c} />
+        </span>
+      ))}
     </div>
   );
 
@@ -532,7 +545,8 @@ export default function Scenarios({ photos }: { photos: ScenarioPhotos }) {
               <span className={s.outcomeIcon} aria-hidden="true">
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3.5 8.5l3 3 6-7" /></svg>
               </span>
-              {finished ? sc.outcome : ""}
+              {/* Always laid out (hidden until the scene ends) so its line height is reserved from the start. */}
+              <span aria-hidden={!finished}>{sc.outcome}</span>
             </p>
           </div>
         </div>

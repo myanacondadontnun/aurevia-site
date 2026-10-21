@@ -10,13 +10,13 @@ import { breadcrumbJsonLd } from "@/lib/schema";
 const CALENDLY = "https://calendly.com/ritwik-mandal-aurevia/30min";
 
 export const metadata: Metadata = {
-  title: "AI & Workflow Automation for Businesses — Pixel & Code",
+  title: "AI & Workflow Automation for Businesses | Pixel & Code",
   description:
     "Replace repetitive operational work with practical AI: agents, RAG, integrations and custom tools on the latest Claude models, with a human in the loop. Fixed price, fully handed over.",
   alternates: { canonical: "https://aurevia.io/pixel-and-code/ai-automation/" },
   openGraph: {
     type: "website",
-    title: "AI & Workflow Automation — Pixel & Code",
+    title: "AI & Workflow Automation | Pixel & Code",
     description: "One workflow automated end to end on Claude, with a human in the loop. Fixed price, fully handed over.",
   },
 };
@@ -166,7 +166,7 @@ export default function AiAutomationPage() {
               <a href="/pixel-and-code/aurevia-io/" className="btn btn--ghost"><span>Read the Aurevia case study ↗</span></a>
             </div>
             <figure className="case-shot reveal-up" style={{ margin: 0 }}>
-              <img src="/images/lead-management-dashboard.webp" alt="Aurevia dashboard — live conversations with human takeover" loading="lazy" />
+              <img src="/images/lead-management-dashboard.webp" alt="Aurevia dashboard: live conversations with human takeover" loading="lazy" />
             </figure>
           </div>
         </section>

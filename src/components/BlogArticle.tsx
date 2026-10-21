@@ -220,7 +220,7 @@ function RelatedPosts({ slug }: { slug: string }) {
   );
 }
 
-// Who is behind the blog. Bios are the same facts as /pixel-and-code/about — keep
+// Who is behind the blog. Bios are the same facts as /pixel-and-code/about; keep
 // them in step. Posts are credited to the team; the founders are named so readers
 // (and search engines) can see who stands behind the advice.
 const AUTHORS = [

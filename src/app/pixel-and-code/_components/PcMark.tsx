@@ -1,4 +1,4 @@
-// The "refactoring brackets" pixel-block logo mark — reused in the nav, preloader,
+// The "refactoring brackets" pixel-block logo mark, reused in the nav, preloader,
 // footer, and chat widget. script.js (initPcMark) animates the bracket shapes via GSAP.
 export default function PcMark({ size }: { size?: "md" | "lg" }) {
   return (

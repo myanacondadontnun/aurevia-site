@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Home: "On your storefront" — five capabilities on one pinned stage, copy on
+ * Home: "On your storefront". Five capabilities on one pinned stage, copy on
  * the left and an animated widget mockup in a phone frame on the right. Scripts use the
  * Lucien Vallière demo catalog (USD) so every mockup tells one story.
  */
@@ -22,7 +22,7 @@ const IMG = {
 };
 
 const recommendScript: ChatStep[] = [
-  { type: "user", text: "Something for a gallery opening — sharp, but not stiff." },
+  { type: "user", text: "Something for a gallery opening. Sharp, but not stiff." },
   { type: "bot", text: "Say less. Three pieces that do exactly that:" },
   {
     type: "products",
@@ -46,7 +46,7 @@ const cartScript: ChatStep[] = [
   },
   { type: "addcart", name: "Silk Draped Blouse", delay: 1100 },
   { type: "cartbar", summary: "1 item · $520.00", delay: 300 },
-  { type: "bot", text: "Added — Silk Draped Blouse, size M. You're over $300, so shipping's on us.", delay: 400 },
+  { type: "bot", text: "Added: Silk Draped Blouse, size M. You're over $300, so shipping's on us.", delay: 400 },
   {
     type: "minicart",
     delay: 1600,
@@ -76,7 +76,7 @@ const compareScript: ChatStep[] = [
 
 const handoffScript: ChatStep[] = [
   { type: "user", text: "I need to change the shipping address on order #1042. Can I talk to a person?" },
-  { type: "bot", text: "Of course. I've raised a ticket and pinged the team — one moment." },
+  { type: "bot", text: "Of course. I've raised a ticket and pinged the team. One moment." },
   {
     type: "card",
     delay: 600,
@@ -86,7 +86,7 @@ const handoffScript: ChatStep[] = [
     progress: true,
   },
   { type: "agent", name: "Ritwik", role: "Live agent · Lucien Vallière", delay: 2200 },
-  { type: "bot", text: "Hi, Ritwik here. Address updated on #1042 — it ships tomorrow. Anything else I can do?", delay: 900 },
+  { type: "bot", text: "Hi, Ritwik here. Address updated on #1042. It ships tomorrow. Anything else I can do?", delay: 900 },
   { type: "user", text: "That's it, thank you!", delay: 1400 },
 ];
 
@@ -95,8 +95,8 @@ const rows: (ShowcaseItem & { demo: (active?: boolean) => ReactNode })[] = [
   {
     eyebrow: "01 · Recommendations",
     title: "Recommends what they'll actually buy",
-    body: "Aurevia reads intent, not keywords. A vague ask becomes two or three products the shopper can act on, pulled live from your catalog with real prices and stock.",
-    points: ["Product cards inside the chat", "Live catalog, live prices", "Curated sets, not a wall of results"],
+    body: "Aurevia reads intent, not keywords. A vague ask becomes two or three products the shopper can act on, pulled live from your catalogue with real prices and stock.",
+    points: ["Product cards inside the chat", "Live catalogue, live prices", "Curated sets, not a wall of results"],
     demo: (active) => (
       <PhoneFrame>
         <FeatureChatDemo bare startOnView active={active} agentName="Lucien" script={recommendScript} />

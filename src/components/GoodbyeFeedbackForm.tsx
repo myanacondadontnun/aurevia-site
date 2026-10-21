@@ -31,7 +31,7 @@ export default function GoodbyeFeedbackForm() {
       const body = new URLSearchParams();
       body.append("name", "Uninstalled merchant");
       body.append("email", email || "not provided");
-      body.append("company", "—");
+      body.append("company", "None");
       body.append("subject", "Uninstall feedback");
       body.append("message", `Reason: ${reason}${comment ? `\nComment: ${comment}` : ""}`);
 
@@ -57,7 +57,7 @@ export default function GoodbyeFeedbackForm() {
       trackEvent("uninstall_feedback_error", {
         error_message: err instanceof Error ? err.message : "Unknown error",
       });
-      setError("Couldn't send that just now — but thank you for trying. No hard feelings either way.");
+      setError("Couldn't send that just now, but thank you for trying. No hard feelings either way.");
     } finally {
       setIsSubmitting(false);
     }

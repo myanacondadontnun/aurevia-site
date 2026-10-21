@@ -47,7 +47,7 @@ export default function AbandonedCartEmail() {
         </div>
         <span className="demo-email-btn">Return to your cart</span>
         <p className="demo-email-foot">Reply to this email if you have any questions.</p>
-        <p className="demo-email-sign">&mdash; Lucien Vallière</p>
+        <p className="demo-email-sign">Lucien Vallière</p>
       </div>
       <div className="demo-email-reply">
         <span aria-hidden>↩</span>

@@ -85,7 +85,7 @@ export function AsksFirst() {
               </WidgetWindow>
             </div>
             <p className="border-l-2 border-[#00CC99] pl-4 text-sm text-muted-foreground">
-              One question about the occasion, then two pieces that work together, from your live catalog.
+              One question about the occasion, then two pieces that work together, from your live catalogue.
             </p>
           </div>
         </div>
@@ -373,7 +373,7 @@ const FAQS = [
   {
     question: "How long does setup take?",
     answer:
-      "About ten minutes. Install from the Shopify App Store, let your catalog and policies sync, set the tone and handoff rules, and go live. No code or theme edits.",
+      "About ten minutes. Install from the Shopify App Store, let your catalogue and policies sync, set the tone and handoff rules, and go live. No code or theme edits.",
   },
   {
     question: "What does Aurevia know about my store?",
@@ -388,7 +388,7 @@ const FAQS = [
   {
     question: "Which channels does it work on?",
     answer:
-      "The chat on your Shopify store, plus cart follow-up emails. WhatsApp and Instagram are in early access.",
+      "The chat on your Shopify store, email, WhatsApp and Instagram DMs and comments, all answered by the same agent.",
   },
   {
     question: "Where is my customers' data stored?",

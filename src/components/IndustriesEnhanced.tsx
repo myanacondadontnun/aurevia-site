@@ -13,7 +13,7 @@ const industries: Industry[] = [
   {
     title: "Home & Decor",
     icon: "🛋️",
-    description: "The AI Sales Agent guides shoppers through dimensions, styles, and material questions — while suggesting bundles that fit room aesthetics.",
+    description: "The AI Sales Agent guides shoppers through dimensions, styles, and material questions, while suggesting bundles that fit room aesthetics.",
     impactPoints: [
       "36% more checkouts on high-consideration items",
       "22% lift in add-to-cart rates for bundles",

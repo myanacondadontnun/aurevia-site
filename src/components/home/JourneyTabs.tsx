@@ -98,7 +98,7 @@ const SCENES: Scene[] = [
     label: "Win back the cart",
     title: "Brings the cart back, and answers the reply",
     body: "When a shopper leaves with items in their cart, Aurevia follows up. If they reply with a question, the same agent answers it.",
-    points: ["Follow-up emails in your brand’s voice", "Replies answered by the agent, not a no-reply inbox", "WhatsApp nudges for shoppers who opt in (early access)"],
+    points: ["Follow-up emails in your brand’s voice", "Replies answered by the agent, not a no-reply inbox", "WhatsApp nudges for shoppers who opt in"],
     demo: <RecoveryEmail />,
   },
 ];

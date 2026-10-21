@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import FeatureSubpageLayout from "@/components/FeatureSubpageLayout";
+import { FeatureChatDemo, type ChatStep } from "@/components/FeatureDemo";
 
 const title = "Automate Ecommerce Support with AI | WISMO & Policies | Aurevia";
 const desc =
-  "Deflect WISMO, returns, and product questions with order-aware, catalog-grounded answers—while the AI still sells when the moment is right. Shopify + AI support that pays for itself.";
+  "Deflect WISMO, returns, and product questions with order-aware, catalogue-grounded answers, while the agent still sells when the moment is right. Shopify + AI support that pays for itself.";
 
 export const metadata: Metadata = {
   title,
@@ -11,6 +12,22 @@ export const metadata: Metadata = {
   alternates: { canonical: "/solutions/support" },
   openGraph: { title, description: desc, type: "article", url: "https://aurevia.io/solutions/support/" },
 };
+
+const demoScript: ChatStep[] = [
+  { type: "user", text: "Where's my order #1042?" },
+  {
+    type: "card",
+    head: "Order #1042",
+    title: "Shipped · due Thursday",
+    note: "UPS Ground · tracking sent by email",
+    progress: true,
+    cue: { icon: "check", eyebrow: "Order lookup", title: "Live from Shopify" },
+  },
+  { type: "user", text: "Can I return it if the size is wrong?" },
+  { type: "bot", text: "Yes. You have 30 days, and the return label is free.", cue: { icon: "book", eyebrow: "Store policy", title: "Returns & exchanges" } },
+  { type: "user", text: "I'd rather swap it for a larger size now." },
+  { type: "bot", text: "I've passed that to the team with your order attached. Someone will reply here shortly.", cue: { icon: "ticket", eyebrow: "Handoff", title: "Ticket with the order" } },
+];
 
 export default function SupportPage() {
   return (
@@ -24,18 +41,13 @@ export default function SupportPage() {
           Support that does not <span className="green-highlight">surrender the sale</span>
         </>
       }
-      subtitle="WISMO and policy questions are not an annoyance—they are where trust is won or lost. Aurevia gives accurate, on-brand answers with order context, and only hands off when a human is truly needed. The same system can offer a product fix or cross-sell when it resolves the issue, so support time drops while revenue does not have to."
-      lede="This is the path for operations leaders who are out of headcount, not out of customers. The goal is not ‘close every ticket in ten seconds’—it is resolve correctly, reduce repeats, and keep buyers moving."
-      proofStrip={[
-        { label: "Order-aware", text: "Track status, shipping, and return paths without making shoppers dig for a portal login first." },
-        { label: "Deflection with dignity", text: "Fewer one-line macros; more real answers with room to add value." },
-        { label: "Sales when it makes sense", text: "A resolved doubt is a good moment to suggest what pairs well or replaces an out-of-stock item." },
-      ]}
+      demo={<FeatureChatDemo agentName="Support Agent" script={demoScript} />}
+      subtitle="Order and policy questions are where trust is won. Aurevia answers them from your store's own data and hands over only when a person is needed."
       featureBlocks={[
-        { title: "Pre- and post-sales in one", body: "The story does not end at purchase—Aurevia links discovery, cart, and support into one experience." },
-        { title: "Policy consistency", body: "Returns, exchanges, and edge cases use what you actually publish, so the team is not firefighting self-inflicted mistakes." },
-        { title: "Lower ticket volume, higher CSAT", body: "When people get a fast, correct response, they do not have to re-open, DM, and escalate." },
-        { title: "Escalation with context", body: "Hand rare cases to people with the thread and the cart—not a blank “customer mad” email." },
+        { visual: { kind: "order" }, title: "Pre- and post-sales in one", body: "The story doesn't end at purchase. Aurevia links discovery, cart and support in one place." },
+        { visual: { kind: "knowledge" }, title: "Policy consistency", body: "Returns, exchanges, and edge cases use what you actually publish, so the team is not firefighting self-inflicted mistakes." },
+        { visual: { kind: "kpis", stats: [["Resolution rate", "93.9%"], ["Human escalations", "10"], ["Conversations", "163"]] }, title: "Lower ticket volume, higher CSAT", body: "When people get a fast, correct response, they do not have to re-open, DM, and escalate." },
+        { visual: { kind: "handoff" }, title: "Escalation with context", body: "Rare cases go to your team with the thread and the cart, not a blank email." },
       ]}
       howItWorks={[
         { title: "Connect policies and help content", body: "Your real rules feed the first line of response." },

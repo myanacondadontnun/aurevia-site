@@ -7,13 +7,13 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "JCR Pharma — Life Sciences Recruitment Platform | Pixel & Code",
+  title: "JCR Pharma: Life Sciences Recruitment Platform | Pixel & Code",
   description:
-    "How Pixel & Code built JCR Pharma's full recruitment platform — job board, admin dashboard and automated email — on React + Vite in six weeks, cutting time-to-hire by 50%.",
+    "How Pixel & Code built JCR Pharma's full recruitment platform (job board, admin dashboard and automated email) on React + Vite in six weeks, cutting time-to-hire by 50%.",
   alternates: { canonical: "https://aurevia.io/pixel-and-code/jcrpharma-co-uk/" },
   openGraph: {
     type: "article",
-    title: "JCR Pharma — Life Sciences Recruitment Platform | Pixel & Code",
+    title: "JCR Pharma: Life Sciences Recruitment Platform | Pixel & Code",
     description: "A six-week build: the full job platform, admin dashboard and automated email behind JCR Pharma's life-sciences recruitment.",
     images: ["https://aurevia.io/pixel-and-code/assets/logos/jcrpharma.png"],
   },
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 const JSON_LD = {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  name: "JCR Pharma — Life Sciences Recruitment Platform",
+  name: "JCR Pharma: Life Sciences Recruitment Platform",
   creator: { "@type": "Organization", name: "Pixel & Code" },
   about: "Life sciences & biometrics recruitment job platform",
   url: "https://aurevia.io/pixel-and-code/jcrpharma-co-uk/",
@@ -61,8 +61,8 @@ export default function JcrPharmaCaseStudyPage() {
             <span className="case-eyebrow reveal-up"><span className="px"></span> Recruitment Tech · Job Platform · 2024</span>
             <h1 className="case-title reveal-up">JCR Pharma</h1>
             <p className="case-summary reveal-up">
-              JCR Pharma recruits for one of the narrowest, most technical corners of hiring — biostatistics,
-              clinical data management, statistical programming, data science, and bioinformatics — where a
+              JCR Pharma recruits for one of the narrowest, most technical corners of hiring (biostatistics,
+              clinical data management, statistical programming, data science, and bioinformatics), where a
               precise match matters more than a big pile of CVs. We built the platform that runs that whole
               process: job board, admin dashboard, and automated email, on React + Vite, in six weeks.
             </p>
@@ -108,10 +108,10 @@ export default function JcrPharmaCaseStudyPage() {
             <h2 className="section__title" data-split>Specialist recruiting, run by hand.</h2>
           </div>
           <p className="case-summary reveal-up" style={{ maxWidth: 760, fontSize: "1.1rem" }}>
-            JCR Pharma&apos;s whole edge is depth, not volume — shortlisting five to seven candidates who
+            JCR Pharma&apos;s whole edge is depth, not volume: shortlisting five to seven candidates who
             genuinely fit a biotech or pharma team&apos;s technical needs, rather than flooding employers with
-            CVs. But running that consultative process — job postings, candidate intake, screening,
-            employer communication — without dedicated software meant more manual coordination for every
+            CVs. But running that consultative process (job postings, candidate intake, screening,
+            employer communication) without dedicated software meant more manual coordination for every
             search, and a slower, harder-to-track hiring pipeline for clients across the UK, US, and Europe.
           </p>
         </section>
@@ -123,8 +123,8 @@ export default function JcrPharmaCaseStudyPage() {
             <h2 className="section__title">A job board, both portals, and the admin behind them.</h2>
           </div>
           <p className="case-summary reveal-up" style={{ maxWidth: 760, marginBottom: "2.5rem" }}>
-            We built JCR Pharma a full two-sided job platform on React and Vite — fast to load, easy to
-            extend — covering employers, candidates, and the JCR Pharma team itself, deployed on free-tier
+            We built JCR Pharma a full two-sided job platform on React and Vite (fast to load, easy to
+            extend), covering employers, candidates, and the JCR Pharma team itself, deployed on free-tier
             hosting to keep ongoing operating costs close to zero for a lean recruitment business.
           </p>
           <div className="feature-grid">
@@ -151,7 +151,7 @@ export default function JcrPharmaCaseStudyPage() {
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Automation</span>
               <h3>Automated Email</h3>
-              <p>New applications, status changes, and job alerts go out automatically — nothing chased down manually.</p>
+              <p>New applications, status changes, and job alerts go out automatically: nothing chased down manually.</p>
             </article>
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Access</span>
@@ -189,9 +189,9 @@ export default function JcrPharmaCaseStudyPage() {
             are grouped and published. No developer needed for day-to-day changes.
           </p>
           <div className="case-shot-grid case-shot-grid--3">
-            <figure className="case-shot reveal-up"><img src="/pixel-and-code/assets/screenshots/jcrpharma/admin-jobs.webp" alt="JCR Pharma admin — job board with status, featured flag and applicant counts" loading="lazy" /></figure>
-            <figure className="case-shot reveal-up"><img src="/pixel-and-code/assets/screenshots/jcrpharma/admin-applications.webp" alt="JCR Pharma admin — candidate applications with CV download and status" loading="lazy" /></figure>
-            <figure className="case-shot reveal-up"><img src="/pixel-and-code/assets/screenshots/jcrpharma/admin-blogs.webp" alt="JCR Pharma admin — blog management with featured and group toggles" loading="lazy" /></figure>
+            <figure className="case-shot reveal-up"><img src="/pixel-and-code/assets/screenshots/jcrpharma/admin-jobs.webp" alt="JCR Pharma admin: job board with status, featured flag and applicant counts" loading="lazy" /></figure>
+            <figure className="case-shot reveal-up"><img src="/pixel-and-code/assets/screenshots/jcrpharma/admin-applications.webp" alt="JCR Pharma admin: candidate applications with CV download and status" loading="lazy" /></figure>
+            <figure className="case-shot reveal-up"><img src="/pixel-and-code/assets/screenshots/jcrpharma/admin-blogs.webp" alt="JCR Pharma admin: blog management with featured and group toggles" loading="lazy" /></figure>
           </div>
         </section>
 
@@ -228,7 +228,7 @@ export default function JcrPharmaCaseStudyPage() {
           <div className="case-pullquote reveal-up">
             <span className="case-pullquote__mark" aria-hidden="true">&ldquo;</span>
             <p>On launch day, JCR Pharma&apos;s founder posted on LinkedIn that the team was &quot;really proud&quot; to
-               share the new site — built to make it simple to browse and apply for live roles, read the
+               share the new site, built to make it simple to browse and apply for live roles, read the
                company&apos;s blog, understand their recruitment process end to end, and find every social
                channel in one place.</p>
             <cite><b>James Carpenter</b>, Founder, JCR Pharma, via LinkedIn</cite>

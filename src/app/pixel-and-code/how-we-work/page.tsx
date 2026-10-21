@@ -8,14 +8,14 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "How We Work — Pixel & Code",
+  title: "How We Work | Pixel & Code",
   description:
-    "From discovery to launch and beyond — the six-stage process Pixel & Code uses to ship AI apps, job boards, and custom software.",
+    "From discovery to launch and beyond: the six-stage process Pixel & Code uses to ship AI apps, job boards, and custom software.",
   alternates: { canonical: "https://aurevia.io/pixel-and-code/how-we-work/" },
   openGraph: {
     type: "website",
-    title: "How We Work — Pixel & Code",
-    description: "The six-stage process behind every Pixel & Code build — discovery, design, architecture, weekly builds, launch, and growth.",
+    title: "How We Work | Pixel & Code",
+    description: "The six-stage process behind every Pixel & Code build: discovery, design, architecture, weekly builds, launch, and growth.",
   },
 };
 
@@ -45,7 +45,7 @@ export default function HowWeWorkPage() {
           <span className="case-eyebrow reveal-up"><span className="px"></span> How we work</span>
           <h1 className="case-title reveal-up">Six stages. No surprises.</h1>
           <p className="case-summary reveal-up">
-            Every Pixel &amp; Code build — from a year-long AI platform to a six-week job board —
+            Every Pixel &amp; Code build, from a year-long AI platform to a six-week job board,
             runs through the same process. It&apos;s not slower for small projects or thinner for big ones;
             it&apos;s just how much of it you feel.
           </p>
@@ -75,7 +75,7 @@ export default function HowWeWorkPage() {
                 <span className="roadmap__index">01</span>
                 <h3>Discover</h3>
                 <p>We dig into goals, users, and constraints on a discovery call, then map the product
-                   and scope into a fixed, written proposal — so budget and timeline are agreed before
+                   and scope into a fixed, written proposal, so budget and timeline are agreed before
                    anyone writes a line of code.</p>
                 <div className="roadmap__tags">
                   <span className="roadmap__tag">Discovery call</span>
@@ -90,7 +90,7 @@ export default function HowWeWorkPage() {
               <div className="roadmap__card">
                 <span className="roadmap__index">02</span>
                 <h3>Design</h3>
-                <p>Wireframes first, then polished, motion-rich interfaces in Figma — validated with you
+                <p>Wireframes first, then polished, motion-rich interfaces in Figma, validated with you
                    before a single production component gets built, so revisions happen on paper, not
                    in code.</p>
                 <div className="roadmap__tags">
@@ -106,7 +106,7 @@ export default function HowWeWorkPage() {
               <div className="roadmap__card">
                 <span className="roadmap__index">03</span>
                 <h3>Architect</h3>
-                <p>We pick the stack to fit the problem, not the other way round — Django for Aurevia&apos;s
+                <p>We pick the stack to fit the problem, not the other way round: Django for Aurevia&apos;s
                    AI backend, React and Vite for JCR Pharma&apos;s fast two-sided job platform. Data model
                    and integrations get mapped before the build sprint starts.</p>
                 <div className="roadmap__tags">
@@ -138,7 +138,7 @@ export default function HowWeWorkPage() {
               <div className="roadmap__card">
                 <span className="roadmap__index">05</span>
                 <h3>Launch</h3>
-                <p>A full QA pass, then deploy — with monitoring switched on from day one and clear
+                <p>A full QA pass, then deploy, with monitoring switched on from day one and clear
                    handoff docs, so launch day is uneventful, which is exactly the goal.</p>
                 <div className="roadmap__tags">
                   <span className="roadmap__tag">QA pass</span>
@@ -154,7 +154,7 @@ export default function HowWeWorkPage() {
                 <span className="roadmap__index">06</span>
                 <h3>Grow</h3>
                 <p>Real usage surfaces real requests. We watch what users actually do, then turn the
-                   feedback into the next sprint — the same way every feature in Aurevia shipped
+                   feedback into the next sprint, the same way every feature in Aurevia shipped
                    because a merchant asked for it.</p>
                 <div className="roadmap__tags">
                   <span className="roadmap__tag">Analytics</span>
@@ -176,7 +176,7 @@ export default function HowWeWorkPage() {
             <a href="/pixel-and-code/aurevia-io/" className="feature-card reveal-up">
               <span className="feature-card__tag">AI SaaS · ~12 months</span>
               <h3>Aurevia</h3>
-              <p>All six stages, stretched over a year of iterative builds on Django — new agent
+              <p>All six stages, stretched over a year of iterative builds on Django: new agent
                  capabilities shipping as merchants asked for them.</p>
             </a>
             <a href="/pixel-and-code/jcrpharma-co-uk/" className="feature-card reveal-up">
@@ -194,11 +194,11 @@ export default function HowWeWorkPage() {
             <span className="section__label reveal-up">Let&apos;s talk</span>
             <h2 className="contact__title" data-split>Ready to start stage one?</h2>
             <p className="contact__sub reveal-up">
-              Chat with our AI to scope your project — it captures the details and a human follows up
+              Chat with our AI to scope your project. It captures the details and a human follows up
               within one business day.
             </p>
             <form className="contact__ai reveal-up" data-contact-ai>
-              <input type="text" data-contact-input placeholder="Describe your project — our AI takes it from here…" autoComplete="off" aria-label="Describe your project" />
+              <input type="text" data-contact-input placeholder="Describe your project. Our AI takes it from here…" autoComplete="off" aria-label="Describe your project" />
               <button type="submit" aria-label="Start the conversation">
                 <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>

@@ -120,7 +120,7 @@ export default function BlogListing() {
           Blog
         </h1>
         <p className="text-base sm:text-lg text-muted-foreground font-normal max-w-2xl">
-          Research-backed guides on AI sales, Shopify optimization, and
+          Research-backed guides on AI sales, Shopify optimisation, and
           e-commerce growth strategies.
         </p>
       </div>

@@ -6,7 +6,7 @@ import { useScrollFade } from "./ScrollAnimations";
 const facts = [
   { icon: Clock, value: "24/7", label: "Selling while you sleep", note: "Every page, every hour, in your brand's voice." },
   { icon: CalendarCheck, value: "14 days", label: "Free trial, no card", note: "500 shopper messages included. Billed through Shopify after." },
-  { icon: Rocket, value: "~10 min", label: "Install to first chat", note: "Catalog syncs itself. Add your policies and go live." },
+  { icon: Rocket, value: "~10 min", label: "Install to first chat", note: "Catalogue syncs itself. Add your policies and go live." },
   { icon: Hand, value: "1 click", label: "Take over any chat", note: "From the dashboard or your phone, then hand back to the AI." },
 ];
 

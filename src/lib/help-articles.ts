@@ -59,12 +59,12 @@ export const helpArticles: HelpArticle[] = [
       {
         heading: "Walk through onboarding",
         paragraphs: [
-          "Onboarding does the setup you would otherwise do by hand. It syncs your catalog, drafts your store's sales approach and asks for the few details the AI can't infer.",
+          "Onboarding does the setup you would otherwise do by hand. It syncs your catalogue, drafts your store's sales approach and asks for the few details the AI can't infer.",
         ],
         steps: [
           "Enter your name and a support email. The support email is where ticket alerts go; you can skip it and add it later in Settings.",
           "Set a password so you can sign in without going through Shopify.",
-          "Wait for the catalog sync. Products, collections and discounts are pulled from Shopify and stay in sync from then on.",
+          "Wait for the catalogue sync. Products, collections and discounts are pulled from Shopify and stay in sync from then on.",
           "Answer the business profile questions (role, team size, monthly orders) and your goals. These shape the AI's default tone and priorities.",
           "Name your agent and give it a designation, for example \"Lucien\" and \"Style advisor\". Shoppers see both in the chat header.",
           "Click Enable widget. Shopify's theme editor opens with the Aurevia app embed selected; save the theme.",
@@ -97,7 +97,7 @@ export const helpArticles: HelpArticle[] = [
       {
         heading: "Add knowledge sources",
         paragraphs: [
-          "The agent answers product questions from your catalog automatically. Everything else, such as shipping, returns, sizing and brand story, comes from the Knowledge Base.",
+          "The agent answers product questions from your catalogue automatically. Everything else, such as shipping, returns, sizing and brand story, comes from the Knowledge Base.",
         ],
         steps: [
           "Go to Knowledge → Knowledge Base.",
@@ -222,7 +222,7 @@ export const helpArticles: HelpArticle[] = [
         steps: [
           "Click Take over conversation. The shopper sees your name and avatar in the chat header and the AI stops replying.",
           "Type your reply. It goes straight into the shopper's chat window.",
-          "Use Share products to pick items from your catalog, or Send cart link to give them a one-tap checkout.",
+          "Use Share products to pick items from your catalogue, or Send cart link to give them a one-tap checkout.",
           "Click Hand over to AI when you're done. The AI picks up with the full context.",
         ],
         tips: [
@@ -352,7 +352,7 @@ export const helpArticles: HelpArticle[] = [
           "Leads → Comments lists comments on your posts, categorised as question, complaint, spam, praise or other, each with a suggested reply. You can reply publicly, dismiss, hide or delete.",
         ],
         steps: [
-          "Turn on Auto-reply to let the agent answer plain product questions it can fully ground in your catalog and knowledge.",
+          "Turn on Auto-reply to let the agent answer plain product questions it can fully ground in your catalogue and knowledge.",
           "Turn on Auto-hide spam to hide comments the agent classifies as spam. Nothing is ever deleted automatically.",
         ],
       },
@@ -379,13 +379,13 @@ export const helpArticles: HelpArticle[] = [
       {
         heading: "What each role can do",
         paragraphs: [
-          "Members can watch and take over conversations, work tickets and reply in the inbox. Admins can also train the AI, change its behaviour, manage the catalog, store settings, channels and the team. Only admins and the owner see billing.",
+          "Members can watch and take over conversations, work tickets and reply in the inbox. Admins can also train the AI, change its behaviour, manage the catalogue, store settings, channels and the team. Only admins and the owner see billing.",
         ],
       },
       {
         heading: "Seats",
         paragraphs: [
-          "Each plan includes a number of seats. Pending invites count toward the limit. If you move to a plan with fewer seats, the newest memberships are suspended until you free a seat or upgrade.",
+          "Each plan includes a number of seats. Pending invites count towards the limit. If you move to a plan with fewer seats, the newest memberships are suspended until you free a seat or upgrade.",
         ],
       },
     ],
@@ -468,7 +468,7 @@ export const helpArticles: HelpArticle[] = [
   {
     slug: "use-ask-aurevia",
     title: "Use Ask Aurevia, the merchant copilot",
-    summary: "Ask questions about your store in plain English and approve the catalog fixes it proposes.",
+    summary: "Ask questions about your store in plain English and approve the catalogue fixes it proposes.",
     category: "Getting started",
     minutes: 3,
     updated: "2026-09-26",
@@ -489,7 +489,7 @@ export const helpArticles: HelpArticle[] = [
         steps: [
           "Read the proposal. The card shows the product and the new values.",
           "Click Confirm to apply it through Shopify, or Cancel to discard it.",
-          "Only admins and the owner can confirm catalog changes.",
+          "Only admins and the owner can confirm catalogue changes.",
         ],
         tips: ["From Products, click Ask Aurevia to fix on any low-scoring product to pre-fill a prompt with that product's issues."],
       },

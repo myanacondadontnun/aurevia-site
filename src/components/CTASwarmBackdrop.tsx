@@ -8,7 +8,7 @@ type CTASwarmBackdropProps = {
 };
 
 /**
- * Particle swarm inside a control — use inside `relative overflow-hidden`
+ * Particle swarm inside a control. Use inside `relative overflow-hidden`
  * hosts so it sits behind the label.
  */
 export default function CTASwarmBackdrop({

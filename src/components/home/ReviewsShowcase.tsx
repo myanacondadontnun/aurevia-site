@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowRight, Star } from "lucide-react";
-import { reviews, SHOPIFY_LISTING_URL, SHOPIFY_RATING, SHOPIFY_REVIEW_COUNT } from "@/lib/reviews";
+import { reviews, REVIEW_LOGOS, SHOPIFY_LISTING_URL, SHOPIFY_RATING, SHOPIFY_REVIEW_COUNT } from "@/lib/reviews";
 import s from "./reviewsShowcase.module.css";
 
 /**
@@ -23,10 +23,7 @@ const FEATURED: { id: string; highlight: string }[] = [
 
 /** The reviewing store's own logo, where the site has it (public/logos), drawn in the name's ink colour through
     a mask; `ratio` is width / height. Stores without one show just their name. */
-const LOGOS: Record<string, { src: string; ratio: number }> = {
-  "masks-capes": { src: "/logos/customer-masks.webp", ratio: 127 / 65 },
-  purebronze: { src: "/logos/customer-purebronze.webp", ratio: 190 / 243 },
-};
+const LOGOS = REVIEW_LOGOS;
 
 const ROTATE_MS = 8000;
 

@@ -3,13 +3,13 @@
 import Script from "next/script";
 import { usePathname } from "next/navigation";
 
-// Aurevia's own live chat widget (dogfooded on the marketing site) — self-hosted,
+// Aurevia's own live chat widget (dogfooded on the marketing site): self-hosted,
 // talks to the Django backend at api.aurevia.io (see Widget/website-widget.js;
 // the public/ copy is the served build). The widget key is publishable (rotatable
 // from the admin dashboard).
 //
 // Skipped on /pixel-and-code/*: that section has its own floating chat launcher
-// in the same corner — showing both would stack two chat bubbles on top of each other.
+// in the same corner; showing both would stack two chat bubbles on top of each other.
 export default function AureviaWidgetLoader() {
   const pathname = usePathname();
   if (pathname?.startsWith("/pixel-and-code")) return null;

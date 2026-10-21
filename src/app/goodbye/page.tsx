@@ -23,7 +23,7 @@ export default function GoodbyePage() {
             Sorry to see you <span className="green-highlight">go</span>
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-xl mx-auto">
-            Aurevia&apos;s been removed from your store — no lingering charges, no fine print. If something
+            Aurevia&apos;s been removed from your store. No lingering charges, no fine print. If something
             didn&apos;t work for you, we&apos;d genuinely like to know.
           </p>
         </div>
@@ -36,7 +36,7 @@ export default function GoodbyePage() {
           <div className="text-center sm:text-left">
             <p className="text-foreground font-medium">Changed your mind?</p>
             <p className="text-sm text-muted-foreground mt-1">
-              Reinstall in a click — your settings are kept for a while after uninstall.
+              Reinstall in a click. Your settings are kept for a while after uninstall.
             </p>
           </div>
           <a

@@ -304,6 +304,9 @@
 .cueText { display: grid; gap: 1px; min-width: 0; }
 .cueEyebrow { font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #00665a; }
 .cueTitle { font-size: 12.5px; font-weight: 600; color: #1d2a27; }
+.cueShown { display: contents; }
+.cueWaiting { display: contents; }
+.cueWaiting .cueCard { visibility: hidden; animation: none; }
 @keyframes cueRise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
 /* Below 1280: a row under the stage. 1280 and up: a row in the stage's top band, straight after the store chip,

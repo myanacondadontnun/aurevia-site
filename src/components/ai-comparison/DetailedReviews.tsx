@@ -23,7 +23,7 @@ export default function DetailedReviews() {
     <div className="space-y-16">
       <p className="text-base font-normal leading-relaxed text-muted-foreground">
         Below we use the same structure as long-form listicles: a visual, a candid &quot;why it&apos;s
-        here,&quot; pros, caveats, and pricing — then{" "}
+        here,&quot; pros, caveats, and pricing, then{" "}
         <Link href="#full-landscape" className={link}>
           the full landscape
         </Link>{" "}
@@ -41,12 +41,12 @@ export default function DetailedReviews() {
         <ReviewVisual caption="Illustrative panel: Aurevia positions as a Shopify-native sales co-pilot with guided checkout and upsell surfaces." />
         <p className="mt-6 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           Aurevia is built around one job: turn paid sessions into revenue. It combines proactive signals with
-          catalog-aware answers and a guided path through checkout — not just hyperlinks to PDPs.
+          catalogue-aware answers and a guided path through checkout, not just hyperlinks to PDPs.
         </p>
         <p className="mt-4">
           <strong className="font-medium text-foreground">Why it&apos;s on the list:</strong>{" "}
           <span className="font-normal text-muted-foreground">
-            It is the only entrant here pairing <strong className="text-foreground/90">behavioral engagement</strong>{" "}
+            It is the only entrant here pairing <strong className="text-foreground/90">behavioural engagement</strong>{" "}
             with <strong className="text-foreground/90">cart, checkout, and post-purchase upsells</strong> while keeping
             entry economics unusually accessible for SMBs.
           </span>
@@ -57,7 +57,7 @@ export default function DetailedReviews() {
             <Link href="/products/recommendations/" className={link}>
               Product recommendations
             </Link>{" "}
-            grounded in live Shopify data — fewer &quot;hallucinated SKU&quot; moments that erode trust.
+            grounded in live Shopify data: fewer &quot;hallucinated SKU&quot; moments that erode trust.
           </li>
           <li>
             <Link href="/products/cart-recovery/" className={link}>
@@ -73,7 +73,7 @@ export default function DetailedReviews() {
             primer when you wire events end-to-end.
           </li>
           <li>
-            Free pilot tier lowers risk while you validate lift — see{" "}
+            Free pilot tier lowers risk while you validate lift; see{" "}
             <Link href="/pricing/" className={link}>
               pricing
             </Link>{" "}
@@ -82,14 +82,14 @@ export default function DetailedReviews() {
         </ul>
         <p className="mt-4 font-medium text-foreground">What to keep in mind:</p>
         <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
-          <li>Newer brand vs helpdesk giants — procurement may ask for logo comfort; win on proof and speed.</li>
+          <li>Newer brand vs helpdesk giants: procurement may ask for logo comfort; win on proof and speed.</li>
           <li>
-            You&apos;ll want clean catalog/variant hygiene — same requirement as any serious merchandising AI.
+            You&apos;ll want clean catalogue/variant hygiene, the same requirement as any serious merchandising AI.
           </li>
         </ul>
         <p className="mt-4 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <strong className="font-medium text-foreground">Pricing:</strong> Free pilot (200 AI messages/mo) and an
-          aggressive Pro tier (~$9.99/mo) described in our research narrative — confirm current numbers on the{" "}
+          aggressive Pro tier (~$9.99/mo) described in our research narrative; confirm current numbers on the{" "}
           <a href="https://apps.shopify.com/aurevia-io" className={link} target="_blank" rel="noopener noreferrer">
             Shopify listing
           </a>
@@ -104,29 +104,29 @@ export default function DetailedReviews() {
         </h3>
         <ReviewVisual caption="Illustrative panel: Zipchat emphasizes proactive, revenue-focused messaging and strong merchant ratings." />
         <p className="mt-6 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
-          Zipchat is the clearest &quot;sales agent&quot; peer: proactive triggers, solid catalog sync, and a
-          narrative built around conversion — a strong benchmark for the category.
+          Zipchat is the clearest &quot;sales agent&quot; peer: proactive triggers, solid catalogue sync, and a
+          narrative built around conversion. It&apos;s a strong benchmark for the category.
         </p>
         <p className="mt-4">
           <strong className="font-medium text-foreground">Why it&apos;s on the list:</strong>{" "}
           <span className="font-normal text-muted-foreground">
-            It proved merchants will pay for autonomous, behavioral AI — and raised the bar for what
+            It proved merchants will pay for autonomous, behavioural AI, and raised the bar for what
             &quot;proactive&quot; means in Shopify.
           </span>
         </p>
         <p className="mt-4 font-medium text-foreground">What&apos;s great about it:</p>
         <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
-          <li>High marks publicly (~4.8/5) for turning sessions into sales — credible social proof.</li>
+          <li>High marks publicly (~4.8/5) for turning sessions into sales: credible social proof.</li>
           <li>WhatsApp and cross-sell paths suit growth brands running aggressive paid acquisition.</li>
           <li>Strong fit if your bottleneck is engagement, not helpdesk ticket throughput.</li>
         </ul>
         <p className="mt-4 font-medium text-foreground">What to keep in mind:</p>
         <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
-          <li>No permanent free tier and a $49/mo floor — harder for side projects to experiment.</li>
+          <li>No permanent free tier and a $49/mo floor: harder for side projects to experiment.</li>
           <li>Checkout orchestration is lighter vs a guided handoff all the way through payment.</li>
         </ul>
         <p className="mt-4 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
-          <strong className="font-medium text-foreground">Pricing:</strong> From $49/mo — verify on Zipchat&apos;s site
+          <strong className="font-medium text-foreground">Pricing:</strong> From $49/mo; verify on Zipchat&apos;s site
           before budgeting; model payback with our{" "}
           <Link href="/resources/roi-calculator/" className={link}>
             ROI calculator
@@ -142,13 +142,13 @@ export default function DetailedReviews() {
         </h3>
         <ReviewVisual caption="Illustrative panel: Tidio pairs live chat with Lyro AI for FAQs, policies, and operator handoff." />
         <p className="mt-6 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
-          Tidio is the friendly default for SMBs: live chat, Lyro, and automation in one surface — great when you
+          Tidio is the friendly default for SMBs: live chat, Lyro, and automation in one surface, great when you
           still have humans in the loop.
         </p>
         <p className="mt-4">
           <strong className="font-medium text-foreground">Why it&apos;s on the list:</strong>{" "}
           <span className="font-normal text-muted-foreground">
-            Massive adoption, multilingual support, and a credible path to deflect repetitive questions — as long
+            Massive adoption, multilingual support, and a credible path to deflect repetitive questions, as long
             as you understand the reactive posture.
           </span>
         </p>
@@ -166,12 +166,12 @@ export default function DetailedReviews() {
         </ul>
         <p className="mt-4 font-medium text-foreground">What to keep in mind:</p>
         <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
-          <li>Per-conversation pricing can spike during BFCM — watch usage caps.</li>
+          <li>Per-conversation pricing can spike during BFCM; watch usage caps.</li>
           <li>Reactive design: shoppers who never open chat may still bounce silently.</li>
         </ul>
         <p className="mt-4 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <strong className="font-medium text-foreground">Pricing:</strong> Starter around $24.17/mo with Lyro add-ons
-          and per-conversation costs — confirm on Tidio pricing before you commit.
+          and per-conversation costs; confirm on Tidio pricing before you commit.
         </p>
       </section>
 
@@ -182,22 +182,22 @@ export default function DetailedReviews() {
         </h3>
         <ReviewVisual caption="Illustrative panel: Gorgias shines when agents live inside tickets and Shopify order actions." />
         <p className="mt-6 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
-          Gorgias is the operational backbone for many scaling brands — especially when post-purchase complexity is
+          Gorgias is the operational backbone for many scaling brands, especially when post-purchase complexity is
           the daily reality.
         </p>
         <p className="mt-4">
           <strong className="font-medium text-foreground">Why it&apos;s on the list:</strong>{" "}
           <span className="font-normal text-muted-foreground">
-            If you need deep order edits, refunds, and SLA-driven workflows, Gorgias remains a category anchor —
+            If you need deep order edits, refunds, and SLA-driven workflows, Gorgias remains a category anchor,
             even when front-end sales automation is not its hero story.
           </span>
         </p>
         <p className="mt-4 font-medium text-foreground">What&apos;s great about it:</p>
         <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
-          <li>Agents resolve issues without tab-hopping — massive for high-volume teams.</li>
+          <li>Agents resolve issues without tab-hopping: massive for high-volume teams.</li>
           <li>AI assists drafting and automation inside a mature ticketing model.</li>
           <li>
-            Pair with broader CX strategy — our{" "}
+            Pair with broader CX strategy; our{" "}
             <Link href="/resources/blogs/24-7-ai-support-after-hours-sales/" className={link}>
               after-hours support
             </Link>{" "}
@@ -207,11 +207,11 @@ export default function DetailedReviews() {
         <p className="mt-4 font-medium text-foreground">What to keep in mind:</p>
         <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <li>Learning curve and cost ramp as tickets and AI add-ons scale.</li>
-          <li>Automation rates (~60% support) trail specialized conversational stacks per public comparisons.</li>
+          <li>Automation rates (~60% support) trail specialised conversational stacks per public comparisons.</li>
         </ul>
         <p className="mt-4 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           <strong className="font-medium text-foreground">Pricing:</strong> Entry marketing ~$10/mo but real stacks climb
-          with volume — model fully loaded cost before you compare to sales-first tools.
+          with volume; model fully loaded cost before you compare to sales-first tools.
         </p>
       </section>
 
@@ -228,7 +228,7 @@ export default function DetailedReviews() {
         <p className="mt-4">
           <strong className="font-medium text-foreground">Why it&apos;s on the list:</strong>{" "}
           <span className="font-normal text-muted-foreground">
-            Strong ratings and a straightforward inbox story make it a credible stepping stone — especially for
+            Strong ratings and a straightforward inbox story make it a credible stepping stone, especially for
             SMB multi-channel support.
           </span>
         </p>
@@ -239,10 +239,10 @@ export default function DetailedReviews() {
         </ul>
         <p className="mt-4 font-medium text-foreground">What to keep in mind:</p>
         <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
-          <li>Still skews helpdesk over autonomous GMV — expect to add sales-specific tooling elsewhere.</li>
+          <li>Still skews helpdesk over autonomous GMV; expect to add sales-specific tooling elsewhere.</li>
         </ul>
         <p className="mt-4 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
-          <strong className="font-medium text-foreground">Pricing:</strong> From ~$26.10/mo — confirm seats/channels on
+          <strong className="font-medium text-foreground">Pricing:</strong> From ~$26.10/mo; confirm seats/channels on
           their pricing page.
         </p>
       </section>
@@ -255,12 +255,12 @@ export default function DetailedReviews() {
         <ReviewVisual caption="Illustrative panel: VanChat highlights buyer intent and AI-first shopping assistance." />
         <p className="mt-6 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
           VanChat represents the newer wave of AI shopping assistants: intent-aware, conversational, and aimed at
-          closing without a human — a useful foil to legacy chat widgets.
+          closing without a human. It&apos;s a useful foil to legacy chat widgets.
         </p>
         <p className="mt-4">
           <strong className="font-medium text-foreground">Why it&apos;s on the list:</strong>{" "}
           <span className="font-normal text-muted-foreground">
-            It signals where the market experiments beyond helpdesks — worth understanding alongside Zipchat and
+            It signals where the market experiments beyond helpdesks. It&apos;s worth understanding alongside Zipchat and
             Aurevia.
           </span>
         </p>
@@ -278,11 +278,11 @@ export default function DetailedReviews() {
         </ul>
         <p className="mt-4 font-medium text-foreground">What to keep in mind:</p>
         <ul className="mt-2 list-disc space-y-2 pl-5 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
-          <li>Upsell customization and stack consolidation may lag apex platforms.</li>
-          <li>Always validate inventory grounding — hallucinated stock is a trust killer.</li>
+          <li>Upsell customisation and stack consolidation may lag apex platforms.</li>
+          <li>Always validate inventory grounding: hallucinated stock is a trust killer.</li>
         </ul>
         <p className="mt-4 text-[15px] font-normal leading-relaxed text-muted-foreground sm:text-base">
-          <strong className="font-medium text-foreground">Pricing:</strong> Free tier advertised — confirm feature gates
+          <strong className="font-medium text-foreground">Pricing:</strong> Free tier advertised; confirm feature gates
           and paid ladders on VanChat&apos;s site.
         </p>
       </section>

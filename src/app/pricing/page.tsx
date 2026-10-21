@@ -1,482 +1,403 @@
 "use client";
 
-import { useState, Fragment } from "react";
+import { Fragment, useState } from "react";
 import Link from "next/link";
+import { ArrowRight, Check, Minus, Star } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { faqJsonLd } from "@/lib/schema";
+import { reviews, SHOPIFY_LISTING_URL, SHOPIFY_RATING, SHOPIFY_REVIEW_COUNT } from "@/lib/reviews";
 import { SHOPIFY_APP_URL } from "@/lib/utils";
-import { Check, Minus, ChevronDown, ShieldCheck, Sparkles, Star } from "lucide-react";
+import CustomerLogos from "@/components/CustomerLogos";
+import HeroWatermark from "@/components/home/HeroWatermark";
+import h from "@/components/home/hero.module.css";
+import p from "./pricing.module.css";
 
-type Currency = "USD" | "GBP";
-type BillingCycle = "monthly" | "annual";
+/**
+ * Pricing, matching the public plans on the Shopify App Store listing (Partner dashboard, October 2026):
+ * Free, Starter, Pro and Scale, billed through Shopify in US dollars, with a 14-day free trial on the paid plans.
+ * Prices, message allowances and plan features below are the listing's own; keep them in step with it.
+ */
 
-const GBP_RATE = 0.79;
-const currencySymbols: Record<Currency, string> = { USD: "$", GBP: "£" };
+type Cycle = "monthly" | "yearly";
 
-interface Plan {
+type Plan = {
   id: string;
   name: string;
-  monthly: number;
-  tagline: string;
-  overage: string;
-  cta: string;
+  /** Price per month on monthly billing, and the yearly price, in USD. Null on the free plan. */
+  monthly: number | null;
+  yearly: number | null;
+  messages: string;
+  /** Monthly AI messages, for the allowance meter. */
+  allowance: number;
+  /** The plan the board points people to: the first with the full app. */
+  pick?: boolean;
+  /** "Everything in X, plus" line, when the plan builds on another. */
+  lead?: string;
   features: string[];
-}
+};
 
-const plans: Plan[] = [
+const PLANS: Plan[] = [
+  {
+    id: "free",
+    name: "Free",
+    monthly: null,
+    yearly: null,
+    messages: "100 AI messages a month",
+    allowance: 100,
+    features: [
+      "1 seat",
+      "AI product recommendations",
+      "Add to cart and checkout links",
+      "Unlimited AI training",
+      "Chatbot customisation",
+      "Email, Instagram and WhatsApp",
+    ],
+  },
   {
     id: "starter",
     name: "Starter",
     monthly: 19,
-    tagline: "For new stores getting started with AI selling.",
-    overage: "+ $10 per 250 messages",
-    cta: "Start free trial",
-    features: [
-      "500 AI messages / month",
-      "1 seat included",
-      "AI product recommendations",
-      "Automated responses & Q&A",
-      "AI training + chatbot customisation",
-      "Analytics + conversation history",
-    ],
-  },
-  {
-    id: "growth",
-    name: "Growth",
-    monthly: 49,
-    tagline: "For growing stores turning traffic into paying customers.",
-    overage: "+ $10 per 250 messages",
-    cta: "Start free trial",
-    features: [
-      "Everything in Starter, plus:",
-      "1,500 AI messages / month",
-      "Cart recovery automation",
-      "Custom AI selling rules",
-      "Advanced analytics dashboard",
-      "Priority email support",
-    ],
+    yearly: 180,
+    messages: "500 AI messages a month",
+    allowance: 500,
+    lead: "Everything in Free, plus",
+    features: ["Unlimited seats", "Conversation history beyond 90 days", "API access and custom integrations"],
   },
   {
     id: "pro",
+    pick: true,
     name: "Pro",
     monthly: 89,
-    tagline: "For high-traffic stores at full selling power.",
-    overage: "+ $10 per 250 messages",
-    cta: "Start free trial",
-    features: [
-      "Everything in Growth, plus:",
-      "3,000 AI messages / month",
-      "ROI & revenue attribution",
-      "Custom AI training tools",
-      "Team seats & collaboration",
-    ],
+    yearly: 852,
+    messages: "3,000 AI messages a month",
+    allowance: 3000,
+    lead: "Full app access, plus",
+    features: ["AI storefront SEO", "Product page optimisation", "AI image generation", "Priority email and call support"],
   },
   {
     id: "scale",
     name: "Scale",
     monthly: 149,
-    tagline: "For established brands scaling AI across the store.",
-    overage: "+ $10 per 250 messages",
-    cta: "Start free trial",
+    yearly: 1428,
+    messages: "6,000 AI messages a month",
+    allowance: 6000,
+    lead: "Full app access, plus",
     features: [
-      "Everything in Pro, plus:",
-      "6,000 AI messages / month",
-      "Unlimited team seats",
-      "Priority support",
+      "Dedicated account manager",
+      "White-label options",
+      "Enterprise security and compliance",
+      "SLA and priority support",
     ],
   },
 ];
 
-// Feature comparison matrix. "true" = check, "false" = dash, string = value.
-// Column order: Starter · Growth · Pro · Scale
-const comparison: { group: string; rows: { label: string; values: (boolean | string)[] }[] }[] = [
+// Column order follows PLANS: Free · Starter · Pro · Scale. true = included, false = not included.
+const COMPARE: { group: string; rows: { label: string; values: (boolean | string)[] }[] }[] = [
   {
     group: "Usage",
     rows: [
-      { label: "AI messages / month", values: ["500", "1,500", "3,000", "6,000"] },
-      { label: "Message overage", values: ["$10 / 250", "$10 / 250", "$10 / 250", "$10 / 250"] },
-      { label: "Seats", values: ["1", "3", "Multiple", "Unlimited"] },
-      { label: "Products & services", values: ["Unlimited", "Unlimited", "Unlimited", "Unlimited"] },
+      { label: "AI messages a month", values: ["100", "500", "3,000", "6,000"] },
+      { label: "Extra messages", values: ["$10 per 250", "$10 per 250", "$10 per 250", "$10 per 250"] },
+      { label: "Seats", values: ["1", "Unlimited", "Unlimited", "Unlimited"] },
+      { label: "14-day free trial", values: [false, true, true, true] },
     ],
   },
   {
-    group: "AI capabilities",
+    group: "Selling",
     rows: [
       { label: "AI product recommendations", values: [true, true, true, true] },
-      { label: "Automated responses & Q&A", values: [true, true, true, true] },
-      { label: "Cart recovery automation", values: [false, true, true, true] },
-      { label: "Custom AI selling rules", values: [false, true, true, true] },
-      { label: "Custom AI training tools", values: [false, false, true, true] },
+      { label: "Add to cart and checkout links", values: [true, true, true, true] },
+      { label: "Unlimited AI training", values: [true, true, true, true] },
+      { label: "Chatbot customisation", values: [true, true, true, true] },
+      { label: "Email, Instagram and WhatsApp", values: [true, true, true, true] },
     ],
   },
   {
-    group: "Insights & platform",
+    group: "Store and data",
     rows: [
-      { label: "Analytics dashboard", values: ["Basic", "Advanced", "Advanced", "Custom"] },
-      { label: "ROI & revenue attribution", values: [false, true, true, true] },
-      { label: "Team collaboration", values: [false, false, true, true] },
+      { label: "Conversation history beyond 90 days", values: [false, true, true, true] },
+      { label: "API access and custom integrations", values: [false, true, true, true] },
+      { label: "AI storefront SEO", values: [false, false, true, true] },
+      { label: "Product page optimisation", values: [false, false, true, true] },
+      { label: "AI image generation", values: [false, false, true, true] },
     ],
   },
   {
     group: "Support",
     rows: [
-      { label: "Support", values: ["In-app", "Priority email", "Priority chat", "Dedicated manager"] },
+      { label: "Priority email and call support", values: [false, false, true, true] },
+      { label: "Dedicated account manager", values: [false, false, false, true] },
+      { label: "White-label options", values: [false, false, false, true] },
+      { label: "Enterprise security and compliance", values: [false, false, false, true] },
+      { label: "SLA", values: [false, false, false, true] },
     ],
   },
 ];
 
-const faqs = [
+const FAQS = [
   {
     q: "Is there a free trial?",
-    a: "Yes. Every plan starts with a 14-day free trial and you won't be charged until it ends—so you can see the AI selling before you pay a cent.",
+    a: "Yes. Starter, Pro and Scale each start with a 14-day free trial, and you aren't charged until it ends. The Free plan is free for as long as you use it, with 100 AI messages a month.",
   },
   {
-    q: "How does message-based pricing work?",
-    a: "Each plan includes a set number of AI messages per month. If you go over, it's +$10 per additional 250 messages. Messages roughly track to about half your monthly visitors, so you only pay as you grow.",
+    q: "What happens if I use up my messages?",
+    a: "Add more on any plan: 250 extra AI messages cost $10. Or move up a plan for a bigger monthly allowance.",
   },
   {
     q: "What counts as an AI message?",
-    a: "A message is a single reply the AI sends to a shopper. Menu clicks, quick replies, and product cards don't count against your allowance.",
+    a: "A message is a single reply the AI sends to a shopper. Menu clicks, quick replies and product cards don't count against your allowance.",
   },
   {
-    q: "Can I change or cancel my plan anytime?",
-    a: "Yes, from Settings → Subscription. Upgrades apply immediately and are prorated. Downgrades take effect at your next billing date. If you cancel, you keep access until the end of the paid cycle. No lock-in contracts.",
+    q: "Can I change or cancel my plan any time?",
+    a: "Yes, from Settings, then Subscription. Upgrades apply straight away and are prorated. Downgrades take effect at your next billing date. If you cancel, you keep access until the end of the paid period. There's no contract.",
   },
   {
     q: "How am I billed?",
-    a: "All charges are handled securely through the Shopify App Store and appear on your regular Shopify invoice—no separate card or account required.",
+    a: "Through Shopify, in US dollars. Charges appear on your regular Shopify invoice, so there's no separate card or account.",
   },
   {
-    q: "Do you offer annual billing?",
-    a: "Yes. Switch to annual billing to save 20% versus paying monthly.",
+    q: "How much does yearly billing save?",
+    a: "Paying yearly saves about 20%: $48 a year on Starter, $216 on Pro and $360 on Scale.",
   },
 ];
 
-function convert(usd: number, currency: Currency): number {
-  return currency === "GBP" ? Math.round(usd * GBP_RATE) : usd;
-}
+const MAX_ALLOWANCE = Math.max(...PLANS.map((plan) => plan.allowance));
 
-function formatNumber(n: number): string {
-  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+const money = (n: number) => `$${n.toLocaleString("en-US")}`;
+
+function PriceBlock({ plan, cycle }: { plan: Plan; cycle: Cycle }) {
+  if (plan.monthly === null || plan.yearly === null) {
+    return (
+      <div className={p.price}>
+        <span className={p.amount}>$0</span>
+        <span className={p.cadence}>Free for as long as you use it</span>
+      </div>
+    );
+  }
+  const perMonth = cycle === "yearly" ? Math.round(plan.yearly / 12) : plan.monthly;
+  return (
+    <div className={p.price}>
+      <span className={p.amount}>
+        {money(perMonth)}
+        <span className={p.per}>/month</span>
+      </span>
+      <span className={p.cadence}>
+        {cycle === "yearly" ? `Billed ${money(plan.yearly)} a year` : "Billed monthly"} · 14-day free trial
+      </span>
+    </div>
+  );
 }
 
 export default function PricingPage() {
-  const [currency, setCurrency] = useState<Currency>("USD");
-  const [billing, setBilling] = useState<BillingCycle>("annual");
-  const [traffic, setTraffic] = useState<number>(1);
-  const recommendedIndex = Math.min(traffic, 3); // pills 1-3 map to cards 1-3; the last two both mean Scale
+  const [cycle, setCycle] = useState<Cycle>("monthly");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const sym = currencySymbols[currency];
-
-  function priceDisplay(plan: Plan) {
-    const monthly = convert(plan.monthly, currency);
-    if (billing === "annual") {
-      const perMo = Math.round(monthly * 0.8);
-      return { perMonth: `${sym}${formatNumber(perMo)}`, billed: `Billed annually for ${sym}${formatNumber(perMo * 12)}` };
-    }
-    return { perMonth: `${sym}${formatNumber(monthly)}`, billed: `Billed monthly for ${sym}${formatNumber(monthly)}` };
-  }
-
-  const trafficOptions = ["under 25k", "over 25k", "over 75k", "over 150k", "over 300k"];
+  const review = reviews.find((r) => r.id === "purebronze");
 
   return (
-    <div className="pricing-page min-h-screen bg-background">
+    <div className={p.page}>
       <Navbar />
-      <main id="main-content" className="pt-24 sm:pt-32 pb-16">
-        {/* Hero */}
-        <section className="px-4 sm:px-6 text-center max-w-3xl mx-auto">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#00CC99]/25 bg-[#00CC99]/10 px-3 py-1 text-xs font-medium text-[#00665A] mb-5">
-            <Sparkles className="h-3.5 w-3.5" /> Simple, usage-based pricing
-          </span>
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-fraunces font-normal text-foreground leading-[1.1] mb-4">
-            Pricing that grows{" "}
-            <span className="green-highlight">with your store</span>
-          </h1>
-          <p className="text-base sm:text-lg text-foreground/75 max-w-xl mx-auto">
-            Pick a plan that matches your traffic. Start with a 14-day free trial—you&apos;re
-            only charged once you&apos;re selling more.
-          </p>
-
-          {/* Toggles */}
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <div className="inline-flex rounded-full border border-border bg-card p-1">
-              {(["monthly", "annual"] as BillingCycle[]).map((c) => (
-                <button
-                  key={c}
-                  onClick={() => setBilling(c)}
-                  className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all ${
-                    billing === c ? "bg-primary text-primary-foreground shadow-sm" : "text-foreground/75 hover:text-foreground"
-                  }`}
-                >
-                  {c === "monthly" ? "Monthly" : "Annual"}
-                  {c === "annual" && <span className="ml-1 text-[11px] opacity-80">−20%</span>}
-                </button>
+      <main id="main-content">
+        {/* Head and plans share the home hero's canvas: blooms, grain and the turning ring. */}
+        <section className={`${h.hero} ${p.top}`}>
+          <div className={h.grain} aria-hidden="true" />
+          <HeroWatermark />
+          <div className={`container mx-auto max-w-6xl px-4 sm:px-6 ${p.head}`}>
+            <h1 className={p.title}>Plans and pricing</h1>
+            <p className={p.lede}>Start on the free plan, or try a paid plan free for 14 days.</p>
+            <ul className={p.facts}>
+              {["Billed through Shopify", "In US dollars", "Cancel any time"].map((fact) => (
+                <li key={fact}>
+                  <Check aria-hidden="true" />
+                  {fact}
+                </li>
               ))}
-            </div>
-            <div className="inline-flex rounded-full border border-border bg-card p-1">
-              {(["USD", "GBP"] as Currency[]).map((cur) => (
-                <button
-                  key={cur}
-                  onClick={() => setCurrency(cur)}
-                  className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-all ${
-                    currency === cur ? "bg-primary text-primary-foreground shadow-sm" : "text-foreground/75 hover:text-foreground"
-                  }`}
-                >
-                  {currencySymbols[cur]} {cur}
-                </button>
-              ))}
+            </ul>
+            <div className={p.headRow}>
+              <div className={p.switch} role="radiogroup" aria-label="Billing period">
+                {(["monthly", "yearly"] as Cycle[]).map((c) => (
+                  <button
+                    key={c}
+                    type="button"
+                    role="radio"
+                    aria-checked={cycle === c}
+                    onClick={() => setCycle(c)}
+                    className={`${p.switchOption} ${cycle === c ? p.switchOn : ""}`}
+                  >
+                    {c === "monthly" ? "Monthly" : "Yearly"}
+                    {c === "yearly" && <span className={p.save}>Save about 20%</span>}
+                  </button>
+                ))}
+              </div>
+              <a
+                href={SHOPIFY_LISTING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={p.rating}
+                aria-label={`Rated ${SHOPIFY_RATING.toFixed(1)} out of 5 on the Shopify App Store from ${SHOPIFY_REVIEW_COUNT} reviews`}
+              >
+                <span className={p.stars} aria-hidden="true">
+                  {[0, 1, 2, 3, 4].map((i) => <Star key={i} />)}
+                </span>
+                {SHOPIFY_RATING.toFixed(1)} from {SHOPIFY_REVIEW_COUNT} reviews on Shopify
+              </a>
             </div>
           </div>
 
-          {/* Trust badges */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-foreground/75">
-            <span className="inline-flex items-center gap-1.5"><Check className="h-4 w-4 text-[#00CC99]" /> 14-day free trial</span>
-            <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-[#00CC99]" /> Billed via Shopify</span>
-            <span className="inline-flex items-center gap-1.5"><Star className="h-4 w-4 text-[#00CC99]" /> Official Shopify Partner</span>
-            <span className="inline-flex items-center gap-1.5"><Check className="h-4 w-4 text-[#00CC99]" /> Cancel anytime</span>
-          </div>
-
-          {/* Traffic selector → recommended plan */}
-          <div className="mt-10">
-            <p className="text-base sm:text-lg font-medium text-foreground">What is your monthly visitor count?</p>
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5" role="radiogroup" aria-label="Monthly visitor count">
-              {trafficOptions.map((label, i) => (
-                <button
-                  key={label}
-                  type="button"
-                  role="radio"
-                  aria-checked={traffic === i}
-                  onClick={() => setTraffic(i)}
-                  className={`rounded-full border px-5 py-2.5 text-sm sm:text-base transition-colors ${
-                    traffic === i
-                      ? "border-[#00665A] bg-[#00665A] text-white"
-                      : "border-border bg-card text-foreground hover:border-[#00665A]/60"
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-            <p className="mt-4 text-sm text-foreground/75">14-day free trial on every plan. No card. Billed through Shopify.</p>
-          </div>
-        </section>
-
-        {/* Plan cards */}
-        <section className="px-4 sm:px-6 mt-12 sm:mt-14 max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
-            {plans.map((plan, index) => {
-              const price = priceDisplay(plan);
-              const recommended = index === recommendedIndex;
-              return (
-                <div
-                  key={plan.id}
-                  className={`relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 ${
-                    recommended
-                      ? "border-2 border-[#00665A] bg-card shadow-[0_18px_50px_-16px_rgba(15,61,48,0.35)]"
-                      : "border border-border bg-card hover:border-[#00665A]/40 hover:shadow-lg"
-                  }`}
-                >
-                  <div className="flex items-center gap-2.5">
-                    <h3 className="text-lg font-semibold text-foreground">{plan.name}</h3>
-                    {recommended && (
-                      <span className="rounded-full bg-[#00665A] px-2.5 py-1 text-[11px] font-semibold text-white">Recommended</span>
-                    )}
+          {/* Plans: one board, four columns split by hairlines; Pro, the first plan with the full app, sits on night. */}
+          <div className={`container mx-auto max-w-6xl px-4 sm:px-6 ${p.plansSection}`}>
+            <ol className={p.board}>
+              {PLANS.map((plan) => (
+                <li key={plan.id} className={`${p.plan} ${plan.pick ? p.planPick : ""}`}>
+                  <div className={p.planHead}>
+                    <h2 className={p.planName}>{plan.name}</h2>
+                    {plan.pick && <span className={p.pickTag}>Recommended</span>}
                   </div>
-
-                  <div className="mt-5 flex items-end gap-2">
-                    <span className="text-4xl font-fraunces font-normal leading-none text-foreground">{price.perMonth}</span>
-                    <span className="mb-0.5 text-sm text-foreground/75">per month</span>
+                  <PriceBlock plan={plan} cycle={cycle} />
+                  <div className={p.allowance}>
+                    <p className={p.messages}>{plan.messages}</p>
+                    <span className={p.meter} aria-hidden="true">
+                      <span style={{ width: `${Math.max(2, (plan.allowance / MAX_ALLOWANCE) * 100)}%` }} />
+                    </span>
                   </div>
-                  <span className="mt-3 inline-flex w-fit rounded-md bg-[#00665A]/12 px-2.5 py-1 text-sm font-semibold text-[#00665A]">
-                    {price.billed}
-                  </span>
-                  <p className="mt-2 text-sm text-foreground/75">with a 14-day free trial, no card</p>
-
                   <a
                     href={SHOPIFY_APP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`mt-5 flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold transition-all min-h-[44px] no-underline ${
-                      recommended
-                        ? "cta-button"
-                        : "border border-border text-foreground hover:border-[#00665A] hover:text-[#00665A]"
-                    }`}
+                    className={plan.monthly === null ? p.secondary : p.primary}
                   >
-                    {plan.cta}
+                    {plan.monthly === null ? "Install free" : "Start free trial"}
+                    {plan.monthly !== null && <ArrowRight aria-hidden="true" />}
                   </a>
-
-                  <ul className="mt-6 space-y-2.5">
-                    {plan.features.map((f, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-sm">
-                        <Check className="h-4 w-4 shrink-0 mt-0.5 text-[#00CC99]" />
-                        <span className={i === 0 && f.startsWith("Everything") ? "font-medium text-foreground" : "text-foreground/80"}>
-                          {f}
-                        </span>
+                  {plan.lead && <p className={p.lead}>{plan.lead}</p>}
+                  <ul className={p.features}>
+                    {plan.features.map((f) => (
+                      <li key={f}>
+                        <Check aria-hidden="true" />
+                        {f}
                       </li>
                     ))}
                   </ul>
+                </li>
+              ))}
+            </ol>
 
-                  <p className="mt-auto border-t border-border/60 pt-4 text-sm text-foreground/80">
-                    Extra messages: {sym}{convert(10, currency)} for 250 messages
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Unlimited / Enterprise band */}
-          <div className="mt-5 flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h3 className="text-lg font-semibold text-foreground">
-                Unlimited <span className="text-sm font-normal text-foreground/75">— custom pricing</span>
-              </h3>
-              <p className="mt-1 text-sm text-foreground/75 max-w-xl">
-                For very high-volume stores: unlimited AI messages, a dedicated success manager, and a custom plan built around your operation.
-              </p>
+            <div className={p.notes}>
+              <p>Need more messages? Add 250 for $10 on any plan.</p>
+              <Link href="/contact/" className={p.link}>
+                High volume? Talk to us <ArrowRight aria-hidden="true" />
+              </Link>
             </div>
-            <Link
-              href="/contact"
-              className="shrink-0 rounded-xl border border-border px-6 py-2.5 text-sm font-semibold text-foreground hover:border-[#00CC99] hover:text-[#00665A] transition-all text-center no-underline"
-            >
-              Contact sales
-            </Link>
           </div>
-
-          <p className="mt-6 text-center text-xs text-foreground/75">
-            Prices estimated at ~0.5 AI messages per visitor. {currency === "GBP" && "GBP is approximate. "}
-            All charges billed securely via the Shopify App Store.
-          </p>
         </section>
 
-        {/* Comparison table */}
-        <section className="px-4 sm:px-6 mt-20 max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-4xl font-fraunces font-normal text-foreground text-center mb-8">
-            Compare every <span className="green-highlight">plan</span>
-          </h2>
-          <div className="overflow-x-auto rounded-2xl border border-border bg-card">
-            <table className="w-full min-w-[720px] text-left text-sm">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="p-4 font-medium text-foreground/75 w-[28%]">Features</th>
-                  {plans.map((p) => (
-                    <th key={p.id} className="p-4 text-center font-semibold text-foreground">
-                      {p.name}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {comparison.map((section) => (
-                  <Fragment key={section.group}>
-                    <tr className="bg-muted/40">
-                      <td colSpan={5} className="px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-foreground/75">
-                        {section.group}
-                      </td>
-                    </tr>
-                    {section.rows.map((row) => (
-                      <tr key={row.label} className="border-b border-border/60 last:border-0">
-                        <td className="p-4 text-foreground">{row.label}</td>
-                        {row.values.map((v, i) => (
-                          <td key={i} className="p-4 text-center">
-                            {v === true ? (
-                              <Check className="mx-auto h-4 w-4 text-[#00CC99]" />
-                            ) : v === false ? (
-                              <Minus className="mx-auto h-4 w-4 text-muted-foreground/40" />
-                            ) : (
-                              <span className="text-foreground/75">{v}</span>
-                            )}
-                          </td>
-                        ))}
-                      </tr>
+        <CustomerLogos />
+
+        {/* Every feature, plan by plan. */}
+        <section className={p.compareSection}>
+          <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+            <h2 className={p.h2}>Compare plans</h2>
+            <div className={p.tableWrap}>
+              <table className={p.table}>
+                <thead>
+                  <tr>
+                    <th scope="col"><span className="sr-only">Feature</span></th>
+                    {PLANS.map((plan) => (
+                      <th key={plan.id} scope="col">{plan.name}</th>
                     ))}
-                  </Fragment>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* Testimonial */}
-        <section className="px-4 sm:px-6 mt-20 max-w-3xl mx-auto text-center">
-          <div className="rounded-3xl border border-border bg-card px-6 py-10 sm:px-12 sm:py-14">
-            <div className="mx-auto mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#00CC99]/10">
-              <svg className="h-5 w-5 text-[#00CC99]" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609L9.978 5.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H0z" />
-              </svg>
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARE.map((section) => (
+                    <Fragment key={section.group}>
+                      <tr className={p.groupRow}>
+                        <th colSpan={5} scope="colgroup">{section.group}</th>
+                      </tr>
+                      {section.rows.map((row) => (
+                        <tr key={row.label}>
+                          <th scope="row">{row.label}</th>
+                          {row.values.map((v, i) => (
+                            <td key={i}>
+                              {v === true ? (
+                                <Check className={p.yes} aria-label="Included" />
+                              ) : v === false ? (
+                                <Minus className={p.no} aria-label="Not included" />
+                              ) : (
+                                v
+                              )}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </Fragment>
+                  ))}
+                </tbody>
+              </table>
             </div>
-            <blockquote className="text-lg sm:text-2xl font-playfair italic text-foreground leading-snug max-w-2xl mx-auto">
-              &ldquo;We installed <span className="text-[#00665A]">Aurevia</span> on a Friday and by Monday our
-              support tickets had dropped noticeably. The AI doesn&apos;t just answer questions—it actually{" "}
-              <span className="text-[#00665A]">sells</span>.&rdquo;
-            </blockquote>
-            <div className="mt-6">
-              <p className="text-sm font-medium text-foreground">Sophie Marchand</p>
-              <p className="text-xs text-foreground/75">Head of E-Commerce, Lumière &amp; Co.</p>
+          </div>
+        </section>
+
+        {/* One real review, quoted verbatim from the Shopify App Store listing. */}
+        {review && (
+          <section className={p.reviewSection}>
+            <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+              <figure className={p.review}>
+                <blockquote className={p.quote}>&ldquo;{review.quote}&rdquo;</blockquote>
+                <figcaption className={p.by}>
+                  <span className={p.byLogo} aria-hidden="true" />
+                  <span>
+                    <span className={p.byStore}>{review.store}</span>
+                    <span className={p.byWhere}>{review.country} · Shopify App Store review</span>
+                  </span>
+                </figcaption>
+              </figure>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
-        {/* FAQ */}
-        <section className="px-4 sm:px-6 mt-20 max-w-3xl mx-auto">
-          <JsonLd data={faqJsonLd(faqs.map((f) => ({ question: f.q, answer: f.a })))} />
-          <h2 className="text-2xl sm:text-4xl font-fraunces font-normal text-foreground text-center mb-8">
-            Pricing <span className="green-highlight">questions</span>
-          </h2>
-          <div className="divide-y divide-border rounded-2xl border border-border bg-card">
-            {faqs.map((faq, i) => (
-              <div key={i}>
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  aria-expanded={openFaq === i}
-                  className="flex w-full items-center justify-between gap-4 p-5 text-left"
-                >
-                  <span className="text-sm sm:text-base font-medium text-foreground">{faq.q}</span>
-                  <ChevronDown className={`h-5 w-5 shrink-0 text-foreground/75 transition-transform ${openFaq === i ? "rotate-180" : ""}`} />
-                </button>
-                {openFaq === i && (
-                  <p className="px-5 pb-5 -mt-1 text-sm text-foreground/75 leading-relaxed">{faq.a}</p>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <section className="px-4 sm:px-6 mt-20 max-w-5xl mx-auto">
-          <div className="relative overflow-hidden rounded-3xl bg-[#0d1717] px-6 py-14 sm:px-12 sm:py-20 text-center">
-            <div
-              className="absolute inset-0 pointer-events-none opacity-80"
-              style={{
-                background:
-                  "radial-gradient(ellipse 60% 80% at 15% 10%, rgba(0,204,153,0.28) 0%, transparent 55%), radial-gradient(ellipse 60% 80% at 90% 90%, rgba(0,153,115,0.22) 0%, transparent 55%)",
-              }}
-            />
-            <div className="relative z-10">
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-fraunces font-normal text-[#fffffc] leading-tight mb-4">
-                Turn more visitors into revenue
-              </h2>
-              <p className="text-sm sm:text-base text-white/70 max-w-lg mx-auto mb-8">
-                Install Aurevia in minutes and let your AI sales agent start closing—24/7, on autopilot.
+        <section className={p.faqSection}>
+          <JsonLd data={faqJsonLd(FAQS.map((f) => ({ question: f.q, answer: f.a })))} />
+          <div className={`container mx-auto max-w-6xl px-4 sm:px-6 ${p.faqGrid}`}>
+            <div>
+              <h2 className={p.h2}>Pricing questions</h2>
+              <p className={p.faqAside}>
+                Something else? <Link href="/contact/" className={p.inlineLink}>Talk to us</Link>
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <a
-                  href={SHOPIFY_APP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cta-button text-primary-foreground font-semibold rounded-xl px-7 py-3 text-sm sm:text-base min-h-[48px] inline-flex items-center justify-center no-underline"
-                >
-                  Start free trial
+            </div>
+            <div className={p.faqList}>
+              {FAQS.map((f, i) => (
+                <div key={f.q} className={p.faqItem}>
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    aria-expanded={openFaq === i}
+                    className={p.faqQ}
+                  >
+                    {f.q}
+                    <span className={`${p.faqIcon} ${openFaq === i ? p.faqIconOpen : ""}`} aria-hidden="true" />
+                  </button>
+                  {openFaq === i && <p className={p.faqA}>{f.a}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className={p.ctaSection}>
+          <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+            <div className={p.cta}>
+              <span className={p.ctaMark} aria-hidden="true" />
+              <h2 className={p.ctaTitle}>Try it on your store, free for 14 days</h2>
+              <p className={p.ctaLede}>No card needed, and you can cancel from Shopify any time.</p>
+              <div className={p.ctaButtons}>
+                <a href={SHOPIFY_APP_URL} target="_blank" rel="noopener noreferrer" className={p.primary}>
+                  Start free trial <ArrowRight aria-hidden="true" />
                 </a>
-                <Link
-                  href="/resources/roi-calculator"
-                  className="rounded-xl border border-white/20 px-7 py-3 text-sm sm:text-base font-medium text-[#fffffc] hover:bg-white/10 transition-colors min-h-[48px] inline-flex items-center justify-center no-underline"
-                >
-                  Calculate your ROI
+                <Link href="/book-demo/" className={p.ctaSecondary}>
+                  Book a demo
                 </Link>
               </div>
-              <p className="mt-5 text-xs text-white/50">14-day free trial · Setup in minutes · No credit card required</p>
             </div>
           </div>
         </section>

@@ -8,13 +8,13 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "SaaS Product Development for Founders — Pixel & Code",
+  title: "SaaS Product Development for Founders | Pixel & Code",
   description:
-    "Turn a validated idea into a production-ready SaaS product — discovery, UX, development, billing, and launch. Built by the team behind Aurevia.",
+    "Turn a validated idea into a production-ready SaaS product: discovery, UX, development, billing, and launch. Built by the team behind Aurevia.",
   alternates: { canonical: "https://aurevia.io/pixel-and-code/saas-development/" },
   openGraph: {
     type: "website",
-    title: "SaaS Product Development for Founders — Pixel & Code",
+    title: "SaaS Product Development for Founders | Pixel & Code",
     description: "Turn a validated idea into a production-ready SaaS product. Built by the team behind Aurevia.",
   },
 };
@@ -45,8 +45,8 @@ export default function SaasDevelopmentPage() {
           <span className="case-eyebrow reveal-up"><span className="px"></span> For SaaS founders</span>
           <h1 className="case-title reveal-up" data-split>Turn your validated idea into a production SaaS product.</h1>
           <p className="case-summary reveal-up">
-            You&apos;ve proven the problem is real. Now it needs building properly — authentication,
-            billing, admin, integrations — and a team that ships every week, not every quarter.
+            You&apos;ve proven the problem is real. Now it needs building properly (authentication,
+            billing, admin, integrations) and a team that ships every week, not every quarter.
           </p>
           <div className="case-actions reveal-up">
             <a href="/pixel-and-code/#contact" className="btn btn--primary">
@@ -70,7 +70,7 @@ export default function SaasDevelopmentPage() {
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Delivery risk</span>
               <h3>A freelancer or agency has gone quiet</h3>
-              <p>Missed deadlines, disappearing contractors, or code you don&apos;t fully trust — and the
+              <p>Missed deadlines, disappearing contractors, or code you don&apos;t fully trust, and the
                  clock is still running on your runway.</p>
             </article>
             <article className="feature-card reveal-up">
@@ -82,7 +82,7 @@ export default function SaasDevelopmentPage() {
             <article className="feature-card reveal-up">
               <span className="feature-card__tag">Judgment, not just hands</span>
               <h3>You need senior technical judgment</h3>
-              <p>Not another pair of hands typing code — someone who can make the architecture and
+              <p>Not another pair of hands typing code: someone who can make the architecture and
                  scope calls, without you giving up equity for a co-founder.</p>
             </article>
           </div>
@@ -95,7 +95,7 @@ export default function SaasDevelopmentPage() {
             <h2 className="section__title" data-split>A production SaaS platform, not a demo.</h2>
           </div>
           <p className="case-summary reveal-up" style={{ maxWidth: 760, marginBottom: "2.5rem" }}>
-            SaaS is the deepest end of our web app work — launching or rebuilding a production-ready platform without you assembling an internal product team first.
+            SaaS is the deepest end of our web app work: launching or rebuilding a production-ready platform without you assembling an internal product team first.
           </p>
           <div className="feature-grid">
             <article className="feature-card reveal-up"><h3>Product discovery</h3><p>Scope, users, and priorities mapped before a line of code.</p></article>
@@ -119,7 +119,7 @@ export default function SaasDevelopmentPage() {
             <div className="lp-proof__text reveal-up">
               <p>
                 Aurevia is a production Shopify SaaS product we designed and built end to end on
-                Django — AI product recommendations, cart recovery, subscription billing, merchant
+                Django: AI product recommendations, cart recovery, subscription billing, merchant
                 configuration, analytics, and a live Shopify App Store listing.
               </p>
               <p>
@@ -128,7 +128,7 @@ export default function SaasDevelopmentPage() {
               <a href="/pixel-and-code/aurevia-io/" className="btn btn--ghost"><span>Read the Aurevia case study ↗</span></a>
             </div>
             <figure className="case-shot reveal-up" style={{ margin: 0 }}>
-              <img src="/images/home-dashboard.webp" alt="Aurevia dashboard — chat widget branding and tone settings" loading="lazy" />
+              <img src="/images/home-dashboard.webp" alt="Aurevia dashboard: chat widget branding and tone settings" loading="lazy" />
             </figure>
           </div>
         </section>
@@ -138,8 +138,8 @@ export default function SaasDevelopmentPage() {
           <div className="lp-split">
             <div className="reveal-up">
               <h3>Timeline</h3>
-              <p>Every build runs through the same six stages — Discover, Design, Architect, Build,
-                 Launch, Grow — just at different scale. JCR Pharma&apos;s platform took about six weeks;
+              <p>Every build runs through the same six stages (Discover, Design, Architect, Build,
+                 Launch, Grow), just at different scale. JCR Pharma&apos;s platform took about six weeks;
                  Aurevia&apos;s full SaaS build ran across a year of weekly releases. Your timeline depends
                  on scope, not on guesswork.</p>
             </div>
@@ -147,7 +147,7 @@ export default function SaasDevelopmentPage() {
               <h3>Investment</h3>
               <p>Investment scales with scope, so we don&apos;t quote a number before understanding what
                  you&apos;re building. What we can promise: a clear, fixed-scope estimate after a short
-                 discovery conversation — no surprise invoices once the build starts.</p>
+                 discovery conversation. No surprise invoices once the build starts.</p>
             </div>
           </div>
         </section>
@@ -161,7 +161,7 @@ export default function SaasDevelopmentPage() {
           <div className="faq">
             <details className="faq__item reveal-up">
               <summary>Do you work with pre-seed or early-stage startups?</summary>
-              <p>Yes, as long as the idea is validated and there&apos;s a real scope to build against —
+              <p>Yes, as long as the idea is validated and there&apos;s a real scope to build against;
                  we&apos;re not the right fit for pure idea-stage exploration with no direction yet.</p>
             </details>
             <details className="faq__item reveal-up">
@@ -176,8 +176,8 @@ export default function SaasDevelopmentPage() {
             </details>
             <details className="faq__item reveal-up">
               <summary>Will we own the code and IP?</summary>
-              <p>That&apos;s exactly the kind of detail we lock down in the agreement before starting —
-                 happy to talk it through on a call.</p>
+              <p>That&apos;s exactly the kind of detail we lock down in the agreement before starting.
+                 Happy to talk it through on a call.</p>
             </details>
             <details className="faq__item reveal-up">
               <summary>What happens after launch?</summary>
@@ -192,10 +192,10 @@ export default function SaasDevelopmentPage() {
           <div className="contact__inner">
             <span className="section__label reveal-up">Let&apos;s talk</span>
             <h2 className="contact__title" data-split>Ready to scope your build?</h2>
-            <p className="contact__sub reveal-up">Chat with our AI to scope your project — it captures the
+            <p className="contact__sub reveal-up">Chat with our AI to scope your project. It captures the
                details and a human follows up within one business day.</p>
             <form className="contact__ai reveal-up" data-contact-ai>
-              <input type="text" data-contact-input placeholder="Describe your project — our AI takes it from here…" autoComplete="off" aria-label="Describe your project" />
+              <input type="text" data-contact-input placeholder="Describe your project. Our AI takes it from here…" autoComplete="off" aria-label="Describe your project" />
               <button type="submit" aria-label="Start the conversation">
                 <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
